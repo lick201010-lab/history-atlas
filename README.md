@@ -2,7 +2,26 @@
 
 一个深色 HUD 风格的交互式历史沙盘，把全球 43 个文明、30 处奇观建筑、跨越公元前 2000 年到公元 2025 年的时空叙事呈现在一张 3D 地形地图上。
 
-> 当前状态：**MVP 已完成**。可本地运行、可校验数据、可构建发布。
+| | |
+|---|---|
+| **仓库** | https://github.com/lick201010-lab/history-atlas |
+| **部署目标** | 阿里云 ECS（Ubuntu 22.04 / Nginx / Node.js 20 LTS） |
+| **当前阶段** | MVP 原型 · 数据样板 · 部署准备 |
+| **状态** | 可本地运行、可校验数据、可构建发布 |
+
+## 命令速查
+
+```bash
+npm install            # 一次性安装依赖
+npm run dev            # 本地开发 (默认 http://127.0.0.1:5173/)
+npm run validate:data  # 校验 dynasties / boundaries / landmarks
+npm run build          # 生产构建到 dist/
+npm run preview        # 预览构建产物
+npm run check          # = validate:data + build，发版前一条命令打底
+```
+
+部署到阿里云：见 [docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)
+日常 Git 工作流：见 [docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
 
 ---
 
@@ -168,9 +187,12 @@ npm run check          # = validate:data && build，一条命令打底
 
 ## GitHub 同步与阿里云部署
 
-本项目后续默认使用 **GitHub 保存源码，阿里云服务器拉取部署** 的工作流。
+本项目默认使用 **GitHub 保存源码，阿里云服务器拉取部署** 的工作流。
 
-部署与同步说明见：[docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)。
+- 部署完整说明：[docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)
+  涵盖：环境装机、两种部署模式（拉源码 vs 上传 dist）、Nginx 配置、SPA fallback、后端 API 反向代理、HTTPS 证书（Let's Encrypt / 阿里云）、安全组与 ufw。
+- 日常 Git 工作流：[docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
+- 环境变量模板：[.env.example](.env.example)（复制成 `.env.local` 后修改；`.env*` 已被 `.gitignore` 排除）
 
 推荐发布前命令：
 

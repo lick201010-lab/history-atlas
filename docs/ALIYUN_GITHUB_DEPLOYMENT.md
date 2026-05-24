@@ -82,9 +82,21 @@ git push -u origin main
 
 服务器需要：
 
-- Node.js 18+，建议 Node.js 20 LTS
-- Git
-- Nginx
+- 操作系统：**Ubuntu 22.04 LTS**（也可用 Alibaba Cloud Linux 3 / CentOS Stream）
+- **Node.js 20 LTS**（NodeSource 或 nvm 安装）
+- **Nginx 1.18+**
+- **Git 2.x**
+
+一次性环境安装示例（Ubuntu 22.04 root）：
+
+```bash
+apt update
+apt install -y git nginx curl
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install -y nodejs
+node -v && npm -v
+nginx -v
+```
 
 示例目录：
 
@@ -123,6 +135,138 @@ server {
 ```bash
 sudo nginx -t
 sudo systemctl reload nginx
+```
+
+## 两种部署模式
+
+### 模式 A（推荐）：服务器拉源码 + 服务器构建
+
+适合服务器能正常访问 GitHub 与 npm registry。
+
+```bash
+cd /var/www/history-atlas
+git pull
+npm ci
+npm run build     # 产物落在 /var/www/history-atlas/dist
+sudo systemctl reload nginx
+```
+
+Nginx 的 `root` 直接指向仓库内的 `dist/`，不需要再拷贝文件。
+
+### 模式 B：本地构建 + 上传 dist
+
+适合服务器在国内网络下访问 GitHub / npm 慢，或不想在生产机装 Node 的场景。
+
+本地：
+
+```bash
+npm run check                                    # 校验数据 + 构建
+# 仅同步 dist 目录到服务器（注意末尾的 /，让 rsync 同步目录内容而不是目录本身）
+rsync -avz --delete dist/ \
+  user@your-server:/var/www/history-atlas/dist/
+```
+
+如果没有 rsync，也可以用 scp：
+
+```bash
+scp -r dist/* user@your-server:/var/www/history-atlas/dist/
+```
+
+服务器侧只需 Nginx + dist 目录，无需 Node / npm。
+
+## 反向代理后端 API（可选，未来用）
+
+如果后续在同一台机器上跑一个后端服务（例如 Node/Express 监听 `127.0.0.1:8080`，提供 `/api/...`），把 `server` 块改成：
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+
+    root /var/www/history-atlas/dist;
+    index index.html;
+
+    # 后端 API 走反向代理
+    location /api/ {
+        proxy_pass         http://127.0.0.1:8080/;
+        proxy_http_version 1.1;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout 60s;
+    }
+
+    # SPA fallback：未匹配到的路径全部回退到 index.html
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+前端代码里通过 `VITE_API_BASE_URL=/api` 拼请求路径，开发与生产共用同一个相对前缀。
+
+## HTTPS 证书（绑定域名后）
+
+阿里云控制台已经把域名解析到服务器后，用 Let's Encrypt + certbot 一键签发：
+
+```bash
+apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d your-domain.com -d www.your-domain.com
+sudo systemctl reload nginx
+```
+
+certbot 会自动改 Nginx 配置加上 443 listen、自动跳 80→443、自动注册续期 cron。验证：
+
+```bash
+sudo certbot certificates
+sudo certbot renew --dry-run
+```
+
+如果用阿里云自家的免费 SSL（域名服务里申请），下载下来的 `.pem` + `.key` 放到例如 `/etc/nginx/ssl/`，然后手工写 443 server 块：
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name your-domain.com;
+
+    ssl_certificate     /etc/nginx/ssl/your-domain.pem;
+    ssl_certificate_key /etc/nginx/ssl/your-domain.key;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    root /var/www/history-atlas/dist;
+    index index.html;
+
+    location / { try_files $uri $uri/ /index.html; }
+}
+
+server {
+    listen 80;
+    server_name your-domain.com;
+    return 301 https://$host$request_uri;
+}
+```
+
+`阿里云安全组` 记得放行 443 入站。
+
+## 阿里云安全组与防火墙
+
+控制台 → ECS → 安全组 → 入方向规则，至少放行：
+
+| 协议 | 端口范围 | 授权对象 | 用途 |
+|---|---|---|---|
+| TCP | 22 | 你自己的 IP | SSH |
+| TCP | 80 | 0.0.0.0/0 | HTTP |
+| TCP | 443 | 0.0.0.0/0 | HTTPS |
+
+服务器内的 `ufw`（Ubuntu）也要放行：
+
+```bash
+sudo ufw allow OpenSSH
+sudo ufw allow 'Nginx Full'
+sudo ufw enable
+sudo ufw status
 ```
 
 ## 外部网络依赖

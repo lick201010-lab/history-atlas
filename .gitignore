@@ -6,6 +6,11 @@ react-*-validation.png
 # Local generated media / experiment outputs
 manim_demo/
 
+# Environment files: only .env.example is committed
+.env
+.env.local
+.env.*.local
+
 # OS / editor noise
 .DS_Store
 Thumbs.db
