@@ -105,20 +105,32 @@ git branch -d feat/timeline-ticks
 
 ---
 
-## 7. 服务器侧拉取更新
+## 7. 部署到服务器（本地构建 + scp 上传 dist）
 
-阿里云服务器目录约定 `/var/www/history-atlas`：
+生产服务器是 `root@47.237.181.181`（阿里云 ECS，Ubuntu 24.04，跑 Caddy v2.11.3），
+**只有 894 MB 内存，不在服务器上跑 `npm run build`**。所有构建在本地完成后用 scp/rsync 推到 `/opt/history-atlas/dist/`：
 
 ```bash
-ssh user@your-server
-cd /var/www/history-atlas
-git pull
-npm ci             # 严格按 package-lock.json 装依赖
-npm run build      # 产物到 dist/
-sudo systemctl reload nginx   # 静态站点不一定需要，rev 文件名变了浏览器自己刷
+# 本地：构建 + 上传
+cd C:/Users/Yvette/Documents/历史网站
+npm run check                                              # 校验数据 + 构建
+scp -r dist/* root@47.237.181.181:/opt/history-atlas/dist/ # 推送静态产物
 ```
 
-如果选模式 B（本地构建 + rsync 上传 dist），服务器不需要 `git pull`，详见 `docs/ALIYUN_GITHUB_DEPLOYMENT.md`。
+Caddy 直接读这个目录，**新文件上传后立即生效**，不需要 reload。
+
+只有改了 Caddyfile（如增加路由、改子域）才需要登录服务器：
+
+```bash
+ssh root@47.237.181.181
+nano /etc/caddy/Caddyfile
+caddy validate --config /etc/caddy/Caddyfile
+systemctl reload caddy
+```
+
+详细部署流程：[docs/ALIYUN_GITHUB_DEPLOYMENT.md](ALIYUN_GITHUB_DEPLOYMENT.md)。
+
+> 不推荐在服务器上 `git pull && npm run build`。当前内存余量约 467 MB，Vite + Rollup 打包峰值可能 600 MB+，会触发 OOM 影响 lottery 后端。
 
 ---
 

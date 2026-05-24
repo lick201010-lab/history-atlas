@@ -5,7 +5,9 @@
 | | |
 |---|---|
 | **仓库** | https://github.com/lick201010-lab/history-atlas |
-| **部署目标** | 阿里云 ECS（Ubuntu 22.04 / Nginx / Node.js 20 LTS） |
+| **生产域名** | https://atlas.ckl.hk |
+| **部署目标** | 阿里云 ECS（Ubuntu 24.04 LTS）+ **Caddy v2** 自动 HTTPS，与 lottery 共用一台机 |
+| **部署模式** | 本地 Windows `npm run check` + `scp` 上传 `dist/` 到 `/opt/history-atlas/dist/` |
 | **当前阶段** | MVP 原型 · 数据样板 · 部署准备 |
 | **状态** | 可本地运行、可校验数据、可构建发布 |
 
@@ -187,25 +189,24 @@ npm run check          # = validate:data && build，一条命令打底
 
 ## GitHub 同步与阿里云部署
 
-本项目默认使用 **GitHub 保存源码，阿里云服务器拉取部署** 的工作流。
+本项目源码托管在 GitHub，生产环境是阿里云 ECS `47.237.181.181`，与 lottery 共用 Caddy。
+`atlas.ckl.hk` 由 Caddy 自动签发 Let's Encrypt 证书，无需 certbot / Nginx。
 
 - 部署完整说明：[docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)
-  涵盖：环境装机、两种部署模式（拉源码 vs 上传 dist）、Nginx 配置、SPA fallback、后端 API 反向代理、HTTPS 证书（Let's Encrypt / 阿里云）、安全组与 ufw。
+  涵盖：Caddyfile 追加块、DNS 配置、本地构建 + scp 上传、验收命令、资源估算、故障排查、Nginx/certbot 旧方案（仅作附录参考）
 - 日常 Git 工作流：[docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
 - 环境变量模板：[.env.example](.env.example)（复制成 `.env.local` 后修改；`.env*` 已被 `.gitignore` 排除）
 
-推荐发布前命令：
+每次发布只跑两条命令：
 
 ```bash
+# 1. 本地构建（含数据校验）
 npm run check
+
+# 2. 上传到生产
+scp -r dist/* root@47.237.181.181:/opt/history-atlas/dist/
 ```
 
-阿里云服务器侧的典型更新流程：
-
-```bash
-cd /var/www/history-atlas
-git pull
-npm ci
-npm run build
-```
+服务器侧 Caddy 直接读 `/opt/history-atlas/dist/`，新文件秒级生效，**无需 git pull、无需 reload**。
+只有改 Caddyfile（增加路由、改子域）才需要登录服务器 `caddy validate` + `systemctl reload caddy`。
 
