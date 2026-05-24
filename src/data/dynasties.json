@@ -1,0 +1,2525 @@
+[
+  {
+    "id": "xia",
+    "name": "夏朝",
+    "nameEn": "Xia Dynasty",
+    "startYear": -2070,
+    "endYear": -1600,
+    "capital": {
+      "lat": 34.68,
+      "lng": 112.45,
+      "name": "二里头"
+    },
+    "color": "#d8b46a",
+    "region": "中国",
+    "territory": "china-central",
+    "summary": "中国传统叙事中的最早王朝，活动核心在黄河中游伊洛盆地一带。二里头遗址展现了早期国家的宫室、青铜器与礼器制度，是华夏王权与礼乐秩序的源头之一。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -2070,
+        "title": "禹据传建立夏，定都阳城"
+      },
+      {
+        "year": -1900,
+        "title": "二里头都邑兴起，出现宫室建筑群"
+      },
+      {
+        "year": -1750,
+        "title": "青铜礼器与玉器制度成形"
+      },
+      {
+        "year": -1700,
+        "title": "夏中期王朝向四方扩张文化影响"
+      },
+      {
+        "year": -1600,
+        "title": "商汤伐桀，夏王朝被取代"
+      }
+    ],
+    "tags": [
+      "王朝",
+      "青铜",
+      "礼制",
+      "黄河",
+      "东亚"
+    ],
+    "importance": 3,
+    "legacy": "夏在中国后世史观中被视为\"三代之首\"，奠定了王朝更替、天命转移、宫室宗庙等政治文化母题，对中国王权叙事影响深远。"
+  },
+  {
+    "id": "shang",
+    "name": "商朝",
+    "nameEn": "Shang Dynasty",
+    "startYear": -1600,
+    "endYear": -1046,
+    "capital": {
+      "lat": 36.12,
+      "lng": 114.32,
+      "name": "殷"
+    },
+    "color": "#c88b5a",
+    "region": "中国",
+    "territory": "china-north",
+    "summary": "商朝是中国第一个有同时期文字记录的王朝，以青铜器与甲骨卜辞著称。王都多次迁徙，殷墟时期形成成熟的礼制、占卜与王权体系，势力范围覆盖黄河中下游。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -1600,
+        "title": "商汤灭夏，王朝建立"
+      },
+      {
+        "year": -1300,
+        "title": "盘庚迁殷，王都稳定于安阳"
+      },
+      {
+        "year": -1250,
+        "title": "武丁中兴，势力达到鼎盛"
+      },
+      {
+        "year": -1200,
+        "title": "甲骨文与青铜礼器成熟"
+      },
+      {
+        "year": -1046,
+        "title": "周武王牧野克商，商纣败亡"
+      }
+    ],
+    "tags": [
+      "王朝",
+      "青铜",
+      "甲骨文",
+      "宗教",
+      "黄河"
+    ],
+    "importance": 4,
+    "legacy": "商代奠定了汉字、占卜、宗庙祭祀与青铜礼器系统，为后世中国文化与王权符号留下了直接的源头。"
+  },
+  {
+    "id": "zhou",
+    "name": "周朝",
+    "nameEn": "Zhou Dynasty",
+    "startYear": -1046,
+    "endYear": -256,
+    "capital": {
+      "lat": 34.27,
+      "lng": 108.95,
+      "name": "镐京/洛邑"
+    },
+    "color": "#b9a15f",
+    "region": "中国",
+    "territory": "china-north",
+    "summary": "周代以分封制和礼乐文明确立中国早期政治秩序，西周以镐京为中心、东周以洛邑为都。春秋战国时期诸侯纷争催生百家争鸣，思想与制度均奠定后世两千年的框架。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -1046,
+        "title": "武王克商，建立周朝"
+      },
+      {
+        "year": -841,
+        "title": "国人暴动，共和行政开启信史纪年"
+      },
+      {
+        "year": -771,
+        "title": "犬戎攻破镐京，平王东迁洛邑"
+      },
+      {
+        "year": -551,
+        "title": "孔子诞生，儒家思想形成"
+      },
+      {
+        "year": -403,
+        "title": "三家分晋，战国时代开启"
+      },
+      {
+        "year": -256,
+        "title": "秦灭东周，王朝终结"
+      }
+    ],
+    "tags": [
+      "封建",
+      "礼乐",
+      "百家",
+      "中原",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "周礼、宗法与诸子思想成为中国文明的精神底座，\"封建—郡县\"之争与\"天命—民本\"观念影响东亚整个传统时代。"
+  },
+  {
+    "id": "qin",
+    "name": "秦朝",
+    "nameEn": "Qin Dynasty",
+    "startYear": -221,
+    "endYear": -206,
+    "capital": {
+      "lat": 34.33,
+      "lng": 108.71,
+      "name": "咸阳"
+    },
+    "color": "#8e44ad",
+    "region": "中国",
+    "territory": "china-unified",
+    "summary": "秦在战国诸侯中率先以法家与军功制实现集权，公元前 221 年完成统一，建立中国第一个中央集权帝国。短命王朝奠定了郡县、文字、度量衡与道路体系的统一框架。",
+    "relatedLandmarks": [
+      "terracotta-army",
+      "great-wall"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -361,
+        "title": "商鞅入秦推行变法"
+      },
+      {
+        "year": -246,
+        "title": "嬴政即秦王位"
+      },
+      {
+        "year": -221,
+        "title": "秦灭六国，建立统一帝国，自称始皇帝"
+      },
+      {
+        "year": -214,
+        "title": "修筑长城与直道，南征百越"
+      },
+      {
+        "year": -210,
+        "title": "秦始皇巡游途中病逝"
+      },
+      {
+        "year": -206,
+        "title": "陈胜吴广起义后秦朝灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "法家",
+      "统一",
+      "工程",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "秦确立了郡县制、统一文字与度量衡，\"百代皆行秦政\"成为后世中国政治的基本范式，也留下了长城与兵马俑等纪念性遗存。"
+  },
+  {
+    "id": "han",
+    "name": "汉朝",
+    "nameEn": "Han Dynasty",
+    "startYear": -202,
+    "endYear": 220,
+    "capital": {
+      "lat": 34.34,
+      "lng": 108.94,
+      "name": "长安/洛阳"
+    },
+    "color": "#c0392b",
+    "region": "中国",
+    "territory": "china-han",
+    "summary": "汉承秦制并修正其严苛，建立起以儒法并用的官僚帝国。两汉四百余年间，丝绸之路打通、儒家成为国家意识形态，\"汉\"自此成为中国主体民族与文明的代名词。",
+    "relatedLandmarks": [
+      "changan",
+      "great-wall"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -202,
+        "title": "刘邦称帝，西汉建立"
+      },
+      {
+        "year": -141,
+        "title": "汉武帝即位，独尊儒术"
+      },
+      {
+        "year": -138,
+        "title": "张骞首次出使西域，丝绸之路开启"
+      },
+      {
+        "year": 9,
+        "title": "王莽篡汉建新，西汉灭亡"
+      },
+      {
+        "year": 25,
+        "title": "光武中兴，东汉建立"
+      },
+      {
+        "year": 220,
+        "title": "曹丕代汉，三国时代开启"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "丝绸之路",
+      "儒家",
+      "官僚",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "汉代奠定了中央集权官僚制、儒家正统与汉字汉文化共同体，丝绸之路打通了东亚与欧亚大陆的长程互动。"
+  },
+  {
+    "id": "jin",
+    "name": "晋朝",
+    "nameEn": "Jin Dynasty",
+    "startYear": 266,
+    "endYear": 420,
+    "capital": {
+      "lat": 34.62,
+      "lng": 112.45,
+      "name": "洛阳/建康"
+    },
+    "color": "#a86454",
+    "region": "中国",
+    "territory": "china-jin",
+    "summary": "晋朝短暂统一三国又因八王之乱与永嘉之祸南渡，开启长达三百年的南北分裂。门阀士族、玄学清谈与五胡内迁是这一时期的关键现象。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 265,
+        "title": "司马炎代魏建立西晋"
+      },
+      {
+        "year": 280,
+        "title": "西晋灭吴，重新统一中国"
+      },
+      {
+        "year": 291,
+        "title": "八王之乱爆发"
+      },
+      {
+        "year": 311,
+        "title": "永嘉之祸，洛阳陷落"
+      },
+      {
+        "year": 317,
+        "title": "司马睿在建康建立东晋"
+      },
+      {
+        "year": 420,
+        "title": "刘裕代晋，东晋灭亡"
+      }
+    ],
+    "tags": [
+      "分裂",
+      "门阀",
+      "玄学",
+      "南渡",
+      "东亚"
+    ],
+    "importance": 3,
+    "legacy": "晋代士族文化与南渡传统塑造了江南成为新的文明重心，五胡内迁则推动了中国北方的民族与制度重组。"
+  },
+  {
+    "id": "sui",
+    "name": "隋朝",
+    "nameEn": "Sui Dynasty",
+    "startYear": 581,
+    "endYear": 618,
+    "capital": {
+      "lat": 34.27,
+      "lng": 108.95,
+      "name": "大兴城"
+    },
+    "color": "#7f8c8d",
+    "region": "中国",
+    "territory": "china-unified",
+    "summary": "隋朝结束南北朝长期分裂，重建大一统帝国。短短三十余年间开凿大运河、完善科举雏形、修订律令制度，为唐朝盛世奠定了直接基础。",
+    "relatedLandmarks": [
+      "changan"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 581,
+        "title": "杨坚代北周建立隋朝"
+      },
+      {
+        "year": 589,
+        "title": "隋灭陈，南北重新统一"
+      },
+      {
+        "year": 605,
+        "title": "隋炀帝下令开凿大运河"
+      },
+      {
+        "year": 607,
+        "title": "颁布进士科，奠定科举制基础"
+      },
+      {
+        "year": 612,
+        "title": "三征高句丽失败，国力耗竭"
+      },
+      {
+        "year": 618,
+        "title": "隋炀帝被弑，隋朝灭亡，唐代之"
+      }
+    ],
+    "tags": [
+      "统一",
+      "运河",
+      "制度",
+      "科举",
+      "东亚"
+    ],
+    "importance": 4,
+    "legacy": "隋代留下的运河、科举雏形和三省六部制度被唐朝继承并放大，成为东亚帝国治理的标准模板。"
+  },
+  {
+    "id": "tang",
+    "name": "唐朝",
+    "nameEn": "Tang Dynasty",
+    "startYear": 618,
+    "endYear": 907,
+    "capital": {
+      "lat": 34.34,
+      "lng": 108.94,
+      "name": "长安"
+    },
+    "color": "#e67e22",
+    "region": "中国",
+    "territory": "china-tang",
+    "summary": "唐朝是中古东亚最具开放性和辐射力的帝国之一。它以长安为政治与文化中心，连接草原、绿洲、海上贸易与东亚朝贡网络，在制度、诗歌、宗教、城市生活和跨区域交流上留下深远影响。",
+    "relatedLandmarks": [
+      "changan"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 618,
+        "title": "李渊建唐，定都长安"
+      },
+      {
+        "year": 626,
+        "title": "玄武门之变后唐太宗即位"
+      },
+      {
+        "year": 630,
+        "title": "唐击败东突厥，草原秩序重组"
+      },
+      {
+        "year": 742,
+        "title": "盛唐时期人口、城市与边疆交流达到高峰"
+      },
+      {
+        "year": 755,
+        "title": "安史之乱爆发，帝国结构转折"
+      },
+      {
+        "year": 907,
+        "title": "朱温代唐，唐朝灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "城市",
+      "丝绸之路",
+      "文化",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "唐朝塑造了东亚世界对中国盛世、都城秩序和国际交流的长期想象，律令制度、诗歌传统和长安都会文化影响中国、日本、朝鲜半岛与越南。"
+  },
+  {
+    "id": "song",
+    "name": "宋朝",
+    "nameEn": "Song Dynasty",
+    "startYear": 960,
+    "endYear": 1279,
+    "capital": {
+      "lat": 34.8,
+      "lng": 114.31,
+      "name": "汴京/临安"
+    },
+    "color": "#2980b9",
+    "region": "中国",
+    "territory": "china-song",
+    "summary": "宋代是中国传统商业、城市与科技文化的高峰，文官政治与儒学复兴并行。北宋失地于金后南渡临安，南宋以海上贸易和精致文化延续王朝近三百年。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 960,
+        "title": "赵匡胤陈桥兵变建立北宋"
+      },
+      {
+        "year": 1069,
+        "title": "王安石变法启动"
+      },
+      {
+        "year": 1127,
+        "title": "靖康之变，北宋覆灭，宋室南渡"
+      },
+      {
+        "year": 1130,
+        "title": "南宋定都临安"
+      },
+      {
+        "year": 1234,
+        "title": "宋蒙联合灭金"
+      },
+      {
+        "year": 1279,
+        "title": "崖山海战，南宋灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "商业",
+      "文官",
+      "儒学",
+      "科技"
+    ],
+    "importance": 5,
+    "legacy": "宋代发明印刷、火药、罗盘的成熟应用以及文官—士大夫政治传统，对东亚后续社会、商业与思想长期产生影响。"
+  },
+  {
+    "id": "yuan",
+    "name": "元朝",
+    "nameEn": "Yuan Dynasty",
+    "startYear": 1271,
+    "endYear": 1368,
+    "capital": {
+      "lat": 39.9,
+      "lng": 116.4,
+      "name": "大都"
+    },
+    "color": "#16a085",
+    "region": "中国/欧亚",
+    "territory": "mongol-yuan",
+    "summary": "元朝由蒙古帝国忽必烈一系建立，是中国历史上第一个由游牧民族主导的大一统帝国。它把中国纳入跨欧亚的蒙古世界体系，推动了驿站、海运与跨文化交流。",
+    "relatedLandmarks": [
+      "forbidden-city",
+      "great-wall"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1271,
+        "title": "忽必烈建国号大元"
+      },
+      {
+        "year": 1276,
+        "title": "元军攻陷临安，南宋崩溃"
+      },
+      {
+        "year": 1279,
+        "title": "崖山海战后中国完全统一于元"
+      },
+      {
+        "year": 1294,
+        "title": "忽必烈病逝"
+      },
+      {
+        "year": 1351,
+        "title": "红巾军起义爆发"
+      },
+      {
+        "year": 1368,
+        "title": "明军北伐，元顺帝退回草原"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "草原",
+      "跨欧亚",
+      "驿站",
+      "商贸"
+    ],
+    "importance": 4,
+    "legacy": "元朝将中国纳入跨欧亚蒙古秩序，加速了东西方人员、货物、技术与宗教的流动，对后世中国行省制度亦有持续影响。"
+  },
+  {
+    "id": "ming",
+    "name": "明朝",
+    "nameEn": "Ming Dynasty",
+    "startYear": 1368,
+    "endYear": 1644,
+    "capital": {
+      "lat": 39.9,
+      "lng": 116.4,
+      "name": "南京/北京"
+    },
+    "color": "#e74c3c",
+    "region": "中国",
+    "territory": "china-ming",
+    "summary": "明朝重建汉人主导的王朝秩序，强化中央集权、宦官与厂卫政治并行。郑和下西洋与海禁更迭、内部白银货币化、外部倭寇与北虏威胁，共同塑造了明代的开放与收缩。",
+    "relatedLandmarks": [
+      "forbidden-city",
+      "temple-of-heaven",
+      "great-wall"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1368,
+        "title": "朱元璋建立明朝，定都南京"
+      },
+      {
+        "year": 1421,
+        "title": "永乐迁都北京"
+      },
+      {
+        "year": 1433,
+        "title": "郑和第七次下西洋"
+      },
+      {
+        "year": 1572,
+        "title": "张居正改革推行一条鞭法"
+      },
+      {
+        "year": 1592,
+        "title": "万历援朝战争"
+      },
+      {
+        "year": 1644,
+        "title": "李自成攻入北京，明朝覆亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "海洋",
+      "白银",
+      "官僚",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "明朝奠定了北京作为东亚帝国首都的格局，留下长城、紫禁城与海上贸易遗产，并把白银货币化推向全球早期网络。"
+  },
+  {
+    "id": "qing",
+    "name": "清朝",
+    "nameEn": "Qing Dynasty",
+    "startYear": 1644,
+    "endYear": 1912,
+    "capital": {
+      "lat": 39.9,
+      "lng": 116.4,
+      "name": "北京"
+    },
+    "color": "#2ecc71",
+    "region": "中国",
+    "territory": "china-qing",
+    "summary": "清朝是中国最后一个王朝，由东北满洲入主中原后建立的多民族帝国。康雍乾盛世奠定了今日中国的疆域骨架，但 19 世纪在西方与日本的冲击下被迫开启近代转型。",
+    "relatedLandmarks": [
+      "forbidden-city",
+      "temple-of-heaven",
+      "great-wall"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1644,
+        "title": "清军入关，定都北京"
+      },
+      {
+        "year": 1689,
+        "title": "与俄国签订《尼布楚条约》"
+      },
+      {
+        "year": 1759,
+        "title": "乾隆平定准噶尔、回部，新疆纳入版图"
+      },
+      {
+        "year": 1840,
+        "title": "第一次鸦片战争爆发"
+      },
+      {
+        "year": 1860,
+        "title": "英法联军火烧圆明园"
+      },
+      {
+        "year": 1911,
+        "title": "辛亥革命爆发，清帝退位结束帝制"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "多民族",
+      "边疆",
+      "近代化",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "清代奠定了现代中国的疆域与多民族框架，也开启了中国与世界格局正面碰撞的近代史，对今日东亚地缘格局仍有直接影响。"
+  },
+  {
+    "id": "egypt-old-kingdom",
+    "name": "埃及古王国",
+    "nameEn": "Old Kingdom of Egypt",
+    "startYear": -2686,
+    "endYear": -2181,
+    "capital": {
+      "lat": 29.85,
+      "lng": 31.25,
+      "name": "孟菲斯"
+    },
+    "color": "#e8c98a",
+    "region": "埃及",
+    "territory": "nile-egypt",
+    "summary": "古王国时期的埃及以孟菲斯为中心，是金字塔文明的鼎盛阶段。强大的法老王权、严密的中央官僚和成熟的宗教体系，让尼罗河下游出现了人类最早的纪念性建筑国家。",
+    "relatedLandmarks": [
+      "pyramid"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -2686,
+        "title": "第三王朝开启古王国"
+      },
+      {
+        "year": -2670,
+        "title": "左塞王在萨卡拉建造阶梯金字塔"
+      },
+      {
+        "year": -2580,
+        "title": "胡夫开始营建吉萨大金字塔"
+      },
+      {
+        "year": -2500,
+        "title": "哈夫拉建造大狮身人面像"
+      },
+      {
+        "year": -2345,
+        "title": "《金字塔铭文》出现，宗教文献成形"
+      },
+      {
+        "year": -2181,
+        "title": "中央崩溃，第一中间期开始"
+      }
+    ],
+    "tags": [
+      "法老",
+      "金字塔",
+      "尼罗河",
+      "宗教",
+      "中央集权"
+    ],
+    "importance": 5,
+    "legacy": "古王国留下了金字塔群、太阳神信仰和成熟的官僚制度，定义了西方乃至全人类对\"古代埃及\"的核心想象。"
+  },
+  {
+    "id": "egypt-new-kingdom",
+    "name": "埃及新王国",
+    "nameEn": "New Kingdom of Egypt",
+    "startYear": -1550,
+    "endYear": -1070,
+    "capital": {
+      "lat": 25.72,
+      "lng": 32.61,
+      "name": "底比斯"
+    },
+    "color": "#f1c40f",
+    "region": "埃及",
+    "territory": "nile-egypt",
+    "summary": "新王国时期的埃及成为地中海东岸的霸权，从努比亚一直扩张到叙利亚北部。这一阶段法老兼具神王与征服者形象，留下卡纳克、卢克索、阿布辛贝等宏大神庙遗产。",
+    "relatedLandmarks": [
+      "pyramid"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -1550,
+        "title": "雅赫摩斯一世驱逐喜克索斯，开启新王国"
+      },
+      {
+        "year": -1457,
+        "title": "图特摩斯三世在米吉多大胜，势力扩至叙利亚"
+      },
+      {
+        "year": -1353,
+        "title": "阿肯那顿推行一神改革，建都阿玛尔那"
+      },
+      {
+        "year": -1279,
+        "title": "拉美西斯二世登基"
+      },
+      {
+        "year": -1274,
+        "title": "卡迭石之战与赫梯对峙"
+      },
+      {
+        "year": -1077,
+        "title": "第三中间期开启，新王国结束"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "神庙",
+      "法老",
+      "地中海",
+      "征服"
+    ],
+    "importance": 5,
+    "legacy": "新王国把埃及推向跨地区帝国地位，神庙建筑、宗教改革与外交档案（阿玛尔那信件）成为研究古代东地中海的关键来源。"
+  },
+  {
+    "id": "babylon",
+    "name": "巴比伦王国",
+    "nameEn": "Babylonian Empire",
+    "startYear": -1894,
+    "endYear": -539,
+    "capital": {
+      "lat": 32.54,
+      "lng": 44.42,
+      "name": "巴比伦"
+    },
+    "color": "#9b59b6",
+    "region": "两河流域",
+    "territory": "mesopotamia",
+    "summary": "巴比伦先后由古巴比伦汉谟拉比和新巴比伦尼布甲尼撒二世推上美索不达米亚的中心。它以法典、星象、神庙与城墙著称，是两河文明传统的集大成者。",
+    "relatedLandmarks": [
+      "ishtar-gate",
+      "ziggurat-ur"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -1894,
+        "title": "阿摩利人建立古巴比伦王国"
+      },
+      {
+        "year": -1754,
+        "title": "汉谟拉比颁布《汉谟拉比法典》"
+      },
+      {
+        "year": -1595,
+        "title": "赫梯洗劫巴比伦，古巴比伦衰落"
+      },
+      {
+        "year": -626,
+        "title": "那波帕拉萨尔建立新巴比伦"
+      },
+      {
+        "year": -586,
+        "title": "尼布甲尼撒二世攻陷耶路撒冷，犹太人被掳"
+      },
+      {
+        "year": -539,
+        "title": "波斯居鲁士攻陷巴比伦"
+      }
+    ],
+    "tags": [
+      "两河",
+      "法典",
+      "城邦",
+      "宗教",
+      "天文"
+    ],
+    "importance": 4,
+    "legacy": "《汉谟拉比法典》、巴别塔与空中花园传说、占星与历法体系深刻塑造了古代西亚乃至整个西方的法律与神话想象。"
+  },
+  {
+    "id": "assyrian",
+    "name": "亚述帝国",
+    "nameEn": "Assyrian Empire",
+    "startYear": -1365,
+    "endYear": -609,
+    "capital": {
+      "lat": 36.36,
+      "lng": 43.15,
+      "name": "尼尼微"
+    },
+    "color": "#8e5b3a",
+    "region": "两河流域",
+    "territory": "assyrian-empire",
+    "summary": "亚述以两河流域北部为根基，发展出古代世界最早的系统化军事—行政帝国。新亚述时期通过铁制武器、战车、围城与强制迁徙，把势力一度推至埃及与波斯湾。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -1365,
+        "title": "亚述-乌巴利特一世独立，亚述王国兴起"
+      },
+      {
+        "year": -911,
+        "title": "阿达德-尼拉里二世开启新亚述帝国"
+      },
+      {
+        "year": -722,
+        "title": "萨尔贡二世征服以色列王国"
+      },
+      {
+        "year": -701,
+        "title": "辛那赫里布围攻耶路撒冷"
+      },
+      {
+        "year": -671,
+        "title": "以撒哈顿征服埃及"
+      },
+      {
+        "year": -612,
+        "title": "尼尼微陷落，亚述帝国覆灭"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "军事",
+      "行政",
+      "两河",
+      "征服"
+    ],
+    "importance": 4,
+    "legacy": "亚述发展了最早的常备军、行省与情报系统，留下浮雕、亚述巴尼拔图书馆等遗产，是后世波斯—罗马帝国行政体系的重要先驱。"
+  },
+  {
+    "id": "achaemenid",
+    "name": "阿契美尼德波斯",
+    "nameEn": "Achaemenid Empire",
+    "startYear": -550,
+    "endYear": -330,
+    "capital": {
+      "lat": 29.93,
+      "lng": 52.89,
+      "name": "波斯波利斯"
+    },
+    "color": "#27ae60",
+    "region": "中东",
+    "territory": "persia",
+    "summary": "阿契美尼德波斯由居鲁士大帝创立，是古代世界第一个真正意义上的洲际帝国。它跨越伊朗高原、两河、安纳托利亚、埃及与中亚，奠定了\"波斯式\"行省与王道体系。",
+    "relatedLandmarks": [
+      "persepolis"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -550,
+        "title": "居鲁士二世推翻米底，建立波斯帝国"
+      },
+      {
+        "year": -539,
+        "title": "波斯攻陷巴比伦"
+      },
+      {
+        "year": -525,
+        "title": "冈比西斯二世征服埃及"
+      },
+      {
+        "year": -522,
+        "title": "大流士一世即位，整顿行省制度"
+      },
+      {
+        "year": -490,
+        "title": "马拉松战役败于希腊联军"
+      },
+      {
+        "year": -330,
+        "title": "亚历山大击败大流士三世，帝国终结"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "行省",
+      "波斯",
+      "王道",
+      "多民族"
+    ],
+    "importance": 5,
+    "legacy": "波斯首创的行省总督制、皇家驿道与多民族宽容统治，成为亚历山大、罗马乃至伊斯兰帝国行政架构的重要原型。"
+  },
+  {
+    "id": "sasanian",
+    "name": "萨珊波斯",
+    "nameEn": "Sasanian Empire",
+    "startYear": 224,
+    "endYear": 651,
+    "capital": {
+      "lat": 33.09,
+      "lng": 44.58,
+      "name": "泰西封"
+    },
+    "color": "#1abc9c",
+    "region": "中东",
+    "territory": "sasanian",
+    "summary": "萨珊波斯重建了伊朗本土的帝国传统，与拜占庭长期对峙数百年。琐罗亚斯德教成为国教，宫廷艺术、王权礼制和重装骑兵在欧亚大陆中部留下深刻影响。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 224,
+        "title": "阿尔达希尔一世击败帕提亚，建立萨珊王朝"
+      },
+      {
+        "year": 260,
+        "title": "沙普尔一世在埃德萨俘获罗马皇帝瓦勒良"
+      },
+      {
+        "year": 363,
+        "title": "罗马皇帝尤利安东征败死萨珊"
+      },
+      {
+        "year": 531,
+        "title": "霍斯劳一世即位，国势鼎盛"
+      },
+      {
+        "year": 614,
+        "title": "萨珊攻陷耶路撒冷"
+      },
+      {
+        "year": 651,
+        "title": "阿拉伯军击败末王伊嗣俟三世，萨珊灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "波斯",
+      "宗教",
+      "骑兵",
+      "宫廷"
+    ],
+    "importance": 4,
+    "legacy": "萨珊宫廷礼仪、行政文书与琐罗亚斯德教影响了后来的阿拉伯哈里发、拜占庭和中亚伊斯兰文化，重装骑兵传统也辐射到东欧与中亚。"
+  },
+  {
+    "id": "greek-city-states",
+    "name": "希腊诸城邦",
+    "nameEn": "Greek City-States",
+    "startYear": -800,
+    "endYear": -338,
+    "capital": {
+      "lat": 37.98,
+      "lng": 23.72,
+      "name": "雅典"
+    },
+    "color": "#ecf0f1",
+    "region": "地中海",
+    "territory": "aegean-greece",
+    "summary": "古典希腊由数百个独立城邦组成，雅典的民主、斯巴达的军政与众多殖民城邦的商业网络共同构成\"希腊世界\"。短短两百年间产生的哲学、戏剧与科学塑造了西方文明的核心母题。",
+    "relatedLandmarks": [
+      "parthenon"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -776,
+        "title": "首届古代奥林匹克竞技会"
+      },
+      {
+        "year": -508,
+        "title": "克里斯提尼改革，雅典民主成形"
+      },
+      {
+        "year": -490,
+        "title": "马拉松之战"
+      },
+      {
+        "year": -480,
+        "title": "萨拉米斯海战，希腊击退波斯"
+      },
+      {
+        "year": -431,
+        "title": "伯罗奔尼撒战争爆发"
+      },
+      {
+        "year": -338,
+        "title": "马其顿胜喀罗尼亚，城邦自治时代结束"
+      }
+    ],
+    "tags": [
+      "城邦",
+      "民主",
+      "哲学",
+      "地中海",
+      "海军"
+    ],
+    "importance": 5,
+    "legacy": "希腊城邦塑造了民主、哲学、戏剧、几何与科学方法的雏形，是西方政治思想和文化想象的共同源头。"
+  },
+  {
+    "id": "roman-republic-empire",
+    "name": "罗马共和国/帝国",
+    "nameEn": "Roman Republic and Empire",
+    "startYear": -509,
+    "endYear": 476,
+    "capital": {
+      "lat": 41.89,
+      "lng": 12.49,
+      "name": "罗马"
+    },
+    "color": "#b89060",
+    "region": "地中海",
+    "territory": "roman-mediterranean",
+    "summary": "罗马从台伯河畔城邦扩张为环地中海世界的政治共同体。共和国的公民、军团与法律传统，帝国时期的道路、城市、行省和拉丁文化，共同构成了古典地中海秩序的核心。",
+    "relatedLandmarks": [
+      "colosseum"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -509,
+        "title": "罗马共和国传统开端"
+      },
+      {
+        "year": -264,
+        "title": "布匿战争开启，罗马走向地中海霸权"
+      },
+      {
+        "year": -27,
+        "title": "奥古斯都建立元首制，帝国形成"
+      },
+      {
+        "year": 80,
+        "title": "罗马斗兽场落成，帝都公共娱乐体系成熟"
+      },
+      {
+        "year": 212,
+        "title": "卡拉卡拉敕令扩展罗马公民权"
+      },
+      {
+        "year": 476,
+        "title": "西罗马帝国政治结构终结"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "法律",
+      "军团",
+      "城市",
+      "地中海"
+    ],
+    "importance": 5,
+    "legacy": "罗马法、共和政治语言、道路与城市体系、拉丁文化和基督教帝国传统深刻影响欧洲、中东和北非后续历史。"
+  },
+  {
+    "id": "byzantine",
+    "name": "拜占庭帝国",
+    "nameEn": "Byzantine Empire",
+    "startYear": 330,
+    "endYear": 1453,
+    "capital": {
+      "lat": 41.01,
+      "lng": 28.97,
+      "name": "君士坦丁堡"
+    },
+    "color": "#9b59b6",
+    "region": "地中海",
+    "territory": "eastern-rome",
+    "summary": "拜占庭即东罗马帝国，以君士坦丁堡为都延续千余年。它在希腊—罗马传统之上发展出东正教文明、查士丁尼法典和复杂的宫廷外交，是中世纪欧亚交界处最稳定的帝国。",
+    "relatedLandmarks": [
+      "colosseum",
+      "parthenon",
+      "hagia-sophia"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 330,
+        "title": "君士坦丁迁都拜占庭，更名君士坦丁堡"
+      },
+      {
+        "year": 532,
+        "title": "尼卡暴动，查士丁尼镇压并重建索菲亚大教堂"
+      },
+      {
+        "year": 537,
+        "title": "圣索菲亚大教堂落成"
+      },
+      {
+        "year": 1054,
+        "title": "东西教会大分裂"
+      },
+      {
+        "year": 1204,
+        "title": "第四次十字军攻陷君士坦丁堡"
+      },
+      {
+        "year": 1453,
+        "title": "奥斯曼苏丹穆罕默德二世攻陷君士坦丁堡，帝国灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "东正教",
+      "法律",
+      "宫廷",
+      "地中海"
+    ],
+    "importance": 5,
+    "legacy": "《查士丁尼法典》、东正教、希腊学术传统和君士坦丁堡的城市模板对俄罗斯、东欧、巴尔干与伊斯兰世界都产生了长远影响。"
+  },
+  {
+    "id": "ottoman",
+    "name": "奥斯曼帝国",
+    "nameEn": "Ottoman Empire",
+    "startYear": 1299,
+    "endYear": 1922,
+    "capital": {
+      "lat": 41.01,
+      "lng": 28.97,
+      "name": "伊斯坦布尔"
+    },
+    "color": "#c0392b",
+    "region": "地中海/中东",
+    "territory": "ottoman",
+    "summary": "奥斯曼帝国从安纳托利亚的突厥小国成长为横跨欧亚非的伊斯兰大帝国。其苏丹兼任哈里发，米利特制度、近卫军、宫廷和清真寺建筑塑造了中东与巴尔干的近代秩序。",
+    "relatedLandmarks": [
+      "hagia-sophia"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1299,
+        "title": "奥斯曼一世建立公国"
+      },
+      {
+        "year": 1453,
+        "title": "穆罕默德二世攻陷君士坦丁堡"
+      },
+      {
+        "year": 1517,
+        "title": "塞利姆一世征服马穆鲁克，掌握麦加守护权"
+      },
+      {
+        "year": 1529,
+        "title": "苏莱曼大帝首次围攻维也纳"
+      },
+      {
+        "year": 1683,
+        "title": "维也纳之战，奥斯曼扩张终止"
+      },
+      {
+        "year": 1922,
+        "title": "苏丹制废除，帝国终结"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "伊斯兰",
+      "苏丹",
+      "巴尔干",
+      "中东"
+    ],
+    "importance": 5,
+    "legacy": "奥斯曼塑造了今日中东与巴尔干的国家边界、宗教格局和城市天际线，其行政与宗教共处模式至今被研究与争论。"
+  },
+  {
+    "id": "islamic-caliphates",
+    "name": "阿拉伯哈里发",
+    "nameEn": "Arab Caliphates",
+    "startYear": 632,
+    "endYear": 1258,
+    "capital": {
+      "lat": 33.31,
+      "lng": 44.36,
+      "name": "麦地那/大马士革/巴格达"
+    },
+    "color": "#2ecc71",
+    "region": "中东",
+    "territory": "caliphates",
+    "summary": "阿拉伯哈里发从阿拉伯半岛迅速扩张为跨欧亚非的伊斯兰政治与文化网络。大马士革和巴格达先后成为权力与知识中心，贸易、翻译运动、法学和城市文化连接了地中海、波斯、印度洋与中亚。",
+    "relatedLandmarks": [
+      "mecca-haram",
+      "petra"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 632,
+        "title": "穆罕默德去世后正统哈里发时期开始"
+      },
+      {
+        "year": 661,
+        "title": "倭马亚王朝建立，大马士革成为中心"
+      },
+      {
+        "year": 750,
+        "title": "阿拔斯王朝兴起，帝国重心转向伊拉克"
+      },
+      {
+        "year": 762,
+        "title": "巴格达建城，成为学术与贸易中心"
+      },
+      {
+        "year": 909,
+        "title": "法蒂玛王朝兴起，哈里发权威多中心化"
+      },
+      {
+        "year": 1258,
+        "title": "蒙古攻陷巴格达，阿拔斯政治中心终结"
+      }
+    ],
+    "tags": [
+      "宗教",
+      "贸易",
+      "城市",
+      "学术",
+      "帝国"
+    ],
+    "importance": 5,
+    "legacy": "哈里发时代推动伊斯兰文明共同体形成，阿拉伯语、伊斯兰法、学术翻译和跨区域贸易网络持续影响欧亚非。"
+  },
+  {
+    "id": "mongol-empire",
+    "name": "蒙古帝国",
+    "nameEn": "Mongol Empire",
+    "startYear": 1206,
+    "endYear": 1368,
+    "capital": {
+      "lat": 47.2,
+      "lng": 102.84,
+      "name": "哈拉和林"
+    },
+    "color": "#16a085",
+    "region": "欧亚草原",
+    "territory": "mongol-empire",
+    "summary": "蒙古帝国由成吉思汗及其继承者建立，是历史上疆域最大的陆上帝国。它把东亚、中亚、伊朗、东欧纳入同一驿站—军政体系，催生了首次真正的欧亚一体化。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1206,
+        "title": "铁木真被尊为成吉思汗，蒙古帝国建立"
+      },
+      {
+        "year": 1227,
+        "title": "成吉思汗在征西夏途中去世"
+      },
+      {
+        "year": 1234,
+        "title": "蒙古联合宋灭金"
+      },
+      {
+        "year": 1258,
+        "title": "旭烈兀攻陷巴格达，阿拔斯哈里发覆灭"
+      },
+      {
+        "year": 1260,
+        "title": "艾因贾鲁特之战，蒙古西扩受挫"
+      },
+      {
+        "year": 1294,
+        "title": "忽必烈逝世，帝国实质分裂为四大汗国"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "草原",
+      "征服",
+      "驿站",
+      "欧亚"
+    ],
+    "importance": 5,
+    "legacy": "蒙古驿站、跨欧亚贸易与人员流动重塑了瘟疫、商品、宗教和技术的传播路径，对中国、伊朗、俄罗斯与东欧国家形态都有深远影响。"
+  },
+  {
+    "id": "maurya",
+    "name": "孔雀王朝",
+    "nameEn": "Maurya Empire",
+    "startYear": -322,
+    "endYear": -185,
+    "capital": {
+      "lat": 25.61,
+      "lng": 85.14,
+      "name": "华氏城"
+    },
+    "color": "#f39c12",
+    "region": "印度",
+    "territory": "india-maurya",
+    "summary": "孔雀王朝是南亚第一个统一大帝国，旃陀罗笈多创建、阿育王推至巅峰。在阿育王治下，佛教成为跨次大陆的传播力量，留下石柱诏书与早期国家治理体系。",
+    "relatedLandmarks": [
+      "sanchi-stupa"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -322,
+        "title": "旃陀罗笈多·孔雀建立王朝"
+      },
+      {
+        "year": -305,
+        "title": "与塞琉古议和，控制兴都库什以东"
+      },
+      {
+        "year": -268,
+        "title": "阿育王即位"
+      },
+      {
+        "year": -261,
+        "title": "羯陵伽战争，阿育王皈依佛法"
+      },
+      {
+        "year": -250,
+        "title": "在各地竖立石柱诏书，派遣佛教使团"
+      },
+      {
+        "year": -185,
+        "title": "末王被弑，孔雀王朝灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "佛教",
+      "印度",
+      "法治",
+      "南亚"
+    ],
+    "importance": 5,
+    "legacy": "阿育王的法敕、石柱与佛教使团把佛教推向斯里兰卡、东南亚和中亚，孔雀王朝也是南亚后世\"以法治国\"叙事的源头。"
+  },
+  {
+    "id": "gupta",
+    "name": "笈多王朝",
+    "nameEn": "Gupta Empire",
+    "startYear": 320,
+    "endYear": 550,
+    "capital": {
+      "lat": 25.61,
+      "lng": 85.14,
+      "name": "华氏城"
+    },
+    "color": "#e67e22",
+    "region": "印度",
+    "territory": "india-gupta",
+    "summary": "笈多王朝被誉为印度的\"古典时代\"，在数学、天文、文学与艺术上达到顶峰。它统一北印度、复兴印度教，并以阿旃陀石窟与梵语戏剧定义了南亚古典文化的标准形象。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 320,
+        "title": "旃陀罗笈多一世建立笈多王朝"
+      },
+      {
+        "year": 380,
+        "title": "旃陀罗笈多二世即位，国势鼎盛"
+      },
+      {
+        "year": 405,
+        "title": "中国法显抵达印度"
+      },
+      {
+        "year": 499,
+        "title": "阿耶波多完成《阿耶波多历书》"
+      },
+      {
+        "year": 510,
+        "title": "匈那入侵，笈多势力开始收缩"
+      },
+      {
+        "year": 550,
+        "title": "王朝实质瓦解"
+      }
+    ],
+    "tags": [
+      "王朝",
+      "印度教",
+      "科学",
+      "梵语",
+      "南亚"
+    ],
+    "importance": 4,
+    "legacy": "笈多时代奠定了印度数字、零的概念和古典梵语文学的高峰，也为中世纪印度教社会与艺术风格定型。"
+  },
+  {
+    "id": "chola",
+    "name": "朱罗王朝",
+    "nameEn": "Chola Dynasty",
+    "startYear": 848,
+    "endYear": 1279,
+    "capital": {
+      "lat": 10.78,
+      "lng": 79.13,
+      "name": "坦贾武尔"
+    },
+    "color": "#d35400",
+    "region": "南印度",
+    "territory": "india-chola",
+    "summary": "朱罗王朝是南印度的航海帝国，以泰米尔湿婆教信仰与跨海远征著称。在拉真陀罗一世治下，舰队甚至袭击室利佛逝，把南亚的海上影响扩展至东南亚。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 850,
+        "title": "维迦耶拉雅·朱罗复兴王朝"
+      },
+      {
+        "year": 985,
+        "title": "拉真陀拉·朱罗一世即位"
+      },
+      {
+        "year": 1010,
+        "title": "坦贾武尔布里哈迪斯瓦拉神庙竣工"
+      },
+      {
+        "year": 1014,
+        "title": "拉真陀罗一世即位，开启海上扩张"
+      },
+      {
+        "year": 1025,
+        "title": "远征室利佛逝，控制马六甲海峡"
+      },
+      {
+        "year": 1279,
+        "title": "王朝在内乱与北方压力下衰亡"
+      }
+    ],
+    "tags": [
+      "王朝",
+      "海军",
+      "湿婆教",
+      "南印度",
+      "海上贸易"
+    ],
+    "importance": 4,
+    "legacy": "朱罗的青铜湿婆像、巨型神庙与海军远征把南印度文化传播至东南亚，今天泰国、马来与印尼仍可见其文化痕迹。"
+  },
+  {
+    "id": "mughal",
+    "name": "莫卧儿帝国",
+    "nameEn": "Mughal Empire",
+    "startYear": 1526,
+    "endYear": 1857,
+    "capital": {
+      "lat": 28.66,
+      "lng": 77.23,
+      "name": "德里/阿格拉"
+    },
+    "color": "#f0e8dc",
+    "region": "印度",
+    "territory": "india-mughal",
+    "summary": "莫卧儿帝国在北印度建立了融合突厥-蒙古、波斯与印度传统的近世帝国。它以德里、阿格拉等城市为中心，通过宫廷文化、土地财政、军事贵族和建筑艺术整合印度次大陆大片区域。",
+    "relatedLandmarks": [
+      "tajmahal",
+      "red-fort"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1526,
+        "title": "巴布尔在帕尼帕特战役后入主北印度"
+      },
+      {
+        "year": 1556,
+        "title": "阿克巴即位，帝国整合加速"
+      },
+      {
+        "year": 1605,
+        "title": "贾汉吉尔时期宫廷文化延续繁荣"
+      },
+      {
+        "year": 1653,
+        "title": "泰姬陵完工，莫卧儿建筑达到高峰"
+      },
+      {
+        "year": 1707,
+        "title": "奥朗则布去世后帝国离心加剧"
+      },
+      {
+        "year": 1857,
+        "title": "印度民族起义后莫卧儿名义统治终结"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "建筑",
+      "宫廷",
+      "印度",
+      "宗教"
+    ],
+    "importance": 4,
+    "legacy": "莫卧儿留下了泰姬陵、红堡、细密画和波斯化宫廷文化，也深刻影响南亚政治、城市与宗教关系。"
+  },
+  {
+    "id": "khmer",
+    "name": "吴哥高棉帝国",
+    "nameEn": "Khmer Empire",
+    "startYear": 802,
+    "endYear": 1431,
+    "capital": {
+      "lat": 13.41,
+      "lng": 103.86,
+      "name": "吴哥"
+    },
+    "color": "#1abc9c",
+    "region": "东南亚",
+    "territory": "khmer",
+    "summary": "高棉帝国以吴哥为都，是东南亚中世纪最庞大的水利—神王国家。其水利系统、印度教—大乘佛教的宇宙观与吴哥窟、吴哥城遗迹构成东南亚古典文明的标志。",
+    "relatedLandmarks": [
+      "angkor-wat"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 802,
+        "title": "阇耶跋摩二世自立为\"宇宙之王\"，王朝奠基"
+      },
+      {
+        "year": 1113,
+        "title": "苏耶跋摩二世兴建吴哥窟"
+      },
+      {
+        "year": 1181,
+        "title": "阇耶跋摩七世即位，营造吴哥城"
+      },
+      {
+        "year": 1296,
+        "title": "元朝周达观抵达，写下《真腊风土记》"
+      },
+      {
+        "year": 1431,
+        "title": "暹罗大城攻陷吴哥"
+      },
+      {
+        "year": 1450,
+        "title": "王朝实际衰亡，迁都金边一带"
+      }
+    ],
+    "tags": [
+      "王朝",
+      "水利",
+      "神王",
+      "佛教",
+      "东南亚"
+    ],
+    "importance": 4,
+    "legacy": "吴哥窟与吴哥城留下东南亚最壮观的宗教建筑群，也是柬埔寨国家认同的核心象征。"
+  },
+  {
+    "id": "srivijaya",
+    "name": "室利佛逝",
+    "nameEn": "Srivijaya",
+    "startYear": 650,
+    "endYear": 1377,
+    "capital": {
+      "lat": -2.99,
+      "lng": 104.76,
+      "name": "巨港"
+    },
+    "color": "#3498db",
+    "region": "东南亚",
+    "territory": "srivijaya",
+    "summary": "室利佛逝是 7–13 世纪东南亚最重要的海上王国，以巨港为核心控制马六甲海峡。它是大乘佛教学术中心、跨印度洋海贸枢纽，把中国、印度与阿拉伯世界连成一体。",
+    "relatedLandmarks": [
+      "borobudur"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 671,
+        "title": "中国僧人义净在巨港学习梵文"
+      },
+      {
+        "year": 775,
+        "title": "势力扩展至马来半岛与爪哇"
+      },
+      {
+        "year": 902,
+        "title": "与朱罗王朝展开海上竞争"
+      },
+      {
+        "year": 1025,
+        "title": "遭朱罗远征重创"
+      },
+      {
+        "year": 1183,
+        "title": "势力萎缩，国都迁至占碑"
+      },
+      {
+        "year": 1290,
+        "title": "被新柯沙里、暹罗与满者伯夷取代"
+      }
+    ],
+    "tags": [
+      "海上帝国",
+      "佛教",
+      "马六甲",
+      "海贸",
+      "东南亚"
+    ],
+    "importance": 4,
+    "legacy": "室利佛逝奠定了马六甲海峡作为印度洋—南海贸易咽喉的地位，也是东南亚成为佛教学术枢纽的代表。"
+  },
+  {
+    "id": "joseon",
+    "name": "朝鲜王朝",
+    "nameEn": "Joseon Dynasty",
+    "startYear": 1392,
+    "endYear": 1897,
+    "capital": {
+      "lat": 37.57,
+      "lng": 126.98,
+      "name": "汉城"
+    },
+    "color": "#95a5a6",
+    "region": "朝鲜半岛",
+    "territory": "korea-joseon",
+    "summary": "朝鲜王朝是朝鲜半岛持续最久的王朝，以儒家士大夫政治与汉字汉文化为框架。世宗时代创制谚文、推动天文与农业，后又经历壬辰倭乱与朝清关系的反复重塑。",
+    "relatedLandmarks": [
+      "cheomseongdae"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1392,
+        "title": "李成桂取代高丽，建立朝鲜"
+      },
+      {
+        "year": 1443,
+        "title": "世宗创制训民正音（谚文）"
+      },
+      {
+        "year": 1592,
+        "title": "壬辰倭乱爆发，丰臣秀吉入侵"
+      },
+      {
+        "year": 1636,
+        "title": "丙子胡乱，清军入朝"
+      },
+      {
+        "year": 1876,
+        "title": "《江华条约》开启近代条约体系"
+      },
+      {
+        "year": 1910,
+        "title": "日韩合并，王朝终结"
+      }
+    ],
+    "tags": [
+      "王朝",
+      "儒家",
+      "半岛",
+      "汉字文化",
+      "东亚"
+    ],
+    "importance": 4,
+    "legacy": "朝鲜王朝塑造了朝鲜半岛的文字、礼制、官僚与家族结构，谚文与儒家伦理至今深刻影响南北韩的社会形态。"
+  },
+  {
+    "id": "yamato-japan",
+    "name": "日本大和/律令国家",
+    "nameEn": "Yamato Japan",
+    "startYear": 250,
+    "endYear": 1185,
+    "capital": {
+      "lat": 34.68,
+      "lng": 135.83,
+      "name": "奈良/平安京"
+    },
+    "color": "#e84393",
+    "region": "日本",
+    "territory": "japan-yamato",
+    "summary": "大和政权以畿内为中心整合日本列岛，仿效隋唐建立律令制国家。从大化改新到平安京时代，日本完成了从部族联合到东亚式中央集权的转型，并孕育出本土化的宫廷文化。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 593,
+        "title": "圣德太子摄政推行佛教与制度改革"
+      },
+      {
+        "year": 645,
+        "title": "大化改新，仿唐建立律令国家"
+      },
+      {
+        "year": 710,
+        "title": "迁都平城京（奈良）"
+      },
+      {
+        "year": 794,
+        "title": "迁都平安京（京都）"
+      },
+      {
+        "year": 894,
+        "title": "废止遣唐使，转向本土文化"
+      },
+      {
+        "year": 1185,
+        "title": "镰仓幕府成立，律令王权转入武家时代"
+      }
+    ],
+    "tags": [
+      "律令",
+      "佛教",
+      "宫廷",
+      "汉字文化",
+      "东亚"
+    ],
+    "importance": 4,
+    "legacy": "大和—平安时代的律令制、汉字与佛教吸收、宫廷文学（如《源氏物语》），是日本文化身份的奠基期。"
+  },
+  {
+    "id": "maya",
+    "name": "玛雅文明",
+    "nameEn": "Maya Civilization",
+    "startYear": -2000,
+    "endYear": 1697,
+    "capital": {
+      "lat": 17.22,
+      "lng": -89.62,
+      "name": "蒂卡尔/玛雅城邦"
+    },
+    "color": "#00cec9",
+    "region": "中美洲",
+    "territory": "maya",
+    "summary": "玛雅文明由众多城邦和区域中心组成，分布在尤卡坦半岛、危地马拉高地与低地雨林。它以文字、历法、天文观测、金字塔神庙和城市网络著称，并在政治碎片化中保持长期文化连续性。",
+    "relatedLandmarks": [
+      "chichen-itza"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": -2000,
+        "title": "玛雅早期农业聚落发展"
+      },
+      {
+        "year": -250,
+        "title": "前古典期晚期大型中心兴起"
+      },
+      {
+        "year": 250,
+        "title": "古典期开始，城邦网络繁荣"
+      },
+      {
+        "year": 562,
+        "title": "蒂卡尔与卡拉克穆尔等城邦争霸加剧"
+      },
+      {
+        "year": 900,
+        "title": "低地南部多座古典城市衰落"
+      },
+      {
+        "year": 1697,
+        "title": "最后独立玛雅政权诺赫佩滕陷落"
+      }
+    ],
+    "tags": [
+      "城邦",
+      "历法",
+      "天文",
+      "文字",
+      "中美洲"
+    ],
+    "importance": 5,
+    "legacy": "玛雅文字、历法、天文体系和城市遗址是美洲古代文明的重要遗产，现代玛雅社群也延续着语言和文化传统。"
+  },
+  {
+    "id": "aztec",
+    "name": "阿兹特克帝国",
+    "nameEn": "Aztec Empire",
+    "startYear": 1428,
+    "endYear": 1521,
+    "capital": {
+      "lat": 19.43,
+      "lng": -99.13,
+      "name": "特诺奇蒂特兰"
+    },
+    "color": "#d63031",
+    "region": "中美洲",
+    "territory": "aztec",
+    "summary": "阿兹特克帝国由墨西卡人建立，以特诺奇蒂特兰为中心，通过结盟与朝贡控制中部墨西哥。湖上都城、神庙金字塔、活人祭祀与精巧的羽毛工艺构成了它的标志形象。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1325,
+        "title": "墨西卡人在特斯科科湖建造特诺奇蒂特兰"
+      },
+      {
+        "year": 1428,
+        "title": "与特斯科科、特拉科潘组成三国同盟"
+      },
+      {
+        "year": 1440,
+        "title": "蒙特苏马一世扩张势力"
+      },
+      {
+        "year": 1487,
+        "title": "大神庙重建并大规模献祭"
+      },
+      {
+        "year": 1519,
+        "title": "科尔特斯率西班牙人登陆"
+      },
+      {
+        "year": 1521,
+        "title": "特诺奇蒂特兰陷落，帝国灭亡"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "中美洲",
+      "神权",
+      "祭祀",
+      "湖城"
+    ],
+    "importance": 4,
+    "legacy": "阿兹特克塑造了今日墨西哥城的城市基底、纳瓦特尔语遗产，也是研究前哥伦布时期国家形态的核心案例。"
+  },
+  {
+    "id": "inca",
+    "name": "印加帝国",
+    "nameEn": "Inca Empire",
+    "startYear": 1438,
+    "endYear": 1533,
+    "capital": {
+      "lat": -13.53,
+      "lng": -71.97,
+      "name": "库斯科"
+    },
+    "color": "#fdcb6e",
+    "region": "安第斯",
+    "territory": "inca",
+    "summary": "印加帝国以库斯科为中心，沿安第斯山脉发展出南美最大的前哥伦布国家。它通过结绳记事、太阳神信仰、米塔劳役和长途道路网，把不同生态区组织进同一帝国秩序。",
+    "relatedLandmarks": [
+      "machu-picchu"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1200,
+        "title": "曼科·卡帕克传说中的库斯科建城"
+      },
+      {
+        "year": 1438,
+        "title": "帕查库提即位，开始大规模扩张"
+      },
+      {
+        "year": 1471,
+        "title": "图帕克·印加·尤潘基扩展至厄瓜多尔与智利"
+      },
+      {
+        "year": 1493,
+        "title": "瓦伊纳·卡帕克即位，疆域达到顶峰"
+      },
+      {
+        "year": 1532,
+        "title": "皮萨罗在卡哈马卡擒获阿塔瓦尔帕"
+      },
+      {
+        "year": 1572,
+        "title": "末代印加图帕克·阿马鲁被处决"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "安第斯",
+      "神权",
+      "道路",
+      "南美"
+    ],
+    "importance": 4,
+    "legacy": "印加道路、农业台地、库斯科城市规划与马丘比丘等遗产塑造了安第斯地区的文化认同，也成为今天秘鲁国家叙事的核心。"
+  },
+  {
+    "id": "ghana",
+    "name": "加纳帝国",
+    "nameEn": "Ghana Empire",
+    "startYear": 300,
+    "endYear": 1200,
+    "capital": {
+      "lat": 15.77,
+      "lng": -8.06,
+      "name": "昆比萨利赫"
+    },
+    "color": "#f6b93b",
+    "region": "西非",
+    "territory": "ghana-empire",
+    "summary": "加纳帝国是西非萨赫勒地带最早的强国之一，因控制黄金—盐贸易而被阿拉伯地理学家广泛记载。它通过税收、骑兵与库姆比萨利赫等城市集中财富与权力。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 700,
+        "title": "索宁克部落联盟逐渐形成"
+      },
+      {
+        "year": 830,
+        "title": "帝国在阿拉伯文献中首次明确出现"
+      },
+      {
+        "year": 1000,
+        "title": "势力扩展至毛塔尼亚南部"
+      },
+      {
+        "year": 1054,
+        "title": "阿尔摩拉维德人入侵"
+      },
+      {
+        "year": 1076,
+        "title": "都城被阿尔摩拉维德人攻陷"
+      },
+      {
+        "year": 1240,
+        "title": "被新兴的马里帝国取代"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "西非",
+      "黄金",
+      "商贸",
+      "萨赫勒"
+    ],
+    "importance": 3,
+    "legacy": "加纳帝国是西非黄金—盐贸易与早期跨撒哈拉网络的奠基者，为后来的马里、桑海帝国留下了城市与商路骨架。"
+  },
+  {
+    "id": "mali",
+    "name": "马里帝国",
+    "nameEn": "Mali Empire",
+    "startYear": 1235,
+    "endYear": 1670,
+    "capital": {
+      "lat": 11.17,
+      "lng": -8.99,
+      "name": "尼亚尼"
+    },
+    "color": "#f9ca24",
+    "region": "西非",
+    "territory": "mali-empire",
+    "summary": "马里帝国是 13–15 世纪的西非伊斯兰大国，由曼丁戈人建立。曼萨·穆萨的麦加朝圣震动地中海世界，廷巴克图成为伊斯兰学术与商贸的远程枢纽。",
+    "relatedLandmarks": [
+      "djenne-mosque"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1235,
+        "title": "松迪亚塔在基里纳之战中击败索索"
+      },
+      {
+        "year": 1240,
+        "title": "马里取代加纳，控制萨赫勒商路"
+      },
+      {
+        "year": 1312,
+        "title": "曼萨·穆萨即位"
+      },
+      {
+        "year": 1324,
+        "title": "曼萨·穆萨朝圣麦加，沿途散金"
+      },
+      {
+        "year": 1375,
+        "title": "廷巴克图在欧洲地图上首次出现"
+      },
+      {
+        "year": 1470,
+        "title": "势力被新兴的桑海帝国蚕食"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "伊斯兰",
+      "黄金",
+      "学术",
+      "西非"
+    ],
+    "importance": 4,
+    "legacy": "马里通过曼萨·穆萨与廷巴克图把西非的财富、学术与伊斯兰文化推向欧亚舞台，至今仍是西非历史认同的核心象征。"
+  },
+  {
+    "id": "songhai",
+    "name": "桑海帝国",
+    "nameEn": "Songhai Empire",
+    "startYear": 1464,
+    "endYear": 1591,
+    "capital": {
+      "lat": 16.27,
+      "lng": -0.05,
+      "name": "加奥"
+    },
+    "color": "#e1b12c",
+    "region": "西非",
+    "territory": "songhai",
+    "summary": "桑海帝国是西非历史上版图最大的伊斯兰帝国，以加奥为都，控制尼日尔河中游与跨撒哈拉商路。在阿斯基亚穆罕默德治下，行政体系、宗教教育和军事扩张达到顶峰。",
+    "relatedLandmarks": [
+      "djenne-mosque"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1464,
+        "title": "松尼·阿里登基开启帝国扩张"
+      },
+      {
+        "year": 1473,
+        "title": "夺取廷巴克图"
+      },
+      {
+        "year": 1493,
+        "title": "阿斯基亚·穆罕默德篡位并推行伊斯兰化改革"
+      },
+      {
+        "year": 1497,
+        "title": "阿斯基亚朝圣麦加"
+      },
+      {
+        "year": 1591,
+        "title": "通迪比之战，摩洛哥火器军击败桑海"
+      },
+      {
+        "year": 1600,
+        "title": "帝国分裂为多个小国"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "伊斯兰",
+      "萨赫勒",
+      "商贸",
+      "西非"
+    ],
+    "importance": 4,
+    "legacy": "桑海帝国把廷巴克图与杰内推上伊斯兰学术中心地位，也展示了火器革命前夜跨撒哈拉国家的巅峰形态。"
+  },
+  {
+    "id": "carolingian",
+    "name": "查理曼帝国",
+    "nameEn": "Carolingian Empire",
+    "startYear": 800,
+    "endYear": 888,
+    "capital": {
+      "lat": 50.78,
+      "lng": 6.08,
+      "name": "亚琛"
+    },
+    "color": "#74b9ff",
+    "region": "西欧",
+    "territory": "carolingian",
+    "summary": "加洛林王朝由丕平家族取代墨洛温建立，查理曼一统西欧大部分基督教地区。\"加洛林文艺复兴\"恢复古典学习，\"罗马—基督教—日耳曼\"的欧洲身份在这一时期初步成形。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 751,
+        "title": "丕平加冕，加洛林王朝建立"
+      },
+      {
+        "year": 768,
+        "title": "查理曼继位"
+      },
+      {
+        "year": 774,
+        "title": "查理曼吞并伦巴德王国"
+      },
+      {
+        "year": 800,
+        "title": "查理曼在罗马由教皇加冕为\"罗马人的皇帝\""
+      },
+      {
+        "year": 814,
+        "title": "查理曼去世"
+      },
+      {
+        "year": 843,
+        "title": "《凡尔登条约》三分帝国，西欧国家雏形出现"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "西欧",
+      "基督教",
+      "加冕",
+      "文艺复兴"
+    ],
+    "importance": 4,
+    "legacy": "查理曼帝国奠定了\"基督教欧洲\"和神圣罗马帝国的政治神话，也直接催生了法国、德国与意大利北部的国家轮廓。"
+  },
+  {
+    "id": "holy-roman-empire",
+    "name": "神圣罗马帝国",
+    "nameEn": "Holy Roman Empire",
+    "startYear": 962,
+    "endYear": 1806,
+    "capital": {
+      "lat": 50.11,
+      "lng": 8.68,
+      "name": "法兰克福/维也纳"
+    },
+    "color": "#dfe6e9",
+    "region": "中欧",
+    "territory": "holy-roman-empire",
+    "summary": "神圣罗马帝国是中世纪欧洲最长寿的政治体，由德意志国王加冕为皇帝并自称罗马继承者。它是一个由邦国、城市、教会与皇帝共同构成的松散结构，在中欧持续千年。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 962,
+        "title": "奥托一世在罗马加冕，帝国奠基"
+      },
+      {
+        "year": 1077,
+        "title": "卡诺莎之辱，皇权与教皇权对立"
+      },
+      {
+        "year": 1356,
+        "title": "《金玺诏书》确立七选侯制度"
+      },
+      {
+        "year": 1517,
+        "title": "马丁·路德发表《九十五条论纲》"
+      },
+      {
+        "year": 1648,
+        "title": "《威斯特伐利亚和约》承认邦国主权"
+      },
+      {
+        "year": 1806,
+        "title": "弗朗茨二世退位，帝国被拿破仑解体"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "中欧",
+      "邦国",
+      "教会",
+      "基督教"
+    ],
+    "importance": 4,
+    "legacy": "神圣罗马帝国塑造了德意志多邦联式政治传统、教皇—皇帝二元秩序与《威斯特伐利亚和约》的国家主权原则。"
+  },
+  {
+    "id": "british-empire",
+    "name": "大英帝国",
+    "nameEn": "British Empire",
+    "startYear": 1707,
+    "endYear": 1997,
+    "capital": {
+      "lat": 51.51,
+      "lng": -0.13,
+      "name": "伦敦"
+    },
+    "color": "#0984e3",
+    "region": "全球",
+    "territory": "british-empire",
+    "summary": "大英帝国是 19 世纪最庞大的殖民帝国，以海军、贸易公司、议会政治和工业革命为骨架。从北美、印度到非洲与太平洋，几乎每个时区都有英国治下的领土。",
+    "relatedLandmarks": [
+      "westminster-abbey"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1583,
+        "title": "英国正式宣称纽芬兰殖民地"
+      },
+      {
+        "year": 1707,
+        "title": "联合王国成立，海外扩张加速"
+      },
+      {
+        "year": 1763,
+        "title": "七年战争后获得加拿大与印度大部分"
+      },
+      {
+        "year": 1815,
+        "title": "滑铁卢战役后英国进入\"不列颠治世\""
+      },
+      {
+        "year": 1858,
+        "title": "印度归英国王室直接统治"
+      },
+      {
+        "year": 1947,
+        "title": "印巴分治，殖民体系开始瓦解"
+      },
+      {
+        "year": 1997,
+        "title": "香港回归，帝国象征性终结"
+      }
+    ],
+    "tags": [
+      "帝国",
+      "殖民",
+      "海军",
+      "工业革命",
+      "全球化"
+    ],
+    "importance": 5,
+    "legacy": "英语作为全球通用语、普通法体系、议会民主、跨洲资本流动与殖民边界，至今仍深刻影响着前殖民地与国际秩序。"
+  },
+  {
+    "id": "united-states",
+    "name": "美国",
+    "nameEn": "United States",
+    "startYear": 1776,
+    "endYear": 2025,
+    "capital": {
+      "lat": 38.9,
+      "lng": -77.04,
+      "name": "华盛顿"
+    },
+    "color": "#74b9ff",
+    "region": "北美",
+    "territory": "united-states",
+    "summary": "美国由 13 个英属北美殖民地反抗母国建立，以联邦共和制和成文宪法为基础。19 世纪西进、内战与工业化，使其在 20 世纪成为全球军事、技术与文化超级大国。",
+    "relatedLandmarks": [],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1776,
+        "title": "《独立宣言》发表"
+      },
+      {
+        "year": 1788,
+        "title": "联邦宪法批准生效"
+      },
+      {
+        "year": 1861,
+        "title": "南北战争爆发"
+      },
+      {
+        "year": 1898,
+        "title": "美西战争后跻身殖民—海权国家"
+      },
+      {
+        "year": 1945,
+        "title": "二战胜利，建立战后国际秩序"
+      },
+      {
+        "year": 1969,
+        "title": "阿波罗 11 号实现登月"
+      },
+      {
+        "year": 1991,
+        "title": "冷战结束，独霸地位形成"
+      }
+    ],
+    "tags": [
+      "共和国",
+      "联邦",
+      "工业",
+      "科技",
+      "超级大国"
+    ],
+    "importance": 5,
+    "legacy": "美国的成文宪法、联邦制、好莱坞、硅谷与战后国际机构，构成 20 世纪下半叶以来全球秩序与文化想象的主要参照系。"
+  },
+  {
+    "id": "prc",
+    "name": "中华人民共和国",
+    "nameEn": "People's Republic of China",
+    "startYear": 1949,
+    "endYear": 2025,
+    "capital": {
+      "lat": 39.9,
+      "lng": 116.4,
+      "name": "北京"
+    },
+    "color": "#ff7675",
+    "region": "中国",
+    "territory": "china-modern",
+    "summary": "中华人民共和国于 1949 年成立，是当代东亚最具体量的国家。经过土地改革、工业化、改革开放与全球化整合，它在半个多世纪里完成了从农业国到全球第二大经济体的转型。",
+    "relatedLandmarks": [
+      "forbidden-city",
+      "great-wall",
+      "temple-of-heaven"
+    ],
+    "dataQuality": {
+      "chronology": "standardized-mvp",
+      "boundary": "rough-schematic",
+      "notes": "MVP 数据用于交互展示，年份和边界后续需要按史料继续校订。"
+    },
+    "events": [
+      {
+        "year": 1949,
+        "title": "中华人民共和国成立"
+      },
+      {
+        "year": 1953,
+        "title": "第一个五年计划启动"
+      },
+      {
+        "year": 1971,
+        "title": "恢复联合国合法席位"
+      },
+      {
+        "year": 1978,
+        "title": "十一届三中全会开启改革开放"
+      },
+      {
+        "year": 2001,
+        "title": "加入世界贸易组织"
+      },
+      {
+        "year": 2008,
+        "title": "北京奥运会举办"
+      },
+      {
+        "year": 2020,
+        "title": "宣布完成脱贫攻坚目标"
+      }
+    ],
+    "tags": [
+      "共和国",
+      "社会主义",
+      "工业化",
+      "全球化",
+      "东亚"
+    ],
+    "importance": 5,
+    "legacy": "中华人民共和国深刻重塑了东亚地缘格局、全球供应链与发展中国家的现代化路径，是当代国际秩序中最重要的变量之一。"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "bronze-early-kingdoms",
+    "title": "早期王国与青铜时代",
+    "titleEn": "Early Kingdoms & Bronze Age",
+    "startYear": -2000,
+    "endYear": -1000,
+    "summary": "尼罗河、两河、印度河与黄河四大河谷催生了人类最早的国家形态。象形与楔形文字、青铜礼器、神王—祭司王权和大型纪念性建筑共同定义了这个文明的童年时代。",
+    "keywords": ["青铜", "河谷文明", "神王", "象形与楔形", "宫殿与神庙"],
+    "toneColor": "#c88b5a"
+  },
+  {
+    "id": "classical-eve",
+    "title": "古典文明前夜",
+    "titleEn": "Eve of the Classical World",
+    "startYear": -1000,
+    "endYear": -500,
+    "summary": "铁器普及推动小型王国与城邦兴起。亚述、新巴比伦、希腊城邦、周代诸侯与犹太先知思潮并行，「轴心时代」的思想种子在欧亚多个文明中同步萌发。",
+    "keywords": ["铁器", "城邦", "诸侯", "轴心时代", "先知"],
+    "toneColor": "#b39154"
+  },
+  {
+    "id": "classical-expansion",
+    "title": "古典世界扩张",
+    "titleEn": "Expansion of the Classical World",
+    "startYear": -500,
+    "endYear": 0,
+    "summary": "波斯、亚历山大、孔雀、秦汉与共和罗马几乎同时崛起，把世界第一次拉入大型多民族帝国的尺度。哲学、戏剧、史学与制度化政体在这一阶段成型。",
+    "keywords": ["帝国扩张", "波斯", "希腊化", "秦汉", "共和"],
+    "toneColor": "#d8b46a"
+  },
+  {
+    "id": "imperial-age",
+    "title": "帝国时代与宗教扩散",
+    "titleEn": "Age of Empires & Religious Diffusion",
+    "startYear": 0,
+    "endYear": 500,
+    "summary": "罗马、汉、贵霜、安息/萨珊四大帝国把欧亚连成松散网络。基督教、佛教、印度教与摩尼教沿着商路与帝国驿道扩散，奠定后世主要宗教格局。",
+    "keywords": ["四大帝国", "丝绸之路", "基督教", "佛教", "驿道"],
+    "toneColor": "#cb6a55"
+  },
+  {
+    "id": "medieval-reorder",
+    "title": "中古世界重组",
+    "titleEn": "Medieval Reordering",
+    "startYear": 500,
+    "endYear": 1000,
+    "summary": "罗马西部崩溃，拜占庭、隋唐、阿拉伯哈里发与加洛林同时主导欧亚两端。伊斯兰兴起、东亚律令体系成熟、西欧封建化共同构成中古秩序。",
+    "keywords": ["拜占庭", "哈里发", "隋唐", "律令", "封建"],
+    "toneColor": "#a47d3f"
+  },
+  {
+    "id": "eurasia-exchange",
+    "title": "欧亚交流与区域帝国",
+    "titleEn": "Eurasian Exchange & Regional Empires",
+    "startYear": 1000,
+    "endYear": 1500,
+    "summary": "宋代经济革命、塞尔柱与马穆鲁克的伊斯兰世界、神圣罗马—教皇的拉丁西欧、马里桑海的西非黄金，以及蒙古帝国的全欧亚冲击，把世界推向首次大规模互联。",
+    "keywords": ["宋代经济", "蒙古冲击", "黑死病", "西非黄金", "拉丁西欧"],
+    "toneColor": "#9b8048"
+  },
+  {
+    "id": "early-globalization",
+    "title": "早期全球化",
+    "titleEn": "Early Globalization",
+    "startYear": 1500,
+    "endYear": 1800,
+    "summary": "大航海打通美洲、非洲、亚洲之间的白银—蔗糖—奴隶三角，奥斯曼、莫卧儿、明清与早期欧洲海权并立。火器革命、宗教改革与科学革命同时改写权力与认知结构。",
+    "keywords": ["大航海", "白银流", "火器革命", "宗教改革", "海上帝国"],
+    "toneColor": "#7fbfff"
+  },
+  {
+    "id": "modern-global",
+    "title": "现代国家与全球体系",
+    "titleEn": "Modern States & Global System",
+    "startYear": 1800,
+    "endYear": 2025,
+    "summary": "工业革命、民族国家、殖民帝国、两次世界大战与冷战依次重塑全球。20 世纪下半叶以来，去殖民化、信息革命和东亚再崛起把世界推入多极博弈的当代格局。",
+    "keywords": ["工业革命", "民族国家", "殖民", "世界大战", "全球化"],
+    "toneColor": "#8aa5d0"
+  }
+]

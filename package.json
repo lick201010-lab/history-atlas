@@ -1,0 +1,22 @@
+{
+  "name": "history-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "validate:data": "node scripts/validateHistoricalData.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "npm run validate:data && npm run build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "vite": "^7.1.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "maplibre-gl": "^4.7.1",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {}
+}

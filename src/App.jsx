@@ -1,0 +1,262 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import CloudLayer from './components/CloudLayer.jsx';
+import ComparePanel from './components/ComparePanel.jsx';
+import EraNarrative from './components/EraNarrative.jsx';
+import FilterPanel from './components/FilterPanel.jsx';
+import InfoPanel from './components/InfoPanel.jsx';
+import LayerControls from './components/LayerControls.jsx';
+import MapScene from './components/MapScene.jsx';
+import Starfield from './components/Starfield.jsx';
+import Timeline from './components/Timeline.jsx';
+import boundaries from './data/boundaries-simplified.json';
+import dynasties from './data/dynasties.json';
+import landmarks from './data/landmarks.json';
+import { buildCardData } from './utils/buildCard.js';
+import { formatYear } from './utils/formatYear.js';
+
+const OVERLAY_DRIFT = { x: 2.5, y: 0.6 };
+const COMPARE_LIMIT = 2;
+
+export default function App() {
+  const [year, setYear] = useState(1000);
+  const [visibleBuildings, setVisibleBuildings] = useState([]);
+  const [layerVisibility, setLayerVisibility] = useState({
+    territories: true,
+    capitals: true,
+    buildings: true,
+  });
+  const [selectedDynastyId, setSelectedDynastyId] = useState(null);
+  const [locked, setLocked] = useState(false);
+  const [compareIds, setCompareIds] = useState([]);
+  const [compareNotice, setCompareNotice] = useState('');
+  const [filter, setFilter] = useState({ regions: [], tags: [] });
+  const mapSceneRef = useRef(null);
+
+  // Lookups
+  const dynastyById = useMemo(() => new Map(dynasties.map((d) => [d.id, d])), []);
+  const landmarksById = useMemo(() => new Map(landmarks.map((l) => [l.id, l])), []);
+  const boundariesById = useMemo(
+    () => new Map((boundaries.features || []).map((f) => [f.properties?.id || f.id, f])),
+    [],
+  );
+
+  const sortedVisibleBuildings = useMemo(
+    () => {
+      const visibleFromLayer = visibleBuildings.length > 0
+        ? visibleBuildings
+        : landmarks.filter((building) => year >= building.startYear && year <= building.endYear);
+      return [...visibleFromLayer].sort((a, b) => a.startYear - b.startYear);
+    },
+    [visibleBuildings, year],
+  );
+
+  // Active dynasties for the given year, then filtered.
+  const activeDynastiesAll = useMemo(
+    () => dynasties
+      .filter((dynasty) => year >= dynasty.startYear && year <= dynasty.endYear)
+      .sort((a, b) => a.startYear - b.startYear),
+    [year],
+  );
+  const activeDynasties = useMemo(() => {
+    const { regions, tags } = filter;
+    if (!regions.length && !tags.length) return activeDynastiesAll;
+    const regionSet = new Set(regions);
+    const tagSet = new Set(tags);
+    return activeDynastiesAll.filter((d) => {
+      const regionOk = !regions.length || regionSet.has(d.region);
+      const tagOk = !tags.length || (d.tags || []).some((t) => tagSet.has(t));
+      return regionOk && tagOk;
+    });
+  }, [activeDynastiesAll, filter]);
+
+  // Card data derived from selection.
+  const selectedDynasty = selectedDynastyId ? dynastyById.get(selectedDynastyId) : null;
+  const boundaryCard = useMemo(
+    () => buildCardData(selectedDynasty, selectedDynasty ? boundariesById.get(selectedDynasty.id) : null, landmarksById),
+    [selectedDynasty, boundariesById, landmarksById],
+  );
+
+  // Compare list resolves ids to full dynasty records.
+  const compareDynasties = useMemo(
+    () => compareIds.map((id) => dynastyById.get(id)).filter(Boolean),
+    [compareIds, dynastyById],
+  );
+
+  const filterActive = filter.regions.length > 0 || filter.tags.length > 0;
+
+  // Closing the card auto-unlocks too.
+  const closeCard = useCallback(() => {
+    setSelectedDynastyId(null);
+    setLocked(false);
+  }, []);
+  const toggleLock = useCallback(() => setLocked((v) => !v), []);
+
+  // When the year changes, auto-close non-locked card.
+  useEffect(() => {
+    if (!locked && selectedDynastyId) {
+      setSelectedDynastyId(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [year]);
+
+  // Body-level state classes so CSS can let panels make room for one another.
+  useEffect(() => {
+    const cls = document.body.classList;
+    cls.toggle('has-card', !!boundaryCard);
+    cls.toggle('has-compare', compareIds.length > 0);
+    cls.toggle('filter-active', filterActive);
+    return () => {
+      cls.remove('has-card');
+      cls.remove('has-compare');
+      cls.remove('filter-active');
+    };
+  }, [boundaryCard, compareIds.length, filterActive]);
+
+  // openDynasty by id or full object. Optionally fly to it.
+  const openDynasty = useCallback((dynastyOrId, opts = {}) => {
+    const dynasty = typeof dynastyOrId === 'string'
+      ? dynastyById.get(dynastyOrId)
+      : dynastyOrId;
+    if (!dynasty) return;
+    setSelectedDynastyId(dynasty.id);
+    if (opts.fly !== false) {
+      mapSceneRef.current?.flyToDynasty(dynasty);
+    }
+  }, [dynastyById]);
+
+  const addCompare = useCallback((id) => {
+    setCompareIds((prev) => {
+      if (prev.includes(id)) return prev;
+      if (prev.length >= COMPARE_LIMIT) {
+        setCompareNotice(`最多对比 ${COMPARE_LIMIT} 个文明，先移除一个再添加`);
+        return prev;
+      }
+      return [...prev, id];
+    });
+  }, []);
+  const removeCompare = useCallback((id) => {
+    setCompareIds((prev) => prev.filter((x) => x !== id));
+  }, []);
+  const clearCompare = useCallback(() => setCompareIds([]), []);
+
+  // Auto-dismiss compare notice
+  useEffect(() => {
+    if (!compareNotice) return undefined;
+    const handle = setTimeout(() => setCompareNotice(''), 2400);
+    return () => clearTimeout(handle);
+  }, [compareNotice]);
+
+  const handleSearchSelect = useCallback((item) => {
+    if ('capital' in item && item.capital) {
+      // dynasty
+      openDynasty(item, { fly: true });
+    } else {
+      // building
+      mapSceneRef.current?.flyToBuilding(item);
+    }
+  }, [openDynasty]);
+
+  const handleEventClick = useCallback((event) => {
+    if (!event?.dynastyId) return;
+    openDynasty(event.dynastyId, { fly: true });
+    setLocked(true);
+  }, [openDynasty]);
+
+  return (
+    <>
+      <Starfield
+        id="stars-bg"
+        density={5500}
+        minR={0.2}
+        maxR={1}
+        baseAlpha={0.22}
+        color="200, 220, 255"
+        bgGradient
+        twinkle
+        twinkleRatio={0.1}
+      />
+      <MapScene
+        ref={mapSceneRef}
+        boundaries={boundaries}
+        dynasties={dynasties}
+        landmarks={landmarks}
+        layerVisibility={layerVisibility}
+        year={year}
+        selectedDynastyId={selectedDynastyId}
+        locked={locked}
+        boundaryCard={boundaryCard}
+        compareIds={compareIds}
+        onVisibleBuildingsChange={setVisibleBuildings}
+        onSelectDynasty={(id) => openDynasty(id, { fly: false })}
+        onCloseCard={closeCard}
+        onToggleLock={toggleLock}
+        onAddCompare={addCompare}
+        onRemoveCompare={removeCompare}
+      />
+      <Starfield
+        id="stars-overlay"
+        density={17000}
+        minR={0.4}
+        maxR={1.5}
+        baseAlpha={0.42}
+        color="210, 230, 255"
+        drift={OVERLAY_DRIFT}
+      />
+      <CloudLayer />
+
+      <div className="title">
+        历史沙盘
+        <span className="sub">HISTORICAL ATLAS · PROTOTYPE</span>
+      </div>
+
+      <LayerControls
+        dynasties={dynasties}
+        landmarks={landmarks}
+        layerVisibility={layerVisibility}
+        onLayerVisibilityChange={setLayerVisibility}
+        onSelectBuilding={handleSearchSelect}
+        onSelectDynasty={handleSearchSelect}
+      />
+
+      <FilterPanel
+        dynasties={dynasties}
+        filter={filter}
+        onFilterChange={setFilter}
+      />
+
+      <InfoPanel
+        year={year}
+        buildings={sortedVisibleBuildings}
+        dynasties={activeDynasties}
+        totalActive={activeDynastiesAll.length}
+        selectedDynastyId={selectedDynastyId}
+        locked={locked}
+        compareIds={compareIds}
+        filterActive={filterActive}
+        onSelectBuilding={(building) => mapSceneRef.current?.flyToBuilding(building)}
+        onSelectDynasty={(dynasty) => openDynasty(dynasty, { fly: true })}
+        onAddCompare={addCompare}
+        onRemoveCompare={removeCompare}
+      />
+
+      <EraNarrative
+        year={year}
+        dynasties={activeDynasties}
+        onSelectEvent={handleEventClick}
+      />
+
+      <ComparePanel
+        dynasties={compareDynasties}
+        onRemove={removeCompare}
+        onClear={clearCompare}
+        onSelect={(id) => openDynasty(id, { fly: true })}
+      />
+
+      {compareNotice ? (
+        <div className="compare-notice" role="status">{compareNotice}</div>
+      ) : null}
+
+      <Timeline year={year} onYearChange={setYear} formatYear={formatYear} />
+    </>
+  );
+}

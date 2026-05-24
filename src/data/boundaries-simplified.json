@@ -1,0 +1,2937 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "xia",
+      "properties": {
+        "id": "xia",
+        "dynasty": "夏朝",
+        "startYear": -2070,
+        "endYear": -1600,
+        "color": "#d8b46a",
+        "capital": "二里头",
+        "summary": "黄河中游早期王朝范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以二里头—河洛核心区为参考，沿黄河中游绘制示意范围，仅表达早期王朝的活动腹地。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              108,
+              33
+            ],
+            [
+              110,
+              32
+            ],
+            [
+              114,
+              32.5
+            ],
+            [
+              116,
+              34
+            ],
+            [
+              115,
+              36.5
+            ],
+            [
+              112,
+              37.2
+            ],
+            [
+              109.5,
+              36.5
+            ],
+            [
+              108,
+              35
+            ],
+            [
+              107.5,
+              34
+            ],
+            [
+              108,
+              33
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shang",
+      "properties": {
+        "id": "shang",
+        "dynasty": "商朝",
+        "startYear": -1600,
+        "endYear": -1046,
+        "color": "#c88b5a",
+        "capital": "殷",
+        "summary": "黄河下游与中原核心范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以殷墟与黄河中下游青铜文化遗址分布为灵感，勾勒商势力的核心覆盖感。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              109,
+              33
+            ],
+            [
+              112,
+              31.8
+            ],
+            [
+              116,
+              32.5
+            ],
+            [
+              119,
+              34.5
+            ],
+            [
+              119,
+              37
+            ],
+            [
+              116,
+              38.5
+            ],
+            [
+              113,
+              38
+            ],
+            [
+              110,
+              37
+            ],
+            [
+              109,
+              35
+            ],
+            [
+              109,
+              33
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zhou",
+      "properties": {
+        "id": "zhou",
+        "dynasty": "周朝",
+        "startYear": -1046,
+        "endYear": -256,
+        "color": "#b9a15f",
+        "capital": "镐京/洛邑",
+        "summary": "周王畿与诸侯活动范围的粗略示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以西周分封诸侯与东周诸国大致活动区为参考，沿黄河—淮河流域示意。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              104,
+              32
+            ],
+            [
+              110,
+              30.5
+            ],
+            [
+              117,
+              31.5
+            ],
+            [
+              121,
+              33
+            ],
+            [
+              122,
+              36
+            ],
+            [
+              120,
+              39
+            ],
+            [
+              115,
+              40
+            ],
+            [
+              110,
+              39
+            ],
+            [
+              105,
+              37
+            ],
+            [
+              103,
+              34
+            ],
+            [
+              104,
+              32
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "qin",
+      "properties": {
+        "id": "qin",
+        "dynasty": "秦朝",
+        "startYear": -221,
+        "endYear": -206,
+        "color": "#8e44ad",
+        "capital": "咸阳",
+        "summary": "秦统一后的核心疆域粗略示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以秦统一后郡县所及范围为灵感，沿黄河—长江—河西走廊勾勒大致疆域感。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              101,
+              30
+            ],
+            [
+              108,
+              27.5
+            ],
+            [
+              115,
+              27
+            ],
+            [
+              121,
+              29
+            ],
+            [
+              122,
+              33
+            ],
+            [
+              121,
+              38
+            ],
+            [
+              117,
+              41
+            ],
+            [
+              110,
+              41.5
+            ],
+            [
+              104,
+              40
+            ],
+            [
+              100,
+              37
+            ],
+            [
+              99,
+              33
+            ],
+            [
+              101,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "han",
+      "properties": {
+        "id": "han",
+        "dynasty": "汉朝",
+        "startYear": -202,
+        "endYear": 220,
+        "color": "#c0392b",
+        "capital": "长安/洛阳",
+        "summary": "汉帝国含河西与西域方向的宽泛范围。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以两汉鼎盛期东亚本部与河西、西域控制范围为参考，绘制大致势力覆盖。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              88,
+              36
+            ],
+            [
+              95,
+              33
+            ],
+            [
+              104,
+              29
+            ],
+            [
+              112,
+              26
+            ],
+            [
+              120,
+              27
+            ],
+            [
+              122,
+              31
+            ],
+            [
+              122,
+              36
+            ],
+            [
+              120,
+              40
+            ],
+            [
+              117,
+              42
+            ],
+            [
+              110,
+              42.5
+            ],
+            [
+              100,
+              41
+            ],
+            [
+              92,
+              40
+            ],
+            [
+              88,
+              36
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "jin",
+      "properties": {
+        "id": "jin",
+        "dynasty": "晋朝",
+        "startYear": 266,
+        "endYear": 420,
+        "color": "#a86454",
+        "capital": "洛阳/建康",
+        "summary": "晋代南北核心区域示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以西晋短暂统一时的中原—江南范围为参考，仅表达沙盘示意。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              102,
+              30
+            ],
+            [
+              108,
+              27.5
+            ],
+            [
+              115,
+              26.5
+            ],
+            [
+              121,
+              28
+            ],
+            [
+              123,
+              31
+            ],
+            [
+              122,
+              35
+            ],
+            [
+              119,
+              37
+            ],
+            [
+              114,
+              38
+            ],
+            [
+              108,
+              37
+            ],
+            [
+              103,
+              35
+            ],
+            [
+              102,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sui",
+      "properties": {
+        "id": "sui",
+        "dynasty": "隋朝",
+        "startYear": 581,
+        "endYear": 618,
+        "color": "#7f8c8d",
+        "capital": "大兴城",
+        "summary": "隋统一后核心疆域示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以隋统一后包含江南、河西在内的版图为灵感，绘制概略多边形。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              98,
+              33
+            ],
+            [
+              106,
+              28
+            ],
+            [
+              114,
+              25
+            ],
+            [
+              121,
+              27
+            ],
+            [
+              123,
+              31
+            ],
+            [
+              123,
+              36
+            ],
+            [
+              119,
+              40
+            ],
+            [
+              112,
+              41.5
+            ],
+            [
+              105,
+              41
+            ],
+            [
+              99,
+              39
+            ],
+            [
+              98,
+              33
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tang",
+      "properties": {
+        "id": "tang",
+        "dynasty": "唐朝",
+        "startYear": 618,
+        "endYear": 907,
+        "color": "#e67e22",
+        "capital": "长安",
+        "summary": "唐帝国核心与西域交通范围的粗略多边形示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "样板粗略多边形",
+        "accuracyNote": "此边界为样板阶段的粗略多边形，形状比矩形更自然，但仍用于视觉和交互示意，不代表精确历史疆域。",
+        "sourceNote": "以盛唐时期东亚本部、西域经营和草原互动范围为灵感绘制，边界仅表示沙盘中的势力覆盖感。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75,
+              24
+            ],
+            [
+              82,
+              38
+            ],
+            [
+              94,
+              45
+            ],
+            [
+              111,
+              48
+            ],
+            [
+              124,
+              42
+            ],
+            [
+              123,
+              25
+            ],
+            [
+              113,
+              19
+            ],
+            [
+              101,
+              21
+            ],
+            [
+              91,
+              25
+            ],
+            [
+              75,
+              24
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "song",
+      "properties": {
+        "id": "song",
+        "dynasty": "宋朝",
+        "startYear": 960,
+        "endYear": 1279,
+        "color": "#2980b9",
+        "capital": "汴京/临安",
+        "summary": "宋代中国东部与南部核心区域示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以北宋至南宋东部本部范围为参考，简化为东部沿海与长江流域示意。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              102,
+              32
+            ],
+            [
+              108,
+              29
+            ],
+            [
+              115,
+              26
+            ],
+            [
+              120,
+              26
+            ],
+            [
+              123,
+              29
+            ],
+            [
+              123,
+              33
+            ],
+            [
+              121,
+              37
+            ],
+            [
+              117,
+              39.5
+            ],
+            [
+              112,
+              39
+            ],
+            [
+              106,
+              37
+            ],
+            [
+              103,
+              35
+            ],
+            [
+              102,
+              32
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yuan",
+      "properties": {
+        "id": "yuan",
+        "dynasty": "元朝",
+        "startYear": 1271,
+        "endYear": 1368,
+        "color": "#16a085",
+        "capital": "大都",
+        "summary": "元朝与蒙古体系东部疆域示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以元帝国直接统治的东亚本部与西北、北疆范围为灵感，绘制庞大势力示意。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73,
+              33
+            ],
+            [
+              82,
+              28
+            ],
+            [
+              96,
+              22
+            ],
+            [
+              108,
+              20
+            ],
+            [
+              120,
+              22
+            ],
+            [
+              126,
+              30
+            ],
+            [
+              128,
+              42
+            ],
+            [
+              120,
+              50
+            ],
+            [
+              108,
+              53
+            ],
+            [
+              92,
+              53
+            ],
+            [
+              80,
+              50
+            ],
+            [
+              73,
+              42
+            ],
+            [
+              73,
+              33
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ming",
+      "properties": {
+        "id": "ming",
+        "dynasty": "明朝",
+        "startYear": 1368,
+        "endYear": 1644,
+        "color": "#e74c3c",
+        "capital": "南京/北京",
+        "summary": "明代中国本部核心疆域示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以明朝两京十三省与北部边墙范围为参考，绘制东亚本部多边形。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              96,
+              30
+            ],
+            [
+              104,
+              25
+            ],
+            [
+              114,
+              22
+            ],
+            [
+              122,
+              25
+            ],
+            [
+              125,
+              30
+            ],
+            [
+              125,
+              38
+            ],
+            [
+              122,
+              42
+            ],
+            [
+              114,
+              42
+            ],
+            [
+              104,
+              41
+            ],
+            [
+              97,
+              39
+            ],
+            [
+              95,
+              35
+            ],
+            [
+              96,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "qing",
+      "properties": {
+        "id": "qing",
+        "dynasty": "清朝",
+        "startYear": 1644,
+        "endYear": 1912,
+        "color": "#2ecc71",
+        "capital": "北京",
+        "summary": "清帝国辽阔疆域的粗略示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以康乾时期含新疆、蒙古、青藏的鼎盛版图为灵感绘制示意范围。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              73,
+              28
+            ],
+            [
+              85,
+              26
+            ],
+            [
+              97,
+              22
+            ],
+            [
+              109,
+              21
+            ],
+            [
+              122,
+              24
+            ],
+            [
+              128,
+              32
+            ],
+            [
+              134,
+              43
+            ],
+            [
+              128,
+              52
+            ],
+            [
+              115,
+              53
+            ],
+            [
+              98,
+              52
+            ],
+            [
+              85,
+              49
+            ],
+            [
+              75,
+              42
+            ],
+            [
+              73,
+              35
+            ],
+            [
+              73,
+              28
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "egypt-old-kingdom",
+      "properties": {
+        "id": "egypt-old-kingdom",
+        "dynasty": "埃及古王国",
+        "startYear": -2686,
+        "endYear": -2181,
+        "color": "#e8c98a",
+        "capital": "孟菲斯",
+        "summary": "尼罗河下游金字塔时代范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以尼罗河上下游与三角洲核心为参考，沿河谷示意古王国控制范围。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              30,
+              22
+            ],
+            [
+              33,
+              22
+            ],
+            [
+              34,
+              26
+            ],
+            [
+              33.5,
+              29
+            ],
+            [
+              33,
+              31.5
+            ],
+            [
+              31,
+              31.8
+            ],
+            [
+              29.5,
+              31.2
+            ],
+            [
+              29,
+              28.5
+            ],
+            [
+              29.5,
+              25
+            ],
+            [
+              30,
+              22
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "egypt-new-kingdom",
+      "properties": {
+        "id": "egypt-new-kingdom",
+        "dynasty": "埃及新王国",
+        "startYear": -1550,
+        "endYear": -1070,
+        "color": "#f1c40f",
+        "capital": "底比斯",
+        "summary": "埃及新王国与黎凡特方向扩张示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以拉美西斯时代向黎凡特推进的势力范围为参考，从尼罗河延伸至叙利亚北部。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29,
+              21
+            ],
+            [
+              32,
+              20
+            ],
+            [
+              35,
+              22
+            ],
+            [
+              37,
+              28
+            ],
+            [
+              37.5,
+              32
+            ],
+            [
+              36,
+              35.5
+            ],
+            [
+              34,
+              36
+            ],
+            [
+              31,
+              33
+            ],
+            [
+              29.5,
+              31.5
+            ],
+            [
+              28.5,
+              28
+            ],
+            [
+              28.5,
+              24
+            ],
+            [
+              29,
+              21
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "babylon",
+      "properties": {
+        "id": "babylon",
+        "dynasty": "巴比伦王国",
+        "startYear": -1894,
+        "endYear": -539,
+        "color": "#9b59b6",
+        "capital": "巴比伦",
+        "summary": "两河流域南部核心范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以古巴比伦至新巴比伦在两河南部核心区为灵感绘制示意范围。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              43,
+              30
+            ],
+            [
+              47,
+              29.5
+            ],
+            [
+              49,
+              31
+            ],
+            [
+              48,
+              33
+            ],
+            [
+              46,
+              34.5
+            ],
+            [
+              44,
+              35
+            ],
+            [
+              42,
+              34
+            ],
+            [
+              41,
+              32
+            ],
+            [
+              42,
+              30.5
+            ],
+            [
+              43,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "assyrian",
+      "properties": {
+        "id": "assyrian",
+        "dynasty": "亚述帝国",
+        "startYear": -1365,
+        "endYear": -609,
+        "color": "#8e5b3a",
+        "capital": "尼尼微",
+        "summary": "亚述帝国在近东的扩张范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以新亚述帝国在两河北部、黎凡特与短暂控制埃及时的轮廓为参考。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              36,
+              30
+            ],
+            [
+              41,
+              29
+            ],
+            [
+              46,
+              31
+            ],
+            [
+              49,
+              33.5
+            ],
+            [
+              48,
+              36.5
+            ],
+            [
+              45,
+              38
+            ],
+            [
+              40,
+              38
+            ],
+            [
+              36,
+              37
+            ],
+            [
+              34,
+              34
+            ],
+            [
+              34.5,
+              31.5
+            ],
+            [
+              36,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "achaemenid",
+      "properties": {
+        "id": "achaemenid",
+        "dynasty": "阿契美尼德波斯",
+        "startYear": -550,
+        "endYear": -330,
+        "color": "#27ae60",
+        "capital": "波斯波利斯",
+        "summary": "横跨西亚、埃及与中亚的波斯帝国范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以大流士一世时期含埃及、安纳托利亚、伊朗、河中地区的版图为灵感。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27,
+              22
+            ],
+            [
+              33,
+              18
+            ],
+            [
+              45,
+              19
+            ],
+            [
+              58,
+              24
+            ],
+            [
+              68,
+              28
+            ],
+            [
+              73,
+              34
+            ],
+            [
+              70,
+              41
+            ],
+            [
+              60,
+              43
+            ],
+            [
+              48,
+              42
+            ],
+            [
+              38,
+              39
+            ],
+            [
+              30,
+              37
+            ],
+            [
+              25,
+              32
+            ],
+            [
+              25,
+              26
+            ],
+            [
+              27,
+              22
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sasanian",
+      "properties": {
+        "id": "sasanian",
+        "dynasty": "萨珊波斯",
+        "startYear": 224,
+        "endYear": 651,
+        "color": "#1abc9c",
+        "capital": "泰西封",
+        "summary": "伊朗高原与两河流域的萨珊势力范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以萨珊全盛时期含两河、伊朗高原与中亚西部的范围为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              38,
+              26
+            ],
+            [
+              46,
+              24
+            ],
+            [
+              56,
+              26
+            ],
+            [
+              64,
+              31
+            ],
+            [
+              66,
+              37
+            ],
+            [
+              60,
+              41
+            ],
+            [
+              50,
+              41
+            ],
+            [
+              42,
+              39
+            ],
+            [
+              37,
+              35
+            ],
+            [
+              36,
+              30
+            ],
+            [
+              38,
+              26
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "greek-city-states",
+      "properties": {
+        "id": "greek-city-states",
+        "dynasty": "希腊诸城邦",
+        "startYear": -800,
+        "endYear": -338,
+        "color": "#ecf0f1",
+        "capital": "雅典",
+        "summary": "爱琴海城邦世界范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以希腊本土与爱琴海周边城邦活动范围为灵感，仅示意核心圈。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              19,
+              35
+            ],
+            [
+              22,
+              34.5
+            ],
+            [
+              25,
+              35
+            ],
+            [
+              27,
+              37
+            ],
+            [
+              28,
+              39
+            ],
+            [
+              27.5,
+              41
+            ],
+            [
+              24,
+              41.5
+            ],
+            [
+              21,
+              40
+            ],
+            [
+              19.5,
+              38
+            ],
+            [
+              19,
+              35
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "roman-republic-empire",
+      "properties": {
+        "id": "roman-republic-empire",
+        "dynasty": "罗马共和国/帝国",
+        "startYear": -509,
+        "endYear": 476,
+        "color": "#b89060",
+        "capital": "罗马",
+        "summary": "罗马环地中海世界的粗略多边形示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "样板粗略多边形",
+        "accuracyNote": "此边界为样板阶段的粗略多边形，形状比矩形更自然，但仍用于视觉和交互示意，不代表精确历史疆域。",
+        "sourceNote": "以帝国高峰期地中海沿岸控制圈为灵感绘制，用单一多边形表达环海统治，不代表精确边界。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              36
+            ],
+            [
+              -5,
+              44
+            ],
+            [
+              9,
+              51
+            ],
+            [
+              24,
+              47
+            ],
+            [
+              35,
+              42
+            ],
+            [
+              38,
+              32
+            ],
+            [
+              31,
+              26
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              2,
+              31
+            ],
+            [
+              -9,
+              36
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "byzantine",
+      "properties": {
+        "id": "byzantine",
+        "dynasty": "拜占庭帝国",
+        "startYear": 330,
+        "endYear": 1453,
+        "color": "#9b59b6",
+        "capital": "君士坦丁堡",
+        "summary": "东地中海与巴尔干、小亚细亚方向示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以查士丁尼前后东地中海控制范围为参考，绘制粗略多边形。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              12,
+              36
+            ],
+            [
+              18,
+              34
+            ],
+            [
+              25,
+              33
+            ],
+            [
+              32,
+              33
+            ],
+            [
+              38,
+              35
+            ],
+            [
+              42,
+              38
+            ],
+            [
+              42,
+              42
+            ],
+            [
+              37,
+              44
+            ],
+            [
+              29,
+              44
+            ],
+            [
+              22,
+              43
+            ],
+            [
+              16,
+              41
+            ],
+            [
+              13,
+              39
+            ],
+            [
+              12,
+              36
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ottoman",
+      "properties": {
+        "id": "ottoman",
+        "dynasty": "奥斯曼帝国",
+        "startYear": 1299,
+        "endYear": 1922,
+        "color": "#c0392b",
+        "capital": "伊斯坦布尔",
+        "summary": "奥斯曼在巴尔干、安纳托利亚与中东的扩张范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以苏莱曼时代横跨巴尔干、安纳托利亚、黎凡特、北非的版图为灵感。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5,
+              30
+            ],
+            [
+              10,
+              30
+            ],
+            [
+              22,
+              30
+            ],
+            [
+              32,
+              28
+            ],
+            [
+              43,
+              30
+            ],
+            [
+              48,
+              34
+            ],
+            [
+              48,
+              39
+            ],
+            [
+              43,
+              43
+            ],
+            [
+              33,
+              45
+            ],
+            [
+              24,
+              45
+            ],
+            [
+              16,
+              43
+            ],
+            [
+              8,
+              38
+            ],
+            [
+              -2,
+              35
+            ],
+            [
+              -5,
+              30
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "islamic-caliphates",
+      "properties": {
+        "id": "islamic-caliphates",
+        "dynasty": "阿拉伯哈里发",
+        "startYear": 632,
+        "endYear": 1258,
+        "color": "#2ecc71",
+        "capital": "麦地那/大马士革/巴格达",
+        "summary": "早期哈里发到阿拔斯时期跨区域网络的粗略多边形示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "样板粗略多边形",
+        "accuracyNote": "此边界为样板阶段的粗略多边形，形状比矩形更自然，但仍用于视觉和交互示意，不代表精确历史疆域。",
+        "sourceNote": "以倭马亚至阿拔斯早期的扩张范围为灵感绘制，强调从伊比利亚、北非、中东到波斯和中亚的连接。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -8,
+              18
+            ],
+            [
+              2,
+              34
+            ],
+            [
+              28,
+              36
+            ],
+            [
+              45,
+              41
+            ],
+            [
+              63,
+              38
+            ],
+            [
+              76,
+              30
+            ],
+            [
+              70,
+              18
+            ],
+            [
+              50,
+              13
+            ],
+            [
+              30,
+              14
+            ],
+            [
+              12,
+              10
+            ],
+            [
+              -8,
+              18
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mongol-empire",
+      "properties": {
+        "id": "mongol-empire",
+        "dynasty": "蒙古帝国",
+        "startYear": 1206,
+        "endYear": 1368,
+        "color": "#16a085",
+        "capital": "哈拉和林",
+        "summary": "蒙古帝国横贯欧亚大陆的粗略示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以蒙古帝国统一时期横跨欧亚草原的最大势力范围为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              27,
+              38
+            ],
+            [
+              45,
+              35
+            ],
+            [
+              70,
+              32
+            ],
+            [
+              95,
+              35
+            ],
+            [
+              120,
+              38
+            ],
+            [
+              130,
+              44
+            ],
+            [
+              128,
+              52
+            ],
+            [
+              110,
+              56
+            ],
+            [
+              85,
+              57
+            ],
+            [
+              60,
+              55
+            ],
+            [
+              40,
+              52
+            ],
+            [
+              28,
+              48
+            ],
+            [
+              27,
+              38
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "maurya",
+      "properties": {
+        "id": "maurya",
+        "dynasty": "孔雀王朝",
+        "startYear": -322,
+        "endYear": -185,
+        "color": "#f39c12",
+        "capital": "华氏城",
+        "summary": "古印度孔雀王朝大范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以阿育王时代覆盖南亚大部分次大陆的版图为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              68,
+              8
+            ],
+            [
+              76,
+              6
+            ],
+            [
+              85,
+              9
+            ],
+            [
+              92,
+              14
+            ],
+            [
+              92,
+              22
+            ],
+            [
+              88,
+              28
+            ],
+            [
+              82,
+              32
+            ],
+            [
+              75,
+              33
+            ],
+            [
+              70,
+              30
+            ],
+            [
+              67,
+              25
+            ],
+            [
+              66,
+              18
+            ],
+            [
+              68,
+              8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gupta",
+      "properties": {
+        "id": "gupta",
+        "dynasty": "笈多王朝",
+        "startYear": 320,
+        "endYear": 550,
+        "color": "#e67e22",
+        "capital": "华氏城",
+        "summary": "北印度笈多王朝范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以笈多王朝在北印度核心区的版图为参考，绘制粗略多边形。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              70,
+              18
+            ],
+            [
+              78,
+              16
+            ],
+            [
+              86,
+              18
+            ],
+            [
+              91,
+              22
+            ],
+            [
+              91,
+              27
+            ],
+            [
+              86,
+              30
+            ],
+            [
+              80,
+              30
+            ],
+            [
+              74,
+              28
+            ],
+            [
+              70,
+              25
+            ],
+            [
+              70,
+              18
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "chola",
+      "properties": {
+        "id": "chola",
+        "dynasty": "朱罗王朝",
+        "startYear": 848,
+        "endYear": 1279,
+        "color": "#d35400",
+        "capital": "坦贾武尔",
+        "summary": "南印度朱罗势力与海上网络范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以朱罗王朝南印度本部与东南沿海控制范围为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75,
+              7
+            ],
+            [
+              79,
+              6
+            ],
+            [
+              82,
+              9
+            ],
+            [
+              83,
+              13
+            ],
+            [
+              81,
+              17
+            ],
+            [
+              78,
+              18
+            ],
+            [
+              75,
+              15
+            ],
+            [
+              74,
+              11
+            ],
+            [
+              75,
+              7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mughal",
+      "properties": {
+        "id": "mughal",
+        "dynasty": "莫卧儿帝国",
+        "startYear": 1526,
+        "endYear": 1857,
+        "color": "#f0e8dc",
+        "capital": "德里/阿格拉",
+        "summary": "莫卧儿帝国在印度次大陆北部与中部的粗略多边形示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "样板粗略多边形",
+        "accuracyNote": "此边界为样板阶段的粗略多边形，形状比矩形更自然，但仍用于视觉和交互示意，不代表精确历史疆域。",
+        "sourceNote": "以阿克巴至奥朗则布时期的次大陆核心控制区为灵感绘制，南缘和边疆均为示意。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              68,
+              24
+            ],
+            [
+              72,
+              32
+            ],
+            [
+              83,
+              35
+            ],
+            [
+              91,
+              27
+            ],
+            [
+              88,
+              18
+            ],
+            [
+              81,
+              10
+            ],
+            [
+              73,
+              13
+            ],
+            [
+              68,
+              24
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "khmer",
+      "properties": {
+        "id": "khmer",
+        "dynasty": "吴哥高棉帝国",
+        "startYear": 802,
+        "endYear": 1431,
+        "color": "#1abc9c",
+        "capital": "吴哥",
+        "summary": "东南亚大陆吴哥高棉范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以吴哥时代覆盖湄公河中下游与暹罗湾沿岸的范围为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              100,
+              9
+            ],
+            [
+              104,
+              8
+            ],
+            [
+              107,
+              10
+            ],
+            [
+              108,
+              13
+            ],
+            [
+              107,
+              15
+            ],
+            [
+              104,
+              16
+            ],
+            [
+              101,
+              15
+            ],
+            [
+              99,
+              13
+            ],
+            [
+              99,
+              11
+            ],
+            [
+              100,
+              9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "srivijaya",
+      "properties": {
+        "id": "srivijaya",
+        "dynasty": "室利佛逝",
+        "startYear": 650,
+        "endYear": 1377,
+        "color": "#3498db",
+        "capital": "巨港",
+        "summary": "马六甲海峡与苏门答腊海上王国示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以室利佛逝在马六甲海峡两岸的海上势力为灵感，沿苏门答腊与马来半岛绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              98,
+              -6
+            ],
+            [
+              104,
+              -7
+            ],
+            [
+              108,
+              -5
+            ],
+            [
+              110,
+              -2
+            ],
+            [
+              108,
+              2
+            ],
+            [
+              104,
+              5
+            ],
+            [
+              100,
+              5
+            ],
+            [
+              97,
+              2
+            ],
+            [
+              96,
+              -2
+            ],
+            [
+              98,
+              -6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "joseon",
+      "properties": {
+        "id": "joseon",
+        "dynasty": "朝鲜王朝",
+        "startYear": 1392,
+        "endYear": 1897,
+        "color": "#95a5a6",
+        "capital": "汉城",
+        "summary": "朝鲜半岛王朝范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以朝鲜半岛朝鲜王朝完整版图为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              125,
+              33.5
+            ],
+            [
+              127,
+              33
+            ],
+            [
+              129.5,
+              34.5
+            ],
+            [
+              130.5,
+              37.5
+            ],
+            [
+              130,
+              41
+            ],
+            [
+              127,
+              43
+            ],
+            [
+              124.5,
+              41
+            ],
+            [
+              124,
+              38
+            ],
+            [
+              124.5,
+              35
+            ],
+            [
+              125,
+              33.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yamato-japan",
+      "properties": {
+        "id": "yamato-japan",
+        "dynasty": "日本大和/律令国家",
+        "startYear": 250,
+        "endYear": 1185,
+        "color": "#e84393",
+        "capital": "奈良/平安京",
+        "summary": "日本列岛古代国家范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以平安时代日本列岛主要诸国控制范围为灵感，沿本州—九州绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              130,
+              32
+            ],
+            [
+              134,
+              33
+            ],
+            [
+              138,
+              34.5
+            ],
+            [
+              141,
+              38
+            ],
+            [
+              143,
+              41
+            ],
+            [
+              141,
+              43
+            ],
+            [
+              136,
+              42
+            ],
+            [
+              132,
+              39
+            ],
+            [
+              130,
+              36
+            ],
+            [
+              129,
+              33.5
+            ],
+            [
+              130,
+              32
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "maya",
+      "properties": {
+        "id": "maya",
+        "dynasty": "玛雅文明",
+        "startYear": -2000,
+        "endYear": 1697,
+        "color": "#00cec9",
+        "capital": "蒂卡尔/玛雅城邦",
+        "summary": "玛雅城市文明分布区的粗略多边形示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "样板粗略多边形",
+        "accuracyNote": "此边界为样板阶段的粗略多边形，形状比矩形更自然，但仍用于视觉和交互示意，不代表精确历史疆域。",
+        "sourceNote": "以尤卡坦半岛、危地马拉低地和周边玛雅文化区为灵感绘制，表现城市网络而非统一帝国疆域。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -92.5,
+              15
+            ],
+            [
+              -90.8,
+              20.8
+            ],
+            [
+              -87.2,
+              21.7
+            ],
+            [
+              -86.1,
+              18.4
+            ],
+            [
+              -88.2,
+              15.1
+            ],
+            [
+              -90.6,
+              14.1
+            ],
+            [
+              -92.5,
+              15
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "aztec",
+      "properties": {
+        "id": "aztec",
+        "dynasty": "阿兹特克帝国",
+        "startYear": 1428,
+        "endYear": 1521,
+        "color": "#d63031",
+        "capital": "特诺奇蒂特兰",
+        "summary": "墨西哥高原阿兹特克范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以阿兹特克三国同盟在中部墨西哥的控制范围为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -104,
+              16
+            ],
+            [
+              -100,
+              15.5
+            ],
+            [
+              -95,
+              16.5
+            ],
+            [
+              -94,
+              19
+            ],
+            [
+              -96,
+              21.5
+            ],
+            [
+              -100,
+              22
+            ],
+            [
+              -103,
+              21
+            ],
+            [
+              -105,
+              19
+            ],
+            [
+              -104,
+              16
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "inca",
+      "properties": {
+        "id": "inca",
+        "dynasty": "印加帝国",
+        "startYear": 1438,
+        "endYear": 1533,
+        "color": "#fdcb6e",
+        "capital": "库斯科",
+        "summary": "安第斯山脉印加帝国南北走向范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以印加全盛期沿安第斯山脉的细长帝国版图为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -79,
+              -2
+            ],
+            [
+              -76,
+              -4
+            ],
+            [
+              -72,
+              -8
+            ],
+            [
+              -69,
+              -14
+            ],
+            [
+              -67,
+              -20
+            ],
+            [
+              -67,
+              -27
+            ],
+            [
+              -70,
+              -33
+            ],
+            [
+              -73,
+              -32
+            ],
+            [
+              -74,
+              -25
+            ],
+            [
+              -76,
+              -16
+            ],
+            [
+              -78,
+              -8
+            ],
+            [
+              -79,
+              -2
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ghana",
+      "properties": {
+        "id": "ghana",
+        "dynasty": "加纳帝国",
+        "startYear": 300,
+        "endYear": 1200,
+        "color": "#f6b93b",
+        "capital": "昆比萨利赫",
+        "summary": "西非撒哈拉商路早期帝国范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以加纳帝国在西非萨赫勒西段的核心区为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -12,
+              13
+            ],
+            [
+              -8,
+              12.5
+            ],
+            [
+              -4,
+              13.5
+            ],
+            [
+              -3,
+              16
+            ],
+            [
+              -5,
+              18
+            ],
+            [
+              -9,
+              18
+            ],
+            [
+              -12,
+              17
+            ],
+            [
+              -13,
+              15
+            ],
+            [
+              -12,
+              13
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mali",
+      "properties": {
+        "id": "mali",
+        "dynasty": "马里帝国",
+        "startYear": 1235,
+        "endYear": 1670,
+        "color": "#f9ca24",
+        "capital": "尼亚尼",
+        "summary": "西非马里帝国范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以马里帝国在西非萨赫勒中段及尼日尔河上游的版图为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -14,
+              11
+            ],
+            [
+              -7,
+              10
+            ],
+            [
+              0,
+              12
+            ],
+            [
+              4,
+              15
+            ],
+            [
+              3,
+              18
+            ],
+            [
+              -2,
+              19.5
+            ],
+            [
+              -9,
+              19
+            ],
+            [
+              -13,
+              17
+            ],
+            [
+              -15,
+              14
+            ],
+            [
+              -14,
+              11
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "songhai",
+      "properties": {
+        "id": "songhai",
+        "dynasty": "桑海帝国",
+        "startYear": 1464,
+        "endYear": 1591,
+        "color": "#e1b12c",
+        "capital": "加奥",
+        "summary": "尼日尔河流域桑海帝国范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以桑海帝国在尼日尔河中游的控制范围为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              11
+            ],
+            [
+              -2,
+              10.5
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              8,
+              15
+            ],
+            [
+              6,
+              19
+            ],
+            [
+              0,
+              20.5
+            ],
+            [
+              -6,
+              20
+            ],
+            [
+              -10,
+              17
+            ],
+            [
+              -11,
+              13
+            ],
+            [
+              -9,
+              11
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "carolingian",
+      "properties": {
+        "id": "carolingian",
+        "dynasty": "查理曼帝国",
+        "startYear": 800,
+        "endYear": 888,
+        "color": "#74b9ff",
+        "capital": "亚琛",
+        "summary": "加洛林时期西欧范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以查理曼加冕时含法兰西、德意志西部与意大利北部的版图为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -3,
+              42
+            ],
+            [
+              3,
+              41.5
+            ],
+            [
+              9,
+              41
+            ],
+            [
+              13,
+              44
+            ],
+            [
+              15,
+              48
+            ],
+            [
+              14,
+              52
+            ],
+            [
+              9,
+              54
+            ],
+            [
+              4,
+              53
+            ],
+            [
+              -1,
+              51
+            ],
+            [
+              -3,
+              47
+            ],
+            [
+              -3,
+              42
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "holy-roman-empire",
+      "properties": {
+        "id": "holy-roman-empire",
+        "dynasty": "神圣罗马帝国",
+        "startYear": 962,
+        "endYear": 1806,
+        "color": "#dfe6e9",
+        "capital": "法兰克福/维也纳",
+        "summary": "中欧神圣罗马帝国松散范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以中世纪盛期含德意志诸邦与意大利北部的版图为灵感绘制。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              5,
+              45
+            ],
+            [
+              10,
+              44
+            ],
+            [
+              15,
+              45
+            ],
+            [
+              18,
+              48
+            ],
+            [
+              19,
+              52
+            ],
+            [
+              16,
+              54
+            ],
+            [
+              10,
+              55
+            ],
+            [
+              6,
+              53
+            ],
+            [
+              4,
+              50
+            ],
+            [
+              5,
+              47
+            ],
+            [
+              5,
+              45
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "british-empire",
+      "properties": {
+        "id": "british-empire",
+        "dynasty": "大英帝国",
+        "startYear": 1707,
+        "endYear": 1997,
+        "color": "#0984e3",
+        "capital": "伦敦",
+        "summary": "MVP 中先以不列颠本土作为帝国标记范围，海外殖民地后续细化。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以英国本土不列颠群岛为示意范围（实际海外殖民地未纳入本沙盘多边形）。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -9,
+              50
+            ],
+            [
+              -6,
+              49.5
+            ],
+            [
+              0,
+              50.5
+            ],
+            [
+              2,
+              53
+            ],
+            [
+              -1,
+              56
+            ],
+            [
+              -3,
+              59
+            ],
+            [
+              -6,
+              59
+            ],
+            [
+              -8,
+              56
+            ],
+            [
+              -10,
+              53
+            ],
+            [
+              -9,
+              50
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "united-states",
+      "properties": {
+        "id": "united-states",
+        "dynasty": "美国",
+        "startYear": 1776,
+        "endYear": 2025,
+        "color": "#74b9ff",
+        "capital": "华盛顿",
+        "summary": "美国本土范围示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以美国本土 48 州为参考绘制示意范围。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -124,
+              32.5
+            ],
+            [
+              -114,
+              32.5
+            ],
+            [
+              -106,
+              29
+            ],
+            [
+              -97,
+              26
+            ],
+            [
+              -82,
+              25
+            ],
+            [
+              -76,
+              35
+            ],
+            [
+              -71,
+              41
+            ],
+            [
+              -69,
+              44
+            ],
+            [
+              -78,
+              46
+            ],
+            [
+              -90,
+              48
+            ],
+            [
+              -104,
+              49
+            ],
+            [
+              -117,
+              49
+            ],
+            [
+              -124,
+              45
+            ],
+            [
+              -124,
+              32.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "prc",
+      "properties": {
+        "id": "prc",
+        "dynasty": "中华人民共和国",
+        "startYear": 1949,
+        "endYear": 2025,
+        "color": "#ff7675",
+        "capital": "北京",
+        "summary": "现代中国范围的粗略示意。",
+        "accuracy": "rough-refined",
+        "accuracyLabel": "粗略多边形",
+        "accuracyNote": "此边界为粗略多边形示意，比矩形更贴近历史轮廓，但仍用于沙盘视觉与交互演示，不代表精确历史疆域。",
+        "sourceNote": "以中华人民共和国 1949 年以来的实际管辖范围为参考绘制示意范围。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74,
+              30
+            ],
+            [
+              85,
+              27
+            ],
+            [
+              97,
+              22
+            ],
+            [
+              108,
+              20
+            ],
+            [
+              122,
+              23
+            ],
+            [
+              128,
+              32
+            ],
+            [
+              134,
+              43
+            ],
+            [
+              127,
+              51
+            ],
+            [
+              114,
+              53
+            ],
+            [
+              98,
+              52
+            ],
+            [
+              85,
+              49
+            ],
+            [
+              76,
+              42
+            ],
+            [
+              74,
+              35
+            ],
+            [
+              74,
+              30
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
