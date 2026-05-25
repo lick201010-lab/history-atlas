@@ -108,7 +108,7 @@ function validateBoundary(feature, dynastyIds, errors) {
   }
 }
 
-function validateLandmark(landmark, errors) {
+function validateLandmark(landmark, dynastyIds, errors) {
   const prefix = `landmark:${landmark?.id || 'unknown'}`;
   if (!isNonEmptyString(landmark.id)) fail(errors, `${prefix} missing id`);
   if (!isNonEmptyString(landmark.name)) fail(errors, `${prefix} missing name`);
@@ -116,6 +116,17 @@ function validateLandmark(landmark, errors) {
   if (!isNumber(landmark.startYear) || !isNumber(landmark.endYear)) fail(errors, `${prefix} must include numeric startYear/endYear`);
   if (isNumber(landmark.startYear) && isNumber(landmark.endYear) && landmark.startYear > landmark.endYear) {
     fail(errors, `${prefix} startYear is after endYear`);
+  }
+  if (!isNonEmptyString(landmark.summary)) fail(errors, `${prefix} missing summary`);
+  if (!isNonEmptyString(landmark.region)) fail(errors, `${prefix} missing region`);
+  if (!Number.isInteger(landmark.importance) || landmark.importance < 1 || landmark.importance > 5) {
+    fail(errors, `${prefix} importance must be an integer from 1 to 5`);
+  }
+  if (!Array.isArray(landmark.relatedDynastyIds)) {
+    fail(errors, `${prefix} relatedDynastyIds must be an array`);
+  }
+  for (const dynastyId of landmark.relatedDynastyIds || []) {
+    if (!dynastyIds.has(dynastyId)) fail(errors, `${prefix} relatedDynastyIds references missing dynasty:${dynastyId}`);
   }
 }
 
@@ -131,7 +142,7 @@ async function main() {
   const landmarkIds = new Set(landmarks.map((landmark) => landmark.id));
   const boundaryIds = new Set(boundaries.features.map((feature) => feature.properties?.id || feature.id));
 
-  for (const landmark of landmarks) validateLandmark(landmark, errors);
+  for (const landmark of landmarks) validateLandmark(landmark, dynastyIds, errors);
   for (const dynasty of dynasties) validateDynasty(dynasty, landmarkIds, errors);
   for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, errors);
 

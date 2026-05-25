@@ -58,6 +58,7 @@ const MapScene = forwardRef(function MapScene({
   compareIds = [],
   onVisibleBuildingsChange,
   onSelectDynasty,
+  onSelectBuilding,
   onCloseCard,
   onToggleLock,
   onAddCompare,
@@ -72,12 +73,14 @@ const MapScene = forwardRef(function MapScene({
   const layerVisibilityRef = useRef(layerVisibility);
   const hoveredBoundaryIdRef = useRef(null);
   const onSelectDynastyRef = useRef(onSelectDynasty);
+  const onSelectBuildingRef = useRef(onSelectBuilding);
   const [viewMode, setViewMode] = useState('world');
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, building: null });
   const [mapReady, setMapReady] = useState(false);
   const [mapWarning, setMapWarning] = useState('');
 
   useEffect(() => { onSelectDynastyRef.current = onSelectDynasty; }, [onSelectDynasty]);
+  useEffect(() => { onSelectBuildingRef.current = onSelectBuilding; }, [onSelectBuilding]);
 
   useImperativeHandle(ref, () => ({
     flyToBuilding(building) {
@@ -364,7 +367,9 @@ const MapScene = forwardRef(function MapScene({
       if (!layerVisibilityRef.current.buildings) return;
       const best = pickBuilding(event.point);
       if (best) {
+        event.preventDefault();
         map.flyTo({ center: [best.lng, best.lat], zoom: 5.5, pitch: 62, duration: 1800 });
+        onSelectBuildingRef.current?.(best, { fromMap: true });
       }
     }
 

@@ -189,3 +189,37 @@ Verification after fixes:
 - Desktop browser QA: no overlap among controls, info panel, title, top-right buttons, and timeline.
 - Mobile browser QA: no overlap among controls, info panel, top-right buttons, title, and timeline; info panel `overflow-y` is `auto`.
 - No console errors, no failed requests, and no bad production responses after final mobile run.
+
+## Incident Record: Landmark Archive Card
+
+Date: 2026-05-25
+
+Goal: add the first building-focused interaction layer without changing the current map style.
+
+Verification before changes:
+
+- `npm run validate:data` passed before feature wiring, but landmarks only carried render fields and did not have enough copy for an archive card.
+- The existing building list and 3D custom layer already exposed building ids, coordinates, and year ranges.
+
+Fixes applied:
+
+- Added `LandmarkCard` for building details.
+- Wired building selection from the 3D map click handler, the right-side building list, and search results.
+- Opening a building card now closes the civilization card to avoid panel overlap.
+- Dragging the timeline closes the building card when the selected building is no longer active in that year.
+- Added `summary`, `region`, `importance`, and `relatedDynastyIds` to all 30 landmarks.
+- Extended the historical data validator so every landmark must have archive-card fields and valid dynasty references.
+
+Verification after changes:
+
+- `npm run validate:data` passed: 43 dynasties, 43 boundaries, 30 landmarks.
+- `npm run check` passed.
+- Local browser CDP smoke test verified the map canvas rendered, the building list opened a building archive card, and the card contained summary text.
+- Local browser CDP smoke test set the year to 700, opened `changan`, then moved the timeline to 2025; the card closed because `changan` was outside its active range.
+- `npm run deploy` passed and confirmed `https://atlas.ckl.hk`, SPA fallback, and all 5 JS/CSS chunks returned `200`.
+- Online browser CDP smoke test opened `https://atlas.ckl.hk`, confirmed the map canvas rendered, clicked the building list, and verified the building archive card appeared with Chinese summary text.
+- A Windows PowerShell encoding issue initially wrote new landmark summaries as question marks; the data was rewritten with Unicode-safe strings and re-deployed. Final online smoke test confirmed `hasQuestionMarks: false`.
+
+Follow-up improvement:
+
+- The current card uses procedural metadata and text summaries. A later content pass should add source notes for individual landmark dates and replace placeholder 3D shapes with optimized GLB assets for the most important monuments.

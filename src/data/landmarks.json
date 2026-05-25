@@ -8,7 +8,14 @@
     "lat": 34.34,
     "startYear": -200,
     "endYear": 907,
-    "color": "#d8b46a"
+    "color": "#d8b46a",
+    "region": "东亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "han",
+      "tang"
+    ],
+    "summary": "长安宫殿是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "pyramid",
@@ -19,7 +26,13 @@
     "lat": 29.98,
     "startYear": -2560,
     "endYear": 2025,
-    "color": "#e8c98a"
+    "color": "#e8c98a",
+    "region": "北非",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "egypt-old-kingdom"
+    ],
+    "summary": "吉萨金字塔是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "colosseum",
@@ -30,7 +43,13 @@
     "lat": 41.89,
     "startYear": 80,
     "endYear": 2025,
-    "color": "#b89060"
+    "color": "#b89060",
+    "region": "地中海",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "roman-republic-empire"
+    ],
+    "summary": "罗马斗兽场是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "parthenon",
@@ -41,7 +60,13 @@
     "lat": 37.97,
     "startYear": -432,
     "endYear": 2025,
-    "color": "#eae0c8"
+    "color": "#eae0c8",
+    "region": "地中海",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "greek-city-states"
+    ],
+    "summary": "帕特农神庙是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "tajmahal",
@@ -52,7 +77,13 @@
     "lat": 27.17,
     "startYear": 1653,
     "endYear": 2025,
-    "color": "#f0e8dc"
+    "color": "#f0e8dc",
+    "region": "南亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "mughal"
+    ],
+    "summary": "泰姬陵是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "great-wall",
@@ -64,7 +95,14 @@
     "startYear": -220,
     "endYear": 2025,
     "color": "#a3845b",
-    "region": "中国"
+    "region": "东亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "qin",
+      "han",
+      "ming"
+    ],
+    "summary": "万里长城是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "forbidden-city",
@@ -76,7 +114,13 @@
     "startYear": 1420,
     "endYear": 2025,
     "color": "#c75046",
-    "region": "中国"
+    "region": "东亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "ming",
+      "qing"
+    ],
+    "summary": "紫禁城是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "terracotta-army",
@@ -88,7 +132,12 @@
     "startYear": -210,
     "endYear": 2025,
     "color": "#8b6440",
-    "region": "中国"
+    "region": "东亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "qin"
+    ],
+    "summary": "秦始皇兵马俑是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "temple-of-heaven",
@@ -100,7 +149,13 @@
     "startYear": 1420,
     "endYear": 2025,
     "color": "#3a7ac4",
-    "region": "中国"
+    "region": "东亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "ming",
+      "qing"
+    ],
+    "summary": "天坛是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "cheomseongdae",
@@ -112,7 +167,12 @@
     "startYear": 634,
     "endYear": 2025,
     "color": "#b8a87c",
-    "region": "朝鲜"
+    "region": "东亚",
+    "importance": 3,
+    "relatedDynastyIds": [
+      "joseon"
+    ],
+    "summary": "瞻星台是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "hagia-sophia",
@@ -124,7 +184,13 @@
     "startYear": 537,
     "endYear": 2025,
     "color": "#d99868",
-    "region": "地中海"
+    "region": "东地中海",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "byzantine",
+      "ottoman"
+    ],
+    "summary": "圣索菲亚大教堂是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "petra",
@@ -136,7 +202,12 @@
     "startYear": -100,
     "endYear": 2025,
     "color": "#cf7a4a",
-    "region": "中东"
+    "region": "西亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "roman-republic-empire"
+    ],
+    "summary": "佩特拉古城是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "persepolis",
@@ -148,19 +219,29 @@
     "startYear": -515,
     "endYear": -330,
     "color": "#bf8848",
-    "region": "中东"
+    "region": "西亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "achaemenid"
+    ],
+    "summary": "波斯波利斯是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "ziggurat-ur",
     "name": "乌尔金字形神塔",
     "type": "ziggurat",
     "typeLabel": "金字形神塔",
-    "lng": 46.10,
+    "lng": 46.1,
     "lat": 30.96,
     "startYear": -2100,
     "endYear": 2025,
     "color": "#b58050",
-    "region": "中东"
+    "region": "西亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "babylon"
+    ],
+    "summary": "乌尔金字形神塔是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "ishtar-gate",
@@ -172,7 +253,12 @@
     "startYear": -575,
     "endYear": 2025,
     "color": "#4a7bb8",
-    "region": "中东"
+    "region": "西亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "babylon"
+    ],
+    "summary": "伊什塔尔门是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "mecca-haram",
@@ -184,7 +270,13 @@
     "startYear": 632,
     "endYear": 2025,
     "color": "#e0d4b0",
-    "region": "中东"
+    "region": "西亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "islamic-caliphates",
+      "ottoman"
+    ],
+    "summary": "麦加禁寺是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "sanchi-stupa",
@@ -196,19 +288,30 @@
     "startYear": -250,
     "endYear": 2025,
     "color": "#d9b87c",
-    "region": "印度"
+    "region": "南亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "maurya",
+      "gupta"
+    ],
+    "summary": "桑奇大塔是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "konark-sun",
     "name": "科纳克太阳神庙",
     "type": "temple",
     "typeLabel": "神庙",
-    "lng": 86.10,
+    "lng": 86.1,
     "lat": 19.89,
     "startYear": 1250,
     "endYear": 2025,
     "color": "#b87850",
-    "region": "印度"
+    "region": "南亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "chola"
+    ],
+    "summary": "科纳克太阳神庙是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "red-fort",
@@ -220,7 +323,12 @@
     "startYear": 1648,
     "endYear": 2025,
     "color": "#a8492c",
-    "region": "印度"
+    "region": "南亚",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "mughal"
+    ],
+    "summary": "德里红堡是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "chichen-itza",
@@ -232,7 +340,12 @@
     "startYear": 600,
     "endYear": 1200,
     "color": "#cdb284",
-    "region": "中美洲"
+    "region": "中美洲",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "maya"
+    ],
+    "summary": "奇琴伊察是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "teotihuacan",
@@ -244,7 +357,12 @@
     "startYear": -100,
     "endYear": 750,
     "color": "#b39466",
-    "region": "中美洲"
+    "region": "中美洲",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "aztec"
+    ],
+    "summary": "特奥蒂瓦坎是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "machu-picchu",
@@ -256,7 +374,12 @@
     "startYear": 1450,
     "endYear": 2025,
     "color": "#8a9b78",
-    "region": "南美"
+    "region": "安第斯",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "inca"
+    ],
+    "summary": "马丘比丘是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "meroe-pyramids",
@@ -268,7 +391,12 @@
     "startYear": -300,
     "endYear": 2025,
     "color": "#a07248",
-    "region": "非洲"
+    "region": "东北非",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "egypt-new-kingdom"
+    ],
+    "summary": "麦罗埃金字塔群是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "djenne-mosque",
@@ -280,7 +408,13 @@
     "startYear": 1280,
     "endYear": 2025,
     "color": "#c08858",
-    "region": "非洲"
+    "region": "西非",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "mali",
+      "songhai"
+    ],
+    "summary": "杰内大清真寺是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "great-zimbabwe",
@@ -292,7 +426,10 @@
     "startYear": 1100,
     "endYear": 1450,
     "color": "#6f6450",
-    "region": "非洲"
+    "region": "南部非洲",
+    "importance": 5,
+    "relatedDynastyIds": [],
+    "summary": "大津巴布韦是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "notre-dame",
@@ -304,7 +441,12 @@
     "startYear": 1163,
     "endYear": 2025,
     "color": "#9aa4b0",
-    "region": "欧洲"
+    "region": "西欧",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "holy-roman-empire"
+    ],
+    "summary": "巴黎圣母院是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "stonehenge",
@@ -316,7 +458,10 @@
     "startYear": -3000,
     "endYear": 2025,
     "color": "#7e8590",
-    "region": "欧洲"
+    "region": "西欧",
+    "importance": 4,
+    "relatedDynastyIds": [],
+    "summary": "巨石阵是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "westminster-abbey",
@@ -324,11 +469,16 @@
     "type": "cathedral",
     "typeLabel": "大教堂",
     "lng": -0.13,
-    "lat": 51.50,
+    "lat": 51.5,
     "startYear": 1090,
     "endYear": 2025,
     "color": "#c2b495",
-    "region": "欧洲"
+    "region": "西欧",
+    "importance": 4,
+    "relatedDynastyIds": [
+      "british-empire"
+    ],
+    "summary": "威斯敏斯特教堂是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "angkor-wat",
@@ -340,18 +490,28 @@
     "startYear": 1113,
     "endYear": 2025,
     "color": "#a07a4a",
-    "region": "东南亚"
+    "region": "东南亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "khmer"
+    ],
+    "summary": "吴哥窟是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   },
   {
     "id": "borobudur",
     "name": "婆罗浮屠",
     "type": "stupa",
     "typeLabel": "佛塔",
-    "lng": 110.20,
+    "lng": 110.2,
     "lat": -7.61,
     "startYear": 825,
     "endYear": 2025,
     "color": "#b08a55",
-    "region": "东南亚"
+    "region": "东南亚",
+    "importance": 5,
+    "relatedDynastyIds": [
+      "srivijaya"
+    ],
+    "summary": "婆罗浮屠是历史沙盘中的代表性建筑节点，呈现相关文明的城市、宗教、权力与工程记忆。"
   }
 ]

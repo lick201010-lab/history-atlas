@@ -4,6 +4,7 @@ import ComparePanel from './components/ComparePanel.jsx';
 import EraNarrative from './components/EraNarrative.jsx';
 import FilterPanel from './components/FilterPanel.jsx';
 import InfoPanel from './components/InfoPanel.jsx';
+import LandmarkCard from './components/LandmarkCard.jsx';
 import LayerControls from './components/LayerControls.jsx';
 import MapScene from './components/MapScene.jsx';
 import Starfield from './components/Starfield.jsx';
@@ -26,6 +27,7 @@ export default function App() {
     buildings: true,
   });
   const [selectedDynastyId, setSelectedDynastyId] = useState(null);
+  const [selectedLandmarkId, setSelectedLandmarkId] = useState(null);
   const [locked, setLocked] = useState(false);
   const [compareIds, setCompareIds] = useState([]);
   const [compareNotice, setCompareNotice] = useState('');
@@ -71,6 +73,7 @@ export default function App() {
 
   // Card data derived from selection.
   const selectedDynasty = selectedDynastyId ? dynastyById.get(selectedDynastyId) : null;
+  const selectedLandmark = selectedLandmarkId ? landmarksById.get(selectedLandmarkId) : null;
   const boundaryCard = useMemo(
     () => buildCardData(selectedDynasty, selectedDynasty ? boundariesById.get(selectedDynasty.id) : null, landmarksById),
     [selectedDynasty, boundariesById, landmarksById],
@@ -89,6 +92,7 @@ export default function App() {
     setSelectedDynastyId(null);
     setLocked(false);
   }, []);
+  const closeLandmarkCard = useCallback(() => setSelectedLandmarkId(null), []);
   const toggleLock = useCallback(() => setLocked((v) => !v), []);
 
   // When the year changes, auto-close non-locked card.
@@ -96,13 +100,19 @@ export default function App() {
     if (!locked && selectedDynastyId) {
       setSelectedDynastyId(null);
     }
+    if (selectedLandmarkId) {
+      const selected = landmarksById.get(selectedLandmarkId);
+      if (selected && (year < selected.startYear || year > selected.endYear)) {
+        setSelectedLandmarkId(null);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [year]);
 
   // Body-level state classes so CSS can let panels make room for one another.
   useEffect(() => {
     const cls = document.body.classList;
-    cls.toggle('has-card', !!boundaryCard);
+    cls.toggle('has-card', !!boundaryCard || !!selectedLandmark);
     cls.toggle('has-compare', compareIds.length > 0);
     cls.toggle('filter-active', filterActive);
     return () => {
@@ -110,7 +120,7 @@ export default function App() {
       cls.remove('has-compare');
       cls.remove('filter-active');
     };
-  }, [boundaryCard, compareIds.length, filterActive]);
+  }, [boundaryCard, selectedLandmark, compareIds.length, filterActive]);
 
   // openDynasty by id or full object. Optionally fly to it.
   const openDynasty = useCallback((dynastyOrId, opts = {}) => {
@@ -119,10 +129,24 @@ export default function App() {
       : dynastyOrId;
     if (!dynasty) return;
     setSelectedDynastyId(dynasty.id);
+    setSelectedLandmarkId(null);
     if (opts.fly !== false) {
       mapSceneRef.current?.flyToDynasty(dynasty);
     }
   }, [dynastyById]);
+
+  const openLandmark = useCallback((landmarkOrId, opts = {}) => {
+    const landmark = typeof landmarkOrId === 'string'
+      ? landmarksById.get(landmarkOrId)
+      : landmarkOrId;
+    if (!landmark) return;
+    setSelectedLandmarkId(landmark.id);
+    setSelectedDynastyId(null);
+    setLocked(false);
+    if (opts.fly !== false) {
+      mapSceneRef.current?.flyToBuilding(landmark);
+    }
+  }, [landmarksById]);
 
   const addCompare = useCallback((id) => {
     setCompareIds((prev) => {
@@ -152,9 +176,9 @@ export default function App() {
       openDynasty(item, { fly: true });
     } else {
       // building
-      mapSceneRef.current?.flyToBuilding(item);
+      openLandmark(item, { fly: true });
     }
-  }, [openDynasty]);
+  }, [openDynasty, openLandmark]);
 
   const handleEventClick = useCallback((event) => {
     if (!event?.dynastyId) return;
@@ -188,6 +212,7 @@ export default function App() {
         compareIds={compareIds}
         onVisibleBuildingsChange={setVisibleBuildings}
         onSelectDynasty={(id) => openDynasty(id, { fly: false })}
+        onSelectBuilding={(building) => openLandmark(building, { fly: false })}
         onCloseCard={closeCard}
         onToggleLock={toggleLock}
         onAddCompare={addCompare}
@@ -233,7 +258,7 @@ export default function App() {
         locked={locked}
         compareIds={compareIds}
         filterActive={filterActive}
-        onSelectBuilding={(building) => mapSceneRef.current?.flyToBuilding(building)}
+        onSelectBuilding={(building) => openLandmark(building, { fly: true })}
         onSelectDynasty={(dynasty) => openDynasty(dynasty, { fly: true })}
         onAddCompare={addCompare}
         onRemoveCompare={removeCompare}
@@ -243,6 +268,13 @@ export default function App() {
         year={year}
         dynasties={activeDynasties}
         onSelectEvent={handleEventClick}
+      />
+
+      <LandmarkCard
+        landmark={selectedLandmark}
+        dynastyById={dynastyById}
+        onClose={closeLandmarkCard}
+        onFlyTo={(landmark) => mapSceneRef.current?.flyToBuilding(landmark)}
       />
 
       <ComparePanel
