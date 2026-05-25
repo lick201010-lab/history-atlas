@@ -74,6 +74,8 @@ const MapScene = forwardRef(function MapScene({
   const onSelectDynastyRef = useRef(onSelectDynasty);
   const [viewMode, setViewMode] = useState('world');
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, building: null });
+  const [mapReady, setMapReady] = useState(false);
+  const [mapWarning, setMapWarning] = useState('');
 
   useEffect(() => { onSelectDynastyRef.current = onSelectDynasty; }, [onSelectDynasty]);
 
@@ -311,6 +313,21 @@ const MapScene = forwardRef(function MapScene({
       }
     }
 
+    let readyFallback = window.setTimeout(() => markMapReady(), 4500);
+
+    function markMapReady() {
+      window.clearTimeout(readyFallback);
+      readyFallback = null;
+      setMapReady(true);
+    }
+
+    function handleMapError(event) {
+      const sourceId = event?.sourceId || event?.source?.id || '';
+      if (sourceId === 'osm-tiles' || sourceId.includes('terrain') || event?.error) {
+        setMapWarning('地图瓦片加载较慢，沙盘仍可操作；如地形短暂缺失，稍后会自动补齐。');
+      }
+    }
+
     function pickBuilding(point) {
       let best = null;
       let bestDist = Infinity;
@@ -395,11 +412,14 @@ const MapScene = forwardRef(function MapScene({
 
     if (map.loaded()) {
       initBuildingLayer();
+      markMapReady();
     } else {
       map.on('load', initBuildingLayer);
       map.on('styledata', initBuildingLayer);
       map.once('idle', initBuildingLayer);
     }
+    map.once('idle', markMapReady);
+    map.on('error', handleMapError);
     map.on('mousemove', handleMouseMove);
     map.on('click', handleClick);
     map.on('mousemove', 'dynasty-territory-fill', handleTerritoryMove);
@@ -410,8 +430,10 @@ const MapScene = forwardRef(function MapScene({
 
     return () => {
       container.removeEventListener('contextmenu', preventContextMenu);
+      if (readyFallback) window.clearTimeout(readyFallback);
       map.off('load', initBuildingLayer);
       map.off('styledata', initBuildingLayer);
+      map.off('error', handleMapError);
       map.off('mousemove', handleMouseMove);
       map.off('click', handleClick);
       map.off('mousemove', 'dynasty-territory-fill', handleTerritoryMove);
@@ -430,6 +452,21 @@ const MapScene = forwardRef(function MapScene({
   return (
     <>
       <div id="map" ref={mapContainerRef} data-view-mode={viewMode} />
+      {!mapReady ? (
+        <div className="map-loading" role="status" aria-live="polite">
+          <div className="loading-mark" />
+          <div>
+            <strong>正在加载历史沙盘</strong>
+            <span>初始化 3D 地形、文明边界与建筑模型</span>
+          </div>
+        </div>
+      ) : null}
+      {mapWarning ? (
+        <div className="map-warning" role="status">
+          {mapWarning}
+          <button type="button" onClick={() => setMapWarning('')} aria-label="关闭地图提示">关闭</button>
+        </div>
+      ) : null}
       <div className="top-right">
         <button
           className="btn"

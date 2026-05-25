@@ -140,7 +140,7 @@ npm run preview        # 本地预览构建结果
 npm run check          # = validate:data && build，一条命令打底
 ```
 
-构建产物：~83 KB CSS（gzip 13 KB）+ ~1.5 MB JS（gzip 420 KB，主要是 MapLibre + Three）。
+构建产物当前按 React / MapLibre / Three / 应用入口拆分缓存。入口 JS 约 135 KB（gzip ~43 KB），MapLibre 独立 chunk 约 803 KB（gzip ~218 KB），Three 独立 chunk 约 457 KB（gzip ~115 KB）。
 
 ---
 
@@ -159,7 +159,7 @@ npm run check          # = validate:data && build，一条命令打底
 ## 已知限制
 
 详见 [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md)，速览：
-- 主 bundle 较大（MapLibre + Three 是主体）
+- MapLibre 独立 chunk 仍较大，但已和入口 JS、React、Three 拆开，浏览器可长期缓存
 - 地形 / 底图依赖外部瓦片
 - 边界仅是粗略示意，不是学术级历史地图
 - 3D 建筑是符号化低模，不是真实建模
@@ -173,7 +173,7 @@ npm run check          # = validate:data && build，一条命令打底
 - 数据来源与引用体系（每条 event / boundary 加 citation）
 - 更精细的历史边界（手工绘制多边形或引入 GeoJSON 库）
 - 数据编辑器（让历史研究者直接编辑 JSON）
-- 性能拆包（MapLibre / Three 动态 import）
+- 进一步性能优化：必要时把 MapLibre / Three 改为懒加载 dynamic import
 - 部署到静态托管（Cloudflare Pages / Vercel）
 - 移动端布局重排
 
@@ -212,7 +212,7 @@ npm run deploy
 4. `scp` 上传 `dist/*` 到 `root@47.237.181.181:/opt/history-atlas/dist/`
 5. 远端 `chmod -R a+rX` 修复文件权限
 6. 校验线上首页（HEAD `https://atlas.ckl.hk/` 是否 200）
-7. 校验 SPA fallback（随机路径是否回退到 index.html）+ 校验主 JS 资源 200
+7. 校验 SPA fallback（随机路径是否回退到 index.html）+ 校验所有线上 JS/CSS 分块 200
 
 任一步失败立即中止，输出红色日志说明问题。脚本**不动 Caddyfile、不 reload Caddy、不动 `/opt/lottery-analysis`**。
 
@@ -220,4 +220,3 @@ npm run deploy
 完整部署原理与故障排查见 [docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)。
 
 > 改了 Caddyfile（增加路由、改子域）才需要登录服务器跑 `caddy validate` + `systemctl reload caddy`，这一步**不在 deploy 脚本里**，避免误 reload。
-

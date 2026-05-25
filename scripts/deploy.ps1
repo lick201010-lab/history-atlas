@@ -7,7 +7,7 @@
 #  - 远端：chmod -R a+rX /opt/history-atlas/dist
 #  - 校验：HEAD https://atlas.ckl.hk/
 #  - 校验：HEAD https://atlas.ckl.hk/<random>     (SPA fallback)
-#  - 校验：HEAD https://atlas.ckl.hk/assets/<hashed-js>
+#  - 校验：GET https://atlas.ckl.hk/assets/<hashed-js/css>（所有 JS/CSS 分块）
 # ----------------------------------------------------------------------------
 #  本脚本永远不动 /opt/lottery-analysis；不 reload Caddy；不动 Caddyfile。
 #  调用方式：npm run deploy
@@ -91,6 +91,9 @@ if (-not (Test-Path $assetsDir)) { Write-Fail "构建产物缺失：$assetsDir �
 $mainJs = Get-ChildItem $assetsDir -Filter 'index-*.js' | Select-Object -First 1
 if (-not $mainJs) { Write-Fail '在 dist/assets/ 下找不到 index-*.js' }
 Write-Ok "主 JS：assets/$($mainJs.Name)（$([math]::Round($mainJs.Length/1KB, 1)) KB）"
+$assetFiles = Get-ChildItem $assetsDir -File | Where-Object { $_.Extension -in '.js', '.css' } | Sort-Object Name
+if (-not $assetFiles.Count) { Write-Fail '在 dist/assets/ 下找不到需要校验的 JS/CSS 资源' }
+Write-Info "待校验资源：$($assetFiles.Count) 个 JS/CSS 分块"
 
 # ---- 3. 上传 dist 到服务器 --------------------------------------------------
 Write-Section '[3/7] scp 上传 dist 到服务器'
@@ -140,18 +143,25 @@ Write-Ok 'SPA fallback 200 OK，未匹配路径回退到 index.html'
 
 # ---- 7. 验收：assets ------------------------------------------------------
 Write-Section '[7/7] 校验线上 assets'
-$assetUrl = "$LiveUrl/assets/$($mainJs.Name)"
-Write-Info "curl -I $assetUrl"
-$asProbe = & curl.exe -sS -o NUL -w '%{http_code}|%{content_type}|%{size_download}' --max-time 30 -H 'Accept-Encoding: gzip' "$assetUrl" 2>&1
-if ($LASTEXITCODE -ne 0) { Write-Fail "无法访问 $assetUrl" }
-$parts = $asProbe -split '\|'
-$asStatus = $parts[0]
-$asCtype  = if ($parts.Count -gt 1) { $parts[1] } else { '' }
-$asSize   = if ($parts.Count -gt 2) { [int]$parts[2] } else { 0 }
-Write-Info "HTTP $asStatus  Content-Type: $asCtype  Size: $asSize bytes"
-if ($asStatus -ne '200') { Write-Fail "主 JS 资源访问失败：HTTP $asStatus" }
-if ($asCtype -notmatch 'javascript') { Write-Warn "主 JS Content-Type 异常（$asCtype）" }
-Write-Ok '主 JS 200 OK'
+foreach ($asset in $assetFiles) {
+    $assetUrl = "$LiveUrl/assets/$($asset.Name)"
+    Write-Info "curl $assetUrl"
+    $asProbe = & curl.exe -sS -o NUL -w '%{http_code}|%{content_type}|%{size_download}' --max-time 30 -H 'Accept-Encoding: gzip' "$assetUrl" 2>&1
+    if ($LASTEXITCODE -ne 0) { Write-Fail "无法访问 $assetUrl" }
+    $parts = $asProbe -split '\|'
+    $asStatus = $parts[0]
+    $asCtype  = if ($parts.Count -gt 1) { $parts[1] } else { '' }
+    $asSize   = if ($parts.Count -gt 2) { [int]$parts[2] } else { 0 }
+    Write-Info "$($asset.Name) → HTTP $asStatus  Content-Type: $asCtype  Size: $asSize bytes"
+    if ($asStatus -ne '200') { Write-Fail "资源访问失败：$($asset.Name) HTTP $asStatus" }
+    if ($asset.Extension -eq '.js' -and $asCtype -notmatch 'javascript') {
+        Write-Warn "$($asset.Name) Content-Type 异常（$asCtype）"
+    }
+    if ($asset.Extension -eq '.css' -and $asCtype -notmatch 'text/css') {
+        Write-Warn "$($asset.Name) Content-Type 异常（$asCtype）"
+    }
+}
+Write-Ok "线上 JS/CSS 资源全部 200 OK（$($assetFiles.Count) 个）"
 
 # ---- 完成横幅 --------------------------------------------------------------
 $elapsed = (Get-Date) - $startedAt

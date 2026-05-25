@@ -71,7 +71,7 @@ atlas.ckl.hk {
 
 要点：
 - `try_files {path} /index.html` 是 **SPA fallback**，任何未匹配到的路径回退到 index.html（history-atlas 当前只有 `/` 一个路由，但未来加路由时已就绪）
-- `encode gzip zstd` 让 Caddy 在响应时压缩。主 JS 1.5 MB → gzip 425 KB
+- `encode gzip zstd` 让 Caddy 在响应时压缩。当前入口 JS gzip 后约 43 KB，MapLibre / Three 独立分块可被浏览器长期缓存。
 - 不需要写 `tls` —— Caddy 默认开 ACME，DNS 解析就绪后**首次访问会自动向 Let's Encrypt 签证书**
 
 ### 4. 校验并重载 Caddy
@@ -105,12 +105,12 @@ npm run deploy
 |---|---|
 | 0/7 | 检查本地工具 npm / scp / ssh / curl 是否就绪 |
 | 1/7 | `npm run check`（数据校验 + Vite 构建） |
-| 2/7 | 确认 `dist/index.html` 与 `dist/assets/index-*.js` 存在 |
+| 2/7 | 确认 `dist/index.html` 与 `dist/assets/index-*.js` 存在，并收集所有 JS/CSS 分块 |
 | 3/7 | `scp -r dist/* root@47.237.181.181:/opt/history-atlas/dist/` |
 | 4/7 | `ssh root@47.237.181.181 'chmod -R a+rX /opt/history-atlas/dist'` |
 | 5/7 | `curl -I https://atlas.ckl.hk/` → 期望 200 + text/html |
 | 6/7 | `curl -I https://atlas.ckl.hk/<random>` → 期望 200（验证 SPA fallback） |
-| 7/7 | `curl -I https://atlas.ckl.hk/assets/<hashed-js>` → 期望 200 + application/javascript |
+| 7/7 | 逐个校验 `dist/assets` 下所有线上 JS/CSS 分块 → 期望 200 + 正确 Content-Type |
 
 ### 脚本明确不做的事
 
@@ -165,8 +165,8 @@ curl -s https://atlas.ckl.hk | head -10       # → 应见 <!DOCTYPE html>
 # 4. SPA fallback 正常
 curl -I https://atlas.ckl.hk/some/random/path # → 200 (而不是 404)
 
-# 5. gzip 生效
-curl -sI -H 'Accept-Encoding: gzip' https://atlas.ckl.hk/assets/*.js | grep -i content-encoding
+# 5. gzip 生效（任选一个线上 JS 文件）
+curl -sI -H 'Accept-Encoding: gzip' https://atlas.ckl.hk/assets/index-*.js | grep -i content-encoding
 
 # 6. Caddy 日志无错
 journalctl -u caddy -n 50 --no-pager | grep -i error
@@ -209,7 +209,7 @@ journalctl -u caddy -n 50 --no-pager | grep -i error
 
 - CARTO dark basemap（`a.basemaps.cartocdn.com`）
 - AWS elevation terrarium DEM tiles（`s3.amazonaws.com/elevation-tiles-prod`）
-- MapLibre glyphs（`demotiles.maplibre.org`）
+- MapLibre glyphs：当前没有文字图层，生产 style 不再声明 glyphs，避免无效字体请求
 
 国内访问可能偶有延迟。如果将来需要稳定的国内访问，要做的是：
 1. 自建瓦片服务（mbtiles + tileserver-gl）放在另一台机

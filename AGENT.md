@@ -119,3 +119,36 @@ Verification after fix:
 PowerShell note:
 
 - For native Windows commands, prefer explicit Windows null output `NUL` over PowerShell `$null` when passing arguments to executables like `curl.exe`.
+
+## Incident Record: Online First-View Stabilization
+
+Date: 2026-05-25
+
+Goal: improve the public `https://atlas.ckl.hk` first-view experience after the site was already deployed.
+
+Verification before changes:
+
+- Production homepage returned `200 OK`.
+- Production HTML, CSS, and JS were reachable.
+- Initial build emitted a single large app bundle around 1.55 MB minified.
+- External map tile dependencies were checked directly.
+- A glyph URL test returned `404`, and the app does not currently render MapLibre text layers.
+
+Fixes applied:
+
+- Added a centered loading HUD while MapLibre initializes terrain, boundaries, and building layers.
+- Added a non-blocking map warning when external map tiles or terrain resources are slow/failing.
+- Added a 4.5 second readiness fallback so the loading HUD cannot cover the UI forever on bad networks.
+- Added `preconnect` hints for CARTO basemap and AWS terrain domains.
+- Split the Vite build into `react`, `maplibre`, `three`, and app entry chunks with `manualChunks`.
+- Removed the unused MapLibre `glyphs` URL to avoid a known-bad external font dependency.
+- Upgraded `scripts/deploy.ps1` to verify every production JS/CSS chunk, not just the entry JS.
+
+Verification after changes:
+
+- `npm run check` passed.
+- `npm run deploy` passed.
+- Production homepage returned `200`.
+- SPA fallback returned `200`.
+- All five production JS/CSS chunks returned `200`.
+- The app entry chunk dropped to roughly 135 KB minified / 43 KB gzip. MapLibre remains a large independent cached chunk, so the Vite size warning is still expected.
