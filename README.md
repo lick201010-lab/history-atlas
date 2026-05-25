@@ -20,6 +20,7 @@ npm run validate:data  # 校验 dynasties / boundaries / landmarks
 npm run build          # 生产构建到 dist/
 npm run preview        # 预览构建产物
 npm run check          # = validate:data + build，发版前一条命令打底
+npm run deploy         # 一键部署到 atlas.ckl.hk（含 check、上传、线上校验）
 ```
 
 部署到阿里云：见 [docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)
@@ -197,16 +198,26 @@ npm run check          # = validate:data && build，一条命令打底
 - 日常 Git 工作流：[docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
 - 环境变量模板：[.env.example](.env.example)（复制成 `.env.local` 后修改；`.env*` 已被 `.gitignore` 排除）
 
-每次发布只跑两条命令：
+每次发布只跑**一条命令**：
 
 ```bash
-# 1. 本地构建（含数据校验）
-npm run check
-
-# 2. 上传到生产
-scp -r dist/* root@47.237.181.181:/opt/history-atlas/dist/
+npm run deploy
 ```
 
-服务器侧 Caddy 直接读 `/opt/history-atlas/dist/`，新文件秒级生效，**无需 git pull、无需 reload**。
-只有改 Caddyfile（增加路由、改子域）才需要登录服务器 `caddy validate` + `systemctl reload caddy`。
+`npm run deploy` 自动完成 7 个步骤：
+
+1. 检查本地工具（npm / scp / ssh / curl）
+2. 运行 `npm run check`（数据校验 + Vite 构建）
+3. 确认 `dist/index.html` 存在
+4. `scp` 上传 `dist/*` 到 `root@47.237.181.181:/opt/history-atlas/dist/`
+5. 远端 `chmod -R a+rX` 修复文件权限
+6. 校验线上首页（HEAD `https://atlas.ckl.hk/` 是否 200）
+7. 校验 SPA fallback（随机路径是否回退到 index.html）+ 校验主 JS 资源 200
+
+任一步失败立即中止，输出红色日志说明问题。脚本**不动 Caddyfile、不 reload Caddy、不动 `/opt/lottery-analysis`**。
+
+如果想看脚本细节或自定义，见 `scripts/deploy.ps1`。
+完整部署原理与故障排查见 [docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)。
+
+> 改了 Caddyfile（增加路由、改子域）才需要登录服务器跑 `caddy validate` + `systemctl reload caddy`，这一步**不在 deploy 脚本里**，避免误 reload。
 

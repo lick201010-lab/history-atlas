@@ -82,3 +82,40 @@ Verification after changes:
 Follow-up improvement:
 
 - `scp -r dist/*` leaves old hashed asset files on the server. This is acceptable for early MVP use because the static bundle is small. Later, replace it with `rsync --delete` or a small deployment script.
+
+## Incident Record: Deploy Script Validation
+
+Date: 2026-05-25
+
+Goal: add and validate `npm run deploy` for local Windows deployment to `atlas.ckl.hk`.
+
+Verification before accepting the script:
+
+- Confirmed the script only targets `/opt/history-atlas/dist`.
+- Confirmed it does not touch `/opt/lottery-analysis`.
+- Confirmed it does not edit or reload Caddy.
+- Ran the script for real instead of only reading it.
+
+Issue found:
+
+- The first run uploaded files successfully but failed during the curl homepage check.
+- Root cause: PowerShell passed `$null` poorly to native `curl.exe -o`, which made curl argument parsing unstable.
+
+Fix applied:
+
+- Replaced `-o $null` with `-o NUL`.
+- Quoted URL variables passed to `curl.exe`.
+
+Verification after fix:
+
+- `npm run deploy` completed successfully.
+- Local `npm run check` passed during the deploy.
+- `scp` upload succeeded.
+- Remote `chmod -R a+rX /opt/history-atlas/dist` succeeded.
+- `https://atlas.ckl.hk/` returned `200`.
+- Random SPA fallback path returned `200`.
+- Main JS asset returned `200`.
+
+PowerShell note:
+
+- For native Windows commands, prefer explicit Windows null output `NUL` over PowerShell `$null` when passing arguments to executables like `curl.exe`.

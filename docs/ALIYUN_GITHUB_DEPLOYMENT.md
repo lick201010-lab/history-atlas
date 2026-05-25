@@ -88,40 +88,63 @@ journalctl -u caddy -n 30 --no-pager  # 看是否签证书成功
 
 ---
 
-## 日常更新流程（本地构建 + scp 上传 dist）
+## 日常更新流程（推荐：`npm run deploy` 一键部署）
 
-服务器内存只够跑 lottery 后端 + Caddy，**不要在服务器上 `npm run build`**。所有构建在本地 Windows 完成。
+服务器内存只够跑 lottery 后端 + Caddy，**不要在服务器上 `npm run build`**。所有构建在本地 Windows 完成，由 `scripts/deploy.ps1` 自动完成构建 → 上传 → 权限 → 线上校验。
 
-### 本地（Windows，项目根目录）
+### 一条命令完成全部步骤
+
+```powershell
+cd C:/Users/Yvette/Documents/历史网站
+npm run deploy
+```
+
+脚本（`scripts/deploy.ps1`）按顺序做这些事，**任一步失败立即中止**：
+
+| 步骤 | 动作 |
+|---|---|
+| 0/7 | 检查本地工具 npm / scp / ssh / curl 是否就绪 |
+| 1/7 | `npm run check`（数据校验 + Vite 构建） |
+| 2/7 | 确认 `dist/index.html` 与 `dist/assets/index-*.js` 存在 |
+| 3/7 | `scp -r dist/* root@47.237.181.181:/opt/history-atlas/dist/` |
+| 4/7 | `ssh root@47.237.181.181 'chmod -R a+rX /opt/history-atlas/dist'` |
+| 5/7 | `curl -I https://atlas.ckl.hk/` → 期望 200 + text/html |
+| 6/7 | `curl -I https://atlas.ckl.hk/<random>` → 期望 200（验证 SPA fallback） |
+| 7/7 | `curl -I https://atlas.ckl.hk/assets/<hashed-js>` → 期望 200 + application/javascript |
+
+### 脚本明确不做的事
+
+- **不动 `/opt/lottery-analysis`**（lottery 项目不受影响）
+- **不动 `/etc/caddy/Caddyfile`**（除非你手动改并 reload）
+- **不 reload Caddy**（Caddy 直接读静态目录，新文件秒级生效，不需要 reload）
+- **不删服务器上的多余文件**（scp 是覆盖式，不删旧文件；如需"完全同步"用 rsync `--delete`，不在脚本里）
+- **不在服务器上跑 npm**（避免 OOM）
+
+### 手动应急流程（脚本坏了时退路）
+
+如果 `npm run deploy` 因网络 / SSH key / PowerShell 策略问题跑不起来，手工 3 步：
 
 ```bash
 cd C:/Users/Yvette/Documents/历史网站
-
-# 1. 拉取最新代码、装依赖（如有变化）
-git pull
-npm install
-
-# 2. 数据校验 + 构建一条龙
 npm run check
-
-# 3. 上传 dist 到服务器
 scp -r dist/* root@47.237.181.181:/opt/history-atlas/dist/
+ssh root@47.237.181.181 'chmod -R a+rX /opt/history-atlas/dist'
 ```
 
-> Windows 没有 rsync，用 scp 即可。
-> 如果你装了 Git Bash 自带的 rsync，可改用：
-> ```bash
-> rsync -avz --delete dist/ root@47.237.181.181:/opt/history-atlas/dist/
-> ```
-> `--delete` 让远端目录与本地完全一致（删除老文件）。
+### Caddyfile 改动（不在 deploy 脚本里）
 
-### 服务器侧
+只有以下场景需要登录服务器，**这一步刻意不自动化，避免误 reload**：
+- 增加新子域 / 新路由
+- 改 SPA fallback 规则
+- 改 gzip / cache 头
 
-**通常什么都不用做**。Caddy 直接读 `/opt/history-atlas/dist`，新文件上传后立刻生效。
-
-只在以下两种情况需要登录服务器：
-1. 改了 Caddyfile（追加路由、改子域等）→ `caddy validate` + `systemctl reload caddy`
-2. 想确认部署成功 → `curl -I https://atlas.ckl.hk` 看返回 200
+操作：
+```bash
+ssh root@47.237.181.181
+sudo nano /etc/caddy/Caddyfile
+caddy validate --config /etc/caddy/Caddyfile
+systemctl reload caddy
+```
 
 ---
 
