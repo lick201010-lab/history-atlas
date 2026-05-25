@@ -38,3 +38,47 @@ If Google, Aliyun OAuth, or other login pages fail while the user says VPN is en
 
 WinHTTP proxy sync may require administrator permission. Browser access usually only needs the current-user proxy setting.
 
+## Incident Record: atlas.ckl.hk First Deployment
+
+Date: 2026-05-25
+
+Goal: deploy the local Vite history-atlas build to the existing Aliyun server used by the lottery project.
+
+Verification before changes:
+
+- DNS for `atlas.ckl.hk` resolved to `47.237.181.181` from local DNS, Google DNS, and Cloudflare DNS.
+- `npm run check` passed locally: data validation passed and Vite production build completed.
+- SSH to `root@47.237.181.181` succeeded.
+- `/etc/caddy/Caddyfile` had no existing `atlas.ckl.hk` block.
+
+Fix/deployment performed:
+
+- Created `/opt/history-atlas/dist` on the server.
+- Backed up `/etc/caddy/Caddyfile`.
+- Added a dedicated Caddy site block:
+
+  ```caddy
+  atlas.ckl.hk {
+      root * /opt/history-atlas/dist
+      file_server
+      try_files {path} /index.html
+      encode gzip zstd
+  }
+  ```
+
+- Uploaded local `dist/` with `scp`.
+- Fixed static file permissions with `chmod -R a+rX /opt/history-atlas/dist`.
+- Ran `caddy validate --config /etc/caddy/Caddyfile`.
+- Reloaded Caddy with `systemctl reload caddy`.
+
+Verification after changes:
+
+- `https://atlas.ckl.hk` returned `200 OK`.
+- Production HTML returned `<!doctype html>`.
+- SPA fallback path returned `200 OK`.
+- JS and CSS assets returned `200 OK`.
+- Caddy logs showed Let's Encrypt authorization finalized and certificate obtained successfully for `atlas.ckl.hk`.
+
+Follow-up improvement:
+
+- `scp -r dist/*` leaves old hashed asset files on the server. This is acceptable for early MVP use because the static bundle is small. Later, replace it with `rsync --delete` or a small deployment script.
