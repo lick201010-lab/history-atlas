@@ -2,6 +2,7 @@ node_modules/
 dist/
 *.log
 react-*-validation.png
+online-*.png
 
 # Local generated media / experiment outputs
 manim_demo/

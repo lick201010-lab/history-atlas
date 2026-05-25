@@ -1949,6 +1949,7 @@ input[type="range"]::-moz-range-thumb {
   .title {
     top: 14px;
     left: 18px;
+    right: 18px;
     font-size: 18px;
     letter-spacing: 6px;
   }
@@ -1965,30 +1966,36 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .top-right {
-    top: 16px;
-    right: 12px;
+    top: 74px;
+    left: 22px;
+    right: 22px;
+    width: auto;
     gap: 4px;
   }
 
   .btn {
-    padding: 7px 10px;
+    flex: 1;
+    min-width: 0;
+    padding: 7px 4px;
     font-size: 10.5px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    white-space: nowrap;
   }
 
   .layer-controls {
-    top: 96px;
+    top: 126px;
     left: 22px;
-    width: min(308px, calc(100vw - 44px));
+    right: 22px;
+    width: auto;
   }
 
   .info-panel {
-    top: 184px;
-    right: 16px;
-    left: auto;
-    width: min(280px, calc(100vw - 120px));
-    min-width: 200px;
-    max-height: calc(100vh - 330px);
+    top: 216px;
+    left: 22px;
+    right: 22px;
+    width: auto;
+    min-width: 0;
+    max-height: calc(100vh - 430px);
     padding: 12px 14px;
   }
 
@@ -2023,21 +2030,37 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .timeline {
-    padding: 28px 40px 24px;
+    padding: 24px 18px 18px;
+  }
+
+  .timeline-inner {
+    padding: 12px 18px 14px;
+  }
+
+  .timeline-label {
+    letter-spacing: 3px;
+  }
+
+  .timeline-year {
+    font-size: 18px;
+    letter-spacing: 2px;
   }
 
   .territory-card {
     left: 22px;
-    bottom: 142px;
+    right: 22px;
+    top: auto;
+    bottom: 148px;
     width: calc(100vw - 44px);
+    max-height: calc(100vh - 330px);
   }
 
   .era-narrative {
-    top: auto;
-    bottom: 156px;
-    left: 22px;
-    width: calc(100vw - 44px);
-    max-height: 38vh;
+    display: none;
+  }
+
+  body.has-card .info-panel {
+    display: none;
   }
 }
 
@@ -2203,7 +2226,7 @@ body.has-compare .territory-card {
 
 /* --- 信息面板 整体降高度并允许内滚动 --- */
 .info-panel {
-  max-height: calc(100vh - 170px);
+  max-height: calc(100vh - 260px);
 }
 .dynasty-list { max-height: min(34vh, 280px); }
 .building-list { max-height: min(18vh, 150px); }
@@ -2240,7 +2263,7 @@ body.filter-active .info-panel .count span {
 /* --- 1280x720 紧凑布局 --- */
 @media (max-height: 760px) {
   .era-narrative { max-height: calc(100vh - 420px); }
-  .info-panel { max-height: calc(100vh - 160px); padding: 14px 14px 12px; }
+  .info-panel { max-height: calc(100vh - 250px); padding: 14px 14px 12px; }
   .info-panel .year-big { font-size: 24px; margin-bottom: 4px; }
   .dynasty-list { max-height: 200px; }
   .building-list { max-height: 110px; }
@@ -2253,4 +2276,52 @@ body.filter-active .info-panel .count span {
 @media (max-width: 1280px) {
   .compare-panel { width: min(540px, calc(100vw - 360px)); }
   body.has-compare .info-panel { padding-right: 12px; }
+}
+
+/* Final mobile guard: keep dense HUD panels inside the visible phone viewport. */
+@media (max-width: 760px) {
+  .top-right {
+    top: 74px;
+    left: 22px;
+    right: 22px;
+    width: auto;
+  }
+
+  .layer-controls {
+    top: 126px;
+    left: 22px;
+    right: 22px;
+    width: auto;
+  }
+
+  .info-panel {
+    top: 216px;
+    left: 22px;
+    right: 22px;
+    width: auto;
+    min-width: 0;
+    max-height: calc(100vh - 455px);
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+
+  .info-panel .dynasty-list {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .info-panel .building-list {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .era-narrative {
+    display: none;
+  }
+
+  body.has-card .info-panel {
+    display: none;
+  }
 }

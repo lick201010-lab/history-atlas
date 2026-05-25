@@ -152,3 +152,40 @@ Verification after changes:
 - SPA fallback returned `200`.
 - All five production JS/CSS chunks returned `200`.
 - The app entry chunk dropped to roughly 135 KB minified / 43 KB gzip. MapLibre remains a large independent cached chunk, so the Vite size warning is still expected.
+
+## Incident Record: Online Browser QA And Responsive Fixes
+
+Date: 2026-05-25
+
+Goal: verify the public site in real browser conditions and fix P0/P1 issues before continuing product work.
+
+Verification method:
+
+- Used command-level checks for production HTML, SPA fallback, JS/CSS chunks, CARTO basemap tiles, and AWS DEM tiles.
+- Used Edge headless through the Chrome DevTools Protocol for desktop `1365x768` and mobile `390x844` browser checks.
+- Captured screenshots locally for inspection; these files are ignored by Git via `online-*.png`.
+
+Findings:
+
+- Production homepage, SPA fallback, JS/CSS chunks, basemap tiles, and DEM tile returned `200`.
+- Desktop and mobile had no console errors, no page exceptions, no failed network requests, and no bad `>=400` production responses.
+- The timeline range stayed correct: `-2000` to `2025`.
+- MapLibre canvas rendered on both desktop and mobile.
+- Initial browser QA found layout overlap: the desktop info panel touched the timeline, and the mobile HUD panels were too dense.
+- A later mobile pass found the info panel height fix caused dynasty/building list visual overlap inside the panel.
+
+Fixes applied:
+
+- Reduced desktop info panel max height so it clears the timeline.
+- Repositioned mobile view controls and layer controls into full-width rows.
+- Reworked mobile info panel to fit between controls and timeline.
+- Hid the era narrative panel on mobile to keep the core map/list/timeline workflow usable.
+- Made the mobile info panel itself scrollable, with inner dynasty/building lists allowed to flow naturally.
+
+Verification after fixes:
+
+- `npm run check` passed.
+- `npm run deploy` passed.
+- Desktop browser QA: no overlap among controls, info panel, title, top-right buttons, and timeline.
+- Mobile browser QA: no overlap among controls, info panel, top-right buttons, title, and timeline; info panel `overflow-y` is `auto`.
+- No console errors, no failed requests, and no bad production responses after final mobile run.
