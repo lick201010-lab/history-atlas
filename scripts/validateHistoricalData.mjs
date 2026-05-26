@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
+const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
 function fail(errors, message) {
   errors.push(message);
@@ -103,8 +104,46 @@ function validateBoundary(feature, dynastyIds, errors) {
   if (SAMPLE_IDS.has(id)) {
     if (!isNonEmptyString(feature.properties?.sourceNote)) fail(errors, `${prefix} sample must include sourceNote`);
     if (feature.properties?.accuracy !== 'rough-refined') fail(errors, `${prefix} sample accuracy must be rough-refined`);
+    if (!SAMPLE_PHASES.has(feature.properties?.phase)) fail(errors, `${prefix} sample phase must be rise, peak, or decline`);
+    if (!isNonEmptyString(feature.properties?.phaseLabel)) fail(errors, `${prefix} sample must include phaseLabel`);
     if (isRectangleLike(ring)) fail(errors, `${prefix} sample boundary should not be rectangle-like`);
-    if ((ring?.length || 0) < 7) fail(errors, `${prefix} sample boundary needs a more natural ring`);
+    if ((ring?.length || 0) < 21) fail(errors, `${prefix} sample boundary needs at least 20 vertices plus closure`);
+  }
+}
+
+function validateSampleBoundaryPhases(features, dynastyById, errors) {
+  for (const id of SAMPLE_IDS) {
+    const dynasty = dynastyById.get(id);
+    const sampleFeatures = features
+      .filter((feature) => (feature.properties?.id || feature.id) === id)
+      .sort((a, b) => a.properties.startYear - b.properties.startYear);
+
+    if (sampleFeatures.length !== 3) {
+      fail(errors, `boundary:${id} sample must have exactly 3 phased features`);
+      continue;
+    }
+
+    const phases = new Set(sampleFeatures.map((feature) => feature.properties?.phase));
+    for (const phase of SAMPLE_PHASES) {
+      if (!phases.has(phase)) fail(errors, `boundary:${id} sample missing ${phase} phase`);
+    }
+
+    if (dynasty) {
+      if (sampleFeatures[0].properties.startYear !== dynasty.startYear) {
+        fail(errors, `boundary:${id} phased boundaries must start at dynasty startYear`);
+      }
+      if (sampleFeatures.at(-1).properties.endYear !== dynasty.endYear) {
+        fail(errors, `boundary:${id} phased boundaries must end at dynasty endYear`);
+      }
+    }
+
+    for (let index = 1; index < sampleFeatures.length; index += 1) {
+      const previous = sampleFeatures[index - 1].properties;
+      const current = sampleFeatures[index].properties;
+      if (current.startYear !== previous.endYear + 1) {
+        fail(errors, `boundary:${id} phased boundaries must be contiguous`);
+      }
+    }
   }
 }
 
@@ -139,12 +178,14 @@ async function main() {
 
   const errors = [];
   const dynastyIds = new Set(dynasties.map((dynasty) => dynasty.id));
+  const dynastyById = new Map(dynasties.map((dynasty) => [dynasty.id, dynasty]));
   const landmarkIds = new Set(landmarks.map((landmark) => landmark.id));
   const boundaryIds = new Set(boundaries.features.map((feature) => feature.properties?.id || feature.id));
 
   for (const landmark of landmarks) validateLandmark(landmark, dynastyIds, errors);
   for (const dynasty of dynasties) validateDynasty(dynasty, landmarkIds, errors);
   for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, errors);
+  validateSampleBoundaryPhases(boundaries.features || [], dynastyById, errors);
 
   for (const id of SAMPLE_IDS) {
     if (!dynastyIds.has(id)) fail(errors, `sample dynasty missing:${id}`);
