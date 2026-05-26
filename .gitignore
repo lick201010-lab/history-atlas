@@ -17,3 +17,6 @@ manim_demo/
 Thumbs.db
 .idea/
 .vscode/
+
+# Generator caches (Natural Earth land + intermediate)
+scripts/.cache/
