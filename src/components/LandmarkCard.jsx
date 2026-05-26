@@ -69,15 +69,21 @@ export default function LandmarkCard({
         </div>
       </div>
 
-      {dynastyNames.length ? (
-        <div className="landmark-related">
-          <span>关联文明</span>
+      <div className="landmark-related">
+        <span>关联文明</span>
+        {dynastyNames.length ? (
           <div>
             {dynastyNames.map((name) => (
               <em key={name}>{name}</em>
             ))}
           </div>
-        </div>
+        ) : (
+          <div className="landmark-related-empty">暂无直接关联文明</div>
+        )}
+      </div>
+
+      {landmark.sourceNote ? (
+        <p className="landmark-source">{landmark.sourceNote}</p>
       ) : null}
     </aside>
   );

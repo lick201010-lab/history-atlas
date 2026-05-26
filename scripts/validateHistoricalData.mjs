@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
+import { MODEL_PROFILE_KEYS } from '../src/map/modelProfileKeys.js';
 
 const DATA_DIR = new URL('../src/data/', import.meta.url);
+const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
 
 function fail(errors, message) {
@@ -108,6 +110,15 @@ function validateBoundary(feature, dynastyIds, errors) {
   }
 }
 
+function hasQuestionMarkRun(str) {
+  // Catches encoding-broken text like "???" / "？？？" (≥3 consecutive question marks).
+  return /\?{3,}|？{3,}/.test(str);
+}
+
+// 单一可信来源：从 src/map/modelProfileKeys.js 导入。
+// 代码（createBuildingLayer.js）在加载期会检查 PROFILES 与该清单一致。
+const ALLOWED_MODEL_PROFILES = new Set(MODEL_PROFILE_KEYS);
+
 function validateLandmark(landmark, dynastyIds, errors) {
   const prefix = `landmark:${landmark?.id || 'unknown'}`;
   if (!isNonEmptyString(landmark.id)) fail(errors, `${prefix} missing id`);
@@ -117,8 +128,21 @@ function validateLandmark(landmark, dynastyIds, errors) {
   if (isNumber(landmark.startYear) && isNumber(landmark.endYear) && landmark.startYear > landmark.endYear) {
     fail(errors, `${prefix} startYear is after endYear`);
   }
-  if (!isNonEmptyString(landmark.summary)) fail(errors, `${prefix} missing summary`);
-  if (!isNonEmptyString(landmark.region)) fail(errors, `${prefix} missing region`);
+  if (!isNonEmptyString(landmark.summary)) {
+    fail(errors, `${prefix} missing summary`);
+  } else if (hasQuestionMarkRun(landmark.summary)) {
+    fail(errors, `${prefix} summary contains consecutive question marks (encoding issue?)`);
+  }
+  if (!isNonEmptyString(landmark.sourceNote)) {
+    fail(errors, `${prefix} missing sourceNote`);
+  } else if (hasQuestionMarkRun(landmark.sourceNote)) {
+    fail(errors, `${prefix} sourceNote contains consecutive question marks (encoding issue?)`);
+  }
+  if (!isNonEmptyString(landmark.region)) {
+    fail(errors, `${prefix} missing region`);
+  } else if (hasQuestionMarkRun(landmark.region)) {
+    fail(errors, `${prefix} region contains consecutive question marks (encoding issue?)`);
+  }
   if (!Number.isInteger(landmark.importance) || landmark.importance < 1 || landmark.importance > 5) {
     fail(errors, `${prefix} importance must be an integer from 1 to 5`);
   }
@@ -127,6 +151,42 @@ function validateLandmark(landmark, dynastyIds, errors) {
   }
   for (const dynastyId of landmark.relatedDynastyIds || []) {
     if (!dynastyIds.has(dynastyId)) fail(errors, `${prefix} relatedDynastyIds references missing dynasty:${dynastyId}`);
+  }
+  if (landmark.modelProfile !== undefined) {
+    if (!isNonEmptyString(landmark.modelProfile) || !ALLOWED_MODEL_PROFILES.has(landmark.modelProfile)) {
+      fail(errors, `${prefix} modelProfile must be one of: ${[...ALLOWED_MODEL_PROFILES].join(', ')}`);
+    }
+  }
+  if (landmark.modelScale !== undefined) {
+    if (!isNumber(landmark.modelScale) || landmark.modelScale <= 0 || landmark.modelScale > 3) {
+      fail(errors, `${prefix} modelScale must be a positive number ≤ 3`);
+    }
+  }
+}
+
+/**
+ * Cross-check: every MODEL_PROFILE_KEYS entry must appear as a key inside
+ * the PROFILES object literal in createBuildingLayer.js. We do this with a
+ * lightweight source scan (no eval, no DOM imports) so the validator can
+ * run in pure Node without pulling in Three.js / MapLibre.
+ */
+async function validateProfileCodeBinding(errors) {
+  const source = await readFile(new URL('createBuildingLayer.js', CODE_DIR), 'utf8');
+  const match = source.match(/const PROFILES = \{([\s\S]*?)\};/);
+  if (!match) {
+    fail(errors, 'createBuildingLayer.js: cannot locate PROFILES literal');
+    return;
+  }
+  const block = match[1];
+  for (const key of MODEL_PROFILE_KEYS) {
+    // Accept both bare identifiers (key:) and quoted keys ('key':).
+    const ident = /^[A-Za-z_$][\w$]*$/.test(key);
+    const re = ident
+      ? new RegExp(`(^|[\\s,{])${key}\\s*:`, 'm')
+      : new RegExp(`['"\`]${key.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}['"\`]\\s*:`);
+    if (!re.test(block)) {
+      fail(errors, `createBuildingLayer.js PROFILES is missing key for "${key}"`);
+    }
   }
 }
 
@@ -146,6 +206,8 @@ async function main() {
   for (const dynasty of dynasties) validateDynasty(dynasty, landmarkIds, errors);
   for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, errors);
 
+  await validateProfileCodeBinding(errors);
+
   for (const id of SAMPLE_IDS) {
     if (!dynastyIds.has(id)) fail(errors, `sample dynasty missing:${id}`);
     if (!boundaryIds.has(id)) fail(errors, `sample boundary missing:${id}`);
@@ -162,6 +224,7 @@ async function main() {
   console.log(`Boundaries: ${boundaries.features.length}`);
   console.log(`Landmarks: ${landmarks.length}`);
   console.log(`Refined samples: ${SAMPLE_IDS.size}`);
+  console.log(`Model profiles (code+data): ${MODEL_PROFILE_KEYS.length} (${landmarks.filter((l) => l.modelProfile).length} landmarks linked)`);
 }
 
 main().catch((error) => {

@@ -940,6 +940,25 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 10px;
 }
 
+.landmark-related-empty {
+  margin-top: 6px;
+  font-size: 10.5px;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.landmark-source {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(120, 160, 220, 0.14);
+  font-size: 10px;
+  line-height: 1.55;
+  color: rgba(183, 199, 226, 0.5);
+  letter-spacing: 0.5px;
+  font-style: italic;
+}
+
 .territory-card {
   position: fixed;
   left: 22px;
