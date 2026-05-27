@@ -1126,6 +1126,8 @@ export function createBuildingLayer(landmarks) {
         shininess: 35,
         transparent: false,
       });
+      mat.userData.role = 'body';
+      mat.userData.baseColor = color;
 
       // 优先使用 modelProfile 的专属轮廓（重点样板建筑），其次按 type 走通用模型。
       const profileBuilder = building.modelProfile ? PROFILES[building.modelProfile] : null;
@@ -1138,14 +1140,16 @@ export function createBuildingLayer(landmarks) {
         opacity: 0.14,
         side: THREE.DoubleSide,
       });
+      ringMat.userData = { role: 'aura', baseOpacity: 0.14 };
       const ring = new THREE.Mesh(new THREE.RingGeometry(1.05, 1.28, 48), ringMat);
       ring.position.z = 0.01;
       group.add(ring);
 
-      const disc = new THREE.Mesh(
-        new THREE.CircleGeometry(1.05, 48),
-        new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.06, side: THREE.DoubleSide }),
-      );
+      const discMat = new THREE.MeshBasicMaterial({
+        color, transparent: true, opacity: 0.06, side: THREE.DoubleSide,
+      });
+      discMat.userData = { role: 'aura', baseOpacity: 0.06 };
+      const disc = new THREE.Mesh(new THREE.CircleGeometry(1.05, 48), discMat);
       disc.position.z = 0.005;
       group.add(disc);
 
@@ -1156,6 +1160,7 @@ export function createBuildingLayer(landmarks) {
         depthWrite: false,
         blending: THREE.AdditiveBlending,
       });
+      beamMat.userData = { role: 'beam', baseOpacity: 0.10 };
       const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.30, 5, 12, 1, true), beamMat);
       beam.rotation.x = Math.PI / 2;
       beam.position.z = 3;
@@ -1164,6 +1169,41 @@ export function createBuildingLayer(landmarks) {
       group.userData.ring = ring;
       group.userData.beam = beam;
       return group;
+    },
+
+    /**
+     * 切换主题：dark = 沙盘金色发光；atlas = 陶土 / 木雕，光环和光柱大幅压暗。
+     * 不重建几何，只调材质属性。
+     */
+    setTheme(themeKey) {
+      const atlas = themeKey === 'atlas';
+      const visit = (object) => {
+        if (object.material) {
+          const mats = Array.isArray(object.material) ? object.material : [object.material];
+          for (const m of mats) {
+            const role = m.userData?.role;
+            if (role === 'body') {
+              if (atlas) {
+                m.emissive?.setHex(0x1a1208);
+                m.emissiveIntensity = 0.12;
+                m.shininess = 8;
+              } else {
+                m.emissive?.setHex(0x332211);
+                m.emissiveIntensity = 0.45;
+                m.shininess = 35;
+              }
+              m.needsUpdate = true;
+            } else if (role === 'aura' || role === 'beam') {
+              const base = m.userData.baseOpacity ?? m.opacity;
+              m.opacity = atlas ? base * 0.30 : base;
+              m.needsUpdate = true;
+            }
+          }
+        }
+        if (object.children) for (const c of object.children) visit(c);
+      };
+      if (this.scene) visit(this.scene);
+      if (this.map) this.map.triggerRepaint();
     },
 
     render(gl, matrix) {

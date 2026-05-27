@@ -1,0 +1,212 @@
+/* =====================================================================
+   古地图浮雕主题 atlas
+   - 仅覆盖必要的颜色与材质变量
+   - 默认主题 (dark) 保持原样: data-theme 属性不存在或 = "dark"
+   - 切到 atlas: body[data-theme="atlas"] 重写以下 CSS 变量
+   ===================================================================== */
+
+body[data-theme="atlas"] {
+  --panel-bg: rgba(244, 230, 196, 0.88);
+  --panel-bg-strong: rgba(244, 230, 196, 0.96);
+  --panel-border: rgba(120, 86, 48, 0.45);
+  --panel-border-strong: rgba(90, 60, 30, 0.6);
+  --accent: #8a4b2e;
+  --accent-soft: rgba(138, 75, 46, 0.22);
+  --text: #2a1d10;
+  --text-dim: #5a4426;
+  --text-faint: #8a6e44;
+  --gold: #8b5a1a;
+  --gold-soft: rgba(139, 90, 26, 0.22);
+  --hud-shadow: 0 6px 18px rgba(90, 50, 20, 0.28), 0 0 0 1px rgba(255, 252, 230, 0.45) inset;
+  background: #d8c39a;
+}
+
+body[data-theme="atlas"] #stars-bg,
+body[data-theme="atlas"] #stars-overlay,
+body[data-theme="atlas"] .cloud-layer {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+body[data-theme="atlas"]::after {
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(60, 36, 18, 0.32) 95%) !important;
+}
+
+body[data-theme="atlas"] .title {
+  color: #2a1d10;
+  text-shadow: 0 0 12px rgba(255, 245, 215, 0.45), 0 0 1px rgba(60, 30, 10, 0.6);
+}
+body[data-theme="atlas"] .title::before {
+  background: linear-gradient(90deg, #8a4b2e, transparent);
+}
+body[data-theme="atlas"] .title .sub { color: #6b4e26; }
+
+body[data-theme="atlas"] .btn-theme { color: #2a1d10; font-weight: 500; }
+
+body[data-theme="atlas"] .territory-card {
+  background: linear-gradient(180deg, rgba(247, 232, 196, 0.97), rgba(232, 212, 168, 0.96));
+  border-color: rgba(90, 60, 30, 0.5);
+  box-shadow: 0 14px 36px rgba(60, 36, 18, 0.40), 0 0 0 1px rgba(255, 245, 215, 0.4) inset;
+}
+body[data-theme="atlas"] .territory-name { color: #2a1d10; }
+body[data-theme="atlas"] .territory-meta {
+  color: #6b3a15;
+  background: rgba(139, 90, 26, 0.14);
+  border-left-color: #8b5a1a;
+}
+body[data-theme="atlas"] .chip-pill {
+  color: #5a4426;
+  background: rgba(139, 90, 26, 0.08);
+  border-color: rgba(120, 86, 48, 0.35);
+}
+body[data-theme="atlas"] .chip-pill.chip-region {
+  color: #2a1d10;
+  background: rgba(138, 75, 46, 0.18);
+  border-color: rgba(138, 75, 46, 0.5);
+}
+body[data-theme="atlas"] .territory-summary,
+body[data-theme="atlas"] .territory-legacy { color: #4a3318; }
+body[data-theme="atlas"] .importance-dots i { border-color: rgba(139, 90, 26, 0.5); }
+body[data-theme="atlas"] .importance-dots i.active { background: #8b5a1a; border-color: #8b5a1a; }
+body[data-theme="atlas"] .territory-event span:first-child {
+  color: #8b5a1a;
+  border-right-color: rgba(139, 90, 26, 0.35);
+}
+
+body[data-theme="atlas"] .landmark-card {
+  background: rgba(247, 232, 196, 0.97);
+  border-color: rgba(90, 60, 30, 0.5);
+}
+body[data-theme="atlas"] .landmark-name { color: #2a1d10; }
+body[data-theme="atlas"] .landmark-meta { color: #6b3a15; }
+
+body[data-theme="atlas"] .info-panel {
+  background: rgba(247, 232, 196, 0.93);
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .year-big {
+  color: #8b5a1a;
+  text-shadow: 0 0 10px rgba(139, 90, 26, 0.3);
+}
+body[data-theme="atlas"] .info-panel .count span { color: #8a4b2e; }
+body[data-theme="atlas"] .info-panel h3 { color: #6b4e26; border-bottom-color: rgba(120, 86, 48, 0.3); }
+body[data-theme="atlas"] .info-panel h3::before { color: #8b5a1a; }
+body[data-theme="atlas"] .section-title { color: #6b4e26; }
+body[data-theme="atlas"] .dynasty-item-main,
+body[data-theme="atlas"] .building-list .item {
+  background: rgba(255, 244, 210, 0.45);
+}
+body[data-theme="atlas"] .dynasty-item-main:hover,
+body[data-theme="atlas"] .building-list .item:hover {
+  background: rgba(139, 90, 26, 0.12);
+}
+body[data-theme="atlas"] .dynasty-item .item-copy .type { color: #6b4e26; }
+
+body[data-theme="atlas"] .timeline {
+  background: linear-gradient(180deg, transparent, rgba(216, 195, 154, 0.94) 30%);
+}
+body[data-theme="atlas"] .timeline-inner {
+  background: rgba(244, 230, 196, 0.92);
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .timeline-label { color: #6b4e26; }
+body[data-theme="atlas"] .timeline-year { color: #8b5a1a; }
+body[data-theme="atlas"] .timeline-ticks span { color: #6b4e26; }
+body[data-theme="atlas"] input[type="range"] {
+  background: linear-gradient(90deg, rgba(120, 86, 48, 0.25), rgba(139, 90, 26, 0.45));
+}
+body[data-theme="atlas"] input[type="range"]::-webkit-slider-thumb {
+  background: #b22222;
+  box-shadow: 0 0 10px rgba(178, 34, 34, 0.55), 0 0 0 2px #f4e6c4;
+}
+body[data-theme="atlas"] .timeline-marker .marker-dot { background: #8b5a1a; }
+
+body[data-theme="atlas"] .layer-row {
+  background: rgba(244, 230, 196, 0.88);
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .chip { color: #6b4e26; }
+body[data-theme="atlas"] .chip.active {
+  color: #2a1d10;
+  background: linear-gradient(180deg, rgba(139, 90, 26, 0.20), rgba(139, 90, 26, 0.08));
+  box-shadow: inset 0 0 0 1px rgba(139, 90, 26, 0.55);
+}
+body[data-theme="atlas"] .search-box input {
+  background: rgba(244, 230, 196, 0.92);
+  color: #2a1d10;
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .filter-panel {
+  background: rgba(244, 230, 196, 0.92);
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .filter-toggle { color: #6b4e26; }
+body[data-theme="atlas"] .filter-chip {
+  color: #5a4426;
+  background: rgba(139, 90, 26, 0.06);
+  border-color: rgba(120, 86, 48, 0.32);
+}
+body[data-theme="atlas"] .filter-chip.on {
+  background: #8b5a1a;
+  border-color: #8b5a1a;
+  color: #f4e6c4;
+}
+
+body[data-theme="atlas"] .top-right {
+  background: rgba(244, 230, 196, 0.88);
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .btn { color: #6b4e26; }
+body[data-theme="atlas"] .btn:hover {
+  color: #2a1d10;
+  background: rgba(139, 90, 26, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(139, 90, 26, 0.5);
+}
+
+body[data-theme="atlas"] .era-narrative {
+  background: rgba(247, 232, 196, 0.93);
+  border-color: rgba(120, 86, 48, 0.45);
+}
+body[data-theme="atlas"] .era-title { color: #2a1d10; }
+body[data-theme="atlas"] .era-en { color: #6b4e26; }
+body[data-theme="atlas"] .era-summary { color: #4a3318; }
+body[data-theme="atlas"] .era-keywords span {
+  color: #5a4426;
+  background: rgba(139, 90, 26, 0.10);
+  border-color: rgba(120, 86, 48, 0.32);
+}
+
+body[data-theme="atlas"] .compare-panel {
+  background: linear-gradient(180deg, rgba(247, 232, 196, 0.97), rgba(232, 212, 168, 0.96));
+  border-color: rgba(90, 60, 30, 0.5);
+}
+body[data-theme="atlas"] .compare-name { color: #2a1d10; }
+body[data-theme="atlas"] .compare-en { color: #6b4e26; }
+body[data-theme="atlas"] .compare-meta {
+  color: #6b3a15;
+  background: rgba(139, 90, 26, 0.14);
+  border-left-color: #8b5a1a;
+}
+body[data-theme="atlas"] .compare-legacy { color: #4a3318; }
+body[data-theme="atlas"] .compare-tags span {
+  color: #5a4426;
+  background: rgba(139, 90, 26, 0.10);
+  border-color: rgba(120, 86, 48, 0.32);
+}
+
+body[data-theme="atlas"] .building-tooltip {
+  background: rgba(247, 232, 196, 0.96);
+  border-color: #8b5a1a;
+  color: #2a1d10;
+  box-shadow: 0 0 16px rgba(139, 90, 26, 0.32);
+}
+body[data-theme="atlas"] .building-tooltip .name { color: #8b5a1a; }
+body[data-theme="atlas"] .building-tooltip .meta { color: #5a4426; }
+
+body[data-theme="atlas"] .dynasty-list::-webkit-scrollbar-thumb,
+body[data-theme="atlas"] .building-list::-webkit-scrollbar-thumb,
+body[data-theme="atlas"] .search-results::-webkit-scrollbar-thumb,
+body[data-theme="atlas"] .era-events-list::-webkit-scrollbar-thumb {
+  background: rgba(139, 90, 26, 0.45);
+}

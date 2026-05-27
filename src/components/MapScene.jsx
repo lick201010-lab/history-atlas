@@ -6,6 +6,8 @@ import {
   MOUNTAIN_VIEW,
   darkStyle,
   setTerrainMode,
+  applyMapTheme,
+  applyBoundaryPaint,
 } from '../map/mapStyle.js';
 import { formatYear } from '../utils/formatYear.js';
 
@@ -52,6 +54,7 @@ const MapScene = forwardRef(function MapScene({
   landmarks,
   layerVisibility,
   year,
+  theme = 'dark',
   selectedDynastyId,
   locked,
   boundaryCard,
@@ -63,6 +66,7 @@ const MapScene = forwardRef(function MapScene({
   onToggleLock,
   onAddCompare,
   onRemoveCompare,
+  onToggleTheme,
 }, ref) {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
@@ -74,6 +78,7 @@ const MapScene = forwardRef(function MapScene({
   const hoveredBoundaryIdRef = useRef(null);
   const onSelectDynastyRef = useRef(onSelectDynasty);
   const onSelectBuildingRef = useRef(onSelectBuilding);
+  const themeRef = useRef(theme);
   const [viewMode, setViewMode] = useState('world');
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, building: null });
   const [mapReady, setMapReady] = useState(false);
@@ -81,6 +86,15 @@ const MapScene = forwardRef(function MapScene({
 
   useEffect(() => { onSelectDynastyRef.current = onSelectDynasty; }, [onSelectDynasty]);
   useEffect(() => { onSelectBuildingRef.current = onSelectBuilding; }, [onSelectBuilding]);
+
+  // 主题切换：应用 base 可见性 / hillshade / sky / 边界 paint / 建筑材质
+  useEffect(() => {
+    themeRef.current = theme;
+    const map = mapRef.current;
+    if (!map) return;
+    applyMapTheme(map, theme);
+    buildingLayerRef.current?.setTheme?.(theme);
+  }, [theme]);
 
   useImperativeHandle(ref, () => ({
     flyToBuilding(building) {
@@ -315,6 +329,9 @@ const MapScene = forwardRef(function MapScene({
         setVisibility(map, 'dynasty-capital-core', layerVisibilityRef.current.capitals);
         buildingLayer.setLayerVisible(layerVisibilityRef.current.buildings);
         onVisibleBuildingsChange(buildingLayer.setYear(yearRef.current));
+        // 图层创建后立即把当前主题套上去
+        applyMapTheme(map, themeRef.current);
+        buildingLayer.setTheme?.(themeRef.current);
       } catch (error) {
         console.error('addLayer failed', error);
       }
@@ -508,6 +525,16 @@ const MapScene = forwardRef(function MapScene({
           onClick={() => mapRef.current?.easeTo({ bearing: 0, pitch: 55, duration: 1000 })}
         >
           指南针
+        </button>
+        <button
+          className="btn btn-theme"
+          type="button"
+          id="btn-theme"
+          onClick={() => onToggleTheme?.()}
+          title={theme === 'atlas' ? '切回深色 HUD' : '切到古地图浮雕'}
+          aria-label={theme === 'atlas' ? '切回深色 HUD' : '切到古地图浮雕'}
+        >
+          {theme === 'atlas' ? '夜色' : '古地图'}
         </button>
       </div>
       <div

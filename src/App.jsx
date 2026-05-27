@@ -32,7 +32,24 @@ export default function App() {
   const [compareIds, setCompareIds] = useState([]);
   const [compareNotice, setCompareNotice] = useState('');
   const [filter, setFilter] = useState({ regions: [], tags: [] });
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'dark';
+    const saved = window.localStorage?.getItem('history-atlas:theme');
+    return saved === 'atlas' || saved === 'dark' ? saved : 'dark';
+  });
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => {
+      const next = prev === 'atlas' ? 'dark' : 'atlas';
+      try { window.localStorage?.setItem('history-atlas:theme', next); } catch (e) { /* ignore quota */ }
+      return next;
+    });
+  }, []);
   const mapSceneRef = useRef(null);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.body.dataset.theme = theme;
+  }, [theme]);
 
   // Lookups
   const dynastyById = useMemo(() => new Map(dynasties.map((d) => [d.id, d])), []);
@@ -206,6 +223,7 @@ export default function App() {
         landmarks={landmarks}
         layerVisibility={layerVisibility}
         year={year}
+        theme={theme}
         selectedDynastyId={selectedDynastyId}
         locked={locked}
         boundaryCard={boundaryCard}
@@ -217,6 +235,7 @@ export default function App() {
         onToggleLock={toggleLock}
         onAddCompare={addCompare}
         onRemoveCompare={removeCompare}
+        onToggleTheme={toggleTheme}
       />
       <Starfield
         id="stars-overlay"
