@@ -1,27 +1,23 @@
-# QA screenshots · 海岸贴合样板边界
+# QA Screenshots - Coastline-Aware Sample Boundaries
 
-5 个样板文明鼎盛期的浏览器验收截图位于上一轮 PR / 对话记录里。要现场重现：
+These screenshots verify the five sample civilizations after upgrading their
+boundaries to `coastline-aware-rough`.
+
+| Civilization | Year | File | Expected result |
+|---|---:|---|---|
+| Tang | 742 | `tang-742.png` | East Asia outline follows mainland coast, with Korea and the South China coast visible. |
+| Roman Republic / Empire | 117 | `rome-117.png` | Mediterranean territories are split around the sea instead of covering it as one filled polygon. |
+| Islamic Caliphates | 800 | `caliphate-800.png` | North Africa, Arabia, Mesopotamia, Persia, and Central Asia follow land masses with major seas mostly left open. |
+| Mughal Empire | 1700 | `mughal-1700.png` | Northern and central Indian subcontinent shape is visible, excluding Sri Lanka. |
+| Maya | 700 | `maya-700.png` | Yucatan, Guatemala, Belize, and nearby Central America are visible as a land-shaped region. |
+
+The `src/components/MapScene.jsx` change is intentionally retained as a small
+rendering exception: `coastline-aware-rough` must be treated like
+`rough-refined`, otherwise the new refined boundaries render with the weaker
+placeholder opacity and line style.
+
+Validation command:
 
 ```bash
-npm run dev   # starts on port 5176 in this worktree per launch.json
+npm run check
 ```
-
-在浏览器里依次：
-
-| 文明 | 年份 | 中心 | zoom |
-|---|---|---|---|
-| 唐 | 742 | [105, 36] | 3.0 |
-| 罗马 | 117 | [20, 38] | 2.8 |
-| 阿拉伯哈里发 | 800 | [40, 30] | 2.7 |
-| 莫卧儿 | 1700 | [80, 22] | 3.5 |
-| 玛雅 | 700 | [-89, 17] | 5.5 |
-
-每个视角下应看到：
-
-- **唐**：东亚大陆轮廓，含朝鲜半岛、河西走廊；不含日本。
-- **罗马**：地中海沿岸（伊比利亚 / 高卢 / 不列颠南 / 意大利 / 巴尔干 / 安纳托利亚 / 黎凡特 / 北非）；海洋（地中海主体、爱琴海、亚得里亚海）留空。
-- **哈里发**：从北非西部 → 阿拉伯半岛 → 美索不达米亚 → 波斯 → 中亚，红海 / 波斯湾 / 里海尽量留空。
-- **莫卧儿**：印度次大陆从北至南的"V"形轮廓；不含斯里兰卡。
-- **玛雅**：尤卡坦 + 危地马拉 + 伯利兹 + 恰帕斯东部；不含古巴等岛屿。
-
-> MapLibre 的 WebGL canvas 默认不开 `preserveDrawingBuffer`，所以脚本无法在不改前端的情况下把截图写到磁盘。请改用浏览器原生截图（PrintScreen / 系统截图工具）或暂时把 `MapScene.jsx` 中的 `new maplibregl.Map({ ..., preserveDrawingBuffer: true })` 打开后再用 `canvas.toDataURL()`。
