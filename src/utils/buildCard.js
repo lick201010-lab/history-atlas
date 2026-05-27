@@ -1,12 +1,16 @@
 // Build a unified "civilization dossier" card from a dynasty record plus the
 // matching boundary feature and landmark lookup. Pure function — no React.
 
+import { PHASE_LABELS } from './phase.js';
+
 export function buildCardData(dynasty, boundary, landmarksById) {
   if (!dynasty) return null;
   const props = boundary?.properties || {};
   const related = (dynasty.relatedLandmarks || [])
     .map((id) => landmarksById?.get(id))
     .filter(Boolean);
+  const phase = props.phase || null;
+  const phaseName = phase ? PHASE_LABELS[phase] || null : null;
   return {
     id: dynasty.id,
     dynasty: dynasty.name,
@@ -25,5 +29,10 @@ export function buildCardData(dynasty, boundary, landmarksById) {
     accuracyLabel: props.accuracyLabel,
     accuracyNote: props.accuracyNote,
     sourceNote: props.sourceNote,
+    phase,
+    phaseName,
+    phaseLabel: props.phaseLabel || null,
+    phaseStartYear: phase ? props.startYear : null,
+    phaseEndYear: phase ? props.endYear : null,
   };
 }

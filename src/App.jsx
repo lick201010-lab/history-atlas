@@ -14,6 +14,7 @@ import dynasties from './data/dynasties.json';
 import landmarks from './data/landmarks.json';
 import { buildCardData } from './utils/buildCard.js';
 import { formatYear } from './utils/formatYear.js';
+import { pickPhaseFeature } from './utils/phase.js';
 
 const OVERLAY_DRIFT = { x: 2.5, y: 0.6 };
 const COMPARE_LIMIT = 2;
@@ -58,6 +59,17 @@ export default function App() {
     () => new Map((boundaries.features || []).map((f) => [f.properties?.id || f.id, f])),
     [],
   );
+  // Sample civilizations have multiple phased features under the same id;
+  // keep the full list so we can pick the one matching the current year.
+  const boundaryFeaturesById = useMemo(() => {
+    const m = new Map();
+    for (const f of boundaries.features || []) {
+      const id = f.properties?.id || f.id;
+      if (!m.has(id)) m.set(id, []);
+      m.get(id).push(f);
+    }
+    return m;
+  }, []);
 
   const sortedVisibleBuildings = useMemo(
     () => {
@@ -91,10 +103,12 @@ export default function App() {
   // Card data derived from selection.
   const selectedDynasty = selectedDynastyId ? dynastyById.get(selectedDynastyId) : null;
   const selectedLandmark = selectedLandmarkId ? landmarksById.get(selectedLandmarkId) : null;
-  const boundaryCard = useMemo(
-    () => buildCardData(selectedDynasty, selectedDynasty ? boundariesById.get(selectedDynasty.id) : null, landmarksById),
-    [selectedDynasty, boundariesById, landmarksById],
-  );
+  const boundaryCard = useMemo(() => {
+    if (!selectedDynasty) return null;
+    const features = boundaryFeaturesById.get(selectedDynasty.id) || [];
+    const phaseFeature = pickPhaseFeature(features, year) || boundariesById.get(selectedDynasty.id) || null;
+    return buildCardData(selectedDynasty, phaseFeature, landmarksById);
+  }, [selectedDynasty, boundaryFeaturesById, boundariesById, landmarksById, year]);
 
   // Compare list resolves ids to full dynasty records.
   const compareDynasties = useMemo(

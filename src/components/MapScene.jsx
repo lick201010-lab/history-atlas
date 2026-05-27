@@ -601,6 +601,24 @@ const MapScene = forwardRef(function MapScene({
               <span className="meta-capital">都 {boundaryCard.capital}</span>
             </div>
 
+            {boundaryCard.phaseName ? (
+              <div className="territory-phase">
+                <span className="phase-label">当前阶段</span>
+                <span className="phase-name" style={{ color: boundaryCard.color }}>
+                  {boundaryCard.phaseName}
+                </span>
+                {(typeof boundaryCard.phaseStartYear === 'number'
+                  && typeof boundaryCard.phaseEndYear === 'number') ? (
+                  <span className="phase-range">
+                    （{formatYear(boundaryCard.phaseStartYear)}–{formatYear(boundaryCard.phaseEndYear)}）
+                  </span>
+                ) : null}
+                {boundaryCard.phaseLabel ? (
+                  <span className="phase-sub">{boundaryCard.phaseLabel}</span>
+                ) : null}
+              </div>
+            ) : null}
+
             {(boundaryCard.region || boundaryCard.tags?.length) ? (
               <div className="territory-chip-row">
                 {boundaryCard.region ? (
