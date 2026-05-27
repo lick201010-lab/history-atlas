@@ -182,9 +182,13 @@ const MapScene = forwardRef(function MapScene({
           data: boundariesRef.current,
         });
       }
-      // 样板（精修过的）文明 vs 占位文明，由 accuracy 字段驱动
+      // 样板（精修过的）文明 vs 占位文明，由 accuracy 字段驱动。
+      // rough-refined（人工凸多边形 sample）与 coastline-aware-rough（海岸贴合 sample）
+      // 都享受同一套精修级描边 / 光晕；其他 accuracy（如 rough）走低强度的占位渲染。
       const ifRefined = (refined, plain) => [
-        'case', ['==', ['get', 'accuracy'], 'rough-refined'], refined, plain,
+        'case',
+        ['in', ['get', 'accuracy'], ['literal', ['rough-refined', 'coastline-aware-rough']]],
+        refined, plain,
       ];
       if (!map.getLayer('dynasty-territory-fill')) {
         map.addLayer({

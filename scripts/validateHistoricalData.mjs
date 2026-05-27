@@ -4,6 +4,7 @@ import { MODEL_PROFILE_KEYS } from '../src/map/modelProfileKeys.js';
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
+const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
 function fail(errors, message) {
   errors.push(message);
@@ -78,6 +79,8 @@ function validateDynasty(dynasty, landmarkIds, errors) {
   }
 }
 
+const SAMPLE_ACCURACY_VALUES = new Set(['rough-refined', 'coastline-aware-rough']);
+
 function validateBoundary(feature, dynastyIds, errors) {
   const id = feature?.properties?.id || feature?.id || 'unknown';
   const prefix = `boundary:${id}`;
@@ -90,23 +93,91 @@ function validateBoundary(feature, dynastyIds, errors) {
   if (!isNonEmptyString(feature.properties?.dynasty)) fail(errors, `${prefix} missing dynasty label`);
   if (!isNonEmptyString(feature.properties?.summary)) fail(errors, `${prefix} missing summary`);
   if (!isNonEmptyString(feature.properties?.accuracyNote)) fail(errors, `${prefix} missing accuracyNote`);
-  if (feature.geometry?.type !== 'Polygon') fail(errors, `${prefix} geometry must be Polygon`);
+  const geomType = feature.geometry?.type;
+  if (geomType !== 'Polygon' && geomType !== 'MultiPolygon') {
+    fail(errors, `${prefix} geometry must be Polygon or MultiPolygon`);
+  }
 
-  const ring = feature.geometry?.coordinates?.[0];
-  if (!hasClosedRing(ring)) fail(errors, `${prefix} polygon ring must be closed`);
+  // 收集所有 outer rings 用于一致性校验
+  const outerRings = [];
+  if (geomType === 'Polygon') {
+    outerRings.push(feature.geometry.coordinates?.[0]);
+  } else if (geomType === 'MultiPolygon') {
+    for (const poly of feature.geometry.coordinates || []) {
+      outerRings.push(poly?.[0]);
+    }
+  }
+  if (outerRings.length === 0) fail(errors, `${prefix} has no outer ring`);
 
-  for (const point of ring || []) {
-    const [lng, lat] = point || [];
-    if (!isNumber(lng) || !isNumber(lat) || lng < -180 || lng > 180 || lat < -90 || lat > 90) {
-      fail(errors, `${prefix} has invalid coordinate`);
+  for (const ring of outerRings) {
+    if (!hasClosedRing(ring)) fail(errors, `${prefix} polygon ring must be closed`);
+    for (const point of ring || []) {
+      const [lng, lat] = point || [];
+      if (!isNumber(lng) || !isNumber(lat) || lng < -180 || lng > 180 || lat < -90 || lat > 90) {
+        fail(errors, `${prefix} has invalid coordinate`);
+      }
     }
   }
 
   if (SAMPLE_IDS.has(id)) {
+    const accuracy = feature.properties?.accuracy;
     if (!isNonEmptyString(feature.properties?.sourceNote)) fail(errors, `${prefix} sample must include sourceNote`);
-    if (feature.properties?.accuracy !== 'rough-refined') fail(errors, `${prefix} sample accuracy must be rough-refined`);
-    if (isRectangleLike(ring)) fail(errors, `${prefix} sample boundary should not be rectangle-like`);
-    if ((ring?.length || 0) < 7) fail(errors, `${prefix} sample boundary needs a more natural ring`);
+    if (!SAMPLE_ACCURACY_VALUES.has(accuracy)) {
+      fail(errors, `${prefix} sample accuracy must be one of: ${[...SAMPLE_ACCURACY_VALUES].join(', ')}`);
+    }
+    if (!SAMPLE_PHASES.has(feature.properties?.phase)) fail(errors, `${prefix} sample phase must be rise, peak, or decline`);
+    if (!isNonEmptyString(feature.properties?.phaseLabel)) fail(errors, `${prefix} sample must include phaseLabel`);
+    // 矩形过滤：任一外环都不能是矩形
+    for (const ring of outerRings) if (isRectangleLike(ring)) fail(errors, `${prefix} sample boundary should not be rectangle-like`);
+    // 顶点要求：coastline-aware-rough 收紧到 ≥40 单环 / ≥80 总（MultiPolygon）
+    const totalVerts = outerRings.reduce((s, r) => s + (r?.length || 0), 0);
+    if (accuracy === 'coastline-aware-rough') {
+      if (geomType === 'Polygon' && (outerRings[0]?.length || 0) < 40) {
+        fail(errors, `${prefix} coastline-aware Polygon needs ≥40 vertices (got ${outerRings[0]?.length})`);
+      }
+      if (geomType === 'MultiPolygon' && totalVerts < 80) {
+        fail(errors, `${prefix} coastline-aware MultiPolygon needs ≥80 total vertices (got ${totalVerts})`);
+      }
+    } else {
+      // 兼容旧 rough-refined sample
+      if ((outerRings[0]?.length || 0) < 21) fail(errors, `${prefix} sample boundary needs at least 20 vertices plus closure`);
+    }
+  }
+}
+
+function validateSampleBoundaryPhases(features, dynastyById, errors) {
+  for (const id of SAMPLE_IDS) {
+    const dynasty = dynastyById.get(id);
+    const sampleFeatures = features
+      .filter((feature) => (feature.properties?.id || feature.id) === id)
+      .sort((a, b) => a.properties.startYear - b.properties.startYear);
+
+    if (sampleFeatures.length !== 3) {
+      fail(errors, `boundary:${id} sample must have exactly 3 phased features`);
+      continue;
+    }
+
+    const phases = new Set(sampleFeatures.map((feature) => feature.properties?.phase));
+    for (const phase of SAMPLE_PHASES) {
+      if (!phases.has(phase)) fail(errors, `boundary:${id} sample missing ${phase} phase`);
+    }
+
+    if (dynasty) {
+      if (sampleFeatures[0].properties.startYear !== dynasty.startYear) {
+        fail(errors, `boundary:${id} phased boundaries must start at dynasty startYear`);
+      }
+      if (sampleFeatures.at(-1).properties.endYear !== dynasty.endYear) {
+        fail(errors, `boundary:${id} phased boundaries must end at dynasty endYear`);
+      }
+    }
+
+    for (let index = 1; index < sampleFeatures.length; index += 1) {
+      const previous = sampleFeatures[index - 1].properties;
+      const current = sampleFeatures[index].properties;
+      if (current.startYear !== previous.endYear + 1) {
+        fail(errors, `boundary:${id} phased boundaries must be contiguous`);
+      }
+    }
   }
 }
 
@@ -199,12 +270,14 @@ async function main() {
 
   const errors = [];
   const dynastyIds = new Set(dynasties.map((dynasty) => dynasty.id));
+  const dynastyById = new Map(dynasties.map((dynasty) => [dynasty.id, dynasty]));
   const landmarkIds = new Set(landmarks.map((landmark) => landmark.id));
   const boundaryIds = new Set(boundaries.features.map((feature) => feature.properties?.id || feature.id));
 
   for (const landmark of landmarks) validateLandmark(landmark, dynastyIds, errors);
   for (const dynasty of dynasties) validateDynasty(dynasty, landmarkIds, errors);
   for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, errors);
+  validateSampleBoundaryPhases(boundaries.features || [], dynastyById, errors);
 
   await validateProfileCodeBinding(errors);
 
