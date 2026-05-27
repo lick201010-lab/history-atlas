@@ -223,3 +223,34 @@ Verification after changes:
 Follow-up improvement:
 
 - The current card uses procedural metadata and text summaries. A later content pass should add source notes for individual landmark dates and replace placeholder 3D shapes with optimized GLB assets for the most important monuments.
+
+## Incident Record: Atlas Theme Visual Pass 3 Deployment
+
+Date: 2026-05-27
+
+Goal: publish the improved antique atlas visual theme to GitHub and the Aliyun production site.
+
+Verification before deployment:
+
+- Working branch was `main`, ahead of `origin/main` by 10 commits.
+- Latest implementation commit was `b22c154 feat: improve atlas ocean and relief styling`.
+- `npm run check` passed locally: data validation passed and the Vite production build completed.
+- Local browser QA confirmed dark theme and atlas theme both rendered. Atlas mode showed separated deep blue-green ocean, warm parchment land, and stronger relief. `public/favicon.svg` returned `200` locally.
+
+Deployment performed:
+
+- Pushed `main` to `https://github.com/lick201010-lab/history-atlas.git`.
+- Ran `npm run deploy`, which performed local check/build, uploaded `dist/*` to `root@47.237.181.181:/opt/history-atlas/dist/`, fixed permissions with `chmod -R a+rX`, and verified the live site.
+
+Verification after deployment:
+
+- `https://atlas.ckl.hk/` returned `200` with `Content-Type: text/html; charset=utf-8`.
+- Random SPA fallback path returned `200`.
+- All five production JS/CSS chunks returned `200`.
+- `https://atlas.ckl.hk/favicon.svg` returned `200` with `Content-Type: image/svg+xml`.
+- Online browser QA captured desktop screenshots for dark and atlas modes. Both rendered with three canvases present, and the atlas theme toggle changed `body/html data-theme` from `dark` to `atlas`.
+- Browser console had no errors. Network `net::ERR_ABORTED` entries were tile requests canceled during camera/theme switching, not production HTTP errors.
+
+Follow-up improvement:
+
+- The atlas theme is now good enough as the visual baseline. Future visual work should focus on hand-drawn map ornamentation, better labels, and refined monument models rather than more global filter tuning.
