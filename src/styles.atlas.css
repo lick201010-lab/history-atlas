@@ -29,8 +29,57 @@ body[data-theme="atlas"] .cloud-layer {
   transition: opacity 0.6s ease;
 }
 
+/* 古地图四角暗角 + 海图压印边框（::after：vignette + 内嵌 chart border） */
 body[data-theme="atlas"]::after {
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(60, 36, 18, 0.32) 95%) !important;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(60, 30, 10, 0.42) 100%) !important;
+  box-shadow:
+    inset 0 0 0 6px rgba(60, 36, 18, 0.18),
+    inset 0 0 0 7px rgba(196, 152, 84, 0.30),
+    inset 0 0 70px 6px rgba(40, 22, 10, 0.32) !important;
+}
+
+/* 全屏羊皮纸 noise：SVG turbulence 作为顶层叠加，multiply 混合不抢底图 */
+body[data-theme="atlas"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  /* 数据 URI 内嵌 SVG turbulence；浏览器原生 SVG 滤镜，无依赖 */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.30  0 0 0 0 0.15  0 0 0 0.28 0"/></filter><rect width="480" height="480" filter="url(%23n)"/></svg>');
+  background-size: 360px 360px;
+  mix-blend-mode: multiply;
+  opacity: 0.32;
+}
+
+/* 海洋纸纹：第二层更稀的低频噪声，叠加在第一层 noise 之上，强化"纸"质感 */
+body[data-theme="atlas"]:has(.maplibregl-canvas)::before {
+  background-image:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640"><filter id="n2"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.55  0 0 0 0 0.40  0 0 0 0 0.20  0 0 0 0.22 0"/></filter><rect width="640" height="640" filter="url(%23n2)"/></svg>'),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.30  0 0 0 0 0.15  0 0 0 0.28 0"/></filter><rect width="480" height="480" filter="url(%23n)"/></svg>');
+  background-size: 640px 640px, 360px 360px;
+}
+
+/* 古地图色调过滤层：sepia tint + 海洋蓝绿，叠加在 map canvas 上、UI 下 */
+body[data-theme="atlas"] #root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(196, 152, 84, 0.18) 0%, rgba(196, 152, 84, 0.34) 60%, rgba(96, 58, 22, 0.42) 100%);
+  mix-blend-mode: multiply;
+}
+body[data-theme="atlas"] #root::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: rgba(180, 140, 70, 0.22);
+  mix-blend-mode: color;
 }
 
 body[data-theme="atlas"] .title {

@@ -500,7 +500,7 @@ const MapScene = forwardRef(function MapScene({
           id="btn-mountain"
           onClick={() => {
             setViewMode('mountain');
-            setTerrainMode(mapRef.current, 'mountain');
+            setTerrainMode(mapRef.current, 'mountain', themeRef.current);
             mapRef.current?.flyTo({ ...MOUNTAIN_VIEW, duration: 2000 });
           }}
         >
@@ -512,7 +512,7 @@ const MapScene = forwardRef(function MapScene({
           id="btn-reset"
           onClick={() => {
             setViewMode('world');
-            setTerrainMode(mapRef.current, 'world');
+            setTerrainMode(mapRef.current, 'world', themeRef.current);
             mapRef.current?.flyTo({ ...INITIAL_VIEW, duration: 1500 });
           }}
         >

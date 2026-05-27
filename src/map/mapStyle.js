@@ -73,14 +73,14 @@ export const darkStyle = {
       type: 'raster',
       source: 'osm-tiles-atlas',
       paint: {
-        // 用 opacity 0 隐藏（不用 visibility:none）以保证瓦片照常预取，
-        // 切到 atlas 主题时即时显示，无加载等待。
+        // 用 opacity 0 隐藏（不用 visibility:none）以保证瓦片照常预取。
+        // MapLibre 4.7 不支持 raster-color，只能靠传统 raster-* paint 把 voyager 推向 sepia。
         'raster-opacity': 0,
-        'raster-contrast': -0.05,
-        'raster-saturation': -0.15,
-        'raster-brightness-min': 0.18,
-        'raster-brightness-max': 0.98,
-        'raster-hue-rotate': 20,
+        'raster-contrast': 0.42,
+        'raster-saturation': -0.78,
+        'raster-hue-rotate': 32,
+        'raster-brightness-min': 0.28,
+        'raster-brightness-max': 0.78,
       },
     },
     {
@@ -134,12 +134,14 @@ export const THEME_PRESETS = {
     },
   },
   atlas: {
-    background: '#2a4f5a', // 深蓝绿色海洋背景（瓦片之间和瓦片缝隙都是这色）
+    background: '#22454e', // 深蓝绿色海洋（瓦片缝隙也是这色）
     base: 'base-atlas',
+    hillshadeExaggeration: 0.95, // atlas 始终强浮雕
     hillshade: {
-      shadow: 'rgba(60, 38, 22, 0.55)',
-      highlight: 'rgba(252, 240, 215, 0.40)',
-      accent: 'rgba(140, 90, 50, 0.32)',
+      // 雕刻浮雕：极深棕阴影 + 温暖羊皮纸高光 + 浓墨重音
+      shadow: 'rgba(28, 12, 4, 0.85)',
+      highlight: 'rgba(252, 232, 188, 0.65)',
+      accent: 'rgba(110, 64, 28, 0.55)',
     },
     sky: {
       'sky-color': '#dac79a',
@@ -150,12 +152,13 @@ export const THEME_PRESETS = {
       'fog-ground-blend': 0.05,
     },
     boundary: {
-      glowOpacityRefined: 0.32,
-      glowOpacityPlain: 0.16,
-      lineOpacityRefined: 0.88,
-      lineOpacityPlain: 0.48,
-      lineDash: [3, 1.2],
-      fillOpacityRefined: 0.07,
+      glowOpacityRefined: 0.30,
+      glowOpacityPlain: 0.14,
+      lineOpacityRefined: 0.94,
+      lineOpacityPlain: 0.55,
+      // atlas 用实线 + 微弱晕染，模拟羽毛笔墨线
+      lineDash: [1, 0],
+      fillOpacityRefined: 0.06,
       fillOpacityPlain: 0.03,
     },
   },
@@ -193,9 +196,18 @@ export function applyBoundaryPaint(map, themeKey) {
 
   if (map.getLayer('dynasty-territory-line')) {
     if (isAtlas) {
-      map.setPaintProperty('dynasty-territory-line', 'line-color', '#3a2a18');
+      // 深墨棕实线 + 微弱晕染（line-blur）模拟羽毛笔渗墨
+      map.setPaintProperty('dynasty-territory-line', 'line-color', '#2a1808');
+      map.setPaintProperty('dynasty-territory-line', 'line-blur', 0.5);
+      map.setPaintProperty('dynasty-territory-line', 'line-width', [
+        'case', isRefinedExpr, 1.6, 1.0,
+      ]);
     } else {
       map.setPaintProperty('dynasty-territory-line', 'line-color', ['get', 'color']);
+      map.setPaintProperty('dynasty-territory-line', 'line-blur', 0.35);
+      map.setPaintProperty('dynasty-territory-line', 'line-width', [
+        'case', isRefinedExpr, 1.4, 0.8,
+      ]);
     }
     map.setPaintProperty('dynasty-territory-line', 'line-opacity', [
       'case', isRefinedExpr, preset.boundary.lineOpacityRefined, preset.boundary.lineOpacityPlain,
@@ -204,12 +216,16 @@ export function applyBoundaryPaint(map, themeKey) {
   }
 
   if (map.getLayer('dynasty-capital-core')) {
-    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#b22222' : ['get', 'color']);
+    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#a01818' : ['get', 'color']);
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-color',
-      isAtlas ? 'rgba(60, 20, 16, 0.8)' : 'rgba(240, 248, 255, 0.9)');
+      isAtlas ? 'rgba(40, 12, 8, 0.92)' : 'rgba(240, 248, 255, 0.9)');
+    map.setPaintProperty('dynasty-capital-core', 'circle-stroke-width', isAtlas ? 1.2 : 0.8);
   }
   if (map.getLayer('dynasty-capital-glow')) {
-    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b22222' : ['get', 'color']);
+    // atlas: 几乎不发光（古地图朱砂点不应该发光），只留一圈淡晕
+    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#a01818' : ['get', 'color']);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.28);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 0.72);
   }
 }
 
@@ -237,6 +253,9 @@ export function applyMapTheme(map, themeKey) {
     map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);
     map.setPaintProperty('terrain-shade', 'hillshade-highlight-color', preset.hillshade.highlight);
     map.setPaintProperty('terrain-shade', 'hillshade-accent-color', preset.hillshade.accent);
+    // atlas 主题始终保持山阴影；dark 主题只在山脉模式下开
+    const exaggeration = themeKey === 'atlas' ? (preset.hillshadeExaggeration ?? 0.95) : 0;
+    map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
   if (typeof map.setSky === 'function') {
     map.setSky(preset.sky);
@@ -244,14 +263,20 @@ export function applyMapTheme(map, themeKey) {
   applyBoundaryPaint(map, themeKey);
 }
 
-export function setTerrainMode(map, mode) {
+export function setTerrainMode(map, mode, themeKey) {
   if (!map) return;
   const isMountain = mode === 'mountain';
+  const isAtlas = themeKey === 'atlas';
   map.setTerrain({
     source: 'terrain-dem',
     exaggeration: isMountain ? MOUNTAIN_TERRAIN_EXAGGERATION : WORLD_TERRAIN_EXAGGERATION,
   });
   if (map.getLayer('terrain-shade')) {
-    map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', isMountain ? 0.75 : 0);
+    // dark：仅 mountain 模式开启 hillshade（默认沙盘没必要打山阴影）
+    // atlas：始终开启 hillshade，山脉永远要有浮雕感
+    let exaggeration = 0;
+    if (isMountain) exaggeration = 0.95;
+    else if (isAtlas) exaggeration = 0.95;
+    map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
 }
