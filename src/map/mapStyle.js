@@ -25,6 +25,8 @@ const ATLAS_BASE_TILES = [
   'https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
 ];
 
+import atlasLand from '../data/atlas-land-110m.json';
+
 export const darkStyle = {
   version: 8,
   sources: {
@@ -39,6 +41,12 @@ export const darkStyle = {
       tiles: ATLAS_BASE_TILES,
       tileSize: 256,
       attribution: '',
+    },
+    // 小体积 Natural Earth 110m land（约 197 KB 原始 / gzip 约 65 KB）。
+    // 仅用于 atlas 模式分离海陆与画海岸线。
+    'atlas-land': {
+      type: 'geojson',
+      data: atlasLand,
     },
     'terrain-dem': {
       type: 'raster-dem',
@@ -73,14 +81,49 @@ export const darkStyle = {
       type: 'raster',
       source: 'osm-tiles-atlas',
       paint: {
-        // 用 opacity 0 隐藏（不用 visibility:none）以保证瓦片照常预取。
-        // MapLibre 4.7 不支持 raster-color，只能靠传统 raster-* paint 把 voyager 推向 sepia。
+        // atlas 模式实际不显示 voyager（让 bg 深蓝绿做海洋 + GeoJSON land 做陆地）。
+        // 保留 source 与图层是为了将来另一种主题想用 voyager 时不需要重建 style。
         'raster-opacity': 0,
-        'raster-contrast': 0.42,
-        'raster-saturation': -0.78,
+        'raster-contrast': 0.18,
+        'raster-saturation': -0.65,
         'raster-hue-rotate': 32,
         'raster-brightness-min': 0.28,
         'raster-brightness-max': 0.78,
+      },
+    },
+    // atlas 陆地填色：暖羊皮纸 / 赭石，仅 atlas 主题可见（dark 模式 opacity 0）
+    {
+      id: 'atlas-land-fill',
+      type: 'fill',
+      source: 'atlas-land',
+      paint: {
+        'fill-color': '#d4ad6a',
+        'fill-opacity': 0,
+        'fill-antialias': true,
+      },
+    },
+    // 海岸光晕：宽糊光晕在主线之下，像晕染的墨迹
+    {
+      id: 'atlas-coastline-glow',
+      type: 'line',
+      source: 'atlas-land',
+      paint: {
+        'line-color': '#7a4818',
+        'line-opacity': 0,
+        'line-width': 3,
+        'line-blur': 3,
+      },
+    },
+    // 海岸主线：细深墨实线
+    {
+      id: 'atlas-coastline-line',
+      type: 'line',
+      source: 'atlas-land',
+      paint: {
+        'line-color': '#3a1f08',
+        'line-opacity': 0,
+        'line-width': 0.7,
+        'line-blur': 0.2,
       },
     },
     {
@@ -246,16 +289,33 @@ export function applyMapTheme(map, themeKey) {
   if (map.getLayer('base-dark')) {
     map.setPaintProperty('base-dark', 'raster-opacity', preset.base === 'base-dark' ? 0.86 : 0);
   }
+  // atlas 模式不再显示 voyager 基底（用 bg + land GeoJSON 代替）。
   if (map.getLayer('base-atlas')) {
-    map.setPaintProperty('base-atlas', 'raster-opacity', preset.base === 'base-atlas' ? 0.95 : 0);
+    map.setPaintProperty('base-atlas', 'raster-opacity', 0);
+  }
+  // atlas 陆地填色 + 海岸光晕 + 海岸主线：仅 atlas 时显示
+  const isAtlas = themeKey === 'atlas';
+  if (map.getLayer('atlas-land-fill')) {
+    map.setPaintProperty('atlas-land-fill', 'fill-opacity', isAtlas ? 0.92 : 0);
+  }
+  if (map.getLayer('atlas-coastline-glow')) {
+    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.55 : 0);
+  }
+  if (map.getLayer('atlas-coastline-line')) {
+    map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0);
   }
   if (map.getLayer('terrain-shade')) {
     map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);
     map.setPaintProperty('terrain-shade', 'hillshade-highlight-color', preset.hillshade.highlight);
     map.setPaintProperty('terrain-shade', 'hillshade-accent-color', preset.hillshade.accent);
-    // atlas 主题始终保持山阴影；dark 主题只在山脉模式下开
+    // atlas 主题始终保持山阴影；dark 主题只在山脉模式下开（applyMapTheme 不知道当前是不是山脉模式，
+    // 默认关掉；btn-mountain 再单独通过 setTerrainMode 打开）
     const exaggeration = themeKey === 'atlas' ? (preset.hillshadeExaggeration ?? 0.95) : 0;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
+    // 同步 dark/atlas 的 hillshade 配色，避免上一次主题的色彩遗留
+    map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);
+    map.setPaintProperty('terrain-shade', 'hillshade-highlight-color', preset.hillshade.highlight);
+    map.setPaintProperty('terrain-shade', 'hillshade-accent-color', preset.hillshade.accent);
   }
   if (typeof map.setSky === 'function') {
     map.setSky(preset.sky);

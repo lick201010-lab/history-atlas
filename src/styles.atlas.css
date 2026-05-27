@@ -61,7 +61,7 @@ body[data-theme="atlas"]:has(.maplibregl-canvas)::before {
   background-size: 640px 640px, 360px 360px;
 }
 
-/* 古地图色调过滤层：sepia tint + 海洋蓝绿，叠加在 map canvas 上、UI 下 */
+/* 古地图色调微调：极弱的暖色径向（只压角落，中央保持清晰，海洋色不被污染） */
 body[data-theme="atlas"] #root::before {
   content: "";
   position: fixed;
@@ -69,17 +69,8 @@ body[data-theme="atlas"] #root::before {
   z-index: 4;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 55%, rgba(196, 152, 84, 0.18) 0%, rgba(196, 152, 84, 0.34) 60%, rgba(96, 58, 22, 0.42) 100%);
+    radial-gradient(ellipse at 50% 55%, transparent 55%, rgba(96, 58, 22, 0.18) 100%);
   mix-blend-mode: multiply;
-}
-body[data-theme="atlas"] #root::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-  background: rgba(180, 140, 70, 0.22);
-  mix-blend-mode: color;
 }
 
 body[data-theme="atlas"] .title {
