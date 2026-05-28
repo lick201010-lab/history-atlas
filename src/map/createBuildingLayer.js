@@ -1049,6 +1049,91 @@ function buildDefault(mat) {
   return [base, top];
 }
 
+/* ============================================================
+ * 年代演变 + 植被（M2/M3）辅助
+ * ============================================================ */
+
+// 两个颜色数字按 t 插值，返回 hex 数字。
+function lerpColorNum(aNum, bNum, t) {
+  const a = new THREE.Color(aNum);
+  const b = new THREE.Color(bNum);
+  return a.lerp(b, t).getHex();
+}
+
+// 按建造起始年代给建筑一个时代色调（远古砂岩 → 古典石灰岩 → 中古陶土 →
+// 近世暖石 → 近现代冷灰），只在 atlas 主题以低比例混入建筑本色，
+// 让拖动时间轴时能"感到"建筑随年代演变，同时保留各文明的识别色。
+const ERA_BANDS = [
+  { before: -800, color: 0xb08d57 }, // 远古
+  { before: 200, color: 0xcdbb98 }, // 古典
+  { before: 1300, color: 0xa9745a }, // 中古
+  { before: 1750, color: 0xb5854a }, // 近世
+  { before: Infinity, color: 0x9aa1a6 }, // 近现代
+];
+function eraColorNum(startYear) {
+  for (const band of ERA_BANDS) if (startYear < band.before) return band.color;
+  return 0x9aa1a6;
+}
+
+// 适合放树丛的生态区（温带/热带/季风），其余（沙漠/干旱）不放树。
+const GROVE_REGIONS = new Set([
+  '东亚', '南亚', '中美洲', '安第斯', '东南亚', '西欧', '地中海', '东地中海', '南部非洲',
+]);
+
+// 稳定的字符串散列 → [0,1)，让每个站点的树丛分布固定可复现。
+function hashSeed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i += 1) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return (h >>> 0) / 4294967295;
+}
+
+// 低多边形树丛：在建筑足迹外圈散布若干风格化小树（针叶锥 / 阔叶团）。
+// 材质 role='tree'，setTheme 时按主题显隐（仅 atlas 显示）。
+function buildGrove(building) {
+  const meshes = [];
+  const seed = hashSeed(building.id);
+  const n = 5;
+  for (let i = 0; i < n; i += 1) {
+    const ang = (i / n) * Math.PI * 2 + seed * 6.283;
+    const rad = 0.98 + ((i * 0.27 + seed) % 1) * 0.30;
+    const x = Math.cos(ang) * rad;
+    const y = Math.sin(ang) * rad;
+    const sc = 0.8 + ((i * 0.5 + seed) % 1) * 0.5;
+    const trunkH = 0.13 * sc;
+    const trunkMat = new THREE.MeshPhongMaterial({
+      color: 0x5a4324, transparent: true, opacity: 1, shininess: 4,
+    });
+    trunkMat.userData = { role: 'tree' };
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.026, trunkH, 6), trunkMat);
+    trunk.rotation.x = Math.PI / 2;
+    trunk.position.set(x, y, trunkH / 2);
+    meshes.push(trunk);
+
+    const canopyHex = lerpColorNum(0x4f6b34, 0x728c46, (i * 0.33 + seed) % 1);
+    const canMat = new THREE.MeshPhongMaterial({
+      color: canopyHex, transparent: true, opacity: 1, shininess: 3,
+      emissive: 0x0b1206, emissiveIntensity: 0.15,
+    });
+    canMat.userData = { role: 'tree' };
+    const broad = ((i + Math.floor(seed * 3)) % 2) === 0;
+    const can = broad
+      ? new THREE.Mesh(new THREE.IcosahedronGeometry(0.11 * sc, 0), canMat)
+      : new THREE.Mesh(new THREE.ConeGeometry(0.10 * sc, 0.26 * sc, 7), canMat);
+    can.position.set(x, y, trunkH + (broad ? 0.09 : 0.13) * sc);
+    meshes.push(can);
+  }
+  return meshes;
+}
+
+// 平滑插值（smoothstep），用于建筑出现/消失时的缩放渐变。
+function smoothstep(t) {
+  const c = Math.max(0, Math.min(1, t));
+  return c * c * (3 - 2 * c);
+}
+
 export function createBuildingLayer(landmarks) {
   return {
     id: 'buildings-3d',
@@ -1078,10 +1163,13 @@ export function createBuildingLayer(landmarks) {
         const scale = merc.meterInMercatorCoordinateUnits();
         const sizeMeters = 260000;
         group.position.set(merc.x, merc.y, merc.z);
-        group.scale.set(scale * sizeMeters, scale * sizeMeters, scale * sizeMeters);
         group.rotation.x = Math.PI / 2;
         group.userData = building;
         group.userData.mercatorScale = scale;
+        group.userData.baseScale = scale * sizeMeters;
+        group.userData.animFactor = 1; // 当前缩放系数 0..1
+        group.userData.animTarget = 1; // 目标（1 显示 / 0 隐藏）
+        group.scale.set(scale * sizeMeters, scale * sizeMeters, scale * sizeMeters);
         group.visible = true;
         this.scene.add(group);
         this.meshes[building.id] = group;
@@ -1110,10 +1198,43 @@ export function createBuildingLayer(landmarks) {
       if (!this.meshes) return;
       const sizeMeters = this.getSizeMeters();
       Object.values(this.meshes).forEach((mesh) => {
-        const scale = mesh.userData.mercatorScale * sizeMeters;
-        mesh.scale.set(scale, scale, scale);
+        mesh.userData.baseScale = mesh.userData.mercatorScale * sizeMeters;
+        this.applyScale(mesh);
       });
       if (this.map) this.map.triggerRepaint();
+    },
+
+    // 应用最终缩放 = 基础缩放(随 zoom) × 出现/消失渐变系数。
+    applyScale(mesh) {
+      const base = mesh.userData.baseScale
+        ?? (mesh.userData.mercatorScale * this.getSizeMeters());
+      const f = smoothstep(mesh.userData.animFactor ?? 1);
+      const s = base * f;
+      mesh.scale.set(s, s, s);
+    },
+
+    // 每帧推进出现/消失动画；全部到位后停止触发重绘（不空转）。
+    stepAnim() {
+      if (!this.meshes) return;
+      const step = 0.14;
+      let any = false;
+      for (const mesh of Object.values(this.meshes)) {
+        const f = mesh.userData.animFactor ?? 1;
+        const t = mesh.userData.animTarget ?? 1;
+        if (f === t) continue;
+        let nf = f + Math.sign(t - f) * step;
+        if (t > f && nf >= t) nf = t;
+        if (t < f && nf <= t) nf = t;
+        mesh.userData.animFactor = nf;
+        this.applyScale(mesh);
+        if (nf === t) {
+          if (t === 0) mesh.visible = false;
+        } else {
+          any = true;
+        }
+      }
+      this._animating = any;
+      if (any && this.map) this.map.triggerRepaint();
     },
 
     makeMesh(building) {
@@ -1128,11 +1249,18 @@ export function createBuildingLayer(landmarks) {
       });
       mat.userData.role = 'body';
       mat.userData.baseColor = color;
+      // atlas 主题用的"年代色调"：本色与时代色混 28%。
+      mat.userData.atlasColor = lerpColorNum(color, eraColorNum(building.startYear), 0.28);
 
       // 优先使用 modelProfile 的专属轮廓（重点样板建筑），其次按 type 走通用模型。
       const profileBuilder = building.modelProfile ? PROFILES[building.modelProfile] : null;
       const builder = profileBuilder || BUILDERS[building.type] || buildDefault;
       for (const mesh of builder(mat)) group.add(mesh);
+
+      // 植被（M2）：温带/热带站点在足迹外圈放低多边形树丛（沙漠/干旱区跳过）。
+      if (GROVE_REGIONS.has(building.region)) {
+        for (const tree of buildGrove(building)) group.add(tree);
+      }
 
       const ringMat = new THREE.MeshBasicMaterial({
         color,
@@ -1187,15 +1315,22 @@ export function createBuildingLayer(landmarks) {
                 m.emissive?.setHex(0x1a1208);
                 m.emissiveIntensity = 0.12;
                 m.shininess = 8;
+                // 年代色调（仅 atlas）
+                if (m.userData.atlasColor != null) m.color?.setHex(m.userData.atlasColor);
               } else {
                 m.emissive?.setHex(0x332211);
                 m.emissiveIntensity = 0.45;
                 m.shininess = 35;
+                if (m.userData.baseColor != null) m.color?.setHex(m.userData.baseColor);
               }
               m.needsUpdate = true;
             } else if (role === 'aura' || role === 'beam') {
               const base = m.userData.baseOpacity ?? m.opacity;
               m.opacity = atlas ? base * 0.30 : base;
+              m.needsUpdate = true;
+            } else if (role === 'tree') {
+              // 树丛只在 atlas 显示；dark（HUD）下用 opacity 0 隐藏。
+              m.opacity = atlas ? 1 : 0;
               m.needsUpdate = true;
             }
           }
@@ -1208,6 +1343,7 @@ export function createBuildingLayer(landmarks) {
 
     render(gl, matrix) {
       if (!this.layerVisible) return;
+      if (this._animating) this.stepAnim();
       const projection = new THREE.Matrix4().fromArray(matrix);
       this.camera.projectionMatrix = projection;
       this.renderer.resetState();
@@ -1216,13 +1352,33 @@ export function createBuildingLayer(landmarks) {
 
     setYear(year) {
       const visible = [];
+      const first = !this._initialized;
+      this._initialized = true;
+      let any = false;
       for (const building of landmarks) {
         const mesh = this.meshes?.[building.id];
         if (!mesh) continue;
         const inRange = year >= building.startYear && year <= building.endYear;
-        mesh.visible = inRange;
         if (inRange) visible.push(building);
+        const target = inRange ? 1 : 0;
+        if (first) {
+          // 首帧不做生长动画，直接到位。
+          mesh.userData.animTarget = target;
+          mesh.userData.animFactor = target;
+          mesh.visible = inRange;
+          this.applyScale(mesh);
+        } else if (mesh.userData.animTarget !== target) {
+          mesh.userData.animTarget = target;
+          if (target === 1) {
+            mesh.visible = true;
+            // 从一个较小尺寸"长出来"
+            if ((mesh.userData.animFactor ?? 1) >= 1) mesh.userData.animFactor = 0.45;
+          }
+          any = true;
+        }
+        if (mesh.userData.animFactor !== mesh.userData.animTarget) any = true;
       }
+      this._animating = any;
       if (this.map) this.map.triggerRepaint();
       return visible;
     },
