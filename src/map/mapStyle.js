@@ -27,6 +27,27 @@ const ATLAS_BASE_TILES = [
 
 import atlasLand from '../data/atlas-land-110m.json';
 
+// 海洋遮罩：世界矩形为外环，每块陆地的外环作为"洞"，于是只有海洋被填色。
+// 放在 hillshade 之上、海岸线之下，用一层干净深蓝绿盖住海底 relief，
+// 陆地因为是镂空所以浮雕照常透出。这是制图里常用的 ocean mask 技法。
+const ATLAS_OCEAN_MASK = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [[-180, -85], [-180, 85], [180, 85], [180, -85], [-180, -85]],
+          ...atlasLand.features.map((f) => f.geometry.coordinates[0]),
+        ],
+      },
+    },
+  ],
+};
+const ATLAS_OCEAN_COLOR = '#1f4750'; // 深蓝绿 / 墨青，比 bg 略深一点更沉稳干净
+
 export const darkStyle = {
   version: 8,
   sources: {
@@ -47,6 +68,10 @@ export const darkStyle = {
     'atlas-land': {
       type: 'geojson',
       data: atlasLand,
+    },
+    'atlas-ocean': {
+      type: 'geojson',
+      data: ATLAS_OCEAN_MASK,
     },
     'terrain-dem': {
       type: 'raster-dem',
@@ -102,6 +127,30 @@ export const darkStyle = {
         'fill-antialias': true,
       },
     },
+    // hillshade（浮雕）画在全图，包括海底。随后的 ocean mask 会把海里盖掉。
+    {
+      id: 'terrain-shade',
+      type: 'hillshade',
+      source: 'terrain-dem-shade',
+      paint: {
+        'hillshade-exaggeration': 0,
+        'hillshade-shadow-color': 'rgba(0, 0, 0, 0.72)',
+        'hillshade-highlight-color': 'rgba(155, 185, 220, 0.28)',
+        'hillshade-accent-color': 'rgba(95, 120, 155, 0.30)',
+      },
+    },
+    // 海洋遮罩：盖住海底 hillshade，让海面平、深、干净；陆地镂空所以浮雕透出。
+    // 仅 atlas 可见（dark 模式 opacity 0），位于海岸线之下所以不挡海岸墨线。
+    {
+      id: 'atlas-ocean-mask',
+      type: 'fill',
+      source: 'atlas-ocean',
+      paint: {
+        'fill-color': ATLAS_OCEAN_COLOR,
+        'fill-opacity': 0,
+        'fill-antialias': true,
+      },
+    },
     // 海岸光晕：宽糊光晕在主线之下，像晕染的墨迹
     {
       id: 'atlas-coastline-glow',
@@ -110,8 +159,8 @@ export const darkStyle = {
       paint: {
         'line-color': '#7a4818',
         'line-opacity': 0,
-        'line-width': 3,
-        'line-blur': 3,
+        'line-width': 2.4,
+        'line-blur': 2.2,
       },
     },
     // 海岸主线：细深墨实线
@@ -122,19 +171,8 @@ export const darkStyle = {
       paint: {
         'line-color': '#3a1f08',
         'line-opacity': 0,
-        'line-width': 0.7,
-        'line-blur': 0.2,
-      },
-    },
-    {
-      id: 'terrain-shade',
-      type: 'hillshade',
-      source: 'terrain-dem-shade',
-      paint: {
-        'hillshade-exaggeration': 0,
-        'hillshade-shadow-color': 'rgba(0, 0, 0, 0.72)',
-        'hillshade-highlight-color': 'rgba(155, 185, 220, 0.28)',
-        'hillshade-accent-color': 'rgba(95, 120, 155, 0.30)',
+        'line-width': 0.9,
+        'line-blur': 0.15,
       },
     },
   ],
@@ -177,14 +215,15 @@ export const THEME_PRESETS = {
     },
   },
   atlas: {
-    background: '#22454e', // 深蓝绿色海洋（瓦片缝隙也是这色）
+    background: '#1f4750', // 深蓝绿色海洋（瓦片缝隙也是这色，与 ocean mask 一致）
     base: 'base-atlas',
-    hillshadeExaggeration: 0.95, // atlas 始终强浮雕
+    ocean: ATLAS_OCEAN_COLOR,
+    hillshadeExaggeration: 0.95, // atlas 始终强浮雕（只服务陆地，海里被 mask 盖掉）
     hillshade: {
-      // 雕刻浮雕：极深棕阴影 + 温暖羊皮纸高光 + 浓墨重音
-      shadow: 'rgba(28, 12, 4, 0.85)',
-      highlight: 'rgba(252, 232, 188, 0.65)',
-      accent: 'rgba(110, 64, 28, 0.55)',
+      // 雕刻浮雕：深棕阴影 + 温暖羊皮纸高光 + 墨重音（阴影略减弱，去脏更清晰）
+      shadow: 'rgba(28, 12, 4, 0.68)',
+      highlight: 'rgba(252, 232, 188, 0.62)',
+      accent: 'rgba(110, 64, 28, 0.48)',
     },
     sky: {
       'sky-color': '#dac79a',
@@ -259,14 +298,14 @@ export function applyBoundaryPaint(map, themeKey) {
   }
 
   if (map.getLayer('dynasty-capital-core')) {
-    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#a01818' : ['get', 'color']);
+    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#b3201b' : ['get', 'color']);
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-color',
       isAtlas ? 'rgba(40, 12, 8, 0.92)' : 'rgba(240, 248, 255, 0.9)');
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-width', isAtlas ? 1.2 : 0.8);
   }
   if (map.getLayer('dynasty-capital-glow')) {
     // atlas: 几乎不发光（古地图朱砂点不应该发光），只留一圈淡晕
-    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#a01818' : ['get', 'color']);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : ['get', 'color']);
     map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.28);
     map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 0.72);
   }
@@ -298,8 +337,13 @@ export function applyMapTheme(map, themeKey) {
   if (map.getLayer('atlas-land-fill')) {
     map.setPaintProperty('atlas-land-fill', 'fill-opacity', isAtlas ? 0.92 : 0);
   }
+  // 海洋遮罩：atlas 全不透明盖住海底 relief；dark 完全隐藏
+  if (map.getLayer('atlas-ocean-mask')) {
+    map.setPaintProperty('atlas-ocean-mask', 'fill-color', preset.ocean || ATLAS_OCEAN_COLOR);
+    map.setPaintProperty('atlas-ocean-mask', 'fill-opacity', isAtlas ? 1 : 0);
+  }
   if (map.getLayer('atlas-coastline-glow')) {
-    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.55 : 0);
+    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0);
   }
   if (map.getLayer('atlas-coastline-line')) {
     map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0);
