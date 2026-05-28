@@ -106,17 +106,18 @@ export const darkStyle = {
       type: 'raster',
       source: 'osm-tiles-atlas',
       paint: {
-        // atlas 模式实际不显示 voyager（让 bg 深蓝绿做海洋 + GeoJSON land 做陆地）。
-        // 保留 source 与图层是为了将来另一种主题想用 voyager 时不需要重建 style。
+        // atlas 模式作为"地貌/生态底色"低透明度衬在羊皮纸之下：
+        // voyager 的真实地表（沙漠/森林/草原色）透出来，近似分层设色。
+        // 海洋部分会被上方 ocean mask 盖掉，所以只在陆地可见。
         'raster-opacity': 0,
-        'raster-contrast': 0.18,
-        'raster-saturation': -0.65,
-        'raster-hue-rotate': 32,
-        'raster-brightness-min': 0.28,
-        'raster-brightness-max': 0.78,
+        'raster-contrast': 0.10,
+        'raster-saturation': -0.45,
+        'raster-hue-rotate': 18,
+        'raster-brightness-min': 0.32,
+        'raster-brightness-max': 0.86,
       },
     },
-    // atlas 陆地填色：暖羊皮纸 / 赭石，仅 atlas 主题可见（dark 模式 opacity 0）
+    // atlas 陆地填色：暖羊皮纸 / 赭石 wash，半透明罩在 voyager 地貌之上。
     {
       id: 'atlas-land-fill',
       type: 'fill',
@@ -128,15 +129,31 @@ export const darkStyle = {
       },
     },
     // hillshade（浮雕）画在全图，包括海底。随后的 ocean mask 会把海里盖掉。
+    // 主光：西北向键光（雕刻感）。
     {
       id: 'terrain-shade',
       type: 'hillshade',
       source: 'terrain-dem-shade',
       paint: {
         'hillshade-exaggeration': 0,
+        'hillshade-illumination-direction': 315,
         'hillshade-shadow-color': 'rgba(0, 0, 0, 0.72)',
         'hillshade-highlight-color': 'rgba(155, 185, 220, 0.28)',
         'hillshade-accent-color': 'rgba(95, 120, 155, 0.30)',
+      },
+    },
+    // 第二层 hillshade：副光（东南向、低透明），v4 无 multidirectional，用两层伪多向，
+    // 柔化主光硬阴影、增加雕塑体积感。仅 atlas 开启（dark 下 exaggeration 0）。
+    {
+      id: 'terrain-shade-fill',
+      type: 'hillshade',
+      source: 'terrain-dem-shade',
+      paint: {
+        'hillshade-exaggeration': 0,
+        'hillshade-illumination-direction': 135,
+        'hillshade-shadow-color': 'rgba(40, 22, 8, 0.0)',
+        'hillshade-highlight-color': 'rgba(255, 244, 214, 0.0)',
+        'hillshade-accent-color': 'rgba(120, 80, 40, 0.0)',
       },
     },
     // 海洋遮罩：盖住海底 hillshade，让海面平、深、干净；陆地镂空所以浮雕透出。
@@ -149,6 +166,19 @@ export const darkStyle = {
         'fill-color': ATLAS_OCEAN_COLOR,
         'fill-opacity': 0,
         'fill-antialias': true,
+      },
+    },
+    // 近岸浅水带：在海洋遮罩之上、海岸墨线之下，沿海岸画一圈偏亮的青绿糊光，
+    // 模拟浅海大陆架；深海仍保持平、深、干净。仅 atlas 可见。
+    {
+      id: 'atlas-coast-shallow',
+      type: 'line',
+      source: 'atlas-land',
+      paint: {
+        'line-color': '#4f8f93',
+        'line-opacity': 0,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 3, 4, 7, 6, 14],
+        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 4, 6, 12],
       },
     },
     // 海岸光晕：宽糊光晕在主线之下，像晕染的墨迹
@@ -218,12 +248,24 @@ export const THEME_PRESETS = {
     background: '#1f4750', // 深蓝绿色海洋（瓦片缝隙也是这色，与 ocean mask 一致）
     base: 'base-atlas',
     ocean: ATLAS_OCEAN_COLOR,
-    hillshadeExaggeration: 0.95, // atlas 始终强浮雕（只服务陆地，海里被 mask 盖掉）
+    baseOpacity: 0.42, // voyager 地貌底色透出度（近似分层设色）
+    landFillOpacity: 0.6, // 羊皮纸 wash 透明度（让地貌透出）
+    shallow: { color: '#4f8f93', opacity: 0.5 }, // 近岸浅水带
+    // 主光向 + 随 zoom 渐强的浮雕（世界视角柔、区域视角强）
+    illuminationDirection: 315,
+    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.6, 4, 0.95, 6, 1.15],
     hillshade: {
       // 雕刻浮雕：深棕阴影 + 温暖羊皮纸高光 + 墨重音（阴影略减弱，去脏更清晰）
       shadow: 'rgba(28, 12, 4, 0.68)',
       highlight: 'rgba(252, 232, 188, 0.62)',
       accent: 'rgba(110, 64, 28, 0.48)',
+    },
+    // 第二层副光 hillshade：低强度暖色，柔化硬阴影
+    hillshadeFill: {
+      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.4, 4, 0.6, 6, 0.7],
+      shadow: 'rgba(40, 22, 8, 0.22)',
+      highlight: 'rgba(255, 244, 214, 0.20)',
+      accent: 'rgba(120, 80, 40, 0.16)',
     },
     sky: {
       'sky-color': '#dac79a',
@@ -328,19 +370,24 @@ export function applyMapTheme(map, themeKey) {
   if (map.getLayer('base-dark')) {
     map.setPaintProperty('base-dark', 'raster-opacity', preset.base === 'base-dark' ? 0.86 : 0);
   }
-  // atlas 模式不再显示 voyager 基底（用 bg + land GeoJSON 代替）。
-  if (map.getLayer('base-atlas')) {
-    map.setPaintProperty('base-atlas', 'raster-opacity', 0);
-  }
-  // atlas 陆地填色 + 海岸光晕 + 海岸主线：仅 atlas 时显示
   const isAtlas = themeKey === 'atlas';
+  // atlas 模式让 voyager 低透明度做地貌底色；dark 隐藏。
+  if (map.getLayer('base-atlas')) {
+    map.setPaintProperty('base-atlas', 'raster-opacity', isAtlas ? (preset.baseOpacity ?? 0.42) : 0);
+  }
+  // atlas 陆地填色（半透明 wash）+ 海岸光晕 + 海岸主线：仅 atlas 时显示
   if (map.getLayer('atlas-land-fill')) {
-    map.setPaintProperty('atlas-land-fill', 'fill-opacity', isAtlas ? 0.92 : 0);
+    map.setPaintProperty('atlas-land-fill', 'fill-opacity', isAtlas ? (preset.landFillOpacity ?? 0.6) : 0);
   }
   // 海洋遮罩：atlas 全不透明盖住海底 relief；dark 完全隐藏
   if (map.getLayer('atlas-ocean-mask')) {
     map.setPaintProperty('atlas-ocean-mask', 'fill-color', preset.ocean || ATLAS_OCEAN_COLOR);
     map.setPaintProperty('atlas-ocean-mask', 'fill-opacity', isAtlas ? 1 : 0);
+  }
+  // 近岸浅水带：仅 atlas
+  if (map.getLayer('atlas-coast-shallow')) {
+    map.setPaintProperty('atlas-coast-shallow', 'line-color', preset.shallow?.color ?? '#4f8f93');
+    map.setPaintProperty('atlas-coast-shallow', 'line-opacity', isAtlas ? (preset.shallow?.opacity ?? 0.5) : 0);
   }
   if (map.getLayer('atlas-coastline-glow')) {
     map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0);
@@ -352,14 +399,25 @@ export function applyMapTheme(map, themeKey) {
     map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);
     map.setPaintProperty('terrain-shade', 'hillshade-highlight-color', preset.hillshade.highlight);
     map.setPaintProperty('terrain-shade', 'hillshade-accent-color', preset.hillshade.accent);
-    // atlas 主题始终保持山阴影；dark 主题只在山脉模式下开（applyMapTheme 不知道当前是不是山脉模式，
-    // 默认关掉；btn-mountain 再单独通过 setTerrainMode 打开）
-    const exaggeration = themeKey === 'atlas' ? (preset.hillshadeExaggeration ?? 0.95) : 0;
+    if (preset.illuminationDirection != null) {
+      map.setPaintProperty('terrain-shade', 'hillshade-illumination-direction', preset.illuminationDirection);
+    }
+    // atlas 主题始终保持山阴影（随 zoom 渐强）；dark 主题只在山脉模式下开（默认关掉；
+    // btn-mountain 再单独通过 setTerrainMode 打开）
+    const exaggeration = isAtlas ? (preset.hillshadeExaggeration ?? 0.95) : 0;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
-    // 同步 dark/atlas 的 hillshade 配色，避免上一次主题的色彩遗留
-    map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);
-    map.setPaintProperty('terrain-shade', 'hillshade-highlight-color', preset.hillshade.highlight);
-    map.setPaintProperty('terrain-shade', 'hillshade-accent-color', preset.hillshade.accent);
+  }
+  // 第二层副光 hillshade：仅 atlas 开启
+  if (map.getLayer('terrain-shade-fill')) {
+    const fill = preset.hillshadeFill;
+    if (isAtlas && fill) {
+      map.setPaintProperty('terrain-shade-fill', 'hillshade-shadow-color', fill.shadow);
+      map.setPaintProperty('terrain-shade-fill', 'hillshade-highlight-color', fill.highlight);
+      map.setPaintProperty('terrain-shade-fill', 'hillshade-accent-color', fill.accent);
+      map.setPaintProperty('terrain-shade-fill', 'hillshade-exaggeration', fill.exaggeration ?? 0.6);
+    } else {
+      map.setPaintProperty('terrain-shade-fill', 'hillshade-exaggeration', 0);
+    }
   }
   if (typeof map.setSky === 'function') {
     map.setSky(preset.sky);
@@ -371,16 +429,25 @@ export function setTerrainMode(map, mode, themeKey) {
   if (!map) return;
   const isMountain = mode === 'mountain';
   const isAtlas = themeKey === 'atlas';
+  const atlasPreset = THEME_PRESETS.atlas;
   map.setTerrain({
     source: 'terrain-dem',
     exaggeration: isMountain ? MOUNTAIN_TERRAIN_EXAGGERATION : WORLD_TERRAIN_EXAGGERATION,
   });
   if (map.getLayer('terrain-shade')) {
     // dark：仅 mountain 模式开启 hillshade（默认沙盘没必要打山阴影）
-    // atlas：始终开启 hillshade，山脉永远要有浮雕感
+    // atlas：始终开启随 zoom 渐强的浮雕，山脉永远要有雕刻感
     let exaggeration = 0;
-    if (isMountain) exaggeration = 0.95;
-    else if (isAtlas) exaggeration = 0.95;
+    if (isAtlas) exaggeration = atlasPreset.hillshadeExaggeration ?? 0.95;
+    else if (isMountain) exaggeration = 0.95;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
+  }
+  // 第二层副光 hillshade 仅 atlas 跟随
+  if (map.getLayer('terrain-shade-fill')) {
+    map.setPaintProperty(
+      'terrain-shade-fill',
+      'hillshade-exaggeration',
+      isAtlas ? (atlasPreset.hillshadeFill?.exaggeration ?? 0.6) : 0,
+    );
   }
 }
