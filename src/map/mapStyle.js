@@ -97,9 +97,14 @@ export const darkStyle = {
       type: 'raster',
       source: 'osm-tiles-dark',
       paint: {
+        // 深色"地球夜景"底：在近黑的 dark_all 上加一点冷蓝，让海"深邃"而非死黑，
+        // 陆地高光压住保持幽暗。
         'raster-opacity': 0.86,
-        'raster-contrast': 0.12,
-        'raster-saturation': -0.18,
+        'raster-contrast': 0.18,
+        'raster-saturation': 0.1,
+        'raster-hue-rotate': 202,
+        'raster-brightness-min': 0.0,
+        'raster-brightness-max': 0.9,
       },
     },
     {
@@ -261,10 +266,12 @@ export const THEME_PRESETS = {
   dark: {
     background: '#04080f',
     base: 'base-dark',
+    // 始终保留一层很弱的冷调世界级浮雕，给陆块体积感而不杂乱（山脉模式再加强）。
+    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.12, 5, 0.32],
     hillshade: {
-      shadow: 'rgba(0, 0, 0, 0.72)',
-      highlight: 'rgba(155, 185, 220, 0.28)',
-      accent: 'rgba(95, 120, 155, 0.30)',
+      shadow: 'rgba(2, 8, 18, 0.6)',
+      highlight: 'rgba(150, 185, 225, 0.22)',
+      accent: 'rgba(90, 120, 160, 0.26)',
     },
     sky: {
       'sky-color': '#0a1428',
@@ -448,11 +455,18 @@ export function applyMapTheme(map, themeKey) {
     map.setPaintProperty('atlas-coast-sand', 'line-color', preset.sand?.color ?? '#9ed7c8');
     map.setPaintProperty('atlas-coast-sand', 'line-opacity', isAtlas ? (preset.sand?.opacity ?? 0.7) : 0);
   }
+  // 海岸线：atlas 为墨棕实线 + 晕染；dark "地球夜景" 复用同一几何做冷青发光海岸线。
   if (map.getLayer('atlas-coastline-glow')) {
-    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0);
+    map.setPaintProperty('atlas-coastline-glow', 'line-color', isAtlas ? '#7a4818' : '#2f7d92');
+    map.setPaintProperty('atlas-coastline-glow', 'line-width', isAtlas ? 2.4 : 2.8);
+    map.setPaintProperty('atlas-coastline-glow', 'line-blur', isAtlas ? 2.2 : 3);
+    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0.22);
   }
   if (map.getLayer('atlas-coastline-line')) {
-    map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0);
+    map.setPaintProperty('atlas-coastline-line', 'line-color', isAtlas ? '#3a1f08' : '#86dcec');
+    map.setPaintProperty('atlas-coastline-line', 'line-width', isAtlas ? 0.9 : 0.7);
+    map.setPaintProperty('atlas-coastline-line', 'line-blur', isAtlas ? 0.15 : 0.4);
+    map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0.4);
   }
   if (map.getLayer('terrain-shade')) {
     map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);
@@ -461,9 +475,9 @@ export function applyMapTheme(map, themeKey) {
     if (preset.illuminationDirection != null) {
       map.setPaintProperty('terrain-shade', 'hillshade-illumination-direction', preset.illuminationDirection);
     }
-    // atlas 主题始终保持山阴影（随 zoom 渐强）；dark 主题只在山脉模式下开（默认关掉；
-    // btn-mountain 再单独通过 setTerrainMode 打开）
-    const exaggeration = isAtlas ? (preset.hillshadeExaggeration ?? 0.95) : 0;
+    // atlas 与 dark 都保持各自 preset 的世界级浮雕（dark 为很弱的冷调浮雕，
+    // 给陆块体积感；山脉模式再由 setTerrainMode 加强）。
+    const exaggeration = preset.hillshadeExaggeration ?? 0;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
   // 第二层副光 hillshade：仅 atlas 开启
@@ -494,11 +508,12 @@ export function setTerrainMode(map, mode, themeKey) {
     exaggeration: isMountain ? MOUNTAIN_TERRAIN_EXAGGERATION : WORLD_TERRAIN_EXAGGERATION,
   });
   if (map.getLayer('terrain-shade')) {
-    // dark：仅 mountain 模式开启 hillshade（默认沙盘没必要打山阴影）
+    // dark：世界视角保留很弱的冷调浮雕，山脉模式再加强
     // atlas：始终开启随 zoom 渐强的浮雕，山脉永远要有雕刻感
     let exaggeration = 0;
     if (isAtlas) exaggeration = atlasPreset.hillshadeExaggeration ?? 0.95;
     else if (isMountain) exaggeration = 0.95;
+    else exaggeration = THEME_PRESETS.dark.hillshadeExaggeration ?? 0;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
   // 第二层副光 hillshade 仅 atlas 跟随
