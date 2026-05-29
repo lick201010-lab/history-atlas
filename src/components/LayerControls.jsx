@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 
-export default function LayerControls({
+function LayerControls({
   dynasties,
   landmarks,
   layerVisibility,
@@ -76,3 +76,5 @@ export default function LayerControls({
     </div>
   );
 }
+
+export default memo(LayerControls);

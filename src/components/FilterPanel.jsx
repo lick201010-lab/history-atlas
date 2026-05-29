@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 
 const TOP_TAGS = 18;
 
-export default function FilterPanel({ dynasties, filter, onFilterChange }) {
+function FilterPanel({ dynasties, filter, onFilterChange }) {
   const { regions, tags } = useMemo(() => {
     const regionCount = new Map();
     const tagCount = new Map();
@@ -93,3 +93,5 @@ export default function FilterPanel({ dynasties, filter, onFilterChange }) {
     </details>
   );
 }
+
+export default memo(FilterPanel);

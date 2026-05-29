@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { formatYear } from '../utils/formatYear.js';
 import { annotateLifecycle } from '../utils/narrative.js';
 
-export default function InfoPanel({
+function InfoPanel({
   year,
   buildings,
   dynasties,
@@ -110,3 +111,5 @@ export default function InfoPanel({
     </div>
   );
 }
+
+export default memo(InfoPanel);

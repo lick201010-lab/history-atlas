@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
-export default function Starfield({
+function Starfield({
   id,
   density,
   minR,
@@ -91,7 +91,9 @@ export default function Starfield({
     }
 
     function loop(t) {
-      if (document.hidden) {
+      // Skip the per-frame star redraw when the tab is hidden or this canvas is
+      // not displayed (e.g. covered/hidden under the atlas parchment theme).
+      if (document.hidden || canvas.offsetParent === null) {
         frameId = requestAnimationFrame(loop);
         return;
       }
@@ -149,3 +151,5 @@ export default function Starfield({
 
   return <canvas id={id} ref={canvasRef} />;
 }
+
+export default memo(Starfield);

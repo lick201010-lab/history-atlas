@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { formatYear } from '../utils/formatYear.js';
 
 function buildDynastyNames(landmark, dynastyById) {
@@ -11,7 +12,7 @@ function importanceText(value = 3) {
   return `${'◆'.repeat(score)}${'◇'.repeat(5 - score)}`;
 }
 
-export default function LandmarkCard({
+function LandmarkCard({
   landmark,
   dynastyById,
   onClose,
@@ -88,3 +89,5 @@ export default function LandmarkCard({
     </aside>
   );
 }
+
+export default memo(LandmarkCard);

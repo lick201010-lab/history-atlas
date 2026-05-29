@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import eras from '../data/eras.json';
 import { formatYear } from '../utils/formatYear.js';
 import { findEra, findNearbyEvents } from '../utils/narrative.js';
 
-export default function EraNarrative({ year, dynasties, onSelectEvent }) {
+function EraNarrative({ year, dynasties, onSelectEvent }) {
   const era = useMemo(() => findEra(eras, year), [year]);
   const events = useMemo(() => findNearbyEvents(dynasties, year, { window: 30, limit: 5 }), [dynasties, year]);
   const handlePickEvent = (event) => {
@@ -63,3 +63,5 @@ export default function EraNarrative({ year, dynasties, onSelectEvent }) {
     </aside>
   );
 }
+
+export default memo(EraNarrative);

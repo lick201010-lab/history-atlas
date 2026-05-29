@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { formatYear } from '../utils/formatYear.js';
 
-export default function ComparePanel({ dynasties, onRemove, onClear, onSelect }) {
+function ComparePanel({ dynasties, onRemove, onClear, onSelect }) {
   if (!dynasties.length) return null;
   return (
     <div className="compare-panel" aria-label="文明对比">
@@ -67,3 +68,5 @@ export default function ComparePanel({ dynasties, onRemove, onClear, onSelect })
     </div>
   );
 }
+
+export default memo(ComparePanel);

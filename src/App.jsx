@@ -201,6 +201,12 @@ export default function App() {
     return () => clearTimeout(handle);
   }, [compareNotice]);
 
+  // Stable wrappers so memoized panels (ComparePanel / LandmarkCard / InfoPanel)
+  // don't see a new callback identity on every (year-driven) App render.
+  const openDynastyFly = useCallback((dynastyOrId) => openDynasty(dynastyOrId, { fly: true }), [openDynasty]);
+  const openLandmarkFly = useCallback((landmarkOrId) => openLandmark(landmarkOrId, { fly: true }), [openLandmark]);
+  const flyToBuilding = useCallback((landmark) => mapSceneRef.current?.flyToBuilding(landmark), []);
+
   const handleSearchSelect = useCallback((item) => {
     if ('capital' in item && item.capital) {
       // dynasty
@@ -291,8 +297,8 @@ export default function App() {
         locked={locked}
         compareIds={compareIds}
         filterActive={filterActive}
-        onSelectBuilding={(building) => openLandmark(building, { fly: true })}
-        onSelectDynasty={(dynasty) => openDynasty(dynasty, { fly: true })}
+        onSelectBuilding={openLandmarkFly}
+        onSelectDynasty={openDynastyFly}
         onAddCompare={addCompare}
         onRemoveCompare={removeCompare}
       />
@@ -307,14 +313,14 @@ export default function App() {
         landmark={selectedLandmark}
         dynastyById={dynastyById}
         onClose={closeLandmarkCard}
-        onFlyTo={(landmark) => mapSceneRef.current?.flyToBuilding(landmark)}
+        onFlyTo={flyToBuilding}
       />
 
       <ComparePanel
         dynasties={compareDynasties}
         onRemove={removeCompare}
         onClear={clearCompare}
-        onSelect={(id) => openDynasty(id, { fly: true })}
+        onSelect={openDynastyFly}
       />
 
       {compareNotice ? (

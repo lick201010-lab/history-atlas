@@ -76,6 +76,7 @@ const MapScene = forwardRef(function MapScene({
   const boundariesRef = useRef(boundaries);
   const layerVisibilityRef = useRef(layerVisibility);
   const hoveredBoundaryIdRef = useRef(null);
+  const lastVisibleSigRef = useRef('');
   const onSelectDynastyRef = useRef(onSelectDynasty);
   const onSelectBuildingRef = useRef(onSelectBuilding);
   const themeRef = useRef(theme);
@@ -118,7 +119,16 @@ const MapScene = forwardRef(function MapScene({
   useEffect(() => {
     yearRef.current = year;
     const visible = buildingLayerRef.current?.setYear(year);
-    if (visible) onVisibleBuildingsChange(visible);
+    // Only push the visible-building set up to App when it actually changes;
+    // setYear runs every tick (to drive the grow/shrink animation) but the set
+    // is stable across most ticks, so this avoids a redundant 2nd App render.
+    if (visible) {
+      const sig = visible.map((building) => building.id).join('|');
+      if (sig !== lastVisibleSigRef.current) {
+        lastVisibleSigRef.current = sig;
+        onVisibleBuildingsChange(visible);
+      }
+    }
     const map = mapRef.current;
     if (map?.getLayer('dynasty-capital-core')) {
       const filter = activeYearFilter(year);
@@ -367,21 +377,35 @@ const MapScene = forwardRef(function MapScene({
       return best;
     }
 
-    function handleMouseMove(event) {
-      if (!layerVisibilityRef.current.buildings) return;
-      const best = pickBuilding(event.point);
+    // Building hover-pick is coalesced to at most one run per animation frame
+    // (mousemove can fire many times per frame) and skipped while the camera is
+    // moving, since projecting against an in-flight camera is wasted work.
+    let pickRaf = 0;
+    let lastPickPoint = null;
+    let lastClient = { x: 0, y: 0 };
+
+    function runPick() {
+      pickRaf = 0;
+      if (!layerVisibilityRef.current.buildings || !lastPickPoint) return;
+      if (map.isMoving()) {
+        setTooltip((current) => (current.visible ? { visible: false, x: 0, y: 0, building: null } : current));
+        return;
+      }
+      const best = pickBuilding(lastPickPoint);
       if (best) {
-        setTooltip({
-          visible: true,
-          x: event.originalEvent.clientX + 14,
-          y: event.originalEvent.clientY + 14,
-          building: best,
-        });
+        setTooltip({ visible: true, x: lastClient.x + 14, y: lastClient.y + 14, building: best });
         map.getCanvas().style.cursor = 'pointer';
       } else {
         setTooltip((current) => (current.visible ? { visible: false, x: 0, y: 0, building: null } : current));
         map.getCanvas().style.cursor = '';
       }
+    }
+
+    function handleMouseMove(event) {
+      if (!layerVisibilityRef.current.buildings) return;
+      lastPickPoint = event.point;
+      lastClient = { x: event.originalEvent.clientX, y: event.originalEvent.clientY };
+      if (!pickRaf) pickRaf = requestAnimationFrame(runPick);
     }
 
     function handleClick(event) {
@@ -457,6 +481,7 @@ const MapScene = forwardRef(function MapScene({
     return () => {
       container.removeEventListener('contextmenu', preventContextMenu);
       if (readyFallback) window.clearTimeout(readyFallback);
+      if (pickRaf) cancelAnimationFrame(pickRaf);
       map.off('load', initBuildingLayer);
       map.off('styledata', initBuildingLayer);
       map.off('error', handleMapError);
