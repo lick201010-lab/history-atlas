@@ -106,15 +106,15 @@ export const darkStyle = {
       type: 'raster',
       source: 'osm-tiles-atlas',
       paint: {
-        // atlas 模式作为"地貌/生态底色"低透明度衬在羊皮纸之下：
-        // voyager 的真实地表（沙漠/森林/草原色）透出来，近似分层设色。
+        // atlas 模式作为"拟真地貌底图"：让 voyager 真实地表（沙漠/森林/草原/山地）
+        // 充分透出，配合 hillshade 浮雕形成"地图模型"感（而非羊皮纸）。
         // 海洋部分会被上方 ocean mask 盖掉，所以只在陆地可见。
         'raster-opacity': 0,
-        'raster-contrast': 0.10,
-        'raster-saturation': -0.45,
-        'raster-hue-rotate': 18,
-        'raster-brightness-min': 0.32,
-        'raster-brightness-max': 0.86,
+        'raster-contrast': 0.16,
+        'raster-saturation': 0.12,
+        'raster-hue-rotate': 0,
+        'raster-brightness-min': 0.16,
+        'raster-brightness-max': 0.98,
       },
     },
     // atlas 陆地填色：暖羊皮纸 / 赭石 wash，半透明罩在 voyager 地貌之上。
@@ -207,6 +207,19 @@ export const darkStyle = {
         'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 4, 6, 12],
       },
     },
+    // 最近岸沙滩/浅滩带：紧贴海岸内侧一条窄而亮的松石绿，
+    // 模拟水下沙石透光的浅滩（Civ 那种近岸发亮）。在浅水带之上、海岸线之下。仅 atlas。
+    {
+      id: 'atlas-coast-sand',
+      type: 'line',
+      source: 'atlas-land',
+      paint: {
+        'line-color': '#9ed7c8',
+        'line-opacity': 0,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 1.2, 4, 3, 6, 6.5],
+        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 1.4, 6, 5],
+      },
+    },
     // 海岸光晕：宽糊光晕在主线之下，像晕染的墨迹
     {
       id: 'atlas-coastline-glow',
@@ -274,11 +287,13 @@ export const THEME_PRESETS = {
     background: '#0e2a44', // 深邃藏蓝海洋（瓦片缝隙也是这色，与 ocean mask 一致）
     base: 'base-atlas',
     ocean: ATLAS_OCEAN_COLOR,
-    baseOpacity: 0.42, // voyager 地貌底色透出度（近似分层设色）
-    landFillOpacity: 0.6, // 羊皮纸 wash 透明度（让地貌透出）
-    // 由岸到海的写实深浅：近岸偏亮蓝绿松石 → 中浅水中蓝 → 深海藏蓝
+    baseOpacity: 0.95, // 真实地貌底图充分透出（拟真地图模型，而非羊皮纸）
+    landFillOpacity: 0.1, // 只留极淡暖色统一调，几乎不盖住真实地貌
+    // 由岸到海的写实深浅（多层 bathymetry）：
+    //   沙滩浅滩 → 松石浅水 → 中蓝 → 深海藏蓝
     shelf: { color: '#1d5078', opacity: 0.62 }, // 大陆架中浅水带（中蓝，宽缓过渡）
-    shallow: { color: '#3f93bd', opacity: 0.7 }, // 近岸最浅水带（亮松石蓝）
+    shallow: { color: '#3f93bd', opacity: 0.72 }, // 浅水带（亮松石蓝）
+    sand: { color: '#9ed7c8', opacity: 0.7 }, // 最近岸沙滩/浅滩（亮松石绿，露出水下沙石感）
     oceanTextureOpacity: 0.22, // 海面波光强度（淡浅蓝高光，模拟水面反光而非雕版线）
     // 主光向 + 随 zoom 渐强的浮雕（世界视角柔、区域视角强）
     illuminationDirection: 315,
@@ -426,6 +441,11 @@ export function applyMapTheme(map, themeKey) {
   if (map.getLayer('atlas-coast-shallow')) {
     map.setPaintProperty('atlas-coast-shallow', 'line-color', preset.shallow?.color ?? '#5aa0a0');
     map.setPaintProperty('atlas-coast-shallow', 'line-opacity', isAtlas ? (preset.shallow?.opacity ?? 0.5) : 0);
+  }
+  // 最近岸沙滩/浅滩带：仅 atlas
+  if (map.getLayer('atlas-coast-sand')) {
+    map.setPaintProperty('atlas-coast-sand', 'line-color', preset.sand?.color ?? '#9ed7c8');
+    map.setPaintProperty('atlas-coast-sand', 'line-opacity', isAtlas ? (preset.sand?.opacity ?? 0.7) : 0);
   }
   if (map.getLayer('atlas-coastline-glow')) {
     map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0);
