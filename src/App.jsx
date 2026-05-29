@@ -275,7 +275,7 @@ export default function App() {
 
       <div className="title">
         历史沙盘
-        <span className="sub">HISTORICAL ATLAS · PROTOTYPE</span>
+        <span className="sub">文明星图 · ATLAS OF CIVILIZATIONS</span>
       </div>
 
       <LayerControls
