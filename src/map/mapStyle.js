@@ -282,13 +282,14 @@ export const THEME_PRESETS = {
       'fog-ground-blend': 0.1,
     },
     boundary: {
-      glowOpacityRefined: 0.45,
-      glowOpacityPlain: 0.22,
-      lineOpacityRefined: 0.78,
-      lineOpacityPlain: 0.40,
+      // "地球夜景" 文明发光光区：更强的柔光晕 + 略亮的发光底 + 清亮边
+      glowOpacityRefined: 0.58,
+      glowOpacityPlain: 0.3,
+      lineOpacityRefined: 0.9,
+      lineOpacityPlain: 0.5,
       lineDash: [5, 1.4],
-      fillOpacityRefined: 0.11,
-      fillOpacityPlain: 0.05,
+      fillOpacityRefined: 0.17,
+      fillOpacityPlain: 0.08,
     },
   },
   atlas: {
@@ -361,9 +362,12 @@ export function applyBoundaryPaint(map, themeKey) {
     if (isAtlas) {
       map.setPaintProperty('dynasty-territory-glow', 'line-color', '#c9a44b');
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 5, 3]);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5);
     } else {
+      // dark：更宽、更柔的辉光晕，文明像一片发光光区
       map.setPaintProperty('dynasty-territory-glow', 'line-color', ['get', 'color']);
-      map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 8, 5]);
+      map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 11, 7]);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 7);
     }
     map.setPaintProperty('dynasty-territory-glow', 'line-opacity', [
       'case', isRefinedExpr, preset.boundary.glowOpacityRefined, preset.boundary.glowOpacityPlain,
