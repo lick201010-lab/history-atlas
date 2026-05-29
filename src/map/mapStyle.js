@@ -396,16 +396,17 @@ export function applyBoundaryPaint(map, themeKey) {
   }
 
   if (map.getLayer('dynasty-capital-core')) {
-    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#b3201b' : ['get', 'color']);
+    // dark：都城为暖白灯火亮核（像夜景城市灯光）；atlas：朱砂点
+    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#b3201b' : '#ffe9c4');
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-color',
-      isAtlas ? 'rgba(40, 12, 8, 0.92)' : 'rgba(240, 248, 255, 0.9)');
+      isAtlas ? 'rgba(40, 12, 8, 0.92)' : 'rgba(255, 210, 130, 0.55)');
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-width', isAtlas ? 1.2 : 0.8);
   }
   if (map.getLayer('dynasty-capital-glow')) {
-    // atlas: 几乎不发光（古地图朱砂点不应该发光），只留一圈淡晕
-    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : ['get', 'color']);
-    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.28);
-    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 0.72);
+    // dark：暖金 bloom，像点亮的城市灯火；atlas：朱砂淡晕，几乎不发光
+    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : '#ffce78');
+    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.42);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 1);
   }
 }
 
