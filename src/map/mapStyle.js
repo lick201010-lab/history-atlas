@@ -15,9 +15,10 @@ export const MOUNTAIN_TERRAIN_EXAGGERATION = 2.6;
 
 // CARTO 公共栅格瓦片（无需 API key）。两套基底，按主题切 visibility。
 const DARK_BASE_TILES = [
-  'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-  'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-  'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+  // dark_nolabels @2x：无路网/标注的干净深色陆海，高清；作为"文明星图"的幽深底。
+  'https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}@2x.png',
+  'https://b.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}@2x.png',
+  'https://c.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}@2x.png',
 ];
 const ATLAS_BASE_TILES = [
   // @2x 高清瓦片：拉近时更锐利，缓解栅格过缩放的模糊
@@ -55,7 +56,7 @@ export const darkStyle = {
     'osm-tiles-dark': {
       type: 'raster',
       tiles: DARK_BASE_TILES,
-      tileSize: 256,
+      tileSize: 512, // 配合 @2x 高清瓦片
       attribution: '',
     },
     'osm-tiles-atlas': {
@@ -97,14 +98,14 @@ export const darkStyle = {
       type: 'raster',
       source: 'osm-tiles-dark',
       paint: {
-        // 深色"地球夜景"底：在近黑的 dark_all 上加一点冷蓝，让海"深邃"而非死黑，
-        // 陆地高光压住保持幽暗。
-        'raster-opacity': 0.86,
-        'raster-contrast': 0.18,
-        'raster-saturation': 0.1,
-        'raster-hue-rotate': 202,
+        // 高级深邃"文明星图"底：把 dark_nolabels 进一步压暗去白——
+        // 陆地近黑带极淡冷蓝、海更深，所有亮度交给上面发光的数据层。
+        'raster-opacity': 0.95,
+        'raster-contrast': 0.26,
+        'raster-saturation': -0.12,
+        'raster-hue-rotate': 205,
         'raster-brightness-min': 0.0,
-        'raster-brightness-max': 0.9,
+        'raster-brightness-max': 0.46,
       },
     },
     {

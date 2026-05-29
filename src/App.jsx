@@ -33,11 +33,16 @@ export default function App() {
   const [compareIds, setCompareIds] = useState([]);
   const [compareNotice, setCompareNotice] = useState('');
   const [filter, setFilter] = useState({ regions: [], tags: [] });
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === 'undefined') return 'dark';
-    const saved = window.localStorage?.getItem('history-atlas:theme');
-    return saved === 'atlas' || saved === 'dark' ? saved : 'dark';
-  });
+  // atlas 主题已冻结：始终锁定深色"文明星图"，并清掉历史里残留的 atlas 选择，
+  // 避免老用户被旧的 localStorage 卡在发白的 atlas 底图上。
+  const [theme, setTheme] = useState('dark');
+  useEffect(() => {
+    try {
+      if (window.localStorage?.getItem('history-atlas:theme') === 'atlas') {
+        window.localStorage.setItem('history-atlas:theme', 'dark');
+      }
+    } catch (e) { /* ignore */ }
+  }, []);
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
       const next = prev === 'atlas' ? 'dark' : 'atlas';
