@@ -274,11 +274,12 @@ export const THEME_PRESETS = {
       accent: 'rgba(90, 120, 160, 0.26)',
     },
     sky: {
-      'sky-color': '#0a1428',
-      'sky-horizon-blend': 0.5,
-      'horizon-color': '#1a2a44',
-      'horizon-fog-blend': 0.6,
-      'fog-color': '#04080f',
+      // 深空基调 + 地平线冷青大气辉光（俯仰时露出"地球边缘辉光"）
+      'sky-color': '#050d1d',
+      'sky-horizon-blend': 0.62,
+      'horizon-color': '#27597d',
+      'horizon-fog-blend': 0.7,
+      'fog-color': '#03070f',
       'fog-ground-blend': 0.1,
     },
     boundary: {
