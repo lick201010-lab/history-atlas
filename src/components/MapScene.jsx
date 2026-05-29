@@ -546,6 +546,9 @@ const MapScene = forwardRef(function MapScene({
   return (
     <>
       <div id="map" ref={mapContainerRef} data-view-mode={viewMode} />
+      {/* 屏幕空间羊皮纸 + 暗角覆层：只在 atlas 主题显形（CSS 门控），
+          盖在地图画布之上、UI 面板之下。屏幕空间所以不随 pitch/zoom 变形。 */}
+      <div className="atlas-paper-overlay" aria-hidden="true" />
       {!mapReady ? (
         <div className="map-loading" role="status" aria-live="polite">
           <div className="loading-mark" />

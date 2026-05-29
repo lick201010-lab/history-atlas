@@ -64,6 +64,11 @@ body::after {
   background: transparent !important;
 }
 
+/* 羊皮纸覆层：默认（dark 主题）完全隐藏，atlas 主题在 styles.atlas.css 里点亮。 */
+.atlas-paper-overlay {
+  display: none;
+}
+
 .map-loading {
   position: fixed;
   left: 50%;
