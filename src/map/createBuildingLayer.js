@@ -1128,6 +1128,61 @@ function buildGrove(building) {
   return meshes;
 }
 
+// 会形成聚落的"都城/城邑"类型：宫殿 / 城邑 / 要塞 / 长城。
+// 这些站点在足迹外圈散布低多边形民居簇，营造"人居中心"的烟火气。
+const SETTLEMENT_TYPES = new Set(['palace', 'city', 'fortress', 'wall']);
+
+// 民居土墙 / 夯土 / 木构的暖色基调，按 seed 选取后再混入时代色。
+const HOUSE_COLORS = [0x9c7b50, 0x8a6a45, 0xb08a5c, 0x7d6648, 0xa67c52];
+
+// 民居簇（M4）：在都城类建筑足迹外圈散布若干风格化小屋（坡顶 / 平顶土屋）。
+// 比树丛更靠外（半径 1.45~2.0），围合成一圈聚落。材质 role='house'，
+// 只在 atlas 主题显示；颜色按建造年代混入时代色，让不同时期的都城气质有别。
+function buildHamlet(building) {
+  const meshes = [];
+  const baseSeed = hashSeed(`${building.id}:hamlet`);
+  const n = building.importance >= 5 ? 9 : 6;
+  const eraHex = eraColorNum(building.startYear);
+  for (let i = 0; i < n; i += 1) {
+    const s = hashSeed(`${building.id}:h${i}`);
+    const ang = (i / n) * Math.PI * 2 + baseSeed * 6.283 + (s - 0.5) * 0.7;
+    const rad = 1.45 + ((i * 0.31 + s) % 1) * 0.55; // 1.45 .. 2.0
+    const x = Math.cos(ang) * rad;
+    const y = Math.sin(ang) * rad;
+    const sc = 0.7 + ((i * 0.4 + s) % 1) * 0.5;
+    const facing = ang + (s - 0.5) * 1.4;
+
+    const baseColor = HOUSE_COLORS[Math.floor(s * 997) % HOUSE_COLORS.length];
+    const atlasColor = lerpColorNum(baseColor, eraHex, 0.30);
+    const mat = new THREE.MeshPhongMaterial({
+      color: atlasColor, transparent: true, opacity: 1, shininess: 5,
+      emissive: 0x140d06, emissiveIntensity: 0.12,
+    });
+    mat.userData = { role: 'house' };
+
+    const wallH = 0.11 * sc;
+    const body = new THREE.Mesh(new THREE.BoxGeometry(0.15 * sc, 0.12 * sc, wallH), mat);
+    body.position.set(x, y, wallH / 2);
+    body.rotation.z = facing;
+    meshes.push(body);
+
+    // 三分之一为平顶夯土屋，其余为四坡顶小屋。
+    const flat = (Math.floor(s * 5) % 3) === 0;
+    if (flat) {
+      const roof = new THREE.Mesh(new THREE.BoxGeometry(0.17 * sc, 0.14 * sc, 0.03 * sc), mat);
+      roof.position.set(x, y, wallH + 0.015 * sc);
+      roof.rotation.z = facing;
+      meshes.push(roof);
+    } else {
+      const roof = new THREE.Mesh(new THREE.ConeGeometry(0.115 * sc, 0.10 * sc, 4), mat);
+      roof.rotation.y = Math.PI / 4;
+      roof.position.set(x, y, wallH + 0.05 * sc);
+      meshes.push(roof);
+    }
+  }
+  return meshes;
+}
+
 // 平滑插值（smoothstep），用于建筑出现/消失时的缩放渐变。
 function smoothstep(t) {
   const c = Math.max(0, Math.min(1, t));
@@ -1262,6 +1317,11 @@ export function createBuildingLayer(landmarks) {
         for (const tree of buildGrove(building)) group.add(tree);
       }
 
+      // 民居簇（M4）：都城/城邑/要塞/长城类站点在更外圈散布聚落小屋。
+      if (SETTLEMENT_TYPES.has(building.type)) {
+        for (const house of buildHamlet(building)) group.add(house);
+      }
+
       const ringMat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
@@ -1328,8 +1388,8 @@ export function createBuildingLayer(landmarks) {
               const base = m.userData.baseOpacity ?? m.opacity;
               m.opacity = atlas ? base * 0.30 : base;
               m.needsUpdate = true;
-            } else if (role === 'tree') {
-              // 树丛只在 atlas 显示；dark（HUD）下用 opacity 0 隐藏。
+            } else if (role === 'tree' || role === 'house') {
+              // 树丛与民居只在 atlas 显示；dark（HUD）下用 opacity 0 隐藏。
               m.opacity = atlas ? 1 : 0;
               m.needsUpdate = true;
             }
