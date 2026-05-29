@@ -6,10 +6,12 @@
    ===================================================================== */
 
 body[data-theme="atlas"] {
-  --panel-bg: rgba(244, 230, 196, 0.95);
-  --panel-bg-strong: rgba(244, 230, 196, 0.98);
-  --panel-border: rgba(120, 86, 48, 0.45);
-  --panel-border-strong: rgba(90, 60, 30, 0.6);
+  /* 象牙纸卡裱：比赭黄地图更亮更冷，自然图底分离 */
+  --panel-bg: rgba(248, 242, 225, 0.97);
+  --panel-bg-strong: rgba(250, 245, 230, 0.99);
+  /* 深墨边框：双线墨框观感的基色 */
+  --panel-border: rgba(74, 46, 22, 0.55);
+  --panel-border-strong: rgba(58, 34, 14, 0.7);
   --accent: #8a4b2e;
   --accent-soft: rgba(138, 75, 46, 0.22);
   --text: #2a1d10;
@@ -17,7 +19,13 @@ body[data-theme="atlas"] {
   --text-faint: #8a6e44;
   --gold: #8b5a1a;
   --gold-soft: rgba(139, 90, 26, 0.22);
-  --hud-shadow: 0 6px 18px rgba(90, 50, 20, 0.28), 0 0 0 1px rgba(255, 252, 230, 0.45) inset;
+  /* 浮起层级：外投影 + 顶部受光高光 + 细墨内描边 */
+  --hud-shadow:
+    0 10px 26px rgba(50, 28, 10, 0.34),
+    0 1px 0 rgba(255, 252, 238, 0.6) inset,
+    0 0 0 1px rgba(58, 34, 14, 0.18);
+  /* 主要面板共用的“象牙纸张受光”垂直渐变 */
+  --atlas-paper: linear-gradient(180deg, rgba(250, 245, 230, 0.98), rgba(240, 231, 207, 0.97));
   background: #d8c39a;
 }
 
@@ -47,11 +55,12 @@ body[data-theme="atlas"]::before {
   z-index: 6;
   pointer-events: none;
   /* 数据 URI 内嵌 SVG turbulence；浏览器原生 SVG 滤镜，无依赖 */
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.30  0 0 0 0 0.15  0 0 0 0.28 0"/></filter><rect width="480" height="480" filter="url(%23n)"/></svg>');
-  background-size: 360px 360px;
+  /* 更低频 → 更粗的纸纹而非高频沙砾；更淡 → 不再脏化整图 */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.38" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.30  0 0 0 0 0.15  0 0 0 0.28 0"/></filter><rect width="480" height="480" filter="url(%23n)"/></svg>');
+  background-size: 520px 520px;
   mix-blend-mode: multiply;
   /* 轻微纸纹材质，不再覆盖地图信息 */
-  opacity: 0.14;
+  opacity: 0.055;
 }
 
 /* 古地图色调微调：极弱的暖色径向（只压角落，中央保持清晰，海洋色不被污染） */
@@ -78,8 +87,8 @@ body[data-theme="atlas"] .title .sub { color: #6b4e26; }
 body[data-theme="atlas"] .btn-theme { color: #2a1d10; font-weight: 500; }
 
 body[data-theme="atlas"] .territory-card {
-  background: linear-gradient(180deg, rgba(247, 232, 196, 0.97), rgba(232, 212, 168, 0.96));
-  border-color: rgba(90, 60, 30, 0.5);
+  background: var(--atlas-paper);
+  border-color: var(--panel-border-strong);
   box-shadow: 0 14px 36px rgba(60, 36, 18, 0.40), 0 0 0 1px rgba(255, 245, 215, 0.4) inset;
 }
 body[data-theme="atlas"] .territory-name { color: #2a1d10; }
@@ -115,15 +124,15 @@ body[data-theme="atlas"] .territory-phase .phase-range,
 body[data-theme="atlas"] .territory-phase .phase-sub { color: #5a4426; }
 
 body[data-theme="atlas"] .landmark-card {
-  background: rgba(247, 232, 196, 0.97);
-  border-color: rgba(90, 60, 30, 0.5);
+  background: var(--panel-bg);
+  border-color: var(--panel-border-strong);
 }
 body[data-theme="atlas"] .landmark-name { color: #2a1d10; }
 body[data-theme="atlas"] .landmark-meta { color: #6b3a15; }
 
 body[data-theme="atlas"] .info-panel {
-  background: rgba(247, 232, 196, 0.97);
-  border-color: rgba(120, 86, 48, 0.45);
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .year-big {
   color: #8b5a1a;
@@ -143,12 +152,14 @@ body[data-theme="atlas"] .building-list .item:hover {
 }
 body[data-theme="atlas"] .dynasty-item .item-copy .type { color: #6b4e26; }
 
+/* 阶段 2 去帷幕：取消通栏黄色渐变，仅留底部极矮暗角；收紧 padding 露出更多地图 */
 body[data-theme="atlas"] .timeline {
-  background: linear-gradient(180deg, transparent, rgba(216, 195, 154, 0.94) 30%);
+  background: linear-gradient(180deg, transparent 64%, rgba(120, 80, 40, 0.16) 100%);
+  padding: 0 40px 22px;
 }
 body[data-theme="atlas"] .timeline-inner {
-  background: rgba(244, 230, 196, 0.92);
-  border-color: rgba(120, 86, 48, 0.45);
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .timeline-label { color: #6b4e26; }
 body[data-theme="atlas"] .timeline-year { color: #8b5a1a; }
@@ -163,8 +174,8 @@ body[data-theme="atlas"] input[type="range"]::-webkit-slider-thumb {
 body[data-theme="atlas"] .timeline-marker .marker-dot { background: #8b5a1a; }
 
 body[data-theme="atlas"] .layer-row {
-  background: rgba(244, 230, 196, 0.96);
-  border-color: rgba(120, 86, 48, 0.45);
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .chip { color: #6b4e26; }
 body[data-theme="atlas"] .chip.active {
@@ -173,13 +184,13 @@ body[data-theme="atlas"] .chip.active {
   box-shadow: inset 0 0 0 1px rgba(139, 90, 26, 0.55);
 }
 body[data-theme="atlas"] .search-box input {
-  background: rgba(244, 230, 196, 0.92);
+  background: rgba(252, 248, 236, 0.95);
   color: #2a1d10;
-  border-color: rgba(120, 86, 48, 0.45);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .filter-panel {
-  background: rgba(244, 230, 196, 0.96);
-  border-color: rgba(120, 86, 48, 0.45);
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .filter-toggle { color: #6b4e26; }
 body[data-theme="atlas"] .filter-chip {
@@ -194,8 +205,8 @@ body[data-theme="atlas"] .filter-chip.on {
 }
 
 body[data-theme="atlas"] .top-right {
-  background: rgba(244, 230, 196, 0.96);
-  border-color: rgba(120, 86, 48, 0.45);
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .btn { color: #6b4e26; }
 body[data-theme="atlas"] .btn:hover {
@@ -205,8 +216,8 @@ body[data-theme="atlas"] .btn:hover {
 }
 
 body[data-theme="atlas"] .era-narrative {
-  background: rgba(247, 232, 196, 0.97);
-  border-color: rgba(120, 86, 48, 0.45);
+  background: var(--panel-bg);
+  border-color: var(--panel-border);
 }
 body[data-theme="atlas"] .era-title { color: #2a1d10; }
 body[data-theme="atlas"] .era-en { color: #6b4e26; }
@@ -218,8 +229,8 @@ body[data-theme="atlas"] .era-keywords span {
 }
 
 body[data-theme="atlas"] .compare-panel {
-  background: linear-gradient(180deg, rgba(247, 232, 196, 0.97), rgba(232, 212, 168, 0.96));
-  border-color: rgba(90, 60, 30, 0.5);
+  background: var(--atlas-paper);
+  border-color: var(--panel-border-strong);
 }
 body[data-theme="atlas"] .compare-name { color: #2a1d10; }
 body[data-theme="atlas"] .compare-en { color: #6b4e26; }
@@ -236,7 +247,7 @@ body[data-theme="atlas"] .compare-tags span {
 }
 
 body[data-theme="atlas"] .building-tooltip {
-  background: rgba(247, 232, 196, 0.96);
+  background: var(--panel-bg-strong);
   border-color: #8b5a1a;
   color: #2a1d10;
   box-shadow: 0 0 16px rgba(139, 90, 26, 0.32);
@@ -249,4 +260,28 @@ body[data-theme="atlas"] .building-list::-webkit-scrollbar-thumb,
 body[data-theme="atlas"] .search-results::-webkit-scrollbar-thumb,
 body[data-theme="atlas"] .era-events-list::-webkit-scrollbar-thumb {
   background: rgba(139, 90, 26, 0.45);
+}
+
+/* =====================================================================
+   阶段 1 收尾：统一“墨框浮起”——主要 HUD 面板明显浮于地图之上
+   （置于文件末尾，覆盖各面板早先的自定义 box-shadow）
+   ===================================================================== */
+body[data-theme="atlas"] .info-panel,
+body[data-theme="atlas"] .era-narrative,
+body[data-theme="atlas"] .layer-row,
+body[data-theme="atlas"] .filter-panel,
+body[data-theme="atlas"] .top-right,
+body[data-theme="atlas"] .timeline-inner,
+body[data-theme="atlas"] .territory-card,
+body[data-theme="atlas"] .landmark-card,
+body[data-theme="atlas"] .compare-panel {
+  box-shadow: var(--hud-shadow);
+}
+
+/* CJK 正文字距收紧，提升小字号可读性（标题/字距强调处不受影响） */
+body[data-theme="atlas"] .territory-summary,
+body[data-theme="atlas"] .territory-legacy,
+body[data-theme="atlas"] .era-summary,
+body[data-theme="atlas"] .compare-legacy {
+  letter-spacing: 0.4px;
 }
