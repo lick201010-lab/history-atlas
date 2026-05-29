@@ -11,6 +11,32 @@ import {
 } from '../map/mapStyle.js';
 import { formatYear } from '../utils/formatYear.js';
 
+// 离屏 canvas 生成"雕版波纹"平铺纹理：透明底 + 两条细密正弦墨青波线，
+// 横向恰好一个完整周期（无缝平铺），给 atlas 海面叠一层铜版画质感。无依赖。
+function makeWavePattern() {
+  const size = 32;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+  ctx.clearRect(0, 0, size, size);
+  ctx.strokeStyle = 'rgba(16, 44, 50, 0.5)';
+  ctx.lineWidth = 1;
+  ctx.lineCap = 'round';
+  for (const yBase of [8, 24]) {
+    ctx.beginPath();
+    for (let x = 0; x <= size; x += 1) {
+      const y = yBase + Math.sin((x / size) * Math.PI * 2) * 2.2;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+  const { data } = ctx.getImageData(0, 0, size, size);
+  return { width: size, height: size, data: new Uint8Array(data.buffer) };
+}
+
 function createDynastyCapitalGeoJson(dynasties) {
   return {
     type: 'FeatureCollection',
@@ -324,11 +350,28 @@ const MapScene = forwardRef(function MapScene({
       }
     }
 
+    // 海面雕版波纹：生成一次平铺纹理并绑到 atlas-ocean-texture 的 fill-pattern。
+    // 幂等：图已注册 / 图层缺失都安全跳过。失败不影响其余图层。
+    function initOceanTexture() {
+      try {
+        if (!map.hasImage('atlas-wave')) {
+          const pattern = makeWavePattern();
+          if (pattern) map.addImage('atlas-wave', pattern, { pixelRatio: 2 });
+        }
+        if (map.hasImage('atlas-wave') && map.getLayer('atlas-ocean-texture')) {
+          map.setPaintProperty('atlas-ocean-texture', 'fill-pattern', 'atlas-wave');
+        }
+      } catch (error) {
+        console.warn('ocean texture init failed', error);
+      }
+    }
+
     function initBuildingLayer() {
       if (map.getLayer('buildings-3d')) return;
       try {
         initDynastyBoundaries();
         initDynastyCapitals();
+        initOceanTexture();
         map.addLayer(buildingLayer);
         setVisibility(map, 'dynasty-territory-fill', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-glow', layerVisibilityRef.current.territories);

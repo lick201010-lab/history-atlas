@@ -168,14 +168,40 @@ export const darkStyle = {
         'fill-antialias': true,
       },
     },
-    // 近岸浅水带：在海洋遮罩之上、海岸墨线之下，沿海岸画一圈偏亮的青绿糊光，
-    // 模拟浅海大陆架；深海仍保持平、深、干净。仅 atlas 可见。
+    // 海面雕版纹理：与 ocean mask 同源/同遮罩，叠一层细密波纹 fill-pattern，
+    // 模拟铜版画海面。纹理图在 MapScene load 后用 canvas 生成并 addImage('atlas-wave')，
+    // 这里先占位（无 pattern 时 fill 不可见）；仅 atlas 显示。位于深海遮罩之上、浅水带之下。
+    {
+      id: 'atlas-ocean-texture',
+      type: 'fill',
+      source: 'atlas-ocean',
+      paint: {
+        'fill-color': ATLAS_OCEAN_COLOR,
+        'fill-opacity': 0,
+        'fill-antialias': true,
+      },
+    },
+    // 大陆架中浅水带：更宽更糊、比深海略亮的青，沿海岸铺一条宽缓过渡，
+    // 在浅水带之下形成由岸到海的渐变（bathymetry 错觉）。仅 atlas 可见。
+    {
+      id: 'atlas-shelf-mid',
+      type: 'line',
+      source: 'atlas-land',
+      paint: {
+        'line-color': '#2f6e74',
+        'line-opacity': 0,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 8, 4, 18, 6, 34],
+        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 10, 6, 26],
+      },
+    },
+    // 近岸浅水带：在中浅水带之上、海岸墨线之下，沿海岸画一圈偏亮的青绿糊光，
+    // 模拟最浅海大陆架；深海仍保持平、深、干净。仅 atlas 可见。
     {
       id: 'atlas-coast-shallow',
       type: 'line',
       source: 'atlas-land',
       paint: {
-        'line-color': '#4f8f93',
+        'line-color': '#5aa0a0',
         'line-opacity': 0,
         'line-width': ['interpolate', ['linear'], ['zoom'], 2, 3, 4, 7, 6, 14],
         'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 4, 6, 12],
@@ -250,7 +276,9 @@ export const THEME_PRESETS = {
     ocean: ATLAS_OCEAN_COLOR,
     baseOpacity: 0.42, // voyager 地貌底色透出度（近似分层设色）
     landFillOpacity: 0.6, // 羊皮纸 wash 透明度（让地貌透出）
-    shallow: { color: '#4f8f93', opacity: 0.5 }, // 近岸浅水带
+    shelf: { color: '#2f6e74', opacity: 0.45 }, // 大陆架中浅水带（宽缓过渡）
+    shallow: { color: '#5aa0a0', opacity: 0.5 }, // 近岸最浅水带
+    oceanTextureOpacity: 0.5, // 海面雕版波纹强度（fill-pattern 已经很淡，再乘此透明度）
     // 主光向 + 随 zoom 渐强的浮雕（世界视角柔、区域视角强）
     illuminationDirection: 315,
     hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.6, 4, 0.95, 6, 1.15],
@@ -384,9 +412,18 @@ export function applyMapTheme(map, themeKey) {
     map.setPaintProperty('atlas-ocean-mask', 'fill-color', preset.ocean || ATLAS_OCEAN_COLOR);
     map.setPaintProperty('atlas-ocean-mask', 'fill-opacity', isAtlas ? 1 : 0);
   }
+  // 海面雕版波纹纹理：仅 atlas，且只有在 fill-pattern 已注入时才显形
+  if (map.getLayer('atlas-ocean-texture')) {
+    map.setPaintProperty('atlas-ocean-texture', 'fill-opacity', isAtlas ? (preset.oceanTextureOpacity ?? 0.5) : 0);
+  }
+  // 大陆架中浅水带：仅 atlas
+  if (map.getLayer('atlas-shelf-mid')) {
+    map.setPaintProperty('atlas-shelf-mid', 'line-color', preset.shelf?.color ?? '#2f6e74');
+    map.setPaintProperty('atlas-shelf-mid', 'line-opacity', isAtlas ? (preset.shelf?.opacity ?? 0.45) : 0);
+  }
   // 近岸浅水带：仅 atlas
   if (map.getLayer('atlas-coast-shallow')) {
-    map.setPaintProperty('atlas-coast-shallow', 'line-color', preset.shallow?.color ?? '#4f8f93');
+    map.setPaintProperty('atlas-coast-shallow', 'line-color', preset.shallow?.color ?? '#5aa0a0');
     map.setPaintProperty('atlas-coast-shallow', 'line-opacity', isAtlas ? (preset.shallow?.opacity ?? 0.5) : 0);
   }
   if (map.getLayer('atlas-coastline-glow')) {
