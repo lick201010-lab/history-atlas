@@ -123,11 +123,11 @@ export const darkStyle = {
         // 高级深邃"文明星图"底：把 dark_nolabels 进一步压暗去白——
         // 陆地近黑带极淡冷蓝、海更深，所有亮度交给上面发光的数据层。
         'raster-opacity': 0.95,
-        'raster-contrast': 0.26,
-        'raster-saturation': -0.12,
-        'raster-hue-rotate': 205,
+        'raster-contrast': 0.34,
+        'raster-saturation': -0.05,
+        'raster-hue-rotate': 210,
         'raster-brightness-min': 0.0,
-        'raster-brightness-max': 0.46,
+        'raster-brightness-max': 0.36,
       },
     },
     {
@@ -466,7 +466,7 @@ export function applyMapTheme(map, themeKey) {
   //   dark 主题：base-dark 0.86，base-atlas 0
   //   atlas 主题：base-dark 0，base-atlas 0.95
   if (map.getLayer('base-dark')) {
-    map.setPaintProperty('base-dark', 'raster-opacity', preset.base === 'base-dark' ? 0.86 : 0);
+    map.setPaintProperty('base-dark', 'raster-opacity', preset.base === 'base-dark' ? 0.8 : 0);
   }
   const isAtlas = themeKey === 'atlas';
   // atlas 模式让 voyager 低透明度做地貌底色；dark 隐藏。
