@@ -50,6 +50,24 @@ const ATLAS_OCEAN_MASK = {
 };
 const ATLAS_OCEAN_COLOR = '#0e2a44'; // 深邃藏蓝 / 墨蓝（写实深海，Civ 风），整体压暗
 
+// 经纬网格（graticule）：深色"文明星图"的天文/制图科技感底纹。
+// 每 step 度一条经线/纬线，沿线密集打点以适配投影与地形起伏。
+function buildGraticule(step = 30) {
+  const features = [];
+  for (let lon = -180; lon <= 180; lon += step) {
+    const coords = [];
+    for (let lat = -80; lat <= 80; lat += 4) coords.push([lon, lat]);
+    features.push({ type: 'Feature', properties: { kind: 'meridian' }, geometry: { type: 'LineString', coordinates: coords } });
+  }
+  for (let lat = -60; lat <= 80; lat += step) {
+    const coords = [];
+    for (let lon = -180; lon <= 180; lon += 4) coords.push([lon, lat]);
+    features.push({ type: 'Feature', properties: { kind: lat === 0 ? 'equator' : 'parallel' }, geometry: { type: 'LineString', coordinates: coords } });
+  }
+  return { type: 'FeatureCollection', features };
+}
+const GRATICULE = buildGraticule(30);
+
 export const darkStyle = {
   version: 8,
   sources: {
@@ -74,6 +92,10 @@ export const darkStyle = {
     'atlas-ocean': {
       type: 'geojson',
       data: ATLAS_OCEAN_MASK,
+    },
+    graticule: {
+      type: 'geojson',
+      data: GRATICULE,
     },
     'terrain-dem': {
       type: 'raster-dem',
@@ -249,6 +271,23 @@ export const darkStyle = {
         'line-opacity': 0,
         'line-width': 0.9,
         'line-blur': 0.15,
+      },
+    },
+    // 经纬网格：极淡冷青细线，天文/制图科技感。仅 dark 显示（atlas 下 opacity 0）。
+    // 放在数据层之下（朝代层在 MapScene 动态 addLayer 到最上）。
+    {
+      id: 'graticule-line',
+      type: 'line',
+      source: 'graticule',
+      paint: {
+        'line-color': '#5fb8d8',
+        'line-opacity': 0,
+        'line-width': [
+          'interpolate', ['linear'], ['zoom'],
+          1, ['case', ['==', ['get', 'kind'], 'equator'], 0.8, 0.4],
+          5, ['case', ['==', ['get', 'kind'], 'equator'], 1.2, 0.6],
+        ],
+        'line-blur': 0.4,
       },
     },
   ],
@@ -474,6 +513,10 @@ export function applyMapTheme(map, themeKey) {
     map.setPaintProperty('atlas-coastline-line', 'line-width', isAtlas ? 0.9 : 0.7);
     map.setPaintProperty('atlas-coastline-line', 'line-blur', isAtlas ? 0.15 : 0.4);
     map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0.4);
+  }
+  // 经纬网格（科技/天文台标志元素）：仅深色主题极淡显示，atlas 冻结隐藏
+  if (map.getLayer('graticule-line')) {
+    map.setPaintProperty('graticule-line', 'line-opacity', isAtlas ? 0 : 0.1);
   }
   if (map.getLayer('terrain-shade')) {
     map.setPaintProperty('terrain-shade', 'hillshade-shadow-color', preset.hillshade.shadow);

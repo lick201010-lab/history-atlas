@@ -1,16 +1,21 @@
 :root {
-  --panel-bg: rgba(12, 18, 28, 0.74);
-  --panel-bg-strong: rgba(10, 16, 26, 0.88);
-  --panel-border: rgba(130, 170, 220, 0.22);
-  --panel-border-strong: rgba(150, 190, 230, 0.34);
-  --accent: #7fbfff;
-  --accent-soft: rgba(127, 191, 255, 0.18);
-  --text: #e6ecf5;
-  --text-dim: #8fa0bb;
-  --text-faint: #5e6f8a;
-  --gold: #d8b46a;
-  --gold-soft: rgba(216, 180, 106, 0.18);
-  --hud-shadow: 0 8px 24px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  /* 高级深邃玻璃 HUD：更深更通透的玻璃底 + 更细的描边 + 多层浮起阴影 */
+  --panel-bg: rgba(7, 12, 21, 0.62);
+  --panel-bg-strong: rgba(5, 10, 19, 0.82);
+  --panel-border: rgba(120, 165, 220, 0.15);
+  --panel-border-strong: rgba(150, 196, 236, 0.26);
+  --accent: #6fd6ff;
+  --accent-soft: rgba(111, 214, 255, 0.16);
+  --text: #eaf1fb;
+  --text-dim: #93a4c0;
+  --text-faint: #586a86;
+  --gold: #e3c27a;
+  --gold-soft: rgba(227, 194, 122, 0.16);
+  --hud-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.52),
+    0 4px 14px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.012);
 }
 
 * {
