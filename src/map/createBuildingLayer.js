@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import maplibregl from 'maplibre-gl';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { MODEL_PROFILE_KEYS, assertProfileCoverage } from './modelProfileKeys.js';
 
 function colorToNumber(color) {
@@ -1189,6 +1190,74 @@ function smoothstep(t) {
   return c * c * (3 - 2 * c);
 }
 
+/* ============================================================
+ * 几何合并（Part B）：把每个建筑 group 内成百上千的小网格按"材质角色"
+ * 合并成极少数网格，砍掉 draw call。合并前先把每个网格的局部变换烘焙进
+ * 几何（updateMatrix → applyMatrix4），再按材质 / 顶点色归并。
+ *   - 动画作用于 group.scale，合并网格仍是 group 子节点，动画不受影响。
+ *   - setTheme 按 material.userData.role 遍历，合并后每个 role 只剩一个材质。
+ *   - 拾取用 map.project 距离判定，与几何合并无关。
+ * 任何一次合并若返回 null（属性不一致），回退为未合并网格，绝不让建筑变空。
+ * ============================================================ */
+
+// 克隆网格几何并烘焙其局部变换；含索引时转为 non-indexed 以便统一合并。
+function bakedGeometry(mesh) {
+  mesh.updateMatrix();
+  let geo = mesh.geometry.clone();
+  geo.applyMatrix4(mesh.matrix);
+  if (geo.index) geo = geo.toNonIndexed();
+  return geo;
+}
+
+// 把一组网格按"材质实例"分组，各组烘焙后合并为一个网格并保留原材质
+// （role / baseColor / atlasColor 都在材质 userData 上，原样保留）。
+// 多数 body 网格共享同一 mat，少数 profile（克尔白 / 护城河）有专属材质。
+function mergeByMaterial(meshes) {
+  const groups = new Map();
+  for (const mesh of meshes) {
+    if (!groups.has(mesh.material)) groups.set(mesh.material, []);
+    groups.get(mesh.material).push(mesh);
+  }
+  const out = [];
+  for (const [material, groupMeshes] of groups) {
+    const geos = groupMeshes.map(bakedGeometry);
+    const merged = geos.length === 1 ? geos[0] : mergeGeometries(geos, false);
+    if (merged) {
+      out.push(new THREE.Mesh(merged, material));
+      if (geos.length > 1) for (const g of geos) g.dispose();
+    } else {
+      // 合并失败：回退为原始网格（已带各自局部变换）。
+      for (const g of geos) g.dispose();
+      for (const m of groupMeshes) out.push(m);
+    }
+  }
+  return out;
+}
+
+// 把一组各自带 material.color 的网格烘焙为单一顶点色网格：
+// 每个网格的 material.color 写入 color 顶点属性，合并后用一个 vertexColors 材质。
+// 失败返回 null，由调用方回退为原始网格。
+function mergeVertexColored(meshes, material) {
+  const geos = [];
+  for (const mesh of meshes) {
+    const geo = bakedGeometry(mesh);
+    const c = mesh.material.color;
+    const count = geo.attributes.position.count;
+    const colors = new Float32Array(count * 3);
+    for (let i = 0; i < count; i += 1) {
+      colors[i * 3] = c.r;
+      colors[i * 3 + 1] = c.g;
+      colors[i * 3 + 2] = c.b;
+    }
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geos.push(geo);
+  }
+  const merged = geos.length === 1 ? geos[0] : mergeGeometries(geos, false);
+  if (geos.length > 1) for (const g of geos) g.dispose();
+  if (!merged) return null;
+  return new THREE.Mesh(merged, material);
+}
+
 export function createBuildingLayer(landmarks) {
   return {
     id: 'buildings-3d',
@@ -1308,18 +1377,47 @@ export function createBuildingLayer(landmarks) {
       mat.userData.atlasColor = lerpColorNum(color, eraColorNum(building.startYear), 0.28);
 
       // 优先使用 modelProfile 的专属轮廓（重点样板建筑），其次按 type 走通用模型。
+      // 主体网格按材质合并（多数共享 mat，少数 profile 有专属材质），砍掉 draw call。
       const profileBuilder = building.modelProfile ? PROFILES[building.modelProfile] : null;
       const builder = profileBuilder || BUILDERS[building.type] || buildDefault;
-      for (const mesh of builder(mat)) group.add(mesh);
+      for (const merged of mergeByMaterial(builder(mat))) group.add(merged);
 
       // 植被（M2）：温带/热带站点在足迹外圈放低多边形树丛（沙漠/干旱区跳过）。
+      // 各树本色烘焙进顶点色，合并成单一 role='tree' 网格。
       if (GROVE_REGIONS.has(building.region)) {
-        for (const tree of buildGrove(building)) group.add(tree);
+        const treeMeshes = buildGrove(building);
+        const treeMat = new THREE.MeshPhongMaterial({
+          color: 0xffffff, vertexColors: true, transparent: true, opacity: 1,
+          shininess: 3, emissive: 0x0b1206, emissiveIntensity: 0.12,
+        });
+        treeMat.userData = { role: 'tree' };
+        const mergedTree = mergeVertexColored(treeMeshes, treeMat);
+        if (mergedTree) {
+          group.add(mergedTree);
+          for (const m of treeMeshes) m.material.dispose();
+        } else {
+          treeMat.dispose();
+          for (const m of treeMeshes) group.add(m);
+        }
       }
 
-      // 民居簇（M4）：都城/城邑/要塞/长城类站点在更外圈散布聚落小屋。
+      // 民居簇（M4）：都城/城邑/要塞/长城类站点散布聚落小屋。
+      // 各屋时代色烘焙进顶点色，合并成单一 role='house' 网格。
       if (SETTLEMENT_TYPES.has(building.type)) {
-        for (const house of buildHamlet(building)) group.add(house);
+        const houseMeshes = buildHamlet(building);
+        const houseMat = new THREE.MeshPhongMaterial({
+          color: 0xffffff, vertexColors: true, transparent: true, opacity: 1,
+          shininess: 5, emissive: 0x140d06, emissiveIntensity: 0.12,
+        });
+        houseMat.userData = { role: 'house' };
+        const mergedHouse = mergeVertexColored(houseMeshes, houseMat);
+        if (mergedHouse) {
+          group.add(mergedHouse);
+          for (const m of houseMeshes) m.material.dispose();
+        } else {
+          houseMat.dispose();
+          for (const m of houseMeshes) group.add(m);
+        }
       }
 
       const ringMat = new THREE.MeshBasicMaterial({
@@ -1449,8 +1547,17 @@ export function createBuildingLayer(landmarks) {
     },
 
     dispose() {
-      if (!this.renderer) return;
-      this.renderer.dispose();
+      // 遍历场景释放几何与材质（renderer.dispose 只释放渲染器自身资源）。
+      if (this.scene) {
+        this.scene.traverse((obj) => {
+          if (obj.geometry) obj.geometry.dispose();
+          if (obj.material) {
+            const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            for (const m of mats) m.dispose();
+          }
+        });
+      }
+      if (this.renderer) this.renderer.dispose();
     },
   };
 }
