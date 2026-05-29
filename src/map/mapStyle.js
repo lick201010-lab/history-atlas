@@ -20,9 +20,10 @@ const DARK_BASE_TILES = [
   'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
 ];
 const ATLAS_BASE_TILES = [
-  'https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
-  'https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
-  'https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png',
+  // @2x 高清瓦片：拉近时更锐利，缓解栅格过缩放的模糊
+  'https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
+  'https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
+  'https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
 ];
 
 import atlasLand from '../data/atlas-land-110m.json';
@@ -60,7 +61,7 @@ export const darkStyle = {
     'osm-tiles-atlas': {
       type: 'raster',
       tiles: ATLAS_BASE_TILES,
-      tileSize: 256,
+      tileSize: 512, // 配合 @2x 高清瓦片
       attribution: '',
     },
     // 小体积 Natural Earth 110m land（约 197 KB 原始 / gzip 约 65 KB）。
@@ -110,11 +111,11 @@ export const darkStyle = {
         // 充分透出，配合 hillshade 浮雕形成"地图模型"感（而非羊皮纸）。
         // 海洋部分会被上方 ocean mask 盖掉，所以只在陆地可见。
         'raster-opacity': 0,
-        'raster-contrast': 0.16,
-        'raster-saturation': 0.12,
+        'raster-contrast': 0.24,
+        'raster-saturation': 0.34, // 提高饱和，让陆地的草绿/沙黄显出来（去白）
         'raster-hue-rotate': 0,
-        'raster-brightness-min': 0.16,
-        'raster-brightness-max': 0.98,
+        'raster-brightness-min': 0.1,
+        'raster-brightness-max': 0.74, // 压低高光，杀掉 voyager 的近白陆地底
       },
     },
     // atlas 陆地填色：暖羊皮纸 / 赭石 wash，半透明罩在 voyager 地貌之上。
@@ -201,10 +202,10 @@ export const darkStyle = {
       type: 'line',
       source: 'atlas-land',
       paint: {
-        'line-color': '#5aa0a0',
+        'line-color': '#3f93bd',
         'line-opacity': 0,
-        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 3, 4, 7, 6, 14],
-        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 4, 6, 12],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 5, 4, 12, 6, 24],
+        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 4, 6, 13],
       },
     },
     // 最近岸沙滩/浅滩带：紧贴海岸内侧一条窄而亮的松石绿，
@@ -214,10 +215,10 @@ export const darkStyle = {
       type: 'line',
       source: 'atlas-land',
       paint: {
-        'line-color': '#9ed7c8',
+        'line-color': '#8fe3d2',
         'line-opacity': 0,
-        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 1.2, 4, 3, 6, 6.5],
-        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 1.4, 6, 5],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 2, 2.5, 4, 6, 6, 13],
+        'line-blur': ['interpolate', ['linear'], ['zoom'], 2, 1.6, 6, 6],
       },
     },
     // 海岸光晕：宽糊光晕在主线之下，像晕染的墨迹
@@ -288,12 +289,12 @@ export const THEME_PRESETS = {
     base: 'base-atlas',
     ocean: ATLAS_OCEAN_COLOR,
     baseOpacity: 0.95, // 真实地貌底图充分透出（拟真地图模型，而非羊皮纸）
-    landFillOpacity: 0.1, // 只留极淡暖色统一调，几乎不盖住真实地貌
+    landFillOpacity: 0.15, // 极淡暖色统一调 + 进一步压住近白陆地
     // 由岸到海的写实深浅（多层 bathymetry）：
     //   沙滩浅滩 → 松石浅水 → 中蓝 → 深海藏蓝
-    shelf: { color: '#1d5078', opacity: 0.62 }, // 大陆架中浅水带（中蓝，宽缓过渡）
-    shallow: { color: '#3f93bd', opacity: 0.72 }, // 浅水带（亮松石蓝）
-    sand: { color: '#9ed7c8', opacity: 0.7 }, // 最近岸沙滩/浅滩（亮松石绿，露出水下沙石感）
+    shelf: { color: '#1d5078', opacity: 0.7 }, // 大陆架中浅水带（中蓝，宽缓过渡）
+    shallow: { color: '#3f93bd', opacity: 0.82 }, // 浅水带（亮松石蓝）
+    sand: { color: '#8fe3d2', opacity: 0.88 }, // 最近岸沙滩/浅滩（亮松石绿，露出水下沙石感）
     oceanTextureOpacity: 0.22, // 海面波光强度（淡浅蓝高光，模拟水面反光而非雕版线）
     // 主光向 + 随 zoom 渐强的浮雕（世界视角柔、区域视角强）
     illuminationDirection: 315,
