@@ -21,8 +21,9 @@ function makeWavePattern() {
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
   ctx.clearRect(0, 0, size, size);
-  ctx.strokeStyle = 'rgba(16, 44, 50, 0.5)';
-  ctx.lineWidth = 1;
+  // 淡浅蓝高光波纹：模拟水面反光（而非深色雕版线），低对比、随海色叠加。
+  ctx.strokeStyle = 'rgba(150, 196, 232, 0.34)';
+  ctx.lineWidth = 0.8;
   ctx.lineCap = 'round';
   for (const yBase of [8, 24]) {
     ctx.beginPath();

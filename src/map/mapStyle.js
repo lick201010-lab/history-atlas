@@ -46,7 +46,7 @@ const ATLAS_OCEAN_MASK = {
     },
   ],
 };
-const ATLAS_OCEAN_COLOR = '#1f4750'; // 深蓝绿 / 墨青，比 bg 略深一点更沉稳干净
+const ATLAS_OCEAN_COLOR = '#0e2a44'; // 深邃藏蓝 / 墨蓝（写实深海，Civ 风），整体压暗
 
 export const darkStyle = {
   version: 8,
@@ -271,14 +271,15 @@ export const THEME_PRESETS = {
     },
   },
   atlas: {
-    background: '#1f4750', // 深蓝绿色海洋（瓦片缝隙也是这色，与 ocean mask 一致）
+    background: '#0e2a44', // 深邃藏蓝海洋（瓦片缝隙也是这色，与 ocean mask 一致）
     base: 'base-atlas',
     ocean: ATLAS_OCEAN_COLOR,
     baseOpacity: 0.42, // voyager 地貌底色透出度（近似分层设色）
     landFillOpacity: 0.6, // 羊皮纸 wash 透明度（让地貌透出）
-    shelf: { color: '#2f6e74', opacity: 0.45 }, // 大陆架中浅水带（宽缓过渡）
-    shallow: { color: '#5aa0a0', opacity: 0.5 }, // 近岸最浅水带
-    oceanTextureOpacity: 0.5, // 海面雕版波纹强度（fill-pattern 已经很淡，再乘此透明度）
+    // 由岸到海的写实深浅：近岸偏亮蓝绿松石 → 中浅水中蓝 → 深海藏蓝
+    shelf: { color: '#1d5078', opacity: 0.62 }, // 大陆架中浅水带（中蓝，宽缓过渡）
+    shallow: { color: '#3f93bd', opacity: 0.7 }, // 近岸最浅水带（亮松石蓝）
+    oceanTextureOpacity: 0.22, // 海面波光强度（淡浅蓝高光，模拟水面反光而非雕版线）
     // 主光向 + 随 zoom 渐强的浮雕（世界视角柔、区域视角强）
     illuminationDirection: 315,
     hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.6, 4, 0.95, 6, 1.15],

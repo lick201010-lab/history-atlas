@@ -301,12 +301,13 @@ body[data-theme="atlas"] .atlas-paper-overlay {
   mix-blend-mode: multiply;
   opacity: 0.92;
   background-image:
-    /* 1) 暖色暗角：中心透明、四周渐压暗赭，模拟纸张受光与做旧 */
-    radial-gradient(125% 115% at 50% 42%,
-      rgba(255, 250, 236, 0) 38%,
-      rgba(150, 104, 56, 0.10) 66%,
-      rgba(92, 58, 28, 0.30) 86%,
-      rgba(58, 35, 16, 0.52) 100%),
+    /* 1) 冷色暗角：中心透明、四周渐压深藏蓝黑，给海面加大气体积感并整体压暗
+          （改成偏冷而非暖棕，避免把写实深蓝海洗成浑浊棕绿） */
+    radial-gradient(128% 118% at 50% 40%,
+      rgba(10, 22, 38, 0) 28%,
+      rgba(10, 22, 38, 0.16) 58%,
+      rgba(8, 18, 32, 0.44) 82%,
+      rgba(4, 11, 22, 0.66) 100%),
     /* 2) 大块污渍/水渍：几团柔和的暖棕，制造手工纸的不均匀 */
     radial-gradient(38% 30% at 18% 22%, rgba(120, 78, 40, 0.14), rgba(120, 78, 40, 0) 70%),
     radial-gradient(34% 40% at 82% 30%, rgba(96, 60, 28, 0.12), rgba(96, 60, 28, 0) 72%),
@@ -314,8 +315,8 @@ body[data-theme="atlas"] .atlas-paper-overlay {
     radial-gradient(30% 26% at 30% 78%, rgba(140, 96, 52, 0.10), rgba(140, 96, 52, 0) 70%),
     /* 3) 纸纤维颗粒：细密 fractalNoise，做旧纸的"牙口" */
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E"),
-    /* 4) 整体暖纸基调：极淡赭黄，把全图轻轻烘暖成一张纸 */
-    linear-gradient(0deg, rgba(208, 172, 112, 0.07), rgba(208, 172, 112, 0.07));
+    /* 4) 整体暖纸基调：极淡赭黄，把陆地轻轻烘暖成纸（调淡，避免污染深蓝海） */
+    linear-gradient(0deg, rgba(208, 172, 112, 0.035), rgba(208, 172, 112, 0.035));
   background-size:
     100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 180px 180px, 100% 100%;
   background-repeat:
