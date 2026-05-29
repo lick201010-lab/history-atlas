@@ -7,6 +7,17 @@ export const PHASE_LABELS = {
   decline: '衰落/转型期',
 };
 
+// Only these sample civilizations surface a phase in the info card.
+// Other dynasties may carry phase data on their boundary features, but
+// per spec the phase indicator stays limited to the curated samples.
+export const PHASE_SAMPLE_IDS = new Set([
+  'tang',
+  'roman-republic-empire',
+  'islamic-caliphates',
+  'mughal',
+  'maya',
+]);
+
 // Pick the boundary feature whose [startYear, endYear] contains `year`.
 // Falls back to the nearest feature so a locked card never goes blank.
 export function pickPhaseFeature(features, year) {
