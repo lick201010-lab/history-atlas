@@ -598,6 +598,8 @@ const MapScene = forwardRef(function MapScene({
         >
           指南针
         </button>
+        {/* 主题切换按钮已冻结：atlas（羊皮纸/写实）主题暂停投入，
+            统一走深色"地球夜景"。toggleTheme / atlas 代码与 CSS 保留，仅隐藏入口。
         <button
           className="btn btn-theme"
           type="button"
@@ -608,6 +610,7 @@ const MapScene = forwardRef(function MapScene({
         >
           {theme === 'atlas' ? '夜色' : '古地图'}
         </button>
+        */}
       </div>
       <div
         className="building-tooltip"
