@@ -28,7 +28,9 @@ const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates
 
 const CELL = 0.04;           // 栅格分辨率（度，~4.5km）：更细，凑近看海岸更贴
 const CHAIKIN_ITERS = 2;     // Chaikin 圆角次数：把栅格阶梯磨成自然曲线
-const DP_EPS = 0.022;        // 末轮简化阈值（度）：去冗余点、控制顶点数
+const PRE_DP_EPS = 0.012;    // 圆角前轻量去共线点（< 单个台阶角高，保留台阶供 Chaikin 磨圆）
+const DP_EPS = 0.03;         // 末轮简化阈值（度，~3.3km）：圆角后控点。Chaikin 已去阶梯，
+                             // 此处放宽以收住顶点数/体积；曲线平滑不再尖刺。
 const MIN_RING_AREA = 0.45;  // 过滤小碎屑（度²），保留西西里/撒丁/克里特/塞浦路斯/海南等
 
 // =============================================================================
@@ -259,6 +261,25 @@ function douglasPeucker(points, eps) {
   const right = douglasPeucker(points.slice(maxIdx), eps);
   return [...left.slice(0, -1), ...right];
 }
+// Chaikin 角点切割（闭合环）：每条边取 1/4、3/4 两点，迭代 iters 次，
+// 把栅格描边的直角阶梯磨成自然圆角曲线（位移为亚网格尺度，海岸贴合度不受影响）。
+function chaikinClosed(ring, iters) {
+  if (iters <= 0 || ring.length < 4) return ring;
+  let pts = ring.slice(0, -1); // 去掉闭合重复点，按首尾相接的环处理
+  if (pts.length < 3) return ring;
+  for (let it = 0; it < iters; it++) {
+    const next = [];
+    const n = pts.length;
+    for (let i = 0; i < n; i++) {
+      const a = pts[i], b = pts[(i + 1) % n];
+      next.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25]);
+      next.push([a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+    }
+    pts = next;
+  }
+  pts.push([pts[0][0], pts[0][1]]); // 重新闭合
+  return pts;
+}
 function ringArea(ring) {
   let area = 0;
   for (let i = 0; i < ring.length - 1; i++) area += ring[i][0] * ring[i + 1][1] - ring[i + 1][0] * ring[i][1];
@@ -358,12 +379,16 @@ function clipBlocks(blocks, landRings) {
   const out = [];
   for (const loop of loops) {
     let ring = loop.map(([i, j]) => [lng0 + i * CELL, lat0 + j * CELL]);
-    ring = douglasPeucker(ring, DP_EPS);
-    if (ring.length < 4) continue;
-    if (ring[0][0] !== ring[ring.length - 1][0] || ring[0][1] !== ring[ring.length - 1][1]) ring.push([...ring[0]]);
+    // 先按原始阶梯环判面积：丢小碎屑/内陆孔洞，免得给它们做无谓圆角
     const a = signedArea(ring);
     if (Math.abs(a) < MIN_RING_AREA) continue; // 丢小碎屑 + 内陆湖洞
     if (a < 0) continue;                        // 只保留外环（CCW），丢洞
+    // 阶梯 → 平滑：轻量去共线点（保留台阶角）→ Chaikin 磨圆 → 末轮简化控点
+    ring = douglasPeucker(ring, PRE_DP_EPS);
+    ring = chaikinClosed(ring, CHAIKIN_ITERS);
+    ring = douglasPeucker(ring, DP_EPS);
+    if (ring.length < 4) continue;
+    if (ring[0][0] !== ring[ring.length - 1][0] || ring[0][1] !== ring[ring.length - 1][1]) ring.push([...ring[0]]);
     out.push(ring.map((p) => [round3(p[0]), round3(p[1])]));
   }
   out.sort((p, q) => signedArea(q) - signedArea(p)); // 大块在前
