@@ -123,11 +123,11 @@ export const darkStyle = {
         // 高级深邃"文明星图"底：把 dark_nolabels 进一步压暗去白——
         // 陆地近黑带极淡冷蓝、海更深，所有亮度交给上面发光的数据层。
         'raster-opacity': 0.95,
-        'raster-contrast': 0.34,
-        'raster-saturation': -0.05,
+        'raster-contrast': 0.3,
+        'raster-saturation': -0.04,
         'raster-hue-rotate': 210,
-        'raster-brightness-min': 0.0,
-        'raster-brightness-max': 0.36,
+        'raster-brightness-min': 0.02,
+        'raster-brightness-max': 0.44,
       },
     },
     {
@@ -306,12 +306,22 @@ export const THEME_PRESETS = {
   dark: {
     background: '#04080f',
     base: 'base-dark',
-    // 始终保留一层很弱的冷调世界级浮雕，给陆块体积感而不杂乱（山脉模式再加强）。
-    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.12, 5, 0.32],
+    illuminationDirection: 315,
+    // 月光夜景浮雕：随 zoom 渐强的真实地势（世界视角已有体积感，区域视角山脉清晰）。
+    // 强度对标 atlas，但走冷调，营造"地球夜景被冷月光斜照"的游戏级体积感。
+    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.45, 4, 0.85, 6, 1.1],
     hillshade: {
-      shadow: 'rgba(2, 8, 18, 0.6)',
-      highlight: 'rgba(150, 185, 225, 0.22)',
-      accent: 'rgba(90, 120, 160, 0.26)',
+      // 深蓝阴影 + 冷月光高光（青白）+ 冷青墨重音：让山脊一侧受光、一侧没入深蓝
+      shadow: 'rgba(1, 5, 14, 0.72)',
+      highlight: 'rgba(168, 205, 240, 0.5)',
+      accent: 'rgba(70, 110, 150, 0.42)',
+    },
+    // 第二层副光 hillshade（东南向、低强度冷调）：柔化硬阴影，增加多向体积层次
+    hillshadeFill: {
+      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.3, 4, 0.5, 6, 0.65],
+      shadow: 'rgba(2, 10, 24, 0.26)',
+      highlight: 'rgba(190, 220, 250, 0.18)',
+      accent: 'rgba(60, 95, 135, 0.16)',
     },
     sky: {
       // 深空基调 + 地平线冷青大气辉光（俯仰时露出"地球边缘辉光"）
@@ -466,7 +476,7 @@ export function applyMapTheme(map, themeKey) {
   //   dark 主题：base-dark 0.86，base-atlas 0
   //   atlas 主题：base-dark 0，base-atlas 0.95
   if (map.getLayer('base-dark')) {
-    map.setPaintProperty('base-dark', 'raster-opacity', preset.base === 'base-dark' ? 0.8 : 0);
+    map.setPaintProperty('base-dark', 'raster-opacity', preset.base === 'base-dark' ? 0.85 : 0);
   }
   const isAtlas = themeKey === 'atlas';
   // atlas 模式让 voyager 低透明度做地貌底色；dark 隐藏。
@@ -530,10 +540,11 @@ export function applyMapTheme(map, themeKey) {
     const exaggeration = preset.hillshadeExaggeration ?? 0;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
-  // 第二层副光 hillshade：仅 atlas 开启
+  // 第二层副光 hillshade：atlas 与 dark 都开启（各自冷/暖调），增强多向体积层次
   if (map.getLayer('terrain-shade-fill')) {
     const fill = preset.hillshadeFill;
-    if (isAtlas && fill) {
+    if (fill) {
+      map.setPaintProperty('terrain-shade-fill', 'hillshade-illumination-direction', 135);
       map.setPaintProperty('terrain-shade-fill', 'hillshade-shadow-color', fill.shadow);
       map.setPaintProperty('terrain-shade-fill', 'hillshade-highlight-color', fill.highlight);
       map.setPaintProperty('terrain-shade-fill', 'hillshade-accent-color', fill.accent);
@@ -557,21 +568,19 @@ export function setTerrainMode(map, mode, themeKey) {
     source: 'terrain-dem',
     exaggeration: isMountain ? MOUNTAIN_TERRAIN_EXAGGERATION : WORLD_TERRAIN_EXAGGERATION,
   });
+  const activePreset = isAtlas ? atlasPreset : THEME_PRESETS.dark;
   if (map.getLayer('terrain-shade')) {
-    // dark：世界视角保留很弱的冷调浮雕，山脉模式再加强
-    // atlas：始终开启随 zoom 渐强的浮雕，山脉永远要有雕刻感
-    let exaggeration = 0;
-    if (isAtlas) exaggeration = atlasPreset.hillshadeExaggeration ?? 0.95;
-    else if (isMountain) exaggeration = 0.95;
-    else exaggeration = THEME_PRESETS.dark.hillshadeExaggeration ?? 0;
+    // 两个主题都始终开启随 zoom 渐强的浮雕；山脉模式再加一档雕刻感。
+    let exaggeration = activePreset.hillshadeExaggeration ?? 0.95;
+    if (isMountain) exaggeration = 1.35;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
-  // 第二层副光 hillshade 仅 atlas 跟随
+  // 第二层副光 hillshade：两个主题都跟随各自 preset
   if (map.getLayer('terrain-shade-fill')) {
     map.setPaintProperty(
       'terrain-shade-fill',
       'hillshade-exaggeration',
-      isAtlas ? (atlasPreset.hillshadeFill?.exaggeration ?? 0.6) : 0,
+      activePreset.hillshadeFill?.exaggeration ?? 0,
     );
   }
 }
