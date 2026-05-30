@@ -340,13 +340,13 @@ export const THEME_PRESETS = {
     },
     boundary: {
       // "地球夜景" 文明发光光区：更强的柔光晕 + 略亮的发光底 + 清亮边
-      glowOpacityRefined: 0.58,
-      glowOpacityPlain: 0.3,
-      lineOpacityRefined: 0.9,
-      lineOpacityPlain: 0.5,
+      glowOpacityRefined: 0.66,
+      glowOpacityPlain: 0.36,
+      lineOpacityRefined: 0.95,
+      lineOpacityPlain: 0.55,
       lineDash: [5, 1.4],
-      fillOpacityRefined: 0.17,
-      fillOpacityPlain: 0.08,
+      fillOpacityRefined: 0.19,
+      fillOpacityPlain: 0.09,
     },
   },
   atlas: {
@@ -454,16 +454,16 @@ export function applyBoundaryPaint(map, themeKey) {
 
   if (map.getLayer('dynasty-capital-core')) {
     // dark：都城为暖白灯火亮核（像夜景城市灯光）；atlas：朱砂点
-    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#b3201b' : '#ffe9c4');
+    map.setPaintProperty('dynasty-capital-core', 'circle-color', isAtlas ? '#b3201b' : '#fff3da');
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-color',
-      isAtlas ? 'rgba(40, 12, 8, 0.92)' : 'rgba(255, 210, 130, 0.55)');
-    map.setPaintProperty('dynasty-capital-core', 'circle-stroke-width', isAtlas ? 1.2 : 0.8);
+      isAtlas ? 'rgba(40, 12, 8, 0.92)' : 'rgba(255, 222, 158, 0.7)');
+    map.setPaintProperty('dynasty-capital-core', 'circle-stroke-width', isAtlas ? 1.2 : 1);
   }
   if (map.getLayer('dynasty-capital-glow')) {
     // dark：暖金 bloom，像点亮的城市灯火；atlas：朱砂淡晕，几乎不发光
-    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : '#ffce78');
-    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.42);
-    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 1);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : '#ffcf7a');
+    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.5);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 1.15);
   }
 }
 
