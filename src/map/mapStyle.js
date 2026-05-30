@@ -307,6 +307,10 @@ export const THEME_PRESETS = {
     background: '#04080f',
     base: 'base-dark',
     illuminationDirection: 315,
+    // 深邃夜海：深蓝海罩半透明压在海底浮雕之上，海面深、净、辽阔，
+    // 又透出一丝洋脊/海沟的微浮雕（游戏级海底层次，而非死黑）。
+    ocean: '#06131f',
+    oceanMaskOpacity: 0.62,
     // 月光夜景浮雕：随 zoom 渐强的真实地势（世界视角已有体积感，区域视角山脉清晰）。
     // 强度对标 atlas，但走冷调，营造"地球夜景被冷月光斜照"的游戏级体积感。
     hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.45, 4, 0.85, 6, 1.1],
@@ -487,10 +491,11 @@ export function applyMapTheme(map, themeKey) {
   if (map.getLayer('atlas-land-fill')) {
     map.setPaintProperty('atlas-land-fill', 'fill-opacity', isAtlas ? (preset.landFillOpacity ?? 0.6) : 0);
   }
-  // 海洋遮罩：atlas 全不透明盖住海底 relief；dark 完全隐藏
+  // 海洋遮罩：atlas 全不透明盖住海底 relief；dark 半透明深蓝海罩，
+  // 压住海底浮雕成深邃夜海，又透出一丝洋脊微浮雕。
   if (map.getLayer('atlas-ocean-mask')) {
     map.setPaintProperty('atlas-ocean-mask', 'fill-color', preset.ocean || ATLAS_OCEAN_COLOR);
-    map.setPaintProperty('atlas-ocean-mask', 'fill-opacity', isAtlas ? 1 : 0);
+    map.setPaintProperty('atlas-ocean-mask', 'fill-opacity', isAtlas ? 1 : (preset.oceanMaskOpacity ?? 0));
   }
   // 海面雕版波纹纹理：仅 atlas，且只有在 fill-pattern 已注入时才显形
   if (map.getLayer('atlas-ocean-texture')) {
