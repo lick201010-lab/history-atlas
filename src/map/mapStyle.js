@@ -123,11 +123,11 @@ export const darkStyle = {
         // 高级深邃"文明星图"底：把 dark_nolabels 进一步压暗去白——
         // 陆地近黑带极淡冷蓝、海更深，所有亮度交给上面发光的数据层。
         'raster-opacity': 0.95,
-        'raster-contrast': 0.3,
-        'raster-saturation': -0.04,
+        'raster-contrast': 0.32,
+        'raster-saturation': -0.22,
         'raster-hue-rotate': 210,
-        'raster-brightness-min': 0.02,
-        'raster-brightness-max': 0.44,
+        'raster-brightness-min': 0.03,
+        'raster-brightness-max': 0.52,
       },
     },
     {
@@ -307,13 +307,12 @@ export const THEME_PRESETS = {
     background: '#04080f',
     base: 'base-dark',
     illuminationDirection: 315,
-    // 深邃夜海：深蓝海罩全不透明盖掉海底浮雕，海面平、深、真实（不要海上起伏）。
-    ocean: '#0a1b2e',
+    // 深邃夜海：近黑藏蓝、全不透明盖掉海底浮雕——海越深越暗，让大陆从中浮起。
+    // （黑色大理石夜地球：海近黑、陆稍亮的冷灰，全程冷调，靠明度差分离而非换色。）
+    ocean: '#050d18',
     oceanMaskOpacity: 1,
-    // 陆地独立色：偏暖的深橄榄岩灰，明显区别于冷藏蓝的海与近黑背景，
-    // 让陆块"跳出来"；浮雕叠在其上形成立体地势。
-    landFillColor: '#33402f',
-    landFillOpacity: 0.62,
+    // 陆地不另铺色：保持冷调basemap本身，靠"陆比海亮 + 浮雕 + 发光海岸"刻清晰。
+    landFillOpacity: 0,
     // 月光夜景浮雕：随 zoom 渐强的真实地势（世界视角已有体积感，区域视角山脉清晰）。
     // 强度对标 atlas，但走冷调，营造"地球夜景被冷月光斜照"的游戏级体积感。
     hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.45, 4, 0.85, 6, 1.1],
@@ -490,10 +489,10 @@ export function applyMapTheme(map, themeKey) {
   if (map.getLayer('base-atlas')) {
     map.setPaintProperty('base-atlas', 'raster-opacity', isAtlas ? (preset.baseOpacity ?? 0.42) : 0);
   }
-  // 陆地填色：atlas 暖羊皮纸 wash；dark 偏暖深橄榄岩灰，让陆块从冷海/深空中跳出来。
+  // 陆地填色：atlas 暖羊皮纸 wash；dark 不另铺色（landFillOpacity=0），保持冷调 basemap。
   if (map.getLayer('atlas-land-fill')) {
     map.setPaintProperty('atlas-land-fill', 'fill-color',
-      isAtlas ? '#d4ad6a' : (preset.landFillColor || '#33402f'));
+      isAtlas ? '#d4ad6a' : (preset.landFillColor || '#2a3340'));
     map.setPaintProperty('atlas-land-fill', 'fill-opacity', preset.landFillOpacity ?? (isAtlas ? 0.6 : 0));
   }
   // 海洋遮罩：两个主题都全不透明盖住海底 relief，让海面平、深、真实（不要海上浮雕）。
