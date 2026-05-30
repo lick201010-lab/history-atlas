@@ -521,16 +521,16 @@ export function applyMapTheme(map, themeKey) {
   }
   // 海岸线：atlas 为墨棕实线 + 晕染；dark "地球夜景" 复用同一几何做冷青发光海岸线。
   if (map.getLayer('atlas-coastline-glow')) {
-    map.setPaintProperty('atlas-coastline-glow', 'line-color', isAtlas ? '#7a4818' : '#46b6d6');
-    map.setPaintProperty('atlas-coastline-glow', 'line-width', isAtlas ? 2.4 : 3.6);
+    map.setPaintProperty('atlas-coastline-glow', 'line-color', isAtlas ? '#7a4818' : '#3a93b0');
+    map.setPaintProperty('atlas-coastline-glow', 'line-width', isAtlas ? 2.4 : 3);
     map.setPaintProperty('atlas-coastline-glow', 'line-blur', isAtlas ? 2.2 : 3.2);
-    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0.4);
+    map.setPaintProperty('atlas-coastline-glow', 'line-opacity', isAtlas ? 0.4 : 0.24);
   }
   if (map.getLayer('atlas-coastline-line')) {
-    map.setPaintProperty('atlas-coastline-line', 'line-color', isAtlas ? '#3a1f08' : '#bff0fb');
-    map.setPaintProperty('atlas-coastline-line', 'line-width', isAtlas ? 0.9 : 1.1);
-    map.setPaintProperty('atlas-coastline-line', 'line-blur', isAtlas ? 0.15 : 0.3);
-    map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0.8);
+    map.setPaintProperty('atlas-coastline-line', 'line-color', isAtlas ? '#3a1f08' : '#7fcfe6');
+    map.setPaintProperty('atlas-coastline-line', 'line-width', isAtlas ? 0.9 : 0.9);
+    map.setPaintProperty('atlas-coastline-line', 'line-blur', isAtlas ? 0.15 : 0.35);
+    map.setPaintProperty('atlas-coastline-line', 'line-opacity', isAtlas ? 0.85 : 0.5);
   }
   // 经纬网格（科技/天文台标志元素）：仅深色主题极淡显示，atlas 冻结隐藏
   if (map.getLayer('graticule-line')) {
