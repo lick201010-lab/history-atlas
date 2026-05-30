@@ -16,6 +16,11 @@
     0 4px 14px rgba(0, 0, 0, 0.38),
     inset 0 1px 0 rgba(255, 255, 255, 0.055),
     inset 0 0 0 1px rgba(255, 255, 255, 0.012);
+  /* 统一动效：入场/过渡共用同一条"收尾减速"曲线与一组时长，手感一致 */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 0.15s;
+  --dur-base: 0.22s;
+  --dur-card: 0.32s;
 }
 
 * {
@@ -115,6 +120,7 @@ body::after {
 }
 
 .loading-mark {
+  position: relative;
   flex: 0 0 auto;
   width: 26px;
   height: 26px;
@@ -125,8 +131,28 @@ body::after {
   animation: loadingSpin 1.1s linear infinite;
 }
 
+/* 环心一颗轻轻明灭的"星"，呼应星图调性（随父级自转但居中故位置不变） */
+.loading-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 7px 1px rgba(227, 194, 122, 0.7);
+  animation: starPulse 1.6s ease-in-out infinite;
+}
+
 @keyframes loadingSpin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.25); }
 }
 
 .map-warning {
@@ -812,7 +838,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 3px;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.56), 0 0 0 1px rgba(255, 255, 255, 0.025) inset;
   backdrop-filter: blur(14px);
-  animation: cardIn 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+  animation: cardIn var(--dur-card) var(--ease-out);
 }
 
 .landmark-card::before {
@@ -984,7 +1010,7 @@ input[type="range"]::-moz-range-thumb {
   backdrop-filter: blur(14px);
   border-radius: 3px;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.56), 0 0 0 1px rgba(255, 255, 255, 0.025) inset;
-  animation: cardIn 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+  animation: cardIn var(--dur-card) var(--ease-out);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -1635,7 +1661,7 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 3px;
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.5);
   padding: 12px 16px 14px;
-  animation: cardIn 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+  animation: cardIn var(--dur-card) var(--ease-out);
 }
 
 .compare-header {
@@ -1825,7 +1851,7 @@ input[type="range"]::-moz-range-thumb {
   letter-spacing: 2px;
   border-radius: 2px;
   box-shadow: 0 0 22px rgba(227, 194, 122, 0.35);
-  animation: noticeIn 0.22s ease-out;
+  animation: noticeIn var(--dur-base) var(--ease-out);
 }
 
 @keyframes noticeIn {
@@ -2559,5 +2585,19 @@ body.filter-active .info-panel .count span {
 
   body.has-card .info-panel {
     display: none;
+  }
+}
+
+/* 无障碍：尊重系统"减少动态"偏好——冻结装饰性循环动画（旋转/云移/星点明灭），
+   把入场与悬停过渡降到瞬时，避免前庭不适。地图 flyTo 由 MapLibre 的
+   respectPrefersReducedMotion（默认开启）自动改为瞬移，无需额外处理。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
