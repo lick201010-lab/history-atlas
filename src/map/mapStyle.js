@@ -339,14 +339,16 @@ export const THEME_PRESETS = {
       'fog-ground-blend': 0.1,
     },
     boundary: {
-      // "地球夜景" 文明发光光区：更强的柔光晕 + 略亮的发光底 + 清亮边
-      glowOpacityRefined: 0.4,
-      glowOpacityPlain: 0.18,
-      lineOpacityRefined: 0.68,
-      lineOpacityPlain: 0.32,
-      lineDash: [5, 1.4],
-      fillOpacityRefined: 0.12,
-      fillOpacityPlain: 0.05,
+      // "地球夜景" 文明发光光区：收窄的柔光晕 + 克制的发光底 + 清亮边。
+      // 关键：多个文明同时活跃时，过宽过糊的辉光会互相渗透、交叠处发白发糊，
+      // 故 glow 收窄（见 applyBoundaryPaint dark 分支 line-width/blur）、fill 降透明度。
+      glowOpacityRefined: 0.34,
+      glowOpacityPlain: 0.14,
+      lineOpacityRefined: 0.74,
+      lineOpacityPlain: 0.34,
+      lineDash: [4, 1.4],
+      fillOpacityRefined: 0.08,
+      fillOpacityPlain: 0.03,
     },
   },
   atlas: {
@@ -421,10 +423,10 @@ export function applyBoundaryPaint(map, themeKey) {
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 5, 3]);
       map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5);
     } else {
-      // dark：更宽、更柔的辉光晕，文明像一片发光光区
+      // dark：收窄的辉光晕——文明仍像发光光区，但相邻文明不再糊成一团。
       map.setPaintProperty('dynasty-territory-glow', 'line-color', ['get', 'color']);
-      map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 11, 7]);
-      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 7);
+      map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 6, 4]);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 3.5);
     }
     map.setPaintProperty('dynasty-territory-glow', 'line-opacity', [
       'case', isRefinedExpr, preset.boundary.glowOpacityRefined, preset.boundary.glowOpacityPlain,
