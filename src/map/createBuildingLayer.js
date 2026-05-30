@@ -1271,14 +1271,19 @@ export function createBuildingLayer(landmarks) {
       this.camera = new THREE.Camera();
       this.scene = new THREE.Scene();
 
-      const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+      // 光照按主题在 setTheme 里调强度：dark 需要更强的明暗对比让低模剪影清晰，
+      // atlas 维持原来的柔光（冻结观感）。这里存引用，初值给 dark。
+      const ambient = new THREE.AmbientLight(0xffffff, 0.5);
       this.scene.add(ambient);
-      const dir = new THREE.DirectionalLight(0xffe8c0, 1);
+      const dir = new THREE.DirectionalLight(0xffe8c0, 1.25);
       dir.position.set(0.4, -0.7, 1).normalize();
       this.scene.add(dir);
-      const blue = new THREE.DirectionalLight(0x6090ff, 0.4);
+      const blue = new THREE.DirectionalLight(0x6090ff, 0.35);
       blue.position.set(0, 0.7, 0.5).normalize();
       this.scene.add(blue);
+      this.ambientLight = ambient;
+      this.dirMain = dir;
+      this.dirFill = blue;
 
       this.meshes = {};
       landmarks.forEach((building) => {
@@ -1310,12 +1315,14 @@ export function createBuildingLayer(landmarks) {
     },
 
     getSizeMeters() {
-      if (!this.map) return 260000;
+      if (!this.map) return 150000;
       const zoom = this.map.getZoom();
-      if (zoom <= 3.5) return 220000;
-      if (zoom >= 6) return 60000;
+      // 世界视角不再把建筑放成占地数百公里的巨块（那会把精致几何放糊成发光团），
+      // 让模型读作"摆件"而非巨型光斑；高 zoom 端同步收一点。
+      if (zoom <= 3.5) return 130000;
+      if (zoom >= 6) return 48000;
       const t = (zoom - 3.5) / 2.5;
-      return 220000 + (60000 - 220000) * t;
+      return 130000 + (48000 - 130000) * t;
     },
 
     updateScale() {
@@ -1463,6 +1470,10 @@ export function createBuildingLayer(landmarks) {
      */
     setTheme(themeKey) {
       const atlas = themeKey === 'atlas';
+      // 光照随主题：dark 强对比（剪影清晰）、atlas 柔光（冻结观感）。
+      if (this.ambientLight) this.ambientLight.intensity = atlas ? 0.7 : 0.5;
+      if (this.dirMain) this.dirMain.intensity = atlas ? 1.0 : 1.25;
+      if (this.dirFill) this.dirFill.intensity = atlas ? 0.4 : 0.35;
       const visit = (object) => {
         if (object.material) {
           const mats = Array.isArray(object.material) ? object.material : [object.material];
@@ -1476,15 +1487,17 @@ export function createBuildingLayer(landmarks) {
                 // 年代色调（仅 atlas）
                 if (m.userData.atlasColor != null) m.color?.setHex(m.userData.atlasColor);
               } else {
-                m.emissive?.setHex(0x332211);
-                m.emissiveIntensity = 0.45;
-                m.shininess = 35;
+                // dark：降低自发光、提高高光锐度，让面与面有明暗分界（不再发糊）。
+                m.emissive?.setHex(0x2a1c0e);
+                m.emissiveIntensity = 0.32;
+                m.shininess = 48;
                 if (m.userData.baseColor != null) m.color?.setHex(m.userData.baseColor);
               }
               m.needsUpdate = true;
             } else if (role === 'aura' || role === 'beam') {
+              // dark 下也把光环/光柱压一档，避免光晕盖过建筑本体把它糊成光团。
               const base = m.userData.baseOpacity ?? m.opacity;
-              m.opacity = atlas ? base * 0.30 : base;
+              m.opacity = atlas ? base * 0.30 : base * 0.6;
               m.needsUpdate = true;
             } else if (role === 'tree' || role === 'house') {
               // 树丛与民居只在 atlas 显示；dark（HUD）下用 opacity 0 隐藏。
