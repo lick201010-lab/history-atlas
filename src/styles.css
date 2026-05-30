@@ -739,9 +739,9 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #f0d896, var(--gold) 60%, #a48142 100%);
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(227, 194, 122, 0.75), 0 0 0 2px rgba(3, 6, 12, 0.85), 0 0 0 3px rgba(227, 194, 122, 0.28);
+  box-shadow: 0 0 12px rgba(227, 194, 122, 0.75), 0 0 0 2px rgba(3, 6, 12, 0.85), 0 0 0 3px rgba(227, 194, 122, 0.28), 0 0 18px 4px rgba(111, 214, 255, 0.12);
   border: 0;
-  transition: transform 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
@@ -755,7 +755,7 @@ input[type="range"]::-moz-range-thumb {
   background: radial-gradient(circle at 35% 30%, #f0d896, var(--gold) 60%, #a48142 100%);
   cursor: pointer;
   border: 2px solid rgba(3, 6, 12, 0.85);
-  box-shadow: 0 0 12px rgba(227, 194, 122, 0.75);
+  box-shadow: 0 0 12px rgba(227, 194, 122, 0.75), 0 0 18px 4px rgba(111, 214, 255, 0.12);
 }
 
 .timeline-ticks {
