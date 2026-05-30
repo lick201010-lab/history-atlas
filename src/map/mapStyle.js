@@ -70,6 +70,10 @@ const GRATICULE = buildGraticule(30);
 
 export const darkStyle = {
   version: 8,
+  // 字体 PBF：raster 底图自带 nolabels，故没有 glyphs 端点。用 MapLibre 官方 demotiles
+  // 字体服务（免 key，CORS 开放）提供拉丁/标点/字号度量；中文都城名由地图的
+  // localIdeographFontFamily 在浏览器本地渲染（见 MapScene 构造器），不依赖该端点的 CJK。
+  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
   sources: {
     'osm-tiles-dark': {
       type: 'raster',
@@ -466,6 +470,13 @@ export function applyBoundaryPaint(map, themeKey) {
     map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : '#ffcf7a');
     map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.3);
     map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 1.3);
+  }
+  if (map.getLayer('dynasty-capital-label')) {
+    // 都城名标注仅深色显示（atlas 冻结隐藏）——沿用 graticule 的 opacity=0 手法，
+    // 不动 visibility（visibility 交给"都城"图层开关）。dark 下随 zoom 淡入，
+    // 避免世界级缩放时小字挤成一团。
+    map.setPaintProperty('dynasty-capital-label', 'text-opacity',
+      isAtlas ? 0 : ['interpolate', ['linear'], ['zoom'], 1.6, 0, 2.8, 0.95]);
   }
 }
 

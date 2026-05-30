@@ -52,6 +52,8 @@ function createDynastyCapitalGeoJson(dynasties) {
         startYear: dynasty.startYear,
         endYear: dynasty.endYear,
         color: dynasty.color,
+        // 标注碰撞排序用：重要文明（importance 大）在低 zoom 优先保留。
+        importance: dynasty.importance ?? 3,
       },
       geometry: {
         type: 'Point',
@@ -165,6 +167,7 @@ const MapScene = forwardRef(function MapScene({
       map.setFilter('dynasty-territory-hover', boundaryHoverFilter(year, hoveredBoundaryIdRef.current));
       map.setFilter('dynasty-capital-glow', filter);
       map.setFilter('dynasty-capital-core', filter);
+      map.setFilter('dynasty-capital-label', filter);
     }
   }, [onVisibleBuildingsChange, year]);
 
@@ -188,6 +191,7 @@ const MapScene = forwardRef(function MapScene({
     setVisibility(map, 'dynasty-territory-selected-fill', layerVisibility.territories);
     setVisibility(map, 'dynasty-capital-glow', layerVisibility.capitals);
     setVisibility(map, 'dynasty-capital-core', layerVisibility.capitals);
+    setVisibility(map, 'dynasty-capital-label', layerVisibility.capitals);
     buildingLayerRef.current?.setLayerVisible(layerVisibility.buildings);
     if (!layerVisibility.territories) onCloseCard?.();
     if (!layerVisibility.buildings) setTooltip((current) => ({ ...current, visible: false }));
@@ -216,6 +220,8 @@ const MapScene = forwardRef(function MapScene({
       maxPitch: 75,
       antialias: true,
       attributionControl: false,
+      // 中文都城名（长安/君士坦丁堡…）由浏览器本地字体渲染，避免依赖字体服务的 CJK 字形。
+      localIdeographFontFamily: "'Noto Sans CJK SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
     });
 
     map.dragRotate.enable();
@@ -349,6 +355,36 @@ const MapScene = forwardRef(function MapScene({
           },
         });
       }
+      // 都城名标注（dark-only symbol 层，复用同一 GeoJSON 源）。
+      // 显隐三重控制：年代 filter（与都城点同步）、"都城"图层开关（visibility）、
+      // 主题（text-opacity 由 applyBoundaryPaint 设；atlas=0）。中文走本地字体，
+      // 拉丁/标点用 demotiles Noto Sans。碰撞按 importance 排序，低 zoom 自然只剩重点都城。
+      if (!map.getLayer('dynasty-capital-label')) {
+        map.addLayer({
+          id: 'dynasty-capital-label',
+          type: 'symbol',
+          source: 'dynasty-capitals',
+          filter: activeYearFilter(yearRef.current),
+          layout: {
+            'text-field': ['get', 'capital'],
+            'text-font': ['Noto Sans Regular'],
+            'text-size': ['interpolate', ['linear'], ['zoom'], 2, 10.5, 4, 13, 6.5, 16],
+            'text-anchor': 'top',
+            'text-offset': [0, 0.75],
+            'text-max-width': 7,
+            'text-padding': 4,
+            'text-allow-overlap': false,
+            'symbol-sort-key': ['-', 5, ['get', 'importance']],
+          },
+          paint: {
+            'text-color': '#ffe9cc',
+            'text-halo-color': 'rgba(6, 10, 18, 0.9)',
+            'text-halo-width': 1.4,
+            'text-halo-blur': 0.6,
+            // text-opacity 由 applyBoundaryPaint 按主题设置（dark 淡入 / atlas 0）。
+          },
+        });
+      }
     }
 
     // 海面雕版波纹：生成一次平铺纹理并绑到 atlas-ocean-texture 的 fill-pattern。
@@ -381,6 +417,7 @@ const MapScene = forwardRef(function MapScene({
         setVisibility(map, 'dynasty-territory-selected-fill', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-capital-glow', layerVisibilityRef.current.capitals);
         setVisibility(map, 'dynasty-capital-core', layerVisibilityRef.current.capitals);
+        setVisibility(map, 'dynasty-capital-label', layerVisibilityRef.current.capitals);
         buildingLayer.setLayerVisible(layerVisibilityRef.current.buildings);
         onVisibleBuildingsChange(buildingLayer.setYear(yearRef.current));
         // 图层创建后立即把当前主题套上去
