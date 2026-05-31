@@ -110,7 +110,7 @@
 | id | 文件 | 建模要点 | 体积 / 面数 |
 | --- | --- | --- | --- |
 | `hagia-sophia` | hagia-sophia.glb | 中央旋转面大穹顶 + 半穹 + 四尖塔 + 扶壁 + 侧廊单坡顶 | ~0.89 MB / ~19k |
-| `parthenon` | parthenon.glb | 三级基座 + 周柱式柱廊 + 檐部 + 三角山墙坡顶 | ~0.14 MB / ~2.3k |
+| `parthenon` | parthenon.glb | 三级基座 + 8×17 满周柱列 + 三陇板中楣 + 三角山墙坡顶 + acroteria（精修） | ~0.40 MB / ~7.4k |
 | `colosseum` | colosseum.glb | 椭圆多层连拱 + 部分坍塌立面（遗迹）+ 阶梯观众席 + 竞技场 | ~0.83 MB / ~9k |
 | `tajmahal` | taj-mahal.glb | 八角主体 + 四面尖拱 iwan + 洋葱穹顶 + 四塔 + 四小亭 + 红砂岩侧翼 | ~0.44 MB / ~12k |
 | `pyramid` | great-pyramid.glb | 主金字塔 + 两座小金字塔 + 王后小金字塔 + 祭庙基座，分层砌石带 | ~0.06 MB / ~0.9k |
@@ -118,7 +118,7 @@
 | `angkor-wat` | angkor-wat.glb | 护城河 + 台基岛 + 引道 + 回廊角楼 + 须弥台 + 梅花五塔（莲花苞顶） | ~0.13 MB / ~2.8k |
 | `stonehenge` | stonehenge.glb | 外圈立石+楣石（部分残缺）+ 内马蹄三石塔 + 中央祭坛 + 草土堆 | ~0.06 MB / ~0.7k |
 | `chichen-itza` | chichen-itza.glb | 九级截顶阶梯金字塔 + 正面大台阶（坡道/踏步/栏墙）+ 顶庙 + roof comb | ~0.04 MB / ~0.4k |
-| `forbidden-city` | forbidden-city.glb | 三层汉白玉须弥座 + 朱红殿身 + 前檐红柱 + 重檐庑殿顶（hipRoof，金瓦） | ~0.05 MB / ~0.7k |
-| `notre-dame` | notre-dame.glb | 拉丁十字中殿 + 陡坡顶 + 西立面双塔 + 玫瑰窗 + 中央尖塔 flèche + 飞扶壁 | ~0.06 MB / ~0.8k |
+| `forbidden-city` | forbidden-city.glb | 须弥座（栏杆+御路）+ 周匝檐柱 + 斗栱带 + 棂格门窗 + 重檐庑殿顶（鸱吻/走兽）（精修） | ~0.20 MB / ~2.9k |
+| `notre-dame` | notre-dame.glb | 中殿+侧廊高侧窗带 + 多道飞扶壁 + 双塔（钟层/角扶壁/尖塔）+ 国王廊 + 玫瑰窗棂 + 深券门 + flèche（精修） | ~0.24 MB / ~3.5k |
 | `borobudur` | borobudur.glb | 五层方形曼陀罗台基（佛龛）+ 三层圆台 + 同心环列钟形舍利塔 + 中央大塔 | ~0.61 MB / ~18.6k |
 | `petra` | petra.glb | 崖体凿入立面：下层柱廊 + 断山花 + 上层圆亭 tholos（锥顶瓮饰）+ 高门洞 | ~0.07 MB / ~1.2k |

@@ -222,6 +222,34 @@ export class WonderAsset {
     }
   }
 
+  // 柱列：沿 axis('x'/'y') 等距排 count 根柱（柱础 + 柱身（微收分）+ 柱头 echinus + abacus）。
+  colonnade(key, capKey, { axis = 'x', from, to, count, fixed, baseZ, h, rBot = 0.045, rTop = 0.04, capR = 0.058, capH = 0.03, baseH = 0.02, seg = 14 }) {
+    for (let i = 0; i < count; i += 1) {
+      const t = count > 1 ? i / (count - 1) : 0.5;
+      const u = from + (to - from) * t;
+      const x = axis === 'x' ? u : fixed;
+      const y = axis === 'x' ? fixed : u;
+      if (baseH > 0) this.box(key, rBot * 2.3, rBot * 2.3, baseH, x, y, baseZ + baseH / 2);
+      this.cyl(key, rTop, rBot, h, x, y, baseZ + baseH + h / 2, seg);
+      if (capR > 0) {
+        this.cyl(capKey, capR, rTop * 1.04, capH, x, y, baseZ + baseH + h + capH / 2, seg);
+        this.box(capKey, capR * 1.9, capR * 1.9, capH * 0.55, x, y, baseZ + baseH + h + capH + capH * 0.28);
+      }
+    }
+  }
+
+  // 窗洞带：法向 normal('x'/'y') 的墙面上等距排 count 个矩形凹龛 + 窗楣（仿圣索菲亚连续窗带层次）。
+  windowBand(voidKey, trimKey, { normal = 'y', wallPos, from, to, count, z, w = 0.045, h = 0.16, depth = 0.03, capH = 0.02 }) {
+    for (let i = 0; i < count; i += 1) {
+      const t = count > 1 ? i / (count - 1) : 0.5;
+      const u = from + (to - from) * t;
+      const x = normal === 'y' ? u : wallPos;
+      const y = normal === 'y' ? wallPos : u;
+      this.box(voidKey, normal === 'y' ? w : depth, normal === 'y' ? depth : w, h, x, y, z + h / 2);
+      if (capH > 0) this.box(trimKey, normal === 'y' ? w * 1.5 : depth, normal === 'y' ? depth : w * 1.5, capH, x, y, z + h + capH * 0.5);
+    }
+  }
+
   // ---- 顶点色 AO ----------------------------------------------------------
   static applyVertexAO(geom, zMin, zMax) {
     const pos = geom.attributes.position;
