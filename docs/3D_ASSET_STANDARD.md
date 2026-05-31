@@ -90,8 +90,8 @@
 ## 8. 后续批量扩展规则
 
 1. **先复用 wonderKit 原语**，不要每个模型从零手写重复 Three 几何：
-   `box / boxRotZ / boxRotX / cyl(thetaStart) / coneUp / dome / latheDome / lathe /
-   sphere / arcade / gable / stepPyramid / ellipseRing`。
+   `box / boxRotZ / boxRotX / boxRotY / cyl(thetaStart) / coneUp / dome / latheDome /
+   lathe / sphere / arcade / gable / stepPyramid(topHalf) / ellipseRing`。
    缺的形体先**沉淀为 wonderKit 原语**再用（利于下一个奇观复用）。
 2. 新资产模板（照搬本批任一脚本）：定义 `COLORS` + `material(key)` → 用原语搭体量 →
    `await a.exportGlb(OUT, { colors, material, weld: true })`。
@@ -113,3 +113,7 @@
 | `colosseum` | colosseum.glb | 椭圆多层连拱 + 部分坍塌立面（遗迹）+ 阶梯观众席 + 竞技场 | ~0.83 MB / ~9k |
 | `tajmahal` | taj-mahal.glb | 八角主体 + 四面尖拱 iwan + 洋葱穹顶 + 四塔 + 四小亭 + 红砂岩侧翼 | ~0.44 MB / ~12k |
 | `pyramid` | great-pyramid.glb | 主金字塔 + 两座小金字塔 + 王后小金字塔 + 祭庙基座，分层砌石带 | ~0.06 MB / ~0.9k |
+| `great-wall` | great-wall.glb | 蜿蜒翻山城墙（夯土填方 + 砖墙 + 交错垛口）+ 三座敌楼 | ~0.13 MB / ~1.3k |
+| `angkor-wat` | angkor-wat.glb | 护城河 + 台基岛 + 引道 + 回廊角楼 + 须弥台 + 梅花五塔（莲花苞顶） | ~0.13 MB / ~2.8k |
+| `stonehenge` | stonehenge.glb | 外圈立石+楣石（部分残缺）+ 内马蹄三石塔 + 中央祭坛 + 草土堆 | ~0.06 MB / ~0.7k |
+| `chichen-itza` | chichen-itza.glb | 九级截顶阶梯金字塔 + 正面大台阶（坡道/踏步/栏墙）+ 顶庙 + roof comb | ~0.04 MB / ~0.4k |

@@ -1124,6 +1124,10 @@ const ID_GLB_OVERRIDES = {
   colosseum: `${GLB_BASE}colosseum.glb`,
   tajmahal: `${GLB_BASE}taj-mahal.glb`,
   pyramid: `${GLB_BASE}great-pyramid.glb`,
+  'great-wall': `${GLB_BASE}great-wall.glb`,
+  'angkor-wat': `${GLB_BASE}angkor-wat.glb`,
+  stonehenge: `${GLB_BASE}stonehenge.glb`,
+  'chichen-itza': `${GLB_BASE}chichen-itza.glb`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
@@ -1137,6 +1141,10 @@ const ID_GLB_ORIENTATION_OVERRIDES = {
   colosseum: GLB_ORIENT_ZUP,
   tajmahal: GLB_ORIENT_ZUP,
   pyramid: GLB_ORIENT_ZUP,
+  'great-wall': GLB_ORIENT_ZUP,
+  'angkor-wat': GLB_ORIENT_ZUP,
+  stonehenge: GLB_ORIENT_ZUP,
+  'chichen-itza': GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。

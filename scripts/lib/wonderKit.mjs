@@ -69,6 +69,14 @@ export class WonderAsset {
     this.push(g, key);
   }
 
+  // 绕 y 轴倾斜的板（做沿 x 升起的坡道/大台阶斜面）
+  boxRotY(key, sx, sy, sz, x, y, z, ry) {
+    const g = new THREE.BoxGeometry(sx, sy, sz);
+    g.rotateY(ry);
+    g.translate(x, y, z);
+    this.push(g, key);
+  }
+
   // 轴向沿 z 的柱体；thetaStart 可让低边数多边形（如 8 边八角体）的平面朝向坐标轴
   cyl(key, rTop, rBot, h, x, y, z, seg = 24, thetaStart = 0) {
     const g = new THREE.CylinderGeometry(rTop, rBot, h, seg, 1, false, thetaStart);
@@ -163,13 +171,14 @@ export class WonderAsset {
 
   // 阶梯金字塔：由若干层方台（4 边棱台）自下而上收分叠成，显出石材层次。
   //   baseHalf = 底层「面」半宽（朝 ±x/±y 为平面），height 总高，layers 层数。
+  //   topHalf>0 → 截顶平台金字塔（中美洲阶梯庙/截顶塔/阶梯塔身用）；=0 → 收到尖顶。
   //   bandKey 给奇数层换色 → 砌层带感。twist 让方形面朝向坐标轴。
-  stepPyramid(key, baseHalf, height, layers, x, y, z, { bandKey = null, twist = Math.PI / 4 } = {}) {
+  stepPyramid(key, baseHalf, height, layers, x, y, z, { bandKey = null, twist = Math.PI / 4, topHalf = 0 } = {}) {
     const layerH = height / layers;
-    const R = baseHalf * Math.SQRT2;         // 角半径（面半宽 = R*cos45）
+    const Rb = baseHalf * Math.SQRT2, Rt = topHalf * Math.SQRT2;   // 角半径
     for (let i = 0; i < layers; i += 1) {
-      const rBot = R * (1 - i / layers);
-      const rTop = R * (1 - (i + 1) / layers);
+      const rBot = Rb + (Rt - Rb) * (i / layers);
+      const rTop = Rb + (Rt - Rb) * ((i + 1) / layers);
       const g = new THREE.CylinderGeometry(Math.max(rTop, 1e-4), rBot, layerH, 4, 1, false, twist);
       g.rotateX(Math.PI / 2);
       g.translate(x, y, z + layerH * (i + 0.5));
