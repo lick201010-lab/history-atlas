@@ -1117,15 +1117,26 @@ const ID_PROFILE_OVERRIDES = {
 // 招牌建筑的 GLB 资产（代码侧映射，不改 landmarks.json）。
 // 命中时：先按程序化模型出图（保证立即可见 + 失败兜底），随后异步加载 GLB，
 // 成功则用 GLB 替换该建筑的程序化体块；加载失败则保留程序化模型。
+const GLB_BASE = `${import.meta.env?.BASE_URL ?? '/'}models/`;
 const ID_GLB_OVERRIDES = {
-  'hagia-sophia': `${import.meta.env?.BASE_URL ?? '/'}models/hagia-sophia.glb`,
+  'hagia-sophia': `${GLB_BASE}hagia-sophia.glb`,
+  parthenon: `${GLB_BASE}parthenon.glb`,
+  colosseum: `${GLB_BASE}colosseum.glb`,
+  tajmahal: `${GLB_BASE}taj-mahal.glb`,
+  pyramid: `${GLB_BASE}great-pyramid.glb`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
 // 圣索菲亚 GLB 来自本地程序化导出，加载到 MapLibre custom layer 后需要校正竖直轴，
 // 否则会像躺倒一样把底部/侧底部朝向镜头，而不是让底面贴地。
+// 全部经 wonderKit 以 z-up 导出，经同一 GLTF 往返后需校正竖直轴（与圣索菲亚一致）。
+const GLB_ORIENT_ZUP = { x: -Math.PI / 2, y: 0, z: 0 };
 const ID_GLB_ORIENTATION_OVERRIDES = {
-  'hagia-sophia': { x: -Math.PI / 2, y: 0, z: 0 },
+  'hagia-sophia': GLB_ORIENT_ZUP,
+  parthenon: GLB_ORIENT_ZUP,
+  colosseum: GLB_ORIENT_ZUP,
+  tajmahal: GLB_ORIENT_ZUP,
+  pyramid: GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。

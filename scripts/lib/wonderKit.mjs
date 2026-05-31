@@ -69,9 +69,9 @@ export class WonderAsset {
     this.push(g, key);
   }
 
-  // 轴向沿 z 的柱体
-  cyl(key, rTop, rBot, h, x, y, z, seg = 24) {
-    const g = new THREE.CylinderGeometry(rTop, rBot, h, seg);
+  // 轴向沿 z 的柱体；thetaStart 可让低边数多边形（如 8 边八角体）的平面朝向坐标轴
+  cyl(key, rTop, rBot, h, x, y, z, seg = 24, thetaStart = 0) {
+    const g = new THREE.CylinderGeometry(rTop, rBot, h, seg, 1, false, thetaStart);
     g.rotateX(Math.PI / 2);
     g.translate(x, y, z);
     this.push(g, key);
@@ -134,6 +134,66 @@ export class WonderAsset {
     }
   }
 
+  // 通用旋转面：给定侧影点列 profile=[[r,h],...]（h 从 0 向上），绕竖轴旋成壳体。
+  //   洋葱穹顶等「先鼓后收」的非单调轮廓用它（latheDome 只能单调收分）。
+  lathe(key, profile, x, y, z, seg = 48) {
+    const pts = profile.map(([r, h]) => new THREE.Vector2(Math.max(r, 1e-4), h));
+    const g = new THREE.LatheGeometry(pts, seg);
+    g.rotateX(Math.PI / 2);                 // 旋转轴 Y -> Z（向上）
+    g.translate(x, y, z);
+    this.push(g, key);
+  }
+
+  // 三角山墙 / 楔形棱柱：等腰三角形截面（底宽 w、顶高 h），沿厚度方向 d 挤出。
+  //   plane='yz' → 底沿 Y、顶尖朝上 Z、厚度沿 X（朝 ±X 的山墙；d=进深时也可当沿 X 的坡屋顶，
+  //     此时两端三角面即山花/三角楣）。plane='xz' → 底沿 X、顶尖朝上 Z、厚度沿 Y。
+  gable(key, w, h, d, x, y, z, plane = 'yz') {
+    const shape = new THREE.Shape();
+    shape.moveTo(-w / 2, 0);
+    shape.lineTo(w / 2, 0);
+    shape.lineTo(0, h);
+    shape.closePath();
+    const g = new THREE.ExtrudeGeometry(shape, { depth: d, bevelEnabled: false });
+    g.translate(0, 0, -d / 2);               // 居中厚度
+    g.rotateX(Math.PI / 2);                  // 顶尖 Y->Z(上)，厚度 Z->Y；底仍沿 X
+    if (plane === 'yz') g.rotateZ(Math.PI / 2); // 底 X->Y，厚 Y->X；顶尖仍沿 Z
+    g.translate(x, y, z);
+    this.push(g, key);
+  }
+
+  // 阶梯金字塔：由若干层方台（4 边棱台）自下而上收分叠成，显出石材层次。
+  //   baseHalf = 底层「面」半宽（朝 ±x/±y 为平面），height 总高，layers 层数。
+  //   bandKey 给奇数层换色 → 砌层带感。twist 让方形面朝向坐标轴。
+  stepPyramid(key, baseHalf, height, layers, x, y, z, { bandKey = null, twist = Math.PI / 4 } = {}) {
+    const layerH = height / layers;
+    const R = baseHalf * Math.SQRT2;         // 角半径（面半宽 = R*cos45）
+    for (let i = 0; i < layers; i += 1) {
+      const rBot = R * (1 - i / layers);
+      const rTop = R * (1 - (i + 1) / layers);
+      const g = new THREE.CylinderGeometry(Math.max(rTop, 1e-4), rBot, layerH, 4, 1, false, twist);
+      g.rotateX(Math.PI / 2);
+      g.translate(x, y, z + layerH * (i + 0.5));
+      this.push(g, (bandKey && i % 2 === 1) ? bandKey : key);
+    }
+  }
+
+  // 椭圆环墙：沿椭圆 (a,b) 铺一圈切向墙段，可被调用者按角度决定高度/层级（做斗兽场环）。
+  //   callback(i, theta, px, py, tangent) -> { height, key } | null（返回 null 跳过该段）。
+  ellipseRing(a, b, n, z, thickness, segLenScale, fn) {
+    for (let i = 0; i < n; i += 1) {
+      const th = (i / n) * Math.PI * 2;
+      const px = a * Math.cos(th);
+      const py = b * Math.sin(th);
+      const tangent = Math.atan2(b * Math.cos(th), -a * Math.sin(th));
+      const spec = fn(i, th, px, py, tangent);
+      if (!spec) continue;
+      const next = ((i + 1) / n) * Math.PI * 2;
+      const nx = a * Math.cos(next), ny = b * Math.sin(next);
+      const chord = Math.hypot(nx - px, ny - py) * segLenScale;
+      this.boxRotZ(spec.key, chord, thickness, spec.height, px, py, z + spec.height / 2, tangent);
+    }
+  }
+
   // ---- 顶点色 AO ----------------------------------------------------------
   static applyVertexAO(geom, zMin, zMax) {
     const pos = geom.attributes.position;
@@ -177,7 +237,17 @@ export class WonderAsset {
     let totalVerts = 0;
     for (const [key, geoms] of Object.entries(this.buckets)) {
       parts += geoms.length;
-      let merged = mergeGeometries(geoms, false);
+      // 仅保留 position/normal/uv 三件套，确保各原语属性集一致可合并。
+      const keep = ['position', 'normal', 'uv'];
+      for (const g of geoms) {
+        for (const name of Object.keys(g.attributes)) if (!keep.includes(name)) g.deleteAttribute(name);
+      }
+      // mergeGeometries 要求「索引存在性」一致。同桶若混了索引几何（Box/Cyl）与
+      // 非索引几何（Extrude/gable），仅在这种混合时统一去索引；否则保持索引以利顶点共享、控体积。
+      const allIndexed = geoms.every((g) => g.index);
+      const noneIndexed = geoms.every((g) => !g.index);
+      const toMerge = (allIndexed || noneIndexed) ? geoms : geoms.map((g) => (g.index ? g.toNonIndexed() : g));
+      let merged = mergeGeometries(toMerge, false);
       if (!merged) throw new Error(`merge failed for ${key}`);
       merged.computeVertexNormals();
       WonderAsset.applyVertexAO(merged, zMin, zMax);
