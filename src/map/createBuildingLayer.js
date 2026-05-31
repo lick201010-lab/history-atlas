@@ -1132,6 +1132,7 @@ const ID_GLB_OVERRIDES = {
   'notre-dame': `${GLB_BASE}notre-dame.glb`,
   borobudur: `${GLB_BASE}borobudur.glb`,
   petra: `${GLB_BASE}petra.glb`,
+  'red-fort': `${GLB_BASE}red-fort.glb`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
@@ -1153,6 +1154,7 @@ const ID_GLB_ORIENTATION_OVERRIDES = {
   'notre-dame': GLB_ORIENT_ZUP,
   borobudur: GLB_ORIENT_ZUP,
   petra: GLB_ORIENT_ZUP,
+  'red-fort': GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。
