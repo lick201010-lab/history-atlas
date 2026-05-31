@@ -10,7 +10,11 @@ export default defineConfig({
     dedupe: ['three'],
   },
   optimizeDeps: {
-    include: ['three', 'three/examples/jsm/utils/BufferGeometryUtils.js'],
+    include: [
+      'three',
+      'three/examples/jsm/utils/BufferGeometryUtils.js',
+      'three/examples/jsm/loaders/GLTFLoader.js',
+    ],
   },
   build: {
     rollupOptions: {

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import maplibregl from 'maplibre-gl';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MODEL_PROFILE_KEYS, assertProfileCoverage } from './modelProfileKeys.js';
 
 function colorToNumber(color) {
@@ -135,22 +136,52 @@ function buildMosque(mat) {
 }
 
 function buildCathedral(mat) {
-  // Long nave + central transept + spire.
+  // 哥特式大教堂：中殿 + 南北侧廊 + 十字耳堂 + 陡坡顶 + 西立面双塔尖 +
+  // 交叉塔小尖塔（flèche）+ 东端半圆后殿。比旧版（裸方块 + 单尖）精度高得多。
   const meshes = [];
-  const nave = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.5, 0.5), mat);
-  nave.position.z = 0.25;
-  const transept = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1, 0.45), mat);
-  transept.position.z = 0.22;
-  const roof = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.55, 0.12), mat);
-  roof.position.z = 0.56;
-  const spire = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.85, 6), mat);
-  spire.position.z = 1.05;
-  // Two square towers at one end
-  const towerL = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.85), mat);
-  towerL.position.set(-0.62, -0.1, 0.42);
-  const towerR = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.85), mat);
-  towerR.position.set(-0.62, 0.1, 0.42);
-  meshes.push(nave, transept, roof, spire, towerL, towerR);
+  // 中殿（沿 X 向延伸的主体）
+  const nave = new THREE.Mesh(new THREE.BoxGeometry(1.36, 0.46, 0.52), mat);
+  nave.position.set(0.02, 0, 0.26);
+  meshes.push(nave);
+  // 南北侧廊（更低）
+  for (const y of [-0.33, 0.33]) {
+    const aisle = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.18, 0.3), mat);
+    aisle.position.set(0.02, y, 0.15);
+    meshes.push(aisle);
+  }
+  // 中殿陡坡顶（4 坡锥沿 y 压扁成长脊）
+  const naveRoof = new THREE.Mesh(new THREE.ConeGeometry(0.72, 0.26, 4), mat);
+  naveRoof.rotation.y = Math.PI / 4;
+  naveRoof.scale.set(1.0, 0.34, 1.0);
+  naveRoof.position.set(0.02, 0, 0.65);
+  meshes.push(naveRoof);
+  // 十字耳堂（横翼）+ 其坡顶
+  const transept = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.98, 0.48), mat);
+  transept.position.set(0.12, 0, 0.24);
+  meshes.push(transept);
+  const transeptRoof = new THREE.Mesh(new THREE.ConeGeometry(0.52, 0.22, 4), mat);
+  transeptRoof.rotation.y = Math.PI / 4;
+  transeptRoof.scale.set(0.42, 1.0, 1.0);
+  transeptRoof.position.set(0.12, 0, 0.59);
+  meshes.push(transeptRoof);
+  // 交叉处小尖塔（flèche）
+  const fleche = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.5, 8), mat);
+  fleche.position.set(0.12, 0, 0.92);
+  meshes.push(fleche);
+  // 西立面双塔（高方塔 + 锥尖）
+  for (const y of [-0.16, 0.16]) {
+    const tower = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.24, 0.96), mat);
+    tower.position.set(-0.64, y, 0.48);
+    const spire = new THREE.Mesh(new THREE.ConeGeometry(0.15, 0.34, 4), mat);
+    spire.rotation.y = Math.PI / 4;
+    spire.position.set(-0.64, y, 1.13);
+    meshes.push(tower, spire);
+  }
+  // 东端半圆后殿（apse）
+  const apse = new THREE.Mesh(new THREE.CylinderGeometry(0.23, 0.23, 0.42, 18), mat);
+  apse.rotation.x = Math.PI / 2;
+  apse.position.set(0.72, 0, 0.21);
+  meshes.push(apse);
   return meshes;
 }
 
@@ -1016,6 +1047,83 @@ function buildProfileChichenItza(mat) {
   return meshes;
 }
 
+/* ============================================================
+ * 按 landmark id 的代码侧模型覆写（不改 landmarks.json）
+ * 某些名建筑虽与同 type 共享通用模型，但有极强识别度的招牌轮廓，
+ * 单独给一份高精度 procedural model。仅按 id 命中，独立于 PROFILES/
+ * MODEL_PROFILE_KEYS 体系（不触发 assertProfileCoverage）。
+ * ============================================================ */
+
+// 圣索菲亚大教堂：长方形巴西利卡主体 + 招牌中央大穹顶（鼓座 + 扁半球）+
+// 东西两座半穹顶 + 四角奥斯曼细高宣礼塔（铅笔尖顶）。对应用户参考图 3。
+function buildProfileHagiaSophia(mat) {
+  const meshes = [];
+  // 巴西利卡台基（东西略长）
+  const base = new THREE.Mesh(new THREE.BoxGeometry(1.25, 0.95, 0.12), mat);
+  base.position.z = 0.06;
+  meshes.push(base);
+  // 南北侧廊（较低体块）
+  for (const y of [-0.40, 0.40]) {
+    const aisle = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.22, 0.26), mat);
+    aisle.position.set(0, y, 0.20);
+    meshes.push(aisle);
+  }
+  // 中殿核心方体（承托中央大穹顶的方形基座）
+  const naveCore = new THREE.Mesh(new THREE.BoxGeometry(0.64, 0.64, 0.42), mat);
+  naveCore.position.z = 0.31;
+  meshes.push(naveCore);
+  // 东西两座半穹顶（紧贴中央穹顶，略低）
+  for (const sgn of [-1, 1]) {
+    const semi = new THREE.Mesh(
+      new THREE.SphereGeometry(0.31, 28, 16, 0, Math.PI * 2, 0, Math.PI / 2), mat);
+    semi.scale.set(1, 1, 0.72);
+    semi.position.set(sgn * 0.34, 0, 0.42);
+    meshes.push(semi);
+  }
+  // 中央穹顶鼓座（drum）
+  const drum = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.37, 0.16, 32), mat);
+  drum.rotation.x = Math.PI / 2;
+  drum.position.z = 0.56;
+  meshes.push(drum);
+  // 中央大穹顶（招牌扁半球）
+  const dome = new THREE.Mesh(
+    new THREE.SphereGeometry(0.37, 36, 20, 0, Math.PI * 2, 0, Math.PI / 2), mat);
+  dome.scale.set(1, 1, 0.8);
+  dome.position.z = 0.62;
+  meshes.push(dome);
+  // 穹顶顶尖
+  const finial = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.13, 10), mat);
+  finial.position.z = 0.62 + 0.37 * 0.8 + 0.02;
+  meshes.push(finial);
+  // 四角宣礼塔（奥斯曼加建，细高 + 阳台环 + 铅笔尖顶 —— 圣索菲亚标志）
+  for (const [x, y] of [[-0.56, -0.42], [0.56, -0.42], [-0.56, 0.42], [0.56, 0.42]]) {
+    const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.055, 1.0, 14), mat);
+    shaft.rotation.x = Math.PI / 2;
+    shaft.position.set(x, y, 0.5);
+    const balcony = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.04, 14), mat);
+    balcony.rotation.x = Math.PI / 2;
+    balcony.position.set(x, y, 0.84);
+    const cap = new THREE.Mesh(new THREE.ConeGeometry(0.06, 0.26, 14), mat);
+    cap.position.set(x, y, 1.13);
+    meshes.push(shaft, balcony, cap);
+  }
+  return meshes;
+}
+
+const ID_PROFILE_OVERRIDES = {
+  'hagia-sophia': buildProfileHagiaSophia,
+};
+
+// 招牌建筑的 GLB 资产（代码侧映射，不改 landmarks.json）。
+// 命中时：先按程序化模型出图（保证立即可见 + 失败兜底），随后异步加载 GLB，
+// 成功则用 GLB 替换该建筑的程序化体块；加载失败则保留程序化模型。
+const ID_GLB_OVERRIDES = {
+  'hagia-sophia': `${import.meta.env?.BASE_URL ?? '/'}models/hagia-sophia.glb`,
+};
+
+// 单例 GLTF 加载器（所有招牌建筑共用）。
+const gltfLoader = new GLTFLoader();
+
 const PROFILES = {
   palace: buildProfileChanganPalace,
   pyramid: buildProfileGizaPyramid,
@@ -1383,11 +1491,18 @@ export function createBuildingLayer(landmarks) {
       // atlas 主题用的"年代色调"：本色与时代色混 28%。
       mat.userData.atlasColor = lerpColorNum(color, eraColorNum(building.startYear), 0.28);
 
-      // 优先使用 modelProfile 的专属轮廓（重点样板建筑），其次按 type 走通用模型。
+      // 选模型优先级：① 按 id 的代码侧覆写（招牌名建筑，如圣索菲亚）→
+      // ② modelProfile 专属轮廓（重点样板建筑）→ ③ 按 type 通用模型 → ④ 兜底。
       // 主体网格按材质合并（多数共享 mat，少数 profile 有专属材质），砍掉 draw call。
+      const overrideBuilder = ID_PROFILE_OVERRIDES[building.id] || null;
       const profileBuilder = building.modelProfile ? PROFILES[building.modelProfile] : null;
-      const builder = profileBuilder || BUILDERS[building.type] || buildDefault;
-      for (const merged of mergeByMaterial(builder(mat))) group.add(merged);
+      const builder = overrideBuilder || profileBuilder || BUILDERS[building.type] || buildDefault;
+      const bodyMeshes = mergeByMaterial(builder(mat));
+      for (const merged of bodyMeshes) group.add(merged);
+
+      // 招牌建筑：异步加载 GLB 替换程序化体块（失败则保留程序化兜底）。
+      const glbUrl = ID_GLB_OVERRIDES[building.id];
+      if (glbUrl) this.loadGlbBody(group, bodyMeshes, glbUrl, building);
 
       // 植被（M2）：温带/热带站点在足迹外圈放低多边形树丛（沙漠/干旱区跳过）。
       // 各树本色烘焙进顶点色，合并成单一 role='tree' 网格。
@@ -1461,7 +1576,55 @@ export function createBuildingLayer(landmarks) {
 
       group.userData.ring = ring;
       group.userData.beam = beam;
+      group.userData.bodyMeshes = bodyMeshes;
       return group;
+    },
+
+    /**
+     * 异步加载招牌建筑的 GLB，成功后用它替换程序化体块（auras/beam/ring 保留）。
+     * 失败（404 / 解析错误 / WebGL 限制）则什么都不做 —— 程序化模型继续显示，作兜底。
+     * GLB 与程序化模型同坐标系（z 上、足迹 ±0.7、base 贴地），故替换后位置/朝向/贴地不变。
+     */
+    loadGlbBody(group, proceduralMeshes, url, building) {
+      gltfLoader.load(
+        url,
+        (gltf) => {
+          const root = gltf.scene || gltf.scenes?.[0];
+          if (!root) return;
+          // 给 GLB 材质打上主题钩子：dark 保留 GLB 本色（材质分色层次），
+          // atlas 用年代色调；role='body' 让 setTheme 一并处理自发光/高光。
+          root.traverse((o) => {
+            if (!o.isMesh || !o.material) return;
+            o.castShadow = false;
+            o.receiveShadow = false;
+            const mats = Array.isArray(o.material) ? o.material : [o.material];
+            for (const m of mats) {
+              m.userData = m.userData || {};
+              m.userData.role = 'body';
+              const hex = m.color ? m.color.getHex() : 0xffffff;
+              m.userData.baseColor = hex;
+              m.userData.atlasColor = lerpColorNum(hex, eraColorNum(building.startYear), 0.28);
+            }
+          });
+          // 移除程序化体块（释放几何；共享的 body 材质留给 GC，避免误伤其它引用）。
+          for (const m of proceduralMeshes) {
+            group.remove(m);
+            if (m.geometry) m.geometry.dispose();
+          }
+          group.add(root);
+          group.userData.bodyMeshes = [root];
+          group.userData.glbLoaded = true;
+          // 把当前主题套用到新材质，并触发重绘。
+          this.setTheme(this._themeKey || 'dark');
+          if (this.map) this.map.triggerRepaint();
+        },
+        undefined,
+        (err) => {
+          // 兜底：保留程序化模型。
+          // eslint-disable-next-line no-console
+          console.warn(`[buildings] GLB load failed for ${building.id}, keeping procedural model.`, err);
+        },
+      );
     },
 
     /**
@@ -1469,6 +1632,7 @@ export function createBuildingLayer(landmarks) {
      * 不重建几何，只调材质属性。
      */
     setTheme(themeKey) {
+      this._themeKey = themeKey;
       const atlas = themeKey === 'atlas';
       // 光照随主题：dark 强对比（剪影清晰）、atlas 柔光（冻结观感）。
       if (this.ambientLight) this.ambientLight.intensity = atlas ? 0.7 : 0.5;
