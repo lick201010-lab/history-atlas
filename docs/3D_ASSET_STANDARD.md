@@ -91,7 +91,8 @@
 
 1. **先复用 wonderKit 原语**，不要每个模型从零手写重复 Three 几何：
    `box / boxRotZ / boxRotX / boxRotY / cyl(thetaStart) / coneUp / dome / latheDome /
-   lathe / sphere / arcade / gable / stepPyramid(topHalf) / ellipseRing`。
+   lathe / sphere / arcade / gable / hipRoof / stepPyramid(topHalf) / ellipseRing`。
+   注：零贴图资产，导出管线统一剥除 uv，仅保留 position/normal（自定义无 uv 几何亦可混桶）。
    缺的形体先**沉淀为 wonderKit 原语**再用（利于下一个奇观复用）。
 2. 新资产模板（照搬本批任一脚本）：定义 `COLORS` + `material(key)` → 用原语搭体量 →
    `await a.exportGlb(OUT, { colors, material, weld: true })`。
@@ -117,3 +118,7 @@
 | `angkor-wat` | angkor-wat.glb | 护城河 + 台基岛 + 引道 + 回廊角楼 + 须弥台 + 梅花五塔（莲花苞顶） | ~0.13 MB / ~2.8k |
 | `stonehenge` | stonehenge.glb | 外圈立石+楣石（部分残缺）+ 内马蹄三石塔 + 中央祭坛 + 草土堆 | ~0.06 MB / ~0.7k |
 | `chichen-itza` | chichen-itza.glb | 九级截顶阶梯金字塔 + 正面大台阶（坡道/踏步/栏墙）+ 顶庙 + roof comb | ~0.04 MB / ~0.4k |
+| `forbidden-city` | forbidden-city.glb | 三层汉白玉须弥座 + 朱红殿身 + 前檐红柱 + 重檐庑殿顶（hipRoof，金瓦） | ~0.05 MB / ~0.7k |
+| `notre-dame` | notre-dame.glb | 拉丁十字中殿 + 陡坡顶 + 西立面双塔 + 玫瑰窗 + 中央尖塔 flèche + 飞扶壁 | ~0.06 MB / ~0.8k |
+| `borobudur` | borobudur.glb | 五层方形曼陀罗台基（佛龛）+ 三层圆台 + 同心环列钟形舍利塔 + 中央大塔 | ~0.61 MB / ~18.6k |
+| `petra` | petra.glb | 崖体凿入立面：下层柱廊 + 断山花 + 上层圆亭 tholos（锥顶瓮饰）+ 高门洞 | ~0.07 MB / ~1.2k |

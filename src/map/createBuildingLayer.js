@@ -1128,6 +1128,10 @@ const ID_GLB_OVERRIDES = {
   'angkor-wat': `${GLB_BASE}angkor-wat.glb`,
   stonehenge: `${GLB_BASE}stonehenge.glb`,
   'chichen-itza': `${GLB_BASE}chichen-itza.glb`,
+  'forbidden-city': `${GLB_BASE}forbidden-city.glb`,
+  'notre-dame': `${GLB_BASE}notre-dame.glb`,
+  borobudur: `${GLB_BASE}borobudur.glb`,
+  petra: `${GLB_BASE}petra.glb`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
@@ -1145,6 +1149,10 @@ const ID_GLB_ORIENTATION_OVERRIDES = {
   'angkor-wat': GLB_ORIENT_ZUP,
   stonehenge: GLB_ORIENT_ZUP,
   'chichen-itza': GLB_ORIENT_ZUP,
+  'forbidden-city': GLB_ORIENT_ZUP,
+  'notre-dame': GLB_ORIENT_ZUP,
+  borobudur: GLB_ORIENT_ZUP,
+  petra: GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。

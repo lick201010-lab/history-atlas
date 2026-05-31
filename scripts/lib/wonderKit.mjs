@@ -152,6 +152,25 @@ export class WonderAsset {
     this.push(g, key);
   }
 
+  // 庑殿顶 / 四坡屋顶：矩形底 w(沿x)×d(沿y) 升到「沿 x 的屋脊」（长 ridgeLen）于高 h。
+  //   非索引、逐面法线 → 折面硬朗（中式重檐大殿、庙宇屋顶通用）。ridgeLen=0 即四坡攒尖。
+  hipRoof(key, w, d, h, ridgeLen, x, y, z) {
+    const hw = w / 2, hd = d / 2, rl = ridgeLen / 2;
+    const B0 = [-hw, -hd, 0], B1 = [hw, -hd, 0], B2 = [hw, hd, 0], B3 = [-hw, hd, 0];
+    const R0 = [-rl, 0, h], R1 = [rl, 0, h];
+    const tris = [];
+    const add = (...pts) => { for (const p of pts) tris.push(p[0], p[1], p[2]); };
+    add(B0, B1, R1); add(B0, R1, R0);   // 前坡 -y
+    add(B2, B3, R0); add(B2, R0, R1);   // 后坡 +y
+    add(B3, B0, R0);                     // 左端 -x
+    add(B1, B2, R1);                     // 右端 +x
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(tris), 3));
+    g.computeVertexNormals();
+    g.translate(x, y, z);
+    this.push(g, key);
+  }
+
   // 三角山墙 / 楔形棱柱：等腰三角形截面（底宽 w、顶高 h），沿厚度方向 d 挤出。
   //   plane='yz' → 底沿 Y、顶尖朝上 Z、厚度沿 X（朝 ±X 的山墙；d=进深时也可当沿 X 的坡屋顶，
   //     此时两端三角面即山花/三角楣）。plane='xz' → 底沿 X、顶尖朝上 Z、厚度沿 Y。
@@ -246,8 +265,9 @@ export class WonderAsset {
     let totalVerts = 0;
     for (const [key, geoms] of Object.entries(this.buckets)) {
       parts += geoms.length;
-      // 仅保留 position/normal/uv 三件套，确保各原语属性集一致可合并。
-      const keep = ['position', 'normal', 'uv'];
+      // 零贴图资产：仅保留 position/normal，剥掉 uv 等其余属性，确保各原语属性集一致可合并
+      // （hipRoof 等自定义几何无 uv，与带 uv 的 Box 混桶会导致 mergeGeometries 失败）。
+      const keep = ['position', 'normal'];
       for (const g of geoms) {
         for (const name of Object.keys(g.attributes)) if (!keep.includes(name)) g.deleteAttribute(name);
       }
