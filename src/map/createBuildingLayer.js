@@ -1121,6 +1121,13 @@ const ID_GLB_OVERRIDES = {
   'hagia-sophia': `${import.meta.env?.BASE_URL ?? '/'}models/hagia-sophia.glb`,
 };
 
+// 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
+// 圣索菲亚 GLB 来自本地程序化导出，加载到 MapLibre custom layer 后需要校正竖直轴，
+// 否则会像躺倒一样把底部/侧底部朝向镜头，而不是让底面贴地。
+const ID_GLB_ORIENTATION_OVERRIDES = {
+  'hagia-sophia': { x: -Math.PI / 2, y: 0, z: 0 },
+};
+
 // 单例 GLTF 加载器（所有招牌建筑共用）。
 const gltfLoader = new GLTFLoader();
 
@@ -1591,6 +1598,12 @@ export function createBuildingLayer(landmarks) {
         (gltf) => {
           const root = gltf.scene || gltf.scenes?.[0];
           if (!root) return;
+          const orientation = ID_GLB_ORIENTATION_OVERRIDES[building.id];
+          if (orientation) {
+            root.rotation.x += orientation.x ?? 0;
+            root.rotation.y += orientation.y ?? 0;
+            root.rotation.z += orientation.z ?? 0;
+          }
           // 给 GLB 材质打上主题钩子：dark 保留 GLB 本色（材质分色层次），
           // atlas 用年代色调；role='body' 让 setTheme 一并处理自发光/高光。
           root.traverse((o) => {
