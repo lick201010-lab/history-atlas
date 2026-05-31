@@ -88,6 +88,23 @@
   **失败则保留程序化模型**。GLB 与程序化同坐标系故贴地不变。`setTheme` 存 `this._themeKey` 供异步替换后套用。
 - `vite.config.js`：`optimizeDeps.include` 加 `GLTFLoader.js`（dev 单 three 实例，避免 multiple instances 警告）。
 
+### 二轮精修（2026-05-31 晚）
+
+**圣索菲亚 GLB 二轮（`scripts/buildHagiaSophiaGlb.mjs` 重写）**
+- 从「积木」升级为 stylized low-poly miniature：16 材质分区 + 148 体块 + ~15.3k 三角 +
+  顶点色 AO（按高度底暗顶亮、朝下面压暗 → 暗角/凹缝体积层次）。
+- 部件：中央大穹顶(64×36 高分段)+金尖 / 东西半穹 / 四角小半穹 exedra / 侧翼小穹顶群 /
+  鼓座+一圈窗洞暗块与窗间柱 / 主巴西利卡体块+南北侧廊+坡顶+檐口 / 一排拱窗暗块 /
+  四角扶壁墩+外侧飞券暗示 / 东端半圆后殿 / 西端门廊台阶+三道拱门暗块 /
+  四宣礼塔（塔身三段+双阳台金环+铅笔尖顶+金顶尖）。
+- z 0→1.45 贴地、足迹 ±0.78；约 648KB。GLTFLoader 加载 + 程序化兜底逻辑不变。
+
+**拜占庭边界二轮（`scripts/refineByzantineBoundary.mjs` 加 `roughenRing`）**
+- 针对「内陆直线包络感」：检测环里 > 0.55° 的长直边（内陆包络边），沿边重采样（步长 0.32°）
+  并施加沿法线的平滑起伏（两频正弦叠加，`sin(t·π)` 包络使两端=0、不破坏海岸接缝），
+  幅度 ≤ 0.24°(~24km)。海岸密集段（DP 后短边）原样不动。
+- 顶点数 rise/peak/decline 由 284/437/259 增至 919/1393/747；内陆边读作粗糙自然边界而非笔直斜线。
+
 ### `src/App.jsx` / `src/styles.css`（更早）
 - 已移除 `USE_GLOBE` 与 `GlobeScene` 分支；`.map-frame` 星图卡装裱框（仅 dark 可见，四角角标 + 罗盘）；
   `body[data-theme="dark"] #map` 内缩 + 发光边框。

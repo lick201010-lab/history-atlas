@@ -274,6 +274,51 @@ async function loadNaturalEarth() {
 const DOUGLAS_PEUCKER_EPS = 0.10; // 度（~11km），保留较细海岸/岛屿轮廓
 const MIN_RING_AREA_SQDEG = 0.06; // 度²，保留克里特/塞浦路斯/罗德/莱斯沃斯等岛，去掉极小碎屑
 
+// 内陆长边「去直线化」参数
+const INLAND_EDGE_THRESHOLD = 0.55; // 度：相邻顶点超过此距离 → 视为内陆包络直边
+const INLAND_RESAMPLE_STEP = 0.32;  // 度：内陆边重采样步长
+const INLAND_MAX_AMP = 0.24;        // 度（~24km）：法向起伏最大幅度
+
+// 确定性伪随机 [0,1)（同坐标恒得同值，输出可复现）
+function hash01(x, y) {
+  const h = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+  return h - Math.floor(h);
+}
+
+/**
+ * 把环里的「内陆长直边」去直线化：沿边加密，并施加沿法线的平滑起伏。
+ * 起伏用 sin(t·π) 作包络 → 两端（多半是海岸接缝处）扰动为 0，不破坏海岸连接；
+ * 中段用两个不同频率正弦叠加，读作粗糙自然边界而非笔直斜线。
+ * 海岸段（DP 后顶点密集、边长 < 阈值）原样保留。
+ */
+function roughenRing(ring) {
+  const out = [];
+  for (let i = 0; i < ring.length - 1; i += 1) {
+    const a = ring[i];
+    const b = ring[i + 1];
+    out.push(a);
+    const dx = b[0] - a[0];
+    const dy = b[1] - a[1];
+    const len = Math.hypot(dx, dy);
+    if (len <= INLAND_EDGE_THRESHOLD) continue;
+    const n = Math.ceil(len / INLAND_RESAMPLE_STEP);
+    const nx = -dy / len; // 单位法线
+    const ny = dx / len;
+    const amp = Math.min(INLAND_MAX_AMP, len * 0.11);
+    const ph = hash01(Math.round(a[0] * 7), Math.round(a[1] * 7)) * Math.PI * 2;
+    for (let k = 1; k < n; k += 1) {
+      const t = k / n;
+      const env = Math.sin(t * Math.PI); // 端点为 0
+      const wob = 0.62 * Math.sin(t * Math.PI * 2 + ph)
+                + 0.38 * Math.sin(t * Math.PI * 5 + ph * 1.7);
+      const off = amp * env * wob;
+      out.push([a[0] + dx * t + nx * off, a[1] + dy * t + ny * off]);
+    }
+  }
+  out.push(ring[ring.length - 1]);
+  return out;
+}
+
 function buildPhaseRings(landRings, rawEnvelopes) {
   const collected = [];
   const seen = new Set();
@@ -300,7 +345,9 @@ function buildPhaseRings(landRings, rawEnvelopes) {
       const sig = `${Math.round(cx * 5) / 5},${Math.round(cy * 5) / 5},${Math.round(area * 2) / 2}`;
       if (seen.has(sig)) continue;
       seen.add(sig);
-      collected.push(ensureCCW(simplified));
+      // 内陆长直边去直线化（海岸密集段不受影响）
+      const roughened = roughenRing(simplified);
+      collected.push(ensureCCW(roughened));
     }
   }
   return collected;
