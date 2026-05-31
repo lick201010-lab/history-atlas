@@ -12,6 +12,19 @@ For this project, every troubleshooting or delivery task should follow this loop
 
 When the issue touches deployment, networking, GitHub, Aliyun, Caddy, DNS, or local browser access, include the exact evidence gathered: command results, reachable/unreachable domains, active ports, and the final working URL.
 
+## Collaboration Stance
+
+Codex is a project collaborator, not a passive confirmer. If the user's idea, assumption, or requested direction appears technically wrong, inefficient, risky, or misaligned with the product goal, Codex must say so directly, explain the evidence, and propose a better path. Agreement should be earned by the facts of the situation, not given automatically.
+
+This is especially important for:
+
+- Claude/Codex task allocation.
+- Architecture choices.
+- Deployment and infrastructure decisions.
+- Visual quality tradeoffs.
+- Data accuracy and historical representation.
+- Any change that may create technical debt or weaken the product experience.
+
 ## Current Deployment Preference
 
 - Use GitHub as the source repository.
