@@ -254,3 +254,33 @@ Verification after deployment:
 Follow-up improvement:
 
 - The atlas theme is now good enough as the visual baseline. Future visual work should focus on hand-drawn map ornamentation, better labels, and refined monument models rather than more global filter tuning.
+
+## Incident Record: Hagia Sophia Procedural GLB Polish
+
+Date: 2026-05-31
+
+Goal: improve the Byzantine landmark model so it feels less like a flat map icon and closer to a refined miniature building.
+
+Verification before changes:
+
+- `public/models/hagia-sophia.glb` loaded successfully in the local app, but browser screenshots showed a large flat wall, weak facade detail, and low contrast compared with the reference miniature.
+- The current architecture already supports an async GLB override for `hagia-sophia`, so the safest scope was to improve `scripts/buildHagiaSophiaGlb.mjs` and regenerate the GLB only.
+
+Fixes applied:
+
+- Added a rotated-box helper for dome rib details.
+- Added richer west entrance geometry: layered narthex, facade pilasters, dark arch recesses, cornice strips, and small side domes.
+- Added side arcade/cornice/pilaster detail to reduce long-wall flatness from common map camera angles.
+- Lowered the main nave wall slightly so roof and dome layers are more visible.
+- Darkened arch/shadow material and lightened cornice material so detail remains readable in the dark theme.
+- Regenerated `public/models/hagia-sophia.glb`; final local asset is about 999 KB and roughly 21k triangles.
+
+Verification after changes:
+
+- `npm run validate:data` passed.
+- `npm run build` passed.
+- Local browser CDP QA loaded `http://127.0.0.1:5173/`, focused Istanbul, confirmed `/models/hagia-sophia.glb` returned `200`, and captured a screenshot with no console errors or failed network requests.
+
+Follow-up improvement:
+
+- This procedural pass is an improvement, but it still does not reach the quality of a dedicated artist-made reference model. For the next quality jump, use a real asset pipeline: Blender/asset kitbash or sourced CC0/paid GLB, decimate to web scale, bake simple materials/AO, then replace the procedural GLB through the existing override path.

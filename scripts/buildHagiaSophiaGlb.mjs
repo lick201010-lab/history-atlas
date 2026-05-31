@@ -37,10 +37,10 @@ const COLORS = {
   podium: 0xb9a988,     // 台基（暖石，偏深）
   stair: 0xc6b794,      // 门廊台阶
   wall: 0xdbcfb4,       // 主体石墙（受光）
-  wallShade: 0xc3b596,  // 背光墙/侧廊
-  arch: 0x7c6a4e,       // 拱窗/门洞/拱廊暗块（深褐 → 立体凹陷感）
+  wallShade: 0xaa9a78,  // 背光墙/侧廊
+  arch: 0x3f3324,       // 拱窗/门洞/拱廊暗块（深褐 → 立体凹陷感）
   buttress: 0xccbe9f,   // 扶壁墩
-  cornice: 0xe6dcc4,    // 檐口/墙垛（最浅）
+  cornice: 0xf0e4c8,    // 檐口/墙垛（最浅）
   apse: 0xcabd9e,       // 东端后殿
   semidome: 0xcdbf9f,   // 东西半穹顶
   exedra: 0xc7b896,     // 四角小半穹
@@ -58,6 +58,12 @@ function pushGeom(geometry, key) { (buckets[key] ||= []).push(geometry); }
 
 function addBox(key, sx, sy, sz, x, y, z) {
   const g = new THREE.BoxGeometry(sx, sy, sz);
+  g.translate(x, y, z);
+  pushGeom(g, key);
+}
+function addBoxRotZ(key, sx, sy, sz, x, y, z, rz) {
+  const g = new THREE.BoxGeometry(sx, sy, sz);
+  g.rotateZ(rz);
   g.translate(x, y, z);
   pushGeom(g, key);
 }
@@ -101,13 +107,28 @@ addBox('stair', 0.10, 0.66, 0.04, -0.66, 0, 0.06);
 addBox('stair', 0.12, 0.60, 0.04, -0.60, 0, 0.10);
 // 西端门廊（narthex）低体块 + 三道拱门暗块
 addBox('wallShade', 0.16, 0.80, 0.34, -0.56, 0, 0.30);
-for (const y of [-0.22, 0, 0.22]) addBox('arch', 0.06, 0.12, 0.20, -0.485, y, 0.24);
+addBox('wall', 0.10, 0.68, 0.38, -0.66, 0, 0.34);
+addBox('cornice', 0.24, 0.86, 0.045, -0.58, 0, 0.51);
+addBox('cornice', 0.12, 0.72, 0.035, -0.69, 0, 0.55);
+for (const y of [-0.30, -0.15, 0, 0.15, 0.30]) {
+  addBox('cornice', 0.035, 0.030, 0.38, -0.715, y, 0.34);
+}
+for (const y of [-0.24, 0, 0.24]) {
+  addBox('arch', 0.045, 0.125, 0.23, -0.735, y, 0.30);
+  addBox('arch', 0.035, 0.155, 0.055, -0.738, y, 0.435);
+  addBox('cornice', 0.028, 0.165, 0.030, -0.744, y, 0.465);
+}
+for (const y of [-0.34, 0.34]) {
+  addBox('wallShade', 0.18, 0.18, 0.24, -0.66, y, 0.27);
+  addCyl('drum', 0.070, 0.075, 0.045, -0.66, y, 0.41, 16);
+  addDome('smallDome', 0.082, -0.66, y, 0.45, 0.78, 20, 12);
+}
 
 // ============================================================
 // 主巴西利卡体块 + 南北侧廊 + 拱窗
 // ============================================================
-addBox('wall', 0.80, 0.76, 0.54, 0, 0, 0.43);          // 中殿主墙
-addBox('cornice', 0.86, 0.82, 0.04, 0, 0, 0.71);        // 中殿檐口
+addBox('wall', 0.80, 0.76, 0.42, 0, 0, 0.37);          // 中殿主墙
+addBox('cornice', 0.86, 0.82, 0.04, 0, 0, 0.60);        // 中殿檐口
 for (const y of [-0.42, 0.42]) {
   addBox('wallShade', 1.06, 0.22, 0.36, 0, y, 0.31);    // 南北侧廊
   addBox('cornice', 1.10, 0.26, 0.03, 0, y, 0.50);      // 侧廊檐口
@@ -121,6 +142,51 @@ for (const y of [-0.42, 0.42]) {
 // 中殿一排高拱窗（南北面）
 for (const y of [-0.40, 0.40]) {
   for (let i = -2; i <= 2; i += 1) addBox('arch', 0.05, 0.03, 0.22, i * 0.16, y, 0.50);
+}
+for (const y of [-0.545, 0.545]) {
+  addBox('wallShade', 1.00, 0.030, 0.035, 0, y, 0.215);
+  addBox('cornice', 1.04, 0.040, 0.030, 0, y, 0.535);
+  for (let i = -4; i <= 4; i += 1) {
+    const x = i * 0.11;
+    addBox('arch', 0.060, 0.040, 0.190, x, y, 0.335);
+    addBox('arch', 0.082, 0.043, 0.045, x, y, 0.455);
+  }
+  for (let i = -5; i <= 5; i += 1) {
+    const x = i * 0.105;
+    addBox('cornice', 0.020, 0.052, 0.330, x, y, 0.345);
+  }
+}
+for (const y of [-0.640, 0.640]) {
+  const face = Math.sign(y);
+  addBox('wallShade', 1.02, 0.080, 0.080, 0, y, 0.215);
+  addBox('cornice', 1.06, 0.112, 0.035, 0, y, 0.480);
+  addBox('wallShade', 0.96, 0.018, 0.110, 0, y + face * 0.056, 0.330);
+  for (let i = -4; i <= 4; i += 1) {
+    const x = i * 0.112;
+    addBox('arch', 0.074, 0.026, 0.205, x, y + face * 0.066, 0.315);
+    addBox('arch', 0.094, 0.028, 0.052, x, y + face * 0.068, 0.435);
+  }
+  for (let i = -5; i <= 5; i += 1) {
+    const x = i * 0.106;
+    addBox('cornice', 0.024, 0.124, 0.330, x, y, 0.320);
+  }
+}
+for (const x of [-0.47, 0.47]) {
+  const face = Math.sign(x);
+  addBox('wallShade', 0.026, 0.52, 0.250, x + face * 0.055, 0, 0.330);
+  for (const y of [-0.22, 0, 0.22]) {
+    addBox('arch', 0.028, 0.105, 0.210, x + face * 0.066, y, 0.330);
+    addBox('cornice', 0.035, 0.135, 0.040, x + face * 0.070, y, 0.455);
+  }
+}
+for (const y of [-0.58, 0.58]) {
+  addBox('wallShade', 0.66, 0.16, 0.24, -0.08, y, 0.24);
+  addBox('cornice', 0.70, 0.18, 0.028, -0.08, y, 0.38);
+  for (const x of [-0.32, -0.10, 0.12]) {
+    addBox('arch', 0.050, 0.035, 0.135, x, y, 0.25);
+    addCyl('drum', 0.055, 0.060, 0.035, x + 0.075, y, 0.39, 14);
+    addDome('smallDome', 0.065, x + 0.075, y, 0.425, 0.78, 16, 10);
+  }
 }
 
 // ============================================================
@@ -178,6 +244,12 @@ for (let i = 0; i < drumWin; i += 1) {
 }
 addCyl('cornice', 0.42, 0.42, 0.03, 0, 0, 0.83, 40);               // 鼓座顶檐
 addDome('dome', 0.40, 0, 0, 0.84, 0.82, 64, 36);                   // 中央大穹顶（高分段）
+for (let i = 0; i < 16; i += 1) {
+  const a = (i / 16) * Math.PI;
+  addBoxRotZ('cornice', 0.72, 0.012, 0.016, 0, 0, 1.055, a);
+}
+addCyl('cornice', 0.31, 0.31, 0.018, 0, 0, 1.015, 48);
+addCyl('wallShade', 0.405, 0.405, 0.012, 0, 0, 0.895, 48);
 // 穹顶金尖
 addSphere('gold', 0.045, 0, 0, 0.84 + 0.40 * 0.82, 16);
 addConeUp('gold', 0.03, 0.14, 0, 0, 0.84 + 0.40 * 0.82 + 0.02, 12);
