@@ -131,7 +131,7 @@ export const darkStyle = {
         'raster-saturation': -0.22,
         'raster-hue-rotate': 210,
         'raster-brightness-min': 0.03,
-        'raster-brightness-max': 0.52,
+        'raster-brightness-max': 0.6,
       },
     },
     {
@@ -323,7 +323,7 @@ export const THEME_PRESETS = {
     hillshade: {
       // 深蓝阴影 + 冷月光高光（青白）+ 冷青墨重音：让山脊一侧受光、一侧没入深蓝
       shadow: 'rgba(1, 5, 14, 0.72)',
-      highlight: 'rgba(168, 205, 240, 0.5)',
+      highlight: 'rgba(168, 205, 240, 0.58)',
       accent: 'rgba(70, 110, 150, 0.42)',
     },
     // 第二层副光 hillshade（东南向、低强度冷调）：柔化硬阴影，增加多向体积层次

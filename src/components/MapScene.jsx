@@ -479,17 +479,25 @@ const MapScene = forwardRef(function MapScene({
     }
 
     let readyFallback = window.setTimeout(() => markMapReady(), 4500);
+    let warningTimer = null;
 
     function markMapReady() {
       window.clearTimeout(readyFallback);
       readyFallback = null;
       setMapReady(true);
+      // 地图就绪后清掉"加载较慢"的提示——瓦片已补齐，横幅不该再占着首屏中心。
+      if (warningTimer) { window.clearTimeout(warningTimer); warningTimer = null; }
+      setMapWarning('');
     }
 
     function handleMapError(event) {
       const sourceId = event?.sourceId || event?.source?.id || '';
-      if (sourceId === 'osm-tiles' || sourceId.includes('terrain') || event?.error) {
+      // 只对底图 / 地形瓦片源报警（底图源实际命名为 osm-tiles-dark / osm-tiles-atlas）。
+      if (sourceId.startsWith('osm-tiles') || sourceId.includes('terrain')) {
         setMapWarning('地图瓦片加载较慢，沙盘仍可操作；如地形短暂缺失，稍后会自动补齐。');
+        // 兜底自动消失：即使后续没有明确的就绪信号，6s 后也收起横幅。
+        if (warningTimer) window.clearTimeout(warningTimer);
+        warningTimer = window.setTimeout(() => { setMapWarning(''); warningTimer = null; }, 6000);
       }
     }
 
@@ -612,6 +620,7 @@ const MapScene = forwardRef(function MapScene({
     return () => {
       container.removeEventListener('contextmenu', preventContextMenu);
       if (readyFallback) window.clearTimeout(readyFallback);
+      if (warningTimer) window.clearTimeout(warningTimer);
       if (pickRaf) cancelAnimationFrame(pickRaf);
       map.off('load', initBuildingLayer);
       map.off('styledata', initBuildingLayer);

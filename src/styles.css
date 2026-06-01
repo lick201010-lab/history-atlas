@@ -2129,6 +2129,9 @@ input[type="range"]::-moz-range-thumb {
   padding: 0;
   overflow-y: auto;
   scrollbar-gutter: stable;
+  /* 底部渐隐：让"下面还有事件"有视觉暗示，避免内容被硬切看着像 bug。 */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 18px), transparent);
 }
 
 .era-events-list::-webkit-scrollbar { width: 4px; }
