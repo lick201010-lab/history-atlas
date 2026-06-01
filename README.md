@@ -26,6 +26,29 @@ npm run deploy         # 一键部署到 atlas.ckl.hk（含 check、上传、线
 部署到阿里云：见 [docs/ALIYUN_GITHUB_DEPLOYMENT.md](docs/ALIYUN_GITHUB_DEPLOYMENT.md)
 日常 Git 工作流：见 [docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
 
+## 在另一台电脑上开发（换机克隆）
+
+**前置**：装好 **Git** 与 **Node.js ≥ 20.19**（推荐 v22 LTS 或 v24；Vite 7 不支持过旧的 Node）。
+
+```bash
+git clone https://github.com/lick201010-lab/history-atlas.git
+cd history-atlas
+npm install            # 重新安装依赖（不要从旧机器拷 node_modules）
+npm run dev            # 打开终端给出的 http://127.0.0.1:5173/
+npm run check          # 可选：validate:data + build 都过即环境 OK
+```
+
+**两台机器协作纪律**（避免冲突 / 丢改动）：
+
+- 每次**开工前先** `git pull`；
+- **收工后** `git add -A && git commit -m "..." && git push`；
+- 不要两台机器同时改同一文件。
+
+**注意**：
+
+- `node_modules/`、`dist/`、`.env*` 都已被 `.gitignore` 排除，不随仓库走 —— 依赖靠 `npm install` 重建。
+- 如本地有 `.env`（部署 / 密钥用），换机时**手动拷贝**，参照 [.env.example](.env.example)；纯开发预览不需要它。
+
 ---
 
 ## 当前功能
