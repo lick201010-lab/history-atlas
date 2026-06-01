@@ -346,14 +346,16 @@ export const THEME_PRESETS = {
       // 星图风发光轮廓：去掉填充色块（fill 仅作隐形点击域 + 极淡发光薄膜，地形透出），
       // 文明＝明亮发光边界（实线清亮边 + 向内淡入的霓虹辉光晕）。多文明并存时靠收窄的
       // 辉光 + 高对比清亮边分离，不再糊成色块。详见 applyBoundaryPaint dark 分支。
-      glowOpacityRefined: 0.42,
-      glowOpacityPlain: 0.16,
-      lineOpacityRefined: 0.96,
-      lineOpacityPlain: 0.5,
+      // 「默认低调·聚焦高亮」：平时所有国家只留一条清亮细边 + 极弱内晕 + 几乎不上色，
+      // 避免多国并存时宽发光带互相晕染串色；hover / 选中由专属图层让那一国亮色+填充浮起。
+      glowOpacityRefined: 0.18,
+      glowOpacityPlain: 0.1,
+      lineOpacityRefined: 0.85,
+      lineOpacityPlain: 0.45,
       lineDash: [1, 0],
-      // 柔填充回归：极淡羽化区域感（文明色），让版图读作"一片区域"而非空轮廓，仍远低于旧 blob。
-      fillOpacityRefined: 0.12,
-      fillOpacityPlain: 0.06,
+      // 默认填充压到几乎隐形（只留一丝区域感），聚焦时再由 hover/selected 填充层补足。
+      fillOpacityRefined: 0.05,
+      fillOpacityPlain: 0.035,
     },
   },
   atlas: {
@@ -428,13 +430,14 @@ export function applyBoundaryPaint(map, themeKey) {
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 5, 3]);
       map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5);
     } else {
-      // dark 星图风：外侧柔霓虹辉光带，随 zoom 加宽（世界视角清晰、近景更饱满），向内淡入读作"领土点亮"。
+      // dark 星图风：默认只留一道收窄的内晕（读作"领土点亮"的细边光），不再是宽发光带，
+      // 这样多国并存时不会互相晕染串色。真正的"亮起"交给 hover / selected 专属图层。
       map.setPaintProperty('dynasty-territory-glow', 'line-color', ['get', 'color']);
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr,
-        ['interpolate', ['linear'], ['zoom'], 2, 6, 5, 11],
-        ['interpolate', ['linear'], ['zoom'], 2, 3.5, 5, 6],
+        ['interpolate', ['linear'], ['zoom'], 2, 2, 5, 4.5],
+        ['interpolate', ['linear'], ['zoom'], 2, 1.3, 5, 2.6],
       ]);
-      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5.5);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 4);
     }
     map.setPaintProperty('dynasty-territory-glow', 'line-opacity', [
       'case', isRefinedExpr, preset.boundary.glowOpacityRefined, preset.boundary.glowOpacityPlain,
@@ -450,10 +453,10 @@ export function applyBoundaryPaint(map, themeKey) {
       map.setPaintProperty('dynasty-territory-casing', 'line-color', '#03070e');
       map.setPaintProperty('dynasty-territory-casing', 'line-blur', 0.4);
       map.setPaintProperty('dynasty-territory-casing', 'line-width', ['case', isRefinedExpr,
-        ['interpolate', ['linear'], ['zoom'], 2, 2.2, 5, 4.0],
-        ['interpolate', ['linear'], ['zoom'], 2, 1.4, 5, 2.6],
+        ['interpolate', ['linear'], ['zoom'], 2, 1.6, 5, 3.0],
+        ['interpolate', ['linear'], ['zoom'], 2, 1.1, 5, 2.0],
       ]);
-      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', ['case', isRefinedExpr, 0.8, 0.5]);
+      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', ['case', isRefinedExpr, 0.7, 0.45]);
     }
   }
 

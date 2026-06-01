@@ -89,6 +89,14 @@ function boundaryHoverFilter(year, hoveredId) {
   return ['all', ...activeYearFilter(year).slice(1), ['==', ['get', 'id'], hoveredId || '__none__']];
 }
 
+// hover 高亮由两层共同呈现：彩色填充 wash + 金色亮边。统一在此同步两层 filter，
+// 避免在多处各设一遍、漏掉填充层。
+function applyHoverFilter(map, year, hoveredId) {
+  const filter = boundaryHoverFilter(year, hoveredId);
+  if (map?.getLayer('dynasty-territory-hover-fill')) map.setFilter('dynasty-territory-hover-fill', filter);
+  if (map?.getLayer('dynasty-territory-hover')) map.setFilter('dynasty-territory-hover', filter);
+}
+
 function setVisibility(map, layerId, visible) {
   if (map?.getLayer(layerId)) {
     map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
@@ -148,7 +156,7 @@ const MapScene = forwardRef(function MapScene({
     const next = hoveredDynastyId || null;
     if (hoveredBoundaryIdRef.current === next) return;
     hoveredBoundaryIdRef.current = next;
-    map.setFilter('dynasty-territory-hover', boundaryHoverFilter(yearRef.current, next));
+    applyHoverFilter(map, yearRef.current, next);
   }, [hoveredDynastyId]);
 
   // 主题切换：应用 base 可见性 / hillshade / sky / 边界 paint / 建筑材质
@@ -203,7 +211,7 @@ const MapScene = forwardRef(function MapScene({
       map.setFilter('dynasty-territory-glow', filter);
       map.setFilter('dynasty-territory-casing', filter);
       map.setFilter('dynasty-territory-line', filter);
-      map.setFilter('dynasty-territory-hover', boundaryHoverFilter(year, hoveredBoundaryIdRef.current));
+      applyHoverFilter(map, year, hoveredBoundaryIdRef.current);
       map.setFilter('dynasty-capital-glow', filter);
       map.setFilter('dynasty-capital-core', filter);
       map.setFilter('dynasty-capital-label', filter);
@@ -228,6 +236,7 @@ const MapScene = forwardRef(function MapScene({
     setVisibility(map, 'dynasty-territory-glow', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-casing', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-line', layerVisibility.territories);
+    setVisibility(map, 'dynasty-territory-hover-fill', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-hover', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-selected-fill', layerVisibility.territories);
     setVisibility(map, 'dynasty-capital-glow', layerVisibility.capitals);
@@ -373,6 +382,20 @@ const MapScene = forwardRef(function MapScene({
           },
         });
       }
+      // hover 填充 wash：聚焦的那一国用自身颜色淡淡铺满，读作"这片是它的疆域"。
+      // 放在亮边层之下，保证金色亮边压在 wash 之上更清晰。
+      if (!map.getLayer('dynasty-territory-hover-fill')) {
+        map.addLayer({
+          id: 'dynasty-territory-hover-fill',
+          type: 'fill',
+          source: 'dynasty-boundaries',
+          filter: boundaryHoverFilter(yearRef.current, hoveredBoundaryIdRef.current),
+          paint: {
+            'fill-color': ['get', 'color'],
+            'fill-opacity': 0.16,
+          },
+        });
+      }
       if (!map.getLayer('dynasty-territory-hover')) {
         map.addLayer({
           id: 'dynasty-territory-hover',
@@ -382,13 +405,13 @@ const MapScene = forwardRef(function MapScene({
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
             'line-color': '#f6d58f',
-            'line-opacity': 0.95,
-            'line-width': ['interpolate', ['linear'], ['zoom'], 2, 2, 5, 3.4],
-            'line-blur': 1.2,
+            'line-opacity': 0.98,
+            'line-width': ['interpolate', ['linear'], ['zoom'], 2, 2.6, 5, 4.4],
+            'line-blur': 1,
           },
         });
       }
-      // 选中态填充（被点击的领土轻微高亮）
+      // 选中态填充（被点击的领土持续高亮）：金色 accent，与 hover 的彩色 wash 区分语义。
       if (!map.getLayer('dynasty-territory-selected-fill')) {
         map.addLayer({
           id: 'dynasty-territory-selected-fill',
@@ -397,7 +420,7 @@ const MapScene = forwardRef(function MapScene({
           filter: boundaryHoverFilter(yearRef.current, '__none__'),
           paint: {
             'fill-color': '#f6d58f',
-            'fill-opacity': 0.08,
+            'fill-opacity': 0.14,
           },
         });
       }
@@ -538,6 +561,7 @@ const MapScene = forwardRef(function MapScene({
         setVisibility(map, 'dynasty-territory-glow', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-casing', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-line', layerVisibilityRef.current.territories);
+        setVisibility(map, 'dynasty-territory-hover-fill', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-hover', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-selected-fill', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-capital-glow', layerVisibilityRef.current.capitals);
@@ -664,7 +688,7 @@ const MapScene = forwardRef(function MapScene({
       const id = feature?.properties?.id;
       if (!id || hoveredBoundaryIdRef.current === id) return;
       hoveredBoundaryIdRef.current = id;
-      map.setFilter('dynasty-territory-hover', boundaryHoverFilter(yearRef.current, id));
+      applyHoverFilter(map, yearRef.current, id);
       map.getCanvas().style.cursor = 'pointer';
       // 地图 → 列表：通知 App，让右侧对应文明行同步高亮。
       onHoverDynastyRef.current?.(id);
@@ -672,9 +696,7 @@ const MapScene = forwardRef(function MapScene({
 
     function handleTerritoryLeave() {
       hoveredBoundaryIdRef.current = null;
-      if (map.getLayer('dynasty-territory-hover')) {
-        map.setFilter('dynasty-territory-hover', boundaryHoverFilter(yearRef.current, null));
-      }
+      applyHoverFilter(map, yearRef.current, null);
       map.getCanvas().style.cursor = '';
       onHoverDynastyRef.current?.(null);
     }

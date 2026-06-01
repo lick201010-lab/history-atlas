@@ -41,11 +41,13 @@ function chaikinRing(ring, iterations) {
 }
 
 // 顶点越多说明本就细致（如海岸贴合样本），少迭代即可；稀疏凸壳多迭代收圆。
+// 多数朝代是低顶点凸壳（生硬折角+长直边），稀疏档多加一轮迭代把折角收得更圆润自然。
 function iterationsForRing(ring) {
   const n = ring.length;
-  if (n <= 12) return 3;
-  if (n <= 40) return 2;
-  if (n <= 160) return 1;
+  if (n <= 12) return 4;
+  if (n <= 40) return 3;
+  if (n <= 90) return 2;
+  if (n <= 200) return 1;
   return 0; // 已足够细致，不再加点
 }
 
