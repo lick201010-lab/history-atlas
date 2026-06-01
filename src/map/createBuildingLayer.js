@@ -1422,12 +1422,12 @@ export function createBuildingLayer(landmarks) {
       const dir = new THREE.DirectionalLight(0xffe8c0, 1.25);
       dir.position.set(0.4, -0.7, 1).normalize();
       this.scene.add(dir);
-      const blue = new THREE.DirectionalLight(0x6090ff, 0.35);
-      blue.position.set(0, 0.7, 0.5).normalize();
-      this.scene.add(blue);
+      const fill = new THREE.DirectionalLight(0xffd6a0, 0.10);
+      fill.position.set(0, 0.7, 0.5).normalize();
+      this.scene.add(fill);
       this.ambientLight = ambient;
       this.dirMain = dir;
-      this.dirFill = blue;
+      this.dirFill = fill;
 
       this.meshes = {};
       landmarks.forEach((building) => {
@@ -1461,12 +1461,17 @@ export function createBuildingLayer(landmarks) {
     getSizeMeters() {
       if (!this.map) return 150000;
       const zoom = this.map.getZoom();
-      // 世界视角不再把建筑放成占地数百公里的巨块（那会把精致几何放糊成发光团），
-      // 让模型读作"摆件"而非巨型光斑；高 zoom 端同步收一点。
-      if (zoom <= 3.5) return 130000;
-      if (zoom >= 6) return 48000;
-      const t = (zoom - 3.5) / 2.5;
-      return 130000 + (48000 - 130000) * t;
+      // World view still needs readable "game pieces", but close-up views must
+      // shrink aggressively so nearby landmarks (Beijing: Forbidden City /
+      // Temple of Heaven / Great Wall) do not overlap into one false megamodel.
+      if (zoom <= 3.5) return 120000;
+      if (zoom < 6) {
+        const t = (zoom - 3.5) / 2.5;
+        return 120000 + (42000 - 120000) * t;
+      }
+      if (zoom >= 8) return 16000;
+      const t = (zoom - 6) / 2;
+      return 42000 + (16000 - 42000) * t;
     },
 
     updateScale() {
@@ -1581,33 +1586,34 @@ export function createBuildingLayer(landmarks) {
       const ringMat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.14,
+        opacity: 0.045,
         side: THREE.DoubleSide,
+        depthWrite: false,
       });
-      ringMat.userData = { role: 'aura', baseOpacity: 0.14 };
-      const ring = new THREE.Mesh(new THREE.RingGeometry(1.05, 1.28, 48), ringMat);
+      ringMat.userData = { role: 'aura', baseOpacity: 0.045 };
+      const ring = new THREE.Mesh(new THREE.RingGeometry(0.88, 0.98, 48), ringMat);
       ring.position.z = 0.01;
       group.add(ring);
 
       const discMat = new THREE.MeshBasicMaterial({
-        color, transparent: true, opacity: 0.06, side: THREE.DoubleSide,
+        color, transparent: true, opacity: 0.012, side: THREE.DoubleSide, depthWrite: false,
       });
-      discMat.userData = { role: 'aura', baseOpacity: 0.06 };
-      const disc = new THREE.Mesh(new THREE.CircleGeometry(1.05, 48), discMat);
+      discMat.userData = { role: 'aura', baseOpacity: 0.012 };
+      const disc = new THREE.Mesh(new THREE.CircleGeometry(0.86, 48), discMat);
       disc.position.z = 0.005;
       group.add(disc);
 
       const beamMat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.10,
+        opacity: 0.018,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
       });
-      beamMat.userData = { role: 'beam', baseOpacity: 0.10 };
-      const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.30, 5, 12, 1, true), beamMat);
+      beamMat.userData = { role: 'beam', baseOpacity: 0.018 };
+      const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.12, 2.2, 12, 1, true), beamMat);
       beam.rotation.x = Math.PI / 2;
-      beam.position.z = 3;
+      beam.position.z = 1.5;
       group.add(beam);
 
       group.userData.ring = ring;
@@ -1679,13 +1685,14 @@ export function createBuildingLayer(landmarks) {
       // 光照随主题：dark 强对比（剪影清晰）、atlas 柔光（冻结观感）。
       if (this.ambientLight) this.ambientLight.intensity = atlas ? 0.7 : 0.5;
       if (this.dirMain) this.dirMain.intensity = atlas ? 1.0 : 1.25;
-      if (this.dirFill) this.dirFill.intensity = atlas ? 0.4 : 0.35;
+      if (this.dirFill) this.dirFill.intensity = atlas ? 0.12 : 0.10;
       const visit = (object) => {
         if (object.material) {
           const mats = Array.isArray(object.material) ? object.material : [object.material];
           for (const m of mats) {
             const role = m.userData?.role;
             if (role === 'body') {
+              object.visible = true;
               if (atlas) {
                 m.emissive?.setHex(0x1a1208);
                 m.emissiveIntensity = 0.12;
@@ -1703,11 +1710,16 @@ export function createBuildingLayer(landmarks) {
             } else if (role === 'aura' || role === 'beam') {
               // dark 下也把光环/光柱压一档，避免光晕盖过建筑本体把它糊成光团。
               const base = m.userData.baseOpacity ?? m.opacity;
-              m.opacity = atlas ? base * 0.30 : base * 0.6;
+              m.opacity = role === 'beam'
+                ? (atlas ? base * 0.12 : base * 0.22)
+                : (atlas ? base * 0.30 : base * 0.6);
               m.needsUpdate = true;
             } else if (role === 'tree' || role === 'house') {
-              // 树丛与民居只在 atlas 显示；dark（HUD）下用 opacity 0 隐藏。
+              // 树丛与民居只在 atlas 显示。dark 下必须真正隐藏，
+              // 只把 opacity 设为 0 仍可能写入深度，造成建筑旁出现大片遮挡色块。
+              object.visible = atlas;
               m.opacity = atlas ? 1 : 0;
+              m.depthWrite = atlas;
               m.needsUpdate = true;
             }
           }
@@ -1724,6 +1736,10 @@ export function createBuildingLayer(landmarks) {
       const projection = new THREE.Matrix4().fromArray(matrix);
       this.camera.projectionMatrix = projection;
       this.renderer.resetState();
+      // MapLibre terrain and fill layers can leave depth values that cut across
+      // landmark meshes at steep pitch. Clear only depth here so buildings keep
+      // their own internal 3D depth while rendering cleanly above the map skin.
+      this.renderer.clearDepth();
       this.renderer.render(this.scene, this.camera);
     },
 

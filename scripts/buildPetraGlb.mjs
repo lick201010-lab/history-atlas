@@ -1,88 +1,121 @@
-// 佩特拉 卡兹尼神殿 Al-Khazneh —— 奇观资产样板（public/models/petra.glb）· 重做版。
-// 目标：砂岩「山体」+ 凿入岩壁的两层立面，而非一块竖直石板。
-//   · 山体由多块错落体量堆成（深进 +x、参差峰顶、左右前凸峡壁），带横向岩层带与竖向侵蚀凹槽；
-//   · 立面凹嵌在山体前面（柱身明显凸出背墙 → 进深）；
-//   · 下层 6 柱廊 + 额枋 + 断山花 + 深门洞 + 台阶；上层中央圆亭 tholos + 两翼半山花。
-// 复用 wonderKit；立面朝 −x；z=上；足迹约 ±0.6；base 贴地。0 贴图。
-// 运行：node scripts/buildPetraGlb.mjs
+// Petra / Al-Khazneh landmark asset.
+//
+// The map-scale model should read as a facade carved into sandstone, not as a
+// rectangular freestanding block. The cliff is built from staggered masses and
+// shadow seams; the architectural face sits slightly forward from the rock.
 
 import { WonderAsset } from './lib/wonderKit.mjs';
 
 const OUT = new URL('../public/models/petra.glb', import.meta.url);
 
 const COLORS = {
-  ground: 0xc6a878,
-  rock: 0xbe8453,       // 砂岩山体（受光）
-  rockShade: 0xa46e3f,  // 背光岩面
-  rockDeep: 0x86592f,   // 深阴影 / 凹槽 / 岩层缝
-  facade: 0xd9a877,     // 凿出的立面（受光，较亮）
-  column: 0xd2a067,
-  cap: 0xe3c096,
-  dark: 0x2a1f17,       // 门洞 / 龛 深阴影
-  gold: 0xb2823f,
+  ground: 0xc4a06f,
+  sand: 0xc88c55,
+  sandLight: 0xdfad78,
+  sandDark: 0x8d5c35,
+  sandDeep: 0x51351f,
+  facade: 0xd99c62,
+  trim: 0xe6bd86,
+  column: 0xd6a16a,
+  dark: 0x21160f,
+  gold: 0xb07d35,
 };
-function material() { return { metalness: 0.0, roughness: 0.93 }; }
+
+function material() {
+  return { metalness: 0.0, roughness: 0.94 };
+}
+
 const a = new WonderAsset({ name: 'Petra' });
 const G = 0.03;
 
-// 地面
-a.box('ground', 0.86, 1.08, 0.03, 0, 0, 0.015);
+a.box('ground', 0.92, 1.06, 0.03, 0, 0, 0.015);
 
-// ===== 砂岩山体（多块错落，深进 +x，参差峰顶）=====
-a.box('rock', 0.52, 0.84, 1.00, 0.34, 0, G + 0.50);              // 主体山块（深）
-a.box('rockShade', 0.40, 0.62, 0.42, 0.44, 0.06, G + 0.98);      // 高处退台峰
-a.box('rock', 0.28, 0.40, 0.30, 0.40, -0.26, G + 1.04);          // 不对称小峰
-a.box('rockShade', 0.30, 0.30, 0.96, 0.05, -0.46, G + 0.48);     // 左峡壁（前凸）
-a.box('rock', 0.30, 0.30, 0.96, 0.05, 0.46, G + 0.48);           // 右峡壁
-a.box('rockShade', 0.20, 0.24, 0.40, -0.06, -0.44, G + 0.20);    // 左前低岩
-a.box('rock', 0.18, 0.22, 0.34, -0.05, 0.45, G + 0.17);          // 右前低岩
-a.box('rockDeep', 0.16, 0.30, 0.26, 0.30, 0.30, G + 1.10);       // 顶部碎岩阴影
-// 横向岩层带（前面提亮/压暗的水平条，制造层理）
-for (const [zz, key] of [[0.30, 'rockDeep'], [0.52, 'rockShade'], [0.74, 'rockDeep']]) {
-  a.box('rockShade', 0.02, 0.30, 0.02, -0.09, -0.46, G + zz);
-  a.box('rockShade', 0.02, 0.30, 0.02, -0.09, 0.46, G + zz);
-  a.box(key, 0.30, 0.02, 0.015, 0.44, 0.06, G + 0.80 + zz * 0.3); // 退台峰层理
+// Irregular sandstone cliff: split masses instead of one thick slab.
+a.box('sand', 0.30, 0.28, 0.86, 0.22, -0.34, G + 0.43);
+a.box('sandDark', 0.36, 0.28, 0.96, 0.25, 0.34, G + 0.48);
+a.box('sand', 0.28, 0.34, 0.92, 0.30, 0.00, G + 0.46);
+a.box('sandDark', 0.22, 0.24, 0.42, 0.35, -0.09, G + 0.98);
+a.box('sand', 0.18, 0.22, 0.35, 0.18, 0.20, G + 1.05);
+a.box('sandDeep', 0.09, 0.20, 0.36, 0.05, -0.48, G + 0.20);
+a.box('sandDark', 0.08, 0.18, 0.30, 0.02, 0.49, G + 0.18);
+
+// Layer seams and eroded grooves.
+for (const z of [0.24, 0.40, 0.59, 0.78]) {
+  a.box('sandDeep', 0.035, 0.78, 0.014, 0.075, 0, G + z);
 }
-// 竖向侵蚀凹槽（峡壁上的深缝）
-for (const sy of [-0.46, 0.46]) for (const gz of [-0.16, 0.0, 0.16]) {
-  a.box('rockDeep', 0.022, 0.018, 0.5, -0.085, sy + gz, G + 0.5);
+for (const [y, h] of [[-0.46, 0.55], [-0.31, 0.32], [0.33, 0.50], [0.48, 0.44]]) {
+  a.box('sandDeep', 0.022, 0.018, h, 0.045, y, G + h / 2 + 0.08);
 }
 
-// ===== 立面背墙（凹嵌于左右峡壁之间）=====
-a.box('facade', 0.07, 0.62, 0.84, 0.06, 0, G + 0.45);
+// Carved back plane, slightly recessed between cliff shoulders.
+a.box('sandDark', 0.050, 0.58, 0.80, 0.055, 0, G + 0.43);
+a.box('facade', 0.050, 0.50, 0.70, -0.015, 0, G + 0.38);
 
-// ---- 下层柱廊（z..0.46）柱身明显凸出背墙 ----
-const LX = -0.05;
-a.colonnade('column', 'cap', { axis: 'y', from: -0.27, to: 0.27, count: 6, fixed: LX, baseZ: G, h: 0.40, rBot: 0.036, rTop: 0.031, capR: 0.048, capH: 0.03, baseH: 0.024, seg: 12 });
-a.box('facade', 0.08, 0.70, 0.06, LX + 0.03, 0, G + 0.45);       // 下层额枋
-a.box('cap', 0.12, 0.72, 0.045, LX - 0.005, 0, G + 0.49);        // 强分层横檐（凸出）
-// 中央深门洞 + 门楣山花 + 台阶
-a.box('dark', 0.14, 0.13, 0.32, LX + 0.06, 0, G + 0.16);
-a.gable('cap', 0.16, 0.07, 0.07, LX, 0, G + 0.32, 'yz');
-for (let s = 0; s < 3; s += 1) a.box('cap', 0.04, 0.20, 0.022, LX - 0.05 - s * 0.04, 0, G + 0.012 + s * 0.022);  // 台阶
-// 两侧壁龛 + 立像
+// Lower colonnade and deep central doorway.
+const X = -0.075;
+a.box('trim', 0.080, 0.58, 0.035, X, 0, G + 0.035);
+a.colonnade('column', 'trim', {
+  axis: 'y',
+  from: -0.245,
+  to: 0.245,
+  count: 6,
+  fixed: X - 0.030,
+  baseZ: G + 0.040,
+  h: 0.355,
+  rBot: 0.026,
+  rTop: 0.022,
+  capR: 0.036,
+  capH: 0.022,
+  baseH: 0.018,
+  seg: 12,
+});
+a.box('dark', 0.105, 0.118, 0.305, X - 0.055, 0, G + 0.185);
+a.box('sandDeep', 0.034, 0.158, 0.340, X - 0.079, 0, G + 0.190);
+for (let s = 0; s < 4; s += 1) {
+  a.box('trim', 0.038, 0.230, 0.018, X - 0.090 - s * 0.030, 0, G + 0.015 + s * 0.018);
+}
+
+// Lower entablature and broken pediments on both sides.
+a.box('trim', 0.080, 0.620, 0.050, X - 0.020, 0, G + 0.430);
+a.box('facade', 0.060, 0.500, 0.050, X - 0.035, 0, G + 0.482);
 for (const sy of [-0.18, 0.18]) {
-  a.box('dark', 0.06, 0.08, 0.20, LX + 0.02, sy, G + 0.14);
-  a.box('cap', 0.022, 0.024, 0.12, LX, sy, G + 0.145);
+  a.gable('trim', 0.210, 0.075, 0.060, X - 0.055, sy, G + 0.500, 'yz');
+  a.box('dark', 0.050, 0.075, 0.160, X - 0.070, sy, G + 0.185);
 }
-// 下层断山花（中央留口给上层圆亭）
-for (const sy of [-0.21, 0.21]) a.gable('facade', 0.26, 0.10, 0.08, LX, sy, G + 0.50, 'yz');
 
-// ---- 上层（z0.52..0.88）----
-const UZ = G + 0.52;
-a.cyl('facade', 0.13, 0.135, 0.24, -0.07, 0, UZ + 0.12, 16);     // 圆亭 tholos（前凸）
-for (let i = 0; i < 6; i += 1) {
-  const th = -Math.PI / 2 + (i - 2.5) * 0.36;
-  a.cyl('column', 0.021, 0.023, 0.21, -0.07 + Math.cos(th) * 0.12, Math.sin(th) * 0.12, UZ + 0.11, 8);
+// Upper tholos and side shrines.
+const UZ = G + 0.545;
+a.cyl('facade', 0.105, 0.115, 0.205, X - 0.070, 0, UZ + 0.105, 18);
+for (let i = 0; i < 8; i += 1) {
+  const th = -Math.PI * 0.72 + (i / 7) * Math.PI * 1.44;
+  a.cyl('column', 0.015, 0.018, 0.190, X - 0.090 + Math.cos(th) * 0.105, Math.sin(th) * 0.105, UZ + 0.095, 8);
 }
-a.coneUp('facade', 0.155, 0.14, -0.07, 0, UZ + 0.24, 16);        // 锥顶
-a.cyl('gold', 0.024, 0.034, 0.06, -0.07, 0, UZ + 0.38, 10);      // 瓮饰座
-a.sphere('gold', 0.034, -0.07, 0, UZ + 0.45, 10);                // 瓮
-for (const sy of [-1, 1]) {                                       // 两翼柱 + 半山花
-  a.colonnade('column', 'cap', { axis: 'y', from: sy * 0.19, to: sy * 0.30, count: 2, fixed: -0.01, baseZ: UZ, h: 0.26, rBot: 0.026, rTop: 0.022, capR: 0.034, capH: 0.024, baseH: 0.018, seg: 8 });
-  a.box('facade', 0.05, 0.18, 0.05, -0.01, sy * 0.28, UZ + 0.29);
-  a.gable('facade', 0.20, 0.09, 0.06, -0.01, sy * 0.28, UZ + 0.32, 'xz');
+a.coneUp('trim', 0.125, 0.130, X - 0.070, 0, UZ + 0.205, 18);
+a.cyl('gold', 0.020, 0.026, 0.055, X - 0.070, 0, UZ + 0.360, 10);
+a.sphere('gold', 0.027, X - 0.070, 0, UZ + 0.415, 10);
+
+for (const sy of [-0.255, 0.255]) {
+  a.box('facade', 0.050, 0.118, 0.250, X - 0.025, sy, UZ + 0.125);
+  a.colonnade('column', 'trim', {
+    axis: 'y',
+    from: sy - 0.045,
+    to: sy + 0.045,
+    count: 2,
+    fixed: X - 0.070,
+    baseZ: UZ,
+    h: 0.235,
+    rBot: 0.020,
+    rTop: 0.017,
+    capR: 0.028,
+    capH: 0.018,
+    baseH: 0.012,
+    seg: 8,
+  });
+  a.gable('trim', 0.145, 0.055, 0.050, X - 0.070, sy, UZ + 0.280, 'yz');
 }
+
+// Small shadow cuts tie the carved facade back into the cliff.
+for (const sy of [-0.30, 0.30]) a.box('sandDeep', 0.034, 0.026, 0.62, X + 0.020, sy, G + 0.34);
 
 const stats = await a.exportGlb(OUT, { colors: COLORS, material, weld: true });
 console.log(`Petra: ${stats.materials} mats, ${stats.parts} parts, ~${stats.triangles} tris, z ${stats.zMin.toFixed(2)}..${stats.zMax.toFixed(2)}, ${(stats.bytes / 1024).toFixed(1)} KB`);

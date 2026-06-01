@@ -297,3 +297,36 @@ Verification after changes:
 Follow-up improvement:
 
 - This procedural pass is an improvement, but it still does not reach the quality of a dedicated artist-made reference model. For the next quality jump, use a real asset pipeline: Blender/asset kitbash or sourced CC0/paid GLB, decimate to web scale, bake simple materials/AO, then replace the procedural GLB through the existing override path.
+
+## Incident Record: Landmark GLB Overlap and Depth Cleanup
+
+Date: 2026-06-01
+
+Goal: fix the rough/buggy landmark presentation around the Forbidden City and Petra without changing the historical data or the main map style.
+
+Verification before changes:
+
+- Browser QA showed the Beijing landmark cluster could visually merge into a large blue plate at close zoom, especially near Forbidden City / Great Wall / Temple of Heaven.
+- Petra read more like a flat sandstone block than a carved facade.
+- The issue was not just one GLB material. It combined oversized close-zoom model scale, aura/beam effects, cool fill lighting, hidden helper meshes still writing depth, and map depth values cutting through landmark meshes at steep pitch.
+
+Fixes applied:
+
+- Rebuilt `public/models/forbidden-city.glb` from `scripts/buildForbiddenCityGlb.mjs` with smaller tiled hip-roof modules, warmer base colors, compound walls, gatehouse, central halls, side corridors, and no oversized roof slab.
+- Rebuilt `public/models/petra.glb` from `scripts/buildPetraGlb.mjs` with staggered sandstone cliff masses, carved facade depth, colonnade detail, shadow cuts, and more natural warm materials.
+- Updated `src/map/createBuildingLayer.js` so close-up landmarks shrink more aggressively, reducing overlap in dense regions.
+- Reduced aura, disc, and beam opacity/size so markers support the model instead of covering it.
+- Changed the fill light from cool blue to warm low-intensity light.
+- Hid dark-theme tree/house helper meshes with `object.visible = false` and disabled depth writing so invisible objects cannot create depth artifacts.
+- Cleared the MapLibre depth buffer before rendering landmarks, keeping landmark internal 3D depth while preventing terrain/fill layers from slicing through models.
+
+Verification after changes:
+
+- `npm run validate:data` passed: 43 dynasties, 89 boundaries, 30 landmarks, 5 refined samples, 15 model profiles.
+- `npm run build` passed. The only output was the expected Vite large-chunk warning for MapLibre/Three bundles.
+- Browser QA opened `http://127.0.0.1:5177/`; the app title, map canvas, starfield canvases, and Chinese UI rendered with no browser console errors or warnings.
+- Local QA screenshots confirmed Forbidden City no longer appears as a giant overlapping blue slab, Petra reads as a warmer carved facade, and Beijing close-up landmarks no longer merge as badly.
+
+Follow-up improvement:
+
+- This is still a procedural low-poly repair, not the final art direction. To reach the reference-model quality the user wants, move priority landmarks to a real asset pipeline: Blender or sourced GLB, modeled with proper silhouette, baked ambient occlusion, material simplification, Draco/mesh optimization if needed, and replacement through the existing GLB override path.

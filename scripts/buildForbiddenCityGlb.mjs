@@ -1,105 +1,171 @@
-// 紫禁城 —— 奇观资产样板（public/models/forbidden-city.glb）· 重做版（宫殿建筑群）。
-// 修「大面积板状几何」：彻底移除旧的大平板屋檐板，屋顶一律用多段层叠檐（重檐 hipRoof）。
-//   建筑群层次：外宫墙 + 四角楼（多重檐）+ 午门门楼 + 三层须弥座上的太和殿（重檐庑殿）+
-//   后殿 + 东西庑廊。配色：暗红墙体 / 金棕屋顶 / 暖石基座 / 暗金点缀（无蓝绿大色块）。
-// 复用 wonderKit；z=上；足迹约 ±0.63；base 贴地；0 贴图。
-// 运行：node scripts/buildForbiddenCityGlb.mjs
+// Forbidden City landmark asset.
+//
+// Goal for the map view: recognizable palace compound, no oversized roof slab.
+// The roof surfaces are intentionally split into small hip-roof modules so the
+// model reads as layered halls instead of one big blue-lit plate in the scene.
 
 import { WonderAsset } from './lib/wonderKit.mjs';
 
 const OUT = new URL('../public/models/forbidden-city.glb', import.meta.url);
 
 const COLORS = {
-  base: 0xcabd9c, terrace: 0xe8e0cf, terraceShade: 0xd2c8b0, rail: 0xeae3d2,
-  wall: 0xa3392c, wallDark: 0x8a3024, column: 0x7e2e23, beam: 0x6f5a39,
-  dougong: 0x8a6e40, roof: 0xb07b32, roofShade: 0x966827, dark: 0x2e2620, gold: 0xc9a14e,
+  base: 0x8d5f36,
+  stone: 0xc69a5a,
+  stoneDark: 0x735034,
+  wall: 0xa33125,
+  wallDark: 0x7d271e,
+  column: 0x6f241b,
+  beam: 0x7a4f25,
+  bracket: 0xa37a35,
+  roof: 0x9a6421,
+  roofDark: 0x6e4318,
+  roofLight: 0xc28a32,
+  dark: 0x231812,
+  gold: 0xc9a14e,
 };
+
 function material(key) {
-  if (key === 'gold') return { metalness: 0.45, roughness: 0.42 };
-  if (key === 'roof' || key === 'roofShade') return { metalness: 0.18, roughness: 0.6 };
-  return { metalness: 0.0, roughness: 0.85 };
+  if (key === 'gold') return { metalness: 0.35, roughness: 0.46 };
+  if (key.startsWith('roof')) return { metalness: 0.08, roughness: 0.74 };
+  return { metalness: 0.0, roughness: 0.88 };
 }
+
 const a = new WonderAsset({ name: 'ForbiddenCity' });
 
-// ---- 屋顶构件（全部用坡屋面，杜绝大平板）----
-function ridge(cx, cy, len, z) {
-  a.box('gold', len, 0.02, 0.026, cx, cy, z - 0.004);
-  for (const ex of [-(len / 2 - 0.02), (len / 2 - 0.02)]) a.box('gold', 0.022, 0.038, 0.05, cx + ex, cy, z - 0.018);
+function ridge(cx, cy, z, len) {
+  a.box('gold', len, 0.018, 0.018, cx, cy, z);
 }
-function singleEave(cx, cy, baseZ, w, d, h) {
-  a.hipRoof('roof', w + 0.12, d + 0.12, h, Math.max(w - 0.16, 0.04), cx, cy, baseZ);
-  ridge(cx, cy, Math.max(w - 0.16, 0.06), baseZ + h);
+
+function tiledHipRoof(cx, cy, z, w, d, h, segments = 3, key = 'roof') {
+  const gap = 0.012;
+  const segW = (w - gap * (segments - 1)) / segments;
+  const start = cx - w / 2 + segW / 2;
+  for (let i = 0; i < segments; i += 1) {
+    const x = start + i * (segW + gap);
+    const localKey = i % 2 === 0 ? key : 'roofDark';
+    a.hipRoof(localKey, segW, d, h, Math.max(segW * 0.55, 0.045), x, cy, z);
+    ridge(x, cy, z + h + 0.004, Math.max(segW * 0.46, 0.045));
+  }
+  // Thin warm eave lines break large silhouettes; skip them on tiny service roofs.
+  if (w > 0.18) {
+    a.box('roofLight', w + 0.035, 0.018, 0.018, cx, cy - d / 2 - 0.006, z + 0.012);
+    a.box('roofDark', w + 0.035, 0.018, 0.016, cx, cy + d / 2 + 0.006, z + 0.008);
+  }
 }
-function doubleEave(cx, cy, baseZ, w, d, h) {
-  a.hipRoof('roofShade', w + 0.14, d + 0.14, h * 0.5, Math.max(w - 0.2, 0.04), cx, cy, baseZ);   // 下层檐
-  const uw = w * 0.72, ud = d * 0.72, uz = baseZ + h * 0.5 + 0.015;
-  a.box('wall', uw, ud, 0.05, cx, cy, uz + 0.025);                                               // 上层短墙
-  a.box('beam', uw * 1.04, ud * 1.04, 0.016, cx, cy, uz + 0.052);
-  a.hipRoof('roof', uw + 0.14, ud + 0.14, h, Math.max(uw - 0.12, 0.04), cx, cy, uz + 0.06);      // 上层主檐
-  ridge(cx, cy, Math.max(uw - 0.12, 0.06), uz + 0.06 + h);
-}
-// 殿堂：墙身 + 前檐柱 + 额枋 + 斗栱 + 屋顶
-function hall(cx, cy, w, d, bodyH, baseZ, { double = false, h = 0.13, cols = true, dgong = false } = {}) {
+
+function palaceHall(cx, cy, w, d, bodyH, baseZ, opts = {}) {
+  const roofH = opts.roofH ?? 0.10;
+  const segments = opts.segments ?? 3;
+  const columns = opts.columns ?? true;
+  const double = opts.double ?? false;
+
   a.box('wall', w, d, bodyH, cx, cy, baseZ + bodyH / 2);
-  if (cols) {
-    const n = Math.max(4, Math.round(w / 0.085));
-    a.colonnade('column', 'column', { axis: 'x', from: cx - w / 2 + 0.03, to: cx + w / 2 - 0.03, count: n, fixed: cy - d / 2 + 0.008, baseZ, h: bodyH, rBot: 0.015, rTop: 0.013, capR: 0, baseH: 0 });
+  if (columns) {
+    const n = Math.max(3, Math.round(w / 0.12));
+    a.colonnade('column', 'bracket', {
+      axis: 'x',
+      from: cx - w / 2 + 0.035,
+      to: cx + w / 2 - 0.035,
+      count: n,
+      fixed: cy - d / 2 - 0.004,
+      baseZ,
+      h: bodyH * 0.94,
+      rBot: 0.012,
+      rTop: 0.010,
+      capR: 0.017,
+      capH: 0.014,
+      baseH: 0,
+      seg: 6,
+    });
   }
-  a.box('beam', w * 0.98, d * 0.98, 0.018, cx, cy, baseZ + bodyH + 0.009);
-  if (dgong) for (let i = -6; i <= 6; i += 1) for (const sy of [-1, 1]) a.box('dougong', 0.024, 0.04, 0.03, cx + i * (w / 13), cy + sy * (d / 2 - 0.01), baseZ + bodyH + 0.035);
-  if (double) doubleEave(cx, cy, baseZ + bodyH + 0.02, w, d, h);
-  else singleEave(cx, cy, baseZ + bodyH + 0.02, w, d, h);
+  a.box('beam', w * 1.02, d * 1.02, 0.018, cx, cy, baseZ + bodyH + 0.010);
+  for (let i = 0; i < 3; i += 1) {
+    const x = cx - w * 0.25 + (w * 0.25 * i);
+    a.box('bracket', 0.030, 0.020, 0.018, x, cy - d / 2 - 0.006, baseZ + bodyH + 0.030);
+  }
+
+  if (double) {
+    tiledHipRoof(cx, cy, baseZ + bodyH + 0.020, w * 1.08, d * 1.06, roofH * 0.46, segments, 'roofDark');
+    const upperW = w * 0.68;
+    const upperD = d * 0.68;
+    const upperZ = baseZ + bodyH + roofH * 0.50 + 0.045;
+    a.box('wallDark', upperW, upperD, 0.045, cx, cy, upperZ + 0.022);
+    a.box('beam', upperW * 1.05, upperD * 1.05, 0.014, cx, cy, upperZ + 0.052);
+    tiledHipRoof(cx, cy, upperZ + 0.066, upperW * 1.16, upperD * 1.14, roofH * 0.70, Math.max(2, segments - 1), 'roof');
+  } else {
+    tiledHipRoof(cx, cy, baseZ + bodyH + 0.020, w * 1.10, d * 1.10, roofH, segments, 'roof');
+  }
 }
-// 角楼：细身 + 三重檐
+
 function cornerTower(cx, cy) {
-  a.box('wallDark', 0.14, 0.14, 0.22, cx, cy, 0.11);
-  let z = 0.22;
-  for (const [w, hh] of [[0.24, 0.06], [0.18, 0.055], [0.12, 0.06]]) {
-    a.hipRoof('roof', w, w, hh, w * 0.34, cx, cy, z);
-    z += hh + 0.004;
+  a.box('wallDark', 0.115, 0.115, 0.17, cx, cy, 0.125);
+  tiledHipRoof(cx, cy, 0.215, 0.19, 0.19, 0.055, 2, 'roofDark');
+  tiledHipRoof(cx, cy, 0.285, 0.135, 0.135, 0.050, 1, 'roof');
+  a.cyl('gold', 0.008, 0.010, 0.045, cx, cy, 0.365, 8);
+}
+
+function gateHouse(cx, cy) {
+  a.box('wallDark', 0.40, 0.125, 0.19, cx, cy, 0.135);
+  a.box('dark', 0.095, 0.052, 0.12, cx, cy - 0.050, 0.100);
+  palaceHall(cx, cy, 0.25, 0.13, 0.09, 0.245, { double: true, roofH: 0.070, segments: 3, columns: false });
+  for (const sx of [-0.17, 0.17]) {
+    palaceHall(cx + sx, cy, 0.10, 0.10, 0.070, 0.250, { roofH: 0.050, segments: 1, columns: false });
   }
-  a.cyl('gold', 0.009, 0.013, 0.05, cx, cy, z + 0.02, 8);
 }
 
-// ===== 庭院地面 =====
-a.box('base', 1.30, 0.94, 0.04, 0, 0, 0.02);
+// Ground and compound walls.
+a.box('base', 1.22, 0.86, 0.035, 0, 0, 0.0175);
+a.box('stoneDark', 1.10, 0.74, 0.018, 0, 0, 0.044);
 
-// ===== 外宫墙 + 四角楼 =====
-const WX = 0.60, WY = 0.42, WH = 0.13;
-a.box('wallDark', 2 * WX, 0.05, WH, 0, WY, WH / 2 + 0.04);            // 后墙
-a.box('wallDark', 0.05, 2 * WY, WH, -WX, 0, WH / 2 + 0.04);          // 左墙
-a.box('wallDark', 0.05, 2 * WY, WH, WX, 0, WH / 2 + 0.04);           // 右墙
-a.box('wallDark', WX - 0.16, 0.05, WH, -(WX - 0.16) / 2 - 0.16, -WY, WH / 2 + 0.04); // 前墙（左段，给午门留口）
-a.box('wallDark', WX - 0.16, 0.05, WH, (WX - 0.16) / 2 + 0.16, -WY, WH / 2 + 0.04);  // 前墙（右段）
-for (const z of [WH + 0.04]) {                                       // 墙顶压条
-  a.box('gold', 2 * WX + 0.02, 0.06, 0.014, 0, WY, z);
-  for (const sx of [-WX, WX]) a.box('gold', 0.06, 2 * WY, 0.014, sx, 0, z);
-}
+const WX = 0.55;
+const WY = 0.38;
+const WH = 0.115;
+a.box('wallDark', 2 * WX, 0.045, WH, 0, WY, 0.045 + WH / 2);
+a.box('wallDark', 0.045, 2 * WY, WH, -WX, 0, 0.045 + WH / 2);
+a.box('wallDark', 0.045, 2 * WY, WH, WX, 0, 0.045 + WH / 2);
+a.box('wallDark', 0.36, 0.045, WH, -0.29, -WY, 0.045 + WH / 2);
+a.box('wallDark', 0.36, 0.045, WH, 0.29, -WY, 0.045 + WH / 2);
+a.box('gold', 2 * WX + 0.02, 0.040, 0.014, 0, WY, 0.166);
+a.box('gold', 0.040, 2 * WY, 0.014, -WX, 0, 0.166);
+a.box('gold', 0.040, 2 * WY, 0.014, WX, 0, 0.166);
+
 for (const [cx, cy] of [[-WX, -WY], [WX, -WY], [-WX, WY], [WX, WY]]) cornerTower(cx, cy);
+gateHouse(0, -WY);
 
-// ===== 午门门楼（前中）=====
-a.box('wallDark', 0.46, 0.16, 0.22, 0, -WY, 0.11 + 0.04);
-a.box('dark', 0.10, 0.07, 0.14, 0, -WY - 0.05, 0.07 + 0.04);         // 中央门洞
-hall(0, -WY, 0.26, 0.14, 0.10, 0.26, { double: true, h: 0.085, cols: false });
-for (const fx of [-0.18, 0.18]) hall(fx, -WY, 0.13, 0.12, 0.08, 0.26, { double: false, h: 0.06, cols: false });
-
-// ===== 三层须弥座 + 太和殿（重檐庑殿，建筑群中心）=====
+// Three-level ceremonial terrace and central halls.
 const MCY = -0.02;
-a.box('terrace', 0.74, 0.56, 0.05, 0, MCY, 0.065);
-a.box('terraceShade', 0.66, 0.48, 0.045, 0, MCY, 0.1125);
-a.box('terrace', 0.58, 0.42, 0.045, 0, MCY, 0.1575);
-const MT = 0.18;
-for (let i = -4; i <= 4; i += 1) for (const sy of [-0.30, 0.30]) a.box('rail', 0.018, 0.018, 0.05, i * 0.072, MCY + sy, MT + 0.025); // 栏杆望柱
-for (let s = 0; s < 3; s += 1) a.box('terrace', 0.26, 0.045, 0.05, 0, MCY - 0.30 - s * 0.04, MT - 0.02 - s * 0.05); // 御路台阶
-hall(0, MCY, 0.50, 0.36, 0.20, MT, { double: true, h: 0.155, cols: true, dgong: true });
+a.box('stone', 0.70, 0.50, 0.045, 0, MCY, 0.067);
+a.box('stoneDark', 0.62, 0.42, 0.040, 0, MCY, 0.110);
+a.box('stone', 0.53, 0.36, 0.038, 0, MCY, 0.151);
+for (let i = -4; i <= 4; i += 1) {
+  if (i % 2 === 0) for (const sy of [-0.265, 0.265]) a.box('stone', 0.014, 0.014, 0.040, i * 0.065, MCY + sy, 0.190);
+}
+for (let s = 0; s < 3; s += 1) a.box('stone', 0.22, 0.038, 0.035, 0, MCY - 0.28 - s * 0.040, 0.165 - s * 0.035);
 
-// ===== 后殿（保和殿一线）=====
-hall(0, 0.28, 0.34, 0.22, 0.14, 0.04, { double: true, h: 0.10, cols: true });
+palaceHall(0, MCY - 0.01, 0.44, 0.29, 0.175, 0.180, {
+  double: true,
+  roofH: 0.120,
+  segments: 4,
+  columns: true,
+});
 
-// ===== 东西庑廊（长向沿 y，脊沿 y）=====
-for (const sx of [-0.40, 0.40]) {
-  a.box('wall', 0.10, 0.60, 0.11, sx, MCY, 0.04 + 0.055);
-  a.gable('roof', 0.16, 0.05, 0.62, sx, MCY, 0.04 + 0.11, 'xz');
+palaceHall(0, 0.245, 0.30, 0.20, 0.120, 0.055, {
+  double: true,
+  roofH: 0.085,
+  segments: 3,
+  columns: true,
+});
+
+// Side corridors and smaller administrative halls.
+for (const sx of [-0.39, 0.39]) {
+  a.box('wall', 0.09, 0.52, 0.095, sx, MCY, 0.092);
+  for (const cy of [-0.17, 0.17]) {
+    tiledHipRoof(sx, cy, 0.145, 0.13, 0.18, 0.050, 1, 'roofDark');
+  }
+}
+
+for (const [cx, cy] of [[-0.24, 0.17], [0.24, 0.17], [-0.23, -0.23], [0.23, -0.23]]) {
+  palaceHall(cx, cy, 0.16, 0.12, 0.075, 0.055, { roofH: 0.055, segments: 2, columns: false });
 }
 
 const stats = await a.exportGlb(OUT, { colors: COLORS, material, weld: true });
