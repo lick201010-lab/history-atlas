@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import { createBuildingLayer } from '../map/createBuildingLayer.js';
+import { smoothBoundaryCollection } from '../map/smoothBoundaries.js';
 import {
   INITIAL_VIEW,
   MOUNTAIN_VIEW,
@@ -124,6 +125,10 @@ const MapScene = forwardRef(function MapScene({
     if (!map) return;
     applyMapTheme(map, theme);
     buildingLayerRef.current?.setTheme?.(theme);
+    // dark 主题把 #map 内缩进装裱框、atlas 满屏，容器尺寸随主题变化，
+    // 等 CSS 过渡后让 MapLibre 重读容器尺寸，避免画布与容器错位。
+    const resizeTimer = setTimeout(() => map.resize(), 360);
+    return () => clearTimeout(resizeTimer);
   }, [theme]);
 
   useImperativeHandle(ref, () => ({
@@ -163,6 +168,7 @@ const MapScene = forwardRef(function MapScene({
       const filter = activeYearFilter(year);
       map.setFilter('dynasty-territory-fill', filter);
       map.setFilter('dynasty-territory-glow', filter);
+      map.setFilter('dynasty-territory-casing', filter);
       map.setFilter('dynasty-territory-line', filter);
       map.setFilter('dynasty-territory-hover', boundaryHoverFilter(year, hoveredBoundaryIdRef.current));
       map.setFilter('dynasty-capital-glow', filter);
@@ -186,6 +192,7 @@ const MapScene = forwardRef(function MapScene({
     const map = mapRef.current;
     setVisibility(map, 'dynasty-territory-fill', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-glow', layerVisibility.territories);
+    setVisibility(map, 'dynasty-territory-casing', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-line', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-hover', layerVisibility.territories);
     setVisibility(map, 'dynasty-territory-selected-fill', layerVisibility.territories);
@@ -206,7 +213,7 @@ const MapScene = forwardRef(function MapScene({
   useEffect(() => {
     boundariesRef.current = boundaries;
     const source = mapRef.current?.getSource('dynasty-boundaries');
-    source?.setData(boundaries);
+    source?.setData(smoothBoundaryCollection(boundaries));
   }, [boundaries]);
 
   useEffect(() => {
@@ -217,7 +224,14 @@ const MapScene = forwardRef(function MapScene({
       zoom: INITIAL_VIEW.zoom,
       pitch: INITIAL_VIEW.pitch,
       bearing: INITIAL_VIEW.bearing,
-      maxPitch: 75,
+      // 更大俯仰上限：可把视角压更低、看到「地球边缘」星空，更 3D 自由环绕。
+      maxPitch: 82,
+      // 单世界悬浮星空·自由环绕：关闭世界副本（不重复），但允许把镜头平移/旋转
+      // 到任意边缘、越过边缘见星空。
+      // 注意：不要加 maxBounds —— 高 pitch 下 MapLibre 为把视锥地面足迹塞进 bounds
+      // 会强制 zoom-22 / center 推到角落 → 黑屏（已两次复现）。靠 renderWorldCopies:false
+      // 自身约束 + 合适初始 zoom 即可平移到边缘见星空。
+      renderWorldCopies: false,
       antialias: true,
       attributionControl: false,
       // 中文都城名（长安/君士坦丁堡…）由浏览器本地字体渲染，避免依赖字体服务的 CJK 字形。
@@ -226,6 +240,21 @@ const MapScene = forwardRef(function MapScene({
 
     map.dragRotate.enable();
     map.touchZoomRotate.enableRotation();
+
+    // 右侧「当前时空」信息面板会盖住地图右部（日本/太平洋等最右地区被挡），
+    // 且 renderWorldCopies:false 的平移约束把世界钉在视口里、顶不出面板。
+    // 解法：给相机设右侧 padding —— 把"有效视口"内缩到面板左缘，平移约束随之
+    // 以更窄的可视区为基准放宽，于是世界可向左推、最右地区移出面板进入可见区。
+    // 不用 maxBounds（高 pitch 必触发 zoom-22 黑屏），padding 无投影风险。
+    const applyViewportPadding = () => {
+      const w = map.getContainer()?.clientWidth || window.innerWidth;
+      // 面板约 460px 宽；窄屏按比例收，避免 padding 占满视口。
+      const right = w > 1100 ? 360 : Math.round(Math.min(200, w * 0.3));
+      map.setPadding({ top: 0, bottom: 0, left: 0, right });
+    };
+    map.on('load', applyViewportPadding);
+    map.on('resize', applyViewportPadding);
+
     mapRef.current = map;
     window._map = map;
 
@@ -236,7 +265,7 @@ const MapScene = forwardRef(function MapScene({
       if (!map.getSource('dynasty-boundaries')) {
         map.addSource('dynasty-boundaries', {
           type: 'geojson',
-          data: boundariesRef.current,
+          data: smoothBoundaryCollection(boundariesRef.current),
         });
       }
       // 样板（精修过的）文明 vs 占位文明，由 accuracy 字段驱动。
@@ -267,11 +296,29 @@ const MapScene = forwardRef(function MapScene({
           type: 'line',
           source: 'dynasty-boundaries',
           filter: activeYearFilter(yearRef.current),
+          layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
             'line-color': ['get', 'color'],
             'line-opacity': ifRefined(0.45, 0.22),
             'line-width': ifRefined(7, 4),
             'line-blur': 5,
+          },
+        });
+      }
+      // 深色衬底（casing）：清亮边下方垫一道近黑藏蓝，让上面的亮线在地形上更跳更干净。
+      // 初值即可，随后由 applyBoundaryPaint dark 分支覆写（atlas 分支会把它压成 0）。
+      if (!map.getLayer('dynasty-territory-casing')) {
+        map.addLayer({
+          id: 'dynasty-territory-casing',
+          type: 'line',
+          source: 'dynasty-boundaries',
+          filter: activeYearFilter(yearRef.current),
+          layout: { 'line-join': 'round', 'line-cap': 'round' },
+          paint: {
+            'line-color': 'rgba(3, 8, 16, 0.85)',
+            'line-opacity': ifRefined(0.85, 0.5),
+            'line-width': ifRefined(3.4, 2.2),
+            'line-blur': 0.4,
           },
         });
       }
@@ -281,6 +328,7 @@ const MapScene = forwardRef(function MapScene({
           type: 'line',
           source: 'dynasty-boundaries',
           filter: activeYearFilter(yearRef.current),
+          layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
             'line-color': ['get', 'color'],
             'line-opacity': ifRefined(0.78, 0.4),
@@ -296,6 +344,7 @@ const MapScene = forwardRef(function MapScene({
           type: 'line',
           source: 'dynasty-boundaries',
           filter: boundaryHoverFilter(yearRef.current, hoveredBoundaryIdRef.current),
+          layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
             'line-color': '#f6d58f',
             'line-opacity': 0.95,
@@ -412,6 +461,7 @@ const MapScene = forwardRef(function MapScene({
         map.addLayer(buildingLayer);
         setVisibility(map, 'dynasty-territory-fill', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-glow', layerVisibilityRef.current.territories);
+        setVisibility(map, 'dynasty-territory-casing', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-line', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-hover', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-selected-fill', layerVisibilityRef.current.territories);

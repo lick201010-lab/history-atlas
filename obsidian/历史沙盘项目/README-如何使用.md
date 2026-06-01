@@ -7,60 +7,72 @@ tags:
   - obsidian/readme
 ---
 
-# 如何在 Obsidian 使用这个笔记包
+# 如何使用这套笔记
 
-当前没有在 `Documents` 或桌面下找到已有 Obsidian vault，所以我先把项目笔记整理到了这里：
+当前这套笔记有两个位置：
 
-```text
-C:\Users\Yvette\Documents\历史网站\obsidian\历史沙盘项目
-```
+- 项目内可版本化源：`D:\松君\项目\历史网站\obsidian\历史沙盘项目`
+- 外部 Obsidian 目标目录：`D:\松君\文件库\松君\history-atlas`
 
-## 方式一：直接作为一个 Obsidian Vault 打开
+推荐把项目内目录视为“可追踪源”，把外部目录视为“日常阅读副本”。
 
-1. 打开 Obsidian。
-2. 选择 `Open folder as vault`。
-3. 选择：
+## 打开方式
 
-```text
-C:\Users\Yvette\Documents\历史网站\obsidian\历史沙盘项目
-```
+### 方式一：直接把项目内目录作为 vault 打开
 
-4. 打开 `00-索引.md`。
-
-## 方式二：同步到你已有的 Obsidian Vault
-
-如果你已经有一个 Obsidian vault，但它不在 `Documents` 或桌面下，把 vault 路径告诉 Codex，例如：
+1. 打开 Obsidian
+2. 选择 `Open folder as vault`
+3. 打开：
 
 ```text
-D:\ObsidianVault
+D:\松君\项目\历史网站\obsidian\历史沙盘项目
 ```
 
-然后让 Codex 把本目录复制或同步到：
+4. 从 `00-索引.md` 开始
+
+### 方式二：在已有 vault 中阅读
+
+如果已有自己的总 vault，则把这套笔记作为子目录放到：
 
 ```text
-D:\ObsidianVault\历史沙盘项目
+D:\松君\文件库\松君\history-atlas
 ```
+
+## 这套笔记适合解决什么问题
+
+- 快速判断当前项目真实阶段
+- 回看最近边界 / GLB / dark 主题视觉工作的上下文
+- 给 Claude 准备下一阶段任务
+- 在部署前核对“本地状态”和“线上事实”是否一致
 
 ## 笔记结构
 
-- `00-索引.md`：总入口。
-- `01-项目总览.md`：项目是什么、当前阶段、关键文件。
-- `02-产品目标与视觉方向.md`：视觉路线和用户认可的目标形态。
-- `03-技术架构.md`：React、Vite、MapLibre、Three.js、Caddy 的结构。
-- `04-数据体系.md`：dynasties、boundaries、landmarks、eras。
-- `05-地图与边界渲染.md`：地形、海洋、边界、拜占庭边界问题。
-- `06-3D建筑与资产管线.md`：Three.js、GLB、圣索菲亚模型、后续资产管线。
-- `07-部署与运维.md`：阿里云、Caddy、部署脚本。
-- `08-GitHub与协作分工.md`：GitHub、Claude/Codex 分工。
-- `09-已完成里程碑.md`：项目已经完成了什么。
-- `10-当前问题与风险.md`：视觉、边界、模型、性能、数据可信度风险。
-- `11-下一步路线图.md`：后续阶段安排。
-- `12-Claude任务提示词模板.md`：后续给 Claude 的任务模板。
+- `00-索引.md`：总入口和当前状态快照
+- `01-项目总览.md`：项目定位、阶段、关键事实
+- `02-产品目标与视觉方向.md`：dark / atlas / 地图风格判断
+- `03-技术架构.md`：React、MapLibre、Three、数据、部署结构
+- `04-数据体系.md`：当前数据规模与字段结构
+- `05-地图与边界渲染.md`：边界方法、MapLibre 视口和视觉层策略
+- `06-3D建筑与资产管线.md`：程序化 builder、wonderKit、GLB 样板
+- `07-部署与运维.md`：Aliyun + Caddy + deploy 事实
+- `08-GitHub与协作分工.md`：Claude / Codex 分工和 git 习惯
+- `09-已完成里程碑.md`：已经完成到哪一步
+- `10-当前问题与风险.md`：当前最值得警惕的问题
+- `11-下一步路线图.md`：建议推进顺序
+- `12-Claude任务提示词模板.md`：给 Claude 的现成模板
 
-## 后续维护原则
+## 维护建议
 
-- 每完成一个大阶段，更新 `09-已完成里程碑.md` 和 `11-下一步路线图.md`。
-- 每发现一个长期问题，更新 `10-当前问题与风险.md`。
-- 每形成新的 Claude 任务，放到 `12-Claude任务提示词模板.md`。
-- 每次上线或部署变化，同步更新 `07-部署与运维.md`。
+- 项目状态有明显变化时，先改项目内笔记，再同步外部 vault
+- 大阶段完成后至少更新：
+  - `09-已完成里程碑.md`
+  - `10-当前问题与风险.md`
+  - `11-下一步路线图.md`
+- 如果只是一次会话快照，优先写进 `WORK_LOG.md`
+- 如果是长期原则，优先固化到 Obsidian 和 `AGENT.md`
 
+## 当前这次更新的边界
+
+- 已读取并整理：README、AGENT、WORK_LOG、docs、git log、git status、`src/data` 计数、当前未提交工作树
+- 未修改应用源码
+- 未执行部署

@@ -272,6 +272,16 @@ export default function App() {
         drift={OVERLAY_DRIFT}
       />
       <CloudLayer />
+      {/* 星图卡装裱框（仅 dark 主题可见，CSS 控制；atlas 下整体隐藏） */}
+      <div className="map-frame" aria-hidden="true">
+        <span className="map-frame-corner tl" />
+        <span className="map-frame-corner tr" />
+        <span className="map-frame-corner bl" />
+        <span className="map-frame-corner br" />
+        <span className="map-frame-compass">
+          <span className="map-frame-compass-n">N</span>
+        </span>
+      </div>
 
       <div className="title">
         历史沙盘
