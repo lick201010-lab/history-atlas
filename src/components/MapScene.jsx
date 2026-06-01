@@ -64,6 +64,23 @@ function createDynastyCapitalGeoJson(dynasties) {
   };
 }
 
+function createBuildingLabelGeoJson(landmarks) {
+  return {
+    type: 'FeatureCollection',
+    features: landmarks.map((building) => ({
+      type: 'Feature',
+      properties: {
+        id: building.id,
+        name: building.name,
+        startYear: building.startYear,
+        endYear: building.endYear,
+        importance: building.importance ?? 3,
+      },
+      geometry: { type: 'Point', coordinates: [building.lng, building.lat] },
+    })),
+  };
+}
+
 function activeYearFilter(year) {
   return ['all', ['<=', ['get', 'startYear'], year], ['>=', ['get', 'endYear'], year]];
 }
@@ -86,10 +103,12 @@ const MapScene = forwardRef(function MapScene({
   year,
   theme = 'dark',
   selectedDynastyId,
+  hoveredDynastyId,
   locked,
   boundaryCard,
   compareIds = [],
   onVisibleBuildingsChange,
+  onHoverDynasty,
   onSelectDynasty,
   onSelectBuilding,
   onCloseCard,
@@ -109,6 +128,7 @@ const MapScene = forwardRef(function MapScene({
   const lastVisibleSigRef = useRef('');
   const onSelectDynastyRef = useRef(onSelectDynasty);
   const onSelectBuildingRef = useRef(onSelectBuilding);
+  const onHoverDynastyRef = useRef(onHoverDynasty);
   const themeRef = useRef(theme);
   const [viewMode, setViewMode] = useState('world');
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, building: null });
@@ -117,6 +137,19 @@ const MapScene = forwardRef(function MapScene({
 
   useEffect(() => { onSelectDynastyRef.current = onSelectDynasty; }, [onSelectDynasty]);
   useEffect(() => { onSelectBuildingRef.current = onSelectBuilding; }, [onSelectBuilding]);
+  useEffect(() => { onHoverDynastyRef.current = onHoverDynasty; }, [onHoverDynasty]);
+
+  // 列表 → 地图：右侧文明列表 hover 时，复用地图侧的 hover 强调层高亮对应疆域。
+  // 用 hoveredBoundaryIdRef 作为单一状态：地图侧 hover 已直接设过 filter 并回灌同一 id 时，
+  // 这里会因 ref 相同而提前返回，避免重复设值与潜在闪烁。
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !map.getLayer('dynasty-territory-hover')) return;
+    const next = hoveredDynastyId || null;
+    if (hoveredBoundaryIdRef.current === next) return;
+    hoveredBoundaryIdRef.current = next;
+    map.setFilter('dynasty-territory-hover', boundaryHoverFilter(yearRef.current, next));
+  }, [hoveredDynastyId]);
 
   // 主题切换：应用 base 可见性 / hillshade / sky / 边界 paint / 建筑材质
   useEffect(() => {
@@ -174,6 +207,7 @@ const MapScene = forwardRef(function MapScene({
       map.setFilter('dynasty-capital-glow', filter);
       map.setFilter('dynasty-capital-core', filter);
       map.setFilter('dynasty-capital-label', filter);
+      if (map.getLayer('building-label')) map.setFilter('building-label', filter);
     }
   }, [onVisibleBuildingsChange, year]);
 
@@ -200,6 +234,7 @@ const MapScene = forwardRef(function MapScene({
     setVisibility(map, 'dynasty-capital-core', layerVisibility.capitals);
     setVisibility(map, 'dynasty-capital-label', layerVisibility.capitals);
     buildingLayerRef.current?.setLayerVisible(layerVisibility.buildings);
+    setVisibility(map, 'building-label', layerVisibility.buildings);
     if (!layerVisibility.territories) onCloseCard?.();
     if (!layerVisibility.buildings) setTooltip((current) => ({ ...current, visible: false }));
   }, [layerVisibility, onCloseCard]);
@@ -436,6 +471,45 @@ const MapScene = forwardRef(function MapScene({
       }
     }
 
+    // 建筑常驻淡标注：3D 建筑模型旁常显一行淡名牌，不点也能识别是什么建筑。
+    // 复用建筑年代 filter（与模型同步显隐）、"建筑"图层开关（visibility）。
+    // 字号小、低透明、碰撞按 importance 排序——低 zoom 自动只留重点，避免糊成一片。
+    function initBuildingLabels() {
+      if (!map.getSource('dynasty-buildings')) {
+        map.addSource('dynasty-buildings', {
+          type: 'geojson',
+          data: createBuildingLabelGeoJson(landmarks),
+        });
+      }
+      if (!map.getLayer('building-label')) {
+        map.addLayer({
+          id: 'building-label',
+          type: 'symbol',
+          source: 'dynasty-buildings',
+          filter: activeYearFilter(yearRef.current),
+          layout: {
+            'text-field': ['get', 'name'],
+            'text-font': ['Noto Sans Regular'],
+            'text-size': ['interpolate', ['linear'], ['zoom'], 2, 9.5, 4.5, 11.5, 7, 14],
+            'text-anchor': 'top',
+            'text-offset': [0, 1.05],
+            'text-max-width': 8,
+            'text-padding': 6,
+            'text-optional': true,
+            'text-allow-overlap': false,
+            'symbol-sort-key': ['-', 5, ['get', 'importance']],
+          },
+          paint: {
+            'text-color': 'rgba(228, 238, 252, 0.82)',
+            'text-halo-color': 'rgba(5, 9, 16, 0.92)',
+            'text-halo-width': 1.3,
+            'text-halo-blur': 0.5,
+            'text-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0.7, 5, 0.92],
+          },
+        });
+      }
+    }
+
     // 海面雕版波纹：生成一次平铺纹理并绑到 atlas-ocean-texture 的 fill-pattern。
     // 幂等：图已注册 / 图层缺失都安全跳过。失败不影响其余图层。
     function initOceanTexture() {
@@ -459,6 +533,7 @@ const MapScene = forwardRef(function MapScene({
         initDynastyCapitals();
         initOceanTexture();
         map.addLayer(buildingLayer);
+        initBuildingLabels();
         setVisibility(map, 'dynasty-territory-fill', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-glow', layerVisibilityRef.current.territories);
         setVisibility(map, 'dynasty-territory-casing', layerVisibilityRef.current.territories);
@@ -469,6 +544,7 @@ const MapScene = forwardRef(function MapScene({
         setVisibility(map, 'dynasty-capital-core', layerVisibilityRef.current.capitals);
         setVisibility(map, 'dynasty-capital-label', layerVisibilityRef.current.capitals);
         buildingLayer.setLayerVisible(layerVisibilityRef.current.buildings);
+        setVisibility(map, 'building-label', layerVisibilityRef.current.buildings);
         onVisibleBuildingsChange(buildingLayer.setYear(yearRef.current));
         // 图层创建后立即把当前主题套上去
         applyMapTheme(map, themeRef.current);
@@ -484,10 +560,23 @@ const MapScene = forwardRef(function MapScene({
     function markMapReady() {
       window.clearTimeout(readyFallback);
       readyFallback = null;
+      // 底图瓦片已绘出，放行 3D 建筑渲染（之前一直被 _baseReady 门控隐藏），
+      // 让建筑在有底图的前提下"长出来"，而非悬浮在黑色虚空里。
+      buildingLayerRef.current?.setBaseReady?.(true);
       setMapReady(true);
       // 地图就绪后清掉"加载较慢"的提示——瓦片已补齐，横幅不该再占着首屏中心。
       if (warningTimer) { window.clearTimeout(warningTimer); warningTimer = null; }
       setMapWarning('');
+    }
+
+    // 底图栅格源一旦补齐瓦片就立刻放行建筑（通常早于 idle），缩短首屏纯黑等待。
+    function handleBaseSourceData(event) {
+      if (!event?.isSourceLoaded) return;
+      const sid = event.sourceId || '';
+      if (sid.startsWith('osm-tiles') && map.isSourceLoaded(sid)) {
+        buildingLayerRef.current?.setBaseReady?.(true);
+        map.off('sourcedata', handleBaseSourceData);
+      }
     }
 
     function handleMapError(event) {
@@ -577,6 +666,8 @@ const MapScene = forwardRef(function MapScene({
       hoveredBoundaryIdRef.current = id;
       map.setFilter('dynasty-territory-hover', boundaryHoverFilter(yearRef.current, id));
       map.getCanvas().style.cursor = 'pointer';
+      // 地图 → 列表：通知 App，让右侧对应文明行同步高亮。
+      onHoverDynastyRef.current?.(id);
     }
 
     function handleTerritoryLeave() {
@@ -585,6 +676,7 @@ const MapScene = forwardRef(function MapScene({
         map.setFilter('dynasty-territory-hover', boundaryHoverFilter(yearRef.current, null));
       }
       map.getCanvas().style.cursor = '';
+      onHoverDynastyRef.current?.(null);
     }
 
     function handleTerritoryClick(event) {
@@ -608,6 +700,7 @@ const MapScene = forwardRef(function MapScene({
       map.once('idle', initBuildingLayer);
     }
     map.once('idle', markMapReady);
+    map.on('sourcedata', handleBaseSourceData);
     map.on('error', handleMapError);
     map.on('mousemove', handleMouseMove);
     map.on('click', handleClick);
@@ -624,6 +717,7 @@ const MapScene = forwardRef(function MapScene({
       if (pickRaf) cancelAnimationFrame(pickRaf);
       map.off('load', initBuildingLayer);
       map.off('styledata', initBuildingLayer);
+      map.off('sourcedata', handleBaseSourceData);
       map.off('error', handleMapError);
       map.off('mousemove', handleMouseMove);
       map.off('click', handleClick);

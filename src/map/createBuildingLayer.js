@@ -1409,6 +1409,8 @@ export function createBuildingLayer(landmarks) {
     renderingMode: '3d',
     _needsAnimTick: false,
     layerVisible: true,
+    // 底图就绪门控：底图瓦片绘出前不渲染建筑，避免首屏"建筑悬浮在黑色虚空"的中间态。
+    _baseReady: false,
 
     onAdd(map, gl) {
       this.map = map;
@@ -1731,7 +1733,7 @@ export function createBuildingLayer(landmarks) {
     },
 
     render(gl, matrix) {
-      if (!this.layerVisible) return;
+      if (!this.layerVisible || !this._baseReady) return;
       if (this._animating) this.stepAnim();
       const projection = new THREE.Matrix4().fromArray(matrix);
       this.camera.projectionMatrix = projection;
@@ -1778,6 +1780,24 @@ export function createBuildingLayer(landmarks) {
 
     setLayerVisible(visible) {
       this.layerVisible = visible;
+      if (this.map) this.map.triggerRepaint();
+    },
+
+    // 底图瓦片就绪后调用：放行渲染，并让当前可见建筑"长出来"而非硬弹出。
+    setBaseReady(ready = true) {
+      if (this._baseReady === ready) return;
+      this._baseReady = ready;
+      if (ready && this.meshes) {
+        let any = false;
+        for (const mesh of Object.values(this.meshes)) {
+          if (mesh.userData.animTarget === 1) {
+            mesh.visible = true;
+            mesh.userData.animFactor = 0.4;
+            any = true;
+          }
+        }
+        if (any) this._animating = true;
+      }
       if (this.map) this.map.triggerRepaint();
     },
 

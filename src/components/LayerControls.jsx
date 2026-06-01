@@ -1,5 +1,21 @@
 import { memo, useMemo, useState } from 'react';
 
+// 图层开关用的可见性图标：on=睁眼，off=闭眼带斜杠。让"这是开关而非单选 Tab"一目了然。
+function EyeIcon({ on }) {
+  return (
+    <svg className="chip-eye" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12Z"
+        fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"
+      />
+      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      {on ? null : (
+        <line x1="3.5" y1="3.5" x2="20.5" y2="20.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      )}
+    </svg>
+  );
+}
+
 function LayerControls({
   dynasties,
   landmarks,
@@ -35,15 +51,30 @@ function LayerControls({
 
   return (
     <div className="layer-controls">
-      <div className="layer-row" role="group" aria-label="地图图层">
-        <button type="button" className={`chip ${layerVisibility.territories ? 'active' : ''}`} onClick={() => toggleLayer('territories')}>
-          领土
+      <div className="layer-row" role="group" aria-label="地图图层（各自独立开关）">
+        <button
+          type="button"
+          className={`chip ${layerVisibility.territories ? 'active' : 'is-off'}`}
+          aria-pressed={layerVisibility.territories}
+          onClick={() => toggleLayer('territories')}
+        >
+          <EyeIcon on={layerVisibility.territories} />领土
         </button>
-        <button type="button" className={`chip ${layerVisibility.capitals ? 'active' : ''}`} onClick={() => toggleLayer('capitals')}>
-          都城
+        <button
+          type="button"
+          className={`chip ${layerVisibility.capitals ? 'active' : 'is-off'}`}
+          aria-pressed={layerVisibility.capitals}
+          onClick={() => toggleLayer('capitals')}
+        >
+          <EyeIcon on={layerVisibility.capitals} />都城
         </button>
-        <button type="button" className={`chip ${layerVisibility.buildings ? 'active' : ''}`} onClick={() => toggleLayer('buildings')}>
-          建筑
+        <button
+          type="button"
+          className={`chip ${layerVisibility.buildings ? 'active' : 'is-off'}`}
+          aria-pressed={layerVisibility.buildings}
+          onClick={() => toggleLayer('buildings')}
+        >
+          <EyeIcon on={layerVisibility.buildings} />建筑
         </button>
       </div>
       <div className="search-box">

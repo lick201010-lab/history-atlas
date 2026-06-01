@@ -29,6 +29,8 @@ export default function App() {
   });
   const [selectedDynastyId, setSelectedDynastyId] = useState(null);
   const [selectedLandmarkId, setSelectedLandmarkId] = useState(null);
+  // 共享悬停态：地图疆域 ↔ 右侧文明列表 双向高亮联动的单一数据源。
+  const [hoveredDynastyId, setHoveredDynastyId] = useState(null);
   const [locked, setLocked] = useState(false);
   const [compareIds, setCompareIds] = useState([]);
   const [compareNotice, setCompareNotice] = useState('');
@@ -171,6 +173,9 @@ export default function App() {
     }
   }, [dynastyById]);
 
+  // 单一稳定回调：地图侧 hover 与列表侧 hover 都写它（memo 子组件不会因此频繁失效）。
+  const handleHoverDynasty = useCallback((id) => setHoveredDynastyId(id || null), []);
+
   const openLandmark = useCallback((landmarkOrId, opts = {}) => {
     const landmark = typeof landmarkOrId === 'string'
       ? landmarksById.get(landmarkOrId)
@@ -250,10 +255,12 @@ export default function App() {
         year={year}
         theme={theme}
         selectedDynastyId={selectedDynastyId}
+        hoveredDynastyId={hoveredDynastyId}
         locked={locked}
         boundaryCard={boundaryCard}
         compareIds={compareIds}
         onVisibleBuildingsChange={setVisibleBuildings}
+        onHoverDynasty={handleHoverDynasty}
         onSelectDynasty={(id) => openDynasty(id, { fly: false })}
         onSelectBuilding={(building) => openLandmark(building, { fly: false })}
         onCloseCard={closeCard}
@@ -309,11 +316,13 @@ export default function App() {
         dynasties={activeDynasties}
         totalActive={activeDynastiesAll.length}
         selectedDynastyId={selectedDynastyId}
+        hoveredDynastyId={hoveredDynastyId}
         locked={locked}
         compareIds={compareIds}
         filterActive={filterActive}
         onSelectBuilding={openLandmarkFly}
         onSelectDynasty={openDynastyFly}
+        onHoverDynasty={handleHoverDynasty}
         onAddCompare={addCompare}
         onRemoveCompare={removeCompare}
       />

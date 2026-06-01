@@ -8,6 +8,7 @@ function InfoPanel({
   dynasties,
   totalActive,
   selectedDynastyId,
+  hoveredDynastyId,
   locked,
   compareIds,
   filterActive,
@@ -15,6 +16,7 @@ function InfoPanel({
   onSelectDynasty,
   onAddCompare,
   onRemoveCompare,
+  onHoverDynasty,
 }) {
   const annotated = annotateLifecycle(dynasties, year);
   const compareSet = new Set(compareIds || []);
@@ -41,6 +43,7 @@ function InfoPanel({
           ) : (
             annotated.map(({ dynasty, phase, hint }) => {
               const isSelected = selectedDynastyId === dynasty.id;
+              const isHovered = hoveredDynastyId === dynasty.id;
               const inCompare = compareSet.has(dynasty.id);
               return (
                 <div
@@ -50,9 +53,12 @@ function InfoPanel({
                     phase ? `dynasty-${phase}` : '',
                     isSelected ? 'is-selected' : '',
                     isSelected && locked ? 'is-locked' : '',
+                    isHovered ? 'is-hovered' : '',
                   ].filter(Boolean).join(' ')}
                   data-id={dynasty.id}
                   style={{ '--item-accent': dynasty.color }}
+                  onPointerEnter={() => onHoverDynasty?.(dynasty.id)}
+                  onPointerLeave={() => onHoverDynasty?.(null)}
                 >
                   <button
                     type="button"
