@@ -9,7 +9,7 @@ const OUT = new URL('../public/models/forbidden-city.glb', import.meta.url);
 
 const COLORS = {
   base: 0xcabd9c, terrace: 0xe8e0cf, terraceShade: 0xd2c8b0, rail: 0xeae3d2,
-  wall: 0xa83f37, column: 0x9c322b, beam: 0x3f5e54, dougong: 0x386b8a,
+  wall: 0xa83f37, column: 0x9c322b, beam: 0x6f5a39, dougong: 0x8a6e40,
   roof: 0xc1973f, roofShade: 0xa67f33, dark: 0x2e2620, gold: 0xc9a14e,
 };
 function material(key) {
@@ -53,7 +53,7 @@ for (const dx of [-0.27, -0.09, 0.09, 0.27]) {
   for (const lx of [-0.04, 0, 0.04]) a.box('column', 0.012, 0.022, 0.20, dx + lx, -0.248, T + 0.11);
 }
 // 额枋（彩画）+ 斗栱带
-a.box('beam', 0.84, 0.56, 0.035, 0, 0, T + 0.245);
+a.box('beam', 0.80, 0.52, 0.03, 0, 0, T + 0.245);   // 下层额枋（暖色木作，收进檐下，不外露成大板）
 for (let i = -6; i <= 6; i += 1) {
   for (const y of [-0.28, 0.28]) a.box('dougong', 0.028, 0.05, 0.04, i * 0.064, y, T + 0.285);
 }
