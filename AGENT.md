@@ -424,3 +424,17 @@ Verification after changes:
 Follow-up improvement:
 
 - Do not add 30 more GLBs in one batch. First run map-view screenshot QA for the current 14, then refine the weakest one or two assets, starting with `chichen-itza` unless browser screenshots reveal a worse candidate.
+
+## Operating principle: solve it yourself, do not bounce questions back
+
+User directive (2026-06): when given a task, do not push the decision back with
+clarifying questions if you can reasonably find the answer yourself. Default to
+autonomy and resourcefulness.
+
+- "Install skill X" → assume it is a public GitHub repo; search for it, clone it
+  into the skills directory (`~/.claude/skills/<name>/`), verify `SKILL.md`.
+- Use WebSearch / WebFetch / gh to locate sources instead of asking the user for links.
+- Only escalate to the user when genuinely blocked (missing credentials, an
+  ambiguous choice only they can make, or a destructive/irreversible action).
+- "If you can't solve it, always keep finding a way" — exhaust tools and approaches
+  before reporting a blocker, and when you do report, include what you already tried.
