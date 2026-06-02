@@ -330,3 +330,33 @@ Verification after changes:
 Follow-up improvement:
 
 - This is still a procedural low-poly repair, not the final art direction. To reach the reference-model quality the user wants, move priority landmarks to a real asset pipeline: Blender or sourced GLB, modeled with proper silhouette, baked ambient occlusion, material simplification, Draco/mesh optimization if needed, and replacement through the existing GLB override path.
+
+## Incident Record: Dark Theme Clarity Pass
+
+Date: 2026-06-02
+
+Goal: improve readability and terrain clarity after the previous feature pass, without changing data, map logic, model assets, or the overall dark "civilization star map" direction.
+
+Verification before changes:
+
+- `npm run check` passed, and browser QA showed the app was functionally healthy.
+- Desktop screenshots still felt too soft: cloud overlays, global vignette, text glow, and heavy glass blur made terrain and HUD text read slightly fuzzy.
+
+Fixes applied:
+
+- Increased HUD panel opacity and border contrast so text sits on a firmer surface.
+- Lightened `--text-dim` and `--text-faint` so labels remain readable without increasing font size.
+- Reduced global vignette and inner map shadow strength to let terrain detail come through.
+- Reduced cloud overlay alpha and blur so it reads as atmosphere rather than a screen-wide soft-focus layer.
+- Lowered backdrop blur on controls, search results, info panels, timeline, cards, compare panel, filter panel, and tooltips.
+- Reduced title/year text glows to keep the cinematic tone while sharpening letter edges.
+
+Verification after changes:
+
+- `npm run check` passed: data validation and Vite production build both succeeded.
+- Browser QA at `http://127.0.0.1:5173/` rendered three canvases, opened a civilization card, and had no console errors or warnings.
+- Desktop and card screenshots confirmed clearer text, cleaner terrain, and no new panel/timeline overlap.
+
+Follow-up improvement:
+
+- This pass improves clarity but does not solve the deeper map-boundary accuracy issue. The next visual-quality jump should focus on coast-aware/historical boundary geometry and priority GLB replacement, not more global blur tuning.
