@@ -380,6 +380,7 @@ Fixes applied:
 - Added viewport-aware `InfoPanel` state: mobile defaults collapsed, desktop forces the body open.
 - Restored the desktop header/year/count display while hiding the mobile status bar outside the mobile breakpoint.
 - Tightened mobile top controls so view buttons, layer chips, and search input fit the `390px` viewport without right-side clipping.
+- Added a stricter `<=500px` overflow guard, grid-based top controls, fixed viewport cloud layers, and hidden mobile timeline marker tips so the phone layout no longer creates horizontal scroll.
 - Removed unused temporary boundary files from the working tree so they would not be accidentally committed.
 
 Verification after changes:
