@@ -9,7 +9,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 - Passing without warnings: 14
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,341 KB
+- Total GLB weight: 4,337 KB
 
 ## Budget
 
@@ -32,7 +32,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `hagia-sophia` | `hagia-sophia.glb` | 750 KB | 19,228 | 17,579 | 16 | 0/0 | -0.000 | 1.459 | 0.780 | - |
 | OK | `notre-dame` | `notre-dame.glb` | 241 KB | 3,488 | 5,968 | 9 | 0/0 | -0.000 | 0.986 | 0.687 | - |
 | OK | `parthenon` | `parthenon.glb` | 397 KB | 7,400 | 9,768 | 9 | 0/0 | -0.000 | 0.894 | 0.730 | - |
-| OK | `petra` | `petra.glb` | 133 KB | 2,102 | 3,125 | 9 | 0/0 | 0.000 | 1.255 | 0.580 | - |
+| OK | `petra` | `petra.glb` | 129 KB | 2,044 | 2,980 | 10 | 0/0 | 0.000 | 1.210 | 0.540 | - |
 | OK | `pyramid` | `great-pyramid.glb` | 53 KB | 892 | 1,148 | 6 | 0/0 | 0.000 | 0.680 | 0.710 | - |
 | OK | `red-fort` | `red-fort.glb` | 431 KB | 13,192 | 9,777 | 8 | 0/0 | 0.000 | 0.570 | 0.638 | - |
 | OK | `stonehenge` | `stonehenge.glb` | 52 KB | 688 | 1,220 | 4 | 0/0 | -0.000 | 0.379 | 0.520 | - |
