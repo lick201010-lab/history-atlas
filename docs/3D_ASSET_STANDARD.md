@@ -77,7 +77,8 @@
 ## 7. 验收 / 截图角度
 
 1. 命令行：`node scripts/build<Name>Glb.mjs` → 看日志 `mats / parts / tris / z / KB`。
-2. 数据与构建：`npm run validate:data` + `npm run build` 全过。
+2. 资产审计：`npm run audit:glb` 无 FAIL；需要刷新基线表时运行 `npm run audit:glb -- --write`。
+3. 数据与构建：`npm run validate:data` + `npm run build` 全过。
 3. 浏览器实机（预览标签 RAF 冻结，须真实浏览器硬刷新）：
    - 推荐相机：`zoom 4~5`、`pitch ~55°`、缓慢环绕 `bearing`。
    - 截图角度：①正面平视（看主立面/柱廊/拱券）；②约 45° 俯瞰（看穹顶/屋顶/平台对称）；
@@ -100,12 +101,14 @@
    `ID_GLB_ORIENTATION_OVERRIDES`（`GLB_ORIENT_ZUP`）。键 = landmark `id`。
 4. 不改 `dynasties.json / boundaries-simplified.json / landmarks.json / MapScene.jsx /
    mapStyle.js`；createBuildingLayer 只允许最小的路径/姿态/缩放/材质接入修改。
-5. 每批提交前跑 `validate:data` + `build`，并核对四项验收。
+5. 每批提交前跑 `validate:data` + `audit:glb` + `build`，并核对四项验收。
 6. 批量节奏：先做代表类型样板验证标准，再成批扩展；单批控制数量，逐个日志核对体积/贴地。
 
 ---
 
 ## 9. 当前已实现资产
+
+> 自动审计结果以 [GLB_ASSET_BASELINE.md](GLB_ASSET_BASELINE.md) 为准；本节用于解释造型意图。
 
 | id | 文件 | 建模要点 | 体积 / 面数 |
 | --- | --- | --- | --- |

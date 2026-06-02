@@ -58,8 +58,8 @@ npm run check          # 可选：validate:data + build 都过即环境 OK
 | 地图 | MapLibre GL 4 + raster-dem 3D 地形、可旋转可俯仰、山脉视角按钮 |
 | 时间 | 公元前 2000 ~ 公元 2025 时间轴；14 个关键年份节点；时代叙事自动跟随当前年份 |
 | 文明 | 43 个文明、每个含 summary / events ≥5 / tags / importance / legacy |
-| 边界 | 43 个 rough-refined 粗略多边形，5 个样板更亮、其余更弱 |
-| 建筑 | 30 个 Three.js 低模 3D 建筑，14 种 type（palace/pyramid/temple/mosque/stupa/...）；按年份显隐 |
+| 边界 | 43 个文明对应 89 个 GeoJSON boundary feature；重点文明支持分阶段、coastline-aware 粗历史范围 |
+| 建筑 | 30 个 Three.js 建筑，14 种 type；14 个重点奇观已接入 GLB 覆写，其余保留程序化兜底 |
 | 信息卡 | 文明档案：分级 meta + 标签胶囊 + 5 颗菱形重要性 + legacy 引用 + 关键节点时间线 + 关联建筑 + 边界精度脚注 |
 | 交互深化 | 锁定文明、最多对比 2 个、区域/标签筛选、事件→文明定位、搜索文明/建筑 |
 | 氛围 | 双层星空（远景闪烁 + 近景慢漂移）、双层云、全局暗角、深色金蓝色调 |
@@ -120,7 +120,7 @@ npm run check          # 可选：validate:data + build 都过即环境 OK
     │   └── buildCard.js        文明档案合成
     └── data/
         ├── dynasties.json      43 个文明
-        ├── boundaries-simplified.json   43 个边界（GeoJSON）
+        ├── boundaries-simplified.json   89 个边界 feature（GeoJSON）
         ├── landmarks.json      30 个建筑
         └── eras.json           8 个时代
 ```
@@ -145,11 +145,12 @@ npm run dev
 
 ```bash
 npm run validate:data
+npm run audit:glb
 ```
 
 校验内容：
 - 43 个 dynasty 字段完整、年份合法、relatedLandmarks 仅引用 landmarks.json 存在的 id
-- 43 个 boundary 是闭合 polygon、坐标在 [-180, 180] / [-90, 90] 内
+- 89 个 boundary feature 是闭合 polygon、坐标在 [-180, 180] / [-90, 90] 内
 - 5 个 sample 必须有 sourceNote、accuracy = `rough-refined`、ring ≥ 7 顶点、非矩形
 - 30 个 landmark id/name/lng/lat/startYear/endYear 合法且 start ≤ end
 
@@ -160,7 +161,7 @@ npm run validate:data
 ```bash
 npm run build          # 产物输出到 dist/
 npm run preview        # 本地预览构建结果
-npm run check          # = validate:data && build，一条命令打底
+npm run check          # = validate:data && audit:glb && build，一条命令打底
 ```
 
 构建产物当前按 React / MapLibre / Three / 应用入口拆分缓存。入口 JS 约 135 KB（gzip ~43 KB），MapLibre 独立 chunk 约 803 KB（gzip ~218 KB），Three 独立 chunk 约 457 KB（gzip ~115 KB）。
@@ -172,8 +173,9 @@ npm run check          # = validate:data && build，一条命令打底
 | 资源 | 数量 |
 |---|---|
 | 文明（dynasties） | 43（5 个 sample / 38 个常规） |
-| 边界（boundaries） | 43，全部 rough-refined 多边形 |
-| 建筑（landmarks） | 30，14 种 type，覆盖中国/中东/印度/地中海/中美/南美/非洲/欧洲/东南亚/朝鲜 |
+| 边界（boundaries） | 89 个 feature，覆盖 43 个文明；部分文明按 rise / peak / decline 拆分 |
+| 建筑（landmarks） | 30，14 种 type；14 个重点奇观 GLB 覆写，覆盖中国/中东/印度/地中海/中美/南美/非洲/欧洲/东南亚/朝鲜 |
+| GLB 重点奇观 | 14 个，见 `docs/GLB_ASSET_BASELINE.md` |
 | 时代（eras） | 8，从青铜时代到现代国家与全球体系 |
 | 时间轴节点 | 14 个关键年份 |
 
@@ -185,7 +187,7 @@ npm run check          # = validate:data && build，一条命令打底
 - MapLibre 独立 chunk 仍较大，但已和入口 JS、React、Three 拆开，浏览器可长期缓存
 - 地形 / 底图依赖外部瓦片
 - 边界仅是粗略示意，不是学术级历史地图
-- 3D 建筑是符号化低模，不是真实建模
+- 3D 建筑仍是沙盘化表达：重点奇观已有 GLB 低模资产，其余建筑仍是程序化兜底，不是真实建筑复原
 - 移动端可用但不是优先目标
 
 ---

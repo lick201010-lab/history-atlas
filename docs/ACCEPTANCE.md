@@ -8,11 +8,13 @@
 
 ```bash
 npm run check       # = validate:data + build，两步都通过才算可发布
+npm run audit:glb   # 单独检查重点奇观 GLB 文件、映射、orientation、体积和贴地
 npm run preview     # 起本地静态服务器查看构建产物
 ```
 
 `npm run check` 必须通过：
-- `Historical data validation passed.`（朝代 43 / 边界 43 / 建筑 30 / 样板 5）
+- `Historical data validation passed.`（朝代 43 / 边界 feature 89 / 建筑 30 / 样板 5）
+- `GLB asset audit` 无 FAIL（WARN 需要进入视觉 QA，但不阻塞构建）
 - `vite build` 退出码 0，无 error
 
 ---
@@ -46,7 +48,7 @@ npm run preview     # 起本地静态服务器查看构建产物
 
 ## 4. 边界验收
 
-- [ ] 所有 43 个边界都是粗略多边形（非矩形），ring 顶点 ≥ 7
+- [ ] 43 个文明对应的 89 个边界 feature 都是粗略多边形（非矩形），ring 顶点 ≥ 7
 - [ ] 5 个样板边界（tang 等）发光更明显、虚线更密
 - [ ] hover 文明边界 → 金色高亮 + 鼠标变 pointer
 - [ ] 点击文明边界 → 信息卡弹出，左侧色带颜色 = 文明色
@@ -57,6 +59,7 @@ npm run preview     # 起本地静态服务器查看构建产物
 ## 5. 建筑（奇观）验收
 
 - [ ] landmarks.json 总数 30
+- [ ] `npm run audit:glb` 通过：14 个重点奇观 GLB 映射完整、无贴图、无缺 orientation、无负 z 沉入
 - [ ] 时间轴 -300 时：6 个建筑可见（巨石阵 / 吉萨金字塔 / 乌尔金字形神塔 / 伊什塔尔门 / 帕特农神庙 / 麦罗埃金字塔群）
 - [ ] 时间轴 700 时：17 个建筑可见（含长安宫殿 / 特奥蒂瓦坎 / 圣索菲亚 / 麦加禁寺）
 - [ ] 时间轴 1500 时：≥23 个建筑可见（含紫禁城 / 天坛 / 马丘比丘）
@@ -106,7 +109,8 @@ npm run preview     # 起本地静态服务器查看构建产物
 每次发版建议在 PR 或发版 issue 里贴：
 
 ```
-- npm run validate:data：通过（43/43/30/5）
+- npm run validate:data：通过（43/89/30/5）
+- npm run audit:glb：通过（14 GLB / 0 FAIL；WARN 项列明）
 - npm run build：通过（CSS xx KB / JS xx KB / gzip xx KB）
 - 浏览器手测：地图 ✅ / 时间轴 ✅ / 文明 ✅ / 边界 ✅ / 建筑 ✅ / 交互 ✅ / 视觉 ✅
 - 已知问题：见 KNOWN_ISSUES.md

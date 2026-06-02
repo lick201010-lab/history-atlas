@@ -393,3 +393,34 @@ Verification after changes:
 Follow-up improvement:
 
 - The mobile expanded panel is usable but dense. A later mobile polish pass should consider tabs or segmented views for "civilizations" versus "buildings" instead of stacking both lists in one expanded sheet.
+
+## Incident Record: GLB Asset Baseline Audit
+
+Date: 2026-06-02
+
+Goal: resume the precision work after the mobile sync, stabilize the 3D landmark asset baseline, and remove stale "5 GLB / 43 boundary" documentation drift before assigning more work to Claude.
+
+Verification before changes:
+
+- `public/models/` contained 14 GLB files, while several project notes still described only 5 GLB samples.
+- `createBuildingLayer.js` already mapped 14 GLB overrides and 14 z-up orientation overrides.
+- `README.md` and `docs/ACCEPTANCE.md` still included older boundary-count language in some places.
+
+Fixes applied:
+
+- Added `scripts/auditGlbAssets.mjs`, a no-dependency GLB audit that parses GLB headers and JSON chunks.
+- The audit checks GLB file existence, mapping coverage, z-up orientation coverage, texture/image absence, file size, triangle count, approximate footprint, and `minZ` grounding.
+- Added `npm run audit:glb` and included it in `npm run check`.
+- Generated `docs/GLB_ASSET_BASELINE.md`.
+- Updated README, acceptance docs, 3D asset standard, and project Obsidian notes to the current 43 dynasties / 89 boundary features / 30 landmarks / 14 GLB baseline.
+- Synced the project Obsidian notes to `D:\松君\文件库\松君\history-atlas`.
+
+Verification after changes:
+
+- `npm run check` passed: data validation, GLB audit, and Vite build all succeeded.
+- GLB audit result: 13 OK, 1 WARN, 0 FAIL.
+- The only warning is `chichen-itza.glb`, which has a very low triangle count and should be prioritized for visual QA.
+
+Follow-up improvement:
+
+- Do not add 30 more GLBs in one batch. First run map-view screenshot QA for the current 14, then refine the weakest one or two assets, starting with `chichen-itza` unless browser screenshots reveal a worse candidate.
