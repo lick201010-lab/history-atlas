@@ -1,0 +1,37 @@
+{
+  "createdAt": "2026-06-02T17:24:15.986Z",
+  "target": "great-wall",
+  "url": "http://127.0.0.1:5173/",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "deviceScaleFactor": 1
+  },
+  "year": -210,
+  "shots": [
+    {
+      "file": "06-great-wall-after.png",
+      "center": [
+        116.02,
+        40.36
+      ],
+      "zoom": 6.2,
+      "pitch": 64,
+      "bearing": -45
+    },
+    {
+      "file": "06-great-wall-after-focus.png",
+      "center": [
+        116.02,
+        40.36
+      ],
+      "zoom": 7.35,
+      "pitch": 66,
+      "bearing": -38
+    }
+  ],
+  "prepResult": {
+    "hasMap": true,
+    "range": "-210"
+  }
+}

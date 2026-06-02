@@ -9,7 +9,7 @@ Scope: desktop map-view QA for the 14 current GLB landmark overrides. Screenshot
 - The GLB pipeline is working: 14/14 assets rendered in-map and none appeared upside down, floating high above the terrain, or fully sunk.
 - Console QA found no app/runtime errors. The only captured network failures were `ERR_ABORTED` tile requests caused by rapidly jumping the camera during automation, not GLB load failures.
 - The best current samples are `hagia-sophia`, `colosseum`, `tajmahal`, `notre-dame`, and `stonehenge`.
-- The weakest assets from the first pass were `chichen-itza`, `petra`, `great-wall`, and `forbidden-city`.
+- The weakest assets from the first pass were `chichen-itza`, `petra`, `great-wall`, and `forbidden-city`. As of the 2026-06-03 follow-ups, `chichen-itza`, `petra`, and `great-wall` have been upgraded to the current MVP Pass bar; `forbidden-city` remains the highest-priority model fix.
 - The biggest overall visual problem is not only model quality: large historical boundary fills and coastline-mismatched polygons still cut across seas or dominate the model view. This can make otherwise acceptable models feel rough.
 
 ## 2026-06-03 Chichen Itza Follow-Up
@@ -33,6 +33,17 @@ Claude rebuilt `petra.glb` in commit `5e7dc14`. Codex re-ran the asset audit, fu
 - Front/readability views: [front A](glb-visual-qa/13-petra-after-front-a.png), [front B](glb-visual-qa/13-petra-after-front-b.png).
 - Verdict: upgraded from Warn to Pass for the current MVP quality bar. The front view now clearly shows a rock slab, carved facade, column rhythm, recessed doorway, and pediment-like upper mass. Remaining polish: selected-landmark focus mode should rotate/zoom the camera toward the facade, because a default side angle still reads more blocky than the model actually is.
 
+## 2026-06-03 Great Wall Follow-Up
+
+Claude rebuilt `great-wall.glb` in commit `974479c`. Codex re-ran the asset audit, full check, and two map-view screenshots.
+
+- `npm run check`: passed.
+- GLB audit: stayed at `14 OK, 0 WARN, 0 FAIL`.
+- `great-wall.glb`: 161 KB, about 1,992 triangles, still very light.
+- Standard QA view: [after screenshot](glb-visual-qa/06-great-wall-after.png).
+- Readability view: [focus screenshot](glb-visual-qa/06-great-wall-after-focus.png).
+- Verdict: upgraded from Warn to Pass for the current MVP quality bar. The model now reads as a crenellated wall segment with watchtower masses instead of a generic fortress block. Remaining polish: it still reads as a short landmark sample, not yet as a long terrain-following wall system; a later final-quality pass should extend the wall route and make it more serpentine across terrain.
+
 ## Asset Verdicts
 
 | id | Screenshot | Verdict | Evidence | Next action |
@@ -42,7 +53,7 @@ Claude rebuilt `petra.glb` in commit `5e7dc14`. Codex re-ran the asset audit, fu
 | `colosseum` | [03](glb-visual-qa/03-colosseum.png) | Pass | Strong circular amphitheater silhouette, layered outer walls, good recognizability. | Keep as a reference sample for iconic outline quality. |
 | `tajmahal` | [04](glb-visual-qa/04-tajmahal.png) | Pass | Dome/minaret silhouette reads well and feels materially distinct from the dark map. | Keep; tune scale only if later label collision changes. |
 | `pyramid` | [05](glb-visual-qa/05-pyramid.png) | Warn | Correct form, but it reads as a generic stepped pyramid rather than Giza-specific. | Add base plateau, satellite pyramids, and warmer stone highlights. |
-| `great-wall` | [06](glb-visual-qa/06-great-wall.png) | Warn | It reads more like a small fortress block than a wall line following terrain. | Rebuild as a short serpentine wall segment with towers and lengthwise footprint. |
+| `great-wall` | [06 before](glb-visual-qa/06-great-wall.png), [06 after](glb-visual-qa/06-great-wall-after.png), [focus](glb-visual-qa/06-great-wall-after-focus.png) | Pass | First pass read like a small fortress block. After commit `974479c`, the model has a lengthwise wall body, crenellations, and watchtower masses that read correctly in-map. | Keep for MVP; final polish should extend the route so it feels more like a terrain-following wall system rather than a short sample. |
 | `angkor-wat` | [07](glb-visual-qa/07-angkor-wat.png) | Warn | Towers are visible, but the model is still too compact and lacks the causeway/enclosure identity. | Add rectangular moat/base, gallery ring, and stronger central tower hierarchy. |
 | `stonehenge` | [08](glb-visual-qa/08-stonehenge.png) | Pass | Ring shape and standing stones are recognizable despite low file weight. | Keep; optional texture/color variation. |
 | `chichen-itza` | [09 before](glb-visual-qa/09-chichen-itza.png), [09 after](glb-visual-qa/09-chichen-itza-after.png) | Pass | First pass failed because of very low triangle count and weak silhouette. After commit `8175062`, the model has readable terraced layers, stair lines, and a summit temple. | Keep for MVP; consider contrast/lighting polish later. |
@@ -54,9 +65,9 @@ Claude rebuilt `petra.glb` in commit `5e7dc14`. Codex re-ran the asset audit, fu
 
 ## Priority Order
 
-1. Fix `great-wall`: current model is not wall-like enough for the landmark.
-2. Fix `forbidden-city`: solve the blue side artifact and label/model overlap.
-3. Add a landmark focus mode: when a user clicks a landmark, dim or simplify territory fills and suppress nearby non-selected labels/models for a cleaner inspection view. This is now especially important for facade-oriented assets like Petra.
+1. Fix `forbidden-city`: solve the blue side artifact, improve palace courtyard hierarchy, and reduce nearby Great Wall label/model collision.
+2. Add a landmark focus mode: when a user clicks a landmark, dim or simplify territory fills and suppress nearby non-selected labels/models for a cleaner inspection view. This is now especially important for facade-oriented assets like Petra and dense Beijing-area assets.
+3. Second-pass `angkor-wat` and `pyramid`: both pass the technical audit but still lack place-specific identity.
 4. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
 
 ## Recommendation
@@ -64,6 +75,6 @@ Claude rebuilt `petra.glb` in commit `5e7dc14`. Codex re-ran the asset audit, fu
 Do not scale immediately to 30 new high-detail GLBs. The pipeline is good enough, but the product quality ceiling is now controlled by model silhouettes, label collision, and boundary-map alignment. The efficient path is:
 
 1. Use `hagia-sophia`, `colosseum`, `tajmahal`, and `notre-dame` as the accepted quality floor.
-2. Run one Claude pass on the four weak assets above.
+2. Continue Claude passes on the remaining weak assets, starting with `forbidden-city`.
 3. Add a selected-landmark focus mode so detailed models can be appreciated without territory overlays competing with them.
 4. Only then expand to the next 10 assets.
