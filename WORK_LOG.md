@@ -162,3 +162,34 @@
 - MVP 通过。选中奇观后画面明显更干净，非选中模型不会挤进观察区域，边界线也不再压过模型。
 - 不应夸大成最终精美版。左右 HUD 面板仍保留，适合工作流；后续如果追求“博物馆级观赏”，应单独做 immersive inspection mode，临时隐藏 HUD。
 - 下一个最该交给 Claude 的建模任务是 `forbidden-city.glb`：修蓝色侧面 artifact，强化中轴、院落、红墙黄瓦、宫殿层级。
+
+## 2026-06-03 Claude 直连与紫禁城 GLB 精修
+
+用户要求不要再手动复制提示词给 Claude。已确认本机可直接调用 Claude Code CLI：
+
+- 命令：`claude.cmd`
+- 版本：`2.1.138`
+- 本地运行日志目录：`.claude-runs/`，已加入 `.gitignore`
+
+本轮已直接通过 CLI 派发紫禁城 GLB 精修任务给 Claude，不经过用户粘贴。
+
+Claude 改动：
+- `scripts/buildForbiddenCityGlb.mjs`
+- `public/models/forbidden-city.glb`
+- `docs/3D_ASSET_STANDARD.md`
+- `docs/GLB_ASSET_BASELINE.md`
+
+Codex 复核：
+- `npm run check` 通过。
+- GLB audit：`14 OK / 0 WARN / 0 FAIL`。
+- `forbidden-city.glb` 从约 201 KB 增加到约 300 KB，仍在轻量预算内。
+- 新焦点截图：`docs/glb-visual-qa/10-forbidden-city-after-focus.png`。
+
+视觉结论：
+- MVP 通过。紫禁城现在能看出红墙、黄瓦、中轴宫殿群和院落层级。
+- 旧问题里的蓝色侧面 artifact 在焦点截图中未再出现。
+- 不应夸大成最终精美版：它仍是 stylized low-poly miniature，后续还可以加强屋脊、门楼、台基、院落深度。
+
+下一优先级：
+- `angkor-wat` 和 `pyramid` 进入第二轮精修队列。
+- 焦点模式可继续演进为 immersive inspection mode，但不是当前最急。

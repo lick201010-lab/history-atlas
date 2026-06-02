@@ -25,6 +25,23 @@ This is especially important for:
 - Data accuracy and historical representation.
 - Any change that may create technical debt or weaken the product experience.
 
+## Claude Delegation
+
+When a task is better suited to Claude Code, do not ask the user to copy and
+paste prompts manually. This machine has Claude Code CLI available as
+`claude.cmd` (`2.1.138`). Prefer direct non-interactive delegation from the
+project root:
+
+```powershell
+type .claude-runs\<task>-prompt.md | claude.cmd -p --permission-mode bypassPermissions --dangerously-skip-permissions --output-format text
+```
+
+Use `.claude-runs/` for local prompt and output logs; it is ignored by Git.
+Keep Claude's write scope narrow and explicit. For example, GLB asset work
+should be limited to the matching `scripts/build*Glb.mjs` file and generated
+`public/models/*.glb`, while Codex keeps ownership of validation, screenshots,
+documentation, Git review, and integration.
+
 ## Current Deployment Preference
 
 - Use GitHub as the source repository.

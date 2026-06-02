@@ -20,3 +20,6 @@ Thumbs.db
 
 # Generator caches (Natural Earth land + intermediate)
 scripts/.cache/
+
+# Local Codex/Claude orchestration logs
+.claude-runs/
