@@ -6,10 +6,10 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 
 - Landmark GLB overrides: 14
 - GLB files in public/models: 14
-- Passing without warnings: 13
-- Warnings: 1
+- Passing without warnings: 14
+- Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,178 KB
+- Total GLB weight: 4,341 KB
 
 ## Budget
 
@@ -25,6 +25,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | OK | `angkor-wat` | `angkor-wat.glb` | 110 KB | 2,834 | 2,409 | 7 | 0/0 | -0.000 | 0.996 | 0.715 | - |
 | OK | `borobudur` | `borobudur.glb` | 606 KB | 18,604 | 13,972 | 5 | 0/0 | -0.000 | 0.790 | 0.550 | - |
+| OK | `chichen-itza` | `chichen-itza.glb` | 197 KB | 2,584 | 4,812 | 11 | 0/0 | 0.000 | 0.823 | 0.550 | - |
 | OK | `colosseum` | `colosseum.glb` | 687 KB | 8,992 | 17,828 | 6 | 0/0 | 0.000 | 0.605 | 0.737 | - |
 | OK | `forbidden-city` | `forbidden-city.glb` | 201 KB | 2,582 | 4,858 | 13 | 0/0 | -0.000 | 0.623 | 0.663 | - |
 | OK | `great-wall` | `great-wall.glb` | 108 KB | 1,332 | 2,637 | 6 | 0/0 | -0.000 | 0.492 | 0.710 | - |
@@ -36,7 +37,6 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `red-fort` | `red-fort.glb` | 431 KB | 13,192 | 9,777 | 8 | 0/0 | 0.000 | 0.570 | 0.638 | - |
 | OK | `stonehenge` | `stonehenge.glb` | 52 KB | 688 | 1,220 | 4 | 0/0 | -0.000 | 0.379 | 0.520 | - |
 | OK | `tajmahal` | `taj-mahal.glb` | 376 KB | 12,300 | 8,252 | 11 | 0/0 | -0.000 | 1.265 | 0.720 | - |
-| WARN | `chichen-itza` | `chichen-itza.glb` | 34 KB | 384 | 660 | 7 | 0/0 | 0.000 | 0.775 | 0.564 | very low triangle count; check silhouette quality |
 
 ## How To Use This Baseline
 
