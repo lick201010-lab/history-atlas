@@ -360,3 +360,34 @@ Verification after changes:
 Follow-up improvement:
 
 - This pass improves clarity but does not solve the deeper map-boundary accuracy issue. The next visual-quality jump should focus on coast-aware/historical boundary geometry and priority GLB replacement, not more global blur tuning.
+
+## Incident Record: Mobile HUD Sync and Desktop Compatibility
+
+Date: 2026-06-02
+
+Goal: review another agent's mobile-page fix, bring it into the local repository, and keep the deployed/mobile improvement from breaking desktop.
+
+Verification before changes:
+
+- Production `https://atlas.ckl.hk/` on a 390px mobile viewport rendered with a compact bottom info status bar, three canvases, no console errors, and a full-screen map.
+- The local working tree contained uncommitted mobile changes: `InfoPanel.jsx`, `main.jsx`, `styles.css`, a new `styles-mobile.css`, plus two untracked temporary boundary files.
+- The first mobile fix made `InfoPanel` globally collapsed, which would also affect desktop because the body only rendered when `expanded` was true and the status bar had no desktop base styling.
+
+Fixes applied:
+
+- Imported `styles-mobile.css` from `main.jsx`.
+- Kept the mobile compact status bar behavior for viewports `<=500px`.
+- Added viewport-aware `InfoPanel` state: mobile defaults collapsed, desktop forces the body open.
+- Restored the desktop header/year/count display while hiding the mobile status bar outside the mobile breakpoint.
+- Removed unused temporary boundary files from the working tree so they would not be accidentally committed.
+
+Verification after changes:
+
+- `npm run check` passed: historical data validation and Vite build succeeded.
+- Local mobile QA at `390x844` confirmed the info panel starts collapsed above the timeline and expands on tap.
+- Local desktop QA at `1440x900` confirmed the right-side information panel remains fully expanded with the original desktop header.
+- Browser console had no errors or warnings during the local checks.
+
+Follow-up improvement:
+
+- The mobile expanded panel is usable but dense. A later mobile polish pass should consider tabs or segmented views for "civilizations" versus "buildings" instead of stacking both lists in one expanded sheet.

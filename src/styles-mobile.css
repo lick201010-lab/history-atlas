@@ -1,0 +1,288 @@
+/* =====================================================================
+   手机小屏专用样式（< 500px）
+   核心思路：地图占满屏，UI 浮层最小化，信息面板默认折叠
+   ===================================================================== */
+
+@media (max-width: 500px) {
+  /* ── 地图全屏，去掉边框 ── */
+  body[data-theme="dark"] #map {
+    inset: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .map-frame { display: none; }
+
+  /* ── 标题极度压缩 ── */
+  .title {
+    top: 6px;
+    left: 8px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    z-index: 20;
+  }
+  .title::before { width: 12px; margin-bottom: 2px; display: none; }
+  .title .sub { display: none; }
+
+  /* ── 按钮行：一行，紧凑 ── */
+  .top-right {
+    top: 34px;
+    left: 6px;
+    right: 6px;
+    gap: 2px;
+  }
+  .btn {
+    font-size: 8.5px;
+    padding: 3px 3px;
+    letter-spacing: 0;
+    border-radius: 3px;
+  }
+  .btn-theme { display: none; }
+
+  /* ── 图层控制：合并到右上角 ── */
+  .layer-controls {
+    top: 58px;
+    left: 6px;
+    right: 6px;
+    padding: 2px 5px;
+    gap: 2px;
+    border-radius: 3px;
+  }
+  .layer-controls label {
+    font-size: 8px;
+    gap: 2px;
+  }
+  .layer-controls input[type="checkbox"] {
+    width: 8px;
+    height: 8px;
+  }
+  .layer-controls .search-inline {
+    margin-left: auto;
+  }
+  .search-input {
+    font-size: 9px;
+    padding: 2px 6px;
+    height: 22px;
+    width: 80px;
+  }
+  .search-results {
+    font-size: 9px;
+    max-height: 100px;
+    left: 6px;
+    right: 6px;
+    top: 58px;
+  }
+
+  /* ── 筛选面板：紧凑浮层 ── */
+  .filter-panel {
+    top: 80px;
+    left: 6px;
+    right: auto;
+    max-width: 120px;
+    padding: 2px 5px;
+    z-index: 18;
+  }
+  .filter-toggle {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+  .filter-chip-row {
+    gap: 2px;
+  }
+  .filter-chip {
+    font-size: 7.5px;
+    padding: 1px 4px;
+  }
+
+  /* ══════ 信息面板：默认折叠状态栏 ══════ */
+
+  .info-panel {
+    position: fixed;
+    left: 4px;
+    right: 4px;
+    bottom: 92px;           /* 时间轴上方 */
+    top: auto;
+    width: auto;
+    min-width: 0;
+    max-height: none;
+    padding: 0;
+    z-index: 15;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* 状态栏：紧凑横条，半透明 */
+  .info-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 5px 10px;
+    background: rgba(7, 12, 21, 0.78);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(140, 180, 230, 0.18);
+    border-radius: 6px;
+    font-size: 11px;
+    color: var(--text-dim);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .info-status-bar:active {
+    background: rgba(15, 25, 45, 0.9);
+  }
+
+  .info-status-year {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 13px;
+    min-width: 56px;
+  }
+
+  .info-status-counts {
+    flex: 1;
+    font-size: 10px;
+  }
+  .info-status-counts em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .info-status-counts .count-divider {
+    margin: 0 3px;
+    color: var(--text-faint);
+  }
+
+  .info-status-caret {
+    font-size: 10px;
+    color: var(--text-faint);
+    transition: transform 0.18s ease;
+  }
+  .info-status-caret.open {
+    transform: rotate(90deg);
+  }
+
+  /* 展开后的面板主体：从底部向上弹出 */
+  .info-panel.expanded {
+    bottom: 92px;
+    max-height: calc(100vh - 240px);
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px 8px 0 0;
+    box-shadow: var(--hud-shadow);
+    overflow: hidden;
+  }
+  .info-panel.expanded .info-status-bar {
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .info-panel-body {
+    overflow-y: auto;
+    max-height: calc(100vh - 290px);
+    padding: 6px 10px 10px;
+  }
+
+  /* 展开后的列表项样式 */
+  .info-panel-body .dynasty-list {
+    max-height: 180px;
+  }
+  .info-panel-body .building-list {
+    max-height: 80px;
+  }
+  .info-panel-body .dynasty-item {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+  .info-panel-body .item-copy .type {
+    font-size: 8.5px;
+  }
+  .info-panel-body .dynasty-item .swatch {
+    width: 5px;
+    height: 5px;
+  }
+
+  .info-panel .panel-section {
+    margin-top: 6px;
+  }
+  .info-panel .section-title {
+    font-size: 9px;
+    margin-bottom: 3px;
+  }
+
+  /* 隐藏旧的 h3 / year-big / count（桌面端元素） */
+  .info-panel > h3,
+  .info-panel > .year-big,
+  .info-panel > .count {
+    display: none;
+  }
+
+  /* 桌面端始终显示 .info-panel-body，手机端通过 expanded 控制 */
+  .info-panel:not(.expanded) .info-panel-body {
+    display: none;
+  }
+
+  /* 桌面端用不同策略——h3/year/count 保持原样，状态栏隐藏 */
+  .info-panel .info-status-bar {
+    display: flex;
+  }
+
+  /* ── 时间轴压缩 ── */
+  .timeline {
+    padding: 10px 6px 6px;
+  }
+  .timeline-inner {
+    padding: 5px 8px 6px;
+  }
+  .timeline-header {
+    margin-bottom: 1px;
+  }
+  .timeline-label {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .timeline-year {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .timeline-ticks span {
+    font-size: 6.5px;
+  }
+
+  /* ── 卡片：底部弹窗 ── */
+  .territory-card,
+  .landmark-card {
+    left: 4px;
+    right: 4px;
+    top: auto;
+    bottom: 96px;
+    width: auto;
+    max-height: calc(100vh - 220px);
+    border-radius: 8px 8px 0 0;
+  }
+  .territory-name { font-size: 14px; }
+  .territory-summary { font-size: 10px; }
+  .territory-legacy { font-size: 9px; }
+
+  /* ── 对比面板 ── */
+  .compare-panel {
+    bottom: 98px;
+    left: 4px;
+    right: 4px;
+    width: auto;
+    padding: 4px 6px 6px;
+    border-radius: 8px 8px 0 0;
+  }
+  .compare-name { font-size: 11px; }
+  .compare-card-body { padding: 4px 6px; }
+  .compare-meta { font-size: 8.5px; }
+}
+
+/* ══════ 桌面端：状态栏隐藏，原有布局不变 ══════ */
+@media (min-width: 501px) {
+  .info-panel .info-status-bar {
+    display: none;
+  }
+  .info-panel-body {
+    display: block !important;
+  }
+}

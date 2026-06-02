@@ -622,6 +622,10 @@ body[data-theme="dark"] .map-frame::before {
   opacity: 0.55;
 }
 
+.info-status-bar {
+  display: none;
+}
+
 .info-panel h3 {
   margin: 0 0 12px;
   font-size: 10px;
@@ -2728,9 +2732,6 @@ body.filter-active .info-panel .count span {
   }
 }
 
-/* 无障碍：尊重系统"减少动态"偏好——冻结装饰性循环动画（旋转/云移/星点明灭），
-   把入场与悬停过渡降到瞬时，避免前庭不适。地图 flyTo 由 MapLibre 的
-   respectPrefersReducedMotion（默认开启）自动改为瞬移，无需额外处理。 */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
