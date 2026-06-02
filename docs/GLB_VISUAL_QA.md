@@ -22,6 +22,17 @@ Claude rebuilt `chichen-itza.glb` in commit `8175062`. Codex re-ran the asset au
 - Visual result: [after screenshot](glb-visual-qa/09-chichen-itza-after.png).
 - Verdict: upgraded from Fail to Pass for the current MVP quality bar. It now reads as a terraced pyramid with visible stair lines and a summit temple. Remaining polish: slightly stronger highlights or selected-landmark focus mode would help it read better against the dark map.
 
+## 2026-06-03 Petra Follow-Up
+
+Claude rebuilt `petra.glb` in commit `5e7dc14`. Codex re-ran the asset audit, full check, and three map-view screenshots.
+
+- `npm run check`: passed.
+- GLB audit: stayed at `14 OK, 0 WARN, 0 FAIL`.
+- `petra.glb`: 129 KB, about 2,044 triangles, still very light.
+- Standard QA view: [after screenshot](glb-visual-qa/13-petra-after.png).
+- Front/readability views: [front A](glb-visual-qa/13-petra-after-front-a.png), [front B](glb-visual-qa/13-petra-after-front-b.png).
+- Verdict: upgraded from Warn to Pass for the current MVP quality bar. The front view now clearly shows a rock slab, carved facade, column rhythm, recessed doorway, and pediment-like upper mass. Remaining polish: selected-landmark focus mode should rotate/zoom the camera toward the facade, because a default side angle still reads more blocky than the model actually is.
+
 ## Asset Verdicts
 
 | id | Screenshot | Verdict | Evidence | Next action |
@@ -38,16 +49,15 @@ Claude rebuilt `chichen-itza.glb` in commit `8175062`. Codex re-ran the asset au
 | `forbidden-city` | [10](glb-visual-qa/10-forbidden-city.png) | Warn | The palace color/detail is visible, but a blue side artifact and nearby Great Wall label/model collision hurt the view. | Fix material/backface artifact and add label/model collision handling. |
 | `notre-dame` | [11](glb-visual-qa/11-notre-dame.png) | Pass | Nave, towers, and Gothic massing read well. Nearby labels are distracting but not a model failure. | Keep; optional roof color and buttress refinement. |
 | `borobudur` | [12](glb-visual-qa/12-borobudur.png) | Pass | Terraced circular/stupa silhouette is recognizable and stable. | Keep; add contrast only if it looks too dark in production. |
-| `petra` | [13](glb-visual-qa/13-petra.png) | Warn | Vertical facade mass is visible, but it reads like stacked blocks, not a rock-cut cliff monument. | Rebuild as cliff slab + carved facade + darker recesses. |
+| `petra` | [13 before](glb-visual-qa/13-petra.png), [13 after](glb-visual-qa/13-petra-after.png), [front](glb-visual-qa/13-petra-after-front-a.png) | Pass | First pass warned because it read like stacked vertical blocks. After commit `5e7dc14`, the front view shows a rock slab, carved facade, column rhythm, recessed doorway, and upper pediment mass. | Keep for MVP; add selected-landmark focus camera so users see the facade instead of a side angle. |
 | `red-fort` | [14](glb-visual-qa/14-red-fort.png) | Pass | Fort footprint, walls, and corner masses read clearly. It shares the frame with Taj Mahal but remains identifiable. | Keep; optional roof/courtyard detail. |
 
 ## Priority Order
 
-1. Fix `petra`: current shape does not communicate the famous rock-cut facade.
-2. Fix `great-wall`: current model is not wall-like enough for the landmark.
-3. Fix `forbidden-city`: solve the blue side artifact and label/model overlap.
-4. Add a landmark focus mode: when a user clicks a landmark, dim or simplify territory fills and suppress nearby non-selected labels/models for a cleaner inspection view.
-5. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
+1. Fix `great-wall`: current model is not wall-like enough for the landmark.
+2. Fix `forbidden-city`: solve the blue side artifact and label/model overlap.
+3. Add a landmark focus mode: when a user clicks a landmark, dim or simplify territory fills and suppress nearby non-selected labels/models for a cleaner inspection view. This is now especially important for facade-oriented assets like Petra.
+4. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
 
 ## Recommendation
 

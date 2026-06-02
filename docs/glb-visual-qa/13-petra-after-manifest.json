@@ -1,0 +1,183 @@
+{
+  "prep": {
+    "hasMap": true,
+    "loaded": false,
+    "center": [
+      35.45,
+      30.33
+    ],
+    "zoom": 7.5,
+    "pitch": 64,
+    "bearing": -18
+  },
+  "logs": [
+    {
+      "type": "debug",
+      "args": [
+        {
+          "type": "string",
+          "value": "[vite] connecting..."
+        }
+      ],
+      "executionContextId": 2,
+      "timestamp": 1780417930795.116,
+      "stackTrace": {
+        "callFrames": [
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 732,
+            "columnNumber": 8
+          }
+        ]
+      }
+    },
+    {
+      "type": "debug",
+      "args": [
+        {
+          "type": "string",
+          "value": "[vite] connected."
+        }
+      ],
+      "executionContextId": 2,
+      "timestamp": 1780417930814.672,
+      "stackTrace": {
+        "callFrames": [
+          {
+            "functionName": "handleMessage",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 826,
+            "columnNumber": 11
+          },
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 457,
+            "columnNumber": 41
+          },
+          {
+            "functionName": "dequeue",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 479,
+            "columnNumber": 7
+          },
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 471,
+            "columnNumber": 8
+          },
+          {
+            "functionName": "enqueue",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 465,
+            "columnNumber": 9
+          },
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 457,
+            "columnNumber": 27
+          },
+          {
+            "functionName": "onMessage",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 304,
+            "columnNumber": 5
+          },
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "http://127.0.0.1:5173/@vite/client",
+            "lineNumber": 412,
+            "columnNumber": 4
+          }
+        ]
+      }
+    },
+    {
+      "type": "info",
+      "args": [
+        {
+          "type": "string",
+          "value": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools"
+        },
+        {
+          "type": "string",
+          "value": "font-weight:bold"
+        }
+      ],
+      "executionContextId": 2,
+      "timestamp": 1780417930971.921,
+      "stackTrace": {
+        "callFrames": [
+          {
+            "functionName": "",
+            "scriptId": "20",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-K65LYDBX.js?v=823691f0",
+            "lineNumber": 21608,
+            "columnNumber": 24
+          },
+          {
+            "functionName": "node_modules/react-dom/cjs/react-dom.development.js",
+            "scriptId": "20",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-K65LYDBX.js?v=823691f0",
+            "lineNumber": 21628,
+            "columnNumber": 8
+          },
+          {
+            "functionName": "__require",
+            "scriptId": "19",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-BUSYA2B4.js?v=823691f0",
+            "lineNumber": 2,
+            "columnNumber": 49
+          },
+          {
+            "functionName": "node_modules/react-dom/index.js",
+            "scriptId": "20",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-K65LYDBX.js?v=823691f0",
+            "lineNumber": 21640,
+            "columnNumber": 23
+          },
+          {
+            "functionName": "__require",
+            "scriptId": "19",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-BUSYA2B4.js?v=823691f0",
+            "lineNumber": 2,
+            "columnNumber": 49
+          },
+          {
+            "functionName": "node_modules/react-dom/client.js",
+            "scriptId": "11",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=823691f0",
+            "lineNumber": 11,
+            "columnNumber": 12
+          },
+          {
+            "functionName": "__require",
+            "scriptId": "19",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-BUSYA2B4.js?v=823691f0",
+            "lineNumber": 2,
+            "columnNumber": 49
+          },
+          {
+            "functionName": "",
+            "scriptId": "11",
+            "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=823691f0",
+            "lineNumber": 37,
+            "columnNumber": 15
+          }
+        ]
+      }
+    }
+  ]
+}
