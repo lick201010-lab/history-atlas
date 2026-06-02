@@ -255,6 +255,7 @@ export default function App() {
         year={year}
         theme={theme}
         selectedDynastyId={selectedDynastyId}
+        selectedLandmarkId={selectedLandmarkId}
         hoveredDynastyId={hoveredDynastyId}
         locked={locked}
         boundaryCard={boundaryCard}

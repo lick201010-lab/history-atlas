@@ -85,8 +85,30 @@ function activeYearFilter(year) {
   return ['all', ['<=', ['get', 'startYear'], year], ['>=', ['get', 'endYear'], year]];
 }
 
+function activeBuildingLabelFilter(year, selectedLandmarkId) {
+  const filter = activeYearFilter(year);
+  if (!selectedLandmarkId) return filter;
+  return ['all', ...filter.slice(1), ['==', ['get', 'id'], selectedLandmarkId]];
+}
+
 function boundaryHoverFilter(year, hoveredId) {
   return ['all', ...activeYearFilter(year).slice(1), ['==', ['get', 'id'], hoveredId || '__none__']];
+}
+
+function focusCameraForBuilding(building, duration = 2000) {
+  const presets = {
+    petra: { zoom: 7.5, pitch: 64, bearing: -18 },
+    'forbidden-city': { zoom: 7.0, pitch: 64, bearing: -35 },
+    'great-wall': { zoom: 7.2, pitch: 66, bearing: -38 },
+    'hagia-sophia': { zoom: 6.8, pitch: 64, bearing: -18 },
+    colosseum: { zoom: 6.8, pitch: 64, bearing: -28 },
+  };
+  const preset = presets[building.id] || { zoom: 6.4, pitch: 64, bearing: -30 };
+  return {
+    center: [building.lng, building.lat],
+    ...preset,
+    duration,
+  };
 }
 
 // hover 高亮由两层共同呈现：彩色填充 wash + 金色亮边。统一在此同步两层 filter，
@@ -111,6 +133,7 @@ const MapScene = forwardRef(function MapScene({
   year,
   theme = 'dark',
   selectedDynastyId,
+  selectedLandmarkId,
   hoveredDynastyId,
   locked,
   boundaryCard,
@@ -137,6 +160,7 @@ const MapScene = forwardRef(function MapScene({
   const onSelectDynastyRef = useRef(onSelectDynasty);
   const onSelectBuildingRef = useRef(onSelectBuilding);
   const onHoverDynastyRef = useRef(onHoverDynasty);
+  const selectedLandmarkIdRef = useRef(selectedLandmarkId);
   const themeRef = useRef(theme);
   const [viewMode, setViewMode] = useState('world');
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, building: null });
@@ -146,6 +170,7 @@ const MapScene = forwardRef(function MapScene({
   useEffect(() => { onSelectDynastyRef.current = onSelectDynasty; }, [onSelectDynasty]);
   useEffect(() => { onSelectBuildingRef.current = onSelectBuilding; }, [onSelectBuilding]);
   useEffect(() => { onHoverDynastyRef.current = onHoverDynasty; }, [onHoverDynasty]);
+  useEffect(() => { selectedLandmarkIdRef.current = selectedLandmarkId; }, [selectedLandmarkId]);
 
   // 列表 → 地图：右侧文明列表 hover 时，复用地图侧的 hover 强调层高亮对应疆域。
   // 用 hoveredBoundaryIdRef 作为单一状态：地图侧 hover 已直接设过 filter 并回灌同一 id 时，
@@ -174,12 +199,7 @@ const MapScene = forwardRef(function MapScene({
 
   useImperativeHandle(ref, () => ({
     flyToBuilding(building) {
-      mapRef.current?.flyTo({
-        center: [building.lng, building.lat],
-        zoom: 5.5,
-        pitch: 62,
-        duration: 2000,
-      });
+      mapRef.current?.flyTo(focusCameraForBuilding(building, 2000));
     },
     flyToDynasty(dynasty) {
       mapRef.current?.flyTo({
@@ -215,9 +235,9 @@ const MapScene = forwardRef(function MapScene({
       map.setFilter('dynasty-capital-glow', filter);
       map.setFilter('dynasty-capital-core', filter);
       map.setFilter('dynasty-capital-label', filter);
-      if (map.getLayer('building-label')) map.setFilter('building-label', filter);
+      if (map.getLayer('building-label')) map.setFilter('building-label', activeBuildingLabelFilter(year, selectedLandmarkId));
     }
-  }, [onVisibleBuildingsChange, year]);
+  }, [onVisibleBuildingsChange, selectedLandmarkId, year]);
 
   // Selected-fill (driven by selectedDynastyId prop, persists across year drags)
   useEffect(() => {
@@ -228,6 +248,50 @@ const MapScene = forwardRef(function MapScene({
       boundaryHoverFilter(yearRef.current, selectedDynastyId || '__none__'),
     );
   }, [selectedDynastyId, year]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    buildingLayerRef.current?.setFocus?.(selectedLandmarkId || null);
+    if (!map) return;
+
+    const focused = !!selectedLandmarkId;
+    if (map.getLayer('building-label')) {
+      map.setFilter('building-label', activeBuildingLabelFilter(yearRef.current, selectedLandmarkId));
+      map.setPaintProperty('building-label', 'text-opacity', focused
+        ? 0.98
+        : ['interpolate', ['linear'], ['zoom'], 2, 0.7, 5, 0.92]);
+    }
+
+    if (!focused) {
+      applyBoundaryPaint(map, themeRef.current);
+      return;
+    }
+
+    if (map.getLayer('dynasty-territory-fill')) {
+      map.setPaintProperty('dynasty-territory-fill', 'fill-opacity', 0.018);
+    }
+    if (map.getLayer('dynasty-territory-glow')) {
+      map.setPaintProperty('dynasty-territory-glow', 'line-opacity', 0.10);
+      map.setPaintProperty('dynasty-territory-glow', 'line-width', 2.0);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 3.2);
+    }
+    if (map.getLayer('dynasty-territory-casing')) {
+      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', 0.18);
+    }
+    if (map.getLayer('dynasty-territory-line')) {
+      map.setPaintProperty('dynasty-territory-line', 'line-opacity', 0.24);
+      map.setPaintProperty('dynasty-territory-line', 'line-width', 0.9);
+    }
+    if (map.getLayer('dynasty-capital-glow')) {
+      map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', 0.08);
+    }
+    if (map.getLayer('dynasty-capital-core')) {
+      map.setPaintProperty('dynasty-capital-core', 'circle-opacity', 0.22);
+    }
+    if (map.getLayer('dynasty-capital-label')) {
+      map.setPaintProperty('dynasty-capital-label', 'text-opacity', 0.10);
+    }
+  }, [selectedLandmarkId, theme, year]);
 
   useEffect(() => {
     layerVisibilityRef.current = layerVisibility;
@@ -568,7 +632,11 @@ const MapScene = forwardRef(function MapScene({
         setVisibility(map, 'dynasty-capital-core', layerVisibilityRef.current.capitals);
         setVisibility(map, 'dynasty-capital-label', layerVisibilityRef.current.capitals);
         buildingLayer.setLayerVisible(layerVisibilityRef.current.buildings);
+        buildingLayer.setFocus?.(selectedLandmarkIdRef.current || null);
         setVisibility(map, 'building-label', layerVisibilityRef.current.buildings);
+        if (map.getLayer('building-label')) {
+          map.setFilter('building-label', activeBuildingLabelFilter(yearRef.current, selectedLandmarkIdRef.current));
+        }
         onVisibleBuildingsChange(buildingLayer.setYear(yearRef.current));
         // 图层创建后立即把当前主题套上去
         applyMapTheme(map, themeRef.current);
@@ -665,7 +733,7 @@ const MapScene = forwardRef(function MapScene({
       const best = pickBuilding(event.point);
       if (best) {
         event.preventDefault();
-        map.flyTo({ center: [best.lng, best.lat], zoom: 5.5, pitch: 62, duration: 1800 });
+        map.flyTo(focusCameraForBuilding(best, 1800));
         onSelectBuildingRef.current?.(best, { fromMap: true });
       }
     }

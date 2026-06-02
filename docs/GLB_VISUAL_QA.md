@@ -44,6 +44,17 @@ Claude rebuilt `great-wall.glb` in commit `974479c`. Codex re-ran the asset audi
 - Readability view: [focus screenshot](glb-visual-qa/06-great-wall-after-focus.png).
 - Verdict: upgraded from Warn to Pass for the current MVP quality bar. The model now reads as a crenellated wall segment with watchtower masses instead of a generic fortress block. Remaining polish: it still reads as a short landmark sample, not yet as a long terrain-following wall system; a later final-quality pass should extend the wall route and make it more serpentine across terrain.
 
+## 2026-06-03 Selected Landmark Focus Mode
+
+Codex added a lightweight selected-landmark focus mode so users can inspect one landmark without nearby labels, non-selected GLBs, and territory overlays competing with it.
+
+- `npm run check`: passed.
+- Scope: `src/App.jsx`, `src/components/MapScene.jsx`, and `src/map/createBuildingLayer.js`.
+- Behavior: selecting a landmark now uses per-landmark camera presets, filters the map label layer down to the selected landmark, dims dynasty fills/lines/capital labels, and hides non-selected 3D landmark groups at the Three custom-layer level.
+- Forbidden City QA: [focus screenshot](glb-visual-qa/focus-mode-forbidden-city.png).
+- Petra QA: [focus screenshot](glb-visual-qa/focus-mode-petra.png).
+- Verdict: Pass for MVP interaction quality. It makes model inspection cleaner and reduces the Beijing-area Great Wall / Forbidden City collision. Remaining polish: a future immersive inspection mode could temporarily hide HUD panels too; the current mode keeps the normal panels visible for workflow continuity.
+
 ## Asset Verdicts
 
 | id | Screenshot | Verdict | Evidence | Next action |
@@ -60,14 +71,14 @@ Claude rebuilt `great-wall.glb` in commit `974479c`. Codex re-ran the asset audi
 | `forbidden-city` | [10](glb-visual-qa/10-forbidden-city.png) | Warn | The palace color/detail is visible, but a blue side artifact and nearby Great Wall label/model collision hurt the view. | Fix material/backface artifact and add label/model collision handling. |
 | `notre-dame` | [11](glb-visual-qa/11-notre-dame.png) | Pass | Nave, towers, and Gothic massing read well. Nearby labels are distracting but not a model failure. | Keep; optional roof color and buttress refinement. |
 | `borobudur` | [12](glb-visual-qa/12-borobudur.png) | Pass | Terraced circular/stupa silhouette is recognizable and stable. | Keep; add contrast only if it looks too dark in production. |
-| `petra` | [13 before](glb-visual-qa/13-petra.png), [13 after](glb-visual-qa/13-petra-after.png), [front](glb-visual-qa/13-petra-after-front-a.png) | Pass | First pass warned because it read like stacked vertical blocks. After commit `5e7dc14`, the front view shows a rock slab, carved facade, column rhythm, recessed doorway, and upper pediment mass. | Keep for MVP; add selected-landmark focus camera so users see the facade instead of a side angle. |
+| `petra` | [13 before](glb-visual-qa/13-petra.png), [13 after](glb-visual-qa/13-petra-after.png), [front](glb-visual-qa/13-petra-after-front-a.png), [focus](glb-visual-qa/focus-mode-petra.png) | Pass | First pass warned because it read like stacked vertical blocks. After commit `5e7dc14`, the front view shows a rock slab, carved facade, column rhythm, recessed doorway, and upper pediment mass. The selected-landmark focus mode now uses the validated front-facing camera. | Keep for MVP; later final polish can improve material contrast and facade depth. |
 | `red-fort` | [14](glb-visual-qa/14-red-fort.png) | Pass | Fort footprint, walls, and corner masses read clearly. It shares the frame with Taj Mahal but remains identifiable. | Keep; optional roof/courtyard detail. |
 
 ## Priority Order
 
-1. Fix `forbidden-city`: solve the blue side artifact, improve palace courtyard hierarchy, and reduce nearby Great Wall label/model collision.
-2. Add a landmark focus mode: when a user clicks a landmark, dim or simplify territory fills and suppress nearby non-selected labels/models for a cleaner inspection view. This is now especially important for facade-oriented assets like Petra and dense Beijing-area assets.
-3. Second-pass `angkor-wat` and `pyramid`: both pass the technical audit but still lack place-specific identity.
+1. Fix `forbidden-city`: solve the blue side artifact and improve palace courtyard hierarchy. The new focus mode reduces the Great Wall collision, but the model itself is still the weakest remaining high-priority GLB.
+2. Second-pass `angkor-wat` and `pyramid`: both pass the technical audit but still lack place-specific identity.
+3. Consider an immersive inspection mode that hides HUD panels after focus mode is validated with users.
 4. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
 
 ## Recommendation
@@ -76,5 +87,5 @@ Do not scale immediately to 30 new high-detail GLBs. The pipeline is good enough
 
 1. Use `hagia-sophia`, `colosseum`, `tajmahal`, and `notre-dame` as the accepted quality floor.
 2. Continue Claude passes on the remaining weak assets, starting with `forbidden-city`.
-3. Add a selected-landmark focus mode so detailed models can be appreciated without territory overlays competing with them.
+3. Use the selected-landmark focus mode as the default QA path for detailed landmark reviews.
 4. Only then expand to the next 10 assets.

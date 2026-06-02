@@ -143,3 +143,22 @@
 - 预览看不到地图是**已知限制**（RAF 冻结），不代表代码坏。只信用户真实浏览器。
 - `window._map` 是调试句柄。
 - 黑屏几乎都与 `maxBounds` + 高 pitch 有关；当前已无 maxBounds。
+
+## 2026-06-03 选中奇观观赏模式 MVP
+
+本轮由 Codex 直接完成，属于交互与图层协调，不是 GLB 建模任务。
+
+已改动：
+- `src/App.jsx`：把 `selectedLandmarkId` 传给 `MapScene`。
+- `src/components/MapScene.jsx`：新增 `activeBuildingLabelFilter` 与 `focusCameraForBuilding`；选中奇观后使用专属镜头，过滤建筑标签，只保留选中奇观名称；降低朝代边界、都城点和都城标签干扰。
+- `src/map/createBuildingLayer.js`：新增 `setFocus(focusId)`，通过 Three group visibility 隐藏非选中 3D 奇观，并给选中模型轻微放大。没有改材质透明度，避免深度排序和黑块问题。
+
+验收：
+- `npm run check` 通过。
+- 紫禁城焦点截图：`docs/glb-visual-qa/focus-mode-forbidden-city.png`。
+- 佩特拉焦点截图：`docs/glb-visual-qa/focus-mode-petra.png`。
+
+结论：
+- MVP 通过。选中奇观后画面明显更干净，非选中模型不会挤进观察区域，边界线也不再压过模型。
+- 不应夸大成最终精美版。左右 HUD 面板仍保留，适合工作流；后续如果追求“博物馆级观赏”，应单独做 immersive inspection mode，临时隐藏 HUD。
+- 下一个最该交给 Claude 的建模任务是 `forbidden-city.glb`：修蓝色侧面 artifact，强化中轴、院落、红墙黄瓦、宫殿层级。

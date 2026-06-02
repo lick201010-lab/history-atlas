@@ -1409,6 +1409,7 @@ export function createBuildingLayer(landmarks) {
     renderingMode: '3d',
     _needsAnimTick: false,
     layerVisible: true,
+    focusId: null,
     // 底图就绪门控：底图瓦片绘出前不渲染建筑，避免首屏"建筑悬浮在黑色虚空"的中间态。
     _baseReady: false,
 
@@ -1491,8 +1492,17 @@ export function createBuildingLayer(landmarks) {
       const base = mesh.userData.baseScale
         ?? (mesh.userData.mercatorScale * this.getSizeMeters());
       const f = smoothstep(mesh.userData.animFactor ?? 1);
-      const s = base * f;
+      const focusBoost = this.focusId && mesh.userData.id === this.focusId ? 1.18 : 1;
+      const s = base * f * focusBoost;
       mesh.scale.set(s, s, s);
+    },
+
+    updateMeshVisibility(mesh) {
+      const target = mesh.userData.animTarget ?? 1;
+      const animFactor = mesh.userData.animFactor ?? 1;
+      const activeByYear = target === 1 || animFactor > 0;
+      const activeByFocus = !this.focusId || mesh.userData.id === this.focusId;
+      mesh.visible = activeByYear && activeByFocus;
     },
 
     // 每帧推进出现/消失动画；全部到位后停止触发重绘（不空转）。
@@ -1509,9 +1519,8 @@ export function createBuildingLayer(landmarks) {
         if (t < f && nf <= t) nf = t;
         mesh.userData.animFactor = nf;
         this.applyScale(mesh);
-        if (nf === t) {
-          if (t === 0) mesh.visible = false;
-        } else {
+        this.updateMeshVisibility(mesh);
+        if (nf !== t) {
           any = true;
         }
       }
@@ -1760,17 +1769,17 @@ export function createBuildingLayer(landmarks) {
           // 首帧不做生长动画，直接到位。
           mesh.userData.animTarget = target;
           mesh.userData.animFactor = target;
-          mesh.visible = inRange;
           this.applyScale(mesh);
+          this.updateMeshVisibility(mesh);
         } else if (mesh.userData.animTarget !== target) {
           mesh.userData.animTarget = target;
           if (target === 1) {
-            mesh.visible = true;
             // 从一个较小尺寸"长出来"
             if ((mesh.userData.animFactor ?? 1) >= 1) mesh.userData.animFactor = 0.45;
           }
           any = true;
         }
+        this.updateMeshVisibility(mesh);
         if (mesh.userData.animFactor !== mesh.userData.animTarget) any = true;
       }
       this._animating = any;
@@ -1783,6 +1792,17 @@ export function createBuildingLayer(landmarks) {
       if (this.map) this.map.triggerRepaint();
     },
 
+    setFocus(focusId) {
+      this.focusId = focusId || null;
+      if (this.meshes) {
+        for (const mesh of Object.values(this.meshes)) {
+          this.applyScale(mesh);
+          this.updateMeshVisibility(mesh);
+        }
+      }
+      if (this.map) this.map.triggerRepaint();
+    },
+
     // 底图瓦片就绪后调用：放行渲染，并让当前可见建筑"长出来"而非硬弹出。
     setBaseReady(ready = true) {
       if (this._baseReady === ready) return;
@@ -1791,8 +1811,8 @@ export function createBuildingLayer(landmarks) {
         let any = false;
         for (const mesh of Object.values(this.meshes)) {
           if (mesh.userData.animTarget === 1) {
-            mesh.visible = true;
             mesh.userData.animFactor = 0.4;
+            this.updateMeshVisibility(mesh);
             any = true;
           }
         }
