@@ -9,7 +9,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 - Passing without warnings: 14
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,337 KB
+- Total GLB weight: 4,390 KB
 
 ## Budget
 
@@ -28,7 +28,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `chichen-itza` | `chichen-itza.glb` | 197 KB | 2,584 | 4,812 | 11 | 0/0 | 0.000 | 0.823 | 0.550 | - |
 | OK | `colosseum` | `colosseum.glb` | 687 KB | 8,992 | 17,828 | 6 | 0/0 | 0.000 | 0.605 | 0.737 | - |
 | OK | `forbidden-city` | `forbidden-city.glb` | 201 KB | 2,582 | 4,858 | 13 | 0/0 | -0.000 | 0.623 | 0.663 | - |
-| OK | `great-wall` | `great-wall.glb` | 108 KB | 1,332 | 2,637 | 6 | 0/0 | -0.000 | 0.492 | 0.710 | - |
+| OK | `great-wall` | `great-wall.glb` | 161 KB | 1,992 | 3,966 | 8 | 0/0 | -0.000 | 0.545 | 1.058 | - |
 | OK | `hagia-sophia` | `hagia-sophia.glb` | 750 KB | 19,228 | 17,579 | 16 | 0/0 | -0.000 | 1.459 | 0.780 | - |
 | OK | `notre-dame` | `notre-dame.glb` | 241 KB | 3,488 | 5,968 | 9 | 0/0 | -0.000 | 0.986 | 0.687 | - |
 | OK | `parthenon` | `parthenon.glb` | 397 KB | 7,400 | 9,768 | 9 | 0/0 | -0.000 | 0.894 | 0.730 | - |
