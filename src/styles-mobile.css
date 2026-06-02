@@ -29,13 +29,17 @@
     top: 34px;
     left: 6px;
     right: 6px;
+    width: auto;
     gap: 2px;
   }
   .btn {
+    flex: 1 1 0;
+    min-width: 0;
     font-size: 8.5px;
     padding: 3px 3px;
     letter-spacing: 0;
     border-radius: 3px;
+    white-space: nowrap;
   }
   .btn-theme { display: none; }
 
@@ -44,9 +48,28 @@
     top: 58px;
     left: 6px;
     right: 6px;
+    width: auto;
     padding: 2px 5px;
     gap: 2px;
     border-radius: 3px;
+  }
+  .layer-row {
+    width: 100%;
+    margin-bottom: 4px;
+    gap: 2px;
+  }
+  .chip {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 24px;
+    font-size: 9px;
+    letter-spacing: 0;
+    gap: 3px;
+    padding: 0 3px;
+  }
+  .chip .chip-eye {
+    width: 11px;
+    height: 11px;
   }
   .layer-controls label {
     font-size: 8px;
@@ -64,6 +87,12 @@
     padding: 2px 6px;
     height: 22px;
     width: 80px;
+  }
+  .search-box input {
+    height: 30px;
+    font-size: 10px;
+    padding: 0 10px;
+    letter-spacing: 0.5px;
   }
   .search-results {
     font-size: 9px;
