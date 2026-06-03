@@ -1,5 +1,7 @@
 # Agent Operating Notes
 
+Mandatory startup protocol lives in `AGENTS.md`. For final-version work, read `AGENTS.md` first, then use this file as supporting operational history.
+
 ## Default Work Habit
 
 For this project, every troubleshooting or delivery task should follow this loop:

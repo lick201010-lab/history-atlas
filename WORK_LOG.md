@@ -845,3 +845,37 @@ Next implementation step:
 - Assign a bounded Claude visual-foundation pass before more data/model expansion.
 - Scope should stay limited to MapLibre paint/style, CSS visual hierarchy, terrain/hillshade/water masking strategy, and boundary readability.
 - Do not let Claude touch `src/data/*.json`, GLB assets, deploy scripts, or broad product behavior in this pass.
+
+## 2026-06-04 F0 final-version gate workflow implemented
+
+Reason:
+
+- User identified that the workflow was too long and context drift caused the project to be treated like an MVP instead of the final complete version.
+- The fix is to externalize memory into mandatory project files, not rely on chat context.
+
+Implementation:
+
+- Added `AGENTS.md` as the mandatory startup protocol for Codex, Claude, and any future agent.
+- Added `docs/CURRENT_PHASE.md`, setting the current phase to `F1 Final Visual Foundation`.
+- Added `.claude-runs/TEMPLATE.md` as the required Claude task template.
+- Updated `.gitignore` so `.claude-runs/TEMPLATE.md` is tracked while local Claude logs remain ignored.
+- Updated `AGENT.md` to point agents to `AGENTS.md` first.
+- Created local Claude task prompt `.claude-runs/f1-visual-foundation-pass-prompt.md` for the first F1 visual pass.
+
+Current rule:
+
+- `v0.1.0` and `https://atlas.ckl.hk/` are online milestones only.
+- No agent may call the project final until all relevant Gates pass.
+- Current phase is F1; broad F2 boundary batches, broad F3 GLB batches, and F5 UI expansion are blocked until F1 passes.
+
+Next:
+
+- Run baseline checks.
+- Commit and push F0 workflow files.
+- Invoke Claude from the F1 prompt and let Codex review the diff and visual audit before accepting any changes.
+
+Verification:
+
+- `npm run check` passed after F0 workflow files were added.
+- Validation still reports 43 dynasties, 91 boundaries, 30 landmarks, and 14 OK GLB assets.
+- Vite build passed with the existing large chunk warning.

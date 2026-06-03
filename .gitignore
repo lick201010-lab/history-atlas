@@ -22,4 +22,6 @@ Thumbs.db
 scripts/.cache/
 
 # Local Codex/Claude orchestration logs
-.claude-runs/
+.claude-runs/*
+!.claude-runs/
+!.claude-runs/TEMPLATE.md
