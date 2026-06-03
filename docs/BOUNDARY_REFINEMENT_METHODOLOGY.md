@@ -307,8 +307,14 @@ Sutherland-Hodgman 把一个凸 envelope 与 Natural Earth 多个陆地 ring 求
 ### 9.8 巨大内陆帝国不适合单凸包络裁剪
 - **症状**：蒙古帝国用一个横跨欧亚的凸 envelope 裁剪 Natural Earth 后，虽然可以过滤离岛碎片，但视觉上变成一整块斜切梯形，zoom 4–5 很不精致
 - **根因**：Sutherland-Hodgman 的凸裁剪适合沿海帝国或中等区域；对蒙古这种大面积内陆草原帝国，凸包约束会消灭历史边界的凹凸和方向变化
-- **修复**：蒙古改用手工草原带外轮廓，并给里海添加 Polygon hole；长边再做 deterministic roughen，避免填海和大直线
-- **教训**：沿海/跨海文明优先用 Natural Earth clipping；巨大内陆帝国应优先用手工历史外轮廓 + 必要水体 hole，而不是一个超大凸包络
+- **修复**：蒙古改用手工历史地理锚点：rise 用草原核心 Polygon，peak 拆成大汗国区域 MultiPolygon，decline 收缩为金帐 / 伊儿 / 察合台 / 元等碎片化区域；同时给里海、黑海、咸海等水体添加 Polygon hole，并对长边做 deterministic roughen
+- **教训**：沿海/跨海文明优先用 Natural Earth clipping；巨大内陆帝国应优先用手工历史外轮廓 + 区域块拆分 + 必要水体 hole，而不是一个超大凸包络
+
+### 9.9 同一文明的 MultiPolygon 会产生内部描边
+- **症状**：蒙古 peak 拆成多个区域块后，比单一大绿带更符合历史范围，但重叠或相邻的子 polygon 会出现内部金色描边，看起来像同一朝代被乱切
+- **根因**：MapLibre 会给 MultiPolygon 中每个 polygon 的外环都画线；同一 feature 的子 polygon 不会自动做 topology dissolve，也不会知道哪些边是内部边
+- **修复**：减少区域块重叠，把 peak 表达为相邻的大汗国控制区块；decline 进一步收缩成四大汗国碎片，让内部线更像历史分裂，而不是随机切割
+- **教训**：MultiPolygon 能解决巨大帝国“一张大毯子”的问题，但它不是拓扑 union。未来出版级边界需要 polygon union / dissolve，或在样式层把同一文明内部边界降 opacity / 隐藏
 
 ---
 

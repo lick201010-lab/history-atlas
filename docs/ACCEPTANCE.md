@@ -13,7 +13,7 @@ npm run preview     # 起本地静态服务器查看构建产物
 ```
 
 `npm run check` 必须通过：
-- `Historical data validation passed.`（朝代 43 / 边界 feature 89 / 建筑 30 / 样板 5）
+- `Historical data validation passed.`（朝代 43 / 边界 feature 91 / 建筑 30 / 样板 5）
 - `GLB asset audit` 无 FAIL（WARN 需要进入视觉 QA，但不阻塞构建）
 - `vite build` 退出码 0，无 error
 
@@ -48,7 +48,7 @@ npm run preview     # 起本地静态服务器查看构建产物
 
 ## 4. 边界验收
 
-- [ ] 43 个文明对应的 89 个边界 feature 都是粗略多边形（非矩形），ring 顶点 ≥ 7
+- [ ] 43 个文明对应的 91 个边界 feature 都是粗略多边形（非矩形），ring 顶点 ≥ 7
 - [ ] 5 个样板边界（tang 等）发光更明显、虚线更密
 - [ ] hover 文明边界 → 金色高亮 + 鼠标变 pointer
 - [ ] 点击文明边界 → 信息卡弹出，左侧色带颜色 = 文明色
@@ -109,7 +109,7 @@ npm run preview     # 起本地静态服务器查看构建产物
 每次发版建议在 PR 或发版 issue 里贴：
 
 ```
-- npm run validate:data：通过（43/89/30/5）
+- npm run validate:data：通过（43/91/30/5）
 - npm run audit:glb：通过（14 GLB / 0 FAIL；WARN 项列明）
 - npm run build：通过（CSS xx KB / JS xx KB / gzip xx KB）
 - 浏览器手测：地图 ✅ / 时间轴 ✅ / 文明 ✅ / 边界 ✅ / 建筑 ✅ / 交互 ✅ / 视觉 ✅

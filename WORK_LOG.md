@@ -429,3 +429,45 @@ Visual conclusion:
 - Ottoman is acceptable as a rough-refined production improvement.
 - Achaemenid and Sasanian are technically healthy but visually expose the next product problem: coastline clipping helps, but large inland borders still look like smooth historical envelopes rather than grounded, map-native boundaries.
 - Do not blindly batch-refine all remaining civilizations with the same method. The next high-value step is a boundary-methodology upgrade: terrain/coast aware drawing rules, better inland anchor lines, and a separate Mongol strategy.
+
+## 2026-06-03 Mongol boundary methodology sample
+
+Goal: create a dedicated Mongol Empire boundary sample instead of reusing the rejected convex Natural Earth clipping method.
+
+Implementation:
+
+- Added `scripts/refineMongolBoundary.mjs`.
+- The script only rewrites `mongol-empire` in `src/data/boundaries-simplified.json`.
+- It does not touch `dynasties.json`, `landmarks.json`, `MapScene.jsx`, or `mapStyle.js`.
+- Replaced the old single-phase `mongol-empire` baseline with three phased features:
+  - rise, `1206..1227`: Polygon, 1 outer ring, 130 outer vertices, 1 water hole.
+  - peak, `1228..1260`: MultiPolygon, 4 outer rings, 320 outer vertices, 3 water holes.
+  - decline, `1261..1368`: MultiPolygon, 4 outer rings, 281 outer vertices, 3 water holes.
+- The peak phase is intentionally modeled as regional control blocks rather than one giant continuous convex band. This avoids turning Eurasia into a single diagonal grassland sheet.
+
+Verification:
+
+- `npm run check` passed.
+- Data validation passed: 43 dynasties, 91 boundaries, 30 landmarks, 5 refined samples.
+- GLB audit passed: `14 OK / 0 WARN / 0 FAIL`.
+- Vite production build passed with only the existing large chunk warning.
+- Browser CDP QA captured:
+  - `docs/boundary-qa/mongol-1220-rise-boundary.png`
+  - `docs/boundary-qa/mongol-1250-peak-boundary.png`
+  - `docs/boundary-qa/mongol-1300-decline-boundary.png`
+  - `docs/boundary-qa/mongol-boundary-manifest.json`
+- Manifest confirmed `mapReady: true`, 1440x900 MapLibre canvas, correct target filters, and no non-canceled network failures.
+
+Visual conclusion:
+
+- The new Mongol boundary is clearly better than both the old one-feature baseline and the rejected convex clipping attempt.
+- Rise is now a readable steppe-core phase instead of a giant Eurasian envelope.
+- Peak shows a broad Mongol world without filling every sea or becoming one flat rectangle.
+- Decline visibly fragments into successor-zone blocks, making the time slider more meaningful.
+- This is still rough-refined, not final publication quality. The remaining visible flaw is internal line seams inside the peak MultiPolygon. MapLibre draws every child polygon edge, so true removal requires polygon union / dissolve or a special internal-edge styling strategy.
+
+Decision:
+
+- Accept this as a production-quality MVP improvement.
+- Do not treat it as the final boundary method for all large inland empires.
+- Record the new lesson in `docs/BOUNDARY_REFINEMENT_METHODOLOGY.md` before any further batch expansion.
