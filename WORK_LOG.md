@@ -388,3 +388,44 @@ Visual conclusion:
 - Ottoman is a clear MVP improvement: more separated coast-aware blocks around Anatolia, Balkans, Levant, Egypt/North Africa and no single Mediterranean sea-flooding blob.
 - Achaemenid and Sasanian now have more detailed coast-aware geometry around the Persian Gulf / Caspian / East Mediterranean, but their inland limits are still rough historical envelopes. They are acceptable as rough-refined batch work, not final precision borders.
 - Mongol needs a separate method. A huge inland empire should not be handled by one convex Natural Earth envelope. Future work should explore either curated historical polyline data or a hand-authored multi-stage inland boundary with holes for Caspian/Aral and better Yuan/Ilkhanate/Golden Horde decomposition.
+
+## 2026-06-03 Priority boundary deployment and online QA
+
+Goal: publish the accepted Ottoman / Sasanian / Achaemenid boundary batch to production and verify the live site before starting the next refinement slice.
+
+Deployment:
+
+- Ran `npm run deploy`.
+- The deploy script ran `npm run check` before upload.
+- Data validation passed: 43 dynasties, 89 boundaries, 30 landmarks, 5 refined samples, 15 model profiles.
+- GLB audit passed: `14 OK / 0 WARN / 0 FAIL`.
+- Vite production build passed.
+- Uploaded `dist/*` to `root@47.237.181.181:/opt/history-atlas/dist/`.
+- Fixed remote permissions with `chmod -R a+rX /opt/history-atlas/dist`.
+
+Production verification from deploy script:
+
+- `https://atlas.ckl.hk/` returned `200` with `text/html`.
+- Random SPA fallback path returned `200` with `text/html`.
+- All 5 JS/CSS chunks returned `200`.
+
+Online browser QA:
+
+- Ran `.claude-runs/capture-online-priority-boundaries.mjs` against `https://atlas.ckl.hk/`.
+- Captured online QA screenshots for:
+  - `online-ottoman-1600-priority-boundary.png` (ignored by Git)
+  - `online-achaemenid-500bce-priority-boundary.png` (ignored by Git)
+  - `online-sasanian-600-priority-boundary.png` (ignored by Git)
+- Saved manifest: `docs/boundary-qa/online-priority-boundaries-manifest.json`.
+- Manifest confirmed `mapReady: true`, 1440x900 MapLibre canvas, and correct target filters for all three captures.
+- Console messages: none.
+- Bad HTTP responses: none.
+- Non-canceled network failures: none.
+- Only failed network records were canceled tile requests (`net::ERR_ABORTED`, `canceled: true`), consistent with normal map camera movement.
+
+Visual conclusion:
+
+- The deployment is healthy.
+- Ottoman is acceptable as a rough-refined production improvement.
+- Achaemenid and Sasanian are technically healthy but visually expose the next product problem: coastline clipping helps, but large inland borders still look like smooth historical envelopes rather than grounded, map-native boundaries.
+- Do not blindly batch-refine all remaining civilizations with the same method. The next high-value step is a boundary-methodology upgrade: terrain/coast aware drawing rules, better inland anchor lines, and a separate Mongol strategy.
