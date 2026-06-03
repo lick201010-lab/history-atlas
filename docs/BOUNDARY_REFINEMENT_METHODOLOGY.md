@@ -312,9 +312,9 @@ Sutherland-Hodgman 把一个凸 envelope 与 Natural Earth 多个陆地 ring 求
 
 ### 9.9 同一文明的 MultiPolygon 会产生内部描边
 - **症状**：蒙古 peak 拆成多个区域块后，比单一大绿带更符合历史范围，但重叠或相邻的子 polygon 会出现内部金色描边，看起来像同一朝代被乱切
-- **根因**：MapLibre 会给 MultiPolygon 中每个 polygon 的外环都画线；同一 feature 的子 polygon 不会自动做 topology dissolve，也不会知道哪些边是内部边
-- **修复**：减少区域块重叠，把 peak 表达为相邻的大汗国控制区块；decline 进一步收缩成四大汗国碎片，让内部线更像历史分裂，而不是随机切割
-- **教训**：MultiPolygon 能解决巨大帝国“一张大毯子”的问题，但它不是拓扑 union。未来出版级边界需要 polygon union / dissolve，或在样式层把同一文明内部边界降 opacity / 隐藏
+- **根因**：MapLibre 会给 MultiPolygon 中每个 polygon 的外环都画线；即使 line 图层换成独立 outline source，fill 图层的抗锯齿和透明叠加也会暴露子块边缘
+- **修复**：领土填充层关闭 `fill-antialias`；新增 `boundaryOutlines.js`，让 line/glow/casing/hover-line 使用独立描边源；蒙古 peak 从 4 个区域块改为 1 个手绘统一 Polygon，decline 才保留碎片化汗国块
+- **教训**：鼎盛期的“统一帝国”优先用干净统一外轮廓；分裂期才用 MultiPolygon 表达碎片化。MultiPolygon 不是 topology union，不能直接拿来当精美描边的最终几何
 
 ---
 

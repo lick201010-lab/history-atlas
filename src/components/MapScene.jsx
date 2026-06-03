@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 're
 import maplibregl from 'maplibre-gl';
 import { createBuildingLayer } from '../map/createBuildingLayer.js';
 import { smoothBoundaryCollection } from '../map/smoothBoundaries.js';
+import { createBoundaryOutlineCollection } from '../map/boundaryOutlines.js';
 import {
   INITIAL_VIEW,
   MOUNTAIN_VIEW,
@@ -324,6 +325,8 @@ const MapScene = forwardRef(function MapScene({
     boundariesRef.current = boundaries;
     const source = mapRef.current?.getSource('dynasty-boundaries');
     source?.setData(smoothBoundaryCollection(boundaries));
+    const outlineSource = mapRef.current?.getSource('dynasty-boundary-outlines');
+    outlineSource?.setData(smoothBoundaryCollection(createBoundaryOutlineCollection(boundaries)));
   }, [boundaries]);
 
   useEffect(() => {
@@ -378,6 +381,12 @@ const MapScene = forwardRef(function MapScene({
           data: smoothBoundaryCollection(boundariesRef.current),
         });
       }
+      if (!map.getSource('dynasty-boundary-outlines')) {
+        map.addSource('dynasty-boundary-outlines', {
+          type: 'geojson',
+          data: smoothBoundaryCollection(createBoundaryOutlineCollection(boundariesRef.current)),
+        });
+      }
       // 样板（精修过的）文明 vs 占位文明，由 accuracy 字段驱动。
       // rough-refined（人工凸多边形 sample）与 coastline-aware-rough（海岸贴合 sample）
       // 都享受同一套精修级描边 / 光晕；其他 accuracy（如 rough）走低强度的占位渲染。
@@ -395,7 +404,7 @@ const MapScene = forwardRef(function MapScene({
           paint: {
             'fill-color': ['get', 'color'],
             'fill-opacity': ifRefined(0.11, 0.05),
-            'fill-antialias': true,
+            'fill-antialias': false,
           },
         });
       }
@@ -404,7 +413,7 @@ const MapScene = forwardRef(function MapScene({
         map.addLayer({
           id: 'dynasty-territory-glow',
           type: 'line',
-          source: 'dynasty-boundaries',
+          source: 'dynasty-boundary-outlines',
           filter: activeYearFilter(yearRef.current),
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
@@ -421,7 +430,7 @@ const MapScene = forwardRef(function MapScene({
         map.addLayer({
           id: 'dynasty-territory-casing',
           type: 'line',
-          source: 'dynasty-boundaries',
+          source: 'dynasty-boundary-outlines',
           filter: activeYearFilter(yearRef.current),
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
@@ -436,7 +445,7 @@ const MapScene = forwardRef(function MapScene({
         map.addLayer({
           id: 'dynasty-territory-line',
           type: 'line',
-          source: 'dynasty-boundaries',
+          source: 'dynasty-boundary-outlines',
           filter: activeYearFilter(yearRef.current),
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
@@ -459,6 +468,7 @@ const MapScene = forwardRef(function MapScene({
           paint: {
             'fill-color': ['get', 'color'],
             'fill-opacity': 0.16,
+            'fill-antialias': false,
           },
         });
       }
@@ -466,7 +476,7 @@ const MapScene = forwardRef(function MapScene({
         map.addLayer({
           id: 'dynasty-territory-hover',
           type: 'line',
-          source: 'dynasty-boundaries',
+          source: 'dynasty-boundary-outlines',
           filter: boundaryHoverFilter(yearRef.current, hoveredBoundaryIdRef.current),
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: {
@@ -487,6 +497,7 @@ const MapScene = forwardRef(function MapScene({
           paint: {
             'fill-color': '#f6d58f',
             'fill-opacity': 0.14,
+            'fill-antialias': false,
           },
         });
       }

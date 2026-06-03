@@ -8,8 +8,9 @@
     "build": "vite build",
     "validate:data": "node scripts/validateHistoricalData.mjs",
     "audit:glb": "node scripts/auditGlbAssets.mjs",
+    "test:boundary-outlines": "node scripts/testBoundaryOutlines.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "npm run validate:data && npm run audit:glb && npm run build",
+    "check": "npm run validate:data && npm run test:boundary-outlines && npm run audit:glb && npm run build",
     "deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1"
   },
   "dependencies": {

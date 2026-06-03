@@ -95,7 +95,7 @@ function polygon(points, holes = [], options = {}) {
   return [outer(points, options), ...holes.map(([pts, opts]) => hole(pts, opts))];
 }
 
-function feature({ phase, phaseLabel, startYear, endYear, summary, geometry }) {
+function feature({ phase, phaseLabel, startYear, endYear, summary, geometry, outlineGeometry }) {
   return {
     type: 'Feature',
     id: TARGET_ID,
@@ -113,6 +113,7 @@ function feature({ phase, phaseLabel, startYear, endYear, summary, geometry }) {
       accuracyLabel: '地理锚点粗多边形',
       accuracyNote: ACCURACY_NOTE,
       sourceNote: SOURCE_NOTE,
+      ...(outlineGeometry ? { outlineGeometry } : {}),
     },
     geometry,
   };
@@ -143,30 +144,15 @@ const ARAL_HOLE = [
   [61.2, 43.5], [59.4, 42.8], [58.1, 43.2],
 ];
 
-// Peak is deliberately represented as regional control blocks. A single outer
-// ring is historically simple but visually reads as a flat Eurasian blanket.
-const PEAK_WESTERN_STEPPE = [
+// Peak is a unified hand-drawn outline. The previous regional MultiPolygon
+// produced internal seams and transparent overlap artifacts in MapLibre.
+const PEAK_VISUAL_OUTLINE = [
   [23.5, 49.8], [30.5, 52.5], [42.5, 54.8], [55.5, 53.4],
-  [61.0, 49.2], [58.0, 45.0], [50.0, 43.8], [40.0, 43.0],
-  [30.5, 45.2], [23.5, 49.8],
-];
-
-const PEAK_IRAN_CAUCASUS = [
-  [38.5, 39.4], [44.5, 41.8], [54.5, 41.2], [63.5, 37.8],
-  [70.0, 33.0], [66.5, 28.2], [58.0, 25.8], [48.0, 28.5],
-  [41.5, 33.4], [38.5, 39.4],
-];
-
-const PEAK_CENTRAL_ASIA = [
-  [60.5, 45.2], [70.5, 48.6], [84.5, 47.8], [93.0, 43.2],
-  [90.5, 36.4], [80.5, 34.0], [68.0, 35.8], [60.5, 40.4],
-  [60.5, 45.2],
-];
-
-const PEAK_EAST_ASIA = [
-  [86.0, 49.2], [96.0, 54.8], [111.5, 54.2], [125.5, 49.8],
-  [128.0, 43.0], [123.0, 36.8], [113.0, 32.0], [101.0, 30.0],
-  [92.0, 34.5], [86.0, 40.0], [86.0, 49.2],
+  [70.5, 48.6], [86.0, 49.2], [96.0, 54.8], [111.5, 54.2],
+  [125.5, 49.8], [128.0, 43.0], [123.0, 36.8], [113.0, 32.0],
+  [101.0, 30.0], [92.0, 34.5], [88.0, 37.0], [78.0, 35.0],
+  [68.0, 35.8], [66.0, 31.0], [59.0, 27.0], [49.0, 29.0],
+  [41.5, 33.4], [38.5, 39.4], [30.5, 45.2], [23.5, 49.8],
 ];
 
 // 1261-1368: show successor-zone fragments as one feature. This reads better
@@ -218,13 +204,28 @@ const mongolFeatures = [
     endYear: 1260,
     summary: '窝阔台、贵由、蒙哥时期，蒙古军政体系横跨东亚、内亚、伊朗、高加索、罗斯与东欧草原，形成历史上最大的陆上帝国。',
     geometry: {
-      type: 'MultiPolygon',
-      coordinates: [
-        polygon(PEAK_WESTERN_STEPPE, [[BLACK_SEA_HOLE, { seed: 21 }]], { seed: 20 }),
-        polygon(PEAK_IRAN_CAUCASUS, [[CASPIAN_HOLE, { seed: 23 }]], { seed: 22 }),
-        polygon(PEAK_CENTRAL_ASIA, [[ARAL_HOLE, { seed: 25 }]], { seed: 24 }),
-        polygon(PEAK_EAST_ASIA, [], { seed: 26 }),
-      ],
+      type: 'Polygon',
+      coordinates: polygon(
+        PEAK_VISUAL_OUTLINE,
+        [
+          [BLACK_SEA_HOLE, { seed: 21 }],
+          [CASPIAN_HOLE, { seed: 23 }],
+          [ARAL_HOLE, { seed: 25 }],
+        ],
+        { seed: 20, step: 1.35, amplitude: 0.22 },
+      ),
+    },
+    outlineGeometry: {
+      type: 'Polygon',
+      coordinates: polygon(
+        PEAK_VISUAL_OUTLINE,
+        [
+          [BLACK_SEA_HOLE, { seed: 41 }],
+          [CASPIAN_HOLE, { seed: 42 }],
+          [ARAL_HOLE, { seed: 43 }],
+        ],
+        { seed: 40, step: 1.35, amplitude: 0.22 },
+      ),
     },
   }),
   feature({

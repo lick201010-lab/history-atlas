@@ -506,3 +506,47 @@ Visual conclusion:
 - Production is healthy and has the new Mongol three-phase boundaries.
 - Rise, peak, and decline are visually distinct enough for the time slider to feel meaningful.
 - The remaining product issue is not deployment or data validation; it is visual topology. MultiPolygon internal edges still draw as visible lines. This should be the next boundary method problem before broad batch expansion.
+
+## 2026-06-03 Mongol internal-outline cleanup
+
+Goal: remove the visually messy internal lines in the Mongol peak phase before expanding the boundary method to more civilizations.
+
+Root cause:
+
+- The first Mongol peak implementation used a MultiPolygon made of regional control blocks.
+- MapLibre line layers draw every child polygon outline, so adjacent or overlapping blocks looked like random internal cuts.
+- Even after switching line/glow/casing layers to a separate outline source, `fill-antialias` and transparent fill overlap still exposed child polygon edges.
+
+Implementation:
+
+- Added `src/map/boundaryOutlines.js`.
+- Added `scripts/testBoundaryOutlines.mjs` and wired it into `npm run check` as `npm run test:boundary-outlines`.
+- `dynasty-territory-glow`, `dynasty-territory-casing`, `dynasty-territory-line`, and `dynasty-territory-hover` now use `dynasty-boundary-outlines`.
+- Fill and click layers still use `dynasty-boundaries`, so interaction areas are preserved.
+- Territory fill layers now use `fill-antialias: false`.
+- `scripts/refineMongolBoundary.mjs` now writes Mongol peak as a single hand-drawn Polygon with 187 outer vertices.
+- Mongol decline remains MultiPolygon because the fragmented look matches the four-khanate split.
+
+Verification:
+
+- TDD red step: `node scripts/testBoundaryOutlines.mjs` initially failed with `ERR_MODULE_NOT_FOUND` for `src/map/boundaryOutlines.js`.
+- After implementation, `node scripts/testBoundaryOutlines.mjs` passed.
+- `npm run check` passed: data validation, boundary outline test, GLB audit, and Vite build all succeeded.
+- Browser interaction QA on `http://127.0.0.1:5173/`:
+  - Reloaded the app.
+  - Set the timeline slider to year `1250`.
+  - Dragged and zoomed the map.
+  - Browser logs stayed empty.
+  - Saved `docs/boundary-qa/mongol-outline-browser-1250-unified.png`.
+- Isolated Mongol QA reran `.claude-runs/capture-mongol-boundary.mjs`.
+- Saved updated:
+  - `docs/boundary-qa/mongol-1250-peak-boundary.png`
+  - `docs/boundary-qa/mongol-1300-decline-boundary.png`
+  - `docs/boundary-qa/mongol-boundary-manifest.json`
+- Manifest confirmed all three shots had `mapReady: true`; no non-canceled failures; only normal Vite dev messages and one canceled tile request.
+
+Visual conclusion:
+
+- Mongol peak is now much cleaner: the obvious internal random cuts are gone.
+- Mongol decline still shows separate regions, but that now reads as the intended four-khanate fragmentation rather than a broken peak border.
+- This does not solve every overlap between different active civilizations at the same year. In normal UI, other active territories can still cross visually. That is a separate product decision: whether to dim non-focused civilizations, isolate hovered/selected civilization, or add a compare mode.
