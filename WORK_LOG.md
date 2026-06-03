@@ -471,3 +471,38 @@ Decision:
 - Accept this as a production-quality MVP improvement.
 - Do not treat it as the final boundary method for all large inland empires.
 - Record the new lesson in `docs/BOUNDARY_REFINEMENT_METHODOLOGY.md` before any further batch expansion.
+
+## 2026-06-03 Mongol boundary deployment and online QA
+
+Deployment:
+
+- Committed `feat(boundaries): refine mongol empire phases` (`b7f88ed`) and pushed to `main`.
+- Ran `npm run deploy`.
+- The deploy script reran `npm run check`: data validation, GLB audit, and Vite production build all passed.
+- Uploaded the generated `dist/*` to `root@47.237.181.181:/opt/history-atlas/dist/`.
+- Fixed remote file permissions with `chmod -R a+rX /opt/history-atlas/dist`.
+
+Production verification from deploy script:
+
+- `https://atlas.ckl.hk/` returned `200` with `text/html`.
+- Random SPA fallback path returned `200` with `text/html`.
+- All 5 production JS/CSS chunks returned `200`.
+
+Online browser QA:
+
+- Ran `.claude-runs/capture-online-mongol-boundary.mjs` against `https://atlas.ckl.hk/`.
+- Captured online screenshots for:
+  - `online-mongol-1220-rise-boundary.png` (ignored by Git)
+  - `online-mongol-1250-peak-boundary.png` (ignored by Git)
+  - `online-mongol-1300-decline-boundary.png` (ignored by Git)
+- Saved manifest: `docs/boundary-qa/online-mongol-boundary-manifest.json`.
+- Manifest confirmed `mapReady: true`, 1440x900 MapLibre canvas, and the correct `mongol-empire` year filters for all three screenshots.
+- Console messages: none.
+- Bad HTTP responses: none.
+- Non-canceled network failures: none.
+
+Visual conclusion:
+
+- Production is healthy and has the new Mongol three-phase boundaries.
+- Rise, peak, and decline are visually distinct enough for the time slider to feel meaningful.
+- The remaining product issue is not deployment or data validation; it is visual topology. MultiPolygon internal edges still draw as visible lines. This should be the next boundary method problem before broad batch expansion.
