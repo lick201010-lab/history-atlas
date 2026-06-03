@@ -152,26 +152,26 @@ function applyBoundaryFocusPaint(map, theme, selectedId, hoveredId, compareIds) 
   if (map.getLayer('dynasty-territory-fill')) {
     map.setPaintProperty('dynasty-territory-fill', 'fill-opacity', boundaryOpacityExpression({
       focusIds,
-      refined: atlas ? 0.08 : 0.12,
-      plain: atlas ? 0.04 : 0.06,
-      mutedRefined: atlas ? 0.016 : 0.018,
+      refined: atlas ? 0.08 : 0.10,
+      plain: atlas ? 0.04 : 0.042,
+      mutedRefined: atlas ? 0.016 : 0.014,
       mutedPlain: atlas ? 0.01 : 0.01,
     }));
   }
   if (map.getLayer('dynasty-territory-glow')) {
     map.setPaintProperty('dynasty-territory-glow', 'line-opacity', boundaryOpacityExpression({
       focusIds,
-      refined: atlas ? 0.34 : 0.52,
-      plain: atlas ? 0.16 : 0.24,
-      mutedRefined: atlas ? 0.035 : 0.055,
-      mutedPlain: atlas ? 0.02 : 0.025,
+      refined: atlas ? 0.34 : 0.30,
+      plain: atlas ? 0.16 : 0.13,
+      mutedRefined: atlas ? 0.035 : 0.032,
+      mutedPlain: atlas ? 0.02 : 0.018,
     }));
   }
   if (map.getLayer('dynasty-territory-casing')) {
     map.setPaintProperty('dynasty-territory-casing', 'line-opacity', boundaryOpacityExpression({
       focusIds,
-      refined: atlas ? 0 : 0.72,
-      plain: atlas ? 0 : 0.46,
+      refined: atlas ? 0 : 0.28,
+      plain: atlas ? 0 : 0.18,
       mutedRefined: 0,
       mutedPlain: 0,
     }));
@@ -179,17 +179,17 @@ function applyBoundaryFocusPaint(map, theme, selectedId, hoveredId, compareIds) 
   if (map.getLayer('dynasty-territory-line')) {
     map.setPaintProperty('dynasty-territory-line', 'line-opacity', boundaryOpacityExpression({
       focusIds,
-      refined: atlas ? 0.94 : 0.86,
-      plain: atlas ? 0.55 : 0.42,
-      mutedRefined: atlas ? 0.11 : 0.12,
-      mutedPlain: atlas ? 0.055 : 0.055,
+      refined: atlas ? 0.94 : 0.62,
+      plain: atlas ? 0.55 : 0.28,
+      mutedRefined: atlas ? 0.11 : 0.075,
+      mutedPlain: atlas ? 0.055 : 0.034,
     }));
   }
   if (map.getLayer('dynasty-capital-glow')) {
-    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', focusCaseExpression(focusIds, atlas ? 0.2 : 0.34, atlas ? 0.035 : 0.045));
+    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', focusCaseExpression(focusIds, atlas ? 0.2 : 0.28, atlas ? 0.035 : 0.04));
   }
   if (map.getLayer('dynasty-capital-core')) {
-    map.setPaintProperty('dynasty-capital-core', 'circle-opacity', focusCaseExpression(focusIds, atlas ? 0.92 : 0.94, atlas ? 0.16 : 0.14));
+    map.setPaintProperty('dynasty-capital-core', 'circle-opacity', focusCaseExpression(focusIds, atlas ? 0.92 : 0.92, atlas ? 0.16 : 0.13));
   }
   if (map.getLayer('dynasty-capital-label')) {
     map.setPaintProperty('dynasty-capital-label', 'text-opacity', focusCaseExpression(focusIds, textBase, atlas ? 0 : 0.08));
@@ -348,16 +348,16 @@ const MapScene = forwardRef(function MapScene({
       map.setPaintProperty('dynasty-territory-fill', 'fill-opacity', 0.018);
     }
     if (map.getLayer('dynasty-territory-glow')) {
-      map.setPaintProperty('dynasty-territory-glow', 'line-opacity', 0.10);
-      map.setPaintProperty('dynasty-territory-glow', 'line-width', 2.0);
-      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 3.2);
+      map.setPaintProperty('dynasty-territory-glow', 'line-opacity', 0.07);
+      map.setPaintProperty('dynasty-territory-glow', 'line-width', 1.6);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 2.4);
     }
     if (map.getLayer('dynasty-territory-casing')) {
-      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', 0.18);
+      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', 0.13);
     }
     if (map.getLayer('dynasty-territory-line')) {
-      map.setPaintProperty('dynasty-territory-line', 'line-opacity', 0.24);
-      map.setPaintProperty('dynasty-territory-line', 'line-width', 0.9);
+      map.setPaintProperty('dynasty-territory-line', 'line-opacity', 0.18);
+      map.setPaintProperty('dynasty-territory-line', 'line-width', 0.75);
     }
     if (map.getLayer('dynasty-capital-glow')) {
       map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', 0.08);

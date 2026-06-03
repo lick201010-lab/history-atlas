@@ -146,3 +146,43 @@ npm run audit:visual-foundation
 - `himalaya-relief` 仍有强地形起伏，但能看到明显地形/瓦片切片感，尤其远景暗色楔形区域不应作为最终视觉接受。
 - `mediterranean-boundary-readability` 暴露出边界线层级偏荧光、偏开发调试图层的问题，后续 F1 必须先修这个层级，再继续批量精修边界。
 - 当前版本可作为线上里程碑和审计起点，不是最终完整版。
+
+## F1 pass 1 · 2026-06-04
+
+执行方式：
+
+- Codex 先落地 Final-Version Gate 工作流。
+- Claude 按 `.claude-runs/f1-visual-foundation-pass-execute-prompt.md` 做受控视觉修改。
+- Codex 复核 diff 后继续压低默认非聚焦边界层级。
+
+本轮修改：
+
+- 降低 dark 主题 ocean 色值，水面更深。
+- 降低 hillshade exaggeration、shadow、highlight、accent 强度，减少 relief 白噪声。
+- 收紧 boundary glow 的宽度、blur 和 opacity。
+- 降低 boundary casing 和默认 line opacity，让多文明并存时更像地图标注。
+- 降低 HUD 金色光晕和面板阴影。
+
+验证：
+
+```bash
+npm run check
+VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation
+```
+
+结果：
+
+- `npm run check`: passed。
+- `audit:visual-foundation`: failures `[]`。
+- bad responses: `0`。
+- page exceptions: `0`。
+- console errors: `0`。
+- non-canceled failures: `0`。
+
+人工结论：
+
+- `open-ocean-flatness` 海面更干净、更暗，基本保持平坦。
+- `mediterranean-boundary-readability` 边界荧光感降低，仍可读。
+- `central-america-readability` 玛雅边界更克制，不再过度抢海岸线。
+- `himalaya-relief` 山脉仍有起伏，但 relief 仍偏噪，远景地形/瓦片接缝仍是 F1 后续问题。
+- 本轮是 F1 进展，不是 F1 Gate 通过。

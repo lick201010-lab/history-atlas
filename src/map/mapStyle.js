@@ -313,25 +313,25 @@ export const THEME_PRESETS = {
     illuminationDirection: 315,
     // 深邃夜海：近黑藏蓝、全不透明盖掉海底浮雕——海越深越暗，让大陆从中浮起。
     // （黑色大理石夜地球：海近黑、陆稍亮的冷灰，全程冷调，靠明度差分离而非换色。）
-    ocean: '#050d18',
+    ocean: '#030a13',
     oceanMaskOpacity: 1,
     // 陆地不另铺色：保持冷调basemap本身，靠"陆比海亮 + 浮雕 + 发光海岸"刻清晰。
     landFillOpacity: 0,
     // 月光夜景浮雕：随 zoom 渐强的真实地势（世界视角已有体积感，区域视角山脉清晰）。
     // 强度对标 atlas，但走冷调，营造"地球夜景被冷月光斜照"的游戏级体积感。
-    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.45, 4, 0.85, 6, 1.1],
+    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.35, 4, 0.62, 6, 0.82],
     hillshade: {
       // 深蓝阴影 + 冷月光高光（青白）+ 冷青墨重音：让山脊一侧受光、一侧没入深蓝
-      shadow: 'rgba(1, 5, 14, 0.72)',
-      highlight: 'rgba(168, 205, 240, 0.58)',
-      accent: 'rgba(70, 110, 150, 0.42)',
+      shadow: 'rgba(2, 8, 18, 0.56)',
+      highlight: 'rgba(148, 190, 230, 0.42)',
+      accent: 'rgba(55, 95, 135, 0.30)',
     },
     // 第二层副光 hillshade（东南向、低强度冷调）：柔化硬阴影，增加多向体积层次
     hillshadeFill: {
-      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.3, 4, 0.5, 6, 0.65],
-      shadow: 'rgba(2, 10, 24, 0.26)',
-      highlight: 'rgba(190, 220, 250, 0.18)',
-      accent: 'rgba(60, 95, 135, 0.16)',
+      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.22, 4, 0.35, 6, 0.48],
+      shadow: 'rgba(2, 10, 24, 0.18)',
+      highlight: 'rgba(180, 210, 245, 0.12)',
+      accent: 'rgba(55, 85, 125, 0.10)',
     },
     sky: {
       // 深空基调 + 地平线冷青大气辉光（俯仰时露出"地球边缘辉光"）
@@ -346,16 +346,15 @@ export const THEME_PRESETS = {
       // 星图风发光轮廓：去掉填充色块（fill 仅作隐形点击域 + 极淡发光薄膜，地形透出），
       // 文明＝明亮发光边界（实线清亮边 + 向内淡入的霓虹辉光晕）。多文明并存时靠收窄的
       // 辉光 + 高对比清亮边分离，不再糊成色块。详见 applyBoundaryPaint dark 分支。
-      // 「默认低调·聚焦高亮」：平时所有国家只留一条清亮细边 + 极弱内晕 + 几乎不上色，
-      // 避免多国并存时宽发光带互相晕染串色；hover / 选中由专属图层让那一国亮色+填充浮起。
-      glowOpacityRefined: 0.18,
-      glowOpacityPlain: 0.1,
-      lineOpacityRefined: 0.85,
-      lineOpacityPlain: 0.45,
+      // F1 去荧光：默认只留一条细窄清亮边 + 收紧内晕，多国并存时不串色；
+      // hover / 选中由专属图层把那一国亮色+填充浮起。
+      glowOpacityRefined: 0.075,
+      glowOpacityPlain: 0.035,
+      lineOpacityRefined: 0.56,
+      lineOpacityPlain: 0.24,
       lineDash: [1, 0],
-      // 默认填充压到几乎隐形（只留一丝区域感），聚焦时再由 hover/selected 填充层补足。
-      fillOpacityRefined: 0.05,
-      fillOpacityPlain: 0.035,
+      fillOpacityRefined: 0.032,
+      fillOpacityPlain: 0.018,
     },
   },
   atlas: {
@@ -430,14 +429,13 @@ export function applyBoundaryPaint(map, themeKey) {
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 5, 3]);
       map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5);
     } else {
-      // dark 星图风：默认只留一道收窄的内晕（读作"领土点亮"的细边光），不再是宽发光带，
-      // 这样多国并存时不会互相晕染串色。真正的"亮起"交给 hover / selected 专属图层。
+      // F1 去荧光：收紧晕宽和 blur，多国并存时各文明边界不再互染成"开发图层荧光带"。
       map.setPaintProperty('dynasty-territory-glow', 'line-color', ['get', 'color']);
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr,
-        ['interpolate', ['linear'], ['zoom'], 2, 2, 5, 4.5],
-        ['interpolate', ['linear'], ['zoom'], 2, 1.3, 5, 2.6],
+        ['interpolate', ['linear'], ['zoom'], 2, 1.1, 5, 2.3],
+        ['interpolate', ['linear'], ['zoom'], 2, 0.6, 5, 1.2],
       ]);
-      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 4);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 2.0);
     }
     map.setPaintProperty('dynasty-territory-glow', 'line-opacity', [
       'case', isRefinedExpr, preset.boundary.glowOpacityRefined, preset.boundary.glowOpacityPlain,
@@ -451,12 +449,12 @@ export function applyBoundaryPaint(map, themeKey) {
       map.setPaintProperty('dynasty-territory-casing', 'line-opacity', 0);
     } else {
       map.setPaintProperty('dynasty-territory-casing', 'line-color', '#03070e');
-      map.setPaintProperty('dynasty-territory-casing', 'line-blur', 0.4);
+      map.setPaintProperty('dynasty-territory-casing', 'line-blur', 0.3);
       map.setPaintProperty('dynasty-territory-casing', 'line-width', ['case', isRefinedExpr,
-        ['interpolate', ['linear'], ['zoom'], 2, 1.6, 5, 3.0],
-        ['interpolate', ['linear'], ['zoom'], 2, 1.1, 5, 2.0],
+        ['interpolate', ['linear'], ['zoom'], 2, 1.0, 5, 1.8],
+        ['interpolate', ['linear'], ['zoom'], 2, 0.6, 5, 1.1],
       ]);
-      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', ['case', isRefinedExpr, 0.7, 0.45]);
+      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', ['case', isRefinedExpr, 0.28, 0.16]);
     }
   }
 
@@ -469,12 +467,12 @@ export function applyBoundaryPaint(map, themeKey) {
         'case', isRefinedExpr, 1.6, 1.0,
       ]);
     } else {
-      // dark 星图风：清亮亮核线（像星座连线），细锐高对比，是版图主读法；随 zoom 加粗。
+      // F1 去荧光：保持星图风细亮边，但收窄核线宽度避免多国串色。
       map.setPaintProperty('dynasty-territory-line', 'line-color', ['get', 'color']);
       map.setPaintProperty('dynasty-territory-line', 'line-blur', 0.25);
       map.setPaintProperty('dynasty-territory-line', 'line-width', ['case', isRefinedExpr,
-        ['interpolate', ['linear'], ['zoom'], 2, 1.0, 5, 2.2],
-        ['interpolate', ['linear'], ['zoom'], 2, 0.6, 5, 1.3],
+        ['interpolate', ['linear'], ['zoom'], 2, 0.65, 5, 1.5],
+        ['interpolate', ['linear'], ['zoom'], 2, 0.4, 5, 0.8],
       ]);
     }
     map.setPaintProperty('dynasty-territory-line', 'line-opacity', [
@@ -491,10 +489,10 @@ export function applyBoundaryPaint(map, themeKey) {
     map.setPaintProperty('dynasty-capital-core', 'circle-stroke-width', isAtlas ? 1.2 : 0.7);
   }
   if (map.getLayer('dynasty-capital-glow')) {
-    // dark：暖金 bloom，像点亮的城市灯火；atlas：朱砂淡晕，几乎不发光
+    // dark：暖金 bloom 收紧 blur，读作精准城市灯火而非模糊光斑
     map.setPaintProperty('dynasty-capital-glow', 'circle-color', isAtlas ? '#b3201b' : '#ffcf7a');
-    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.3);
-    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 1.3);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', isAtlas ? 0.18 : 0.22);
+    map.setPaintProperty('dynasty-capital-glow', 'circle-blur', isAtlas ? 0.3 : 0.9);
   }
   if (map.getLayer('dynasty-capital-label')) {
     // 都城名标注仅深色显示（atlas 冻结隐藏）——沿用 graticule 的 opacity=0 手法，

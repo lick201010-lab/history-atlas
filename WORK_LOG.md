@@ -879,3 +879,51 @@ Verification:
 - `npm run check` passed after F0 workflow files were added.
 - Validation still reports 43 dynasties, 91 boundaries, 30 landmarks, and 14 OK GLB assets.
 - Vite build passed with the existing large chunk warning.
+
+## 2026-06-04 F1 visual foundation pass 1
+
+Claude delegation:
+
+- First Claude call returned only a plan, which was rejected as an invalid batch because it did not edit files and did not address the real F1 map problems.
+- Second Claude call used `.claude-runs/f1-visual-foundation-pass-execute-prompt.md` and made a bounded implementation pass.
+
+Implementation:
+
+- `src/map/mapStyle.js`
+  - dark ocean deepened.
+  - hillshade exaggeration and highlight/shadow opacity reduced to lower terrain white-noise.
+  - boundary glow width, blur, opacity, casing, and line width reduced.
+  - capital glow tightened.
+- `src/components/MapScene.jsx`
+  - focus paint opacity recalibrated for the reduced boundary baseline.
+  - Codex further reduced default/focused non-selected boundary intensity after visual review.
+- `src/styles.css`
+  - HUD shadow, gold accent lines, year glow, and slider glow toned down.
+
+Verification:
+
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed:
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+- Reviewed updated screenshots:
+  - `docs/visual-qa/foundation-himalaya-relief.png`
+  - `docs/visual-qa/foundation-open-ocean-flatness.png`
+  - `docs/visual-qa/foundation-mediterranean-boundary-readability.png`
+  - `docs/visual-qa/foundation-central-america-readability.png`
+
+Visual result:
+
+- Ocean is cleaner, darker, and flatter.
+- Mediterranean and Central America boundary overlays are calmer and less fluorescent while still readable.
+- HUD glow is less workbench-like.
+- F1 Gate is not passed yet: mountain relief still reads noisy in places and distant terrain/tile seam artifacts remain visible.
+
+Next:
+
+- Commit and push F1 pass 1.
+- Optionally deploy the improvement after user-facing decision or after one more F1 terrain-seam pass.
+- Next F1 pass should target terrain/tile seam artifacts and mountain relief texture, not boundary opacity.

@@ -2,6 +2,8 @@
 
 Updated: 2026-06-04
 
+Status: F1 in progress. Pass 1 has improved ocean/boundary/HUD hierarchy, but the F1 Gate is not accepted yet.
+
 ## Phase Goal
 
 Make the map feel like a polished final visual foundation before expanding boundary data or landmark models.
@@ -77,6 +79,16 @@ F1 is not accepted until all are true:
 - Civilization boundaries no longer look like fluorescent debug geometry.
 - HUD does not dominate the map and reads as a finished atlas interface.
 - Results are recorded in `WORK_LOG.md`.
+
+## Latest Pass
+
+2026-06-04 F1 pass 1:
+
+- Claude made a bounded visual pass, then Codex tightened default boundary opacity further.
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
+- Foundation screenshots show cleaner ocean and calmer multi-civilization boundaries.
+- F1 remains open because mountain relief still reads noisy in places and distant terrain/tile seam artifacts remain visible.
 
 ## Next Phase Entry Rule
 

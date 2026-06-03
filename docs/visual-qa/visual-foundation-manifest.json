@@ -1,9 +1,9 @@
 {
-  "appUrl": "https://atlas.ckl.hk/",
-  "generatedAt": "2026-06-03T15:05:35.663Z",
+  "appUrl": "http://127.0.0.1:4174/",
+  "generatedAt": "2026-06-03T16:49:35.778Z",
   "ready": {
     "title": "历史沙盘 · Historical Atlas",
-    "url": "https://atlas.ckl.hk/",
+    "url": "http://127.0.0.1:4174/",
     "ready": true,
     "mapReady": true,
     "canvas": {
@@ -47,7 +47,7 @@
         "zoom": 5.05,
         "pitch": 65,
         "bearing": -35,
-        "tilesStable": false,
+        "tilesStable": true,
         "loadingVisible": false,
         "warningVisible": false,
         "warningText": null
