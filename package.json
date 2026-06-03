@@ -10,6 +10,7 @@
     "audit:glb": "node scripts/auditGlbAssets.mjs",
     "test:boundary-outlines": "node scripts/testBoundaryOutlines.mjs",
     "test:boundary-focus": "node scripts/testBoundaryFocus.mjs",
+    "smoke:release": "node scripts/releaseSmoke.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "check": "npm run validate:data && npm run test:boundary-outlines && npm run test:boundary-focus && npm run audit:glb && npm run build",
     "deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1"

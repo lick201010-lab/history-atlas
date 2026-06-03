@@ -623,3 +623,38 @@ Deployment and online QA:
 - Browser opened `https://atlas.ckl.hk/` and confirmed the page title `历史沙盘 · Historical Atlas`.
 - Saved online baseline screenshot: `docs/boundary-qa/focus-mode-online-basic.png`.
 - Online DOM automation for the full click path timed out twice in the in-app browser after the page was already reachable. Treat this as an automation limitation for the heavy MapLibre page, not a deployment failure. Full click-path QA passed locally against the same build before deployment.
+
+## 2026-06-03 Release readiness pass for 2026-06-04 launch
+
+Goal: move from feature work to launch readiness for the next-day public MVP launch.
+
+Implementation:
+
+- Added `scripts/releaseSmoke.mjs`.
+- Added `npm run smoke:release`.
+- Added `docs/RELEASE_READINESS_2026-06-04.md`.
+- The release smoke script opens `https://atlas.ckl.hk/` in headless Chrome via CDP and verifies both:
+  - desktop viewport `1440x900`
+  - mobile viewport `390x844`
+- It sets the timeline to `1250`, selects `玛雅文明`, checks that a civilization card opens instead of a landmark card, confirms loading overlay is gone, and records screenshots plus a manifest.
+
+Verification:
+
+- `npm run check` passed before the release smoke pass.
+- `npm run smoke:release` passed after the script was added and then corrected to wait for the loading overlay to disappear.
+- Smoke output:
+  - failures: `[]`
+  - bad responses: `0`
+  - page exceptions: `0`
+  - console errors: `0`
+  - non-canceled failures: `0`
+- Artifacts:
+  - `docs/release-qa/release-smoke-manifest.json`
+  - `docs/release-qa/release-desktop-1250-maya.png`
+  - `docs/release-qa/release-mobile-1250-maya.png`
+
+Launch conclusion:
+
+- Current production is acceptable for an MVP launch on 2026-06-04.
+- Do not start broad new boundary or GLB production before launch unless a real blocker appears.
+- Known limitations are documented in `docs/RELEASE_READINESS_2026-06-04.md`.
