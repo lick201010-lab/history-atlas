@@ -550,3 +550,20 @@ Visual conclusion:
 - Mongol peak is now much cleaner: the obvious internal random cuts are gone.
 - Mongol decline still shows separate regions, but that now reads as the intended four-khanate fragmentation rather than a broken peak border.
 - This does not solve every overlap between different active civilizations at the same year. In normal UI, other active territories can still cross visually. That is a separate product decision: whether to dim non-focused civilizations, isolate hovered/selected civilization, or add a compare mode.
+
+Deployment and online QA:
+
+- Committed `fix(boundaries): separate territory outlines` (`667f863`) and pushed to `main`.
+- Ran `npm run deploy`.
+- Deploy script reran `npm run check`; all checks passed.
+- `https://atlas.ckl.hk/`, random SPA fallback, and all 5 JS/CSS chunks returned `200`.
+- Ran `.claude-runs/capture-online-mongol-boundary.mjs`.
+- Saved updated `docs/boundary-qa/online-mongol-boundary-manifest.json`.
+- Online QA confirmed:
+  - `online-mongol-1220-rise-boundary`: `mapReady: true`
+  - `online-mongol-1250-peak-boundary`: `mapReady: true`
+  - `online-mongol-1300-decline-boundary`: `mapReady: true`
+  - bad responses: none
+  - non-canceled network failures: none
+  - console messages: none
+- Online visual result matches local: 1250 peak is unified and clean; 1300 remains intentionally fragmented.
