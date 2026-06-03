@@ -658,3 +658,43 @@ Launch conclusion:
 - Current production is acceptable for an MVP launch on 2026-06-04.
 - Do not start broad new boundary or GLB production before launch unless a real blocker appears.
 - Known limitations are documented in `docs/RELEASE_READINESS_2026-06-04.md`.
+
+## 2026-06-03 Public docs cleanup for launch
+
+Goal: make the public repository documents usable for the 2026-06-04 MVP launch and remove stale local-path / script wording.
+
+Implementation:
+
+- Rewrote `README.md` as the current public project overview.
+- Rewrote `docs/ACCEPTANCE.md` as the launch-day acceptance checklist.
+- Rewrote `docs/KNOWN_ISSUES.md` as the current MVP limitation and risk register.
+- Kept the docs aligned with the present scripts:
+  - `npm run check`
+  - `npm run smoke:release`
+  - `npm run deploy`
+- Clarified that the active project root is `D:\松君\项目\历史网站`, not the old C drive workspace path.
+
+Verification plan:
+
+- `npm run check` passed after the docs cleanup:
+  - data validation: 43 dynasties / 91 boundaries / 30 landmarks / 5 refined samples.
+  - boundary outline test: passed.
+  - boundary focus test: passed.
+  - GLB audit: `14 OK / 0 WARN / 0 FAIL`.
+  - Vite build: passed with only the known large chunk warning.
+- `npm run smoke:release` passed against `https://atlas.ckl.hk/`:
+  - desktop `1440x900`: opened year `1250` and selected `玛雅文明`.
+  - mobile `390x844`: opened year `1250` and selected `玛雅文明`.
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+- Reviewed the generated desktop and mobile screenshots manually.
+- Commit and push the documentation cleanup after both gates pass.
+
+Launch discipline:
+
+- Tomorrow's target is a stable MVP launch, not feature expansion.
+- Before launch, only fix hard blockers or obvious P1 visual/runtime defects.
+- Broad boundary expansion, new GLB batches, and major visual redesign should wait until the first public version is safely online.

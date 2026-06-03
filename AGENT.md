@@ -68,6 +68,21 @@ back to the user. Use this autonomy carefully: verify before changing, keep
 write scopes narrow, avoid destructive commands, and record validation/follow-up
 work in `WORK_LOG.md` and the Obsidian project notes.
 
+When the user has set an explicit launch deadline, release gates outrank new
+feature expansion. Before launch, prioritize only:
+
+- production access failures;
+- failing `npm run check`;
+- failing `npm run smoke:release`;
+- serious runtime console errors or page exceptions;
+- mobile paths that cannot open the core civilization/landmark cards;
+- obvious P1 visual defects such as inverted/floating landmarks or severe
+  boundary/terrain breakage.
+
+Do not start broad boundary batches, new GLB production, map engine changes, or
+large visual redesigns before the deadline unless they directly fix one of those
+release blockers.
+
 ## Current Deployment Preference
 
 - Use GitHub as the source repository.

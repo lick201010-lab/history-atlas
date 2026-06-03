@@ -24,6 +24,7 @@ The current build is suitable for a first public launch as a visual historical a
 | Release smoke mobile | Pass | `npm run smoke:release` mobile run opened year 1250 and selected Maya civilization. |
 | Console/runtime errors | Pass | Release smoke found 0 console errors and 0 page exceptions. |
 | App asset 400+ responses | Pass | Release smoke found 0 bad app responses. |
+| Public docs | Pass | README, acceptance checklist, known issues, work log, and Obsidian notes were updated for the launch workflow. |
 
 ## Release Smoke Evidence
 
@@ -72,7 +73,7 @@ These are acceptable for the first public launch and should not block tomorrow's
 - Vite still reports large chunk warnings because MapLibre and Three.js are heavy.
 - 3D landmarks are stylized low-poly miniatures, not final museum-grade models.
 - Desktop can have wide fixed HUD layout, but mobile release smoke shows no horizontal overflow.
-- Older internal docs may contain stale wording; this release report is the authoritative launch note.
+- This report, `README.md`, `docs/ACCEPTANCE.md`, and `docs/KNOWN_ISSUES.md` are the authoritative launch docs.
 
 ## Do Not Start Before Launch
 
@@ -97,8 +98,8 @@ Avoid these before the first public launch unless a blocking bug appears:
 
 ## Next Work After Launch
 
-1. Improve release/acceptance docs that still contain old garbled terminal-rendered text.
-2. Run another GLB visual QA pass on the public site rather than local only.
-3. Refine the weakest 1-2 landmark models if public feedback notices them.
-4. Continue boundary precision work in small batches.
-5. Add source/citation fields to priority civilizations.
+1. Run another GLB visual QA pass on the public site rather than local only.
+2. Refine the weakest 1-2 landmark models if public feedback notices them.
+3. Continue boundary precision work in small batches.
+4. Add source/citation fields to priority civilizations.
+5. Plan performance chunking and tile-cache work after the MVP is stable.
