@@ -733,10 +733,12 @@ const MapScene = forwardRef(function MapScene({
       }
     }
 
+    let mapIsReady = false;
     let readyFallback = window.setTimeout(() => markMapReady(), 4500);
     let warningTimer = null;
 
     function markMapReady() {
+      mapIsReady = true;
       window.clearTimeout(readyFallback);
       readyFallback = null;
       // 底图瓦片已绘出，放行 3D 建筑渲染（之前一直被 _baseReady 门控隐藏），
@@ -744,6 +746,11 @@ const MapScene = forwardRef(function MapScene({
       buildingLayerRef.current?.setBaseReady?.(true);
       setMapReady(true);
       // 地图就绪后清掉"加载较慢"的提示——瓦片已补齐，横幅不该再占着首屏中心。
+      if (warningTimer) { window.clearTimeout(warningTimer); warningTimer = null; }
+      setMapWarning('');
+    }
+
+    function clearMapWarning() {
       if (warningTimer) { window.clearTimeout(warningTimer); warningTimer = null; }
       setMapWarning('');
     }
@@ -760,12 +767,20 @@ const MapScene = forwardRef(function MapScene({
 
     function handleMapError(event) {
       const sourceId = event?.sourceId || event?.source?.id || '';
+      const errorText = String(event?.error?.message || event?.error || '');
+      if (/abort|cancel/i.test(errorText)) return;
       // 只对底图 / 地形瓦片源报警（底图源实际命名为 osm-tiles-dark / osm-tiles-atlas）。
       if (sourceId.startsWith('osm-tiles') || sourceId.includes('terrain')) {
-        setMapWarning('地图瓦片加载较慢，沙盘仍可操作；如地形短暂缺失，稍后会自动补齐。');
-        // 兜底自动消失：即使后续没有明确的就绪信号，6s 后也收起横幅。
         if (warningTimer) window.clearTimeout(warningTimer);
-        warningTimer = window.setTimeout(() => { setMapWarning(''); warningTimer = null; }, 6000);
+        warningTimer = window.setTimeout(() => {
+          const tilesStable = map.areTilesLoaded?.() ?? false;
+          if (!mapIsReady || !tilesStable) {
+            setMapWarning('地图瓦片加载较慢，沙盘仍可操作；如地形短暂缺失，稍后会自动补齐。');
+            warningTimer = window.setTimeout(() => { setMapWarning(''); warningTimer = null; }, 5000);
+          } else {
+            warningTimer = null;
+          }
+        }, mapIsReady ? 5000 : 1800);
       }
     }
 
@@ -877,6 +892,7 @@ const MapScene = forwardRef(function MapScene({
       map.once('idle', initBuildingLayer);
     }
     map.once('idle', markMapReady);
+    map.on('idle', clearMapWarning);
     map.on('sourcedata', handleBaseSourceData);
     map.on('error', handleMapError);
     map.on('mousemove', handleMouseMove);
@@ -895,6 +911,7 @@ const MapScene = forwardRef(function MapScene({
       map.off('load', initBuildingLayer);
       map.off('styledata', initBuildingLayer);
       map.off('sourcedata', handleBaseSourceData);
+      map.off('idle', clearMapWarning);
       map.off('error', handleMapError);
       map.off('mousemove', handleMouseMove);
       map.off('click', handleClick);

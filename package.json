@@ -8,6 +8,7 @@
     "build": "vite build",
     "validate:data": "node scripts/validateHistoricalData.mjs",
     "audit:glb": "node scripts/auditGlbAssets.mjs",
+    "audit:visual-foundation": "node scripts/visualFoundationAudit.mjs",
     "test:boundary-outlines": "node scripts/testBoundaryOutlines.mjs",
     "test:boundary-focus": "node scripts/testBoundaryFocus.mjs",
     "smoke:release": "node scripts/releaseSmoke.mjs",

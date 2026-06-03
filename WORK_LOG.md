@@ -772,3 +772,42 @@ Collaboration split:
 
 - Codex owns final standard, integration, browser QA, deployment, and rejecting weak batches.
 - Claude should be used for bounded implementation batches: MapLibre/CSS visual passes, boundary generation batches, and individual GLB modeling scripts.
+
+## 2026-06-03 F1 visual foundation audit started
+
+Goal: start final-version F1 by creating repeatable visual evidence instead of arguing from subjective impressions.
+
+Implementation:
+
+- Added `scripts/visualFoundationAudit.mjs`.
+- Added `npm run audit:visual-foundation`.
+- Added `docs/visual-qa/FOUNDATION_AUDIT_2026-06-03.md`.
+- The audit captures four fixed map views:
+  - Himalaya relief clarity.
+  - Open ocean flatness.
+  - Mediterranean terrain/boundary readability.
+  - Central America coast/territory readability.
+- The audit waits for React year state and tile stability where possible, and records `yearStable`, `tilesStable`, and warning state in the manifest.
+
+Bug fix:
+
+- `src/components/MapScene.jsx` no longer shows the map tile warning for normal abort/cancel tile requests.
+- Tile warnings are delayed after map readiness and cleared on map idle, so normal camera jumps do not leave a central warning banner in final visual screenshots.
+
+Verification:
+
+- `npm run check` passed after the MapScene warning fix.
+- Local preview at `http://127.0.0.1:4173/` returned `200`.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4173/ npm run audit:visual-foundation` passed:
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+
+Visual findings:
+
+- Ocean is mostly flat and usable, but still not final-polished.
+- Himalaya relief is strong, but visible tile/terrain cut seams remain.
+- Mediterranean multi-civilization boundaries still read too much like glowing debug layers.
+- The next implementation step should be a Claude visual-foundation pass, not more data/model expansion.
