@@ -811,3 +811,37 @@ Visual findings:
 - Himalaya relief is strong, but visible tile/terrain cut seams remain.
 - Mediterranean multi-civilization boundaries still read too much like glowing debug layers.
 - The next implementation step should be a Claude visual-foundation pass, not more data/model expansion.
+
+## 2026-06-03 F1 production audit recorded
+
+User clarified again that the target is the final complete version, not an MVP-ready release.
+
+Production status:
+
+- `https://atlas.ckl.hk/` is online and reachable.
+- `npm run smoke:release` passed against production:
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+- `npm run audit:visual-foundation` passed against production:
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+
+Visual QA:
+
+- The false-positive tile warning banner is fixed on production foundation screenshots.
+- Ocean is materially improved from the early "mountains in the sea" state, but not final-quality water yet.
+- Land relief is strong, especially around the Himalaya, but terrain/tile seam artifacts remain visible.
+- Mediterranean boundary stacking still reads too much like fluorescent debug geometry.
+- The current site is a deployed milestone and F1 evidence baseline, not the final complete product.
+
+Next implementation step:
+
+- Assign a bounded Claude visual-foundation pass before more data/model expansion.
+- Scope should stay limited to MapLibre paint/style, CSS visual hierarchy, terrain/hillshade/water masking strategy, and boundary readability.
+- Do not let Claude touch `src/data/*.json`, GLB assets, deploy scripts, or broad product behavior in this pass.

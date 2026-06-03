@@ -114,3 +114,35 @@ Codex 验收：
 - 不批量重做 43 个文明边界。
 - 不批量新增 GLB。
 - 不为了古地图感牺牲清晰度。
+
+## 线上复核 · 2026-06-03
+
+线上地址：
+
+```text
+https://atlas.ckl.hk/
+```
+
+命令：
+
+```bash
+npm run smoke:release
+npm run audit:visual-foundation
+```
+
+自动结果：
+
+- release smoke failures: `[]`
+- visual foundation failures: `[]`
+- bad responses: `0`
+- page exceptions: `0`
+- console errors: `0`
+- non-canceled failures: `0`
+
+复核结论：
+
+- 线上版本已经同步 `MapScene` 的瓦片提示误报修复，四张 foundation 截图里不再出现中心警告横幅。
+- `open-ocean-flatness` 基本达到“海洋平、深、干净”的当前基线，但水面质感仍未达到最终作品级。
+- `himalaya-relief` 仍有强地形起伏，但能看到明显地形/瓦片切片感，尤其远景暗色楔形区域不应作为最终视觉接受。
+- `mediterranean-boundary-readability` 暴露出边界线层级偏荧光、偏开发调试图层的问题，后续 F1 必须先修这个层级，再继续批量精修边界。
+- 当前版本可作为线上里程碑和审计起点，不是最终完整版。
