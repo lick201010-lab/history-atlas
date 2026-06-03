@@ -33,7 +33,8 @@ paste prompts manually. This machine has Claude Code CLI available as
 project root:
 
 ```powershell
-type .claude-runs\<task>-prompt.md | claude.cmd -p --permission-mode bypassPermissions --dangerously-skip-permissions --output-format text
+$prompt = Get-Content -Raw -Encoding UTF8 .claude-runs\<task>-prompt.md
+claude.cmd -p $prompt --permission-mode bypassPermissions --dangerously-skip-permissions --output-format text
 ```
 
 Use `.claude-runs/` for local prompt and output logs; it is ignored by Git.
@@ -41,6 +42,24 @@ Keep Claude's write scope narrow and explicit. For example, GLB asset work
 should be limited to the matching `scripts/build*Glb.mjs` file and generated
 `public/models/*.glb`, while Codex keeps ownership of validation, screenshots,
 documentation, Git review, and integration.
+
+Prefer UTF-8 prompt files over piping Chinese text directly into Claude. A
+2026-06-03 smoke test showed the Claude CLI itself works, but direct PowerShell
+pipe input can garble Chinese text. ASCII pipe input is fine; Chinese delegation
+prompts should use `Get-Content -Raw -Encoding UTF8`.
+
+## Goal Mode And Permissions
+
+The active project goal is to complete the history-atlas polish and bug-fix
+work into a refined, stable full version. When goal mode is active, Codex should
+continue autonomously until the current slice is verified, documented, and
+committed, or until a genuine external blocker appears.
+
+The current workspace is configured for no approval prompts (`approval_policy:
+never`, full filesystem access). Do not bounce ordinary permission questions
+back to the user. Use this autonomy carefully: verify before changing, keep
+write scopes narrow, avoid destructive commands, and record validation/follow-up
+work in `WORK_LOG.md` and the Obsidian project notes.
 
 ## Current Deployment Preference
 

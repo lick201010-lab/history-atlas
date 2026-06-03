@@ -282,3 +282,24 @@ Codex 补充：
 
 下一优先级：
 - 朝代边界贴合专项。当前模型观赏路径已够干净，整体粗糙感主要来自边界跨海、海岸线错位和粗面片。
+## 2026-06-03 Goal mode and Claude direct-call setup
+
+Codex confirmed the active project goal is still running:
+
+- Objective: finish the history-atlas polish and bug-fix work into a refined, stable full version.
+- Current workspace permissions: no approval prompts, full filesystem access.
+
+Claude Code direct delegation was verified locally:
+
+- Command: `claude.cmd`
+- Version: `2.1.138`
+- Minimal ASCII non-interactive smoke test returned `CLAUDE_DIRECT_OK`.
+- Chinese prompt text should be sent through UTF-8 prompt files, not direct PowerShell pipe input, because a pipe smoke test garbled Chinese text.
+
+Project notes updated:
+
+- `AGENT.md`
+- Obsidian `08-GitHub与协作分工.md`
+- Obsidian `12-Claude任务提示词模板.md`
+
+Operational rule: when a future task is clearly better suited to Claude Code, Codex should directly create a narrow `.claude-runs/<task>-prompt.md`, call Claude from the project root, then own validation, screenshots, documentation, Git review, and integration.
