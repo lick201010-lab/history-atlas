@@ -186,3 +186,40 @@ VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation
 - `central-america-readability` 玛雅边界更克制，不再过度抢海岸线。
 - `himalaya-relief` 山脉仍有起伏，但 relief 仍偏噪，远景地形/瓦片接缝仍是 F1 后续问题。
 - 本轮是 F1 进展，不是 F1 Gate 通过。
+
+## F1 pass 2 · 2026-06-04
+
+目标：
+
+- 不再继续压边界。
+- 专门降低 dark 主题 hillshade 噪声。
+- 保持 3D terrain 隆起，但让山地体积更多依赖几何形体，而不是高亮纹理。
+
+修改：
+
+- dark 主题主 hillshade exaggeration 从 `0.32/0.54/0.72` 进一步压低高光、阴影和 accent 透明度。
+- dark 主题副 hillshade exaggeration 降到 `0.14/0.22/0.32`，副光只做柔化，不再增加明显纹理噪声。
+- 山脉模式保留 `MOUNTAIN_TERRAIN_EXAGGERATION = 2.6`，但 dark hillshade 山脉模式从 `1.35` 降到 `0.95`。
+
+验证：
+
+```bash
+npm run check
+VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation
+```
+
+结果：
+
+- `npm run check`: passed。
+- `audit:visual-foundation`: failures `[]`。
+- bad responses: `0`。
+- page exceptions: `0`。
+- console errors: `0`。
+- non-canceled failures: `0`。
+
+人工结论：
+
+- 喜马拉雅仍有地形体积，没有被压平。
+- relief 白噪声较 pass 1 更柔。
+- 海洋仍保持平、深、干净。
+- 远景暗楔形/接缝 artifact 仍可见，因此 F1 Gate 仍未通过。

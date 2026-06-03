@@ -2,7 +2,7 @@
 
 Updated: 2026-06-04
 
-Status: F1 in progress. Pass 1 has improved ocean/boundary/HUD hierarchy, but the F1 Gate is not accepted yet.
+Status: F1 in progress. Passes 1-2 have improved ocean, boundary, HUD, and hillshade hierarchy, but the F1 Gate is not accepted yet.
 
 ## Phase Goal
 
@@ -89,6 +89,14 @@ F1 is not accepted until all are true:
 - `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
 - Foundation screenshots show cleaner ocean and calmer multi-civilization boundaries.
 - F1 remains open because mountain relief still reads noisy in places and distant terrain/tile seam artifacts remain visible.
+
+2026-06-04 F1 pass 2:
+
+- Codex reduced dark-theme hillshade high lights, accent color, and secondary hillshade intensity.
+- Mountain mode keeps 3D terrain exaggeration but uses lower hillshade exaggeration so shape carries the relief instead of bright texture noise.
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
+- F1 remains open because the distant dark wedge/seam artifact is still visible in fixed audit views.
 
 ## Next Phase Entry Rule
 

@@ -927,3 +927,42 @@ Next:
 - Commit and push F1 pass 1.
 - Optionally deploy the improvement after user-facing decision or after one more F1 terrain-seam pass.
 - Next F1 pass should target terrain/tile seam artifacts and mountain relief texture, not boundary opacity.
+
+## 2026-06-04 F1 visual foundation pass 2
+
+Reason:
+
+- F1 pass 1 improved ocean, boundaries, and HUD, but the Himalaya view still had relief noise and distant terrain/tile seam artifacts.
+- Pass 2 intentionally avoided more boundary tuning and targeted hillshade only.
+
+Implementation:
+
+- `src/map/mapStyle.js`
+  - dark theme hillshade exaggeration lowered again.
+  - dark hillshade shadow/highlight/accent opacities reduced.
+  - secondary hillshade intensity lowered so it softens terrain without adding white-noise texture.
+  - mountain mode keeps `MOUNTAIN_TERRAIN_EXAGGERATION = 2.6`, but dark hillshade mountain-mode exaggeration drops to `0.95`.
+
+Verification:
+
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed:
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+- Reviewed the four foundation screenshots again.
+
+Visual result:
+
+- Himalaya relief remains visible and is less noisy.
+- Ocean remains flat and clean.
+- Boundaries from pass 1 remain readable and calmer.
+- F1 Gate still is not accepted because the distant dark wedge/seam artifact remains visible in fixed audit views.
+
+Next:
+
+- Commit and push F1 pass 2.
+- Do not deploy as a final visual state.
+- F1 pass 3 should investigate the dark wedge/seam source: basemap tile coverage, horizon/fog/sky transition, terrain tile loading, or a deliberate far-distance mask strategy.

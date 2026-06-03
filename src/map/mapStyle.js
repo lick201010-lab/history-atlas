@@ -319,19 +319,19 @@ export const THEME_PRESETS = {
     landFillOpacity: 0,
     // 月光夜景浮雕：随 zoom 渐强的真实地势（世界视角已有体积感，区域视角山脉清晰）。
     // 强度对标 atlas，但走冷调，营造"地球夜景被冷月光斜照"的游戏级体积感。
-    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.35, 4, 0.62, 6, 0.82],
+    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.32, 4, 0.54, 6, 0.72],
     hillshade: {
       // 深蓝阴影 + 冷月光高光（青白）+ 冷青墨重音：让山脊一侧受光、一侧没入深蓝
-      shadow: 'rgba(2, 8, 18, 0.56)',
-      highlight: 'rgba(148, 190, 230, 0.42)',
-      accent: 'rgba(55, 95, 135, 0.30)',
+      shadow: 'rgba(2, 8, 18, 0.50)',
+      highlight: 'rgba(138, 182, 224, 0.34)',
+      accent: 'rgba(50, 88, 130, 0.24)',
     },
     // 第二层副光 hillshade（东南向、低强度冷调）：柔化硬阴影，增加多向体积层次
     hillshadeFill: {
-      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.22, 4, 0.35, 6, 0.48],
-      shadow: 'rgba(2, 10, 24, 0.18)',
-      highlight: 'rgba(180, 210, 245, 0.12)',
-      accent: 'rgba(55, 85, 125, 0.10)',
+      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.14, 4, 0.22, 6, 0.32],
+      shadow: 'rgba(2, 10, 24, 0.12)',
+      highlight: 'rgba(172, 204, 240, 0.07)',
+      accent: 'rgba(55, 85, 125, 0.06)',
     },
     sky: {
       // 深空基调 + 地平线冷青大气辉光（俯仰时露出"地球边缘辉光"）
@@ -616,7 +616,7 @@ export function setTerrainMode(map, mode, themeKey) {
   if (map.getLayer('terrain-shade')) {
     // 两个主题都始终开启随 zoom 渐强的浮雕；山脉模式再加一档雕刻感。
     let exaggeration = activePreset.hillshadeExaggeration ?? 0.95;
-    if (isMountain) exaggeration = 1.35;
+    if (isMountain) exaggeration = isAtlas ? 1.18 : 0.95;
     map.setPaintProperty('terrain-shade', 'hillshade-exaggeration', exaggeration);
   }
   // 第二层副光 hillshade：两个主题都跟随各自 preset
