@@ -257,3 +257,28 @@ Codex 补充：
   1. 做 immersive inspection mode：选中奇观时临时隐藏 HUD/时间轴，进入更干净的观赏状态；
   2. 做朝代边界贴合专项：集中解决跨海乱描、海岸线错位、面片过粗。
 - 从用户最近反馈看，边界贴合和海洋/陆地清晰度仍是整体观感短板；如果继续按“精美完整版”推进，建议先做 immersive inspection mode 的小步版本，再进入边界贴合专项。
+
+## 2026-06-03 奇观沉浸观赏模式 MVP
+
+本轮由 Codex 直接完成，属于交互/视觉修缮，不需要 Claude。
+
+已改动：
+- `src/App.jsx`：新增 `landmarkImmersive` 状态；选中奇观后可切换沉浸观赏；关闭奇观、切换到文明卡或年份使奇观失效时自动退出；支持 `Escape` 退出。
+- `src/components/LandmarkCard.jsx`：新增 `沉浸 / 退出` 按钮，保留 `定位` 和关闭。
+- `src/styles.css`：`body.landmark-immersive` 下隐藏标题、视角按钮、图层/搜索、筛选、信息面板、时代叙事、对比面板和时间轴；建筑卡收缩为底部小铭牌。
+- `src/styles-mobile.css`：手机沉浸模式下小铭牌固定在底部，退出按钮不出屏。
+
+验收：
+- `npm run check` 通过。
+- 桌面截图：`docs/glb-visual-qa/immersive-mode-hagia-sophia-desktop.png`。
+- 桌面 manifest：`docs/glb-visual-qa/immersive-mode-hagia-sophia-desktop-manifest.json`。
+- 手机截图：`docs/glb-visual-qa/immersive-mode-hagia-sophia-mobile.png`。
+- 手机 manifest：`docs/glb-visual-qa/immersive-mode-hagia-sophia-mobile-manifest.json`。
+
+视觉结论：
+- MVP 通过。选中奇观后可以一键进入干净观赏画面，HUD 与时间轴不再遮挡模型。
+- 沉浸模式不是自动触发，而是卡片按钮触发；这是刻意选择，避免用户在普通探索时突然丢失列表和时间轴。
+- 仍不是最终“电影镜头”模式：后续可加缓慢 orbit、聚光/轮廓光、或观赏视角预设队列。
+
+下一优先级：
+- 朝代边界贴合专项。当前模型观赏路径已够干净，整体粗糙感主要来自边界跨海、海岸线错位和粗面片。

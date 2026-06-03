@@ -29,6 +29,7 @@ export default function App() {
   });
   const [selectedDynastyId, setSelectedDynastyId] = useState(null);
   const [selectedLandmarkId, setSelectedLandmarkId] = useState(null);
+  const [landmarkImmersive, setLandmarkImmersive] = useState(false);
   // 共享悬停态：地图疆域 ↔ 右侧文明列表 双向高亮联动的单一数据源。
   const [hoveredDynastyId, setHoveredDynastyId] = useState(null);
   const [locked, setLocked] = useState(false);
@@ -130,7 +131,11 @@ export default function App() {
     setSelectedDynastyId(null);
     setLocked(false);
   }, []);
-  const closeLandmarkCard = useCallback(() => setSelectedLandmarkId(null), []);
+  const closeLandmarkCard = useCallback(() => {
+    setSelectedLandmarkId(null);
+    setLandmarkImmersive(false);
+  }, []);
+  const toggleLandmarkImmersive = useCallback(() => setLandmarkImmersive((v) => !v), []);
   const toggleLock = useCallback(() => setLocked((v) => !v), []);
 
   // When the year changes, auto-close non-locked card.
@@ -142,6 +147,7 @@ export default function App() {
       const selected = landmarksById.get(selectedLandmarkId);
       if (selected && (year < selected.startYear || year > selected.endYear)) {
         setSelectedLandmarkId(null);
+        setLandmarkImmersive(false);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,14 +157,29 @@ export default function App() {
   useEffect(() => {
     const cls = document.body.classList;
     cls.toggle('has-card', !!boundaryCard || !!selectedLandmark);
+    cls.toggle('landmark-immersive', !!selectedLandmark && landmarkImmersive);
     cls.toggle('has-compare', compareIds.length > 0);
     cls.toggle('filter-active', filterActive);
     return () => {
       cls.remove('has-card');
+      cls.remove('landmark-immersive');
       cls.remove('has-compare');
       cls.remove('filter-active');
     };
-  }, [boundaryCard, selectedLandmark, compareIds.length, filterActive]);
+  }, [boundaryCard, selectedLandmark, landmarkImmersive, compareIds.length, filterActive]);
+
+  useEffect(() => {
+    if (!selectedLandmarkId) setLandmarkImmersive(false);
+  }, [selectedLandmarkId]);
+
+  useEffect(() => {
+    if (!landmarkImmersive) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setLandmarkImmersive(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [landmarkImmersive]);
 
   // openDynasty by id or full object. Optionally fly to it.
   const openDynasty = useCallback((dynastyOrId, opts = {}) => {
@@ -168,6 +189,7 @@ export default function App() {
     if (!dynasty) return;
     setSelectedDynastyId(dynasty.id);
     setSelectedLandmarkId(null);
+    setLandmarkImmersive(false);
     if (opts.fly !== false) {
       mapSceneRef.current?.flyToDynasty(dynasty);
     }
@@ -182,6 +204,7 @@ export default function App() {
       : landmarkOrId;
     if (!landmark) return;
     setSelectedLandmarkId(landmark.id);
+    setLandmarkImmersive(false);
     setSelectedDynastyId(null);
     setLocked(false);
     if (opts.fly !== false) {
@@ -337,8 +360,10 @@ export default function App() {
       <LandmarkCard
         landmark={selectedLandmark}
         dynastyById={dynastyById}
+        immersive={landmarkImmersive}
         onClose={closeLandmarkCard}
         onFlyTo={flyToBuilding}
+        onToggleImmersive={toggleLandmarkImmersive}
       />
 
       <ComparePanel

@@ -1013,6 +1013,23 @@ input[type="range"]::-moz-range-thumb {
   letter-spacing: 1px;
 }
 
+.landmark-inspect {
+  position: static;
+  width: auto;
+  min-width: 42px;
+  padding: 0 9px;
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.landmark-card.is-immersive .landmark-inspect {
+  color: var(--text);
+  border-color: rgba(227, 194, 122, 0.52);
+  background: rgba(227, 194, 122, 0.12);
+  box-shadow: 0 0 12px rgba(227, 194, 122, 0.18);
+}
+
 .landmark-kicker {
   margin: 2px 70px 7px 0;
   color: var(--landmark-accent, var(--gold));
@@ -2642,6 +2659,75 @@ body.filter-active .info-panel .count {
 }
 body.filter-active .info-panel .count span {
   color: var(--gold);
+}
+
+/* --- 奇观沉浸观赏模式：隐藏工作流 HUD，保留小型建筑铭牌 --- */
+body.landmark-immersive .title,
+body.landmark-immersive .top-right,
+body.landmark-immersive .layer-controls,
+body.landmark-immersive .filter-panel,
+body.landmark-immersive .info-panel,
+body.landmark-immersive .era-narrative,
+body.landmark-immersive .timeline,
+body.landmark-immersive .compare-panel,
+body.landmark-immersive .compare-notice {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+body.landmark-immersive .timeline {
+  transform: translateY(16px) scale(0.98);
+}
+
+body.landmark-immersive .landmark-card {
+  left: 24px;
+  right: auto;
+  top: auto;
+  bottom: 24px;
+  width: min(360px, calc(100vw - 48px));
+  max-height: none;
+  padding: 14px 14px 14px 18px;
+  overflow: visible;
+  background: linear-gradient(180deg, rgba(8, 12, 20, 0.82), rgba(4, 8, 14, 0.72));
+  border-color: rgba(227, 194, 122, 0.35);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.50), 0 0 22px color-mix(in srgb, var(--landmark-accent) 24%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+body.landmark-immersive .landmark-card::before {
+  top: 12px;
+  bottom: 12px;
+}
+
+body.landmark-immersive .landmark-card-actions {
+  top: 10px;
+  right: 10px;
+}
+
+body.landmark-immersive .landmark-kicker,
+body.landmark-immersive .landmark-summary,
+body.landmark-immersive .landmark-grid,
+body.landmark-immersive .landmark-related,
+body.landmark-immersive .landmark-source {
+  display: none;
+}
+
+body.landmark-immersive .landmark-name {
+  margin: 0 126px 8px 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+body.landmark-immersive .landmark-meta {
+  margin-bottom: 0;
+  gap: 6px;
+}
+
+body.landmark-immersive .landmark-meta span {
+  padding: 3px 7px;
+  font-size: 10px;
 }
 
 /* --- 滚动条统一 --- */

@@ -78,6 +78,16 @@ Codex added a lightweight selected-landmark focus mode so users can inspect one 
 - Petra QA: [focus screenshot](glb-visual-qa/focus-mode-petra.png).
 - Verdict: Pass for MVP interaction quality. It makes model inspection cleaner and reduces the Beijing-area Great Wall / Forbidden City collision. Remaining polish: a future immersive inspection mode could temporarily hide HUD panels too; the current mode keeps the normal panels visible for workflow continuity.
 
+## 2026-06-03 Immersive Inspection Mode
+
+Codex added an explicit immersive toggle to the landmark card. Selecting a landmark still opens the normal workflow card first; pressing `沉浸` hides the title, top controls, layer/search panel, filter panel, info panel, era narrative, compare panel, and timeline while keeping the selected GLB, map frame, map label, and a compact landmark nameplate with `定位` / `退出` controls.
+
+- `npm run check`: passed.
+- Desktop QA: [screenshot](glb-visual-qa/immersive-mode-hagia-sophia-desktop.png), [manifest](glb-visual-qa/immersive-mode-hagia-sophia-desktop-manifest.json).
+- Mobile QA: [screenshot](glb-visual-qa/immersive-mode-hagia-sophia-mobile.png), [manifest](glb-visual-qa/immersive-mode-hagia-sophia-mobile-manifest.json).
+- Manifest evidence: both desktop and mobile entered `body.has-card.landmark-immersive`; `.timeline`, `.info-panel`, `.layer-controls`, and `.title` had `opacity: 0` and `pointer-events: none`; the compact landmark card remained visible with an exit button.
+- Verdict: Pass for MVP presentation polish. This removes the largest HUD obstruction during close landmark inspection without breaking the normal exploration workflow. Remaining polish: later work can add a smooth camera orbit or cinematic lighting state, but static inspection is now clean enough for user review.
+
 ## 2026-06-03 Forbidden City Follow-Up
 
 Claude rebuilt `forbidden-city.glb` via `scripts/buildForbiddenCityGlb.mjs`. Codex re-ran the full check and captured a fresh focus-mode screenshot.
@@ -109,10 +119,10 @@ Claude rebuilt `forbidden-city.glb` via `scripts/buildForbiddenCityGlb.mjs`. Cod
 
 ## Priority Order
 
-1. Consider an immersive inspection mode that hides HUD panels after focus mode is validated with users.
-2. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
-3. Plan the next 10 GLB expansion only after the current MVP Pass set is accepted as the quality floor.
-4. For final-grade polish, revisit all Pass models against the `hagia-sophia` / `colosseum` / `tajmahal` quality references instead of treating MVP Pass as finished.
+1. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
+2. Plan the next 10 GLB expansion only after the current MVP Pass set is accepted as the quality floor.
+3. For final-grade polish, revisit all Pass models against the `hagia-sophia` / `colosseum` / `tajmahal` quality references instead of treating MVP Pass as finished.
+4. Consider a cinematic orbit/light polish layer after boundary quality stops distracting from the landmark view.
 
 ## Recommendation
 
@@ -120,5 +130,5 @@ Do not scale immediately to 30 new high-detail GLBs. The pipeline is good enough
 
 1. Use `hagia-sophia`, `colosseum`, `tajmahal`, and `notre-dame` as the accepted quality floor.
 2. Use the selected-landmark focus mode as the default QA path for detailed landmark reviews.
-3. Build the immersive inspection mode next if the priority is presentation polish; otherwise move to coastline-aware boundary repair.
+3. Move to coastline-aware boundary repair next; the landmark inspection path is now clean enough for MVP review.
 4. Only then expand to the next 10 assets.

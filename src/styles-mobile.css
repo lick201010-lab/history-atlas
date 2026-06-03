@@ -340,6 +340,27 @@
   .territory-summary { font-size: 10px; }
   .territory-legacy { font-size: 9px; }
 
+  body.landmark-immersive .landmark-card {
+    left: 8px;
+    right: 8px;
+    bottom: 10px;
+    width: auto;
+    max-height: none;
+    padding: 12px 12px 12px 16px;
+    border-radius: 8px;
+  }
+
+  body.landmark-immersive .landmark-name {
+    margin-right: 126px;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  body.landmark-immersive .landmark-meta span {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+
   /* ── 对比面板 ── */
   .compare-panel {
     bottom: 98px;
