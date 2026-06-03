@@ -304,6 +304,12 @@ Sutherland-Hodgman 把一个凸 envelope 与 Natural Earth 多个陆地 ring 求
 - **修复**：MapScene `ifRefined` 改为接受两种 accuracy 值
 - **教训**：新增 accuracy 字段时，前端渲染逻辑要同步更新；这两步应当配对完成
 
+### 9.8 巨大内陆帝国不适合单凸包络裁剪
+- **症状**：蒙古帝国用一个横跨欧亚的凸 envelope 裁剪 Natural Earth 后，虽然可以过滤离岛碎片，但视觉上变成一整块斜切梯形，zoom 4–5 很不精致
+- **根因**：Sutherland-Hodgman 的凸裁剪适合沿海帝国或中等区域；对蒙古这种大面积内陆草原帝国，凸包约束会消灭历史边界的凹凸和方向变化
+- **修复**：蒙古改用手工草原带外轮廓，并给里海添加 Polygon hole；长边再做 deterministic roughen，避免填海和大直线
+- **教训**：沿海/跨海文明优先用 Natural Earth clipping；巨大内陆帝国应优先用手工历史外轮廓 + 必要水体 hole，而不是一个超大凸包络
+
 ---
 
 ## 10. 下一批应该怎么做

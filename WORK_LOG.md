@@ -340,3 +340,51 @@ Visual conclusion:
 
 - MVP improvement passed: the Byzantine area now has fewer glowing island fragments and less small-line clutter around the Aegean.
 - This is not a full global boundary solution. Inland historical limits remain rough envelopes, and other civilizations can still show coarse or mismatched edges until they receive the same coastline-aware and phase-aware treatment.
+
+## 2026-06-03 Priority boundary batch: Ottoman / Sasanian / Achaemenid
+
+Goal: continue the boundary refinement track after Byzantine cleanup by delegating a bounded batch to Claude Code and then doing Codex validation, visual QA, and corrections.
+
+Claude delegation:
+
+- Prompt file: `.claude-runs/priority-boundaries-prompt.md`
+- Output log: `.claude-runs/priority-boundaries-output.log`
+- First attempted `claude -p $prompt` did not pass the prompt reliably; stdin with `cmd /c type ... | claude.cmd -p ...` worked for this mostly-English prompt.
+- Claude produced `scripts/refinePriorityBoundaries.mjs`, updated `src/data/boundaries-simplified.json`, and appended a method note to `docs/BOUNDARY_REFINEMENT_METHODOLOGY.md`.
+
+Codex review and corrections:
+
+- Initial Claude output changed Achaemenid phase dates from the existing data keys. Codex rejected that and restored the existing date ranges:
+  - peak: `-521..-486`
+  - decline: `-485..-330`
+- Initial Claude output attempted to rewrite `mongol-empire`, but browser QA showed it became a giant diagonal grassland band and was visually worse than the baseline. Codex rejected and reverted `mongol-empire` to the current `HEAD` baseline.
+- Final accepted target ids are only:
+  - `ottoman`
+  - `sasanian`
+  - `achaemenid`
+
+Final geometry counts:
+
+- `ottoman`: 3 phased features, `2 / 12 / 4` rings, `556 / 1625 / 730` vertices.
+- `sasanian`: 3 phased features, `1 / 2 / 1` rings, `347 / 539 / 346` vertices.
+- `achaemenid`: 3 phased features, `2 / 2 / 2` rings, `588 / 817 / 707` vertices.
+- `mongol-empire`: unchanged baseline, 1 feature, 130 vertices.
+- `byzantine`, `tang`, `roman-republic-empire`, `islamic-caliphates`, `mughal`, and `maya` were confirmed unchanged.
+
+Verification:
+
+- Strict data diff check against `HEAD` confirmed only the three accepted target ids changed.
+- `npm run check` passed: data validation, GLB audit, and Vite build all succeeded.
+- GLB audit stayed clean: `14 OK / 0 WARN / 0 FAIL`.
+- Browser CDP QA captured isolated target screenshots:
+  - `docs/boundary-qa/ottoman-1600-priority-boundary.png`
+  - `docs/boundary-qa/achaemenid-500bce-priority-boundary.png`
+  - `docs/boundary-qa/sasanian-600-priority-boundary.png`
+  - `docs/boundary-qa/priority-boundaries-manifest.json`
+- Browser manifest had no non-canceled failures. It recorded one `net::ERR_ABORTED` request with `canceled: true`, consistent with normal tile cancellation during camera/page setup.
+
+Visual conclusion:
+
+- Ottoman is a clear MVP improvement: more separated coast-aware blocks around Anatolia, Balkans, Levant, Egypt/North Africa and no single Mediterranean sea-flooding blob.
+- Achaemenid and Sasanian now have more detailed coast-aware geometry around the Persian Gulf / Caspian / East Mediterranean, but their inland limits are still rough historical envelopes. They are acceptable as rough-refined batch work, not final precision borders.
+- Mongol needs a separate method. A huge inland empire should not be handled by one convex Natural Earth envelope. Future work should explore either curated historical polyline data or a hand-authored multi-stage inland boundary with holes for Caspian/Aral and better Yuan/Ilkhanate/Golden Horde decomposition.
