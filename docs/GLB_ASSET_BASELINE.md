@@ -9,7 +9,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 - Passing without warnings: 14
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,489 KB
+- Total GLB weight: 4,531 KB
 
 ## Budget
 
@@ -23,7 +23,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 
 | Status | id | file | size | triangles | vertices | materials | tex/img | minZ | maxZ | footprint | notes |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| OK | `angkor-wat` | `angkor-wat.glb` | 110 KB | 2,834 | 2,409 | 7 | 0/0 | -0.000 | 0.996 | 0.715 | - |
+| OK | `angkor-wat` | `angkor-wat.glb` | 152 KB | 3,722 | 3,405 | 9 | 0/0 | -0.000 | 1.198 | 0.712 | - |
 | OK | `borobudur` | `borobudur.glb` | 606 KB | 18,604 | 13,972 | 5 | 0/0 | -0.000 | 0.790 | 0.550 | - |
 | OK | `chichen-itza` | `chichen-itza.glb` | 197 KB | 2,584 | 4,812 | 11 | 0/0 | 0.000 | 0.823 | 0.550 | - |
 | OK | `colosseum` | `colosseum.glb` | 687 KB | 8,992 | 17,828 | 6 | 0/0 | 0.000 | 0.605 | 0.737 | - |

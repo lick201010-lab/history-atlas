@@ -118,7 +118,7 @@
 | `tajmahal` | taj-mahal.glb | 八角主体 + 四面尖拱 iwan + 洋葱穹顶 + 四塔 + 四小亭 + 红砂岩侧翼 | ~0.44 MB / ~12k |
 | `pyramid` | great-pyramid.glb | 主金字塔 + 两座小金字塔 + 王后小金字塔 + 祭庙基座，分层砌石带 | ~0.06 MB / ~0.9k |
 | `great-wall` | great-wall.glb | 蜿蜒翻山城墙（夯土填方 + 砖墙 + 交错垛口）+ 三座敌楼 | ~0.13 MB / ~1.3k |
-| `angkor-wat` | angkor-wat.glb | 护城河 + 台基岛 + 引道 + 回廊角楼 + 须弥台 + 梅花五塔（莲花苞顶） | ~0.13 MB / ~2.8k |
+| `angkor-wat` | angkor-wat.glb | 矩形护城河 + 西向长引道/栏柱 + 外内双重回廊 + 四向门塔 gopura + 三层中央台基 + 十字连廊 + 梅花五塔（中央主塔明显高于四角塔，精修） | ~0.15 MB / ~3.7k |
 | `stonehenge` | stonehenge.glb | 外圈立石+楣石（部分残缺）+ 内马蹄三石塔 + 中央祭坛 + 草土堆 | ~0.06 MB / ~0.7k |
 | `chichen-itza` | chichen-itza.glb | 九级截顶阶梯金字塔 + 正面大台阶（坡道/踏步/栏墙）+ 顶庙 + roof comb | ~0.04 MB / ~0.4k |
 | `forbidden-city` | forbidden-city.glb | 朱红宫墙围合 + 四角角楼 + 午门/神武门 + 中轴九进院落：太和门→三重汉白玉台基上三大殿（太和殿重檐/中和殿方攒尖/保和殿重檐）→内廷三宫（乾清宫/交泰殿/坤宁宫）→御花园，东西配殿/廊庑，黄琉璃瓦顶+檐下封板（精修 v2） | ~0.30 MB / ~4.1k |

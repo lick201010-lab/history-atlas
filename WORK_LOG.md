@@ -193,3 +193,33 @@ Codex 复核：
 下一优先级：
 - `angkor-wat` 和 `pyramid` 进入第二轮精修队列。
 - 焦点模式可继续演进为 immersive inspection mode，但不是当前最急。
+
+## 2026-06-03 吴哥窟 GLB 第二轮精修
+
+本轮继续按“Codex 验收 + Claude 建模”的分工推进。Codex 直接通过 `claude.cmd` 派发吴哥窟精修任务，无需用户粘贴提示词。
+
+Claude 改动：
+- `scripts/buildAngkorWatGlb.mjs`
+- `public/models/angkor-wat.glb`
+- `docs/GLB_ASSET_BASELINE.md`
+- `docs/GLB_VISUAL_QA.md`
+
+Codex 补充：
+- `src/components/MapScene.jsx`：为 `angkor-wat` 增加专属 selected-landmark focus camera，避免默认镜头太远导致新增结构看不清。
+- `docs/3D_ASSET_STANDARD.md`：同步新造型说明和体量数字。
+- 新焦点截图：`docs/glb-visual-qa/07-angkor-wat-after-focus.png`。
+- 截图 manifest：`docs/glb-visual-qa/07-angkor-wat-after-focus-manifest.json`。
+
+验收：
+- `npm run check` 通过。
+- GLB audit：`14 OK / 0 WARN / 0 FAIL`。
+- `angkor-wat.glb` 从约 110 KB / 2,834 tris 增加到约 152 KB / 3,722 tris，仍远低于预算。
+- 地图焦点图里能看出中央五塔、外层台基/回廊和西侧参道，不再是紧凑小块。
+
+视觉结论：
+- 吴哥窟从 Warn 升级为当前 MVP Pass。
+- 不应夸大成最终精美版：它仍是 stylized low-poly miniature，后续 final pass 可继续补更细的回廊 bay rhythm、莲花苞细节和材质层次。
+
+下一优先级：
+- `pyramid` 是最后一个仍在 Warn 队列里的已接入 GLB。应交给 Claude 做吉萨组合第二轮：主金字塔 + 卫星金字塔 + 平台/祭庙/沙漠石材层次。
+- 金字塔过线后，再考虑 immersive inspection mode 和边界贴合专项。

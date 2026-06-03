@@ -102,6 +102,7 @@ function focusCameraForBuilding(building, duration = 2000) {
     'great-wall': { zoom: 7.2, pitch: 66, bearing: -38 },
     'hagia-sophia': { zoom: 6.8, pitch: 64, bearing: -18 },
     colosseum: { zoom: 6.8, pitch: 64, bearing: -28 },
+    'angkor-wat': { zoom: 7.1, pitch: 64, bearing: -32 },
   };
   const preset = presets[building.id] || { zoom: 6.4, pitch: 64, bearing: -30 };
   return {
