@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import { createBuildingLayer } from '../map/createBuildingLayer.js';
+import { boundaryOpacityExpression, buildFocusIds, isFocusActive } from '../map/boundaryFocus.js';
 import { smoothBoundaryCollection } from '../map/smoothBoundaries.js';
 import { createBoundaryOutlineCollection } from '../map/boundaryOutlines.js';
 import {
@@ -125,6 +126,73 @@ function applyHoverFilter(map, year, hoveredId) {
 function setVisibility(map, layerId, visible) {
   if (map?.getLayer(layerId)) {
     map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
+  }
+}
+
+function focusMatchExpression(focusIds) {
+  return ['in', ['get', 'id'], ['literal', focusIds]];
+}
+
+function focusCaseExpression(focusIds, focused, muted) {
+  if (!isFocusActive(focusIds)) return focused;
+  return ['case', focusMatchExpression(focusIds), focused, muted];
+}
+
+function applyBoundaryFocusPaint(map, theme, selectedId, hoveredId, compareIds) {
+  if (!map) return;
+
+  applyBoundaryPaint(map, theme);
+
+  const focusIds = buildFocusIds({ selectedId, hoveredId, compareIds });
+  if (!isFocusActive(focusIds)) return;
+
+  const atlas = theme === 'atlas';
+  const textBase = atlas ? 0 : ['interpolate', ['linear'], ['zoom'], 1.6, 0, 2.8, 0.95];
+
+  if (map.getLayer('dynasty-territory-fill')) {
+    map.setPaintProperty('dynasty-territory-fill', 'fill-opacity', boundaryOpacityExpression({
+      focusIds,
+      refined: atlas ? 0.08 : 0.12,
+      plain: atlas ? 0.04 : 0.06,
+      mutedRefined: atlas ? 0.016 : 0.018,
+      mutedPlain: atlas ? 0.01 : 0.01,
+    }));
+  }
+  if (map.getLayer('dynasty-territory-glow')) {
+    map.setPaintProperty('dynasty-territory-glow', 'line-opacity', boundaryOpacityExpression({
+      focusIds,
+      refined: atlas ? 0.34 : 0.52,
+      plain: atlas ? 0.16 : 0.24,
+      mutedRefined: atlas ? 0.035 : 0.055,
+      mutedPlain: atlas ? 0.02 : 0.025,
+    }));
+  }
+  if (map.getLayer('dynasty-territory-casing')) {
+    map.setPaintProperty('dynasty-territory-casing', 'line-opacity', boundaryOpacityExpression({
+      focusIds,
+      refined: atlas ? 0 : 0.72,
+      plain: atlas ? 0 : 0.46,
+      mutedRefined: 0,
+      mutedPlain: 0,
+    }));
+  }
+  if (map.getLayer('dynasty-territory-line')) {
+    map.setPaintProperty('dynasty-territory-line', 'line-opacity', boundaryOpacityExpression({
+      focusIds,
+      refined: atlas ? 0.94 : 0.86,
+      plain: atlas ? 0.55 : 0.42,
+      mutedRefined: atlas ? 0.11 : 0.12,
+      mutedPlain: atlas ? 0.055 : 0.055,
+    }));
+  }
+  if (map.getLayer('dynasty-capital-glow')) {
+    map.setPaintProperty('dynasty-capital-glow', 'circle-opacity', focusCaseExpression(focusIds, atlas ? 0.2 : 0.34, atlas ? 0.035 : 0.045));
+  }
+  if (map.getLayer('dynasty-capital-core')) {
+    map.setPaintProperty('dynasty-capital-core', 'circle-opacity', focusCaseExpression(focusIds, atlas ? 0.92 : 0.94, atlas ? 0.16 : 0.14));
+  }
+  if (map.getLayer('dynasty-capital-label')) {
+    map.setPaintProperty('dynasty-capital-label', 'text-opacity', focusCaseExpression(focusIds, textBase, atlas ? 0 : 0.08));
   }
 }
 
@@ -266,7 +334,13 @@ const MapScene = forwardRef(function MapScene({
     }
 
     if (!focused) {
-      applyBoundaryPaint(map, themeRef.current);
+      applyBoundaryFocusPaint(
+        map,
+        themeRef.current,
+        selectedDynastyId,
+        hoveredDynastyId || hoveredBoundaryIdRef.current,
+        compareIds,
+      );
       return;
     }
 
@@ -294,7 +368,7 @@ const MapScene = forwardRef(function MapScene({
     if (map.getLayer('dynasty-capital-label')) {
       map.setPaintProperty('dynasty-capital-label', 'text-opacity', 0.10);
     }
-  }, [selectedLandmarkId, theme, year]);
+  }, [compareIds, hoveredDynastyId, selectedDynastyId, selectedLandmarkId, theme, year]);
 
   useEffect(() => {
     layerVisibilityRef.current = layerVisibility;

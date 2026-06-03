@@ -567,3 +567,48 @@ Deployment and online QA:
   - non-canceled network failures: none
   - console messages: none
 - Online visual result matches local: 1250 peak is unified and clean; 1300 remains intentionally fragmented.
+
+## 2026-06-03 Boundary focus mode and panel click guard
+
+Goal: reduce same-year territory clutter by keeping selected/hovered/compared civilizations readable while muting other active civilizations.
+
+Root cause:
+
+- Mongol internal lines were already cleaned up, but normal years such as `1250` still showed many civilizations at once.
+- The visual problem had shifted from one bad boundary to competing active territory layers.
+- Browser QA also exposed a narrow-screen interaction edge case: hidden/offscreen panel items in a long list could be confused with map clicks during automated testing.
+
+Implementation:
+
+- Added `src/map/boundaryFocus.js`.
+- Added `scripts/testBoundaryFocus.mjs`.
+- Added `npm run test:boundary-focus` and wired it into `npm run check`.
+- `MapScene.jsx` now applies focused paint expressions when `selectedDynastyId`, `hoveredDynastyId`, or `compareIds` are present.
+- Focused territories keep normal fill/line/glow opacity; non-focused territories and capitals are dimmed.
+- Building focus still has priority when a landmark card is open.
+- Rewrote `InfoPanel.jsx` with clean Chinese UI text and added pointer/click event guards so panel interactions do not leak into the MapLibre canvas.
+
+Verification:
+
+- TDD red step: `node scripts/testBoundaryFocus.mjs` first failed with `ERR_MODULE_NOT_FOUND` for `src/map/boundaryFocus.js`.
+- After implementation, `node scripts/testBoundaryFocus.mjs` passed.
+- `npm run check` passed:
+  - `validate:data` passed: 43 dynasties, 91 boundaries, 30 landmarks, 5 refined samples.
+  - `test:boundary-outlines` passed.
+  - `test:boundary-focus` passed.
+  - `audit:glb` passed: `14 OK / 0 WARN / 0 FAIL`.
+  - Vite production build passed with only the existing large-chunk warning.
+- Browser QA on `http://127.0.0.1:5173/`:
+  - Reloaded the app.
+  - Set timeline to `1250`.
+  - Expanded the mobile-width info panel.
+  - Clicked the visible `玛雅文明` row.
+  - Confirmed the resulting card was `玛雅文明`, not a landmark card.
+  - Console errors: none.
+  - Saved screenshot: `docs/boundary-qa/focus-mode-maya-local.png`.
+
+Visual conclusion:
+
+- The focus-mode plumbing is now in place.
+- Selecting a visible civilization no longer accidentally reopens a landmark card in the tested narrow viewport.
+- The next product step should not be more boundary styling. It should be a dedicated GLB map-view QA pass, because selected-civilization readability is now better controlled by interaction state.

@@ -12,6 +12,13 @@ For this project, every troubleshooting or delivery task should follow this loop
 
 When the issue touches deployment, networking, GitHub, Aliyun, Caddy, DNS, or local browser access, include the exact evidence gathered: command results, reachable/unreachable domains, active ports, and the final working URL.
 
+For map/UI changes, passing `npm run check` is not enough. After the code fix,
+use the in-app browser or an equivalent real browser path to interact with the
+actual screen: reload, set the relevant timeline year, click or scroll through
+the affected panel, inspect the resulting card/map state, and check browser
+console errors. Record the exact interaction path and screenshot path in
+`WORK_LOG.md`.
+
 ## Collaboration Stance
 
 Codex is a project collaborator, not a passive confirmer. If the user's idea, assumption, or requested direction appears technically wrong, inefficient, risky, or misaligned with the product goal, Codex must say so directly, explain the evidence, and propose a better path. Agreement should be earned by the facts of the situation, not given automatically.

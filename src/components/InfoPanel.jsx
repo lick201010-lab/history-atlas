@@ -6,6 +6,10 @@ function isMobileViewport() {
   return typeof window !== 'undefined' && window.matchMedia('(max-width: 500px)').matches;
 }
 
+function stopPanelEvent(event) {
+  event.stopPropagation();
+}
+
 function InfoPanel({
   year,
   buildings,
@@ -43,7 +47,12 @@ function InfoPanel({
   }, []);
 
   return (
-    <div className={`info-panel${showBody ? ' expanded' : ''}`}>
+    <div
+      className={`info-panel${showBody ? ' expanded' : ''}`}
+      onPointerDown={stopPanelEvent}
+      onPointerUp={stopPanelEvent}
+      onClick={stopPanelEvent}
+    >
       <h3>当前时空</h3>
       <div className="year-big" id="year-big">{formatYear(year)}</div>
       <div className="count">
@@ -52,18 +61,26 @@ function InfoPanel({
         可见建筑 <span id="count">{buildings.length}</span>
       </div>
 
-      {/* 状态栏：永远可见，抬头可点展开/折叠 */}
-      <button type="button" className="info-status-bar" onClick={toggleExpanded} aria-label={expanded ? '折叠信息面板' : '展开信息面板'}>
+      <button
+        type="button"
+        className="info-status-bar"
+        onClick={(event) => {
+          event.stopPropagation();
+          toggleExpanded();
+        }}
+        aria-label={expanded ? '折叠信息面板' : '展开信息面板'}
+      >
         <span className="info-status-year">{formatYear(year)}</span>
         <span className="info-status-counts">
           文明 <em>{totalActive ?? dynasties.length}</em>
           <span className="count-divider">/</span>
           建筑 <em>{buildings.length}</em>
         </span>
-        <span className={`info-status-caret${expanded ? ' open' : ''}`} aria-hidden="true">{expanded ? '▾' : '▸'}</span>
+        <span className={`info-status-caret${expanded ? ' open' : ''}`} aria-hidden="true">
+          {expanded ? '▴' : '▸'}
+        </span>
       </button>
 
-      {/* 展开内容：仅在展开时渲染 */}
       {showBody && (
         <div className="info-panel-body">
           {hiddenByFilter > 0 ? (
@@ -98,14 +115,17 @@ function InfoPanel({
                       <button
                         type="button"
                         className="dynasty-item-main"
-                        onClick={() => onSelectDynasty(dynasty)}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          onSelectDynasty(dynasty);
+                        }}
                       >
                         <span className="swatch" />
                         <span className="item-copy">
                           <span className="name-line">
                             {dynasty.name}
                             {hint ? <span className={`life-badge life-${phase}`}>{phase === 'rising' ? '兴' : '衰'}</span> : null}
-                            {isSelected ? <span className={`select-badge${locked ? ' locked' : ''}`}>{locked ? '🔒' : '◆'}</span> : null}
+                            {isSelected ? <span className={`select-badge${locked ? ' locked' : ''}`}>{locked ? '锁' : '◆'}</span> : null}
                           </span>
                           <span className="type">
                             {hint ? hint : `${dynasty.capital.name} · ${dynasty.region}`}
@@ -117,7 +137,11 @@ function InfoPanel({
                         className={`compare-toggle${inCompare ? ' on' : ''}`}
                         title={inCompare ? '从对比中移除' : '加入对比'}
                         aria-label={inCompare ? '从对比中移除' : '加入对比'}
-                        onClick={() => (inCompare ? onRemoveCompare(dynasty.id) : onAddCompare(dynasty.id))}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          if (inCompare) onRemoveCompare(dynasty.id);
+                          else onAddCompare(dynasty.id);
+                        }}
                       >
                         {inCompare ? '✓' : '+'}
                       </button>
@@ -140,7 +164,10 @@ function InfoPanel({
                     className="item"
                     data-id={building.id}
                     key={building.id}
-                    onClick={() => onSelectBuilding(building)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onSelectBuilding(building);
+                    }}
                   >
                     {building.name}
                     <div className="type">{building.typeLabel || building.type} · {formatYear(building.startYear)}</div>
