@@ -223,3 +223,37 @@ Codex 补充：
 下一优先级：
 - `pyramid` 是最后一个仍在 Warn 队列里的已接入 GLB。应交给 Claude 做吉萨组合第二轮：主金字塔 + 卫星金字塔 + 平台/祭庙/沙漠石材层次。
 - 金字塔过线后，再考虑 immersive inspection mode 和边界贴合专项。
+
+## 2026-06-03 吉萨金字塔 GLB 第二轮精修
+
+本轮继续直接通过 `claude.cmd` 派发给 Claude。Codex 负责复核、截图和是否接受视觉结论。
+
+Claude 改动：
+- `scripts/buildGreatPyramidGlb.mjs`
+- `public/models/great-pyramid.glb`
+- `docs/GLB_ASSET_BASELINE.md`
+- `src/components/MapScene.jsx`（Claude 越界加了 `pyramid` focus camera，Codex 审后接受为集成修漏）
+
+Codex 补充：
+- `src/map/createBuildingLayer.js`：新增 `FOCUS_SCALE_OVERRIDES`，只让 `pyramid` 在选中态放大到 `1.42`，避免普通世界视图膨胀，同时让吉萨副体量在观赏模式可读。
+- `src/components/MapScene.jsx`：把 `pyramid` focus camera 调整为更能看出三塔群关系的角度：`zoom 7.8 / pitch 58 / bearing 42`。
+- `docs/3D_ASSET_STANDARD.md` 与 `docs/GLB_VISUAL_QA.md`：同步新标准、验收结论和截图。
+- 新焦点截图：`docs/glb-visual-qa/05-pyramid-after-focus.png`。
+- 截图 manifest：`docs/glb-visual-qa/05-pyramid-after-focus-manifest.json`。
+
+验收：
+- `npm run check` 通过。
+- GLB audit：`14 OK / 0 WARN / 0 FAIL`。
+- `great-pyramid.glb` 从约 53 KB / 892 tris 增加到约 96 KB / 1,540 tris，仍非常轻。
+- 真实地图焦点图里能读出主金字塔、第二/第三金字塔、台地和卫星小金字塔。
+
+重要判断：
+- Claude 第一次输出虽然技术校验通过，但默认截图仍主要像“一座金字塔”，Codex 没有接受为视觉 Pass。
+- 通过更适合吉萨群的 focus camera 与选中态比例修正后，才把它升级为当前 MVP Pass。
+
+下一优先级：
+- 当前 14 个已接入 GLB 都达到 MVP Pass。
+- 下一步二选一：
+  1. 做 immersive inspection mode：选中奇观时临时隐藏 HUD/时间轴，进入更干净的观赏状态；
+  2. 做朝代边界贴合专项：集中解决跨海乱描、海岸线错位、面片过粗。
+- 从用户最近反馈看，边界贴合和海洋/陆地清晰度仍是整体观感短板；如果继续按“精美完整版”推进，建议先做 immersive inspection mode 的小步版本，再进入边界贴合专项。

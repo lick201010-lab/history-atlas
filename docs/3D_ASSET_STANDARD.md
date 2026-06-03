@@ -116,7 +116,7 @@
 | `parthenon` | parthenon.glb | 三级基座 + 8×17 满周柱列 + 三陇板中楣 + 三角山墙坡顶 + acroteria（精修） | ~0.40 MB / ~7.4k |
 | `colosseum` | colosseum.glb | 椭圆多层连拱 + 部分坍塌立面（遗迹）+ 阶梯观众席 + 竞技场 | ~0.83 MB / ~9k |
 | `tajmahal` | taj-mahal.glb | 八角主体 + 四面尖拱 iwan + 洋葱穹顶 + 四塔 + 四小亭 + 红砂岩侧翼 | ~0.44 MB / ~12k |
-| `pyramid` | great-pyramid.glb | 主金字塔 + 两座小金字塔 + 王后小金字塔 + 祭庙基座，分层砌石带 | ~0.06 MB / ~0.9k |
+| `pyramid` | great-pyramid.glb | 吉萨高原台地 + 胡夫主金字塔（砌石层带/入口/顶石）+ 卡夫拉覆面石残留 + 门卡乌拉金字塔 + 王后卫星小金字塔 + 葬祭庙/参道/河谷神殿 + 狮身人面像低体量暗示 + 马斯塔巴墓群（精修） | ~0.10 MB / ~1.5k |
 | `great-wall` | great-wall.glb | 蜿蜒翻山城墙（夯土填方 + 砖墙 + 交错垛口）+ 三座敌楼 | ~0.13 MB / ~1.3k |
 | `angkor-wat` | angkor-wat.glb | 矩形护城河 + 西向长引道/栏柱 + 外内双重回廊 + 四向门塔 gopura + 三层中央台基 + 十字连廊 + 梅花五塔（中央主塔明显高于四角塔，精修） | ~0.15 MB / ~3.7k |
 | `stonehenge` | stonehenge.glb | 外圈立石+楣石（部分残缺）+ 内马蹄三石塔 + 中央祭坛 + 草土堆 | ~0.06 MB / ~0.7k |

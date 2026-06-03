@@ -9,7 +9,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 - Passing without warnings: 14
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,531 KB
+- Total GLB weight: 4,575 KB
 
 ## Budget
 
@@ -33,7 +33,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `notre-dame` | `notre-dame.glb` | 241 KB | 3,488 | 5,968 | 9 | 0/0 | -0.000 | 0.986 | 0.687 | - |
 | OK | `parthenon` | `parthenon.glb` | 397 KB | 7,400 | 9,768 | 9 | 0/0 | -0.000 | 0.894 | 0.730 | - |
 | OK | `petra` | `petra.glb` | 129 KB | 2,044 | 2,980 | 10 | 0/0 | 0.000 | 1.210 | 0.540 | - |
-| OK | `pyramid` | `great-pyramid.glb` | 53 KB | 892 | 1,148 | 6 | 0/0 | 0.000 | 0.680 | 0.710 | - |
+| OK | `pyramid` | `great-pyramid.glb` | 96 KB | 1,540 | 2,145 | 10 | 0/0 | -0.000 | 0.650 | 0.760 | - |
 | OK | `red-fort` | `red-fort.glb` | 431 KB | 13,192 | 9,777 | 8 | 0/0 | 0.000 | 0.570 | 0.638 | - |
 | OK | `stonehenge` | `stonehenge.glb` | 52 KB | 688 | 1,220 | 4 | 0/0 | -0.000 | 0.379 | 0.520 | - |
 | OK | `tajmahal` | `taj-mahal.glb` | 376 KB | 12,300 | 8,252 | 11 | 0/0 | -0.000 | 1.265 | 0.720 | - |

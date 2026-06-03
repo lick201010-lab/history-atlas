@@ -1185,6 +1185,13 @@ assertProfileCoverage(PROFILES);
 const ALLOWED_PROFILES = MODEL_PROFILE_KEYS;
 export { ALLOWED_PROFILES };
 
+const FOCUS_SCALE_OVERRIDES = {
+  // Low, compound sites need a little more selected-state scale so their
+  // secondary masses stay readable in the map camera without bloating every
+  // landmark in normal world view.
+  pyramid: 1.42,
+};
+
 function buildDefault(mat) {
   // Simple stepped cube fallback for unknown types.
   const base = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 0.3), mat);
@@ -1492,7 +1499,9 @@ export function createBuildingLayer(landmarks) {
       const base = mesh.userData.baseScale
         ?? (mesh.userData.mercatorScale * this.getSizeMeters());
       const f = smoothstep(mesh.userData.animFactor ?? 1);
-      const focusBoost = this.focusId && mesh.userData.id === this.focusId ? 1.18 : 1;
+      const focusBoost = this.focusId && mesh.userData.id === this.focusId
+        ? (FOCUS_SCALE_OVERRIDES[mesh.userData.id] ?? 1.18)
+        : 1;
       const s = base * f * focusBoost;
       mesh.scale.set(s, s, s);
     },

@@ -10,7 +10,19 @@ Scope: desktop map-view QA for the 14 current GLB landmark overrides. Screenshot
 - Console QA found no app/runtime errors. The only captured network failures were `ERR_ABORTED` tile requests caused by rapidly jumping the camera during automation, not GLB load failures.
 - The best current samples are `hagia-sophia`, `colosseum`, `tajmahal`, `notre-dame`, and `stonehenge`.
 - The weakest assets from the first pass were `chichen-itza`, `petra`, `great-wall`, `forbidden-city`, and `angkor-wat`. As of the 2026-06-03 follow-ups, all five have been upgraded to the current MVP Pass bar.
+- `pyramid` was the last remaining Warn-level GLB after the Angkor pass. It has now also been upgraded to the current MVP Pass bar, with a selected-state scale/camera preset so the Giza group is readable in-map.
 - The biggest overall visual problem is not only model quality: large historical boundary fills and coastline-mismatched polygons still cut across seas or dominate the model view. This can make otherwise acceptable models feel rough.
+
+## 2026-06-03 Pyramid Follow-Up
+
+Claude rebuilt `great-pyramid.glb` via `scripts/buildGreatPyramidGlb.mjs`. Codex re-ran the asset audit, full check, reviewed multiple camera angles, added a selected-state scale override and a Giza-specific focus camera preset, then captured a fresh focus-mode screenshot.
+
+- `npm run check`: passed.
+- GLB audit: stayed at `14 OK, 0 WARN, 0 FAIL`.
+- `great-pyramid.glb`: increased from 53 KB / 892 tris to 96 KB / 1,540 tris, still far under the 800 KB target.
+- Build/audit metrics: 10 materials, z -0.00..0.65, footprint 0.760.
+- Focus QA view: [after screenshot](glb-visual-qa/05-pyramid-after-focus.png), [manifest](glb-visual-qa/05-pyramid-after-focus-manifest.json).
+- Verdict: upgraded from Warn to Pass for the current MVP quality bar. The focus view now reads as a Giza complex rather than a single generic pyramid: main pyramid, second/third pyramids, plateau, and satellite small pyramids are visible. Remaining polish: this is still a stylized low-poly miniature; later final passes can add more stone course contrast, clearer Sphinx silhouette, and warmer surface highlights.
 
 ## 2026-06-03 Chichen Itza Follow-Up
 
@@ -84,7 +96,7 @@ Claude rebuilt `forbidden-city.glb` via `scripts/buildForbiddenCityGlb.mjs`. Cod
 | `parthenon` | [02](glb-visual-qa/02-parthenon.png) | Pass | Temple silhouette and colonnade read clearly. Boundary lines are more distracting than the model. | Keep; optional second pass on column depth and roof bevels. |
 | `colosseum` | [03](glb-visual-qa/03-colosseum.png) | Pass | Strong circular amphitheater silhouette, layered outer walls, good recognizability. | Keep as a reference sample for iconic outline quality. |
 | `tajmahal` | [04](glb-visual-qa/04-tajmahal.png) | Pass | Dome/minaret silhouette reads well and feels materially distinct from the dark map. | Keep; tune scale only if later label collision changes. |
-| `pyramid` | [05](glb-visual-qa/05-pyramid.png) | Warn | Correct form, but it reads as a generic stepped pyramid rather than Giza-specific. | Add base plateau, satellite pyramids, and warmer stone highlights. |
+| `pyramid` | [05 before](glb-visual-qa/05-pyramid.png), [05 after](glb-visual-qa/05-pyramid-after-focus.png) | Pass | First pass warned because it read as a generic stepped pyramid. After the Claude rebuild and Codex focus scale/camera tuning, the focus view reads as a Giza complex with main pyramid, second/third pyramids, plateau, and satellite small pyramids. | Keep for MVP; later final polish can add stronger stone course contrast, Sphinx silhouette, and warmer highlights. |
 | `great-wall` | [06 before](glb-visual-qa/06-great-wall.png), [06 after](glb-visual-qa/06-great-wall-after.png), [focus](glb-visual-qa/06-great-wall-after-focus.png) | Pass | First pass read like a small fortress block. After commit `974479c`, the model has a lengthwise wall body, crenellations, and watchtower masses that read correctly in-map. | Keep for MVP; final polish should extend the route so it feels more like a terrain-following wall system rather than a short sample. |
 | `angkor-wat` | [07 before](glb-visual-qa/07-angkor-wat.png), [07 after](glb-visual-qa/07-angkor-wat-after-focus.png) | Pass | First pass warned because the model was too compact and lacked causeway/enclosure identity. After the Claude rebuild and Codex focus-camera preset, the model has a rectangular moat, prominent causeway, double gallery rings with four gopuras, and a clearly differentiated five-tower quincunx with cross-shaped connecting galleries. | Keep for MVP; later final polish can add more gallery bay rhythm and finer lotus-bud detail. |
 | `stonehenge` | [08](glb-visual-qa/08-stonehenge.png) | Pass | Ring shape and standing stones are recognizable despite low file weight. | Keep; optional texture/color variation. |
@@ -97,16 +109,16 @@ Claude rebuilt `forbidden-city.glb` via `scripts/buildForbiddenCityGlb.mjs`. Cod
 
 ## Priority Order
 
-1. Second-pass `pyramid`: passes the technical audit but still lacks place-specific identity (needs Giza-specific base plateau, satellite pyramids, and warmer stone highlights).
-2. Consider an immersive inspection mode that hides HUD panels after focus mode is validated with users.
-3. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
-4. Plan the next 10 GLB expansion only after the last remaining Warn-level asset (pyramid) is either upgraded or explicitly accepted as a placeholder.
+1. Consider an immersive inspection mode that hides HUD panels after focus mode is validated with users.
+2. Revisit coastline-aware boundaries after the model pass. The screenshots show that boundary polygons still cross water or form coarse diagonal cuts in several regions.
+3. Plan the next 10 GLB expansion only after the current MVP Pass set is accepted as the quality floor.
+4. For final-grade polish, revisit all Pass models against the `hagia-sophia` / `colosseum` / `tajmahal` quality references instead of treating MVP Pass as finished.
 
 ## Recommendation
 
 Do not scale immediately to 30 new high-detail GLBs. The pipeline is good enough, but the product quality ceiling is now controlled by model silhouettes, label collision, and boundary-map alignment. The efficient path is:
 
 1. Use `hagia-sophia`, `colosseum`, `tajmahal`, and `notre-dame` as the accepted quality floor.
-2. Continue Claude passes on the remaining weak assets, starting with `pyramid`.
-3. Use the selected-landmark focus mode as the default QA path for detailed landmark reviews.
+2. Use the selected-landmark focus mode as the default QA path for detailed landmark reviews.
+3. Build the immersive inspection mode next if the priority is presentation polish; otherwise move to coastline-aware boundary repair.
 4. Only then expand to the next 10 assets.
