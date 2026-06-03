@@ -743,3 +743,32 @@ Launch conclusion:
 - Current state is suitable for the 2026-06-04 MVP launch.
 - Desktop manifest still records horizontal overflow because the wide HUD layout exceeds the strict viewport scroll width, but the desktop screenshot is visually acceptable and the mobile hard gate has `horizontalOverflow: false`.
 - Do not start feature expansion before launch unless a hard blocker appears.
+
+## 2026-06-03 Final-version target reset
+
+User clarified that the desired outcome is not an MVP launch version but the final complete product.
+
+Decision:
+
+- Treat `v0.1.0` as an online milestone only.
+- Do not describe the project as finished.
+- Define a higher final-version standard before expanding more features.
+
+Implementation:
+
+- Added `docs/FINAL_VERSION_SPEC.md`.
+- Rewrote `docs/ROADMAP.md` around final-version phases F1-F6 instead of MVP candidate tasks.
+
+Final-version priorities:
+
+1. F1 final visual foundation: ocean flatness, land relief clarity, boundary/model readability, dark atlas visual language.
+2. F2 full boundary refinement: 43 civilizations, at least 3 phases each, coastline/terrain-aware where applicable.
+3. F3 landmark model upgrade: all 30 landmarks A/B quality, core 10 A quality.
+4. F4 content and source system: references, source notes, accuracy notes.
+5. F5 product interaction and mobile experience.
+6. F6 performance, release packaging, SEO, compatibility, and rollback maturity.
+
+Collaboration split:
+
+- Codex owns final standard, integration, browser QA, deployment, and rejecting weak batches.
+- Claude should be used for bounded implementation batches: MapLibre/CSS visual passes, boundary generation batches, and individual GLB modeling scripts.
