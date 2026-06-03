@@ -41,9 +41,15 @@ function chaikinRing(ring, iterations) {
 }
 
 // 顶点越多说明本就细致（如海岸贴合样本），少迭代即可；稀疏凸壳多迭代收圆。
-// 多数朝代是低顶点凸壳（生硬折角+长直边），稀疏档多加一轮迭代把折角收得更圆润自然。
-function iterationsForRing(ring) {
+// coastline-aware-rough 已经被 Natural Earth 海岸线裁过，过度 Chaikin 会把海岸细节
+// 向内收缩，导致边线看起来和底图海岸错位，所以这里只做轻量去尖角。
+function iterationsForRing(ring, feature) {
   const n = ring.length;
+  if (feature?.properties?.accuracy === 'coastline-aware-rough') {
+    if (n <= 40) return 1;
+    if (n <= 90) return 1;
+    return 0;
+  }
   if (n <= 12) return 4;
   if (n <= 40) return 3;
   if (n <= 90) return 2;
@@ -51,20 +57,20 @@ function iterationsForRing(ring) {
   return 0; // 已足够细致，不再加点
 }
 
-function smoothPolygon(coords) {
+function smoothPolygon(coords, feature) {
   // coords: [outerRing, hole1, ...]
-  return coords.map((ring) => chaikinRing(ring, iterationsForRing(ring)));
+  return coords.map((ring) => chaikinRing(ring, iterationsForRing(ring, feature)));
 }
 
-function smoothGeometry(geometry) {
+function smoothGeometry(geometry, feature) {
   if (!geometry) return geometry;
   if (geometry.type === 'Polygon') {
-    return { ...geometry, coordinates: smoothPolygon(geometry.coordinates) };
+    return { ...geometry, coordinates: smoothPolygon(geometry.coordinates, feature) };
   }
   if (geometry.type === 'MultiPolygon') {
     return {
       ...geometry,
-      coordinates: geometry.coordinates.map((poly) => smoothPolygon(poly)),
+      coordinates: geometry.coordinates.map((poly) => smoothPolygon(poly, feature)),
     };
   }
   return geometry; // 其他类型（点/线）原样
@@ -81,7 +87,7 @@ export function smoothBoundaryCollection(collection) {
     ...collection,
     features: collection.features.map((feature) => ({
       ...feature,
-      geometry: smoothGeometry(feature.geometry),
+      geometry: smoothGeometry(feature.geometry, feature),
     })),
   };
   cache.set(collection, result);

@@ -303,3 +303,40 @@ Project notes updated:
 - Obsidian `12-Claude任务提示词模板.md`
 
 Operational rule: when a future task is clearly better suited to Claude Code, Codex should directly create a narrow `.claude-runs/<task>-prompt.md`, call Claude from the project root, then own validation, screenshots, documentation, Git review, and integration.
+
+## 2026-06-03 Byzantine boundary cleanup pass
+
+Goal: address the obvious "乱描 / 错位" feeling in the Byzantine focus area without changing dynasty data, landmark data, map style presets, or 3D assets.
+
+Issue diagnosis:
+
+- `src/data/boundaries-simplified.json` already uses `coastline-aware-rough` for the current boundary set, so the remaining visual issue is not just "no coastline clipping".
+- Runtime Chaikin smoothing was still applied strongly to coast-aware rings. That can shrink or round already-coast-clipped geometry and make borders look offset from the basemap coastline.
+- The Byzantine refinement script preserved very small Aegean island fragments. At high pitch and with glow/casing, those small rings read as messy stray boundary strokes.
+
+Fixes:
+
+- `src/map/smoothBoundaries.js`: coast-aware features now receive only light smoothing for small rings and no smoothing for detailed rings, preserving Natural Earth coastline shape more faithfully.
+- `scripts/refineByzantineBoundary.mjs`: increased the minimum retained island/ring area from `0.06` to `0.40` square degrees. This keeps important islands such as Crete and Cyprus while removing small Aegean fragments that create visual clutter.
+- Regenerated only the 3 Byzantine boundary features in `src/data/boundaries-simplified.json`.
+
+Before/after geometry counts for Byzantine:
+
+- rise: `11 rings / 919 vertices` → `7 rings / 889 vertices`
+- peak: `20 rings / 1393 vertices` → `13 rings / 1318 vertices`
+- decline: `10 rings / 747 vertices` → `6 rings / 717 vertices`
+
+Verification:
+
+- `npm run check` passed: data validation, GLB audit, and Vite build all succeeded.
+- GLB audit stayed clean: `14 OK / 0 WARN / 0 FAIL`.
+- Browser CDP QA at `http://127.0.0.1:5173/` selected Byzantine at year 600, confirmed the relevant territory layers were visible, and captured screenshots.
+- Screenshot: `docs/boundary-qa/byzantine-600-boundary-after.png`
+- Clean boundary screenshot: `docs/boundary-qa/byzantine-600-boundary-clean-after.png`
+- Manifest: `docs/boundary-qa/byzantine-600-boundary-after-manifest.json`
+- Browser console had no app errors. The only failed network records were canceled tile requests caused by camera movement (`net::ERR_ABORTED`, `canceled: true`).
+
+Visual conclusion:
+
+- MVP improvement passed: the Byzantine area now has fewer glowing island fragments and less small-line clutter around the Aegean.
+- This is not a full global boundary solution. Inland historical limits remain rough envelopes, and other civilizations can still show coarse or mismatched edges until they receive the same coastline-aware and phase-aware treatment.

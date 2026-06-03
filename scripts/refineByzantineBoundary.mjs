@@ -272,7 +272,7 @@ async function loadNaturalEarth() {
 // =============================================================================
 
 const DOUGLAS_PEUCKER_EPS = 0.10; // 度（~11km），保留较细海岸/岛屿轮廓
-const MIN_RING_AREA_SQDEG = 0.06; // 度²，保留克里特/塞浦路斯/罗德/莱斯沃斯等岛，去掉极小碎屑
+const MIN_RING_AREA_SQDEG = 0.40; // 度²，保留克里特/塞浦路斯等关键大岛，过滤爱琴海小碎片乱线
 
 // 内陆长边「去直线化」参数
 const INLAND_EDGE_THRESHOLD = 0.55; // 度：相邻顶点超过此距离 → 视为内陆包络直边
