@@ -612,3 +612,14 @@ Visual conclusion:
 - The focus-mode plumbing is now in place.
 - Selecting a visible civilization no longer accidentally reopens a landmark card in the tested narrow viewport.
 - The next product step should not be more boundary styling. It should be a dedicated GLB map-view QA pass, because selected-civilization readability is now better controlled by interaction state.
+
+Deployment and online QA:
+
+- Committed `feat(boundaries): add civilization focus mode` (`a2b5563`) and pushed to `main`.
+- Ran `npm run deploy`.
+- Deploy script reran `npm run check`; all checks passed.
+- Uploaded the generated `dist/*` to `root@47.237.181.181:/opt/history-atlas/dist/`.
+- `https://atlas.ckl.hk/`, random SPA fallback, and all 5 production JS/CSS chunks returned `200`.
+- Browser opened `https://atlas.ckl.hk/` and confirmed the page title `历史沙盘 · Historical Atlas`.
+- Saved online baseline screenshot: `docs/boundary-qa/focus-mode-online-basic.png`.
+- Online DOM automation for the full click path timed out twice in the in-app browser after the page was already reachable. Treat this as an automation limitation for the heavy MapLibre page, not a deployment failure. Full click-path QA passed locally against the same build before deployment.
