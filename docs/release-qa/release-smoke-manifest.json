@@ -1,6 +1,6 @@
 {
   "appUrl": "https://atlas.ckl.hk/",
-  "generatedAt": "2026-06-03T14:10:42.850Z",
+  "generatedAt": "2026-06-03T14:19:54.346Z",
   "runs": [
     {
       "name": "desktop",
@@ -49,11 +49,11 @@
           "height": 520
         },
         "mapCenter": [
-          -88.933,
-          17.31
+          -89.077,
+          17.291
         ],
-        "zoom": 4.58,
-        "pitch": 57.85650761679985
+        "zoom": 4.62,
+        "pitch": 57.88327531199018
       },
       "screenshot": "D:\\松君\\项目\\历史网站\\docs\\release-qa\\release-desktop-1250-maya.png"
     },
@@ -104,11 +104,11 @@
           "height": 624
         },
         "mapCenter": [
-          -89.545,
-          17.23
+          -89.364,
+          17.254
         ],
-        "zoom": 4.73,
-        "pitch": 57.96445235061945
+        "zoom": 4.58,
+        "pitch": 57.891017103415386
       },
       "screenshot": "D:\\松君\\项目\\历史网站\\docs\\release-qa\\release-mobile-1250-maya.png"
     }

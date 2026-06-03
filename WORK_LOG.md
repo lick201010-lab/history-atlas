@@ -698,3 +698,48 @@ Launch discipline:
 - Tomorrow's target is a stable MVP launch, not feature expansion.
 - Before launch, only fix hard blockers or obvious P1 visual/runtime defects.
 - Broad boundary expansion, new GLB batches, and major visual redesign should wait until the first public version is safely online.
+
+## 2026-06-03 Final pre-launch deployment
+
+Goal: close the release loop by deploying the latest `main` HEAD to production and verifying the live site after upload.
+
+Deployment:
+
+- Current commit before deploy: `ec37fcf docs: finalize launch readiness notes`.
+- Working tree was clean before deploy.
+- Ran `npm run deploy`.
+- Deploy script reran `npm run check`; all checks passed:
+  - data validation: 43 dynasties / 91 boundaries / 30 landmarks / 5 refined samples.
+  - boundary outline test: passed.
+  - boundary focus test: passed.
+  - GLB audit: `14 OK / 0 WARN / 0 FAIL`.
+  - Vite production build: passed with only the known large chunk warning.
+- Uploaded `dist/*` to `root@47.237.181.181:/opt/history-atlas/dist/`.
+- Fixed remote permissions with `chmod -R a+rX /opt/history-atlas/dist`.
+
+Production verification from deploy script:
+
+- `https://atlas.ckl.hk/` returned `200` with `text/html`.
+- Random SPA fallback path returned `200` with `text/html`.
+- All 5 production JS/CSS chunks returned `200`.
+
+Release smoke after deploy:
+
+- Ran `npm run smoke:release` after deployment.
+- Desktop viewport `1440x900` opened year `1250` and selected `玛雅文明`.
+- Mobile viewport `390x844` opened year `1250` and selected `玛雅文明`.
+- failures: `[]`.
+- bad responses: `0`.
+- page exceptions: `0`.
+- console errors: `0`.
+- non-canceled failures: `0`.
+- Reviewed generated screenshots:
+  - `docs/release-qa/release-desktop-1250-maya.png`
+  - `docs/release-qa/release-mobile-1250-maya.png`
+
+Launch conclusion:
+
+- Production is now deployed and verified from the latest launch-ready HEAD.
+- Current state is suitable for the 2026-06-04 MVP launch.
+- Desktop manifest still records horizontal overflow because the wide HUD layout exceeds the strict viewport scroll width, but the desktop screenshot is visually acceptable and the mobile hard gate has `horizontalOverflow: false`.
+- Do not start feature expansion before launch unless a hard blocker appears.

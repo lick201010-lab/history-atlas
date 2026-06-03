@@ -8,6 +8,8 @@ Status: Go for MVP launch, with known non-blocking limitations documented below.
 
 The current build is suitable for a first public launch as a visual historical atlas prototype. It is not yet a final academic GIS product or museum-grade 3D model library.
 
+Final pre-launch deploy: `npm run deploy` succeeded on 2026-06-03 after commit `ec37fcf`, followed by a passing `npm run smoke:release`.
+
 ## Hard Gates
 
 | Gate | Status | Evidence |
@@ -25,6 +27,7 @@ The current build is suitable for a first public launch as a visual historical a
 | Console/runtime errors | Pass | Release smoke found 0 console errors and 0 page exceptions. |
 | App asset 400+ responses | Pass | Release smoke found 0 bad app responses. |
 | Public docs | Pass | README, acceptance checklist, known issues, work log, and Obsidian notes were updated for the launch workflow. |
+| Final deploy | Pass | `npm run deploy` uploaded `dist/*`, fixed permissions, and verified homepage, SPA fallback, and 5 JS/CSS chunks as HTTP 200. |
 
 ## Release Smoke Evidence
 
@@ -63,6 +66,7 @@ Artifacts:
 - Selecting `玛雅文明` opens a civilization card, not a landmark card.
 - The loading overlay disappears before screenshots are taken.
 - No app console errors, page exceptions, or bad app responses were detected.
+- Mobile smoke has no horizontal overflow. Desktop smoke records strict scroll-width overflow from the wide HUD layout, but the screenshot remains visually acceptable for MVP.
 
 ## Launch-Accepted Limitations
 
