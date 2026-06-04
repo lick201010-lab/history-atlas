@@ -9,6 +9,7 @@
     "validate:data": "node scripts/validateHistoricalData.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "check": "npm run validate:data && npm run build",
+    "audit:visual-foundation": "node scripts/auditVisualFoundation.mjs",
     "deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1"
   },
   "dependencies": {

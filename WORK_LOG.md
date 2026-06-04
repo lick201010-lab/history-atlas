@@ -180,3 +180,42 @@ F0 verification update:
 - Data validation passed with 43 dynasties, 89 boundaries, 30 landmarks, and 5 refined samples.
 - Vite build passed. The large chunk warning remains a known F6 performance issue.
 - `docs/CURRENT_PHASE.md` now marks F0 passed and sets the active phase to F1 visual foundation review.
+
+## 2026-06-04 F1 Visual Foundation Gate
+
+Reason:
+
+- F1 needed a real visual gate before continuing to boundary and model refinement.
+- The existing local preview on port 4173 was serving an older bundle, so visual QA was moved to a fresh current-workspace preview on port 4181.
+- Mobile QA initially showed overlapping HUD panels and a persistent tile warning.
+
+Implementation:
+
+- Integrated the existing dark framed map treatment, boundary casing, and runtime boundary smoothing into the F1 review batch.
+- Cleaned `src/map/smoothBoundaries.js` into a tracked, readable module.
+- Added `.edge-f1-profile/` to `.gitignore`.
+- Adjusted mobile HUD layout so top controls, search, filter, info sheet, and timeline do not overlap.
+- Added auto-dismiss for the map tile warning.
+- Added `scripts/auditVisualFoundation.mjs` and `npm run audit:visual-foundation`.
+- Wrote `docs/visual-qa/F1_VISUAL_FOUNDATION_REPORT.md`.
+
+Verification:
+
+- `npm.cmd run audit:visual-foundation` passed.
+- `npm.cmd run check` passed.
+- Browser QA captured:
+  - `docs/visual-qa/f1-world-frame.png`
+  - `docs/visual-qa/f1-open-ocean.png`
+  - `docs/visual-qa/f1-mediterranean-boundaries.png`
+  - `docs/visual-qa/f1-mobile.png`
+- `docs/visual-qa/f1-visual-manifest.json` reports zero serious console errors and no blocking warning text.
+
+Result:
+
+- F1 is accepted for this workspace.
+- `docs/CURRENT_PHASE.md` now sets the active phase to F2 boundary refinement.
+
+Deferred:
+
+- The Vite large chunk warning remains a known F6 performance task.
+- Boundary smoothing is only a visual aid. F2 still requires true coast-aware geometry refinement.

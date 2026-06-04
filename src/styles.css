@@ -77,6 +77,107 @@ body::after {
   background: transparent !important;
 }
 
+/* ===================== 星图卡装裱框（仅 dark 主题） =====================
+   dark 下把「一整张完整世界地图」内缩进一圈发光边框，四周露出星场/星云/暗角
+   作为装饰边距，并在边距区放四角纹饰与罗盘；atlas 主题 #map 仍满屏、框隐藏。 */
+body[data-theme="dark"] #map {
+  inset: clamp(16px, 3.2vh, 36px) clamp(16px, 3.2vw, 44px);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(111, 214, 255, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(227, 194, 122, 0.10),
+    0 0 30px rgba(111, 214, 255, 0.16),
+    inset 0 0 90px rgba(2, 8, 18, 0.55),
+    0 18px 60px rgba(0, 0, 0, 0.5);
+}
+
+body[data-theme="dark"] #map .maplibregl-canvas {
+  border-radius: 6px;
+}
+
+/* 装裱覆层：四角纹饰 + 罗盘，落在地图边距区，置于地图之上、UI 之下，不挡交互。 */
+.map-frame {
+  display: none;
+}
+
+body[data-theme="dark"] .map-frame {
+  display: block;
+  position: fixed;
+  inset: clamp(16px, 3.2vh, 36px) clamp(16px, 3.2vw, 44px);
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* 内缘细线：与发光框呼应的第二道描边，强化「星图卡」装裱感 */
+body[data-theme="dark"] .map-frame::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(227, 194, 122, 0.14);
+  border-radius: 4px;
+}
+
+/* 四角 L 形角标 */
+.map-frame-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 0 solid rgba(227, 194, 122, 0.72);
+  filter: drop-shadow(0 0 6px rgba(227, 194, 122, 0.35));
+}
+.map-frame-corner.tl { top: -2px; left: -2px; border-top-width: 2px; border-left-width: 2px; border-top-left-radius: 6px; }
+.map-frame-corner.tr { top: -2px; right: -2px; border-top-width: 2px; border-right-width: 2px; border-top-right-radius: 6px; }
+.map-frame-corner.bl { bottom: -2px; left: -2px; border-bottom-width: 2px; border-left-width: 2px; border-bottom-left-radius: 6px; }
+.map-frame-corner.br { bottom: -2px; right: -2px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 6px; }
+
+/* 罗盘 / 方位玫瑰：右下角边距区 */
+.map-frame-compass {
+  position: absolute;
+  right: clamp(10px, 1.6vw, 22px);
+  bottom: clamp(10px, 1.6vh, 22px);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(111, 214, 255, 0.38);
+  background: radial-gradient(circle at center, rgba(111, 214, 255, 0.12), rgba(6, 12, 22, 0.35) 70%, transparent 74%);
+  box-shadow: 0 0 14px rgba(111, 214, 255, 0.22), inset 0 0 10px rgba(111, 214, 255, 0.12);
+}
+/* 南北指针 */
+.map-frame-compass::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom,
+    rgba(246, 213, 143, 0.92) 0%, rgba(246, 213, 143, 0.92) 46%,
+    rgba(111, 214, 255, 0.5) 54%, rgba(111, 214, 255, 0.5) 100%);
+}
+/* 东西横线 */
+.map-frame-compass::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  transform: translateY(-50%);
+  background: rgba(111, 214, 255, 0.32);
+}
+.map-frame-compass-n {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--gold, #e3c27a);
+  text-shadow: 0 0 6px rgba(227, 194, 122, 0.5);
+}
+
 /* 羊皮纸覆层：默认（dark 主题）完全隐藏，atlas 主题在 styles.atlas.css 里点亮。 */
 .atlas-paper-overlay {
   display: none;
@@ -2599,5 +2700,212 @@ body.filter-active .info-panel .count span {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* F1 final mobile HUD override. Keep this after the legacy mobile rules so it wins. */
+@media (max-width: 760px) {
+  body[data-theme="dark"] #map,
+  body[data-theme="dark"] .map-frame {
+    inset: 8px;
+  }
+
+  .map-frame-compass {
+    display: none;
+  }
+
+  .title {
+    top: 12px;
+    left: 16px;
+    right: 16px;
+    max-width: calc(100vw - 32px);
+  }
+
+  .top-right {
+    top: 64px;
+    left: 14px;
+    right: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: auto;
+  }
+
+  .layer-controls {
+    top: 116px;
+    left: 14px;
+    right: 14px;
+    width: auto;
+  }
+
+  .layer-row {
+    margin-bottom: 6px;
+  }
+
+  .chip {
+    height: 30px;
+    letter-spacing: 1.5px;
+  }
+
+  .search-box input {
+    height: 34px;
+  }
+
+  .filter-panel {
+    top: 208px;
+    left: 14px;
+    right: 14px;
+    width: auto;
+    max-width: none;
+    z-index: 18;
+  }
+
+  .filter-panel[open] {
+    max-height: min(42vh, 340px);
+    overflow-y: auto;
+  }
+
+  .filter-chip-row {
+    max-height: 82px;
+  }
+
+  .info-panel {
+    top: auto;
+    left: 10px;
+    right: 10px;
+    bottom: 92px;
+    width: auto;
+    height: min(37vh, 312px);
+    max-height: none;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 12px 14px 10px;
+    border-radius: 8px 8px 3px 3px;
+  }
+
+  .info-panel h3 {
+    display: none;
+  }
+
+  .info-panel .year-big {
+    flex: 0 0 auto;
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .info-panel .count {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    margin: 0;
+    max-width: 52%;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .filter-hint {
+    flex: 0 0 auto;
+    margin: 6px 0 0;
+    text-align: left;
+  }
+
+  .info-panel .panel-section {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+  }
+
+  .info-panel .panel-section:not(.compact) {
+    flex: 1 1 auto;
+  }
+
+  .info-panel .panel-section.compact {
+    flex: 0 0 78px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(120, 160, 220, 0.14);
+  }
+
+  .info-panel .section-title {
+    flex: 0 0 auto;
+    margin-bottom: 5px;
+  }
+
+  .info-panel .dynasty-list,
+  .info-panel .building-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    padding-right: 4px;
+  }
+
+  .building-list .item,
+  .dynasty-list .item {
+    padding: 6px 8px 6px 10px;
+    margin-bottom: 4px;
+  }
+
+  .dynasty-list .dynasty-item {
+    min-height: 0;
+  }
+
+  .dynasty-list .dynasty-item .dynasty-item-main {
+    padding: 6px 6px 6px 10px;
+  }
+
+  .dynasty-list .dynasty-item .compare-toggle {
+    width: 30px;
+  }
+
+  .timeline {
+    padding: 0 10px 10px;
+    background: linear-gradient(180deg, transparent, rgba(3, 6, 12, 0.94) 28%);
+  }
+
+  .timeline-inner {
+    padding: 10px 14px 12px;
+  }
+
+  .timeline-header {
+    margin-bottom: 8px;
+  }
+
+  .timeline-label {
+    display: none;
+  }
+
+  .timeline-year {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .timeline-ticks {
+    font-size: 9px;
+  }
+
+  .territory-card,
+  .landmark-card {
+    left: 10px;
+    right: 10px;
+    bottom: 96px;
+    width: auto;
+    max-height: calc(100vh - 245px);
+  }
+}
+
+@media (max-width: 400px) {
+  .btn {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .chip {
+    letter-spacing: 1px;
   }
 }

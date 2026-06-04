@@ -1,8 +1,8 @@
-# Current Phase: F1 Visual Foundation Review
+# Current Phase: F2 Boundary Refinement
 
 Updated: 2026-06-04
 
-Status: F0 workflow lock has passed in this workspace. The active phase is now F1 visual foundation review. The deployed site is an online milestone only, not the final complete version.
+Status: F1 visual foundation has passed in this workspace. The active phase is now F2 boundary refinement. The deployed site is an online milestone only, not the final complete version.
 
 ## F0 Gate Result
 
@@ -18,22 +18,27 @@ Evidence:
 - `git status --short --branch` has been inspected before changes.
 - `npm.cmd run check` passed.
 
-## F1 Gate
+## F1 Gate Result
 
-F1 is not accepted yet in this workspace.
+F1 passed on 2026-06-04.
 
-F1 requires:
+Evidence:
 
-- Ocean flatness review.
-- Land relief readability review.
-- Boundary readability review.
-- HUD overlap review.
-- Browser screenshots and console review.
+- `npm.cmd run check` passed.
+- `npm.cmd run audit:visual-foundation` passed.
+- Browser screenshots were generated in `docs/visual-qa/`.
+- `docs/visual-qa/F1_VISUAL_FOUNDATION_REPORT.md` records the review.
+- Open ocean is flat and clean.
+- Land relief remains readable.
+- Boundary styling is more legible and less like debug output.
+- Mobile HUD controls and bottom sheet no longer overlap.
+- No serious browser console errors were captured.
 
 ## Current Findings
 
 - This workspace currently has 43 civilizations, 89 boundary features, and 30 landmarks.
-- There are existing uncommitted visual/map changes in `src/App.jsx`, `src/components/MapScene.jsx`, `src/map/mapStyle.js`, `src/styles.css`, plus untracked `src/map/smoothBoundaries.js`. Treat those as user/other-agent work until reviewed.
+- F2 must raise boundary data from rough/placeholder state toward coast-aware rough-refined geometry.
+- Current boundary smoothing is a visual aid only. It is not a replacement for true historical geometry refinement.
 
 ## Phase Order
 
@@ -46,19 +51,33 @@ After F0 passes, continue:
 5. F5 product interaction and mobile
 6. F6 performance, release, and packaging
 
-## Allowed Write Scope For Current F1 Review
+## F2 Gate
 
-Codex may inspect and validate current visual/map changes. Do not modify `src/data/*.json` during F1 review.
+F2 is not accepted yet.
 
-If implementation is needed, Claude may be assigned a bounded task for:
+F2 requires:
 
-- `src/map/mapStyle.js`
-- `src/styles.css`
-- small, scoped `src/components/MapScene.jsx` changes
+- All 43 civilizations have at least 3 historical phases.
+- Total boundary features are at least 129.
+- Every boundary feature has `sourceNote` and `accuracyNote`.
+- Key regions are visually reviewed at zoom 4-5.
+- Coast-aware civilizations do not use crude cross-sea convex hulls.
+- `npm.cmd run validate:data`, `npm.cmd run check`, and browser boundary screenshots pass.
 
-Forbidden during F1 unless explicitly re-scoped:
+## Allowed Write Scope For Current F2 Work
 
-- `src/data/*.json`
+Codex may inspect, validate, and integrate boundary changes.
+
+Claude may be assigned bounded batches for:
+
+- `src/data/boundaries-simplified.json`
+- boundary generation scripts
+- validation fixtures if needed
+
+Forbidden during F2 unless explicitly re-scoped:
+
+- `src/data/dynasties.json`
+- `src/data/landmarks.json`
 - `public/models/*`
 - GLB build scripts
 - deployment scripts

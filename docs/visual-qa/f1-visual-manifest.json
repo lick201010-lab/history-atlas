@@ -1,0 +1,196 @@
+{
+  "appUrl": "http://127.0.0.1:4181/",
+  "generatedAt": "2026-06-04T13:03:17.205Z",
+  "captures": [
+    {
+      "fileName": "f1-world-frame.png",
+      "path": "docs/visual-qa/f1-world-frame.png",
+      "camera": {
+        "center": [
+          72,
+          34
+        ],
+        "zoom": 2.45,
+        "pitch": 58,
+        "bearing": -22
+      },
+      "year": 700,
+      "width": 1365,
+      "height": 768,
+      "audit": {
+        "center": [
+          72,
+          34
+        ],
+        "zoom": 2.45,
+        "pitch": 58.00000000000001,
+        "bearing": -22,
+        "tilesLoaded": true,
+        "canvas": true,
+        "mapRect": {
+          "x": 43.671875,
+          "y": 24.5625,
+          "width": 1277.65625,
+          "height": 718.875
+        },
+        "titleRect": {
+          "x": 22,
+          "y": 18,
+          "width": 276.109375,
+          "height": 54
+        },
+        "infoRect": {
+          "x": 1053,
+          "y": 70,
+          "width": 296,
+          "height": 508
+        },
+        "warningText": null,
+        "bodyTheme": "dark"
+      }
+    },
+    {
+      "fileName": "f1-open-ocean.png",
+      "path": "docs/visual-qa/f1-open-ocean.png",
+      "camera": {
+        "center": [
+          -145,
+          5
+        ],
+        "zoom": 4.2,
+        "pitch": 60,
+        "bearing": 18
+      },
+      "year": 700,
+      "width": 1365,
+      "height": 768,
+      "audit": {
+        "center": [
+          -145,
+          5
+        ],
+        "zoom": 4.2,
+        "pitch": 60,
+        "bearing": 18,
+        "tilesLoaded": true,
+        "canvas": true,
+        "mapRect": {
+          "x": 43.671875,
+          "y": 24.5625,
+          "width": 1277.65625,
+          "height": 718.875
+        },
+        "titleRect": {
+          "x": 22,
+          "y": 18,
+          "width": 276.109375,
+          "height": 54
+        },
+        "infoRect": {
+          "x": 1053,
+          "y": 70,
+          "width": 296,
+          "height": 508
+        },
+        "warningText": null,
+        "bodyTheme": "dark"
+      }
+    },
+    {
+      "fileName": "f1-mediterranean-boundaries.png",
+      "path": "docs/visual-qa/f1-mediterranean-boundaries.png",
+      "camera": {
+        "center": [
+          25.8,
+          39.2
+        ],
+        "zoom": 4.65,
+        "pitch": 58,
+        "bearing": 23
+      },
+      "year": 600,
+      "width": 1365,
+      "height": 768,
+      "audit": {
+        "center": [
+          25.8,
+          39.2
+        ],
+        "zoom": 4.65,
+        "pitch": 58.00000000000001,
+        "bearing": 23,
+        "tilesLoaded": true,
+        "canvas": true,
+        "mapRect": {
+          "x": 43.671875,
+          "y": 24.5625,
+          "width": 1277.65625,
+          "height": 718.875
+        },
+        "titleRect": {
+          "x": 22,
+          "y": 18,
+          "width": 276.109375,
+          "height": 54
+        },
+        "infoRect": {
+          "x": 1053,
+          "y": 70,
+          "width": 296,
+          "height": 508
+        },
+        "warningText": null,
+        "bodyTheme": "dark"
+      }
+    },
+    {
+      "fileName": "f1-mobile.png",
+      "path": "docs/visual-qa/f1-mobile.png",
+      "camera": {
+        "center": [
+          105,
+          32
+        ],
+        "zoom": 3.2,
+        "pitch": 55,
+        "bearing": -18
+      },
+      "year": 700,
+      "width": 390,
+      "height": 844,
+      "audit": {
+        "center": [
+          105,
+          32
+        ],
+        "zoom": 3.2,
+        "pitch": 55.00000000000001,
+        "bearing": -18,
+        "tilesLoaded": true,
+        "canvas": true,
+        "mapRect": {
+          "x": 8,
+          "y": 8,
+          "width": 374,
+          "height": 828
+        },
+        "titleRect": {
+          "x": 16,
+          "y": 12,
+          "width": 358,
+          "height": 47
+        },
+        "infoRect": {
+          "x": 10,
+          "y": 440,
+          "width": 370,
+          "height": 312
+        },
+        "warningText": null,
+        "bodyTheme": "dark"
+      }
+    }
+  ],
+  "consoleMessages": [],
+  "seriousConsole": []
+}

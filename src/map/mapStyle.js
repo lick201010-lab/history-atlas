@@ -343,16 +343,17 @@ export const THEME_PRESETS = {
       'fog-ground-blend': 0.1,
     },
     boundary: {
-      // "地球夜景" 文明发光光区：收窄的柔光晕 + 克制的发光底 + 清亮边。
-      // 关键：多个文明同时活跃时，过宽过糊的辉光会互相渗透、交叠处发白发糊，
-      // 故 glow 收窄（见 applyBoundaryPaint dark 分支 line-width/blur）、fill 降透明度。
-      glowOpacityRefined: 0.34,
-      glowOpacityPlain: 0.14,
-      lineOpacityRefined: 0.74,
-      lineOpacityPlain: 0.34,
-      lineDash: [4, 1.4],
-      fillOpacityRefined: 0.08,
-      fillOpacityPlain: 0.03,
+      // 星图风发光轮廓：去掉填充色块（fill 仅作隐形点击域 + 极淡发光薄膜，地形透出），
+      // 文明＝明亮发光边界（实线清亮边 + 向内淡入的霓虹辉光晕）。多文明并存时靠收窄的
+      // 辉光 + 高对比清亮边分离，不再糊成色块。详见 applyBoundaryPaint dark 分支。
+      glowOpacityRefined: 0.42,
+      glowOpacityPlain: 0.16,
+      lineOpacityRefined: 0.96,
+      lineOpacityPlain: 0.5,
+      lineDash: [1, 0],
+      // 柔填充回归：极淡羽化区域感（文明色），让版图读作"一片区域"而非空轮廓，仍远低于旧 blob。
+      fillOpacityRefined: 0.12,
+      fillOpacityPlain: 0.06,
     },
   },
   atlas: {
@@ -427,14 +428,33 @@ export function applyBoundaryPaint(map, themeKey) {
       map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 5, 3]);
       map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5);
     } else {
-      // dark：收窄的辉光晕——文明仍像发光光区，但相邻文明不再糊成一团。
+      // dark 星图风：外侧柔霓虹辉光带，随 zoom 加宽（世界视角清晰、近景更饱满），向内淡入读作"领土点亮"。
       map.setPaintProperty('dynasty-territory-glow', 'line-color', ['get', 'color']);
-      map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr, 6, 4]);
-      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 3.5);
+      map.setPaintProperty('dynasty-territory-glow', 'line-width', ['case', isRefinedExpr,
+        ['interpolate', ['linear'], ['zoom'], 2, 6, 5, 11],
+        ['interpolate', ['linear'], ['zoom'], 2, 3.5, 5, 6],
+      ]);
+      map.setPaintProperty('dynasty-territory-glow', 'line-blur', 5.5);
     }
     map.setPaintProperty('dynasty-territory-glow', 'line-opacity', [
       'case', isRefinedExpr, preset.boundary.glowOpacityRefined, preset.boundary.glowOpacityPlain,
     ]);
+  }
+
+  // 深色衬底（casing）：亮线正下方一道近黑藏蓝、随 zoom 加宽，让彩色亮线在地形上更跳更干净。
+  // atlas 冻结：直接压成不可见，不改 atlas 观感。
+  if (map.getLayer('dynasty-territory-casing')) {
+    if (isAtlas) {
+      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', 0);
+    } else {
+      map.setPaintProperty('dynasty-territory-casing', 'line-color', '#03070e');
+      map.setPaintProperty('dynasty-territory-casing', 'line-blur', 0.4);
+      map.setPaintProperty('dynasty-territory-casing', 'line-width', ['case', isRefinedExpr,
+        ['interpolate', ['linear'], ['zoom'], 2, 2.2, 5, 4.0],
+        ['interpolate', ['linear'], ['zoom'], 2, 1.4, 5, 2.6],
+      ]);
+      map.setPaintProperty('dynasty-territory-casing', 'line-opacity', ['case', isRefinedExpr, 0.8, 0.5]);
+    }
   }
 
   if (map.getLayer('dynasty-territory-line')) {
@@ -446,10 +466,12 @@ export function applyBoundaryPaint(map, themeKey) {
         'case', isRefinedExpr, 1.6, 1.0,
       ]);
     } else {
+      // dark 星图风：清亮亮核线（像星座连线），细锐高对比，是版图主读法；随 zoom 加粗。
       map.setPaintProperty('dynasty-territory-line', 'line-color', ['get', 'color']);
-      map.setPaintProperty('dynasty-territory-line', 'line-blur', 0.35);
-      map.setPaintProperty('dynasty-territory-line', 'line-width', [
-        'case', isRefinedExpr, 1.4, 0.8,
+      map.setPaintProperty('dynasty-territory-line', 'line-blur', 0.25);
+      map.setPaintProperty('dynasty-territory-line', 'line-width', ['case', isRefinedExpr,
+        ['interpolate', ['linear'], ['zoom'], 2, 1.0, 5, 2.2],
+        ['interpolate', ['linear'], ['zoom'], 2, 0.6, 5, 1.3],
       ]);
     }
     map.setPaintProperty('dynasty-territory-line', 'line-opacity', [
