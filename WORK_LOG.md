@@ -143,3 +143,40 @@
 - 预览看不到地图是**已知限制**（RAF 冻结），不代表代码坏。只信用户真实浏览器。
 - `window._map` 是调试句柄。
 - 黑屏几乎都与 `maxBounds` + 高 pitch 有关；当前已无 maxBounds。
+
+## 2026-06-04 Final-Version Gate Workflow Reset
+
+Reason:
+
+- The current workspace was missing the explicit final-version gate files required by the F0-F6 plan.
+- `AGENTS.md` was missing; only the older `AGENT.md` existed.
+- `docs/CURRENT_PHASE.md` and `docs/FINAL_VERSION_SPEC.md` were missing.
+- The workspace had existing uncommitted visual/map changes, so Codex avoided touching visual code during the workflow reset.
+
+Implementation:
+
+- Added `AGENTS.md` as the authority for agent startup, Claude task protocol, Codex/Claude responsibility split, and the rule that `v0.1.0` is not final.
+- Added `docs/FINAL_VERSION_SPEC.md` defining F1-F6 final gates.
+- Added `docs/CURRENT_PHASE.md` setting the workspace to F0 Workflow Lock.
+- Added `.claude-runs/TEMPLATE.md` for bounded Claude task records.
+- Updated `.gitignore` so Claude run logs stay local while the template is tracked.
+- Added a pointer at the top of `AGENT.md` so older notes defer to the new final-version protocol.
+
+Verification:
+
+- `git status --short --branch` was inspected before edits.
+- No existing visual/map source files were modified by this F0 reset.
+
+Next:
+
+- Run `npm run check`.
+- If it passes, commit the F0 workflow reset separately.
+- Then review the existing uncommitted visual/map changes before deciding whether they satisfy F1 or need a bounded Claude/Codex pass.
+
+F0 verification update:
+
+- `npm run check` via PowerShell failed only because `npm.ps1` is blocked by the Windows execution policy.
+- Re-ran the same project check as `npm.cmd run check`; it passed.
+- Data validation passed with 43 dynasties, 89 boundaries, 30 landmarks, and 5 refined samples.
+- Vite build passed. The large chunk warning remains a known F6 performance issue.
+- `docs/CURRENT_PHASE.md` now marks F0 passed and sets the active phase to F1 visual foundation review.

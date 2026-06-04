@@ -1,5 +1,7 @@
 # Agent Operating Notes
 
+> Current authority: read `AGENTS.md` first. This file keeps older operational notes and incident records, but the final-version gate workflow now lives in `AGENTS.md`, `docs/FINAL_VERSION_SPEC.md`, and `docs/CURRENT_PHASE.md`.
+
 ## Default Work Habit
 
 For this project, every troubleshooting or delivery task should follow this loop:
