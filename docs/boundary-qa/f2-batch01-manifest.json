@@ -1,0 +1,215 @@
+{
+  "appUrl": "http://127.0.0.1:4174/",
+  "generatedAt": "2026-06-04T02:13:56.531Z",
+  "ready": {
+    "ready": true,
+    "mapReady": true,
+    "canvas": true,
+    "slider": true,
+    "loading": false
+  },
+  "captures": [
+    {
+      "id": "byzantine",
+      "label": "Byzantine 600",
+      "year": 600,
+      "camera": {
+        "center": [
+          25.8,
+          39.2
+        ],
+        "zoom": 4.45,
+        "pitch": 57,
+        "bearing": 23
+      },
+      "audit": {
+        "rowFound": true,
+        "cardTitle": "拜占庭帝国",
+        "activeRows": [
+          "maya",
+          "sasanian",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "sui"
+        ],
+        "tilesStable": true,
+        "warningVisible": false,
+        "warningText": null,
+        "center": [
+          28.97,
+          41.01
+        ],
+        "zoom": 4.8,
+        "pitch": 58,
+        "bearing": 23
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\boundary-qa\\f2-batch01-byzantine-600.png"
+    },
+    {
+      "id": "ottoman",
+      "label": "Ottoman 1600",
+      "year": 1600,
+      "camera": {
+        "center": [
+          29.5,
+          38.8
+        ],
+        "zoom": 4.35,
+        "pitch": 57,
+        "bearing": 20
+      },
+      "audit": {
+        "rowFound": true,
+        "cardTitle": "奥斯曼帝国",
+        "activeRows": [
+          "maya",
+          "holy-roman-empire",
+          "mali",
+          "ottoman",
+          "ming",
+          "joseon",
+          "mughal"
+        ],
+        "tilesStable": true,
+        "warningVisible": false,
+        "warningText": null,
+        "center": [
+          28.982,
+          40.961
+        ],
+        "zoom": 4.79,
+        "pitch": 57.97,
+        "bearing": 20
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\boundary-qa\\f2-batch01-ottoman-1600.png"
+    },
+    {
+      "id": "mongol-empire",
+      "label": "Mongol 1250",
+      "year": 1250,
+      "camera": {
+        "center": [
+          70,
+          45
+        ],
+        "zoom": 3.55,
+        "pitch": 55,
+        "bearing": -20
+      },
+      "audit": {
+        "rowFound": true,
+        "cardTitle": "蒙古帝国",
+        "activeRows": [
+          "maya",
+          "byzantine",
+          "islamic-caliphates",
+          "srivijaya",
+          "khmer",
+          "chola",
+          "song",
+          "holy-roman-empire",
+          "mongol-empire",
+          "mali"
+        ],
+        "tilesStable": true,
+        "warningVisible": false,
+        "warningText": null,
+        "center": [
+          102.84,
+          47.2
+        ],
+        "zoom": 4.8,
+        "pitch": 58,
+        "bearing": -20
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\boundary-qa\\f2-batch01-mongol-empire-1250.png"
+    },
+    {
+      "id": "aztec",
+      "label": "Aztec 1500",
+      "year": 1500,
+      "camera": {
+        "center": [
+          -98.8,
+          18.9
+        ],
+        "zoom": 5.1,
+        "pitch": 56,
+        "bearing": -8
+      },
+      "audit": {
+        "rowFound": true,
+        "cardTitle": "阿兹特克帝国",
+        "activeRows": [
+          "maya",
+          "holy-roman-empire",
+          "mali",
+          "ottoman",
+          "ming",
+          "joseon",
+          "aztec",
+          "inca",
+          "songhai"
+        ],
+        "tilesStable": true,
+        "warningVisible": false,
+        "warningText": null,
+        "center": [
+          -99.13,
+          19.43
+        ],
+        "zoom": 4.8,
+        "pitch": 58,
+        "bearing": -8
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\boundary-qa\\f2-batch01-aztec-1500.png"
+    },
+    {
+      "id": "inca",
+      "label": "Inca 1500",
+      "year": 1500,
+      "camera": {
+        "center": [
+          -73.2,
+          -15.4
+        ],
+        "zoom": 4.35,
+        "pitch": 57,
+        "bearing": -12
+      },
+      "audit": {
+        "rowFound": true,
+        "cardTitle": "印加帝国",
+        "activeRows": [
+          "maya",
+          "holy-roman-empire",
+          "mali",
+          "ottoman",
+          "ming",
+          "joseon",
+          "aztec",
+          "inca",
+          "songhai"
+        ],
+        "tilesStable": true,
+        "warningVisible": false,
+        "warningText": null,
+        "center": [
+          -71.97,
+          -13.53
+        ],
+        "zoom": 4.8,
+        "pitch": 58,
+        "bearing": -12
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\boundary-qa\\f2-batch01-inca-1500.png"
+    }
+  ],
+  "consoleMessages": [],
+  "seriousConsole": [],
+  "pageExceptions": [],
+  "nonCanceledFailures": [],
+  "badResponses": [],
+  "failures": []
+}

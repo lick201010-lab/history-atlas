@@ -49,9 +49,9 @@ F2 is about boundary data quality, not a new visual redesign.
 - Every feature must include `sourceNote` and `accuracyNote`.
 - Each accepted batch must be committed separately.
 
-## Current F2 Batch
+## Accepted F2 Batch 01
 
-Batch 01 should target:
+Batch 01 was accepted on 2026-06-04.
 
 1. Byzantine Empire
 2. Ottoman Empire
@@ -59,11 +59,30 @@ Batch 01 should target:
 4. Aztec Empire
 5. Inca Empire
 
-Reason:
+Evidence:
 
-- These are priority civilizations named in the final plan.
-- They cover the main failure modes: Mediterranean coastlines, Anatolia/Balkans overlap, huge inland steppe empire, Mesoamerican coast-aware polygons, and Andean terrain-following polygons.
-- The first five refined samples already exist for Tang, Rome, Islamic Caliphates, Mughal, and Maya, so Batch 01 should expand coverage instead of reworking the same examples again.
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `node .claude-runs/capture-f2-boundary-batch-01.mjs` passed.
+- QA report: `docs/boundary-qa/F2_BATCH01_REPORT_2026-06-04.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch01-byzantine-600.png`
+  - `docs/boundary-qa/f2-batch01-ottoman-1600.png`
+  - `docs/boundary-qa/f2-batch01-mongol-empire-1250.png`
+  - `docs/boundary-qa/f2-batch01-aztec-1500.png`
+  - `docs/boundary-qa/f2-batch01-inca-1500.png`
+
+## Current F2 Batch 02
+
+Batch 02 should target early West Asian / Mediterranean powers. Confirm exact ids before issuing the task file.
+
+Draft candidates:
+
+1. Achaemenid Empire / `achaemenid`
+2. Sasanian Empire / `sasanian`
+3. Greek City-States / `greek-city-states`
+4. Assyrian Empire or another existing Near Eastern empire id
+5. Hellenistic successor or another existing Mediterranean id
 
 ## F2 Allowed Write Scope
 
@@ -127,4 +146,3 @@ F2 full phase is not complete until:
 Claude may only work from a `.claude-runs/*.md` task file.
 
 Claude is responsible for controlled implementation only. Claude does not decide whether a batch is accepted.
-

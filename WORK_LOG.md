@@ -1025,3 +1025,59 @@ Next:
 
 - Commit and push F1 pass 3 plus phase transition docs.
 - Start F2 Batch 01 with a bounded Claude task for Byzantine, Ottoman, Mongol, Aztec, and Inca boundaries.
+
+## 2026-06-04 F2 boundary batch 01
+
+Scope:
+
+- `byzantine`
+- `ottoman`
+- `mongol-empire`
+- `aztec`
+- `inca`
+
+Claude delegation:
+
+- Created `.claude-runs/f2-boundary-batch-01-prompt.md`.
+- Claude changed `src/data/boundaries-simplified.json`.
+- Claude left `byzantine`, `ottoman`, and `mongol-empire` structurally unchanged.
+- Claude replaced Aztec with 3 phases and added an Inca decline phase.
+
+Codex review and corrections:
+
+- Rejected Claude's Inca decline ending in 1572 because `src/data/dynasties.json` currently ends Inca at 1533 and F2 forbids editing dynasties data in this batch.
+- Strengthened `scripts/validateHistoricalData.mjs` so F2 Batch 01 ids are now validated as exactly 3 contiguous phased boundary features.
+- Converted Aztec rise/decline and Inca rise/decline to `rough-refined` where they are inland-core phases.
+- Densified Aztec peak and Inca peak geometry so coast-aware phases meet vertex thresholds.
+- Replaced Inca peak with a slimmer Andean corridor after browser QA showed the first version still looked like a broad block.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `node .claude-runs/capture-f2-boundary-batch-01.mjs` passed:
+  - failures: `[]`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+  - non-canceled failures: `0`.
+
+QA artifacts:
+
+- `docs/boundary-qa/F2_BATCH01_REPORT_2026-06-04.md`
+- `docs/boundary-qa/f2-batch01-byzantine-600.png`
+- `docs/boundary-qa/f2-batch01-ottoman-1600.png`
+- `docs/boundary-qa/f2-batch01-mongol-empire-1250.png`
+- `docs/boundary-qa/f2-batch01-aztec-1500.png`
+- `docs/boundary-qa/f2-batch01-inca-1500.png`
+- `docs/boundary-qa/f2-batch01-manifest.json`
+
+Result:
+
+- F2 Batch 01 is accepted by Codex.
+- Total boundary features increased from 91 to 94.
+- The validator now reports `F2 phased boundary batch ids: 5`.
+
+Next:
+
+- Commit and push F2 Batch 01.
+- Start F2 Batch 02 with another five-civilization task, continuing small-batch refinement instead of doing all 43 at once.
