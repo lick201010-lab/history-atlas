@@ -1,0 +1,248 @@
+{
+  "setup": {
+    "selected": true,
+    "yearText": "公元 600",
+    "bodyClass": "has-card",
+    "mapReady": true,
+    "mapCenter": [
+      27.2,
+      38.8
+    ],
+    "mapZoom": 5.15,
+    "mapPitch": 60,
+    "activeDynastyCount": "6"
+  },
+  "title": "历史沙盘文明星图 · ATLAS OF CIVILIZATIONS",
+  "yearText": "公元 600",
+  "selectedCard": "拜占庭帝国",
+  "cardPhase": null,
+  "canvas": {
+    "width": 1440,
+    "height": 900
+  },
+  "layers": {
+    "dynasty-territory-fill": {
+      "visibility": "visible",
+      "filter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          600
+        ]
+      ]
+    },
+    "dynasty-territory-glow": {
+      "visibility": "visible",
+      "filter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          600
+        ]
+      ]
+    },
+    "dynasty-territory-casing": {
+      "visibility": "visible",
+      "filter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          600
+        ]
+      ]
+    },
+    "dynasty-territory-line": {
+      "visibility": "visible",
+      "filter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          600
+        ]
+      ]
+    },
+    "dynasty-territory-selected-fill": {
+      "visibility": "visible",
+      "filter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          600
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "byzantine"
+        ]
+      ]
+    }
+  },
+  "map": {
+    "center": [
+      27.2,
+      38.8
+    ],
+    "zoom": 5.15,
+    "pitch": 60,
+    "bearing": -18
+  },
+  "consoleMessages": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting..."
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected."
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+    }
+  ],
+  "failedRequests": [
+    {
+      "requestId": "48716.188",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.190",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.191",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.192",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.193",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.194",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.195",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.196",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.197",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.198",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.199",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.200",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.201",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.202",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.203",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    },
+    {
+      "requestId": "48716.204",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ]
+}

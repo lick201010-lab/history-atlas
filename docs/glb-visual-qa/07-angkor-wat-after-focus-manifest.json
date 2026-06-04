@@ -1,0 +1,105 @@
+{
+  "href": "http://127.0.0.1:5173/",
+  "clicked": {
+    "clicked": true,
+    "buttons": [
+      "stonehenge",
+      "pyramid",
+      "ziggurat-ur",
+      "ishtar-gate",
+      "parthenon",
+      "meroe-pyramids",
+      "sanchi-stupa",
+      "great-wall",
+      "terracotta-army",
+      "petra",
+      "colosseum",
+      "hagia-sophia",
+      "chichen-itza",
+      "mecca-haram",
+      "cheomseongdae",
+      "borobudur",
+      "westminster-abbey",
+      "great-zimbabwe",
+      "angkor-wat",
+      "notre-dame"
+    ]
+  },
+  "year": "1200",
+  "glbEntries": [
+    {
+      "name": "http://127.0.0.1:5173/models/great-pyramid.glb",
+      "transferSize": 300,
+      "duration": 5
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/colosseum.glb",
+      "transferSize": 300,
+      "duration": 8
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/parthenon.glb",
+      "transferSize": 300,
+      "duration": 5
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/taj-mahal.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/great-wall.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/forbidden-city.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/hagia-sophia.glb",
+      "transferSize": 300,
+      "duration": 7
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/petra.glb",
+      "transferSize": 300,
+      "duration": 5
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/red-fort.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/chichen-itza.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/notre-dame.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/stonehenge.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/angkor-wat.glb",
+      "transferSize": 300,
+      "duration": 4
+    },
+    {
+      "name": "http://127.0.0.1:5173/models/borobudur.glb",
+      "transferSize": 300,
+      "duration": 4
+    }
+  ],
+  "canvas": {
+    "width": 1440,
+    "height": 900
+  }
+}

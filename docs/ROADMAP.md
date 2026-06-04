@@ -1,203 +1,138 @@
 # 历史沙盘 · 路线图
 
-记录已完成阶段与下一阶段候选方向，方便决策"先做哪个"。
+记录从当前 v0.1.0 到最终完整版的推进顺序。
+
+最终完整版的完整验收标准见 [FINAL_VERSION_SPEC.md](FINAL_VERSION_SPEC.md)。
 
 ---
 
-## MVP 已完成（v0.1.0）
+## 当前状态
 
-### 阶段 1：视觉与技术原型（prototype/index.html）
-- 单文件 HTML，MapLibre 3D 地形 + Three.js custom layer 验证
-- 5 个低模建筑、星空、云层、时间轴雏形
+`v0.1.0` 已经完成上线闭环：
 
-### 阶段 2：React + Vite 工程化
-- 拆组件、模块化、Vite 构建链
-- StateManagement 用 React 原生 hooks
+- 生产站点：`https://atlas.ckl.hk/`
+- `npm run check` 通过
+- `npm run smoke:release` 通过
+- GitHub main 已推送
+- `v0.1.0` 标签已建立
 
-### 阶段 3：视觉精修
-- 信息卡分级、HUD 容器、暗角、金色滚动条
-- 1280×720 布局收敛
+但这只是可上线版本，不是最终完整版。
 
-### 阶段 4：数据扩展
-- 文明从 5 → 43，每个补全 summary/events/tags/importance/legacy
-- 边界从 5 矩形 → 43 粗略多边形，全部 rough-refined
-- 建筑从 5 → 30，跨 14 个 type、跨 10 个区域
+## 已完成基础
 
-### 阶段 5：时间叙事
-- 8 个时代档案
-- 事件浮现（±30 年窗口、最多 5 条）
-- 文明兴衰徽章
-- 时间轴 14 个关键节点
+- React + Vite 工程。
+- MapLibre 3D 地形地图。
+- Three.js custom layer。
+- 43 个文明。
+- 91 个边界 feature。
+- 30 个奇观。
+- 14 个 GLB 模型。
+- 时间轴、文明卡、奇观卡、搜索、筛选、对比、焦点、沉浸模式。
+- 阿里云 + Caddy 部署。
+- 自动校验、发布烟测、部署脚本。
 
-### 阶段 6：地图交互深化
-- 文明锁定 / 解锁
-- 最多 2 个文明对比 + 第 3 个触发轻提示
-- 区域 / 标签筛选 + 清除
-- 事件点击 → 文明定位 + 自动锁定
-- 搜索文明 → 飞行 + 开卡
+## 最终版未完成
 
-### 阶段 7：视觉性能与信息降噪
-- z-index 分层修正、面板互相让位
-- 默认元素去发光、激活态强对比
-- 文本截断、滚动条统一、紧凑响应式
-
-### 阶段 8：发布与稳定性（当前）
-- README / ACCEPTANCE / KNOWN_ISSUES / ROADMAP
-- `npm run check` 一键校验
+- 海洋和陆地 relief 还不是最终视觉。
+- 43 个文明还没有全部 3 阶段精修边界。
+- 30 个奇观还没有全部达到 A/B 级模型。
+- 文明内容缺引用和来源体系。
+- 移动端还只是可用，不是最终体验。
+- 性能拆包和 GLB 懒加载还没完成。
+- 作品包装、SEO、公开介绍页还没完成。
 
 ---
 
-## 下一阶段候选
+## 最终版阶段
 
-按优先级降序排列，每项独立成 milestone，方便取舍。
+### F1 · 最终视觉底座
 
-### M1 · 数据来源与引用体系（学术化第一步）
-**为什么**：当前所有文本都是"无引用"的编辑判断，无法作为教学/研究素材。
+优先级：最高
 
-**做什么**：
-- 给 dynasty / event / boundary 加 `references: [{title, url, kind}]` 字段
-- 不破坏现有 schema，validator 检测 references 存在性但不强制
-- UI 在信息卡 footer 增加"参考来源"折叠区
-- 至少为 5 个 sample 文明补全 ≥3 条引用
+目标：
 
-**改动范围**：data + InfoPanel JSX + validator + CSS
+- 海洋彻底干净平整。
+- 陆地山脉清晰。
+- 边界、地形、奇观不互相打架。
+- 深色沙盘和古地图浮雕质感统一。
 
----
+分工：
 
-### M2 · 更精细的历史边界
-**为什么**：单一多边形无法表达朝代不同时期的版图变化。
+- Codex：验收标准、截图对比、集成。
+- Claude：具体地图 paint、CSS、MapLibre 图层实现。
 
-**做什么**：
-- 重构 boundaries schema 为时间分段：
-  ```json
-  { "id": "tang", "segments": [
-    { "startYear": 618, "endYear": 660, "ring": [...] },
-    { "startYear": 660, "endYear": 755, "ring": [...] },
-    { "startYear": 755, "endYear": 907, "ring": [...] }
-  ]}
-  ```
-- MapScene 根据当前 year 选合适 segment 渲染
-- 为 5 个 sample 文明先做 3 段切片，验证体验
-- 添加 `disputed: true` 区域支持
+### F2 · 边界全面精修
 
-**改动范围**：data schema + MapScene 渲染 + validator + 文档
+优先级：最高
 
----
+目标：
 
-### M3 · 更多建筑（landmarks 50 → 100）
-**为什么**：当前 30 个建筑分散在 10 个区域，单个区域还是稀疏。
+- 43 个文明全部至少 3 阶段。
+- 边界贴合海岸线。
+- 大型内陆帝国不用粗糙凸包络。
+- 每批都有截图和数据校验。
 
-**做什么**：
-- 补到 50–60 个，覆盖更多类型：
-  - 港口（港口型 city builder）
-  - 桥梁（bridge builder）
-  - 灯塔（lighthouse builder）
-  - 中国塔（pagoda builder，区别于 stupa）
-  - 玛雅球场（ballcourt）
-- 为每种新 type 写独立 mesh builder
-- 改用 Three.js `InstancedMesh` 渲染相同 type 的多个实例
+分工：
 
-**改动范围**：landmarks.json + createBuildingLayer.js + 数据校验脚本
+- Claude：批量边界数据生成。
+- Codex：方法论、数据校验、浏览器验收、拒绝不合格批次。
 
----
+### F3 · 奇观模型全面升级
 
-### M4 · 数据编辑器
-**为什么**：让历史研究者直接修改 JSON，不必碰代码。
+优先级：最高
 
-**做什么**：
-- 新建 `/admin` 路由（同一 Vite 工程）
-- 文明编辑：表单 + 实时 JSON 预览 + 校验报错
-- 边界编辑：地图上点选拖动顶点
-- 导出按钮：把当前内存中的数据保存为 .json 文件下载
-- 不写后端，纯前端 + File System Access API（可选）
+目标：
 
-**改动范围**：新增 ~3 个组件 + 路由配置
+- 30 个奇观全部 A/B 级。
+- 核心 10 个奇观达到 A 级。
+- 不再有粗糙占位模型。
 
----
+分工：
 
-### M5 · 性能拆包
-**为什么**：当前 bundle 1.5 MB，弱网首屏慢。
+- Claude：单个 GLB 建模脚本。
+- Codex：地图视角 QA、审计、截图、集成。
 
-**做什么**：
-- MapLibre 动态 import（`/admin` 不需要 MapLibre 时不加载）
-- Three.js 动态 import（建筑图层关闭时不加载）
-- `manualChunks`：把 react/react-dom 拆为 vendor chunk、把 data JSON 拆为独立 chunk
-- 目标：首屏 < 200 KB（gzip）
+### F4 · 内容与来源体系
 
-**改动范围**：vite.config.js + App.jsx 用 `<Suspense>` 包子组件
+优先级：高
 
----
+目标：
 
-### M6 · 部署
-**为什么**：让别人能看到。
+- 每个文明有 references。
+- 每个边界有 sourceNote / accuracyNote。
+- 关键事件有来源说明。
+- UI 展示资料来源。
 
-**做什么**：
-- Cloudflare Pages 或 Vercel 一键托管 `dist/`
-- 自定义域名（可选）
-- 加 robots.txt 与 OG meta（让分享卡片显示首屏截图）
-- GitHub Actions 跑 `npm run check` on PR
+### F5 · 产品交互和移动端
 
-**改动范围**：deploy 配置 + 一个截图
+优先级：高
+
+目标：
+
+- 手机端底部 sheet。
+- 搜索、筛选、对比更自然。
+- 时代节点更像故事导航。
+- 文明和奇观联动更紧。
+
+### F6 · 性能、发布和作品包装
+
+优先级：中高
+
+目标：
+
+- GLB 懒加载。
+- 更细拆包。
+- 浏览器兼容矩阵。
+- 作品介绍页。
+- SEO / 分享图 / 反馈入口。
 
 ---
 
-### M7 · 移动端优化
-**为什么**：当前移动竖屏布局拥挤。
+## 当前执行建议
 
-**做什么**：
-- 信息卡改"底部 drawer"形式
-- 文明列表改"侧边 sheet"
-- 触屏 hover 替代：长按显示节点 tip
-- 时间轴改成更大触摸目标
-- 测试 iOS Safari + Android Chrome
+下一步先做 F1，不先铺 43 个边界，也不先批量做 30 个模型。
 
-**改动范围**：styles.css 媒体查询 + 部分组件结构
+理由：
 
----
-
-### M8 · 富文本时代叙事
-**为什么**：当前每个时代是 1 段 summary，信息密度低。
-
-**做什么**：
-- eras.json 增加 sections（政治 / 文化 / 经济 / 宗教）
-- 每个 section 一段短文 + 关键标签
-- EraNarrative 改为可滚动的多段视图
-
-**改动范围**：eras schema + EraNarrative 组件
-
----
-
-### M9 · 多语言（i18n）
-**为什么**：英文世界看不懂当前中文 UI。
-
-**做什么**：
-- 提取 UI 字符串到 `i18n/zh.json` / `i18n/en.json`
-- 右上角加语言切换
-- 数据 JSON 的 `name / nameEn` 已经预留了双语，但 summary/legacy/events 没有
-- 先做 UI i18n，数据 i18n 留后
-
-**改动范围**：新增 utils/i18n.js + 全组件改字符串引用
-
----
-
-### M10 · "故事模式"动画
-**为什么**：当前是探索式，没有引导。
-
-**做什么**：
-- 预设几条"剧情线"（如"丝绸之路 800 年"）
-- 自动播放：缓慢推进时间轴 + 自动飞行 + 旁白浮层
-- 用户可暂停 / 跳过
-
-**改动范围**：新增 StoryMode 组件 + 数据 stories.json
-
----
-
-## 优先级矩阵
-
-| 维度 | 学术性 | 体验 | 工程 |
-|---|---|---|---|
-| **高** | M1 引用 / M2 边界分段 | M3 建筑 / M10 故事 | M5 拆包 / M6 部署 |
-| **中** | M8 富文本叙事 | M7 移动端 | M4 数据编辑器 |
-| **低** | — | M9 多语言 | — |
-
-建议下一站：**M6 部署**（先让别人能看到，闭环验证）+ **M1 引用体系**（学术化基础设施）并行。
+- 视觉底座不稳定时，边界和模型再精细也会被地图纹理、海洋杂纹、HUD 层级拖垮。
+- 先把“最终视觉语言”定下来，再让 Claude 批量生产边界和 GLB，返工最少。

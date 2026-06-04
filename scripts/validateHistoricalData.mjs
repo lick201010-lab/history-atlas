@@ -4,6 +4,8 @@ import { MODEL_PROFILE_KEYS } from '../src/map/modelProfileKeys.js';
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
+const F2_BATCH_01_IDS = new Set(['byzantine', 'ottoman', 'mongol-empire', 'aztec', 'inca']);
+const PHASED_BOUNDARY_IDS = new Set([...SAMPLE_IDS, ...F2_BATCH_01_IDS]);
 const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
 function fail(errors, message) {
@@ -119,7 +121,7 @@ function validateBoundary(feature, dynastyIds, errors) {
     }
   }
 
-  if (SAMPLE_IDS.has(id)) {
+  if (PHASED_BOUNDARY_IDS.has(id)) {
     const accuracy = feature.properties?.accuracy;
     if (!isNonEmptyString(feature.properties?.sourceNote)) fail(errors, `${prefix} sample must include sourceNote`);
     if (!SAMPLE_ACCURACY_VALUES.has(accuracy)) {
@@ -146,7 +148,7 @@ function validateBoundary(feature, dynastyIds, errors) {
 }
 
 function validateSampleBoundaryPhases(features, dynastyById, errors) {
-  for (const id of SAMPLE_IDS) {
+  for (const id of PHASED_BOUNDARY_IDS) {
     const dynasty = dynastyById.get(id);
     const sampleFeatures = features
       .filter((feature) => (feature.properties?.id || feature.id) === id)
@@ -297,6 +299,7 @@ async function main() {
   console.log(`Boundaries: ${boundaries.features.length}`);
   console.log(`Landmarks: ${landmarks.length}`);
   console.log(`Refined samples: ${SAMPLE_IDS.size}`);
+  console.log(`F2 phased boundary batch ids: ${F2_BATCH_01_IDS.size}`);
   console.log(`Model profiles (code+data): ${MODEL_PROFILE_KEYS.length} (${landmarks.filter((l) => l.modelProfile).length} landmarks linked)`);
 }
 

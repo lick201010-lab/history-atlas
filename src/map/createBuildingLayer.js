@@ -1117,8 +1117,44 @@ const ID_PROFILE_OVERRIDES = {
 // 招牌建筑的 GLB 资产（代码侧映射，不改 landmarks.json）。
 // 命中时：先按程序化模型出图（保证立即可见 + 失败兜底），随后异步加载 GLB，
 // 成功则用 GLB 替换该建筑的程序化体块；加载失败则保留程序化模型。
+const GLB_BASE = `${import.meta.env?.BASE_URL ?? '/'}models/`;
 const ID_GLB_OVERRIDES = {
-  'hagia-sophia': `${import.meta.env?.BASE_URL ?? '/'}models/hagia-sophia.glb`,
+  'hagia-sophia': `${GLB_BASE}hagia-sophia.glb`,
+  parthenon: `${GLB_BASE}parthenon.glb`,
+  colosseum: `${GLB_BASE}colosseum.glb`,
+  tajmahal: `${GLB_BASE}taj-mahal.glb`,
+  pyramid: `${GLB_BASE}great-pyramid.glb`,
+  'great-wall': `${GLB_BASE}great-wall.glb`,
+  'angkor-wat': `${GLB_BASE}angkor-wat.glb`,
+  stonehenge: `${GLB_BASE}stonehenge.glb`,
+  'chichen-itza': `${GLB_BASE}chichen-itza.glb`,
+  'forbidden-city': `${GLB_BASE}forbidden-city.glb`,
+  'notre-dame': `${GLB_BASE}notre-dame.glb`,
+  borobudur: `${GLB_BASE}borobudur.glb`,
+  petra: `${GLB_BASE}petra.glb`,
+  'red-fort': `${GLB_BASE}red-fort.glb`,
+};
+
+// 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
+// 圣索菲亚 GLB 来自本地程序化导出，加载到 MapLibre custom layer 后需要校正竖直轴，
+// 否则会像躺倒一样把底部/侧底部朝向镜头，而不是让底面贴地。
+// 全部经 wonderKit 以 z-up 导出，经同一 GLTF 往返后需校正竖直轴（与圣索菲亚一致）。
+const GLB_ORIENT_ZUP = { x: -Math.PI / 2, y: 0, z: 0 };
+const ID_GLB_ORIENTATION_OVERRIDES = {
+  'hagia-sophia': GLB_ORIENT_ZUP,
+  parthenon: GLB_ORIENT_ZUP,
+  colosseum: GLB_ORIENT_ZUP,
+  tajmahal: GLB_ORIENT_ZUP,
+  pyramid: GLB_ORIENT_ZUP,
+  'great-wall': GLB_ORIENT_ZUP,
+  'angkor-wat': GLB_ORIENT_ZUP,
+  stonehenge: GLB_ORIENT_ZUP,
+  'chichen-itza': GLB_ORIENT_ZUP,
+  'forbidden-city': GLB_ORIENT_ZUP,
+  'notre-dame': GLB_ORIENT_ZUP,
+  borobudur: GLB_ORIENT_ZUP,
+  petra: GLB_ORIENT_ZUP,
+  'red-fort': GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。
@@ -1148,6 +1184,13 @@ assertProfileCoverage(PROFILES);
 
 const ALLOWED_PROFILES = MODEL_PROFILE_KEYS;
 export { ALLOWED_PROFILES };
+
+const FOCUS_SCALE_OVERRIDES = {
+  // Low, compound sites need a little more selected-state scale so their
+  // secondary masses stay readable in the map camera without bloating every
+  // landmark in normal world view.
+  pyramid: 1.42,
+};
 
 function buildDefault(mat) {
   // Simple stepped cube fallback for unknown types.
@@ -1373,6 +1416,9 @@ export function createBuildingLayer(landmarks) {
     renderingMode: '3d',
     _needsAnimTick: false,
     layerVisible: true,
+    focusId: null,
+    // 底图就绪门控：底图瓦片绘出前不渲染建筑，避免首屏"建筑悬浮在黑色虚空"的中间态。
+    _baseReady: false,
 
     onAdd(map, gl) {
       this.map = map;
@@ -1386,12 +1432,12 @@ export function createBuildingLayer(landmarks) {
       const dir = new THREE.DirectionalLight(0xffe8c0, 1.25);
       dir.position.set(0.4, -0.7, 1).normalize();
       this.scene.add(dir);
-      const blue = new THREE.DirectionalLight(0x6090ff, 0.35);
-      blue.position.set(0, 0.7, 0.5).normalize();
-      this.scene.add(blue);
+      const fill = new THREE.DirectionalLight(0xffd6a0, 0.10);
+      fill.position.set(0, 0.7, 0.5).normalize();
+      this.scene.add(fill);
       this.ambientLight = ambient;
       this.dirMain = dir;
-      this.dirFill = blue;
+      this.dirFill = fill;
 
       this.meshes = {};
       landmarks.forEach((building) => {
@@ -1425,12 +1471,17 @@ export function createBuildingLayer(landmarks) {
     getSizeMeters() {
       if (!this.map) return 150000;
       const zoom = this.map.getZoom();
-      // 世界视角不再把建筑放成占地数百公里的巨块（那会把精致几何放糊成发光团），
-      // 让模型读作"摆件"而非巨型光斑；高 zoom 端同步收一点。
-      if (zoom <= 3.5) return 130000;
-      if (zoom >= 6) return 48000;
-      const t = (zoom - 3.5) / 2.5;
-      return 130000 + (48000 - 130000) * t;
+      // World view still needs readable "game pieces", but close-up views must
+      // shrink aggressively so nearby landmarks (Beijing: Forbidden City /
+      // Temple of Heaven / Great Wall) do not overlap into one false megamodel.
+      if (zoom <= 3.5) return 120000;
+      if (zoom < 6) {
+        const t = (zoom - 3.5) / 2.5;
+        return 120000 + (42000 - 120000) * t;
+      }
+      if (zoom >= 8) return 16000;
+      const t = (zoom - 6) / 2;
+      return 42000 + (16000 - 42000) * t;
     },
 
     updateScale() {
@@ -1448,8 +1499,19 @@ export function createBuildingLayer(landmarks) {
       const base = mesh.userData.baseScale
         ?? (mesh.userData.mercatorScale * this.getSizeMeters());
       const f = smoothstep(mesh.userData.animFactor ?? 1);
-      const s = base * f;
+      const focusBoost = this.focusId && mesh.userData.id === this.focusId
+        ? (FOCUS_SCALE_OVERRIDES[mesh.userData.id] ?? 1.18)
+        : 1;
+      const s = base * f * focusBoost;
       mesh.scale.set(s, s, s);
+    },
+
+    updateMeshVisibility(mesh) {
+      const target = mesh.userData.animTarget ?? 1;
+      const animFactor = mesh.userData.animFactor ?? 1;
+      const activeByYear = target === 1 || animFactor > 0;
+      const activeByFocus = !this.focusId || mesh.userData.id === this.focusId;
+      mesh.visible = activeByYear && activeByFocus;
     },
 
     // 每帧推进出现/消失动画；全部到位后停止触发重绘（不空转）。
@@ -1466,9 +1528,8 @@ export function createBuildingLayer(landmarks) {
         if (t < f && nf <= t) nf = t;
         mesh.userData.animFactor = nf;
         this.applyScale(mesh);
-        if (nf === t) {
-          if (t === 0) mesh.visible = false;
-        } else {
+        this.updateMeshVisibility(mesh);
+        if (nf !== t) {
           any = true;
         }
       }
@@ -1545,33 +1606,34 @@ export function createBuildingLayer(landmarks) {
       const ringMat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.14,
+        opacity: 0.045,
         side: THREE.DoubleSide,
+        depthWrite: false,
       });
-      ringMat.userData = { role: 'aura', baseOpacity: 0.14 };
-      const ring = new THREE.Mesh(new THREE.RingGeometry(1.05, 1.28, 48), ringMat);
+      ringMat.userData = { role: 'aura', baseOpacity: 0.045 };
+      const ring = new THREE.Mesh(new THREE.RingGeometry(0.88, 0.98, 48), ringMat);
       ring.position.z = 0.01;
       group.add(ring);
 
       const discMat = new THREE.MeshBasicMaterial({
-        color, transparent: true, opacity: 0.06, side: THREE.DoubleSide,
+        color, transparent: true, opacity: 0.012, side: THREE.DoubleSide, depthWrite: false,
       });
-      discMat.userData = { role: 'aura', baseOpacity: 0.06 };
-      const disc = new THREE.Mesh(new THREE.CircleGeometry(1.05, 48), discMat);
+      discMat.userData = { role: 'aura', baseOpacity: 0.012 };
+      const disc = new THREE.Mesh(new THREE.CircleGeometry(0.86, 48), discMat);
       disc.position.z = 0.005;
       group.add(disc);
 
       const beamMat = new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.10,
+        opacity: 0.018,
         depthWrite: false,
         blending: THREE.AdditiveBlending,
       });
-      beamMat.userData = { role: 'beam', baseOpacity: 0.10 };
-      const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.30, 5, 12, 1, true), beamMat);
+      beamMat.userData = { role: 'beam', baseOpacity: 0.018 };
+      const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.12, 2.2, 12, 1, true), beamMat);
       beam.rotation.x = Math.PI / 2;
-      beam.position.z = 3;
+      beam.position.z = 1.5;
       group.add(beam);
 
       group.userData.ring = ring;
@@ -1591,6 +1653,12 @@ export function createBuildingLayer(landmarks) {
         (gltf) => {
           const root = gltf.scene || gltf.scenes?.[0];
           if (!root) return;
+          const orientation = ID_GLB_ORIENTATION_OVERRIDES[building.id];
+          if (orientation) {
+            root.rotation.x += orientation.x ?? 0;
+            root.rotation.y += orientation.y ?? 0;
+            root.rotation.z += orientation.z ?? 0;
+          }
           // 给 GLB 材质打上主题钩子：dark 保留 GLB 本色（材质分色层次），
           // atlas 用年代色调；role='body' 让 setTheme 一并处理自发光/高光。
           root.traverse((o) => {
@@ -1637,13 +1705,14 @@ export function createBuildingLayer(landmarks) {
       // 光照随主题：dark 强对比（剪影清晰）、atlas 柔光（冻结观感）。
       if (this.ambientLight) this.ambientLight.intensity = atlas ? 0.7 : 0.5;
       if (this.dirMain) this.dirMain.intensity = atlas ? 1.0 : 1.25;
-      if (this.dirFill) this.dirFill.intensity = atlas ? 0.4 : 0.35;
+      if (this.dirFill) this.dirFill.intensity = atlas ? 0.12 : 0.10;
       const visit = (object) => {
         if (object.material) {
           const mats = Array.isArray(object.material) ? object.material : [object.material];
           for (const m of mats) {
             const role = m.userData?.role;
             if (role === 'body') {
+              object.visible = true;
               if (atlas) {
                 m.emissive?.setHex(0x1a1208);
                 m.emissiveIntensity = 0.12;
@@ -1661,11 +1730,16 @@ export function createBuildingLayer(landmarks) {
             } else if (role === 'aura' || role === 'beam') {
               // dark 下也把光环/光柱压一档，避免光晕盖过建筑本体把它糊成光团。
               const base = m.userData.baseOpacity ?? m.opacity;
-              m.opacity = atlas ? base * 0.30 : base * 0.6;
+              m.opacity = role === 'beam'
+                ? (atlas ? base * 0.12 : base * 0.22)
+                : (atlas ? base * 0.30 : base * 0.6);
               m.needsUpdate = true;
             } else if (role === 'tree' || role === 'house') {
-              // 树丛与民居只在 atlas 显示；dark（HUD）下用 opacity 0 隐藏。
+              // 树丛与民居只在 atlas 显示。dark 下必须真正隐藏，
+              // 只把 opacity 设为 0 仍可能写入深度，造成建筑旁出现大片遮挡色块。
+              object.visible = atlas;
               m.opacity = atlas ? 1 : 0;
+              m.depthWrite = atlas;
               m.needsUpdate = true;
             }
           }
@@ -1677,11 +1751,15 @@ export function createBuildingLayer(landmarks) {
     },
 
     render(gl, matrix) {
-      if (!this.layerVisible) return;
+      if (!this.layerVisible || !this._baseReady) return;
       if (this._animating) this.stepAnim();
       const projection = new THREE.Matrix4().fromArray(matrix);
       this.camera.projectionMatrix = projection;
       this.renderer.resetState();
+      // MapLibre terrain and fill layers can leave depth values that cut across
+      // landmark meshes at steep pitch. Clear only depth here so buildings keep
+      // their own internal 3D depth while rendering cleanly above the map skin.
+      this.renderer.clearDepth();
       this.renderer.render(this.scene, this.camera);
     },
 
@@ -1700,17 +1778,17 @@ export function createBuildingLayer(landmarks) {
           // 首帧不做生长动画，直接到位。
           mesh.userData.animTarget = target;
           mesh.userData.animFactor = target;
-          mesh.visible = inRange;
           this.applyScale(mesh);
+          this.updateMeshVisibility(mesh);
         } else if (mesh.userData.animTarget !== target) {
           mesh.userData.animTarget = target;
           if (target === 1) {
-            mesh.visible = true;
             // 从一个较小尺寸"长出来"
             if ((mesh.userData.animFactor ?? 1) >= 1) mesh.userData.animFactor = 0.45;
           }
           any = true;
         }
+        this.updateMeshVisibility(mesh);
         if (mesh.userData.animFactor !== mesh.userData.animTarget) any = true;
       }
       this._animating = any;
@@ -1720,6 +1798,35 @@ export function createBuildingLayer(landmarks) {
 
     setLayerVisible(visible) {
       this.layerVisible = visible;
+      if (this.map) this.map.triggerRepaint();
+    },
+
+    setFocus(focusId) {
+      this.focusId = focusId || null;
+      if (this.meshes) {
+        for (const mesh of Object.values(this.meshes)) {
+          this.applyScale(mesh);
+          this.updateMeshVisibility(mesh);
+        }
+      }
+      if (this.map) this.map.triggerRepaint();
+    },
+
+    // 底图瓦片就绪后调用：放行渲染，并让当前可见建筑"长出来"而非硬弹出。
+    setBaseReady(ready = true) {
+      if (this._baseReady === ready) return;
+      this._baseReady = ready;
+      if (ready && this.meshes) {
+        let any = false;
+        for (const mesh of Object.values(this.meshes)) {
+          if (mesh.userData.animTarget === 1) {
+            mesh.userData.animFactor = 0.4;
+            this.updateMeshVisibility(mesh);
+            any = true;
+          }
+        }
+        if (any) this._animating = true;
+      }
       if (this.map) this.map.triggerRepaint();
     },
 

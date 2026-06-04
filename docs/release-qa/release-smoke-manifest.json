@@ -1,0 +1,122 @@
+{
+  "appUrl": "https://atlas.ckl.hk/",
+  "generatedAt": "2026-06-03T15:04:05.088Z",
+  "runs": [
+    {
+      "name": "desktop",
+      "ready": {
+        "label": "desktop-initial",
+        "title": "历史沙盘 · Historical Atlas",
+        "url": "https://atlas.ckl.hk/",
+        "ready": true,
+        "mapReady": true,
+        "canvas": {
+          "width": 1440,
+          "height": 900
+        },
+        "slider": true,
+        "loadingVisible": false,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "bodyClass": "",
+        "scroll": {
+          "width": 1585,
+          "height": 990
+        }
+      },
+      "interaction": {
+        "sliderFound": true,
+        "mayaRowFound": true,
+        "territoryCard": true,
+        "landmarkCard": false,
+        "loadingVisible": false,
+        "territoryTitle": "玛雅文明",
+        "yearText": "公元 1250",
+        "bodyClass": "has-card",
+        "horizontalOverflow": true
+      },
+      "audit": {
+        "canvas": {
+          "width": 1440,
+          "height": 900
+        },
+        "territoryCardRect": {
+          "x": 22,
+          "y": 228,
+          "width": 322,
+          "height": 520
+        },
+        "mapCenter": [
+          -88.89,
+          17.316
+        ],
+        "zoom": 4.57,
+        "pitch": 57.8487394966685
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\release-qa\\release-desktop-1250-maya.png"
+    },
+    {
+      "name": "mobile",
+      "ready": {
+        "label": "mobile-initial",
+        "title": "历史沙盘 · Historical Atlas",
+        "url": "https://atlas.ckl.hk/",
+        "ready": true,
+        "mapReady": true,
+        "canvas": {
+          "width": 780,
+          "height": 1688
+        },
+        "slider": true,
+        "loadingVisible": false,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "bodyClass": "",
+        "scroll": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "interaction": {
+        "sliderFound": true,
+        "mayaRowFound": true,
+        "territoryCard": true,
+        "landmarkCard": false,
+        "loadingVisible": false,
+        "territoryTitle": "玛雅文明",
+        "yearText": "公元 1250",
+        "bodyClass": "has-card",
+        "horizontalOverflow": false
+      },
+      "audit": {
+        "canvas": {
+          "width": 780,
+          "height": 1688
+        },
+        "territoryCardRect": {
+          "x": 4,
+          "y": 124,
+          "width": 382,
+          "height": 624
+        },
+        "mapCenter": [
+          -89.54,
+          17.23
+        ],
+        "zoom": 4.73,
+        "pitch": 57.96247220007469
+      },
+      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\release-qa\\release-mobile-1250-maya.png"
+    }
+  ],
+  "consoleMessages": [],
+  "seriousConsole": [],
+  "pageExceptions": [],
+  "nonCanceledFailures": [],
+  "badResponses": [],
+  "failures": []
+}

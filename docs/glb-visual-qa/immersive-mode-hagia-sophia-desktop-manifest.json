@@ -1,0 +1,31 @@
+{
+  "selected": true,
+  "immersiveButton": true,
+  "bodyClass": "has-card landmark-immersive",
+  "cardRect": {
+    "x": 24,
+    "y": 794,
+    "width": 360,
+    "height": 83
+  },
+  "timeline": {
+    "opacity": "0",
+    "pointerEvents": "none"
+  },
+  "infoPanel": {
+    "opacity": "0",
+    "pointerEvents": "none"
+  },
+  "layerControls": {
+    "opacity": "0",
+    "pointerEvents": "none"
+  },
+  "title": {
+    "opacity": "0",
+    "pointerEvents": "none"
+  },
+  "mapCanvas": {
+    "width": 1440,
+    "height": 900
+  }
+}

@@ -1,108 +1,322 @@
-# History Atlas Final Version Specification
+# 历史沙盘 · 最终完整版规格
 
-This file defines what "final complete version" means. It is not an MVP definition and not an online milestone definition.
+本文件定义“最终完整版”的验收标准。它不是 MVP、不是上线候选、不是阶段性 demo。
 
-The final product should feel like a polished, credible, explorable 3D historical map work: dark atlas clarity, physical sand-table terrain, readable historical boundaries, and miniature landmark models that feel crafted rather than placeholder icons.
+最终完整版的目标是：用户打开 `https://atlas.ckl.hk/` 后，感到这是一个精美、可信、可探索的 3D 历史地图作品，而不是一个技术原型。
 
-## Completion Definition
+## 1. 最终产品定位
 
-The final complete version requires all six gates below to pass.
+历史沙盘是一个 3D 历史地理探索网站：
 
-## F1 Visual Foundation
+- 用地图呈现文明、朝代、帝国的时空变化。
+- 用 3D 地形和奇观模型建立“实体沙盘感”。
+- 用时间轴、文明档案、边界和建筑联动，让用户能探索世界历史。
+- 中文为主，英文为辅。
+- 视觉上要接近“游戏级历史沙盘 + 精致古地图浮雕”的结合，而不是普通 GIS 地图。
 
-Pass criteria:
+## 2. 完成定义
 
-- Ocean is flat, deep, and clean, with no visible underwater mountain relief.
-- Land relief is readable but not noisy.
-- Coastlines are crisp enough to support boundary reading.
-- Boundary glow is layered and restrained, not fluorescent debugging paint.
-- HUD is polished and does not block primary exploration.
-- Desktop and mobile screenshots pass visual review.
+最终完整版必须同时满足：
 
-Required checks:
+1. 视觉完成：地图、海洋、山脉、边界、HUD、建筑模型风格统一且精致。
+2. 数据完成：43 个文明不是粗略占位，每个文明有分期边界、档案、事件、来源说明。
+3. 奇观完成：30 个奇观都有可识别、贴地、方向正确、质量稳定的 GLB 或等效 3D 模型。
+4. 交互完成：时间轴、搜索、筛选、对比、聚焦、沉浸模式、移动端体验都可长期使用。
+5. 性能完成：桌面和主流手机能稳定运行，首屏体积、GLB 加载和地图瓦片有可接受策略。
+6. 发布完成：生产站点稳定、GitHub 有版本、部署/回滚/验收文档完整。
 
-- `npm run check`
-- visual foundation screenshots
-- browser console review
+只做到“能访问”和“能交互”不算最终完整版。
 
-## F2 Boundary Refinement
+## 3. 视觉标准
 
-Pass criteria:
+### 3.1 地图底座
 
-- All 43 civilizations have at least 3 phase features.
-- Total boundary features are at least 129.
-- Every boundary feature has `sourceNote` and `accuracyNote`.
-- Coastal civilizations are coast-aware.
-- Large inland empires avoid simple convex blobs.
-- Zoom 4-5 views do not show obvious rectangles, random internal line spaghetti, or careless cross-sea fills.
+最终效果应是清晰的历史沙盘，而不是模糊的暗色地形图。
 
-Required checks:
+必须满足：
 
-- `npm run validate:data`
-- `npm run check`
-- browser screenshot QA for each accepted batch
+- 海洋平坦、深色、干净，没有明显海底山脉和皱褶。
+- 陆地山脉起伏明显，尤其喜马拉雅、安纳托利亚、伊朗高原、阿尔卑斯等区域。
+- 海岸线清晰，不糊成一片。
+- 山脉 relief 不压过朝代边界和奇观。
+- 地图整体清晰，不能依赖大面积 blur、雾化、低对比来营造气氛。
 
-## F3 Landmark Model Quality
+建议方向：
 
-Pass criteria:
+- 保留当前 dark 沙盘作为主视觉。
+- 古地图/浮雕质感作为可控纹理增强，不应牺牲清晰度。
+- 优先解决海洋平整和陆地 relief 分层，而不是换引擎。
 
-- All 30 landmarks have A/B quality GLB or equivalent 3D models.
-- The core 10 landmarks reach A quality: Hagia Sophia, Forbidden City, Angkor Wat, Great Pyramid, Colosseum, Parthenon, Taj Mahal, Chichen Itza, Great Wall, Petra.
-- No model is upside down, floating, buried, black-material broken, or visibly placeholder quality.
-- Every model has at least one map-view QA screenshot.
+### 3.2 HUD 与信息层
 
-Required checks:
+必须满足：
 
-- GLB audit
-- map-view model screenshots
-- browser console review
+- 中文 UI 文案清楚，不乱码。
+- 面板半透明但文字清晰。
+- 桌面端 HUD 不挡住主要探索区域。
+- 手机端使用底部 sheet / 抽屉式交互，避免信息卡占满不可操作。
+- 所有按钮、滑块、搜索、筛选、对比状态有清晰反馈。
 
-## F4 Content And Sources
+## 4. 历史边界标准
 
-Pass criteria:
+当前边界仍是最终版最大差距之一。
 
-- All 43 civilizations include `summary`, `events`, `tags`, `importance`, `legacy`, `relatedLandmarks`, and `references`.
-- Key events include year/type/source context where possible.
-- UI shows source and accuracy notes.
-- Validator blocks missing source fields for final-phase data.
+最终标准：
 
-Required checks:
+- 43 个文明全部至少有 3 个阶段：兴起期、鼎盛期、衰落期。
+- 每个阶段都能随时间轴切换。
+- 沿海文明必须 coast-aware，边界贴合海岸线。
+- 大型内陆帝国不能用单一凸包络，要使用历史地理锚点、湖海 hole、分区或统一外轮廓。
+- zoom 4-5 时不能看到明显矩形、斜切大三角、跨海乱描、内部随机线。
+- 每个边界 feature 有 `sourceNote` 和 `accuracyNote`。
+- 必须明确“示意范围”与“学术精确边界”的差异。
 
-- `npm run validate:data`
-- content field audit
+最低数据指标：
 
-## F5 Product Interaction And Mobile Experience
+| 项 | 最终要求 |
+| --- | --- |
+| 文明数 | 43 |
+| 每文明阶段 | 至少 3 |
+| 总边界 feature | 129+ |
+| coast-aware / phase-aware | 全部重点文明，最终覆盖全部 |
+| 样板截图 | 每批保留浏览器截图 |
+| 自动校验 | `npm run validate:data` 必过 |
 
-Pass criteria:
+验收重点：
 
-- Desktop and mobile users can select a year, search civilizations, select a civilization, view boundaries, view landmarks, and open details.
-- Mobile uses a comfortable bottom sheet or drawer model.
-- No horizontal overflow, text clipping, or hard-to-tap controls.
-- Civilization cards and landmark cards are linked.
-- Important timeline events can fly to related regions.
+- 唐朝能看出中原、河西、西域的阶段变化。
+- 罗马能围绕地中海展开，而不是粗略大块。
+- 拜占庭、奥斯曼、萨珊、阿契美尼德不能跨海涂大面。
+- 蒙古鼎盛期不能有随机内部线，也不能变成一条巨大斜带。
+- 美洲文明边界不能像简单块状占位。
 
-Required checks:
+## 5. 奇观 3D 模型标准
 
-- desktop browser smoke
-- mobile browser smoke
-- interaction path screenshots
+最终版奇观必须接近“精致微缩建筑”，不是地图图标。
 
-## F6 Performance, Release, And Packaging
+最终标准：
 
-Pass criteria:
+- 当前 30 个奇观全部有 GLB 或同等级高质量模型。
+- 模型底部贴地，不倒置、不悬空、不沉入地面。
+- 模型正面/朝向合理，选中后观赏角度舒服。
+- 远景能识别轮廓，近景能看出结构层次。
+- 重点模型要有屋顶、门廊、塔、穹顶、柱廊、城墙等可读细节。
+- 色彩统一：暖石材、砂岩、陶土、暗金点缀，不出现突兀蓝面/黑块/材质 bug。
+- 单模型体积和三角面在浏览器预算内。
 
-- Production site homepage, SPA fallback, JS, CSS, and GLB assets return 200.
-- No severe console errors or page exceptions.
-- GLB and large JS resources have a reasonable loading strategy.
-- SEO/share metadata and a public work introduction exist.
-- Release tag and rollback notes exist.
+质量分级：
 
-Required checks:
+| 等级 | 标准 |
+| --- | --- |
+| A | 近景可观赏，结构明确，能作为宣传截图 |
+| B | 远景清晰，近景可接受 |
+| C | 只是占位，最终版不允许保留 |
 
-- `npm run check`
-- production smoke
-- release report
+最终版要求：
 
-## Current Status Rule
+- 30 个奇观：A/B 级。
+- 核心 10 个奇观：A级。
+- 0 个 C 级占位。
 
-Until every gate above passes, the project must be called an online milestone or phase build, not the final complete version.
+核心 10 个优先：
+
+1. 圣索菲亚
+2. 紫禁城
+3. 吴哥窟
+4. 吉萨金字塔
+5. 罗马斗兽场
+6. 帕特农神庙
+7. 泰姬陵
+8. 奇琴伊察
+9. 长城
+10. 佩特拉
+
+## 6. 历史内容标准
+
+最终版不能只有“看起来像历史”，还要有可信内容结构。
+
+每个文明必须有：
+
+- `summary`
+- `events` 至少 5 条，重点文明 8-12 条
+- `tags`
+- `importance`
+- `legacy`
+- `relatedLandmarks`
+- `sourceNote`
+- `references`
+
+每条关键事件建议有：
+
+- 年份或年份区间
+- 简短描述
+- 类型：政治、军事、宗教、文化、贸易、城市、科技等
+- 来源或参考说明
+
+内容验收：
+
+- 不能出现明显史实错误。
+- 不能把争议结论写成确定事实。
+- 边界和版图必须显示精度说明。
+- 文明档案读起来像正式历史档案，不像占位文案。
+
+## 7. 产品交互标准
+
+最终版必须让用户“探索”，而不是只看地图。
+
+必须具备：
+
+- 时间轴拖动稳定，文明/边界/奇观同步变化。
+- 文明搜索可用。
+- 奇观搜索可用。
+- 区域和标签筛选可用。
+- 文明对比可用。
+- 选中文明后边界聚焦，其他文明弱化。
+- 选中奇观后进入可选沉浸观赏模式。
+- 点击事件可飞到对应文明或区域。
+- 手机端核心路径可用。
+
+最终应补强：
+
+- 当前时代概览更清楚。
+- 重要年份节点可点击并解释发生了什么。
+- 选中文明后自动飞行角度更稳定。
+- 建筑卡与文明卡之间的关系更强。
+
+## 8. 性能与稳定性标准
+
+最终版不要求像纯静态网页一样轻，但必须稳定。
+
+最低标准：
+
+- `npm run check` 必过。
+- `npm run smoke:release` 必过。
+- 生产站点首页、SPA fallback、JS/CSS/GLB 资源 200。
+- 桌面 Chrome/Edge 稳定。
+- 手机 Chrome 可完成核心路径。
+- 无严重 console error。
+- 无 page exception。
+
+最终优化目标：
+
+- 首屏关键 JS 拆包。
+- GLB 按需加载。
+- 地图瓦片异常有降级提示。
+- 公开站点有固定验收截图。
+- 部署有回滚版本。
+
+## 9. 最终版阶段计划
+
+### F1：最终视觉底座
+
+目标：解决“古地图糊”“海洋有山”“地形和边界抢视觉”的根问题。
+
+负责人：
+
+- Codex：视觉标准、浏览器验收、截图对比、集成。
+- Claude：具体 CSS / MapLibre paint / terrain 策略实现。
+
+交付：
+
+- 海洋平整方案。
+- 陆地 relief 清晰方案。
+- 深色沙盘 + 古地图纹理的最终方向。
+- 桌面和手机截图验收。
+
+### F2：边界全面精修
+
+目标：43 个文明全部 phase-aware / coastline-aware / source-noted。
+
+负责人：
+
+- Claude：批量生成和重构边界数据。
+- Codex：方法论、数据校验、截图验收、拒绝不合格批次。
+
+交付：
+
+- 129+ 边界 feature。
+- 每批 5 个文明。
+- 每批 `npm run check` + 浏览器截图。
+- 所有边界都有精度说明。
+
+### F3：奇观模型全面升级
+
+目标：30 个奇观全部达到 A/B 级，核心 10 个达到 A 级。
+
+负责人：
+
+- Claude：单个 GLB 建模脚本精修。
+- Codex：质量分级、地图视角 QA、集成、回归检查。
+
+交付：
+
+- 30 个 GLB / 高质量模型。
+- GLB audit 0 FAIL。
+- 每个模型至少一张地图视角截图。
+
+### F4：历史内容和来源体系
+
+目标：43 个文明都有可展示的正式档案和来源说明。
+
+负责人：
+
+- Codex：内容结构、历史校验、引用规则。
+- Claude：批量资料整理和字段填充。
+
+交付：
+
+- references 字段。
+- source UI。
+- validator 校验来源字段。
+
+### F5：产品化交互和移动端
+
+目标：让普通用户可以顺畅探索，而不需要理解开发逻辑。
+
+负责人：
+
+- Claude：UI 实现。
+- Codex：交互设计、验收和修漏。
+
+交付：
+
+- 移动端底部 sheet。
+- 更好的文明/奇观联动。
+- 时代节点讲解。
+- 搜索筛选体验优化。
+
+### F6：性能、发布和作品包装
+
+目标：把它从开发项目变成正式作品。
+
+负责人：
+
+- Codex：工程、部署、验收、版本管理。
+- Claude：必要时协助页面和脚本。
+
+交付：
+
+- 拆包和 GLB 懒加载。
+- 浏览器兼容矩阵。
+- 作品介绍页 / SEO / 分享图。
+- 回滚方案和正式版本 tag。
+
+## 10. 当前完成度
+
+| 模块 | 当前状态 | 最终版判断 |
+| --- | --- | --- |
+| 上线部署 | 已完成 | 通过 |
+| 基础交互 | 大部分完成 | 还需产品化 |
+| 视觉底座 | 部分完成 | 未达最终 |
+| 历史边界 | 部分样板完成 | 未达最终 |
+| 奇观模型 | 14/30 有 GLB | 未达最终 |
+| 历史内容 | 基础完成 | 缺引用体系 |
+| 移动端 | 可用 | 未达最终 |
+| 性能 | 有检查脚本 | 未达最终 |
+| 作品包装 | 基本未做 | 未达最终 |
+
+结论：
+
+当前是可上线的 v0.1.0，不是最终完整版。
+
+最终完整版下一步应从 F1 开始：先稳定视觉底座，再批量推进边界和奇观。否则继续做数据或模型会不断被底图和视觉层级问题拖累。

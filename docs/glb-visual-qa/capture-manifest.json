@@ -1,0 +1,1441 @@
+{
+  "ready": {
+    "hasMap": true,
+    "loaded": false,
+    "canvas": true,
+    "url": "http://127.0.0.1:5173/"
+  },
+  "rows": [
+    {
+      "id": "hagia-sophia",
+      "name": "圣索菲亚大教堂",
+      "year": 547,
+      "filename": "01-hagia-sophia.png",
+      "prep": {
+        "id": "hagia-sophia",
+        "year": 547,
+        "center": [
+          28.98,
+          41.01
+        ],
+        "zoom": 7.2,
+        "pitch": 64,
+        "bearing": -26.000000000000004,
+        "yearText": "公元 547"
+      }
+    },
+    {
+      "id": "parthenon",
+      "name": "帕特农神庙",
+      "year": -422,
+      "filename": "02-parthenon.png",
+      "prep": {
+        "id": "parthenon",
+        "year": -422,
+        "center": [
+          23.73,
+          37.97
+        ],
+        "zoom": 7.5,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元前 422"
+      }
+    },
+    {
+      "id": "colosseum",
+      "name": "罗马斗兽场",
+      "year": 90,
+      "filename": "03-colosseum.png",
+      "prep": {
+        "id": "colosseum",
+        "year": 90,
+        "center": [
+          12.49,
+          41.89
+        ],
+        "zoom": 7.4,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元 90"
+      }
+    },
+    {
+      "id": "tajmahal",
+      "name": "泰姬陵",
+      "year": 1663,
+      "filename": "04-tajmahal.png",
+      "prep": {
+        "id": "tajmahal",
+        "year": 1663,
+        "center": [
+          78.04,
+          27.17
+        ],
+        "zoom": 7.4,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元 1663"
+      }
+    },
+    {
+      "id": "pyramid",
+      "name": "吉萨金字塔",
+      "year": -2000,
+      "filename": "05-pyramid.png",
+      "prep": {
+        "id": "pyramid",
+        "year": -2000,
+        "center": [
+          31.13,
+          29.98
+        ],
+        "zoom": 7.5,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元前 2000"
+      }
+    },
+    {
+      "id": "great-wall",
+      "name": "万里长城",
+      "year": -210,
+      "filename": "06-great-wall.png",
+      "prep": {
+        "id": "great-wall",
+        "year": -210,
+        "center": [
+          116.02,
+          40.36
+        ],
+        "zoom": 6.2,
+        "pitch": 64,
+        "bearing": -45,
+        "yearText": "公元前 210"
+      }
+    },
+    {
+      "id": "angkor-wat",
+      "name": "吴哥窟",
+      "year": 1123,
+      "filename": "07-angkor-wat.png",
+      "prep": {
+        "id": "angkor-wat",
+        "year": 1123,
+        "center": [
+          103.87,
+          13.41
+        ],
+        "zoom": 7.2,
+        "pitch": 64,
+        "bearing": -28,
+        "yearText": "公元 1123"
+      }
+    },
+    {
+      "id": "stonehenge",
+      "name": "巨石阵",
+      "year": -2000,
+      "filename": "08-stonehenge.png",
+      "prep": {
+        "id": "stonehenge",
+        "year": -2000,
+        "center": [
+          -1.83,
+          51.18
+        ],
+        "zoom": 7.8,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元前 2000"
+      }
+    },
+    {
+      "id": "chichen-itza",
+      "name": "奇琴伊察",
+      "year": 610,
+      "filename": "09-chichen-itza.png",
+      "prep": {
+        "id": "chichen-itza",
+        "year": 610,
+        "center": [
+          -88.57,
+          20.68
+        ],
+        "zoom": 7.8,
+        "pitch": 64,
+        "bearing": -32,
+        "yearText": "公元 610"
+      }
+    },
+    {
+      "id": "forbidden-city",
+      "name": "紫禁城",
+      "year": 1430,
+      "filename": "10-forbidden-city.png",
+      "prep": {
+        "id": "forbidden-city",
+        "year": 1430,
+        "center": [
+          116.39,
+          39.92
+        ],
+        "zoom": 7.1,
+        "pitch": 64,
+        "bearing": -32,
+        "yearText": "公元 1430"
+      }
+    },
+    {
+      "id": "notre-dame",
+      "name": "巴黎圣母院",
+      "year": 1173,
+      "filename": "11-notre-dame.png",
+      "prep": {
+        "id": "notre-dame",
+        "year": 1173,
+        "center": [
+          2.35,
+          48.85
+        ],
+        "zoom": 7.4,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元 1173"
+      }
+    },
+    {
+      "id": "borobudur",
+      "name": "婆罗浮屠",
+      "year": 835,
+      "filename": "12-borobudur.png",
+      "prep": {
+        "id": "borobudur",
+        "year": 835,
+        "center": [
+          110.2,
+          -7.61
+        ],
+        "zoom": 7.5,
+        "pitch": 64,
+        "bearing": -22,
+        "yearText": "公元 835"
+      }
+    },
+    {
+      "id": "petra",
+      "name": "佩特拉古城",
+      "year": -90,
+      "filename": "13-petra.png",
+      "prep": {
+        "id": "petra",
+        "year": -90,
+        "center": [
+          35.45,
+          30.33
+        ],
+        "zoom": 7.5,
+        "pitch": 64,
+        "bearing": -18,
+        "yearText": "公元前 90"
+      }
+    },
+    {
+      "id": "red-fort",
+      "name": "德里红堡",
+      "year": 1658,
+      "filename": "14-red-fort.png",
+      "prep": {
+        "id": "red-fort",
+        "year": 1658,
+        "center": [
+          77.24,
+          28.66
+        ],
+        "zoom": 7.4,
+        "pitch": 64,
+        "bearing": -25,
+        "yearText": "公元 1658"
+      }
+    }
+  ],
+  "logs": [
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "debug",
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connecting..."
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1780407896299.787,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 732,
+              "columnNumber": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "debug",
+        "args": [
+          {
+            "type": "string",
+            "value": "[vite] connected."
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1780407896326.846,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "handleMessage",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 826,
+              "columnNumber": 11
+            },
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 457,
+              "columnNumber": 41
+            },
+            {
+              "functionName": "dequeue",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 479,
+              "columnNumber": 7
+            },
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 471,
+              "columnNumber": 8
+            },
+            {
+              "functionName": "enqueue",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 465,
+              "columnNumber": 9
+            },
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 457,
+              "columnNumber": 27
+            },
+            {
+              "functionName": "onMessage",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 304,
+              "columnNumber": 5
+            },
+            {
+              "functionName": "",
+              "scriptId": "6",
+              "url": "http://127.0.0.1:5173/@vite/client",
+              "lineNumber": 412,
+              "columnNumber": 4
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "info",
+        "args": [
+          {
+            "type": "string",
+            "value": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools"
+          },
+          {
+            "type": "string",
+            "value": "font-weight:bold"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1780407896515.333,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "20",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-K65LYDBX.js?v=823691f0",
+              "lineNumber": 21608,
+              "columnNumber": 24
+            },
+            {
+              "functionName": "node_modules/react-dom/cjs/react-dom.development.js",
+              "scriptId": "20",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-K65LYDBX.js?v=823691f0",
+              "lineNumber": 21628,
+              "columnNumber": 8
+            },
+            {
+              "functionName": "__require",
+              "scriptId": "19",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-BUSYA2B4.js?v=823691f0",
+              "lineNumber": 2,
+              "columnNumber": 49
+            },
+            {
+              "functionName": "node_modules/react-dom/index.js",
+              "scriptId": "20",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-K65LYDBX.js?v=823691f0",
+              "lineNumber": 21640,
+              "columnNumber": 23
+            },
+            {
+              "functionName": "__require",
+              "scriptId": "19",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-BUSYA2B4.js?v=823691f0",
+              "lineNumber": 2,
+              "columnNumber": 49
+            },
+            {
+              "functionName": "node_modules/react-dom/client.js",
+              "scriptId": "11",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=823691f0",
+              "lineNumber": 11,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "__require",
+              "scriptId": "19",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/chunk-BUSYA2B4.js?v=823691f0",
+              "lineNumber": 2,
+              "columnNumber": 49
+            },
+            {
+              "functionName": "",
+              "scriptId": "11",
+              "url": "http://127.0.0.1:5173/node_modules/.vite/deps/react-dom_client.js?v=823691f0",
+              "lineNumber": 37,
+              "columnNumber": 15
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.213",
+        "timestamp": 83248.976022,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.214",
+        "timestamp": 83248.976248,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.215",
+        "timestamp": 83248.976517,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.216",
+        "timestamp": 83248.976693,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.217",
+        "timestamp": 83248.976784,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.218",
+        "timestamp": 83248.976866,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.219",
+        "timestamp": 83248.976915,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.220",
+        "timestamp": 83248.976993,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.221",
+        "timestamp": 83248.977057,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.222",
+        "timestamp": 83248.977092,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.223",
+        "timestamp": 83248.977114,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.224",
+        "timestamp": 83248.977134,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.225",
+        "timestamp": 83248.977153,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.226",
+        "timestamp": 83248.977218,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.227",
+        "timestamp": 83248.977241,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.287",
+        "timestamp": 83253.647619,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.288",
+        "timestamp": 83253.64787,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.289",
+        "timestamp": 83253.647995,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.374",
+        "timestamp": 83258.342137,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.360",
+        "timestamp": 83258.342271,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.361",
+        "timestamp": 83258.342344,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.362",
+        "timestamp": 83258.342458,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.363",
+        "timestamp": 83258.342531,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.364",
+        "timestamp": 83258.342597,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.365",
+        "timestamp": 83258.342628,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.366",
+        "timestamp": 83258.342653,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.367",
+        "timestamp": 83258.34269,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.368",
+        "timestamp": 83258.342715,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.369",
+        "timestamp": 83258.342739,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.370",
+        "timestamp": 83258.342761,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.371",
+        "timestamp": 83258.342785,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.372",
+        "timestamp": 83258.343616,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.453",
+        "timestamp": 83263.33466,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.454",
+        "timestamp": 83263.334792,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.460",
+        "timestamp": 83263.334839,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.636",
+        "timestamp": 83273.135971,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.634",
+        "timestamp": 83273.13614,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.637",
+        "timestamp": 83273.136225,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.638",
+        "timestamp": 83273.136289,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.716",
+        "timestamp": 83277.632026,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.717",
+        "timestamp": 83277.632229,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.719",
+        "timestamp": 83277.632454,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.720",
+        "timestamp": 83277.632588,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.721",
+        "timestamp": 83277.632696,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.722",
+        "timestamp": 83277.632742,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.723",
+        "timestamp": 83277.632775,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.724",
+        "timestamp": 83277.632798,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.725",
+        "timestamp": 83277.632828,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.726",
+        "timestamp": 83277.632863,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.727",
+        "timestamp": 83277.632896,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.728",
+        "timestamp": 83277.632919,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.729",
+        "timestamp": 83277.632941,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.730",
+        "timestamp": 83277.63297,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.731",
+        "timestamp": 83277.632992,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.829",
+        "timestamp": 83282.083793,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.833",
+        "timestamp": 83282.084096,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.819",
+        "timestamp": 83282.08452,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.820",
+        "timestamp": 83282.084761,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.821",
+        "timestamp": 83282.084876,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.822",
+        "timestamp": 83282.084978,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.823",
+        "timestamp": 83282.085016,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.824",
+        "timestamp": 83282.085039,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.825",
+        "timestamp": 83282.085061,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.826",
+        "timestamp": 83282.085088,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.827",
+        "timestamp": 83282.085111,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.828",
+        "timestamp": 83282.085133,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.830",
+        "timestamp": 83282.085162,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.831",
+        "timestamp": 83282.085181,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.832",
+        "timestamp": 83282.085201,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.915",
+        "timestamp": 83287.629436,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.916",
+        "timestamp": 83287.629824,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.917",
+        "timestamp": 83287.629992,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.918",
+        "timestamp": 83287.630056,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.919",
+        "timestamp": 83287.630095,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.920",
+        "timestamp": 83287.630125,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.921",
+        "timestamp": 83287.630158,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.922",
+        "timestamp": 83287.630186,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.923",
+        "timestamp": 83287.630222,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.924",
+        "timestamp": 83287.630248,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.925",
+        "timestamp": 83287.630271,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.926",
+        "timestamp": 83287.630308,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.927",
+        "timestamp": 83287.630333,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.928",
+        "timestamp": 83287.630356,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1052",
+        "timestamp": 83296.405646,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1047",
+        "timestamp": 83296.406485,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1126",
+        "timestamp": 83300.784361,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1127",
+        "timestamp": 83300.784513,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1128",
+        "timestamp": 83300.784618,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1129",
+        "timestamp": 83300.784651,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1130",
+        "timestamp": 83300.784673,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1131",
+        "timestamp": 83300.784696,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1132",
+        "timestamp": 83300.784735,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1133",
+        "timestamp": 83300.78476,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1134",
+        "timestamp": 83300.784793,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1135",
+        "timestamp": 83300.784865,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1136",
+        "timestamp": 83300.784893,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1137",
+        "timestamp": 83300.784923,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1138",
+        "timestamp": 83300.784945,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1139",
+        "timestamp": 83300.784968,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    },
+    {
+      "method": "Network.loadingFailed",
+      "params": {
+        "requestId": "43920.1245",
+        "timestamp": 83305.360992,
+        "type": "Fetch",
+        "errorText": "net::ERR_ABORTED",
+        "canceled": true
+      }
+    }
+  ]
+}

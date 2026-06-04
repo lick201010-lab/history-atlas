@@ -1,0 +1,183 @@
+{
+  "appUrl": "https://atlas.ckl.hk/",
+  "shots": [
+    {
+      "name": "online-mongol-1220-rise-boundary",
+      "setup": {
+        "targetId": "mongol-empire",
+        "targetYear": 1220,
+        "mapReady": true,
+        "center": [
+          89.5,
+          48.5
+        ],
+        "zoom": 3.55,
+        "pitch": 55.00000000000001,
+        "bearing": -18
+      },
+      "title": "历史沙盘 · Historical Atlas",
+      "canvas": {
+        "width": 1440,
+        "height": 900
+      },
+      "map": {
+        "center": [
+          89.5,
+          48.5
+        ],
+        "zoom": 3.55,
+        "pitch": 55.00000000000001,
+        "bearing": -18
+      },
+      "territoryLineFilter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          1220
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          1220
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "mongol-empire"
+        ]
+      ]
+    },
+    {
+      "name": "online-mongol-1250-peak-boundary",
+      "setup": {
+        "targetId": "mongol-empire",
+        "targetYear": 1250,
+        "mapReady": true,
+        "center": [
+          74,
+          44
+        ],
+        "zoom": 2.95,
+        "pitch": 54,
+        "bearing": -18
+      },
+      "title": "历史沙盘 · Historical Atlas",
+      "canvas": {
+        "width": 1440,
+        "height": 900
+      },
+      "map": {
+        "center": [
+          74,
+          44
+        ],
+        "zoom": 2.95,
+        "pitch": 54,
+        "bearing": -18
+      },
+      "territoryLineFilter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          1250
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          1250
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "mongol-empire"
+        ]
+      ]
+    },
+    {
+      "name": "online-mongol-1300-decline-boundary",
+      "setup": {
+        "targetId": "mongol-empire",
+        "targetYear": 1300,
+        "mapReady": true,
+        "center": [
+          74,
+          44
+        ],
+        "zoom": 2.95,
+        "pitch": 54,
+        "bearing": -18
+      },
+      "title": "历史沙盘 · Historical Atlas",
+      "canvas": {
+        "width": 1440,
+        "height": 900
+      },
+      "map": {
+        "center": [
+          74,
+          44
+        ],
+        "zoom": 2.95,
+        "pitch": 54,
+        "bearing": -18
+      },
+      "territoryLineFilter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          1300
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          1300
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "mongol-empire"
+        ]
+      ]
+    }
+  ],
+  "consoleMessages": [],
+  "failedRequests": [
+    {
+      "requestId": "D57F9B7E3F114F7669DAC9D9E7596471",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ],
+  "nonCanceledFailures": [],
+  "badResponses": []
+}

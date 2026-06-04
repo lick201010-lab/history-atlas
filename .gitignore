@@ -22,7 +22,7 @@ Thumbs.db
 # Generator caches (Natural Earth land + intermediate)
 scripts/.cache/
 
-# Claude task runs: keep the template in git, keep actual run logs local.
-.claude/
+# Local Codex/Claude orchestration logs
 .claude-runs/*
+!.claude-runs/
 !.claude-runs/TEMPLATE.md

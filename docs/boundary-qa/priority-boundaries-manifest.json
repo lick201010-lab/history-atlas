@@ -1,0 +1,190 @@
+{
+  "shots": [
+    {
+      "name": "ottoman-1600-priority-boundary",
+      "setup": {
+        "targetId": "ottoman",
+        "targetYear": 1600,
+        "mapReady": true,
+        "center": [
+          30.4,
+          35.7
+        ],
+        "zoom": 4.15,
+        "pitch": 58.00000000000001,
+        "bearing": -18
+      },
+      "canvas": {
+        "width": 1440,
+        "height": 900
+      },
+      "map": {
+        "center": [
+          30.4,
+          35.7
+        ],
+        "zoom": 4.15,
+        "pitch": 58.00000000000001,
+        "bearing": -18
+      },
+      "territoryLineFilter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          1600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          1600
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "ottoman"
+        ]
+      ]
+    },
+    {
+      "name": "achaemenid-500bce-priority-boundary",
+      "setup": {
+        "targetId": "achaemenid",
+        "targetYear": -500,
+        "mapReady": true,
+        "center": [
+          49,
+          32.8
+        ],
+        "zoom": 4.1,
+        "pitch": 56,
+        "bearing": -18
+      },
+      "canvas": {
+        "width": 1440,
+        "height": 900
+      },
+      "map": {
+        "center": [
+          49,
+          32.8
+        ],
+        "zoom": 4.1,
+        "pitch": 56,
+        "bearing": -18
+      },
+      "territoryLineFilter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          -500
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          -500
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "achaemenid"
+        ]
+      ]
+    },
+    {
+      "name": "sasanian-600-priority-boundary",
+      "setup": {
+        "targetId": "sasanian",
+        "targetYear": 600,
+        "mapReady": true,
+        "center": [
+          49.5,
+          32.2
+        ],
+        "zoom": 4.35,
+        "pitch": 56,
+        "bearing": -18
+      },
+      "canvas": {
+        "width": 1440,
+        "height": 900
+      },
+      "map": {
+        "center": [
+          49.5,
+          32.2
+        ],
+        "zoom": 4.35,
+        "pitch": 56,
+        "bearing": -18
+      },
+      "territoryLineFilter": [
+        "all",
+        [
+          "<=",
+          [
+            "get",
+            "startYear"
+          ],
+          600
+        ],
+        [
+          ">=",
+          [
+            "get",
+            "endYear"
+          ],
+          600
+        ],
+        [
+          "==",
+          [
+            "get",
+            "id"
+          ],
+          "sasanian"
+        ]
+      ]
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting..."
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected."
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+    }
+  ],
+  "failedRequests": [
+    {
+      "requestId": "CA5FA2B6D384D48B99A2C056838364D3",
+      "errorText": "net::ERR_ABORTED",
+      "canceled": true
+    }
+  ]
+}

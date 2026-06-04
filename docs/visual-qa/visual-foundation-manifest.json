@@ -1,0 +1,166 @@
+{
+  "appUrl": "http://127.0.0.1:4181/",
+  "generatedAt": "2026-06-04T13:45:55.783Z",
+  "ready": {
+    "title": "历史沙盘 · Historical Atlas",
+    "url": "http://127.0.0.1:4181/",
+    "ready": true,
+    "mapReady": true,
+    "canvas": {
+      "width": 1410,
+      "height": 805
+    },
+    "slider": true,
+    "loadingVisible": false,
+    "viewport": {
+      "width": 1410,
+      "height": 805
+    },
+    "bodyClass": "",
+    "theme": "dark"
+  },
+  "captures": [
+    {
+      "id": "himalaya-relief",
+      "label": "Himalaya relief clarity",
+      "year": 700,
+      "camera": {
+        "center": [
+          86.9,
+          28.2
+        ],
+        "zoom": 5.05,
+        "pitch": 65,
+        "bearing": -35
+      },
+      "waitMs": 9000,
+      "audit": {
+        "expectedYearText": "公元 700",
+        "timelineYear": "公元 700",
+        "infoYear": "公元 700",
+        "yearStable": true,
+        "canvasCount": 3,
+        "mapCenter": [
+          86.9,
+          28.2
+        ],
+        "zoom": 5.05,
+        "pitch": 65,
+        "bearing": -35,
+        "tilesStable": false,
+        "loadingVisible": false,
+        "warningVisible": false,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\visual-qa\\foundation-himalaya-relief.png"
+    },
+    {
+      "id": "open-ocean-flatness",
+      "label": "Open ocean flatness",
+      "year": 1250,
+      "camera": {
+        "center": [
+          145,
+          8
+        ],
+        "zoom": 3.35,
+        "pitch": 62,
+        "bearing": -20
+      },
+      "waitMs": 7000,
+      "audit": {
+        "expectedYearText": "公元 1250",
+        "timelineYear": "公元 1250",
+        "infoYear": "公元 1250",
+        "yearStable": true,
+        "canvasCount": 3,
+        "mapCenter": [
+          134.488,
+          8
+        ],
+        "zoom": 3.35,
+        "pitch": 62,
+        "bearing": -20,
+        "tilesStable": true,
+        "loadingVisible": false,
+        "warningVisible": false,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\visual-qa\\foundation-open-ocean-flatness.png"
+    },
+    {
+      "id": "mediterranean-boundary-readability",
+      "label": "Mediterranean terrain and boundary readability",
+      "year": 600,
+      "camera": {
+        "center": [
+          28.5,
+          38.7
+        ],
+        "zoom": 4.25,
+        "pitch": 58,
+        "bearing": 28
+      },
+      "waitMs": 8000,
+      "audit": {
+        "expectedYearText": "公元 600",
+        "timelineYear": "公元 600",
+        "infoYear": "公元 600",
+        "yearStable": true,
+        "canvasCount": 3,
+        "mapCenter": [
+          28.5,
+          38.7
+        ],
+        "zoom": 4.25,
+        "pitch": 58,
+        "bearing": 28,
+        "tilesStable": true,
+        "loadingVisible": false,
+        "warningVisible": false,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\visual-qa\\foundation-mediterranean-boundary-readability.png"
+    },
+    {
+      "id": "central-america-readability",
+      "label": "Central America coast and territory readability",
+      "year": 1250,
+      "camera": {
+        "center": [
+          -89.1,
+          17.3
+        ],
+        "zoom": 4.75,
+        "pitch": 58,
+        "bearing": 0
+      },
+      "waitMs": 7000,
+      "audit": {
+        "expectedYearText": "公元 1250",
+        "timelineYear": "公元 1250",
+        "infoYear": "公元 1250",
+        "yearStable": true,
+        "canvasCount": 3,
+        "mapCenter": [
+          -89.1,
+          17.3
+        ],
+        "zoom": 4.75,
+        "pitch": 58,
+        "bearing": 0,
+        "tilesStable": true,
+        "loadingVisible": false,
+        "warningVisible": false,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\visual-qa\\foundation-central-america-readability.png"
+    }
+  ],
+  "consoleMessages": [],
+  "seriousConsole": [],
+  "pageExceptions": [],
+  "nonCanceledFailures": [],
+  "badResponses": [],
+  "failures": []
+}

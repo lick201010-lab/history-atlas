@@ -1,133 +1,180 @@
 # 历史沙盘 · 已知问题
 
-记录当前 MVP 阶段已知但暂未处理的限制与风险，方便后续优先级排序。
+本文件记录 MVP 上线阶段已知但不阻塞发布的限制。它们应该被诚实保留，不要在展示时夸大成最终学术 GIS 或博物馆级 3D 产品。
 
----
+## 1. 首屏体积偏大
 
-## 1. 打包体积偏大
+现象：
 
-- 主 bundle `index.js` 约 **1.5 MB**（gzip ~420 KB）
-- 主要来源：MapLibre GL JS (~700 KB)、Three.js (~600 KB)
-- Vite 构建有警告："Some chunks are larger than 500 kB after minification"
-- **影响**：首屏加载在弱网下会有可察觉延迟
-- **缓解方案（未做）**：
-  - 把 MapLibre 与 Three 通过 dynamic `import()` 拆出懒加载 chunk
-  - 配置 `build.rollupOptions.output.manualChunks` 把第三方拆为单独 vendor chunk
-  - 走 CDN 引入 maplibre-gl / three（HTML 直链）
+- MapLibre GL JS 和 Three.js 都是重型依赖。
+- Vite build 会提示部分 chunk 超过 500 KB。
 
----
+影响：
 
-## 2. 地形与底图依赖外部瓦片网络
+- 弱网或低端设备首屏会慢一些。
+- 这是 MVP 可接受问题，不是功能错误。
 
-- 底图：CARTO Dark `https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png`
-- 地形 DEM：AWS `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png`
-- **影响**：
-  - 离线 / 内网环境无法加载底图与地形，只剩 UI 框
-  - 第三方瓦片源若变更 URL 或限速，应用会受影响
-  - 没有缓存策略，刷新会重新请求
-- **缓解方案（未做）**：
-  - 自建瓦片服务（mbtiles + tileserver-gl）
-  - 提供"离线模式占位底图"配置项
+后续方向：
 
----
+- 用 manualChunks 拆分 vendor。
+- 对 Three / GLB 做更彻底的懒加载。
+- 评估 MapLibre 和 Three 的按需加载边界。
 
-## 3. 历史边界仍是粗略示意
+## 2. 地图瓦片依赖第三方服务
 
-- 43 个 boundary 全部是手绘 6–12 顶点的多边形，覆盖 `accuracy: rough-refined`
-- **不能用作学术地图**：朝代不同时期版图变化、附庸国/羁縻州、海上势力都未表达
-- 多个文明边界叠在同一年时只是简单覆盖，没有 dispute / overlap 表达
-- **影响**：仅适合作为"地缘感受"，不可作为史料引用
-- **缓解方案（未做）**：
-  - 引入历史 GIS 库（如 Cambridge Historical GIS 数据）
-  - 让每个朝代有按时间段切换的多个 boundary（startYear / endYear 分段）
-  - 加 `disputed: true` 字段处理重叠区
+现象：
 
----
+- 底图、DEM 和外部地形瓦片仍依赖公网服务。
+- 用户网络、第三方限速或服务变更都会影响地图加载。
 
-## 4. 3D 建筑是符号化低模
+影响：
 
-- 30 个建筑用 Three.js 基础几何体（Box / Cone / Cylinder / Sphere）拼出 14 种 type
-- **不是真实建模**：长城是带 9 段垛口的短墙片段、紫禁城与长安宫殿共用 palace 形态
-- 没有材质贴图、没有阴影、没有 GLTF
-- 不同建筑共用同一 mesh builder 时只是颜色不同
-- **缓解方案（未做）**：
-  - 为每个 landmark 单独的 procedural builder（如紫禁城三大殿排列）
-  - 引入轻量 GLB 模型（每个 < 200 KB），lazy-load
-  - 加阴影 / 法线贴图
+- 离线不可用。
+- 部分地区可能加载慢或偶发瓦片空白。
 
----
+后续方向：
 
-## 5. 数据来源还需要学术化
+- 自建瓦片缓存或 tileserver。
+- 为生产环境准备基础底图兜底。
+- 评估阿里云对象存储或 CDN 缓存静态瓦片。
 
-- `events` / `legacy` / `tags` / `importance` 都是基于公共知识与编辑判断手写
-- 没有 citation 字段，没有史料链接
-- summary 中可能存在演绎成分（如"塑造了…的长期想象"）
-- **影响**：不适合作为教学或研究素材
-- **缓解方案（未做）**：
-  - 给每个 event 加 `sourceCitation` 字段
-  - 给每个 dynasty 加 `references` 列表（书籍 / 论文 / 维基）
-  - importance 改为可争议字段，加 `importanceRationale`
+## 3. 历史边界不是学术精确边界
 
----
+现象：
 
-## 6. 小屏幕仍需进一步优化
+- 当前 91 个边界 feature 是 rough / rough-refined 示意边界。
+- 部分重点文明已经做了阶段化和海岸线贴合，但还不是完整历史 GIS 数据。
+- 大型内陆帝国仍需要更好的地理锚点和分区策略。
 
-- 已实现：1280×720 桌面，max-width 760px 媒体查询折叠
-- 仍存在的问题：
-  - 移动竖屏（375×812）下信息卡 + 信息面板 + 时间轴会争抢空间
-  - 触屏没有 dedicated 手势（双指旋转 OK，但没有"长按 = 锁定"等便利）
-  - 时间轴节点 hover tip 在触屏上不易触发
-- **缓解方案（未做）**：
-  - 移动端切换为"抽屉式"信息卡（从底部滑出）
-  - 用 tap 替代 hover 显示节点标签
-  - 文明列表移到底部 sheet
+影响：
 
----
+- 适合视觉探索和历史感知。
+- 不适合作为论文、教材或严肃地图引用。
 
-## 7. React 渲染轻微问题
+后续方向：
 
-- `App.jsx` 的 year-change useEffect 用 ESLint disable 关掉 `react-hooks/exhaustive-deps`，因为我们故意只在 year 变化时关卡片
-- MapScene 中的多个 `useRef` 持有 React state 拷贝（dynastiesRef / boundariesRef），是 maplibre 事件回调闭包稳定性的妥协，不是 idiomatic React
-- 没有 React StrictMode（main.jsx 没启用），双重渲染下的 MapLibre 多次 mount 行为未测试
+- 分批把 43 个文明升级到 phase-aware 边界。
+- 统一 coastline / landmask 参考源。
+- 为每个边界增加 sourceNote、accuracyNote 和来源记录。
 
----
+## 4. 奇观模型仍是风格化低模
 
-## 8. 性能边界
+现象：
 
-- 30 个 Three.js mesh + 43 个 GeoJSON 边界 + 时间轴 14 节点 hover：典型笔记本 60fps
-- 极端情况：
-  - 大量切换图层 + 拖动时间轴极快时偶有 1–2 帧丢
-  - building layer 的 zoom 监听器每帧调 `triggerRepaint`，已节流但仍 hot
-- **未做**：requestAnimationFrame 性能 profiler、Three.js InstancedMesh 替换分散 mesh
+- 14 个重点奇观已经接入 GLB 并通过审计。
+- 圣索菲亚、紫禁城、吴哥窟、吉萨金字塔等已有更清晰形态。
+- 但整体仍是 stylized low-poly miniature，不是真实建筑复原。
 
----
+影响：
 
-## 9. 浏览器与设备兼容
+- 远景沙盘可读性已经够用。
+- 近景精美度仍不稳定，屋顶、拱门、材质层次还有提升空间。
 
-- 已测：Chromium 130+（Edge / Chrome）
-- 未充分测试：
-  - Firefox（CSS `backdrop-filter` 行为略不同）
-  - Safari（WebGL 2 / mix-blend-mode）
-  - 老设备 / 集成显卡（Three custom layer + raster-dem 同时可能卡顿）
-- 不支持 IE，未考虑
+后续方向：
 
----
+- 建立每类建筑的模型标准。
+- 优先继续精修 10 个最常被看到的奇观。
+- 引入更稳定的 GLB QA 截图流程。
 
-## 10. 文案与可访问性
+## 5. 海洋和地形清晰度仍需长期打磨
 
-- 中文为主，英文仅作为副标题（titleEn）
-- 没有 a11y 角色完整审查（部分按钮已加 aria-label，但截图测试未走过屏幕阅读器）
-- 没有键盘导航（除原生 `<button>` / `<input>` 默认行为外）
-- 没有 high-contrast mode
+现象：
 
----
+- 当前已经通过视觉策略压平海洋，让海洋更深、更干净。
+- 但在某些视角、缩放和瓦片组合下，海底 DEM / hillshade 仍可能带来杂纹。
 
-## 优先级建议
+影响：
+
+- 不阻塞 MVP 上线。
+- 对“精致古地图沙盘”方向有明显影响。
+
+后续方向：
+
+- 继续强化 water mask。
+- 将陆地 relief 和海洋材质分层处理。
+- 研究更接近“古地图浮雕”的自定义地形纹理。
+
+## 6. 移动端是可用版，不是最终体验
+
+现象：
+
+- 当前移动端发布烟测已通过。
+- 390px 宽度下没有水平溢出，能选择文明并打开卡片。
+- 但 HUD 信息密度仍高，时间轴、列表、卡片会争抢空间。
+
+影响：
+
+- 可以上线展示。
+- 长时间手机探索还不够舒服。
+
+后续方向：
+
+- 做底部 sheet 式信息卡。
+- 移动端用 tap 替代 hover。
+- 简化移动端默认 HUD。
+
+## 7. 浏览器覆盖还不完整
+
+现象：
+
+- 当前主要验证基于 Chromium / Edge / Chrome。
+- Safari 和 Firefox 的 WebGL、backdrop-filter、blend mode 表现未做完整矩阵测试。
+
+影响：
+
+- 绝大多数桌面 Chrome 用户可用。
+- 少数浏览器可能出现视觉差异。
+
+后续方向：
+
+- 增加 Safari / Firefox 手工验收。
+- 记录浏览器兼容性矩阵。
+- 必要时为特定浏览器降级 blur / blend 效果。
+
+## 8. 可访问性还未系统处理
+
+现象：
+
+- 部分按钮有 aria-label。
+- 但没有完整键盘导航、屏幕阅读器和高对比模式审计。
+
+影响：
+
+- 不阻塞视觉 MVP。
+- 未来如果作为公开教育产品，需要补齐。
+
+后续方向：
+
+- 做键盘可达性审计。
+- 补齐焦点态和 aria 文案。
+- 提供 reduced motion / high contrast 支持。
+
+## 9. 文献来源体系还不完整
+
+现象：
+
+- 文明摘要、事件、legacy 和 tags 已经有结构化字段。
+- 但还没有逐条 citation。
+
+影响：
+
+- 当前更像视觉历史产品。
+- 暂不适合承担严肃史料引用。
+
+后续方向：
+
+- 为事件和边界增加 references。
+- 增加资料来源面板。
+- 区分“史实”“学界争议”“产品示意”。
+
+## 10. 发布策略限制
+
+上线前不要因为这些非阻塞问题扩大修改范围。当前优先级：
 
 | 等级 | 项 |
-|---|---|
-| P0 已知不阻塞发版 | 1（体积）/ 7（hooks）/ 8（性能边界）/ 9（兼容） |
-| P1 影响学术性 | 3（边界精度）/ 5（来源） |
-| P1 影响表现力 | 4（建筑建模） |
-| P2 影响新场景 | 6（移动端）/ 10（可访问性） |
-| 长期 | 2（自建瓦片） |
+| --- | --- |
+| P0 | 线上打不开、构建失败、严重 JS 报错、手机完全不可用 |
+| P1 | 明显错误的奇观倒置/悬空、边界跨海成大片、时间轴失效 |
+| P2 | 精细建模、学术 citation、更多文明边界、性能拆包 |
+
+明天上线前只处理 P0 和非常明显的 P1。P2 放到上线后的迭代阶段。

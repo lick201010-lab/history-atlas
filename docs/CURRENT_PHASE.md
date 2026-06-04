@@ -2,93 +2,147 @@
 
 Updated: 2026-06-04
 
-Status: F1 visual foundation has passed in this workspace. The active phase is now F2 boundary refinement. The deployed site is an online milestone only, not the final complete version.
+Status: F2 in progress. F1 visual foundation has passed the Codex Gate and the project may now begin controlled boundary refinement. This is still not the final complete version.
 
-## F0 Gate Result
+## Project Rule
 
-F0 passed on 2026-06-04.
-
-Evidence:
-
-- `AGENTS.md` exists and states that `v0.1.0` is not final.
-- `docs/FINAL_VERSION_SPEC.md` exists.
-- `docs/CURRENT_PHASE.md` exists and names the active phase.
-- `.claude-runs/TEMPLATE.md` exists.
-- `WORK_LOG.md` records the workflow reset.
-- `git status --short --branch` has been inspected before changes.
-- `npm.cmd run check` passed.
+The current deployed site at `https://atlas.ckl.hk/` and package version `v0.1.0` are online milestones only. No agent may call the project final until F1-F6 Gates all pass.
 
 ## F1 Gate Result
 
-F1 passed on 2026-06-04.
+F1 was accepted on 2026-06-04 after pass 3.
 
 Evidence:
 
-- `npm.cmd run check` passed.
-- `npm.cmd run audit:visual-foundation` passed.
-- Browser screenshots were generated in `docs/visual-qa/`.
-- `docs/visual-qa/F1_VISUAL_FOUNDATION_REPORT.md` records the review.
-- Open ocean is flat and clean.
-- Land relief remains readable.
-- Boundary styling is more legible and less like debug output.
-- Mobile HUD controls and bottom sheet no longer overlap.
-- No serious browser console errors were captured.
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
+- `RELEASE_SMOKE_URL=http://127.0.0.1:4174/ npm run smoke:release` passed.
+- Reviewed foundation screenshots:
+  - `docs/visual-qa/foundation-himalaya-relief.png`
+  - `docs/visual-qa/foundation-open-ocean-flatness.png`
+  - `docs/visual-qa/foundation-mediterranean-boundary-readability.png`
+  - `docs/visual-qa/foundation-central-america-readability.png`
+- Ocean is visually flat, deep, and clean.
+- Dark-theme land relief is calmer and no longer reads as strong white-noise texture.
+- Civilization boundaries are calmer and less fluorescent.
+- Desktop and mobile smoke paths still work.
 
-## Current Findings
+Residual F1 risks to remember:
 
-- This workspace currently has 43 civilizations, 89 boundary features, and 30 landmarks.
-- F2 must raise boundary data from rough/placeholder state toward coast-aware rough-refined geometry.
-- Current boundary smoothing is a visual aid only. It is not a replacement for true historical geometry refinement.
+- Himalaya relief is intentionally subdued in the default world view; mountain mode still carries stronger 3D terrain.
+- Open-ocean high-pitch views can still show far-horizon darkness from the map/sky perspective, but not underwater mountain relief.
+- F6 must still handle bundle size and resource strategy.
 
-## Phase Order
+## F2 Goal
 
-After F0 passes, continue:
+Upgrade all 43 civilization boundaries from placeholder or rough sample polygons to rough-refined historical-geographic outlines.
 
-1. F1 visual foundation
-2. F2 full boundary refinement
-3. F3 landmark model upgrade
-4. F4 content and sources
-5. F5 product interaction and mobile
-6. F6 performance, release, and packaging
+F2 is about boundary data quality, not a new visual redesign.
 
-## F2 Gate
+## F2 Batch Rule
 
-F2 is not accepted yet.
+- One batch contains 5 civilizations.
+- Do not merge broad all-at-once boundary rewrites.
+- Each civilization must have at least 3 phase features: rise, peak, decline or equivalent historically meaningful phases.
+- Coastal civilizations must be coast-aware.
+- Large inland empires must avoid simple convex blobs and should follow historical anchors and natural geography.
+- Every feature must include `sourceNote` and `accuracyNote`.
+- Each accepted batch must be committed separately.
 
-F2 requires:
+## Accepted F2 Batch 01
 
-- All 43 civilizations have at least 3 historical phases.
-- Total boundary features are at least 129.
-- Every boundary feature has `sourceNote` and `accuracyNote`.
-- Key regions are visually reviewed at zoom 4-5.
-- Coast-aware civilizations do not use crude cross-sea convex hulls.
-- `npm.cmd run validate:data`, `npm.cmd run check`, and browser boundary screenshots pass.
+Batch 01 was accepted on 2026-06-04.
 
-## Allowed Write Scope For Current F2 Work
+1. Byzantine Empire
+2. Ottoman Empire
+3. Mongol Empire
+4. Aztec Empire
+5. Inca Empire
 
-Codex may inspect, validate, and integrate boundary changes.
+Evidence:
 
-Claude may be assigned bounded batches for:
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `node .claude-runs/capture-f2-boundary-batch-01.mjs` passed.
+- QA report: `docs/boundary-qa/F2_BATCH01_REPORT_2026-06-04.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch01-byzantine-600.png`
+  - `docs/boundary-qa/f2-batch01-ottoman-1600.png`
+  - `docs/boundary-qa/f2-batch01-mongol-empire-1250.png`
+  - `docs/boundary-qa/f2-batch01-aztec-1500.png`
+  - `docs/boundary-qa/f2-batch01-inca-1500.png`
+
+## Current F2 Batch 02
+
+Batch 02 should target early West Asian / Mediterranean powers. Confirm exact ids before issuing the task file.
+
+Draft candidates:
+
+1. Achaemenid Empire / `achaemenid`
+2. Sasanian Empire / `sasanian`
+3. Greek City-States / `greek-city-states`
+4. Assyrian Empire or another existing Near Eastern empire id
+5. Hellenistic successor or another existing Mediterranean id
+
+## F2 Allowed Write Scope
+
+Claude or a worker may edit:
 
 - `src/data/boundaries-simplified.json`
-- boundary generation scripts
-- validation fixtures if needed
+- Data validator fixtures only if the current schema blocks required F2 fields.
+- A `.claude-runs/*.md` task/output record.
 
-Forbidden during F2 unless explicitly re-scoped:
+Codex may additionally edit:
+
+- `WORK_LOG.md`
+- `docs/CURRENT_PHASE.md`
+- relevant QA docs and screenshots
+- Obsidian project notes
+
+## F2 Forbidden Write Scope
+
+Do not edit during F2 boundary batches unless Codex explicitly changes this file:
 
 - `src/data/dynasties.json`
 - `src/data/landmarks.json`
+- `src/map/mapStyle.js`
+- `src/components/MapScene.jsx`
 - `public/models/*`
 - GLB build scripts
 - deployment scripts
+- package dependencies
+
+## F2 Gate Checks
+
+Every batch must pass:
+
+- `npm run validate:data`
+- `npm run check`
+- browser screenshot review at zoom 4-5 for the batch region
+- no random internal line spaghetti
+- no obvious rectangle placeholders
+- no careless cross-sea fills unless historically intentional and visually acceptable
+- no severe coastline mismatch where rough-refined coast-aware data is required
+
+F2 full phase is not complete until:
+
+- 43 civilizations all have at least 3 phase boundary features.
+- Total boundary features are at least 129.
+- `npm run validate:data` passes.
+- `npm run check` passes.
+- priority screenshots are reviewed for Tang, Rome, Islamic Caliphates, Byzantine, Ottoman, Mongol, Maya, Aztec, Mughal, and Inca.
 
 ## Codex Responsibilities
 
-- Lock the workflow.
-- Review and integrate work from Claude.
-- Run checks and browser QA.
-- Commit only scoped accepted changes.
+- Define batch task files.
+- Invoke Claude or worker agents with bounded write scopes.
+- Review diffs and reject weak geometry.
+- Run automated checks and browser screenshot QA.
+- Commit and push accepted batches.
+- Keep `WORK_LOG.md`, `docs/CURRENT_PHASE.md`, and Obsidian notes updated.
 
 ## Claude Responsibilities
 
-Claude may only work from a `.claude-runs/*.md` task file. Claude output is not accepted until Codex reviews it.
+Claude may only work from a `.claude-runs/*.md` task file.
+
+Claude is responsible for controlled implementation only. Claude does not decide whether a batch is accepted.

@@ -1,44 +1,28 @@
-// 生成圣索菲亚大教堂的 stylized low-poly GLB 资产（public/models/hagia-sophia.glb）。
+// 圣索菲亚大教堂 —— 「精品奇观 GLB 资产管线」样板（public/models/hagia-sophia.glb）。
 //
-// 目标：博物馆微缩模型质感的奇观，而非简单程序方块。包含 ——
-//   中央大穹顶（顶金尖）+ 东西半穹顶 + 四角小半穹（exedra）+ 侧翼小穹顶群 +
-//   四根高细宣礼塔（塔身/双阳台环/分层尖顶）+ 主巴西利卡体块 + 南北侧廊 +
-//   东端半圆后殿 + 四角扶壁墩 + 拱窗/拱廊暗块 + 鼓座窗墩一圈 + 檐口线 +
-//   台基与西端门廊台阶。16 个材质分区 + 顶点色 AO（底暗顶亮、朝下面压暗）增强体积层次。
+// 本脚本不再各自手写导出/AO/合并逻辑，而是调用可复用的资产管线 scripts/lib/wonderKit.mjs：
+//   · 用 WonderAsset 的参数化原语搭体量（体块 / 倾斜屋面 / 柱体 / 锥 / 球壳穹顶 /
+//     旋转面穹顶 / 拱廊），按材质分区归桶；
+//   · exportGlb 统一做「按材质合并 → 法线 → 顶点色 AO → 合并重复顶点优化 → 导出 GLB」。
+//   全程顶点着色、零贴图 → 体积小、无大贴图、无外部资源、几何 100% 原创（无授权风险）。
 //
-// 坐标系与程序化 builder 一致：z = 上，足迹约 ±0.7，base 贴地（z≥0），
-//   故在 createBuildingLayer 里替换程序化体块后位置/朝向/贴地不变。
+// 体量构成：中央大穹顶（旋转面 + 鼓座窗墩 + 金尖）+ 东西半穹顶（旋转面）+ 四角小半穹 exedra +
+//   侧翼小穹顶群 + 四根收分宣礼塔（基座/塔身/阳台/锥尖）+ 主巴西利卡 + 南北侧廊（单坡屋面）+
+//   东端半圆后殿 + 四角扶壁墩 + 拱窗/拱廊暗块 + 檐口线 + 台基与西端门廊台阶。
 //
-// 运行：node scripts/buildHagiaSophiaGlb.mjs
+// 坐标系：z = 上，足迹约 ±0.7，base 贴地（z≥0）。运行：node scripts/buildHagiaSophiaGlb.mjs
 
-import * as THREE from 'three';
-import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
-import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { writeFile, mkdir } from 'node:fs/promises';
+import { WonderAsset } from './lib/wonderKit.mjs';
 
-// GLTFExporter 的二进制路径用浏览器的 FileReader 把 Blob 读成 ArrayBuffer。
-// Node 18+ 有全局 Blob，但没有 FileReader —— 用 Blob.arrayBuffer() 补一个最小实现。
-if (typeof globalThis.FileReader === 'undefined') {
-  globalThis.FileReader = class {
-    readAsArrayBuffer(blob) {
-      blob.arrayBuffer().then((buf) => {
-        this.result = buf;
-        if (typeof this.onloadend === 'function') this.onloadend();
-      });
-    }
-  };
-}
-
-const OUT_DIR = new URL('../public/models/', import.meta.url);
 const OUT = new URL('../public/models/hagia-sophia.glb', import.meta.url);
 
-// 16 个材质分区（dark 主题下各保留本色 → 明暗/色彩层次；顶点色 AO 再叠一层体积感）
+// 16 个材质分区（dark 主题各保留本色 → 明暗/色彩层次；顶点色 AO 再叠一层体积感）
 const COLORS = {
   podium: 0xb9a988,     // 台基（暖石，偏深）
   stair: 0xc6b794,      // 门廊台阶
   wall: 0xdbcfb4,       // 主体石墙（受光）
   wallShade: 0xaa9a78,  // 背光墙/侧廊
-  arch: 0x3f3324,       // 拱窗/门洞/拱廊暗块（深褐 → 立体凹陷感）
+  arch: 0x3f3324,       // 拱窗/门洞/拱廊暗块（深褐 → 凹陷感）
   buttress: 0xccbe9f,   // 扶壁墩
   cornice: 0xf0e4c8,    // 檐口/墙垛（最浅）
   apse: 0xcabd9e,       // 东端后殿
@@ -52,140 +36,106 @@ const COLORS = {
   gold: 0xc9a14e,       // 金顶尖/球/阳台环
 };
 
-// 收集 {geometry, key} 后按材质合并，每种材质一个 mesh（少 draw call）。
-const buckets = {};
-function pushGeom(geometry, key) { (buckets[key] ||= []).push(geometry); }
-
-function addBox(key, sx, sy, sz, x, y, z) {
-  const g = new THREE.BoxGeometry(sx, sy, sz);
-  g.translate(x, y, z);
-  pushGeom(g, key);
-}
-function addBoxRotZ(key, sx, sy, sz, x, y, z, rz) {
-  const g = new THREE.BoxGeometry(sx, sy, sz);
-  g.rotateZ(rz);
-  g.translate(x, y, z);
-  pushGeom(g, key);
-}
-// 轴向沿 z 的柱体（rotateX 把默认 y 轴立起来）
-function addCyl(key, rTop, rBot, h, x, y, z, seg = 24) {
-  const g = new THREE.CylinderGeometry(rTop, rBot, h, seg);
-  g.rotateX(Math.PI / 2);
-  g.translate(x, y, z);
-  pushGeom(g, key);
-}
-function coneUp(r, h, x, y, z, seg) {
-  const g = new THREE.ConeGeometry(r, h, seg);
-  g.rotateX(Math.PI / 2);
-  g.translate(x, y, z + h / 2);
-  return g;
-}
-function addConeUp(key, r, h, x, y, z, seg = 24) { pushGeom(coneUp(r, h, x, y, z, seg), key); }
-// 半球穹顶：底在 z，向上鼓起；scaleZ 压扁
-function addDome(key, r, x, y, z, scaleZ = 1, segW = 32, segH = 18) {
-  const g = new THREE.SphereGeometry(r, segW, segH, 0, Math.PI * 2, 0, Math.PI / 2);
-  g.scale(1, 1, scaleZ);
-  // SphereGeometry 默认 y 为极轴；旋转使极轴朝 +z
-  g.rotateX(Math.PI / 2);
-  g.translate(x, y, z);
-  pushGeom(g, key);
-}
-function addSphere(key, r, x, y, z, seg = 14) {
-  const g = new THREE.SphereGeometry(r, seg, seg);
-  g.translate(x, y, z);
-  pushGeom(g, key);
+// dark 历史沙盘风：石材哑光（roughness 高、metalness 0），铅顶半哑光，金饰低反光金属。
+function material(key) {
+  if (key === 'gold') return { metalness: 0.55, roughness: 0.38 };
+  if (key === 'dome' || key === 'smallDome') return { metalness: 0.0, roughness: 0.5 };
+  return { metalness: 0.0, roughness: 0.85 };
 }
 
+const a = new WonderAsset({ name: 'HagiaSophia' });
+
 // ============================================================
-// 台基 + 西端门廊台阶
+// 台基 + 西端门廊台阶 + narthex
 // ============================================================
-addBox('podium', 1.42, 1.08, 0.10, 0, 0, 0.05);
-addBox('podium', 1.28, 0.96, 0.06, 0, 0, 0.13);
-// 西端入口台阶（三级）
-addBox('stair', 0.10, 0.74, 0.04, -0.72, 0, 0.02);
-addBox('stair', 0.10, 0.66, 0.04, -0.66, 0, 0.06);
-addBox('stair', 0.12, 0.60, 0.04, -0.60, 0, 0.10);
-// 西端门廊（narthex）低体块 + 三道拱门暗块
-addBox('wallShade', 0.16, 0.80, 0.34, -0.56, 0, 0.30);
-addBox('wall', 0.10, 0.68, 0.38, -0.66, 0, 0.34);
-addBox('cornice', 0.24, 0.86, 0.045, -0.58, 0, 0.51);
-addBox('cornice', 0.12, 0.72, 0.035, -0.69, 0, 0.55);
+a.box('podium', 1.42, 1.08, 0.10, 0, 0, 0.05);
+a.box('podium', 1.28, 0.96, 0.06, 0, 0, 0.13);
+a.box('stair', 0.10, 0.74, 0.04, -0.72, 0, 0.02);
+a.box('stair', 0.10, 0.66, 0.04, -0.66, 0, 0.06);
+a.box('stair', 0.12, 0.60, 0.04, -0.60, 0, 0.10);
+a.box('wallShade', 0.16, 0.80, 0.34, -0.56, 0, 0.30);
+a.box('wall', 0.10, 0.68, 0.38, -0.66, 0, 0.34);
+a.box('cornice', 0.24, 0.86, 0.045, -0.58, 0, 0.51);
+a.box('cornice', 0.12, 0.72, 0.035, -0.69, 0, 0.55);
 for (const y of [-0.30, -0.15, 0, 0.15, 0.30]) {
-  addBox('cornice', 0.035, 0.030, 0.38, -0.715, y, 0.34);
+  a.box('cornice', 0.035, 0.030, 0.38, -0.715, y, 0.34);
 }
 for (const y of [-0.24, 0, 0.24]) {
-  addBox('arch', 0.045, 0.125, 0.23, -0.735, y, 0.30);
-  addBox('arch', 0.035, 0.155, 0.055, -0.738, y, 0.435);
-  addBox('cornice', 0.028, 0.165, 0.030, -0.744, y, 0.465);
+  a.box('arch', 0.045, 0.125, 0.23, -0.735, y, 0.30);
+  a.box('arch', 0.035, 0.155, 0.055, -0.738, y, 0.435);
+  a.box('cornice', 0.028, 0.165, 0.030, -0.744, y, 0.465);
 }
 for (const y of [-0.34, 0.34]) {
-  addBox('wallShade', 0.18, 0.18, 0.24, -0.66, y, 0.27);
-  addCyl('drum', 0.070, 0.075, 0.045, -0.66, y, 0.41, 16);
-  addDome('smallDome', 0.082, -0.66, y, 0.45, 0.78, 20, 12);
+  a.box('wallShade', 0.18, 0.18, 0.24, -0.66, y, 0.27);
+  a.cyl('drum', 0.070, 0.075, 0.045, -0.66, y, 0.41, 16);
+  a.dome('smallDome', 0.082, -0.66, y, 0.45, 0.78, 20, 12);
 }
 
 // ============================================================
-// 主巴西利卡体块 + 南北侧廊 + 拱窗
+// 主巴西利卡体块 + 南北侧廊（单坡屋面）+ 拱窗
 // ============================================================
-addBox('wall', 0.80, 0.76, 0.42, 0, 0, 0.37);          // 中殿主墙
-addBox('cornice', 0.86, 0.82, 0.04, 0, 0, 0.60);        // 中殿檐口
+a.box('wall', 0.80, 0.76, 0.42, 0, 0, 0.37);          // 中殿主墙
+a.box('cornice', 0.86, 0.82, 0.04, 0, 0, 0.60);        // 中殿檐口
 for (const y of [-0.42, 0.42]) {
-  addBox('wallShade', 1.06, 0.22, 0.36, 0, y, 0.31);    // 南北侧廊
-  addBox('cornice', 1.10, 0.26, 0.03, 0, y, 0.50);      // 侧廊檐口
-  // 侧廊坡顶（压扁四坡锥）
-  addConeUp('wallShade', 0.20, 0.10, 0, y, 0.51, 4);
+  const face = Math.sign(y);
+  a.box('wallShade', 1.06, 0.22, 0.36, 0, y, 0.31);    // 南北侧廊
+  a.box('cornice', 1.10, 0.26, 0.03, 0, y, 0.50);      // 侧廊檐口
+  // 侧廊单坡屋面：沿 x 铺满整条侧廊，由内（近中殿，高）向外（低）倾斜，搭在檐口上
+  a.boxRotX('wallShade', 1.08, 0.22, 0.032, 0, 0.445 * face, 0.545, -0.279 * face);
+  // 屋脊压条（沿中殿一侧收口，避免与中殿墙穿插出现破缝）
+  a.box('cornice', 1.10, 0.024, 0.030, 0, 0.337 * face, 0.578);
   // 侧廊一排拱窗暗块
   for (let i = -4; i <= 4; i += 1) {
-    addBox('arch', 0.045, 0.04, 0.16, i * 0.105, y - Math.sign(y) * 0.115, 0.30);
+    a.box('arch', 0.045, 0.04, 0.16, i * 0.105, y - face * 0.115, 0.30);
   }
 }
 // 中殿一排高拱窗（南北面）
 for (const y of [-0.40, 0.40]) {
-  for (let i = -2; i <= 2; i += 1) addBox('arch', 0.05, 0.03, 0.22, i * 0.16, y, 0.50);
+  for (let i = -2; i <= 2; i += 1) a.box('arch', 0.05, 0.03, 0.22, i * 0.16, y, 0.50);
 }
 for (const y of [-0.545, 0.545]) {
-  addBox('wallShade', 1.00, 0.030, 0.035, 0, y, 0.215);
-  addBox('cornice', 1.04, 0.040, 0.030, 0, y, 0.535);
+  a.box('wallShade', 1.00, 0.030, 0.035, 0, y, 0.215);
+  a.box('cornice', 1.04, 0.040, 0.030, 0, y, 0.535);
   for (let i = -4; i <= 4; i += 1) {
     const x = i * 0.11;
-    addBox('arch', 0.060, 0.040, 0.190, x, y, 0.335);
-    addBox('arch', 0.082, 0.043, 0.045, x, y, 0.455);
+    a.box('arch', 0.060, 0.040, 0.190, x, y, 0.335);
+    a.box('arch', 0.082, 0.043, 0.045, x, y, 0.455);
   }
   for (let i = -5; i <= 5; i += 1) {
     const x = i * 0.105;
-    addBox('cornice', 0.020, 0.052, 0.330, x, y, 0.345);
+    a.box('cornice', 0.020, 0.052, 0.330, x, y, 0.345);
   }
 }
 for (const y of [-0.640, 0.640]) {
   const face = Math.sign(y);
-  addBox('wallShade', 1.02, 0.080, 0.080, 0, y, 0.215);
-  addBox('cornice', 1.06, 0.112, 0.035, 0, y, 0.480);
-  addBox('wallShade', 0.96, 0.018, 0.110, 0, y + face * 0.056, 0.330);
+  a.box('wallShade', 1.02, 0.080, 0.080, 0, y, 0.215);
+  a.box('cornice', 1.06, 0.112, 0.035, 0, y, 0.480);
+  a.box('wallShade', 0.96, 0.018, 0.110, 0, y + face * 0.056, 0.330);
   for (let i = -4; i <= 4; i += 1) {
     const x = i * 0.112;
-    addBox('arch', 0.074, 0.026, 0.205, x, y + face * 0.066, 0.315);
-    addBox('arch', 0.094, 0.028, 0.052, x, y + face * 0.068, 0.435);
+    a.box('arch', 0.074, 0.026, 0.205, x, y + face * 0.066, 0.315);
+    a.box('arch', 0.094, 0.028, 0.052, x, y + face * 0.068, 0.435);
   }
   for (let i = -5; i <= 5; i += 1) {
     const x = i * 0.106;
-    addBox('cornice', 0.024, 0.124, 0.330, x, y, 0.320);
+    a.box('cornice', 0.024, 0.124, 0.330, x, y, 0.320);
   }
 }
 for (const x of [-0.47, 0.47]) {
   const face = Math.sign(x);
-  addBox('wallShade', 0.026, 0.52, 0.250, x + face * 0.055, 0, 0.330);
+  a.box('wallShade', 0.026, 0.52, 0.250, x + face * 0.055, 0, 0.330);
   for (const y of [-0.22, 0, 0.22]) {
-    addBox('arch', 0.028, 0.105, 0.210, x + face * 0.066, y, 0.330);
-    addBox('cornice', 0.035, 0.135, 0.040, x + face * 0.070, y, 0.455);
+    a.box('arch', 0.028, 0.105, 0.210, x + face * 0.066, y, 0.330);
+    a.box('cornice', 0.035, 0.135, 0.040, x + face * 0.070, y, 0.455);
   }
 }
 for (const y of [-0.58, 0.58]) {
-  addBox('wallShade', 0.66, 0.16, 0.24, -0.08, y, 0.24);
-  addBox('cornice', 0.70, 0.18, 0.028, -0.08, y, 0.38);
+  a.box('wallShade', 0.66, 0.16, 0.24, -0.08, y, 0.24);
+  a.box('cornice', 0.70, 0.18, 0.028, -0.08, y, 0.38);
   for (const x of [-0.32, -0.10, 0.12]) {
-    addBox('arch', 0.050, 0.035, 0.135, x, y, 0.25);
-    addCyl('drum', 0.055, 0.060, 0.035, x + 0.075, y, 0.39, 14);
-    addDome('smallDome', 0.065, x + 0.075, y, 0.425, 0.78, 16, 10);
+    a.box('arch', 0.050, 0.035, 0.135, x, y, 0.25);
+    a.cyl('drum', 0.055, 0.060, 0.035, x + 0.075, y, 0.39, 14);
+    a.dome('smallDome', 0.065, x + 0.075, y, 0.425, 0.78, 16, 10);
   }
 }
 
@@ -193,151 +143,88 @@ for (const y of [-0.58, 0.58]) {
 // 四角扶壁墩（抵御穹顶侧推力 —— 圣索菲亚标志性厚墩）
 // ============================================================
 for (const [x, y] of [[-0.36, -0.36], [0.36, -0.36], [-0.36, 0.36], [0.36, 0.36]]) {
-  addBox('buttress', 0.15, 0.15, 0.56, x, y, 0.34);
-  addConeUp('cornice', 0.12, 0.08, x, y, 0.62, 4); // 墩顶小帽
+  a.box('buttress', 0.15, 0.15, 0.56, x, y, 0.34);
+  a.coneUp('cornice', 0.106, 0.075, x, y, 0.62, 4); // 墩顶小帽（角与墩顶对齐，不外挑）
 }
-// 外侧扶壁飞券暗示（南北各两道斜墩）
 for (const y of [-0.55, 0.55]) {
-  for (const x of [-0.22, 0.22]) addBox('buttress', 0.10, 0.10, 0.40, x, y, 0.26);
+  for (const x of [-0.22, 0.22]) a.box('buttress', 0.10, 0.10, 0.40, x, y, 0.26);
 }
 
 // ============================================================
 // 东端半圆后殿（apse）
 // ============================================================
-addCyl('apse', 0.26, 0.28, 0.40, 0.50, 0, 0.30, 20);
-addDome('apse', 0.26, 0.50, 0, 0.50, 0.7, 20, 12);
+a.cyl('apse', 0.26, 0.28, 0.40, 0.50, 0, 0.30, 20);
+a.dome('apse', 0.26, 0.50, 0, 0.50, 0.7, 20, 12);
 
 // ============================================================
-// 东西半穹顶 + 其下拱墙
+// 东西半穹顶（旋转面 ogee 轮廓）+ 其下拱墙
 // ============================================================
 for (const sgn of [-1, 1]) {
-  addBox('wall', 0.18, 0.62, 0.44, sgn * 0.46, 0, 0.36);            // 半穹下拱墙
-  addDome('semidome', 0.34, sgn * 0.37, 0, 0.50, 0.74, 30, 18);     // 半穹
+  a.box('wall', 0.18, 0.62, 0.44, sgn * 0.46, 0, 0.36);            // 半穹下拱墙
+  a.latheDome('semidome', 0.34, sgn * 0.37, 0, 0.50, 0.74, 36);    // 半穹（旋转面）
 }
 
 // ============================================================
-// 四角小半穹（exedra）—— 半穹两侧的小型半圆龛
+// 四角小半穹（exedra）
 // ============================================================
 for (const [x, y] of [[-0.50, -0.22], [-0.50, 0.22], [0.50, -0.22], [0.50, 0.22]]) {
-  addDome('exedra', 0.17, x, y, 0.40, 0.78, 20, 12);
+  a.dome('exedra', 0.17, x, y, 0.40, 0.78, 20, 12);
 }
 
 // ============================================================
 // 侧翼小穹顶群（南北附属建筑顶部）
 // ============================================================
 for (const [x, y] of [[-0.20, -0.50], [0.20, -0.50], [-0.20, 0.50], [0.20, 0.50]]) {
-  addCyl('drum', 0.10, 0.105, 0.06, x, y, 0.50, 16);
-  addDome('smallDome', 0.11, x, y, 0.55, 0.85, 20, 12);
+  a.cyl('drum', 0.10, 0.105, 0.06, x, y, 0.50, 16);
+  a.dome('smallDome', 0.11, x, y, 0.55, 0.85, 20, 12);
 }
 
 // ============================================================
-// 中央穹顶：鼓座 + 一圈窗墩/窗洞 + 大穹顶 + 金尖
+// 中央穹顶：鼓座 + 一圈窗墩/窗洞 + 旋转面大穹顶 + 金尖
 // ============================================================
-addCyl('drum', 0.38, 0.40, 0.20, 0, 0, 0.72, 40);
+a.cyl('drum', 0.38, 0.40, 0.20, 0, 0, 0.72, 40);
 const drumWin = 20;
 for (let i = 0; i < drumWin; i += 1) {
-  const a = (i / drumWin) * Math.PI * 2;
-  const c = Math.cos(a), s = Math.sin(a);
-  addBox('arch', 0.035, 0.035, 0.15, c * 0.40, s * 0.40, 0.72);   // 窗洞暗块
+  const ang = (i / drumWin) * Math.PI * 2;
+  const c = Math.cos(ang), s = Math.sin(ang);
+  a.box('arch', 0.035, 0.035, 0.15, c * 0.40, s * 0.40, 0.72);   // 窗洞暗块
   const a2 = ((i + 0.5) / drumWin) * Math.PI * 2;
-  addBox('cornice', 0.03, 0.03, 0.18, Math.cos(a2) * 0.41, Math.sin(a2) * 0.41, 0.72); // 窗间柱
+  a.box('cornice', 0.03, 0.03, 0.18, Math.cos(a2) * 0.41, Math.sin(a2) * 0.41, 0.72); // 窗间柱
 }
-addCyl('cornice', 0.42, 0.42, 0.03, 0, 0, 0.83, 40);               // 鼓座顶檐
-addDome('dome', 0.40, 0, 0, 0.84, 0.82, 64, 36);                   // 中央大穹顶（高分段）
+a.cyl('cornice', 0.42, 0.42, 0.03, 0, 0, 0.83, 40);               // 鼓座顶檐
+a.latheDome('dome', 0.40, 0, 0, 0.84, 0.82, 64);                  // 中央大穹顶（旋转面，高分段）
 for (let i = 0; i < 16; i += 1) {
-  const a = (i / 16) * Math.PI;
-  addBoxRotZ('cornice', 0.72, 0.012, 0.016, 0, 0, 1.055, a);
+  const ang = (i / 16) * Math.PI;
+  a.boxRotZ('cornice', 0.72, 0.012, 0.016, 0, 0, 1.055, ang);     // 穹顶肋
 }
-addCyl('cornice', 0.31, 0.31, 0.018, 0, 0, 1.015, 48);
-addCyl('wallShade', 0.405, 0.405, 0.012, 0, 0, 0.895, 48);
-// 穹顶金尖
-addSphere('gold', 0.045, 0, 0, 0.84 + 0.40 * 0.82, 16);
-addConeUp('gold', 0.03, 0.14, 0, 0, 0.84 + 0.40 * 0.82 + 0.02, 12);
+a.cyl('cornice', 0.31, 0.31, 0.018, 0, 0, 1.015, 48);
+a.cyl('wallShade', 0.405, 0.405, 0.012, 0, 0, 0.895, 48);
+const domeApex = 0.84 + 0.40 * 0.82;                              // 1.168
+a.sphere('gold', 0.045, 0, 0, domeApex, 16);                      // 穹顶金尖球
+a.coneUp('gold', 0.03, 0.14, 0, 0, domeApex + 0.02, 12);          // 金尖
 
 // ============================================================
-// 四根宣礼塔（细高 + 双阳台环 + 分层尖顶 + 金顶尖）
+// 四根宣礼塔（基座 kürsü → 连续收分塔身 → 阳台 şerefe → 上段 → 锥尖 külah）
 // ============================================================
 for (const [x, y] of [[-0.62, -0.48], [0.62, -0.48], [-0.62, 0.48], [0.62, 0.48]]) {
-  addCyl('minaret', 0.050, 0.064, 0.66, x, y, 0.39, 16);   // 第一段塔身
-  addCyl('gold', 0.078, 0.078, 0.045, x, y, 0.72, 16);     // 第一阳台环
-  addCyl('minaret', 0.044, 0.050, 0.24, x, y, 0.86, 16);   // 第二段
-  addCyl('gold', 0.060, 0.060, 0.035, x, y, 0.99, 16);     // 第二阳台环
-  addCyl('minaret', 0.038, 0.042, 0.10, x, y, 1.06, 16);   // 第三段（短）
-  addConeUp('minaretCap', 0.052, 0.30, x, y, 1.11, 16);    // 铅笔尖顶
-  addSphere('gold', 0.022, x, y, 1.43, 10);                // 金顶尖
+  a.cyl('minaret', 0.080, 0.092, 0.16, x, y, 0.08, 12);    // 基座 kürsü
+  a.cyl('minaretCap', 0.064, 0.082, 0.045, x, y, 0.185, 12); // 收分过渡环
+  a.cyl('minaret', 0.040, 0.062, 0.70, x, y, 0.56, 16);    // 主塔身（连续微收分，16 边接近圆）
+  a.cyl('minaretCap', 0.052, 0.044, 0.05, x, y, 0.915, 16); // 阳台出挑托
+  a.cyl('gold', 0.066, 0.066, 0.030, x, y, 0.955, 16);     // 阳台金环 şerefe
+  a.cyl('minaret', 0.046, 0.044, 0.024, x, y, 0.982, 16);  // 栏板
+  a.cyl('minaret', 0.030, 0.042, 0.16, x, y, 1.07, 16);    // 上段塔身
+  a.coneUp('minaretCap', 0.040, 0.30, x, y, 1.13, 16);     // 锥尖 külah
+  a.sphere('gold', 0.020, x, y, 1.44, 10);                 // 金顶尖
 }
 
 // ============================================================
-// 合并 + 顶点色 AO + 导出
+// 导出（管线统一处理合并 / AO / 优化 / GLB）
 // ============================================================
-
-function smooth01(t) { const x = Math.max(0, Math.min(1, t)); return x * x * (3 - 2 * x); }
-
-// 按高度做 AO 灰度：底暗顶亮；朝下的面再压暗，制造暗角/凹缝体积感。
-function applyVertexAO(geom, zMin, zMax) {
-  const pos = geom.attributes.position;
-  const nrm = geom.attributes.normal;
-  const n = pos.count;
-  const col = new Float32Array(n * 3);
-  for (let i = 0; i < n; i += 1) {
-    const z = pos.getZ(i);
-    let v = 0.52 + 0.48 * smooth01((z - zMin) / (zMax - zMin));
-    if (nrm) {
-      const nz = nrm.getZ(i);
-      if (nz < -0.15) v *= 0.74;        // 朝下面（檐下/出挑底）压暗
-      else if (nz > 0.6) v *= 1.04;     // 朝上面略提亮
-    }
-    v = Math.max(0, Math.min(1, v));
-    col[i * 3] = v; col[i * 3 + 1] = v; col[i * 3 + 2] = v;
-  }
-  geom.setAttribute('color', new THREE.BufferAttribute(col, 3));
-}
-
-// 全模型 z 范围
-let zMin = Infinity, zMax = -Infinity;
-for (const geoms of Object.values(buckets)) {
-  for (const g of geoms) {
-    g.computeBoundingBox();
-    zMin = Math.min(zMin, g.boundingBox.min.z);
-    zMax = Math.max(zMax, g.boundingBox.max.z);
-  }
-}
-
-const scene = new THREE.Scene();
-scene.name = 'HagiaSophia';
-let parts = 0;
-let triangles = 0;
-for (const [key, geoms] of Object.entries(buckets)) {
-  parts += geoms.length;
-  const merged = mergeGeometries(geoms, false);
-  if (!merged) throw new Error(`merge failed for ${key}`);
-  merged.computeVertexNormals();
-  applyVertexAO(merged, zMin, zMax);
-  const idx = merged.getIndex();
-  triangles += (idx ? idx.count : merged.attributes.position.count) / 3;
-  const material = new THREE.MeshStandardMaterial({
-    color: COLORS[key],
-    vertexColors: true,
-    metalness: key === 'gold' ? 0.55 : 0.0,
-    roughness: key === 'gold' ? 0.38 : key === 'dome' || key === 'smallDome' ? 0.5 : 0.85,
-  });
-  material.name = key;
-  const mesh = new THREE.Mesh(merged, material);
-  mesh.name = `part-${key}`;
-  scene.add(mesh);
-}
-
-console.log(`Built Hagia Sophia: ${Object.keys(buckets).length} materials, ${parts} parts, ~${Math.round(triangles)} triangles, z ${zMin.toFixed(2)}..${zMax.toFixed(2)}`);
-
-await mkdir(OUT_DIR, { recursive: true });
-const exporter = new GLTFExporter();
-exporter.parse(
-  scene,
-  async (result) => {
-    const buf = Buffer.from(result);
-    await writeFile(OUT, buf);
-    console.log(`Wrote ${(buf.length / 1024).toFixed(1)} KB → ${new URL(OUT).pathname}`);
-  },
-  (err) => { console.error('GLTF export error:', err); process.exit(1); },
-  { binary: true, onlyVisible: false },
+const stats = await a.exportGlb(OUT, { colors: COLORS, material, weld: true });
+console.log(
+  `Built Hagia Sophia: ${stats.materials} materials, ${stats.parts} parts, ` +
+  `~${stats.triangles} triangles, welded ${stats.weldedVerts}/${stats.totalVerts} verts, ` +
+  `z ${stats.zMin.toFixed(2)}..${stats.zMax.toFixed(2)}`,
 );
+console.log(`Wrote ${(stats.bytes / 1024).toFixed(1)} KB → public/models/hagia-sophia.glb`);

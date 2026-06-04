@@ -1,87 +1,95 @@
+/* ============================================================
+ * 朝代边界几何平滑（运行时，不改数据 JSON）
+ *
+ * 简化版边界多为低顶点凸壳/折线，放大后尖角折线显得"廉价不圆滑"。
+ * 这里用 Chaikin 角点切割（corner-cutting）在内存里把每个面要素的环
+ * 打磨圆润：每次迭代用 1/4、3/4 两个内插点替换原顶点，折角自然收圆。
+ *
+ * 约束：
+ *  - 纯几何变换，输入的 FeatureCollection 不被改写（返回新对象）；
+ *  - 完整保留 feature.properties（accuracy/color/起止年等），交互/筛选不受影响；
+ *  - 用 WeakMap 按输入对象缓存结果，避免每次 setData 重复计算。
+ * ============================================================ */
+
 const cache = new WeakMap();
 
-function isSamePoint(a, b) {
-  return a?.[0] === b?.[0] && a?.[1] === b?.[1];
-}
-
+// 对单个闭合环做 Chaikin。ring: [[lng,lat], ...]（首尾可重合）。
 function chaikinRing(ring, iterations) {
-  let points = ring.slice();
-
-  if (points.length > 1 && isSamePoint(points[0], points[points.length - 1])) {
-    points = points.slice(0, -1);
+  let pts = ring.slice();
+  // 去掉闭合重复点，纯按多边形顶点环处理，最后再闭合
+  if (pts.length > 1) {
+    const a = pts[0];
+    const b = pts[pts.length - 1];
+    if (a[0] === b[0] && a[1] === b[1]) pts = pts.slice(0, -1);
   }
+  // 顶点太少（三角形以下），平滑会塌缩成一点，原样返回（保持闭合）。
+  if (pts.length < 4) return ring.slice();
 
-  if (points.length < 4) return ring.slice();
-
-  for (let pass = 0; pass < iterations; pass += 1) {
-    const next = new Array(points.length * 2);
-
-    for (let index = 0; index < points.length; index += 1) {
-      const current = points[index];
-      const following = points[(index + 1) % points.length];
-
-      next[index * 2] = [
-        current[0] * 0.75 + following[0] * 0.25,
-        current[1] * 0.75 + following[1] * 0.25,
-      ];
-      next[index * 2 + 1] = [
-        current[0] * 0.25 + following[0] * 0.75,
-        current[1] * 0.25 + following[1] * 0.75,
-      ];
+  for (let it = 0; it < iterations; it += 1) {
+    const n = pts.length;
+    const next = new Array(n * 2);
+    for (let i = 0; i < n; i += 1) {
+      const p = pts[i];
+      const q = pts[(i + 1) % n];
+      next[i * 2] = [p[0] * 0.75 + q[0] * 0.25, p[1] * 0.75 + q[1] * 0.25];
+      next[i * 2 + 1] = [p[0] * 0.25 + q[0] * 0.75, p[1] * 0.25 + q[1] * 0.75];
     }
-
-    points = next;
+    pts = next;
   }
-
-  points.push(points[0].slice());
-  return points;
+  pts.push(pts[0].slice()); // 闭合环
+  return pts;
 }
 
-function iterationsForRing(ring) {
-  const count = ring.length;
-  if (count <= 12) return 3;
-  if (count <= 40) return 2;
-  if (count <= 160) return 1;
-  return 0;
+// 顶点越多说明本就细致（如海岸贴合样本），少迭代即可；稀疏凸壳多迭代收圆。
+// coastline-aware-rough 已经被 Natural Earth 海岸线裁过，过度 Chaikin 会把海岸细节
+// 向内收缩，导致边线看起来和底图海岸错位，所以这里只做轻量去尖角。
+function iterationsForRing(ring, feature) {
+  const n = ring.length;
+  if (feature?.properties?.accuracy === 'coastline-aware-rough') {
+    if (n <= 40) return 1;
+    if (n <= 90) return 1;
+    return 0;
+  }
+  if (n <= 12) return 4;
+  if (n <= 40) return 3;
+  if (n <= 90) return 2;
+  if (n <= 200) return 1;
+  return 0; // 已足够细致，不再加点
 }
 
-function smoothPolygon(coordinates) {
-  return coordinates.map((ring) => chaikinRing(ring, iterationsForRing(ring)));
+function smoothPolygon(coords, feature) {
+  // coords: [outerRing, hole1, ...]
+  return coords.map((ring) => chaikinRing(ring, iterationsForRing(ring, feature)));
 }
 
-function smoothGeometry(geometry) {
+function smoothGeometry(geometry, feature) {
   if (!geometry) return geometry;
-
   if (geometry.type === 'Polygon') {
-    return { ...geometry, coordinates: smoothPolygon(geometry.coordinates) };
+    return { ...geometry, coordinates: smoothPolygon(geometry.coordinates, feature) };
   }
-
   if (geometry.type === 'MultiPolygon') {
     return {
       ...geometry,
-      coordinates: geometry.coordinates.map((polygon) => smoothPolygon(polygon)),
+      coordinates: geometry.coordinates.map((poly) => smoothPolygon(poly, feature)),
     };
   }
-
-  return geometry;
+  return geometry; // 其他类型（点/线）原样
 }
 
+/** 返回一个所有面要素被 Chaikin 平滑过的新 FeatureCollection（带缓存）。 */
 export function smoothBoundaryCollection(collection) {
   if (!collection || collection.type !== 'FeatureCollection' || !Array.isArray(collection.features)) {
     return collection;
   }
-
   const cached = cache.get(collection);
   if (cached) return cached;
-
   const result = {
     ...collection,
     features: collection.features.map((feature) => ({
       ...feature,
-      geometry: smoothGeometry(feature.geometry),
+      geometry: smoothGeometry(feature.geometry, feature),
     })),
   };
-
   cache.set(collection, result);
   return result;
 }

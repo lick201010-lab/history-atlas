@@ -15,8 +15,10 @@ function importanceText(value = 3) {
 function LandmarkCard({
   landmark,
   dynastyById,
+  immersive = false,
   onClose,
   onFlyTo,
+  onToggleImmersive,
 }) {
   if (!landmark) return null;
 
@@ -25,7 +27,7 @@ function LandmarkCard({
 
   return (
     <aside
-      className="landmark-card"
+      className={`landmark-card${immersive ? ' is-immersive' : ''}`}
       style={{ '--landmark-accent': landmark.color }}
       aria-label="建筑档案"
     >
@@ -36,6 +38,14 @@ function LandmarkCard({
           onClick={() => onFlyTo?.(landmark)}
         >
           定位
+        </button>
+        <button
+          type="button"
+          className="card-action-btn landmark-inspect"
+          aria-pressed={immersive}
+          onClick={onToggleImmersive}
+        >
+          {immersive ? '退出' : '沉浸'}
         </button>
         <button
           type="button"

@@ -1,6 +1,6 @@
 # Agent Operating Notes
 
-> Current authority: read `AGENTS.md` first. This file keeps older operational notes and incident records, but the final-version gate workflow now lives in `AGENTS.md`, `docs/FINAL_VERSION_SPEC.md`, and `docs/CURRENT_PHASE.md`.
+Mandatory startup protocol lives in `AGENTS.md`. For final-version work, read `AGENTS.md` first, then use this file as supporting operational history.
 
 ## Default Work Habit
 
@@ -13,6 +13,77 @@ For this project, every troubleshooting or delivery task should follow this loop
 5. Record any follow-up work that would make the setup more reliable.
 
 When the issue touches deployment, networking, GitHub, Aliyun, Caddy, DNS, or local browser access, include the exact evidence gathered: command results, reachable/unreachable domains, active ports, and the final working URL.
+
+For map/UI changes, passing `npm run check` is not enough. After the code fix,
+use the in-app browser or an equivalent real browser path to interact with the
+actual screen: reload, set the relevant timeline year, click or scroll through
+the affected panel, inspect the resulting card/map state, and check browser
+console errors. Record the exact interaction path and screenshot path in
+`WORK_LOG.md`.
+
+## Collaboration Stance
+
+Codex is a project collaborator, not a passive confirmer. If the user's idea, assumption, or requested direction appears technically wrong, inefficient, risky, or misaligned with the product goal, Codex must say so directly, explain the evidence, and propose a better path. Agreement should be earned by the facts of the situation, not given automatically.
+
+This is especially important for:
+
+- Claude/Codex task allocation.
+- Architecture choices.
+- Deployment and infrastructure decisions.
+- Visual quality tradeoffs.
+- Data accuracy and historical representation.
+- Any change that may create technical debt or weaken the product experience.
+
+## Claude Delegation
+
+When a task is better suited to Claude Code, do not ask the user to copy and
+paste prompts manually. This machine has Claude Code CLI available as
+`claude.cmd` (`2.1.138`). Prefer direct non-interactive delegation from the
+project root:
+
+```powershell
+$prompt = Get-Content -Raw -Encoding UTF8 .claude-runs\<task>-prompt.md
+claude.cmd -p $prompt --permission-mode bypassPermissions --dangerously-skip-permissions --output-format text
+```
+
+Use `.claude-runs/` for local prompt and output logs; it is ignored by Git.
+Keep Claude's write scope narrow and explicit. For example, GLB asset work
+should be limited to the matching `scripts/build*Glb.mjs` file and generated
+`public/models/*.glb`, while Codex keeps ownership of validation, screenshots,
+documentation, Git review, and integration.
+
+Prefer UTF-8 prompt files over piping Chinese text directly into Claude. A
+2026-06-03 smoke test showed the Claude CLI itself works, but direct PowerShell
+pipe input can garble Chinese text. ASCII pipe input is fine; Chinese delegation
+prompts should use `Get-Content -Raw -Encoding UTF8`.
+
+## Goal Mode And Permissions
+
+The active project goal is to complete the history-atlas polish and bug-fix
+work into a refined, stable full version. When goal mode is active, Codex should
+continue autonomously until the current slice is verified, documented, and
+committed, or until a genuine external blocker appears.
+
+The current workspace is configured for no approval prompts (`approval_policy:
+never`, full filesystem access). Do not bounce ordinary permission questions
+back to the user. Use this autonomy carefully: verify before changing, keep
+write scopes narrow, avoid destructive commands, and record validation/follow-up
+work in `WORK_LOG.md` and the Obsidian project notes.
+
+When the user has set an explicit launch deadline, release gates outrank new
+feature expansion. Before launch, prioritize only:
+
+- production access failures;
+- failing `npm run check`;
+- failing `npm run smoke:release`;
+- serious runtime console errors or page exceptions;
+- mobile paths that cannot open the core civilization/landmark cards;
+- obvious P1 visual defects such as inverted/floating landmarks or severe
+  boundary/terrain breakage.
+
+Do not start broad boundary batches, new GLB production, map engine changes, or
+large visual redesigns before the deadline unless they directly fix one of those
+release blockers.
 
 ## Current Deployment Preference
 
@@ -286,3 +357,144 @@ Verification after changes:
 Follow-up improvement:
 
 - This procedural pass is an improvement, but it still does not reach the quality of a dedicated artist-made reference model. For the next quality jump, use a real asset pipeline: Blender/asset kitbash or sourced CC0/paid GLB, decimate to web scale, bake simple materials/AO, then replace the procedural GLB through the existing override path.
+
+## Incident Record: Landmark GLB Overlap and Depth Cleanup
+
+Date: 2026-06-01
+
+Goal: fix the rough/buggy landmark presentation around the Forbidden City and Petra without changing the historical data or the main map style.
+
+Verification before changes:
+
+- Browser QA showed the Beijing landmark cluster could visually merge into a large blue plate at close zoom, especially near Forbidden City / Great Wall / Temple of Heaven.
+- Petra read more like a flat sandstone block than a carved facade.
+- The issue was not just one GLB material. It combined oversized close-zoom model scale, aura/beam effects, cool fill lighting, hidden helper meshes still writing depth, and map depth values cutting through landmark meshes at steep pitch.
+
+Fixes applied:
+
+- Rebuilt `public/models/forbidden-city.glb` from `scripts/buildForbiddenCityGlb.mjs` with smaller tiled hip-roof modules, warmer base colors, compound walls, gatehouse, central halls, side corridors, and no oversized roof slab.
+- Rebuilt `public/models/petra.glb` from `scripts/buildPetraGlb.mjs` with staggered sandstone cliff masses, carved facade depth, colonnade detail, shadow cuts, and more natural warm materials.
+- Updated `src/map/createBuildingLayer.js` so close-up landmarks shrink more aggressively, reducing overlap in dense regions.
+- Reduced aura, disc, and beam opacity/size so markers support the model instead of covering it.
+- Changed the fill light from cool blue to warm low-intensity light.
+- Hid dark-theme tree/house helper meshes with `object.visible = false` and disabled depth writing so invisible objects cannot create depth artifacts.
+- Cleared the MapLibre depth buffer before rendering landmarks, keeping landmark internal 3D depth while preventing terrain/fill layers from slicing through models.
+
+Verification after changes:
+
+- `npm run validate:data` passed: 43 dynasties, 89 boundaries, 30 landmarks, 5 refined samples, 15 model profiles.
+- `npm run build` passed. The only output was the expected Vite large-chunk warning for MapLibre/Three bundles.
+- Browser QA opened `http://127.0.0.1:5177/`; the app title, map canvas, starfield canvases, and Chinese UI rendered with no browser console errors or warnings.
+- Local QA screenshots confirmed Forbidden City no longer appears as a giant overlapping blue slab, Petra reads as a warmer carved facade, and Beijing close-up landmarks no longer merge as badly.
+
+Follow-up improvement:
+
+- This is still a procedural low-poly repair, not the final art direction. To reach the reference-model quality the user wants, move priority landmarks to a real asset pipeline: Blender or sourced GLB, modeled with proper silhouette, baked ambient occlusion, material simplification, Draco/mesh optimization if needed, and replacement through the existing GLB override path.
+
+## Incident Record: Dark Theme Clarity Pass
+
+Date: 2026-06-02
+
+Goal: improve readability and terrain clarity after the previous feature pass, without changing data, map logic, model assets, or the overall dark "civilization star map" direction.
+
+Verification before changes:
+
+- `npm run check` passed, and browser QA showed the app was functionally healthy.
+- Desktop screenshots still felt too soft: cloud overlays, global vignette, text glow, and heavy glass blur made terrain and HUD text read slightly fuzzy.
+
+Fixes applied:
+
+- Increased HUD panel opacity and border contrast so text sits on a firmer surface.
+- Lightened `--text-dim` and `--text-faint` so labels remain readable without increasing font size.
+- Reduced global vignette and inner map shadow strength to let terrain detail come through.
+- Reduced cloud overlay alpha and blur so it reads as atmosphere rather than a screen-wide soft-focus layer.
+- Lowered backdrop blur on controls, search results, info panels, timeline, cards, compare panel, filter panel, and tooltips.
+- Reduced title/year text glows to keep the cinematic tone while sharpening letter edges.
+
+Verification after changes:
+
+- `npm run check` passed: data validation and Vite production build both succeeded.
+- Browser QA at `http://127.0.0.1:5173/` rendered three canvases, opened a civilization card, and had no console errors or warnings.
+- Desktop and card screenshots confirmed clearer text, cleaner terrain, and no new panel/timeline overlap.
+
+Follow-up improvement:
+
+- This pass improves clarity but does not solve the deeper map-boundary accuracy issue. The next visual-quality jump should focus on coast-aware/historical boundary geometry and priority GLB replacement, not more global blur tuning.
+
+## Incident Record: Mobile HUD Sync and Desktop Compatibility
+
+Date: 2026-06-02
+
+Goal: review another agent's mobile-page fix, bring it into the local repository, and keep the deployed/mobile improvement from breaking desktop.
+
+Verification before changes:
+
+- Production `https://atlas.ckl.hk/` on a 390px mobile viewport rendered with a compact bottom info status bar, three canvases, no console errors, and a full-screen map.
+- The local working tree contained uncommitted mobile changes: `InfoPanel.jsx`, `main.jsx`, `styles.css`, a new `styles-mobile.css`, plus two untracked temporary boundary files.
+- The first mobile fix made `InfoPanel` globally collapsed, which would also affect desktop because the body only rendered when `expanded` was true and the status bar had no desktop base styling.
+
+Fixes applied:
+
+- Imported `styles-mobile.css` from `main.jsx`.
+- Kept the mobile compact status bar behavior for viewports `<=500px`.
+- Added viewport-aware `InfoPanel` state: mobile defaults collapsed, desktop forces the body open.
+- Restored the desktop header/year/count display while hiding the mobile status bar outside the mobile breakpoint.
+- Tightened mobile top controls so view buttons, layer chips, and search input fit the `390px` viewport without right-side clipping.
+- Added a stricter `<=500px` overflow guard, grid-based top controls, fixed viewport cloud layers, and hidden mobile timeline marker tips so the phone layout no longer creates horizontal scroll.
+- Removed unused temporary boundary files from the working tree so they would not be accidentally committed.
+
+Verification after changes:
+
+- `npm run check` passed: historical data validation and Vite build succeeded.
+- Local mobile QA at `390x844` confirmed the info panel starts collapsed above the timeline and expands on tap.
+- Local desktop QA at `1440x900` confirmed the right-side information panel remains fully expanded with the original desktop header.
+- Browser console had no errors or warnings during the local checks.
+
+Follow-up improvement:
+
+- The mobile expanded panel is usable but dense. A later mobile polish pass should consider tabs or segmented views for "civilizations" versus "buildings" instead of stacking both lists in one expanded sheet.
+
+## Incident Record: GLB Asset Baseline Audit
+
+Date: 2026-06-02
+
+Goal: resume the precision work after the mobile sync, stabilize the 3D landmark asset baseline, and remove stale "5 GLB / 43 boundary" documentation drift before assigning more work to Claude.
+
+Verification before changes:
+
+- `public/models/` contained 14 GLB files, while several project notes still described only 5 GLB samples.
+- `createBuildingLayer.js` already mapped 14 GLB overrides and 14 z-up orientation overrides.
+- `README.md` and `docs/ACCEPTANCE.md` still included older boundary-count language in some places.
+
+Fixes applied:
+
+- Added `scripts/auditGlbAssets.mjs`, a no-dependency GLB audit that parses GLB headers and JSON chunks.
+- The audit checks GLB file existence, mapping coverage, z-up orientation coverage, texture/image absence, file size, triangle count, approximate footprint, and `minZ` grounding.
+- Added `npm run audit:glb` and included it in `npm run check`.
+- Generated `docs/GLB_ASSET_BASELINE.md`.
+- Updated README, acceptance docs, 3D asset standard, and project Obsidian notes to the current 43 dynasties / 89 boundary features / 30 landmarks / 14 GLB baseline.
+- Synced the project Obsidian notes to `D:\松君\文件库\松君\history-atlas`.
+
+Verification after changes:
+
+- `npm run check` passed: data validation, GLB audit, and Vite build all succeeded.
+- GLB audit result: 13 OK, 1 WARN, 0 FAIL.
+- The only warning is `chichen-itza.glb`, which has a very low triangle count and should be prioritized for visual QA.
+
+Follow-up improvement:
+
+- Do not add 30 more GLBs in one batch. First run map-view screenshot QA for the current 14, then refine the weakest one or two assets, starting with `chichen-itza` unless browser screenshots reveal a worse candidate.
+
+## Operating principle: solve it yourself, do not bounce questions back
+
+User directive (2026-06): when given a task, do not push the decision back with
+clarifying questions if you can reasonably find the answer yourself. Default to
+autonomy and resourcefulness.
+
+- "Install skill X" → assume it is a public GitHub repo; search for it, clone it
+  into the skills directory (`~/.claude/skills/<name>/`), verify `SKILL.md`.
+- Use WebSearch / WebFetch / gh to locate sources instead of asking the user for links.
+- Only escalate to the user when genuinely blocked (missing credentials, an
+  ambiguous choice only they can make, or a destructive/irreversible action).
+- "If you can't solve it, always keep finding a way" — exhaust tools and approaches
+  before reporting a blocker, and when you do report, include what you already tried.

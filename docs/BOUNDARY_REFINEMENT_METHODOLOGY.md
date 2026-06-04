@@ -304,6 +304,18 @@ Sutherland-Hodgman 把一个凸 envelope 与 Natural Earth 多个陆地 ring 求
 - **修复**：MapScene `ifRefined` 改为接受两种 accuracy 值
 - **教训**：新增 accuracy 字段时，前端渲染逻辑要同步更新；这两步应当配对完成
 
+### 9.8 巨大内陆帝国不适合单凸包络裁剪
+- **症状**：蒙古帝国用一个横跨欧亚的凸 envelope 裁剪 Natural Earth 后，虽然可以过滤离岛碎片，但视觉上变成一整块斜切梯形，zoom 4–5 很不精致
+- **根因**：Sutherland-Hodgman 的凸裁剪适合沿海帝国或中等区域；对蒙古这种大面积内陆草原帝国，凸包约束会消灭历史边界的凹凸和方向变化
+- **修复**：蒙古改用手工历史地理锚点：rise 用草原核心 Polygon，peak 拆成大汗国区域 MultiPolygon，decline 收缩为金帐 / 伊儿 / 察合台 / 元等碎片化区域；同时给里海、黑海、咸海等水体添加 Polygon hole，并对长边做 deterministic roughen
+- **教训**：沿海/跨海文明优先用 Natural Earth clipping；巨大内陆帝国应优先用手工历史外轮廓 + 区域块拆分 + 必要水体 hole，而不是一个超大凸包络
+
+### 9.9 同一文明的 MultiPolygon 会产生内部描边
+- **症状**：蒙古 peak 拆成多个区域块后，比单一大绿带更符合历史范围，但重叠或相邻的子 polygon 会出现内部金色描边，看起来像同一朝代被乱切
+- **根因**：MapLibre 会给 MultiPolygon 中每个 polygon 的外环都画线；即使 line 图层换成独立 outline source，fill 图层的抗锯齿和透明叠加也会暴露子块边缘
+- **修复**：领土填充层关闭 `fill-antialias`；新增 `boundaryOutlines.js`，让 line/glow/casing/hover-line 使用独立描边源；蒙古 peak 从 4 个区域块改为 1 个手绘统一 Polygon，decline 才保留碎片化汗国块
+- **教训**：鼎盛期的“统一帝国”优先用干净统一外轮廓；分裂期才用 MultiPolygon 表达碎片化。MultiPolygon 不是 topology union，不能直接拿来当精美描边的最终几何
+
 ---
 
 ## 10. 下一批应该怎么做
