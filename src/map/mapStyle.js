@@ -10,7 +10,7 @@
 export const INITIAL_VIEW = { center: [55, 35], zoom: 3.2, pitch: 55, bearing: -22 };
 export const MOUNTAIN_VIEW = { center: [86.9, 27.99], zoom: 6.2, pitch: 68, bearing: -35 };
 
-export const WORLD_TERRAIN_EXAGGERATION = 0.18;
+export const WORLD_TERRAIN_EXAGGERATION = 0.1;
 export const MOUNTAIN_TERRAIN_EXAGGERATION = 2.6;
 
 // CARTO 公共栅格瓦片（无需 API key）。两套基底，按主题切 visibility。
@@ -319,19 +319,19 @@ export const THEME_PRESETS = {
     landFillOpacity: 0,
     // 月光夜景浮雕：随 zoom 渐强的真实地势（世界视角已有体积感，区域视角山脉清晰）。
     // 强度对标 atlas，但走冷调，营造"地球夜景被冷月光斜照"的游戏级体积感。
-    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.32, 4, 0.54, 6, 0.72],
+    hillshadeExaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.2, 4, 0.32, 6, 0.46],
     hillshade: {
       // 深蓝阴影 + 冷月光高光（青白）+ 冷青墨重音：让山脊一侧受光、一侧没入深蓝
-      shadow: 'rgba(2, 8, 18, 0.50)',
-      highlight: 'rgba(138, 182, 224, 0.34)',
-      accent: 'rgba(50, 88, 130, 0.24)',
+      shadow: 'rgba(2, 8, 18, 0.42)',
+      highlight: 'rgba(140, 182, 224, 0.22)',
+      accent: 'rgba(50, 88, 130, 0.13)',
     },
     // 第二层副光 hillshade（东南向、低强度冷调）：柔化硬阴影，增加多向体积层次
     hillshadeFill: {
-      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.14, 4, 0.22, 6, 0.32],
-      shadow: 'rgba(2, 10, 24, 0.12)',
-      highlight: 'rgba(172, 204, 240, 0.07)',
-      accent: 'rgba(55, 85, 125, 0.06)',
+      exaggeration: ['interpolate', ['linear'], ['zoom'], 2, 0.06, 4, 0.1, 6, 0.14],
+      shadow: 'rgba(2, 10, 24, 0.075)',
+      highlight: 'rgba(172, 204, 240, 0.04)',
+      accent: 'rgba(55, 85, 125, 0.035)',
     },
     sky: {
       // 深空基调 + 地平线冷青大气辉光（俯仰时露出"地球边缘辉光"）

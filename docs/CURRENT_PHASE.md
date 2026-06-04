@@ -1,105 +1,130 @@
-# Current Phase: F1 Final Visual Foundation
+# Current Phase: F2 Boundary Refinement
 
 Updated: 2026-06-04
 
-Status: F1 in progress. Passes 1-2 have improved ocean, boundary, HUD, and hillshade hierarchy, but the F1 Gate is not accepted yet.
+Status: F2 in progress. F1 visual foundation has passed the Codex Gate and the project may now begin controlled boundary refinement. This is still not the final complete version.
 
-## Phase Goal
+## Project Rule
 
-Make the map feel like a polished final visual foundation before expanding boundary data or landmark models.
+The current deployed site at `https://atlas.ckl.hk/` and package version `v0.1.0` are online milestones only. No agent may call the project final until F1-F6 Gates all pass.
 
-The current deployed site at `https://atlas.ckl.hk/` is an online milestone and audit baseline. It is not the final complete version.
+## F1 Gate Result
 
-## Why F1 Comes First
+F1 was accepted on 2026-06-04 after pass 3.
 
-Boundary and model quality depend on the base map. If ocean, relief, boundary hierarchy, and HUD layering are not stable, later refined data and GLB assets will still look unfinished.
+Evidence:
 
-## In Scope
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
+- `RELEASE_SMOKE_URL=http://127.0.0.1:4174/ npm run smoke:release` passed.
+- Reviewed foundation screenshots:
+  - `docs/visual-qa/foundation-himalaya-relief.png`
+  - `docs/visual-qa/foundation-open-ocean-flatness.png`
+  - `docs/visual-qa/foundation-mediterranean-boundary-readability.png`
+  - `docs/visual-qa/foundation-central-america-readability.png`
+- Ocean is visually flat, deep, and clean.
+- Dark-theme land relief is calmer and no longer reads as strong white-noise texture.
+- Civilization boundaries are calmer and less fluorescent.
+- Desktop and mobile smoke paths still work.
 
-- Improve ocean flatness, depth, and cleanliness.
-- Improve land relief readability while reducing white-noise texture.
-- Reduce visible terrain/tile seam artifacts.
-- Improve focus vs non-focus boundary hierarchy.
-- Make HUD panels feel more like a finished atlas interface and less like a development workbench.
-- Keep the current dark atlas / 3D sandbox direction.
-- Use existing MapLibre, React, Vite, and Three.js architecture.
+Residual F1 risks to remember:
 
-## Out of Scope
+- Himalaya relief is intentionally subdued in the default world view; mountain mode still carries stronger 3D terrain.
+- Open-ocean high-pitch views can still show far-horizon darkness from the map/sky perspective, but not underwater mountain relief.
+- F6 must still handle bundle size and resource strategy.
 
-- Do not migrate map engines.
-- Do not switch the whole site to a blurry antique map theme.
-- Do not start broad 43-civilization boundary refinement.
-- Do not start broad 30-landmark GLB production.
-- Do not change `src/data/*.json` during the F1 visual pass.
-- Do not change deployment scripts during the F1 visual pass.
+## F2 Goal
+
+Upgrade all 43 civilization boundaries from placeholder or rough sample polygons to rough-refined historical-geographic outlines.
+
+F2 is about boundary data quality, not a new visual redesign.
+
+## F2 Batch Rule
+
+- One batch contains 5 civilizations.
+- Do not merge broad all-at-once boundary rewrites.
+- Each civilization must have at least 3 phase features: rise, peak, decline or equivalent historically meaningful phases.
+- Coastal civilizations must be coast-aware.
+- Large inland empires must avoid simple convex blobs and should follow historical anchors and natural geography.
+- Every feature must include `sourceNote` and `accuracyNote`.
+- Each accepted batch must be committed separately.
+
+## Current F2 Batch
+
+Batch 01 should target:
+
+1. Byzantine Empire
+2. Ottoman Empire
+3. Mongol Empire
+4. Aztec Empire
+5. Inca Empire
+
+Reason:
+
+- These are priority civilizations named in the final plan.
+- They cover the main failure modes: Mediterranean coastlines, Anatolia/Balkans overlap, huge inland steppe empire, Mesoamerican coast-aware polygons, and Andean terrain-following polygons.
+- The first five refined samples already exist for Tang, Rome, Islamic Caliphates, Mughal, and Maya, so Batch 01 should expand coverage instead of reworking the same examples again.
+
+## F2 Allowed Write Scope
+
+Claude or a worker may edit:
+
+- `src/data/boundaries-simplified.json`
+- Data validator fixtures only if the current schema blocks required F2 fields.
+- A `.claude-runs/*.md` task/output record.
+
+Codex may additionally edit:
+
+- `WORK_LOG.md`
+- `docs/CURRENT_PHASE.md`
+- relevant QA docs and screenshots
+- Obsidian project notes
+
+## F2 Forbidden Write Scope
+
+Do not edit during F2 boundary batches unless Codex explicitly changes this file:
+
+- `src/data/dynasties.json`
+- `src/data/landmarks.json`
+- `src/map/mapStyle.js`
+- `src/components/MapScene.jsx`
+- `public/models/*`
+- GLB build scripts
+- deployment scripts
+- package dependencies
+
+## F2 Gate Checks
+
+Every batch must pass:
+
+- `npm run validate:data`
+- `npm run check`
+- browser screenshot review at zoom 4-5 for the batch region
+- no random internal line spaghetti
+- no obvious rectangle placeholders
+- no careless cross-sea fills unless historically intentional and visually acceptable
+- no severe coastline mismatch where rough-refined coast-aware data is required
+
+F2 full phase is not complete until:
+
+- 43 civilizations all have at least 3 phase boundary features.
+- Total boundary features are at least 129.
+- `npm run validate:data` passes.
+- `npm run check` passes.
+- priority screenshots are reviewed for Tang, Rome, Islamic Caliphates, Byzantine, Ottoman, Mongol, Maya, Aztec, Mughal, and Inca.
 
 ## Codex Responsibilities
 
-- Define and enforce the visual standard.
-- Create bounded Claude task prompts.
-- Review Claude diffs before committing.
-- Run automated checks.
-- Use browser screenshots for real visual QA.
-- Update `WORK_LOG.md` and Obsidian notes.
-- Reject work that still reads as debug-layer, noisy, or unfinished.
+- Define batch task files.
+- Invoke Claude or worker agents with bounded write scopes.
+- Review diffs and reject weak geometry.
+- Run automated checks and browser screenshot QA.
+- Commit and push accepted batches.
+- Keep `WORK_LOG.md`, `docs/CURRENT_PHASE.md`, and Obsidian notes updated.
 
 ## Claude Responsibilities
 
-Claude may work only from a `.claude-runs/*.md` task file.
+Claude may only work from a `.claude-runs/*.md` task file.
 
-Allowed F1 write scope:
+Claude is responsible for controlled implementation only. Claude does not decide whether a batch is accepted.
 
-- `src/map/mapStyle.js`
-- `src/styles.css`
-- `src/styles-mobile.css`
-- Small, necessary edits to `src/components/MapScene.jsx`
-
-Forbidden F1 write scope:
-
-- `src/data/*.json`
-- `public/models/*`
-- `scripts/build*Glb.mjs`
-- deployment scripts
-- package dependency changes unless Codex explicitly updates this phase file
-
-## Gate Checks
-
-F1 is not accepted until all are true:
-
-- `npm run check` passes.
-- `npm run audit:visual-foundation` passes.
-- Four foundation screenshots are manually reviewed:
-  - `foundation-himalaya-relief.png`
-  - `foundation-open-ocean-flatness.png`
-  - `foundation-mediterranean-boundary-readability.png`
-  - `foundation-central-america-readability.png`
-- Ocean is flat, deep, and clean without visible underwater mountain noise.
-- Land mountains remain visibly raised.
-- Terrain/tile seam artifacts are significantly reduced.
-- Civilization boundaries no longer look like fluorescent debug geometry.
-- HUD does not dominate the map and reads as a finished atlas interface.
-- Results are recorded in `WORK_LOG.md`.
-
-## Latest Pass
-
-2026-06-04 F1 pass 1:
-
-- Claude made a bounded visual pass, then Codex tightened default boundary opacity further.
-- `npm run check` passed.
-- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
-- Foundation screenshots show cleaner ocean and calmer multi-civilization boundaries.
-- F1 remains open because mountain relief still reads noisy in places and distant terrain/tile seam artifacts remain visible.
-
-2026-06-04 F1 pass 2:
-
-- Codex reduced dark-theme hillshade high lights, accent color, and secondary hillshade intensity.
-- Mountain mode keeps 3D terrain exaggeration but uses lower hillshade exaggeration so shape carries the relief instead of bright texture noise.
-- `npm run check` passed.
-- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
-- F1 remains open because the distant dark wedge/seam artifact is still visible in fixed audit views.
-
-## Next Phase Entry Rule
-
-Only after F1 passes may the project enter F2 full boundary refinement.
-
-F2 must begin with a new `docs/CURRENT_PHASE.md` update and a new Claude task template for a 5-civilization batch.

@@ -966,3 +966,62 @@ Next:
 - Commit and push F1 pass 2.
 - Do not deploy as a final visual state.
 - F1 pass 3 should investigate the dark wedge/seam source: basemap tile coverage, horizon/fog/sky transition, terrain tile loading, or a deliberate far-distance mask strategy.
+
+## 2026-06-04 F1 visual foundation pass 3 and F2 entry
+
+Reason:
+
+- F1 pass 2 reduced relief noise but the fixed Himalaya audit view still had a distant dark wedge/seam and noisy land relief.
+- Before changing production style again, Codex ran a controlled diagnostic matrix instead of guessing.
+
+Multi-agent support:
+
+- Two read-only subagents investigated the artifact source.
+- Both reports pointed away from boundary/model data and toward high-pitch terrain, sky/fog, and hillshade interactions.
+
+Diagnostic result:
+
+- Temporary diagnostics were written only under ignored `.claude-runs/f1-pass3-diagnostics/`.
+- The stable comparisons showed:
+  - Disabling terrain mesh did not remove the noisy relief.
+  - Disabling hillshade removed the white-noise texture but made land too flat.
+  - Sky/fog changes alone did not solve the relief problem.
+  - A softer dark-theme hillshade profile preserved mountains while removing most of the noisy texture.
+
+Implementation:
+
+- `src/map/mapStyle.js`
+  - lowered `WORLD_TERRAIN_EXAGGERATION` from `0.18` to `0.1`.
+  - changed dark-theme hillshade exaggeration from `0.32/0.54/0.72` to `0.2/0.32/0.46`.
+  - reduced dark-theme hillshade highlight, shadow, and accent opacity.
+  - reduced secondary hillshade exaggeration from `0.14/0.22/0.32` to `0.06/0.1/0.14`.
+
+Verification:
+
+- `npm run check` passed.
+- `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed after one retry.
+  - First run had a transient external MapLibre glyph connection close.
+  - Second run passed with failures `[]`, bad responses `0`, page exceptions `0`, console errors `0`, and non-canceled failures `0`.
+- `RELEASE_SMOKE_URL=http://127.0.0.1:4174/ npm run smoke:release` passed.
+  - failures: `[]`.
+  - bad responses: `0`.
+  - page exceptions: `0`.
+  - console errors: `0`.
+
+Visual result:
+
+- `foundation-himalaya-relief.png`: mountain terrain remains visible but no longer reads as high-contrast white-noise texture.
+- `foundation-open-ocean-flatness.png`: ocean remains flat, deep, and clean; no underwater mountain relief is visible.
+- `foundation-mediterranean-boundary-readability.png`: multi-civilization boundaries remain readable and less fluorescent.
+- `foundation-central-america-readability.png`: ocean/coastline and Maya territory remain clear.
+- Desktop and mobile smoke screenshots remained usable.
+
+Gate decision:
+
+- F1 is accepted by Codex as good enough to enter F2.
+- This is not final visual polish. F6 still needs bundle/resource work, and later stages may refine final art direction.
+
+Next:
+
+- Commit and push F1 pass 3 plus phase transition docs.
+- Start F2 Batch 01 with a bounded Claude task for Byzantine, Ottoman, Mongol, Aztec, and Inca boundaries.
