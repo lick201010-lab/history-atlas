@@ -13,7 +13,14 @@ const F2_BATCH_02_IDS = new Set([
   'holy-roman-empire',
 ]);
 const F2_BATCH_03_IDS = new Set(['xia', 'shang', 'zhou', 'qin', 'sui']);
-const PHASED_BOUNDARY_IDS = new Set([...SAMPLE_IDS, ...F2_BATCH_01_IDS, ...F2_BATCH_02_IDS, ...F2_BATCH_03_IDS]);
+const F2_BATCH_04_IDS = new Set(['jin', 'song', 'yuan', 'qing', 'prc']);
+const PHASED_BOUNDARY_IDS = new Set([
+  ...SAMPLE_IDS,
+  ...F2_BATCH_01_IDS,
+  ...F2_BATCH_02_IDS,
+  ...F2_BATCH_03_IDS,
+  ...F2_BATCH_04_IDS,
+]);
 const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
 function fail(errors, message) {
@@ -307,7 +314,9 @@ async function main() {
   console.log(`Boundaries: ${boundaries.features.length}`);
   console.log(`Landmarks: ${landmarks.length}`);
   console.log(`Refined samples: ${SAMPLE_IDS.size}`);
-  console.log(`F2 phased boundary batch ids: ${F2_BATCH_01_IDS.size + F2_BATCH_02_IDS.size + F2_BATCH_03_IDS.size}`);
+  console.log(`F2 phased boundary batch ids: ${
+    F2_BATCH_01_IDS.size + F2_BATCH_02_IDS.size + F2_BATCH_03_IDS.size + F2_BATCH_04_IDS.size
+  }`);
   console.log(`Model profiles (code+data): ${MODEL_PROFILE_KEYS.length} (${landmarks.filter((l) => l.modelProfile).length} landmarks linked)`);
 }
 

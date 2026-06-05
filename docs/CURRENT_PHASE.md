@@ -128,15 +128,60 @@ Notes:
 - The first worker pass was rejected because the shapes read as smooth ovals or placeholder blobs.
 - The accepted pass has more irregular Yellow River / Central Plains directionality and larger Qin/Sui contours with rough regional structure.
 
-## Current F2 Batch 04
+## Accepted F2 Batch 04
 
-Batch 04 should target:
+Batch 04 was accepted on 2026-06-05.
 
 1. Jin / `jin`
 2. Song / `song`
 3. Yuan / `yuan`
 4. Qing / `qing`
 5. PRC / `prc`
+
+Evidence:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch04Playwright.mjs` passed with `failures: []`.
+- QA report: `docs/boundary-qa/F2_BATCH04_REPORT_2026-06-05.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch04-jin-280.png`
+  - `docs/boundary-qa/f2-batch04-song-1160.png`
+  - `docs/boundary-qa/f2-batch04-yuan-1300.png`
+  - `docs/boundary-qa/f2-batch04-qing-1765.png`
+  - `docs/boundary-qa/f2-batch04-prc-2020.png`
+
+Notes:
+
+- The first Batch 04 review was `ACCEPT_WITH_FIXES` because PRC QA text said `mainland` while the illustrative range included Taiwan. The accepted pass now describes PRC as an illustrative contemporary China / contested-range outline.
+- Yuan, Qing, and PRC remain rough-refined large-extent historical visualization, not academic GIS borders.
+
+## Current F2 Batch 05
+
+Batch 05 should target:
+
+1. Han / `han`
+2. Ming / `ming`
+3. New Kingdom Egypt / `egypt-new-kingdom`
+4. Achaemenid Empire / `achaemenid`
+5. Sasanian Empire / `sasanian`
+
+## Allowed F4 Pilot Sidecar
+
+F4 is not the primary current phase yet, but a controlled source-system pilot may run in parallel after Batch 04.
+
+Pilot targets:
+
+1. Tang / `tang`
+2. Roman Republic / Empire / `roman-republic-empire`
+3. Islamic Caliphates / `islamic-caliphates`
+4. Mughal Empire / `mughal`
+5. Maya Civilization / `maya`
+
+Pilot rule:
+
+- The F4 pilot may add dynasty-level `sourceNote`, `references`, and event-level source fields for the five allowlisted targets only.
+- The F4 pilot must not rewrite boundary geometry, landmark data, map style, GLB models, dependencies, or deployment scripts.
 
 ## F2 Allowed Write Scope
 

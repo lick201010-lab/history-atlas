@@ -1186,3 +1186,59 @@ Next:
 
 - Commit and push F2 Batch 03.
 - Start F2 Batch 04 with `jin`, `song`, `yuan`, `qing`, and `prc`.
+
+## 2026-06-05 F2 boundary batch 04
+
+Scope:
+
+- `jin`
+- `song`
+- `yuan`
+- `qing`
+- `prc`
+
+Agent workflow:
+
+- Leibniz worker produced the Batch 04 candidate implementation and QA artifacts.
+- Hubble reviewer performed a read-only review and returned `ACCEPT_WITH_FIXES`.
+- Boole worker handled the required PRC wording fix: the QA/report/data language now describes PRC as an illustrative contemporary China / contested-range outline instead of saying `mainland`.
+- All Batch 04 subagents were closed after review or fix completion.
+
+Codex review:
+
+- Accepted the batch after the PRC wording fix.
+- Jin and Song show phase-aware China-core contours instead of one static rectangle.
+- Yuan, Qing, and PRC are still rough-refined large-extent visualization; they are acceptable for F2 batch progress but not academic GIS boundaries.
+- The old F1 visual QA dirty files remain excluded from this acceptance commit.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch04Playwright.mjs` passed with `failures: []`.
+
+QA artifacts:
+
+- `docs/boundary-qa/F2_BATCH04_REPORT_2026-06-05.md`
+- `docs/boundary-qa/f2-batch04-jin-280.png`
+- `docs/boundary-qa/f2-batch04-song-1160.png`
+- `docs/boundary-qa/f2-batch04-yuan-1300.png`
+- `docs/boundary-qa/f2-batch04-qing-1765.png`
+- `docs/boundary-qa/f2-batch04-prc-2020.png`
+- `docs/boundary-qa/f2-batch04-manifest.json`
+
+Result:
+
+- F2 Batch 04 is accepted by Codex.
+- Total boundary features are now 116.
+- The validator now reports `F2 phased boundary batch ids: 20`.
+
+Sidecar findings:
+
+- F4 source-system review found that all 43 dynasties have summaries/events/tags/importance/legacy, but dynasty-level `sourceNote` and `references` are 0/43 and event-level source fields are 0/259.
+- F4 may start as a controlled five-civilization pilot for `tang`, `roman-republic-empire`, `islamic-caliphates`, `mughal`, and `maya`.
+
+Next:
+
+- Commit and push F2 Batch 04.
+- Start the F4 pilot source/reference worker in parallel with continued F2 Batch 05 planning.
