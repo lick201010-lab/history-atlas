@@ -54,6 +54,40 @@ Claude owns only bounded implementation batches:
 
 Claude does not decide whether work is finally acceptable.
 
+## Main Thread and Subagent Methodology
+
+Codex main thread owns supervision, coordination, acceptance, and integration only.
+
+The main thread should keep context small:
+
+- Read required project state files first.
+- Avoid loading large implementation files unless needed for review or integration.
+- Delegate bounded implementation and investigation work to subagents whenever the task can be isolated.
+- Keep a visible todo list for the boss in `README.md`, and keep phase truth in `docs/CURRENT_PHASE.md`.
+
+Every subagent task must define:
+
+- Owner: Codex, Claude, or named worker.
+- Goal: the exact bounded outcome.
+- Write scope: files the subagent may edit.
+- Forbidden scope: files the subagent must not edit.
+- Verification commands: exact commands and browser checks required.
+- Expected output: summary, changed files, risks, and unresolved follow-ups.
+
+Context compaction does not reset project memory. Before and after compaction, the main thread must recover state from:
+
+1. `AGENTS.md`
+2. `docs/CURRENT_PHASE.md`
+3. latest relevant `WORK_LOG.md` entry
+4. `git status --short --branch`
+5. any open `.claude-runs/` or subagent task records
+
+The main thread must not forget active subagents across compaction. It must wait for each subagent result, review the diff or output, and then explicitly accept, reject, or request revision.
+
+Subagent output is never automatically accepted as correct. Codex main thread must perform review, run required checks, and decide whether the batch is acceptable.
+
+After a subagent task is accepted, rejected, or superseded, the main thread must close, archive, or mark that subagent inactive and record the result in the appropriate task log.
+
 ## Claude Task Protocol
 
 When Claude is used:

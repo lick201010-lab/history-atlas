@@ -1,6 +1,6 @@
 # 历史沙盘 · Historical Atlas
 
-一个深色 HUD 风格的 3D 历史沙盘网站，把 43 个文明、91 个历史边界阶段、30 处奇观建筑和公元前 2000 年到公元 2025 年的时间轴放在同一张可交互地形地图上。
+一个深色 HUD 风格的 3D 历史沙盘网站，把 43 个文明、101 个历史边界阶段、30 处奇观建筑和公元前 2000 年到公元 2025 年的时间轴放在同一张可交互地形地图上。
 
 线上地址：[https://atlas.ckl.hk](https://atlas.ckl.hk)
 
@@ -8,13 +8,45 @@
 
 | 项 | 状态 |
 | --- | --- |
-| 阶段 | MVP 上线候选版 |
+| 阶段 | online milestone / F2 in progress |
 | 部署 | 阿里云 ECS + Caddy 静态站点 |
 | 仓库 | `lick201010-lab/history-atlas` |
 | 前端 | React 18 + Vite |
 | 地图 | MapLibre GL JS + raster-dem 地形 |
 | 3D | Three.js custom layer |
 | 数据 | 本地 JSON，无后端 |
+
+## Final-Version TODO / 推进计划
+
+当前线上站点 `v0.1.0` 是 **online milestone**，不是最终完整版。最终版仍在推进中：**final-version work in progress**。
+
+| 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
+| --- | --- | --- | --- | --- |
+| F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
+| F2 边界精修 | 进行中 | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 收尾 Batch 02，然后并行补剩余 18 个文明 | 每批 `validate:data`、`check`、浏览器截图 QA 通过；全阶段达到 43 文明、至少 129 feature |
+| F3 奇观模型 | 未完成 | 30 个奇观升级到 A/B 级模型 | 与 F2 并行开模型 worker，先补缺失再精修核心 10 个 | 核心 10 个 A 级，全部 30 个不再是粗糙占位 |
+| F4 内容与来源 | 未完成 | 文明、边界、事件建立来源体系 | 数据结构稳定后补 `references`、`sourceNote`、`accuracyNote` | UI 可展示来源，关键数据有可追溯说明 |
+| F5 产品交互 / 移动端 | 未完成 | 移动端、搜索、筛选、对比、故事导航升级 | 边界与内容质量稳定后做产品体验扩展 | 桌面和移动端核心路径体验通过 |
+| F6 性能 / 发布 / 包装 | 未完成 | GLB 懒加载、拆包、SEO、作品包装、兼容矩阵 | 最后统一处理资源策略和公开展示 | 性能、发布烟测、SEO、分享与反馈入口通过 |
+
+### 当前重点
+
+当前项目处于 **F2: controlled boundary refinement**。F1 已通过 Codex Gate，但 F2-F6 均未完成，不能称为最终完整版。
+
+### 并行分工
+
+- 主线程 Codex：拆分批次、写任务文件、调度 subagent、审查 diff、运行校验、浏览器截图 QA、决定是否接受批次、更新日志与阶段文档。
+- Claude / worker subagent：只按 `.claude-runs/*.md` 的窄范围任务执行边界数据、单个 GLB、局部 UI 实现。
+- 当前 F2 阶段禁止把未验收批次说成最终完成。
+
+### 最近下一步
+
+1. 收尾 F2 Batch 02：希腊诸城邦、亚述、巴比伦、埃及古王国、查理曼帝国。
+2. 跑 `npm run validate:data`、`npm run check`。
+3. 做 zoom 4-5 浏览器截图 QA。
+4. Codex 审查通过后，单独提交该批次。
+5. 派 3 个 subagent 并行补剩余 18 个 F2 文明，每个 worker 负责 6 个文明。
+6. 同时派模型线 worker 盘点 F3：30 个奇观里哪些缺 GLB、哪些低于 A/B 级。
 
 ## 快速开始
 
@@ -63,7 +95,7 @@ npm run smoke:release
 | 资源 | 数量 |
 | --- | --- |
 | 文明 / 朝代 | 43 |
-| 边界 feature | 91 |
+| 边界 feature | 101 |
 | 奇观 / 建筑 | 30 |
 | GLB 覆盖模型 | 14 |
 | 时代叙事段 | 8 |
@@ -114,7 +146,7 @@ docs/
 
 ## 已知限制
 
-这是一个 MVP 历史沙盘，不是最终学术 GIS 地图。
+这是一个 online milestone 历史沙盘，最终完整版仍在推进中；它也不是最终学术 GIS 地图。
 
 - 历史边界仍是示意范围，不可作为学术边界引用。
 - 地形和底图依赖第三方瓦片服务。

@@ -130,9 +130,12 @@
 
 ## 当前执行建议
 
-下一步先做 F1，不先铺 43 个边界，也不先批量做 30 个模型。
+F1 已通过 Codex Gate。当前主线是 F2 controlled boundary refinement，同时允许 F3 模型盘点并行启动，但不能把 F3 批量结果并入最终版，直到对应 Gate 通过。
 
-理由：
+执行策略：
 
-- 视觉底座不稳定时，边界和模型再精细也会被地图纹理、海洋杂纹、HUD 层级拖垮。
-- 先把“最终视觉语言”定下来，再让 Claude 批量生产边界和 GLB，返工最少。
+- 主线程 Codex 只做监督、拆分、验收、集成和日志，不在主线程长期吞大文件上下文。
+- F2 剩余文明按 subagent 并行拆批，每个 worker 必须有明确 owner、write scope、forbidden scope、verification commands。
+- F3 可以先由 subagent 做 GLB 覆盖率与质量盘点，之后按 1-3 个模型一批推进。
+- 每个 subagent 完成后，主线程必须 wait/review，决定 accept/reject/revise，并 close/archive 该 subagent。
+- `docs/CURRENT_PHASE.md` 是阶段真相来源；README 是老板视角 TODO 看板。
