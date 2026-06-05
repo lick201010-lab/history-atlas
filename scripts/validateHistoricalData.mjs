@@ -4,6 +4,7 @@ import { MODEL_PROFILE_KEYS } from '../src/map/modelProfileKeys.js';
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
+const F4_SOURCE_PILOT_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
 const F2_BATCH_01_IDS = new Set(['byzantine', 'ottoman', 'mongol-empire', 'aztec', 'inca']);
 const F2_BATCH_02_IDS = new Set([
   'greek-city-states',
@@ -93,6 +94,57 @@ function validateDynasty(dynasty, landmarkIds, errors) {
       fail(errors, `${prefix} sample importance must be an integer from 1 to 5`);
     }
     if (!isNonEmptyString(dynasty.legacy)) fail(errors, `${prefix} sample must include legacy`);
+  }
+
+  if (F4_SOURCE_PILOT_IDS.has(dynasty.id)) {
+    validateDynastySources(dynasty, errors);
+  }
+}
+
+function validateReference(reference, referenceIds, prefix, errors) {
+  if (!reference || typeof reference !== 'object') {
+    fail(errors, `${prefix} has invalid reference`);
+    return;
+  }
+  if (!isNonEmptyString(reference.id)) {
+    fail(errors, `${prefix} reference missing id`);
+  } else if (referenceIds.has(reference.id)) {
+    fail(errors, `${prefix} duplicate reference id:${reference.id}`);
+  } else {
+    referenceIds.add(reference.id);
+  }
+  if (!isNonEmptyString(reference.title)) fail(errors, `${prefix} reference:${reference.id || 'unknown'} missing title`);
+  if (!(
+    isNonEmptyString(reference.author)
+    || isNumber(reference.year)
+    || isNonEmptyString(reference.url)
+    || isNonEmptyString(reference.note)
+  )) {
+    fail(errors, `${prefix} reference:${reference.id || 'unknown'} needs author, year, url, or note`);
+  }
+}
+
+function validateDynastySources(dynasty, errors) {
+  const prefix = `dynasty:${dynasty?.id || 'unknown'}`;
+  if (!isNonEmptyString(dynasty.sourceNote)) fail(errors, `${prefix} F4 source pilot missing sourceNote`);
+  if (!Array.isArray(dynasty.references) || dynasty.references.length === 0) {
+    fail(errors, `${prefix} F4 source pilot must include references`);
+  }
+
+  const referenceIds = new Set();
+  for (const reference of dynasty.references || []) validateReference(reference, referenceIds, prefix, errors);
+
+  for (const event of dynasty.events || []) {
+    const hasEventSourceNote = isNonEmptyString(event.sourceNote);
+    const hasReferenceIds = Array.isArray(event.referenceIds) && event.referenceIds.length > 0;
+    if (!hasEventSourceNote && !hasReferenceIds) {
+      fail(errors, `${prefix} event:${event.title || event.year || 'unknown'} needs sourceNote or referenceIds`);
+    }
+    for (const referenceId of event.referenceIds || []) {
+      if (!referenceIds.has(referenceId)) {
+        fail(errors, `${prefix} event:${event.title || event.year || 'unknown'} references missing id:${referenceId}`);
+      }
+    }
   }
 }
 

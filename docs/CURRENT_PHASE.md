@@ -183,6 +183,34 @@ Pilot rule:
 - The F4 pilot may add dynasty-level `sourceNote`, `references`, and event-level source fields for the five allowlisted targets only.
 - The F4 pilot must not rewrite boundary geometry, landmark data, map style, GLB models, dependencies, or deployment scripts.
 
+## Accepted F4 Source Pilot 01
+
+F4 Source Pilot 01 was accepted on 2026-06-05.
+
+Scope:
+
+1. Tang / `tang`
+2. Roman Republic / Empire / `roman-republic-empire`
+3. Islamic Caliphates / `islamic-caliphates`
+4. Mughal Empire / `mughal`
+5. Maya Civilization / `maya`
+
+Evidence:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- Literal `????` encoding scan returned no matches after a repair pass.
+- Browser QA confirmed `文明来源`, `参考资料`, event source labels, and existing `边界精度` display on pilot civilization cards.
+- QA report: `docs/source-qa/F4_SOURCE_PILOT01_REPORT_2026-06-05.md`
+- Screenshots:
+  - `docs/source-qa/f4-pilot-roman-source-card.png`
+  - `docs/source-qa/f4-pilot-roman-source-card-scrolled.png`
+
+Notes:
+
+- The first worker pass introduced `????` encoding damage in Chinese source fields. That pass was rejected until a repair worker removed the damage and `npm run check` passed again.
+- This is a source-system pilot only; F4 for all 43 civilizations is still incomplete.
+
 ## F2 Allowed Write Scope
 
 Claude or a worker may edit:

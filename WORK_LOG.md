@@ -1242,3 +1242,49 @@ Next:
 
 - Commit and push F2 Batch 04.
 - Start the F4 pilot source/reference worker in parallel with continued F2 Batch 05 planning.
+
+## 2026-06-05 F4 source pilot 01
+
+Scope:
+
+- `tang`
+- `roman-republic-empire`
+- `islamic-caliphates`
+- `mughal`
+- `maya`
+
+Agent workflow:
+
+- Lovelace worker implemented the first F4 source pilot: dynasty-level `sourceNote`, `references`, event-level `referenceIds`, validator rules, and compact source UI.
+- Codex rejected the first pass because the new Chinese source fields in `dynasties.json` contained literal `????` encoding damage.
+- Pauli worker repaired the source text using UTF-8-safe editing and reran validation.
+- All F4 source pilot subagents were closed after review or fix completion.
+
+Codex review:
+
+- Accepted the pilot after the encoding repair.
+- The UI now separates civilization source/reference information from boundary source/accuracy information.
+- This is a pilot only; F4 is not complete for all 43 civilizations.
+
+Verification:
+
+- `Select-String -LiteralPath 'src\data\dynasties.json' -Pattern '\?\?\?\?' -Encoding UTF8` returned no matches.
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- Browser QA passed on `http://127.0.0.1:4176/`.
+
+QA artifacts:
+
+- `docs/source-qa/F4_SOURCE_PILOT01_REPORT_2026-06-05.md`
+- `docs/source-qa/f4-pilot-roman-source-card.png`
+- `docs/source-qa/f4-pilot-roman-source-card-scrolled.png`
+
+Result:
+
+- F4 Source Pilot 01 is accepted by Codex.
+- The five pilot civilizations now have source notes, references, and event-level reference links.
+
+Next:
+
+- Commit and push F4 Source Pilot 01.
+- Continue F2 Batch 05 and plan the next F4 source batch only after the pilot format remains stable.

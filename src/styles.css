@@ -1409,7 +1409,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .territory-events,
-.territory-related {
+.territory-related,
+.territory-civilization-sources {
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid rgba(120, 160, 220, 0.12);
@@ -1442,7 +1443,7 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1.5;
 }
 
-.territory-event span:first-child {
+.territory-event > span:first-child {
   color: var(--gold);
   font-size: 10.5px;
   letter-spacing: 0.5px;
@@ -1453,6 +1454,20 @@ input[type="range"]::-moz-range-thumb {
 
 .territory-event .event-title {
   color: var(--text-dim);
+}
+
+.territory-event .event-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.territory-event .event-source {
+  margin-top: 2px;
+  color: var(--text-faint);
+  font-size: 9.5px;
+  line-height: 1.45;
+  letter-spacing: 0.3px;
 }
 
 .territory-tags {
@@ -1499,6 +1514,28 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1.6;
   letter-spacing: 0.5px;
   font-style: italic;
+}
+
+.territory-civilization-sources p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 10.5px;
+  line-height: 1.6;
+  letter-spacing: 0.4px;
+}
+
+.territory-reference-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 7px;
+}
+
+.territory-reference-list span {
+  color: var(--text-faint);
+  font-size: 9.5px;
+  line-height: 1.45;
+  letter-spacing: 0.3px;
 }
 
 .maplibregl-ctrl-attrib {

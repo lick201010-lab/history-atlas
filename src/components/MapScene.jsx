@@ -1118,7 +1118,16 @@ const MapScene = forwardRef(function MapScene({
                 {boundaryCard.events.slice(0, 3).map((event) => (
                   <div className="territory-event" key={`${boundaryCard.id}-${event.year}-${event.title}`}>
                     <span>{formatYear(event.year)}</span>
-                    <span className="event-title">{event.title}</span>
+                    <span className="event-body">
+                      <span className="event-title">{event.title}</span>
+                      {(event.sourceRefs?.length || event.sourceNote) ? (
+                        <small className="event-source">
+                          {event.sourceRefs?.length
+                            ? `来源：${event.sourceRefs.map((reference) => reference.title).join('；')}`
+                            : `来源：${event.sourceNote}`}
+                        </small>
+                      ) : null}
+                    </span>
                   </div>
                 ))}
               </section>
@@ -1135,7 +1144,26 @@ const MapScene = forwardRef(function MapScene({
               </section>
             ) : null}
 
-            {(boundaryCard.accuracyLabel || boundaryCard.sourceNote || boundaryCard.accuracyNote) ? (
+            {(boundaryCard.dynastySourceNote || boundaryCard.references?.length) ? (
+              <section className="territory-civilization-sources">
+                <div className="territory-subtitle">文明来源</div>
+                {boundaryCard.dynastySourceNote ? (
+                  <p>{boundaryCard.dynastySourceNote}</p>
+                ) : null}
+                {boundaryCard.references?.length ? (
+                  <div className="territory-reference-list" aria-label="参考资料">
+                    {boundaryCard.references.slice(0, 3).map((reference) => (
+                      <span key={reference.id} title={reference.note || reference.title}>
+                        {reference.title}
+                        {reference.year ? ` (${reference.year})` : ''}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </section>
+            ) : null}
+
+            {(boundaryCard.accuracyLabel || boundaryCard.boundarySourceNote || boundaryCard.accuracyNote) ? (
               <footer className="territory-footer">
                 {boundaryCard.accuracyLabel ? (
                   <div className="territory-quality" title={boundaryCard.accuracyNote}>
@@ -1143,9 +1171,9 @@ const MapScene = forwardRef(function MapScene({
                     <em>{boundaryCard.accuracyLabel}</em>
                   </div>
                 ) : null}
-                {boundaryCard.sourceNote || boundaryCard.accuracyNote ? (
+                {boundaryCard.boundarySourceNote || boundaryCard.accuracyNote ? (
                   <div className="territory-source">
-                    {boundaryCard.sourceNote || boundaryCard.accuracyNote}
+                    {boundaryCard.boundarySourceNote || boundaryCard.accuracyNote}
                   </div>
                 ) : null}
               </footer>

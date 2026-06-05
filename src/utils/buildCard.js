@@ -9,6 +9,14 @@ export function buildCardData(dynasty, boundary, landmarksById) {
   const related = (dynasty.relatedLandmarks || [])
     .map((id) => landmarksById?.get(id))
     .filter(Boolean);
+  const references = dynasty.references || [];
+  const referencesById = new Map(references.map((reference) => [reference.id, reference]));
+  const events = (dynasty.events || []).map((event) => ({
+    ...event,
+    sourceRefs: (event.referenceIds || [])
+      .map((id) => referencesById.get(id))
+      .filter(Boolean),
+  }));
   // Phase indicator is limited to curated sample civilizations.
   const isSample = PHASE_SAMPLE_IDS.has(dynasty.id);
   const phase = isSample && props.phase ? props.phase : null;
@@ -26,11 +34,13 @@ export function buildCardData(dynasty, boundary, landmarksById) {
     tags: dynasty.tags || [],
     importance: dynasty.importance,
     legacy: dynasty.legacy,
-    events: dynasty.events || [],
+    events,
+    dynastySourceNote: dynasty.sourceNote,
+    references,
     relatedLandmarks: related,
     accuracyLabel: props.accuracyLabel,
     accuracyNote: props.accuracyNote,
-    sourceNote: props.sourceNote,
+    boundarySourceNote: props.sourceNote,
     phase,
     phaseName,
     phaseLabel: props.phaseLabel || null,
