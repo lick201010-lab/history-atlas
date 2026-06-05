@@ -100,9 +100,9 @@ Notes:
 - `egypt-old-kingdom` is not counted as an accepted Batch 02 id because the public timeline currently starts at BCE 2000 and Old Kingdom Egypt ends before that display range.
 - Carolingian and Holy Roman Empire were rejected once for triangular wedge artifacts, then accepted after being rewritten as cleaner multi-part rough-refined geometries.
 
-## Current F2 Batch 03
+## Accepted F2 Batch 03
 
-Batch 03 should target the remaining early China / East Asia ids unless a later task file changes this:
+Batch 03 was accepted on 2026-06-05.
 
 1. Xia / `xia`
 2. Shang / `shang`
@@ -110,7 +110,33 @@ Batch 03 should target the remaining early China / East Asia ids unless a later 
 4. Qin / `qin`
 5. Sui / `sui`
 
-`jin` should move to the following batch unless Codex explicitly revises the batch plan.
+Evidence:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch03Playwright.mjs` passed with `failures: []`.
+- QA report: `docs/boundary-qa/F2_BATCH03_REPORT_2026-06-05.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch03-xia-1850.png`
+  - `docs/boundary-qa/f2-batch03-shang-1250.png`
+  - `docs/boundary-qa/f2-batch03-zhou-350.png`
+  - `docs/boundary-qa/f2-batch03-qin-214.png`
+  - `docs/boundary-qa/f2-batch03-sui-600.png`
+
+Notes:
+
+- The first worker pass was rejected because the shapes read as smooth ovals or placeholder blobs.
+- The accepted pass has more irregular Yellow River / Central Plains directionality and larger Qin/Sui contours with rough regional structure.
+
+## Current F2 Batch 04
+
+Batch 04 should target:
+
+1. Jin / `jin`
+2. Song / `song`
+3. Yuan / `yuan`
+4. Qing / `qing`
+5. PRC / `prc`
 
 ## F2 Allowed Write Scope
 

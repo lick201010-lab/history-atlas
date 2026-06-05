@@ -1,0 +1,307 @@
+{
+  "appUrl": "http://127.0.0.1:4183/",
+  "generatedAt": "2026-06-05T15:36:46.803Z",
+  "captures": [
+    {
+      "id": "xia-1850",
+      "targetId": "xia",
+      "label": "Xia central plains peak",
+      "year": -1850,
+      "camera": {
+        "center": [
+          111.7,
+          34.9
+        ],
+        "zoom": 5.05,
+        "pitch": 56,
+        "bearing": -10
+      },
+      "audit": {
+        "mapCenter": [
+          111.7,
+          34.9
+        ],
+        "zoom": 5.05,
+        "pitch": 56,
+        "bearing": -10,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "xia",
+          "maya",
+          "babylon"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "xia"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch03-xia-1850.png"
+    },
+    {
+      "id": "shang-1250",
+      "targetId": "shang",
+      "label": "Shang Anyang and lower Yellow River peak",
+      "year": -1250,
+      "camera": {
+        "center": [
+          113.1,
+          35.4
+        ],
+        "zoom": 4.85,
+        "pitch": 56,
+        "bearing": -12
+      },
+      "audit": {
+        "mapCenter": [
+          113.1,
+          35.4
+        ],
+        "zoom": 4.85,
+        "pitch": 56,
+        "bearing": -12,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "babylon",
+          "shang",
+          "egypt-new-kingdom",
+          "assyrian"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "shang"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch03-shang-1250.png"
+    },
+    {
+      "id": "zhou-350",
+      "targetId": "zhou",
+      "label": "Zhou Warring States decline fragments",
+      "year": -350,
+      "camera": {
+        "center": [
+          112.8,
+          32.4
+        ],
+        "zoom": 4.35,
+        "pitch": 55,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          112.8,
+          32.4
+        ],
+        "zoom": 4.35,
+        "pitch": 55,
+        "bearing": -8,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "zhou",
+          "greek-city-states",
+          "achaemenid",
+          "roman-republic-empire"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "zhou"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch03-zhou-350.png"
+    },
+    {
+      "id": "qin-214",
+      "targetId": "qin",
+      "label": "Qin empire peak after Lingnan expansion",
+      "year": -214,
+      "camera": {
+        "center": [
+          113,
+          31.7
+        ],
+        "zoom": 4.05,
+        "pitch": 55,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          113,
+          31.7
+        ],
+        "zoom": 4.05,
+        "pitch": 55,
+        "bearing": -8,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "roman-republic-empire",
+          "maurya",
+          "qin"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "qin"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch03-qin-214.png"
+    },
+    {
+      "id": "sui-600",
+      "targetId": "sui",
+      "label": "Sui unified China peak",
+      "year": 600,
+      "camera": {
+        "center": [
+          113,
+          32.1
+        ],
+        "zoom": 4.05,
+        "pitch": 55,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          113,
+          32.1
+        ],
+        "zoom": 4.05,
+        "pitch": 55,
+        "bearing": -8,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "sasanian",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "sui"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 15,
+        "renderedBoundaryIds": [
+          "sui",
+          "yamato-japan"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch03-sui-600.png"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3fe400408800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3fe400408800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3fe400408800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3fe400408800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/11/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/25/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/5/26/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/11/6@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/3/6/1.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/13/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/56/24.png",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "failures": []
+}

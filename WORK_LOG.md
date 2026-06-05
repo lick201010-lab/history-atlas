@@ -1132,3 +1132,57 @@ Next:
 
 - Commit and push F2 Batch 02.
 - Start F2 Batch 03 with `xia`, `shang`, `zhou`, `qin`, and `sui`.
+
+## 2026-06-05 F2 boundary batch 03
+
+Scope:
+
+- `xia`
+- `shang`
+- `zhou`
+- `qin`
+- `sui`
+
+Agent workflow:
+
+- Anscombe worker produced the initial Batch 03 implementation.
+- Codex rejected the first visual pass because Xia, Shang, Qin, and Sui still read as smooth ovals or large placeholder blobs, and Zhou used separated oval blocks.
+- Halley worker reworked the geometries after rejection.
+- All subagents were closed after review.
+
+Codex review:
+
+- Accepted the second pass because Xia/Shang now read as narrower Yellow River / Central Plains corridors, Zhou no longer uses separated oval bubbles, and Qin/Sui have stronger rough regional contouring.
+- This is still rough-refined visualization, not academic GIS precision.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch03Playwright.mjs` passed with `failures: []`.
+
+QA artifacts:
+
+- `docs/boundary-qa/F2_BATCH03_REPORT_2026-06-05.md`
+- `docs/boundary-qa/f2-batch03-xia-1850.png`
+- `docs/boundary-qa/f2-batch03-shang-1250.png`
+- `docs/boundary-qa/f2-batch03-zhou-350.png`
+- `docs/boundary-qa/f2-batch03-qin-214.png`
+- `docs/boundary-qa/f2-batch03-sui-600.png`
+- `docs/boundary-qa/f2-batch03-manifest.json`
+
+Result:
+
+- F2 Batch 03 is accepted by Codex.
+- Total boundary features are now 111.
+- The validator now reports `F2 phased boundary batch ids: 15`.
+
+Sidecar findings:
+
+- F3 model gap review: 14/30 landmarks have GLB; 16 remain missing. Core 10 all have GLB but still need final A-grade map-view QA.
+- F4 source review: all 43 dynasties have summary/events/tags/importance/legacy, but `references` and dynasty-level `sourceNote` are 0/43. F4 should start with an allowlisted 5-civilization source pilot after F2 data batches are stable.
+
+Next:
+
+- Commit and push F2 Batch 03.
+- Start F2 Batch 04 with `jin`, `song`, `yuan`, `qing`, and `prc`.
