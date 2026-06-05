@@ -1,0 +1,463 @@
+{
+  "appUrl": "http://127.0.0.1:4182/",
+  "generatedAt": "2026-06-05T14:33:25.223Z",
+  "captures": [
+    {
+      "id": "greek-city-states-450",
+      "targetId": "greek-city-states",
+      "label": "Greek city-states at classical peak",
+      "year": -450,
+      "camera": {
+        "center": [
+          23.8,
+          38.5
+        ],
+        "zoom": 4.85,
+        "pitch": 58,
+        "bearing": 10
+      },
+      "audit": {
+        "mapCenter": [
+          23.8,
+          38.5
+        ],
+        "zoom": 4.85,
+        "pitch": 58,
+        "bearing": 10,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "zhou",
+          "greek-city-states",
+          "achaemenid",
+          "roman-republic-empire"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 20,
+        "renderedBoundaryIds": [
+          "greek-city-states",
+          "roman-republic-empire",
+          "achaemenid"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch02-greek-city-states-450.png"
+    },
+    {
+      "id": "assyrian-670",
+      "targetId": "assyrian",
+      "label": "Assyrian Empire near peak-to-decline transition",
+      "year": -670,
+      "camera": {
+        "center": [
+          41.8,
+          34.2
+        ],
+        "zoom": 4.55,
+        "pitch": 58,
+        "bearing": -18
+      },
+      "audit": {
+        "mapCenter": [
+          41.8,
+          34.2
+        ],
+        "zoom": 4.55,
+        "pitch": 58,
+        "bearing": -18,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "babylon",
+          "assyrian",
+          "zhou",
+          "greek-city-states"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "assyrian",
+          "greek-city-states",
+          "babylon"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch02-assyrian-670.png"
+    },
+    {
+      "id": "babylon-560",
+      "targetId": "babylon",
+      "label": "Neo-Babylonian late phase",
+      "year": -560,
+      "camera": {
+        "center": [
+          42.5,
+          31.8
+        ],
+        "zoom": 4.55,
+        "pitch": 58,
+        "bearing": -20
+      },
+      "audit": {
+        "mapCenter": [
+          42.5,
+          31.8
+        ],
+        "zoom": 4.55,
+        "pitch": 58,
+        "bearing": -20,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "babylon",
+          "zhou",
+          "greek-city-states"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "babylon",
+          "greek-city-states"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch02-babylon-560.png"
+    },
+    {
+      "id": "carolingian-820",
+      "targetId": "carolingian",
+      "label": "Carolingian Europe at imperial unity",
+      "year": 820,
+      "camera": {
+        "center": [
+          6.6,
+          47.5
+        ],
+        "zoom": 4.25,
+        "pitch": 55,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          6.6,
+          47.5
+        ],
+        "zoom": 4.25,
+        "pitch": 55,
+        "bearing": -8,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "tang",
+          "islamic-caliphates",
+          "srivijaya",
+          "carolingian",
+          "khmer"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "carolingian",
+          "byzantine",
+          "islamic-caliphates"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch02-carolingian-820.png"
+    },
+    {
+      "id": "holy-roman-empire-1200",
+      "targetId": "holy-roman-empire",
+      "label": "Holy Roman Empire at Hohenstaufen peak",
+      "year": 1200,
+      "camera": {
+        "center": [
+          10.9,
+          47.9
+        ],
+        "zoom": 4.3,
+        "pitch": 55,
+        "bearing": -10
+      },
+      "audit": {
+        "mapCenter": [
+          10.9,
+          47.9
+        ],
+        "zoom": 4.3,
+        "pitch": 55,
+        "bearing": -10,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "ghana",
+          "byzantine",
+          "islamic-caliphates",
+          "srivijaya",
+          "khmer",
+          "chola",
+          "song",
+          "holy-roman-empire"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 5,
+        "renderedBoundaryIds": [
+          "holy-roman-empire",
+          "byzantine"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch02-holy-roman-empire-1200.png"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6e84001e2a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6e84001e2a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6e84001e2a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6e84001e2a00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/7/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/7/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/7/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/6/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/6/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/3/4/1.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/11/6@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/3/6/2.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/40/25.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/40/24.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/41/25.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/41/24.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/42/25.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/42/24.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/14/10@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/18/11@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/16/10@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/16/11@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/17/10@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/15/10@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/17/11@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/15/11@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/16/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/18/10@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/14/10@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/18/11@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/32/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/33/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/34/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/35/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/36/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/37/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/33/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/34/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/32/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/31/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/35/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/31/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/33/24.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/32/24.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/36/23.png",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "failures": []
+}

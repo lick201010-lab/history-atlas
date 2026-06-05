@@ -5,7 +5,14 @@ const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
 const F2_BATCH_01_IDS = new Set(['byzantine', 'ottoman', 'mongol-empire', 'aztec', 'inca']);
-const PHASED_BOUNDARY_IDS = new Set([...SAMPLE_IDS, ...F2_BATCH_01_IDS]);
+const F2_BATCH_02_IDS = new Set([
+  'greek-city-states',
+  'assyrian',
+  'babylon',
+  'carolingian',
+  'holy-roman-empire',
+]);
+const PHASED_BOUNDARY_IDS = new Set([...SAMPLE_IDS, ...F2_BATCH_01_IDS, ...F2_BATCH_02_IDS]);
 const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
 function fail(errors, message) {
@@ -299,7 +306,7 @@ async function main() {
   console.log(`Boundaries: ${boundaries.features.length}`);
   console.log(`Landmarks: ${landmarks.length}`);
   console.log(`Refined samples: ${SAMPLE_IDS.size}`);
-  console.log(`F2 phased boundary batch ids: ${F2_BATCH_01_IDS.size}`);
+  console.log(`F2 phased boundary batch ids: ${F2_BATCH_01_IDS.size + F2_BATCH_02_IDS.size}`);
   console.log(`Model profiles (code+data): ${MODEL_PROFILE_KEYS.length} (${landmarks.filter((l) => l.modelProfile).length} landmarks linked)`);
 }
 

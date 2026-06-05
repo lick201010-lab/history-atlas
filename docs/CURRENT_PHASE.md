@@ -72,17 +72,45 @@ Evidence:
   - `docs/boundary-qa/f2-batch01-aztec-1500.png`
   - `docs/boundary-qa/f2-batch01-inca-1500.png`
 
-## Current F2 Batch 02
+## Accepted F2 Batch 02
 
-Batch 02 should target early West Asian / Mediterranean powers. Confirm exact ids before issuing the task file.
+Batch 02 was accepted on 2026-06-05.
 
-Draft candidates:
+1. Greek City-States / `greek-city-states`
+2. Assyrian Empire / `assyrian`
+3. Babylonian Empire / `babylon`
+4. Carolingian Empire / `carolingian`
+5. Holy Roman Empire / `holy-roman-empire`
 
-1. Achaemenid Empire / `achaemenid`
-2. Sasanian Empire / `sasanian`
-3. Greek City-States / `greek-city-states`
-4. Assyrian Empire or another existing Near Eastern empire id
-5. Hellenistic successor or another existing Mediterranean id
+Evidence:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch02Playwright.mjs` passed with `failures: []`.
+- QA report: `docs/boundary-qa/F2_BATCH02_REPORT_2026-06-05.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch02-greek-city-states-450.png`
+  - `docs/boundary-qa/f2-batch02-assyrian-670.png`
+  - `docs/boundary-qa/f2-batch02-babylon-560.png`
+  - `docs/boundary-qa/f2-batch02-carolingian-820.png`
+  - `docs/boundary-qa/f2-batch02-holy-roman-empire-1200.png`
+
+Notes:
+
+- `egypt-old-kingdom` is not counted as an accepted Batch 02 id because the public timeline currently starts at BCE 2000 and Old Kingdom Egypt ends before that display range.
+- Carolingian and Holy Roman Empire were rejected once for triangular wedge artifacts, then accepted after being rewritten as cleaner multi-part rough-refined geometries.
+
+## Current F2 Batch 03
+
+Batch 03 should target the remaining early China / East Asia ids unless a later task file changes this:
+
+1. Xia / `xia`
+2. Shang / `shang`
+3. Zhou / `zhou`
+4. Qin / `qin`
+5. Sui / `sui`
+
+`jin` should move to the following batch unless Codex explicitly revises the batch plan.
 
 ## F2 Allowed Write Scope
 

@@ -1081,3 +1081,54 @@ Next:
 
 - Commit and push F2 Batch 01.
 - Start F2 Batch 02 with another five-civilization task, continuing small-batch refinement instead of doing all 43 at once.
+
+## 2026-06-05 F2 boundary batch 02
+
+Scope:
+
+- `greek-city-states`
+- `assyrian`
+- `babylon`
+- `carolingian`
+- `holy-roman-empire`
+
+Agent workflow:
+
+- Faraday worker closed out the initial Batch 02 candidate set and replaced `egypt-old-kingdom` with `holy-roman-empire` because Old Kingdom Egypt ends before the current BCE 2000 timeline floor.
+- Pasteur reviewer rejected the first visual pass: Carolingian and Holy Roman Empire created visible triangular wedge artifacts around the Alps and northern Italy.
+- Hooke worker rewrote Carolingian and Holy Roman Empire as cleaner multi-part rough-refined geometries.
+- All subagents were closed after review.
+
+Codex corrections:
+
+- Tightened `scripts/auditF2BoundaryBatch02Playwright.mjs` so QA selects the target civilization and fails if the target is not active, selected, and rendered.
+- Removed the obsolete raw CDP Batch 02 audit script and kept the dedicated Playwright QA path.
+- Reverted a temporary `visualFoundationAudit.mjs` Batch 02 mode so the F1 foundation audit remains foundation-only.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch02Playwright.mjs` passed with `failures: []`.
+
+QA artifacts:
+
+- `docs/boundary-qa/F2_BATCH02_REPORT_2026-06-05.md`
+- `docs/boundary-qa/f2-batch02-greek-city-states-450.png`
+- `docs/boundary-qa/f2-batch02-assyrian-670.png`
+- `docs/boundary-qa/f2-batch02-babylon-560.png`
+- `docs/boundary-qa/f2-batch02-carolingian-820.png`
+- `docs/boundary-qa/f2-batch02-holy-roman-empire-1200.png`
+- `docs/boundary-qa/f2-batch02-manifest.json`
+
+Result:
+
+- F2 Batch 02 is accepted by Codex.
+- Total boundary features are now 102.
+- The validator now reports `F2 phased boundary batch ids: 10`.
+- This is still rough-refined historical visualization, not academic precision.
+
+Next:
+
+- Commit and push F2 Batch 02.
+- Start F2 Batch 03 with `xia`, `shang`, `zhou`, `qin`, and `sui`.
