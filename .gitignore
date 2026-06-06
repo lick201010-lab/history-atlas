@@ -26,3 +26,6 @@ scripts/.cache/
 .claude-runs/*
 !.claude-runs/
 !.claude-runs/TEMPLATE.md
+
+# Local brainstorming companion screens/state
+.superpowers/
