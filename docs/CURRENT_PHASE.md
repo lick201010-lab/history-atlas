@@ -56,6 +56,15 @@ Evidence:
 
 Build a credible content and source system so each civilization, event, boundary note, and landmark relation is traceable and shown honestly in the UI.
 
+## Current F4 Progress
+
+- Source-enforced dynasties: 10 / 43.
+- F4 pilot ids passed: `tang`, `roman-republic-empire`, `islamic-caliphates`, `mughal`, `maya`.
+- F4 Batch01 ids passed: `qin`, `han`, `ming`, `egypt-old-kingdom`, `achaemenid`.
+- Source-enforced dynasty events: 60 / 259.
+- Boundary `sourceNote` / `accuracyNote` coverage: 129 / 129.
+- Landmark `sourceNote` coverage: 30 / 30; landmark `references` remain incomplete.
+
 F4 completion requires:
 
 - All 43 civilizations have complete `summary`, `events`, `tags`, `importance`, `legacy`, `relatedLandmarks`, `sourceNote`, and `references`.

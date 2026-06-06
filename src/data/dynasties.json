@@ -189,27 +189,62 @@
     "events": [
       {
         "year": -361,
-        "title": "商鞅入秦推行变法"
+        "title": "商鞅入秦推行变法",
+        "type": "政治",
+        "detail": "商鞅在秦孝公支持下推行县制、军功爵、连坐与土地制度改革，使秦国财政、军事和官僚动员能力显著增强。",
+        "referenceIds": [
+          "cambridge-1999-ancient-china",
+          "pines-2012-everlasting-empire"
+        ]
       },
       {
         "year": -246,
-        "title": "嬴政即秦王位"
+        "title": "嬴政即秦王位",
+        "type": "政治",
+        "detail": "嬴政十三岁即秦王位，吕不韦、嫪毐等权力斗争后亲政，秦国进入统一六国的最后阶段。",
+        "referenceIds": [
+          "sima-qian-watson-1993-qin",
+          "cambridge-1999-ancient-china"
+        ]
       },
       {
         "year": -221,
-        "title": "秦灭六国，建立统一帝国，自称始皇帝"
+        "title": "秦灭六国，建立统一帝国，自称始皇帝",
+        "type": "政治",
+        "detail": "秦连续灭韩、赵、魏、楚、燕、齐后完成统一，嬴政称始皇帝，推行郡县制和中央集权皇帝制度。",
+        "referenceIds": [
+          "pines-2012-everlasting-empire",
+          "sima-qian-watson-1993-qin"
+        ]
       },
       {
         "year": -214,
-        "title": "修筑长城与直道，南征百越"
+        "title": "修筑长城与直道，南征百越",
+        "type": "工程",
+        "detail": "秦北筑长城、修直道以防匈奴，南征岭南百越并设郡，交通与军事工程把新帝国连接为统一行政空间。",
+        "referenceIds": [
+          "cambridge-1999-ancient-china",
+          "pines-2012-everlasting-empire"
+        ]
       },
       {
         "year": -210,
-        "title": "秦始皇巡游途中病逝"
+        "title": "秦始皇巡游途中病逝",
+        "type": "政治",
+        "detail": "秦始皇第五次巡游途中病逝于沙丘，赵高、李斯与胡亥秘不发丧并操控继承，朝廷危机迅速加深。",
+        "referenceIds": [
+          "sima-qian-watson-1993-qin"
+        ]
       },
       {
         "year": -206,
-        "title": "陈胜吴广起义后秦朝灭亡"
+        "title": "陈胜吴广起义后秦朝灭亡",
+        "type": "军事",
+        "detail": "陈胜、吴广起义点燃反秦浪潮，刘邦入关接受子婴投降，秦朝在楚汉战争前夕结束。",
+        "referenceIds": [
+          "sima-qian-watson-1993-qin",
+          "pines-2012-everlasting-empire"
+        ]
       }
     ],
     "tags": [
@@ -220,7 +255,31 @@
       "东亚"
     ],
     "importance": 5,
-    "legacy": "秦确立了郡县制、统一文字与度量衡，\"百代皆行秦政\"成为后世中国政治的基本范式，也留下了长城与兵马俑等纪念性遗存。"
+    "legacy": "秦确立了郡县制、统一文字与度量衡，\"百代皆行秦政\"成为后世中国政治的基本范式，也留下了长城与兵马俑等纪念性遗存。",
+    "sourceNote": "F4 Batch01 来源说明：秦朝条目以《剑桥中国上古史》、司马迁《史记》的英译选本和 Pines 对秦汉帝国制度延续的研究为基础，重点核对统一进程、制度改革和秦亡叙述。",
+    "references": [
+      {
+        "id": "cambridge-1999-ancient-china",
+        "title": "The Cambridge History of Ancient China: From the Origins of Civilization to 221 B.C.",
+        "author": "Michael Loewe and Edward L. Shaughnessy, eds.",
+        "year": 1999,
+        "note": "用于核对战国晚期秦国改革、统一六国和前帝国中国背景。"
+      },
+      {
+        "id": "sima-qian-watson-1993-qin",
+        "title": "Records of the Grand Historian: Qin Dynasty",
+        "author": "Sima Qian; Burton Watson, trans.",
+        "year": 1993,
+        "note": "用于核对秦王政、始皇帝巡游、继承危机和秦亡传统叙述。"
+      },
+      {
+        "id": "pines-2012-everlasting-empire",
+        "title": "The Everlasting Empire: The Political Culture of Ancient China and Its Imperial Legacy",
+        "author": "Yuri Pines",
+        "year": 2012,
+        "note": "用于解释秦制、郡县和皇帝制度对后世帝国政治的长期影响。"
+      }
+    ]
   },
   {
     "id": "han",
@@ -249,27 +308,62 @@
     "events": [
       {
         "year": -202,
-        "title": "刘邦称帝，西汉建立"
+        "title": "刘邦称帝，西汉建立",
+        "type": "政治",
+        "detail": "刘邦在楚汉战争中击败项羽后称帝，建立汉朝，沿用秦制又减轻刑罚徭役，以长安为西汉政治中心。",
+        "referenceIds": [
+          "loewe-1986-qin-han",
+          "lewis-2007-early-chinese-empires"
+        ]
       },
       {
         "year": -141,
-        "title": "汉武帝即位，独尊儒术"
+        "title": "汉武帝即位，独尊儒术",
+        "type": "思想",
+        "detail": "汉武帝即位后逐步强化中央财政、对匈奴用兵并采纳儒家经学为官学核心，形成儒法并用的帝国治理风格。",
+        "referenceIds": [
+          "loewe-1986-qin-han",
+          "lewis-2007-early-chinese-empires"
+        ]
       },
       {
         "year": -138,
-        "title": "张骞首次出使西域，丝绸之路开启"
+        "title": "张骞首次出使西域，丝绸之路开启",
+        "type": "外交",
+        "detail": "张骞奉命出使西域寻找月氏盟友，虽未达成军事同盟，却让汉廷获得中亚诸国信息，推动后续丝绸之路交通。",
+        "referenceIds": [
+          "loewe-1986-qin-han",
+          "tan-qixiang-1982-historical-atlas"
+        ]
       },
       {
         "year": 9,
-        "title": "王莽篡汉建新，西汉灭亡"
+        "title": "王莽篡汉建新，西汉灭亡",
+        "type": "政治",
+        "detail": "王莽代汉建立新朝，试行托古改制、土地和货币改革，但地方社会与财政秩序迅速失稳。",
+        "referenceIds": [
+          "loewe-1986-qin-han"
+        ]
       },
       {
         "year": 25,
-        "title": "光武中兴，东汉建立"
+        "title": "光武中兴，东汉建立",
+        "type": "政治",
+        "detail": "刘秀在更始、赤眉等动荡后称帝，定都洛阳，重建汉室并调整地方豪强与中央官僚之间的关系。",
+        "referenceIds": [
+          "loewe-1986-qin-han",
+          "lewis-2007-early-chinese-empires"
+        ]
       },
       {
         "year": 220,
-        "title": "曹丕代汉，三国时代开启"
+        "title": "曹丕代汉，三国时代开启",
+        "type": "政治",
+        "detail": "曹丕接受汉献帝禅让建立魏，东汉名义终结，中国进入魏、蜀、吴三国并立时代。",
+        "referenceIds": [
+          "loewe-1986-qin-han",
+          "lewis-2007-early-chinese-empires"
+        ]
       }
     ],
     "tags": [
@@ -280,7 +374,31 @@
       "东亚"
     ],
     "importance": 5,
-    "legacy": "汉代奠定了中央集权官僚制、儒家正统与汉字汉文化共同体，丝绸之路打通了东亚与欧亚大陆的长程互动。"
+    "legacy": "汉代奠定了中央集权官僚制、儒家正统与汉字汉文化共同体，丝绸之路打通了东亚与欧亚大陆的长程互动。",
+    "sourceNote": "F4 Batch01 来源说明：汉朝条目以《剑桥中国史》秦汉卷、Lewis 的早期帝国研究和谭其骧历史地图集为基础，分别支撑政治年代、制度解释和西域交通空间说明。",
+    "references": [
+      {
+        "id": "loewe-1986-qin-han",
+        "title": "The Cambridge History of China, Volume 1: The Ch'in and Han Empires, 221 B.C.-A.D. 220",
+        "author": "Denis Twitchett and Michael Loewe, eds.",
+        "year": 1986,
+        "note": "用于核对西汉、王莽新朝、东汉政治事件和年代。"
+      },
+      {
+        "id": "lewis-2007-early-chinese-empires",
+        "title": "The Early Chinese Empires: Qin and Han",
+        "author": "Mark Edward Lewis",
+        "year": 2007,
+        "note": "用于解释汉代中央集权、军政财政和儒法并用的制度背景。"
+      },
+      {
+        "id": "tan-qixiang-1982-historical-atlas",
+        "title": "中国历史地图集",
+        "author": "谭其骧主编",
+        "year": 1982,
+        "note": "用于辅助核对汉代西域交通、长城防线和历史地理范围。"
+      }
+    ]
   },
   {
     "id": "jin",
@@ -659,27 +777,61 @@
     "events": [
       {
         "year": 1368,
-        "title": "朱元璋建立明朝，定都南京"
+        "title": "朱元璋建立明朝，定都南京",
+        "type": "政治",
+        "detail": "朱元璋在元末战争中攻占大都前后建立明朝，以南京为都，重建户籍、里甲、卫所与高度集中的皇权秩序。",
+        "referenceIds": [
+          "mote-twitchett-1988-ming-part1",
+          "brook-2010-troubled-empire"
+        ]
       },
       {
         "year": 1421,
-        "title": "永乐迁都北京"
+        "title": "永乐迁都北京",
+        "type": "城市",
+        "detail": "永乐帝正式迁都北京，紫禁城与坛庙体系成为明清帝国首都空间核心，同时加强北方边防与大运河运输。",
+        "referenceIds": [
+          "mote-twitchett-1988-ming-part1",
+          "brook-2010-troubled-empire"
+        ]
       },
       {
         "year": 1433,
-        "title": "郑和第七次下西洋"
+        "title": "郑和第七次下西洋",
+        "type": "航海",
+        "detail": "郑和第七次远航结束早明官方大规模印度洋航行，展示朝贡外交、海上军事护航和国家造船能力的高峰。",
+        "referenceIds": [
+          "dreyer-2007-zheng-he",
+          "mote-twitchett-1988-ming-part1"
+        ]
       },
       {
         "year": 1572,
-        "title": "张居正改革推行一条鞭法"
+        "title": "张居正改革推行一条鞭法",
+        "type": "财政",
+        "detail": "张居正任内整顿考成法、清丈土地并推广一条鞭法，把多项赋役折银征收，回应白银货币化与财政压力。",
+        "referenceIds": [
+          "brook-2010-troubled-empire"
+        ]
       },
       {
         "year": 1592,
-        "title": "万历援朝战争"
+        "title": "万历援朝战争",
+        "type": "军事",
+        "detail": "日本丰臣政权入侵朝鲜后，明廷派军援朝，与朝鲜水陆力量协同作战，维护东亚朝贡秩序但消耗巨大。",
+        "referenceIds": [
+          "brook-2010-troubled-empire",
+          "mote-twitchett-1988-ming-part1"
+        ]
       },
       {
         "year": 1644,
-        "title": "李自成攻入北京，明朝覆亡"
+        "title": "李自成攻入北京，明朝覆亡",
+        "type": "政治",
+        "detail": "李自成军攻入北京，崇祯帝自缢，明朝中央政权覆亡；南明继续抵抗，清军随后入关建立新秩序。",
+        "referenceIds": [
+          "brook-2010-troubled-empire"
+        ]
       }
     ],
     "tags": [
@@ -690,7 +842,31 @@
       "东亚"
     ],
     "importance": 5,
-    "legacy": "明朝奠定了北京作为东亚帝国首都的格局，留下长城、紫禁城与海上贸易遗产，并把白银货币化推向全球早期网络。"
+    "legacy": "明朝奠定了北京作为东亚帝国首都的格局，留下长城、紫禁城与海上贸易遗产，并把白银货币化推向全球早期网络。",
+    "sourceNote": "F4 Batch01 来源说明：明朝条目以《剑桥中国史》明代卷、Brook 对元明时期的综合叙述和 Dreyer 对郑和航海的研究为基础，覆盖建国、迁都、海洋外交、财政改革与王朝终结。",
+    "references": [
+      {
+        "id": "mote-twitchett-1988-ming-part1",
+        "title": "The Cambridge History of China, Volume 7: The Ming Dynasty, 1368-1644, Part 1",
+        "author": "Frederick W. Mote and Denis Twitchett, eds.",
+        "year": 1988,
+        "note": "用于核对早明建国、永乐迁都、行政制度和政治脉络。"
+      },
+      {
+        "id": "brook-2010-troubled-empire",
+        "title": "The Troubled Empire: China in the Yuan and Ming Dynasties",
+        "author": "Timothy Brook",
+        "year": 2010,
+        "note": "用于补充明代社会、白银财政、边患和晚明危机的通史背景。"
+      },
+      {
+        "id": "dreyer-2007-zheng-he",
+        "title": "Zheng He: China and the Oceans in the Early Ming Dynasty, 1405-1433",
+        "author": "Edward L. Dreyer",
+        "year": 2007,
+        "note": "用于核对郑和远航的次数、时间范围和印度洋外交军事背景。"
+      }
+    ]
   },
   {
     "id": "qing",
@@ -779,27 +955,60 @@
     "events": [
       {
         "year": -2686,
-        "title": "第三王朝开启古王国"
+        "title": "第三王朝开启古王国",
+        "type": "政治",
+        "detail": "按常用年代框架，第三王朝标志古王国开端，孟菲斯王权和中央官僚体系进一步整合尼罗河谷。",
+        "referenceIds": [
+          "shaw-2000-oxford-egypt"
+        ]
       },
       {
         "year": -2670,
-        "title": "左塞王在萨卡拉建造阶梯金字塔"
+        "title": "左塞王在萨卡拉建造阶梯金字塔",
+        "type": "建筑",
+        "detail": "左塞王和建筑师伊姆霍特普在萨卡拉营建阶梯金字塔综合体，标志王室墓葬从马斯塔巴向纪念性石构建筑转变。",
+        "referenceIds": [
+          "lehner-1997-complete-pyramids",
+          "shaw-2000-oxford-egypt"
+        ]
       },
       {
         "year": -2580,
-        "title": "胡夫开始营建吉萨大金字塔"
+        "title": "胡夫开始营建吉萨大金字塔",
+        "type": "建筑",
+        "detail": "胡夫统治时期在吉萨营建大金字塔，体现第四王朝对劳役、石材运输和王权宗教象征的高度组织能力。",
+        "referenceIds": [
+          "lehner-1997-complete-pyramids",
+          "shaw-2000-oxford-egypt"
+        ]
       },
       {
         "year": -2500,
-        "title": "哈夫拉建造大狮身人面像"
+        "title": "哈夫拉建造大狮身人面像",
+        "type": "建筑",
+        "detail": "大狮身人面像通常与哈夫拉金字塔综合体相联系，具体归属仍有讨论，本条按主流吉萨第四王朝解释处理。",
+        "referenceIds": [
+          "lehner-1997-complete-pyramids"
+        ]
       },
       {
         "year": -2345,
-        "title": "《金字塔铭文》出现，宗教文献成形"
+        "title": "《金字塔铭文》出现，宗教文献成形",
+        "type": "宗教",
+        "detail": "第五王朝后期至第六王朝的王室金字塔内出现《金字塔铭文》，保存关于王权、来世和太阳神信仰的早期宗教文本。",
+        "referenceIds": [
+          "allen-2005-pyramid-texts",
+          "shaw-2000-oxford-egypt"
+        ]
       },
       {
         "year": -2181,
-        "title": "中央崩溃，第一中间期开始"
+        "title": "中央崩溃，第一中间期开始",
+        "type": "政治",
+        "detail": "第六王朝后期中央权威衰退，地方长官力量上升，尼罗河流域进入第一中间期的区域化政治格局。",
+        "referenceIds": [
+          "shaw-2000-oxford-egypt"
+        ]
       }
     ],
     "tags": [
@@ -810,7 +1019,31 @@
       "中央集权"
     ],
     "importance": 5,
-    "legacy": "古王国留下了金字塔群、太阳神信仰和成熟的官僚制度，定义了西方乃至全人类对\"古代埃及\"的核心想象。"
+    "legacy": "古王国留下了金字塔群、太阳神信仰和成熟的官僚制度，定义了西方乃至全人类对\"古代埃及\"的核心想象。",
+    "sourceNote": "F4 Batch01 来源说明：埃及古王国条目以《牛津古埃及史》、Lehner 的金字塔研究和 Allen 对《金字塔铭文》的译注为基础；早王朝和纪念建筑年代保留近似处理。",
+    "references": [
+      {
+        "id": "shaw-2000-oxford-egypt",
+        "title": "The Oxford History of Ancient Egypt",
+        "author": "Ian Shaw, ed.",
+        "year": 2000,
+        "note": "用于核对古王国分期、王朝年代、政治结构和第一中间期转折。"
+      },
+      {
+        "id": "lehner-1997-complete-pyramids",
+        "title": "The Complete Pyramids",
+        "author": "Mark Lehner",
+        "year": 1997,
+        "note": "用于核对萨卡拉、吉萨金字塔群和大狮身人面像的建筑背景。"
+      },
+      {
+        "id": "allen-2005-pyramid-texts",
+        "title": "The Ancient Egyptian Pyramid Texts",
+        "author": "James P. Allen",
+        "year": 2005,
+        "note": "用于说明《金字塔铭文》的宗教文本性质和王权来世观。"
+      }
+    ]
   },
   {
     "id": "egypt-new-kingdom",
@@ -1014,27 +1247,63 @@
     "events": [
       {
         "year": -550,
-        "title": "居鲁士二世推翻米底，建立波斯帝国"
+        "title": "居鲁士二世推翻米底，建立波斯帝国",
+        "type": "军事",
+        "detail": "居鲁士二世击败米底统治者阿斯提阿格斯，整合伊朗高原诸势力，阿契美尼德王权由地方王国转向帝国扩张。",
+        "referenceIds": [
+          "briant-2002-cyrus-alexander",
+          "kuhrt-2007-persian-empire-sources"
+        ]
       },
       {
         "year": -539,
-        "title": "波斯攻陷巴比伦"
+        "title": "波斯攻陷巴比伦",
+        "type": "政治",
+        "detail": "居鲁士进入巴比伦后接管新巴比伦王国，利用本地王权与宗教传统宣布合法性，使帝国控制两河核心地区。",
+        "referenceIds": [
+          "briant-2002-cyrus-alexander",
+          "kuhrt-2007-persian-empire-sources"
+        ]
       },
       {
         "year": -525,
-        "title": "冈比西斯二世征服埃及"
+        "title": "冈比西斯二世征服埃及",
+        "type": "军事",
+        "detail": "冈比西斯二世击败埃及第二十六王朝并取得法老头衔，埃及成为波斯帝国重要而复杂的行省。",
+        "referenceIds": [
+          "briant-2002-cyrus-alexander",
+          "allen-2005-persian-empire"
+        ]
       },
       {
         "year": -522,
-        "title": "大流士一世即位，整顿行省制度"
+        "title": "大流士一世即位，整顿行省制度",
+        "type": "政治",
+        "detail": "大流士一世在王位危机后即位，通过贝希斯敦铭文宣示合法性，并系统化行省、贡赋、王道和皇家行政网络。",
+        "referenceIds": [
+          "briant-2002-cyrus-alexander",
+          "kuhrt-2007-persian-empire-sources"
+        ]
       },
       {
         "year": -490,
-        "title": "马拉松战役败于希腊联军"
+        "title": "马拉松战役败于希腊联军",
+        "type": "军事",
+        "detail": "大流士一世时期远征希腊，在马拉松败于雅典及其盟友；这场失败并未终结帝国，但改变了希波冲突叙事。",
+        "referenceIds": [
+          "briant-2002-cyrus-alexander",
+          "allen-2005-persian-empire"
+        ]
       },
       {
         "year": -330,
-        "title": "亚历山大击败大流士三世，帝国终结"
+        "title": "亚历山大击败大流士三世，帝国终结",
+        "type": "军事",
+        "detail": "亚历山大在伊苏斯和高加米拉后夺取帝国核心地区，大流士三世于前330年被部下杀害，阿契美尼德政治秩序终结。",
+        "referenceIds": [
+          "briant-2002-cyrus-alexander",
+          "allen-2005-persian-empire"
+        ]
       }
     ],
     "tags": [
@@ -1045,7 +1314,31 @@
       "多民族"
     ],
     "importance": 5,
-    "legacy": "波斯首创的行省总督制、皇家驿道与多民族宽容统治，成为亚历山大、罗马乃至伊斯兰帝国行政架构的重要原型。"
+    "legacy": "波斯首创的行省总督制、皇家驿道与多民族宽容统治，成为亚历山大、罗马乃至伊斯兰帝国行政架构的重要原型。",
+    "sourceNote": "F4 Batch01 来源说明：阿契美尼德条目以 Briant 的帝国通史、Kuhrt 的史料汇编和 Lindsay Allen 的综合研究为基础，重点核对居鲁士、大流士、行省制度和希波战争相关叙述。",
+    "references": [
+      {
+        "id": "briant-2002-cyrus-alexander",
+        "title": "From Cyrus to Alexander: A History of the Persian Empire",
+        "author": "Pierre Briant",
+        "year": 2002,
+        "note": "用于核对阿契美尼德帝国政治史、扩张过程和亚历山大征服。"
+      },
+      {
+        "id": "kuhrt-2007-persian-empire-sources",
+        "title": "The Persian Empire: A Corpus of Sources from the Achaemenid Period",
+        "author": "Amelie Kuhrt",
+        "year": 2007,
+        "note": "用于补充居鲁士、巴比伦、大流士和贝希斯敦等一手史料背景。"
+      },
+      {
+        "id": "allen-2005-persian-empire",
+        "title": "The Persian Empire",
+        "author": "Lindsay Allen",
+        "year": 2005,
+        "note": "用于补充行省、波斯王权、希波冲突和帝国遗产的综合叙述。"
+      }
+    ]
   },
   {
     "id": "sasanian",

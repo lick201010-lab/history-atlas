@@ -1828,3 +1828,22 @@ Next:
 - Use a worker subagent for F4 Batch01 content/source expansion.
 - Recommended ids from audit: `qin`, `han`, `ming`, `egypt-old-kingdom`, and `achaemenid`.
 - Batch01 should add source notes, references, event details, event types, and referenceIds, then extend validator enforcement to those ids.
+
+## 2026-06-06 F4 Batch01 source/content expansion
+
+Scope:
+
+- Expanded F4 source/content coverage for exactly `qin`, `han`, `ming`, `egypt-old-kingdom`, and `achaemenid`.
+- Added dynasty-level `sourceNote` and three references for each target id.
+- Added `detail`, `type`, and same-dynasty `referenceIds` for every event in the five target dynasties.
+- Extended F4 source validation to enforce these five ids together with the existing pilot ids.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run check` passed during Codex review.
+- Focused Node audit confirmed each Batch01 dynasty has three references and all event `referenceIds` resolve locally.
+
+Note:
+
+- This is F4 Batch01 only. F4 remains active and the project is not final complete.

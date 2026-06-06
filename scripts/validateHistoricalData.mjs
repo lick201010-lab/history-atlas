@@ -5,7 +5,18 @@ import { REGION_PRESETS } from './boundaryCompiler/regionPresets.mjs';
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
-const F4_SOURCE_PILOT_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
+const F4_SOURCE_PILOT_IDS = new Set([
+  'tang',
+  'roman-republic-empire',
+  'islamic-caliphates',
+  'mughal',
+  'maya',
+  'qin',
+  'han',
+  'ming',
+  'egypt-old-kingdom',
+  'achaemenid',
+]);
 const F2_BATCH_01_IDS = new Set(['byzantine', 'ottoman', 'mongol-empire', 'aztec', 'inca']);
 const F2_BATCH_02_IDS = new Set([
   'greek-city-states',

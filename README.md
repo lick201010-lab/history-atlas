@@ -117,7 +117,7 @@ F3 landmark/model quality has passed its phase Gate after the core 10 map-view r
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
 | F2 边界精修 | 已通过 Gate | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 进入 F3 前保留 QA 截图和残余风险记录 | `validate:data`、`audit:boundary-quality`、`check`、Batch06/07 浏览器 QA 通过；全阶段达到 43 文明、129 feature |
 | F3 奇观模型 | 已通过 Gate | 30 个奇观升级到 A/B 级模型，核心 10 通过 A/A- 地图视角复核 | 保留 QA 截图与 GLB 审计，后续只做回归修复 | 核心 10 个 A/A-，全部 30 个不再是粗糙占位 |
-| F4 内容与来源 | 当前阶段 / pilot 01 已通过 | 文明、边界、事件建立来源体系 | 扩展引用字段、验证器与 UI 来源展示 | UI 可展示来源，关键数据有可追溯说明 |
+| F4 内容与来源 | 当前阶段 / Batch01 已通过 | 文明、边界、事件建立来源体系 | 扩展引用字段、验证器与 UI 来源展示 | UI 可展示来源，关键数据有可追溯说明 |
 | F5 产品交互 / 移动端 | 未完成 | 移动端、搜索、筛选、对比、故事导航升级 | 边界与内容质量稳定后做产品体验扩展 | 桌面和移动端核心路径体验通过 |
 | F6 性能 / 发布 / 包装 | 未完成 | GLB 懒加载、拆包、SEO、作品包装、兼容矩阵 | 最后统一处理资源策略和公开展示 | 性能、发布烟测、SEO、分享与反馈入口通过 |
 
@@ -146,7 +146,7 @@ F3 landmark/model quality has passed its phase Gate after the core 10 map-view r
 
 1. F2 Gate 已通过，边界层进入维护和解释阶段。
 2. F3 已通过 Gate：30 个奇观已有 A/B 级地图微缩模型，核心 10 已复核。
-3. 当前主线是 F4：来源体系、引用字段、事件来源说明和 UI 展示。
+3. 当前主线是 F4：来源体系、引用字段、事件来源说明和 UI 展示。当前 source-enforced 文明为 10 / 43。
 4. F5/F6 仍是最终完整版的必要 Gate：移动端产品体验、性能、发布包装和回滚文档。
 
 ## 快速开始
