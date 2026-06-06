@@ -107,6 +107,8 @@ function focusCameraForBuilding(building, duration = 2000) {
     'angkor-wat': { zoom: 7.1, pitch: 64, bearing: -32 },
     pyramid: { zoom: 7.8, pitch: 58, bearing: 42 },
     persepolis: { zoom: 7.0, pitch: 64, bearing: -24 },
+    'ziggurat-ur': { zoom: 7.2, pitch: 62, bearing: 34 },
+    'ishtar-gate': { zoom: 7.1, pitch: 64, bearing: -28 },
   };
   const preset = presets[building.id] || { zoom: 6.4, pitch: 64, bearing: -30 };
   return {

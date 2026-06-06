@@ -1,0 +1,112 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T09:07:25.731Z",
+  "results": [
+    {
+      "scene": {
+        "id": "ziggurat-ur-1800bce",
+        "targetId": "ziggurat-ur",
+        "title": "乌尔金字形神塔",
+        "year": -1800,
+        "camera": {
+          "center": [
+            46.1,
+            30.96
+          ],
+          "zoom": 7.2,
+          "pitch": 62,
+          "bearing": 34
+        },
+        "screenshot": "f3-batch02-ziggurat-ur-1800bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "乌尔金字形神塔",
+        "modelStatus": 200,
+        "mapCenter": [
+          46.1,
+          30.96
+        ],
+        "zoom": 7.2,
+        "pitch": 62,
+        "bearing": 34,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch02-ziggurat-ur-1800bce.png"
+    },
+    {
+      "scene": {
+        "id": "ishtar-gate-575bce",
+        "targetId": "ishtar-gate",
+        "title": "伊什塔尔门",
+        "year": -575,
+        "camera": {
+          "center": [
+            44.42,
+            32.54
+          ],
+          "zoom": 7.1,
+          "pitch": 64,
+          "bearing": -28
+        },
+        "screenshot": "f3-batch02-ishtar-gate-575bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "伊什塔尔门",
+        "modelStatus": 200,
+        "mapCenter": [
+          44.42,
+          32.54
+        ],
+        "zoom": 7.1,
+        "pitch": 64,
+        "bearing": -28,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch02-ishtar-gate-575bce.png"
+    }
+  ],
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/ziggurat-ur.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/ishtar-gate.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/ziggurat-ur.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/ishtar-gate.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "failures": []
+}

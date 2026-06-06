@@ -42,6 +42,17 @@ F3 model work has started. Batch01 accepted `persepolis` as GLB coverage only.
 - Screenshot: `docs/model-qa/f3-batch01-persepolis-500bce-immersive.png`.
 - Quality note: Persepolis is accepted as a readable B-grade miniature coverage model, not as the full F3 Gate and not as the final complete product.
 
+### 2026-06-06 F3 Batch02 Update
+
+Batch02 accepted `ziggurat-ur` and `ishtar-gate` as GLB coverage only.
+
+- GLB coverage: 17 / 30 landmarks.
+- Missing GLB coverage: 13 / 30 landmarks.
+- New QA command: `npm run audit:f3-batch02`.
+- Fresh checks passed: `npm run audit:f3-batch02` and `npm run check`.
+- Screenshots: `docs/model-qa/f3-batch02-ziggurat-ur-1800bce.png`, `docs/model-qa/f3-batch02-ishtar-gate-575bce.png`.
+- Quality note: both are accepted as B-grade readable coverage miniatures, not as the full F3 Gate and not as final A-grade benchmark models.
+
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |

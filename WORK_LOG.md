@@ -1455,3 +1455,55 @@ Result:
 Next:
 
 - Continue F3 with another missing-model batch, preferably 1-3 models per batch with the same map-view QA path.
+
+## 2026-06-06 F3 Batch02 model coverage
+
+Scope:
+
+- Continued F3 landmark/model quality with a bounded worker batch.
+- Added GLB coverage for `ziggurat-ur` and `ishtar-gate`.
+- This remains a controlled F3 batch only. It does not complete F3 and does not make the project final.
+
+Agent workflow:
+
+- Descartes worker implemented only the bounded GLB/model integration files.
+- Codex reviewed the worker output, reran checks, added the Batch02 browser QA script and artifacts, and performed in-app browser verification before acceptance.
+
+Implementation:
+
+- Added `scripts/buildZigguratUrGlb.mjs`.
+- Added `scripts/buildIshtarGateGlb.mjs`.
+- Generated `public/models/ziggurat-ur.glb`.
+- Generated `public/models/ishtar-gate.glb`.
+- Added both ids to GLB override, z-up orientation override, selected scale, and focus camera presets.
+- Added `npm run audit:f3-batch02`.
+
+Verification:
+
+- `node scripts/buildZigguratUrGlb.mjs` passed: about 4092 tris, z 0.00..0.98, 324.6 KB.
+- `node scripts/buildIshtarGateGlb.mjs` passed: about 3584 tris, z 0.00..0.99, 278.3 KB.
+- `npm run audit:glb` passed: 17 OK, 0 WARN, 0 FAIL.
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `npm run audit:f3-batch02` passed with `failures: []`.
+- In-app browser QA passed for both models: selected landmark, immersive mode active, Chinese title correct, and page logs empty.
+
+QA artifacts:
+
+- `docs/model-qa/F3_BATCH02_REPORT_2026-06-06.md`
+- `docs/model-qa/f3-batch02-manifest.json`
+- `docs/model-qa/f3-batch02-ziggurat-ur-1800bce.png`
+- `docs/model-qa/f3-batch02-ishtar-gate-575bce.png`
+- `docs/model-qa/f3-batch02-ziggurat-ur-inapp.png`
+- `docs/model-qa/f3-batch02-ishtar-gate-inapp.png`
+
+Result:
+
+- F3 Batch02 is accepted as GLB coverage for `ziggurat-ur` and `ishtar-gate`.
+- Visual grade: both are B-level readable miniatures. They are suitable as coverage, but not core A-grade promotional benchmarks.
+- GLB coverage is now 17 / 30. Missing GLB coverage remains 13 / 30.
+- The full F3 Gate remains incomplete.
+
+Next:
+
+- Continue F3 missing-model coverage. Good next candidates: `mecca-haram`, `sanchi-stupa`, and `konark-sun`, or a smaller two-model batch if visual QA risk needs to stay low.

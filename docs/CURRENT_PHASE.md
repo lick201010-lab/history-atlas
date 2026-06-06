@@ -58,8 +58,8 @@ F3 completion requires:
 Current GLB coverage:
 
 - Total landmarks: 30.
-- GLB overrides: 15.
-- Missing GLB coverage: 15.
+- GLB overrides: 17.
+- Missing GLB coverage: 13.
 - Core 10 GLB coverage: 10 / 10, but these are not automatically final A-grade. They still need final map-view inspection.
 
 Missing GLB ids:
@@ -68,8 +68,6 @@ Missing GLB ids:
 - `terracotta-army`
 - `temple-of-heaven`
 - `cheomseongdae`
-- `ziggurat-ur`
-- `ishtar-gate`
 - `mecca-haram`
 - `sanchi-stupa`
 - `konark-sun`
@@ -130,6 +128,25 @@ Forbidden write scope during F3 Batch 01:
 - `src/map/mapStyle.js`
 - deployment scripts
 - package dependencies
+
+## Accepted F3 Batch 02
+
+Target:
+
+- `ziggurat-ur`
+- `ishtar-gate`
+
+Result:
+
+- Accepted as F3 Batch02 GLB coverage on 2026-06-06.
+- `npm run audit:f3-batch02` passed with no failures.
+- `npm run check` passed.
+- Screenshots:
+  - `docs/model-qa/f3-batch02-ziggurat-ur-1800bce.png`
+  - `docs/model-qa/f3-batch02-ishtar-gate-575bce.png`
+  - `docs/model-qa/f3-batch02-ziggurat-ur-inapp.png`
+  - `docs/model-qa/f3-batch02-ishtar-gate-inapp.png`
+- Quality note: both are accepted as readable B-grade coverage miniatures. They are not full F3 completion and not final A-grade benchmark models.
 
 ## F3 Gate Checks
 

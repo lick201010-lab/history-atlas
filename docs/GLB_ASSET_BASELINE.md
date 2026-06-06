@@ -4,12 +4,12 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 
 ## Summary
 
-- Landmark GLB overrides: 15
-- GLB files in public/models: 15
-- Passing without warnings: 15
+- Landmark GLB overrides: 17
+- GLB files in public/models: 17
+- Passing without warnings: 17
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,978 KB
+- Total GLB weight: 5,580 KB
 
 ## Budget
 
@@ -30,6 +30,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `forbidden-city` | `forbidden-city.glb` | 300 KB | 4,148 | 7,375 | 14 | 0/0 | 0.000 | 0.558 | 0.605 | - |
 | OK | `great-wall` | `great-wall.glb` | 161 KB | 1,992 | 3,966 | 8 | 0/0 | -0.000 | 0.545 | 1.058 | - |
 | OK | `hagia-sophia` | `hagia-sophia.glb` | 750 KB | 19,228 | 17,579 | 16 | 0/0 | -0.000 | 1.459 | 0.780 | - |
+| OK | `ishtar-gate` | `ishtar-gate.glb` | 278 KB | 3,584 | 6,950 | 11 | 0/0 | 0.000 | 0.985 | 0.676 | - |
 | OK | `notre-dame` | `notre-dame.glb` | 241 KB | 3,488 | 5,968 | 9 | 0/0 | -0.000 | 0.986 | 0.687 | - |
 | OK | `parthenon` | `parthenon.glb` | 397 KB | 7,400 | 9,768 | 9 | 0/0 | -0.000 | 0.894 | 0.730 | - |
 | OK | `persepolis` | `persepolis.glb` | 403 KB | 7,154 | 9,927 | 10 | 0/0 | -0.000 | 0.935 | 0.810 | - |
@@ -38,6 +39,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `red-fort` | `red-fort.glb` | 431 KB | 13,192 | 9,777 | 8 | 0/0 | 0.000 | 0.570 | 0.638 | - |
 | OK | `stonehenge` | `stonehenge.glb` | 52 KB | 688 | 1,220 | 4 | 0/0 | -0.000 | 0.379 | 0.520 | - |
 | OK | `tajmahal` | `taj-mahal.glb` | 376 KB | 12,300 | 8,252 | 11 | 0/0 | -0.000 | 1.265 | 0.720 | - |
+| OK | `ziggurat-ur` | `ziggurat-ur.glb` | 325 KB | 4,092 | 8,184 | 11 | 0/0 | 0.000 | 0.983 | 0.785 | - |
 
 ## How To Use This Baseline
 
