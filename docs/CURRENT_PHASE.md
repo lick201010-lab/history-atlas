@@ -58,10 +58,11 @@ Build a credible content and source system so each civilization, event, boundary
 
 ## Current F4 Progress
 
-- Source-enforced dynasties: 10 / 43.
+- Source-enforced dynasties: 15 / 43.
 - F4 pilot ids passed: `tang`, `roman-republic-empire`, `islamic-caliphates`, `mughal`, `maya`.
 - F4 Batch01 ids passed: `qin`, `han`, `ming`, `egypt-old-kingdom`, `achaemenid`.
-- Source-enforced dynasty events: 60 / 259.
+- F4 Batch02 ids passed: `xia`, `shang`, `zhou`, `song`, `yuan`.
+- Source-enforced dynasty events: 88 / 259.
 - Boundary `sourceNote` / `accuracyNote` coverage: 129 / 129.
 - Landmark `sourceNote` coverage: 30 / 30; landmark `references` remain incomplete.
 

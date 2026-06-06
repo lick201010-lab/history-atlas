@@ -23,23 +23,52 @@
     "events": [
       {
         "year": -2070,
-        "title": "禹据传建立夏，定都阳城"
+        "title": "禹据传建立夏，定都阳城",
+        "type": "传统叙事",
+        "detail": "《史记》等传世文献将禹治水后受舜禅让、建立夏作为王朝开端；这里采用工程化时间轴约定值，不能视为可由考古独立证实的精确纪年。",
+        "referenceIds": [
+          "grand-scribes-records-1994-xia",
+          "cambridge-1999-ancient-china-xia"
+        ]
       },
       {
         "year": -1900,
-        "title": "二里头都邑兴起，出现宫室建筑群"
+        "title": "二里头都邑兴起，出现宫室建筑群",
+        "type": "考古",
+        "detail": "二里头文化在伊洛盆地形成大型都邑、宫殿基址和手工业区，常被纳入夏文化讨论；它能说明早期国家形成，却不能单独证明夏王朝名称与王统。",
+        "referenceIds": [
+          "liu-chen-2012-archaeology-china-xia",
+          "cambridge-1999-ancient-china-xia"
+        ]
       },
       {
         "year": -1750,
-        "title": "青铜礼器与玉器制度成形"
+        "title": "青铜礼器与玉器制度成形",
+        "type": "文化",
+        "detail": "二里头晚期的青铜礼器、绿松石器和玉器组合显示精英物质文化与礼制正在制度化，是理解中原早期王权的重要考古线索。",
+        "referenceIds": [
+          "liu-chen-2012-archaeology-china-xia"
+        ]
       },
       {
         "year": -1700,
-        "title": "夏中期王朝向四方扩张文化影响"
+        "title": "夏中期王朝向四方扩张文化影响",
+        "type": "文化",
+        "detail": "以二里头为核心的器物风格、礼器技术和聚落网络向周边扩散，反映中原早期国家影响力增强；这里的“扩张”指文化互动，不等同于可精确划界的王朝版图。",
+        "referenceIds": [
+          "liu-chen-2012-archaeology-china-xia",
+          "cambridge-1999-ancient-china-xia"
+        ]
       },
       {
         "year": -1600,
-        "title": "商汤伐桀，夏王朝被取代"
+        "title": "商汤伐桀，夏王朝被取代",
+        "type": "传统叙事",
+        "detail": "传世文献叙述商汤伐桀、夏被商取代；这一事件用于呈现传统王朝更替框架，具体年代和过程仍需与二里冈、郑州商城等考古材料谨慎对读。",
+        "referenceIds": [
+          "grand-scribes-records-1994-xia",
+          "cambridge-1999-ancient-china-xia"
+        ]
       }
     ],
     "tags": [
@@ -50,7 +79,31 @@
       "东亚"
     ],
     "importance": 3,
-    "legacy": "夏在中国后世史观中被视为\"三代之首\"，奠定了王朝更替、天命转移、宫室宗庙等政治文化母题，对中国王权叙事影响深远。"
+    "legacy": "夏在中国后世史观中被视为\"三代之首\"，奠定了王朝更替、天命转移、宫室宗庙等政治文化母题，对中国王权叙事影响深远。",
+    "sourceNote": "F4 Batch02 来源说明：夏朝条目同时使用传世文献和二里头等早期青铜时代考古研究。夏的纪年、都城和王统仍有明显不确定性；二里头可支撑早期国家与礼制形成的讨论，但不能写成“考古已经证明夏朝”为定论。",
+    "references": [
+      {
+        "id": "grand-scribes-records-1994-xia",
+        "title": "The Grand Scribe's Records, Volume I: The Basic Annals of Pre-Han China",
+        "author": "Sima Qian; William H. Nienhauser Jr., ed.",
+        "year": 1994,
+        "note": "用于核对禹、夏后氏和夏商更替的传世文献叙事；不作为考古实证本身。"
+      },
+      {
+        "id": "liu-chen-2012-archaeology-china-xia",
+        "title": "The Archaeology of China: From the Late Paleolithic to the Early Bronze Age",
+        "author": "Li Liu and Xingcan Chen",
+        "year": 2012,
+        "note": "用于核对二里头文化、早期国家形成、宫室与礼器考古材料。"
+      },
+      {
+        "id": "cambridge-1999-ancient-china-xia",
+        "title": "The Cambridge History of Ancient China: From the Origins of Civilization to 221 B.C.",
+        "author": "Michael Loewe and Edward L. Shaughnessy, eds.",
+        "year": 1999,
+        "note": "用于提供夏商周早期历史、年代争议和文献考古关系的综合背景。"
+      }
+    ]
   },
   {
     "id": "shang",
@@ -76,23 +129,53 @@
     "events": [
       {
         "year": -1600,
-        "title": "商汤灭夏，王朝建立"
+        "title": "商汤灭夏，王朝建立",
+        "type": "传统叙事",
+        "detail": "商汤灭夏是传世史书中的王朝更替叙事；早商时期的考古材料可显示中原政治中心变化，但具体战事、人物和纪年仍需谨慎处理。",
+        "referenceIds": [
+          "cambridge-1999-ancient-china-shang",
+          "liu-chen-2012-archaeology-china-shang"
+        ]
       },
       {
         "year": -1300,
-        "title": "盘庚迁殷，王都稳定于安阳"
+        "title": "盘庚迁殷，王都稳定于安阳",
+        "type": "政治",
+        "detail": "传统文献将盘庚迁殷视为商王都稳定的重要节点，安阳殷墟考古和甲骨材料使晚商政治、祭祀与王室活动具有同时期证据。",
+        "referenceIds": [
+          "keightley-1978-sources-shang",
+          "cambridge-1999-ancient-china-shang"
+        ]
       },
       {
         "year": -1250,
-        "title": "武丁中兴，势力达到鼎盛"
+        "title": "武丁中兴，势力达到鼎盛",
+        "type": "军事",
+        "detail": "武丁时期甲骨卜辞记录了对方国的征伐、祭祀和王室成员活动，妇好墓等考古发现也显示晚商贵族军事与礼制体系高度发达。",
+        "referenceIds": [
+          "keightley-1978-sources-shang",
+          "liu-chen-2012-archaeology-china-shang"
+        ]
       },
       {
         "year": -1200,
-        "title": "甲骨文与青铜礼器成熟"
+        "title": "甲骨文与青铜礼器成熟",
+        "type": "文化",
+        "detail": "殷墟甲骨文提供了中国最早的大规模成体系文字资料，青铜礼器的器类、铭文和祭祀用途共同反映成熟的王权与祖先崇拜秩序。",
+        "referenceIds": [
+          "keightley-1978-sources-shang",
+          "cambridge-1999-ancient-china-shang"
+        ]
       },
       {
         "year": -1046,
-        "title": "周武王牧野克商，商纣败亡"
+        "title": "周武王牧野克商，商纣败亡",
+        "type": "军事",
+        "detail": "牧野之战标志周人取代商王室的传统纪年节点；晚商灭亡与周初年代有文献、金文和考古多重线索，具体细节仍存在学术讨论。",
+        "referenceIds": [
+          "cambridge-1999-ancient-china-shang",
+          "keightley-1978-sources-shang"
+        ]
       }
     ],
     "tags": [
@@ -103,7 +186,31 @@
       "黄河"
     ],
     "importance": 4,
-    "legacy": "商代奠定了汉字、占卜、宗庙祭祀与青铜礼器系统，为后世中国文化与王权符号留下了直接的源头。"
+    "legacy": "商代奠定了汉字、占卜、宗庙祭祀与青铜礼器系统，为后世中国文化与王权符号留下了直接的源头。",
+    "sourceNote": "F4 Batch02 来源说明：商朝条目以甲骨卜辞、殷墟考古和早期中国通史研究互证。晚商安阳时期证据最强，早商和商汤灭夏的细节仍结合传世文本与考古分期谨慎呈现。",
+    "references": [
+      {
+        "id": "keightley-1978-sources-shang",
+        "title": "Sources of Shang History: The Oracle-Bone Inscriptions of Bronze Age China",
+        "author": "David N. Keightley",
+        "year": 1978,
+        "note": "用于核对殷墟甲骨文、占卜制度、王室活动和晚商政治结构。"
+      },
+      {
+        "id": "cambridge-1999-ancient-china-shang",
+        "title": "The Cambridge History of Ancient China: From the Origins of Civilization to 221 B.C.",
+        "author": "Michael Loewe and Edward L. Shaughnessy, eds.",
+        "year": 1999,
+        "note": "用于核对商代年代、早商至晚商转变和商周更替的综合研究。"
+      },
+      {
+        "id": "liu-chen-2012-archaeology-china-shang",
+        "title": "The Archaeology of China: From the Late Paleolithic to the Early Bronze Age",
+        "author": "Li Liu and Xingcan Chen",
+        "year": 2012,
+        "note": "用于补充二里冈、郑州商城、殷墟和青铜时代考古背景。"
+      }
+    ]
   },
   {
     "id": "zhou",
@@ -129,27 +236,62 @@
     "events": [
       {
         "year": -1046,
-        "title": "武王克商，建立周朝"
+        "title": "武王克商，建立周朝",
+        "type": "军事",
+        "detail": "周武王灭商后建立西周，1046 BCE 是本项目采用的通行工程纪年；商周之际仍需结合文献、金文和考古材料理解。",
+        "referenceIds": [
+          "shaughnessy-1991-western-zhou-history",
+          "cambridge-1999-ancient-china-zhou"
+        ]
       },
       {
         "year": -841,
-        "title": "国人暴动，共和行政开启信史纪年"
+        "title": "国人暴动，共和行政开启信史纪年",
+        "type": "政治",
+        "detail": "周厉王失政引发国人暴动，传统纪年进入共和行政阶段；841 BCE 以后中国传统年表连续性明显增强。",
+        "referenceIds": [
+          "shaughnessy-1991-western-zhou-history",
+          "cambridge-1999-ancient-china-zhou"
+        ]
       },
       {
         "year": -771,
-        "title": "犬戎攻破镐京，平王东迁洛邑"
+        "title": "犬戎攻破镐京，平王东迁洛邑",
+        "type": "军事",
+        "detail": "西周王都镐京被攻破后，平王东迁洛邑，周王室直接控制力下降，东周诸侯政治逐渐成为主导格局。",
+        "referenceIds": [
+          "shaughnessy-1991-western-zhou-history",
+          "cambridge-1999-ancient-china-zhou"
+        ]
       },
       {
         "year": -551,
-        "title": "孔子诞生，儒家思想形成"
+        "title": "孔子诞生，儒家思想形成",
+        "type": "思想",
+        "detail": "孔子传统生年标志春秋晚期思想转型的重要坐标；儒家经典和后世解释把礼、仁、政治伦理塑造成东亚长期思想资源。",
+        "referenceIds": [
+          "ames-rosemont-1998-analects",
+          "cambridge-1999-ancient-china-zhou"
+        ]
       },
       {
         "year": -403,
-        "title": "三家分晋，战国时代开启"
+        "title": "三家分晋，战国时代开启",
+        "type": "政治",
+        "detail": "周王室承认韩、赵、魏为诸侯，标志晋国旧秩序崩解和战国格局成形，兼并战争与制度改革随之加速。",
+        "referenceIds": [
+          "cambridge-1999-ancient-china-zhou"
+        ]
       },
       {
         "year": -256,
-        "title": "秦灭东周，王朝终结"
+        "title": "秦灭东周，王朝终结",
+        "type": "军事",
+        "detail": "秦吞并东周公国后，周王室作为政治实体终结；这一事件发生在秦完成六国统一之前，显示周天子权威已名存实亡。",
+        "referenceIds": [
+          "cambridge-1999-ancient-china-zhou",
+          "shaughnessy-1991-western-zhou-history"
+        ]
       }
     ],
     "tags": [
@@ -160,7 +302,31 @@
       "东亚"
     ],
     "importance": 5,
-    "legacy": "周礼、宗法与诸子思想成为中国文明的精神底座，\"封建—郡县\"之争与\"天命—民本\"观念影响东亚整个传统时代。"
+    "legacy": "周礼、宗法与诸子思想成为中国文明的精神底座，\"封建—郡县\"之争与\"天命—民本\"观念影响东亚整个传统时代。",
+    "sourceNote": "F4 Batch02 来源说明：周朝条目以西周金文与传世文献研究、早期中国通史和儒家经典研究为基础。西周早期纪年仍有讨论，东周事件按通行历史分期作教学化呈现。",
+    "references": [
+      {
+        "id": "shaughnessy-1991-western-zhou-history",
+        "title": "Western Zhou History",
+        "author": "Edward L. Shaughnessy",
+        "year": 1991,
+        "note": "用于核对西周政治、金文证据、王室纪年和西周晚期危机。"
+      },
+      {
+        "id": "cambridge-1999-ancient-china-zhou",
+        "title": "The Cambridge History of Ancient China: From the Origins of Civilization to 221 B.C.",
+        "author": "Michael Loewe and Edward L. Shaughnessy, eds.",
+        "year": 1999,
+        "note": "用于核对周代分期、春秋战国转型和周秦之际政治背景。"
+      },
+      {
+        "id": "ames-rosemont-1998-analects",
+        "title": "The Analects of Confucius: A Philosophical Translation",
+        "author": "Roger T. Ames and Henry Rosemont Jr.",
+        "year": 1998,
+        "note": "用于补充孔子与儒家思想形成的经典文本背景。"
+      }
+    ]
   },
   {
     "id": "qin",
@@ -656,27 +822,62 @@
     "events": [
       {
         "year": 960,
-        "title": "赵匡胤陈桥兵变建立北宋"
+        "title": "赵匡胤陈桥兵变建立北宋",
+        "type": "政治",
+        "detail": "后周禁军将领赵匡胤在陈桥兵变后称帝，建立北宋；随后通过军事和外交手段逐步结束五代十国分裂格局。",
+        "referenceIds": [
+          "twitchett-smith-2009-sung-part1",
+          "kuhn-2009-age-confucian-rule"
+        ]
       },
       {
         "year": 1069,
-        "title": "王安石变法启动"
+        "title": "王安石变法启动",
+        "type": "政治",
+        "detail": "王安石在神宗支持下推行青苗、免役、保甲等新法，意在增强财政与军事能力；变法评价长期存在争议，需呈现为制度改革而非简单成败判断。",
+        "referenceIds": [
+          "twitchett-smith-2009-sung-part1",
+          "kuhn-2009-age-confucian-rule"
+        ]
       },
       {
         "year": 1127,
-        "title": "靖康之变，北宋覆灭，宋室南渡"
+        "title": "靖康之变，北宋覆灭，宋室南渡",
+        "type": "军事",
+        "detail": "金军攻陷开封并俘徽宗、钦宗，北宋政权崩溃；赵构南渡后重建宋廷，形成南宋与金长期对峙。",
+        "referenceIds": [
+          "twitchett-smith-2009-sung-part1",
+          "chaffee-twitchett-2015-sung-part2"
+        ]
       },
       {
         "year": 1130,
-        "title": "南宋定都临安"
+        "title": "南宋定都临安",
+        "type": "城市",
+        "detail": "南宋政权逐渐以临安为政治和经济中心，江南城市、海上贸易、财政和士大夫文化成为王朝延续的关键支撑。",
+        "referenceIds": [
+          "chaffee-twitchett-2015-sung-part2",
+          "kuhn-2009-age-confucian-rule"
+        ]
       },
       {
         "year": 1234,
-        "title": "宋蒙联合灭金"
+        "title": "宋蒙联合灭金",
+        "type": "军事",
+        "detail": "南宋与蒙古夹击金朝并取得胜利，但金亡后宋蒙矛盾迅速升级，南宋很快面对更强大的蒙古军事压力。",
+        "referenceIds": [
+          "chaffee-twitchett-2015-sung-part2"
+        ]
       },
       {
         "year": 1279,
-        "title": "崖山海战，南宋灭亡"
+        "title": "崖山海战，南宋灭亡",
+        "type": "军事",
+        "detail": "崖山海战后南宋残余朝廷覆灭，元朝完成对宋地的征服；这一节点结束了宋代政治史，也改变了东亚海陆秩序。",
+        "referenceIds": [
+          "chaffee-twitchett-2015-sung-part2",
+          "twitchett-smith-2009-sung-part1"
+        ]
       }
     ],
     "tags": [
@@ -687,7 +888,31 @@
       "科技"
     ],
     "importance": 5,
-    "legacy": "宋代发明印刷、火药、罗盘的成熟应用以及文官—士大夫政治传统，对东亚后续社会、商业与思想长期产生影响。"
+    "legacy": "宋代发明印刷、火药、罗盘的成熟应用以及文官—士大夫政治传统，对东亚后续社会、商业与思想长期产生影响。",
+    "sourceNote": "F4 Batch02 来源说明：宋朝条目以《剑桥中国史》宋代两卷和 Kuhn 的宋代社会转型研究为基础，区分北宋、南宋政治事件，并把王安石变法、临安城市和宋亡放在制度与社会背景中说明。",
+    "references": [
+      {
+        "id": "twitchett-smith-2009-sung-part1",
+        "title": "The Cambridge History of China, Volume 5, Part One: The Sung Dynasty and Its Precursors, 907-1279",
+        "author": "Denis Twitchett and Paul Jakov Smith, eds.",
+        "year": 2009,
+        "note": "用于核对北宋建立、制度改革、宋金关系和宋代政治史背景。"
+      },
+      {
+        "id": "chaffee-twitchett-2015-sung-part2",
+        "title": "The Cambridge History of China, Volume 5, Part Two: Sung China, 960-1279",
+        "author": "John W. Chaffee and Denis Twitchett, eds.",
+        "year": 2015,
+        "note": "用于核对南宋政治、临安、宋蒙战争和崖山前后的史事。"
+      },
+      {
+        "id": "kuhn-2009-age-confucian-rule",
+        "title": "The Age of Confucian Rule: The Song Transformation of China",
+        "author": "Dieter Kuhn",
+        "year": 2009,
+        "note": "用于补充宋代文官政治、城市商业、儒学复兴和社会转型背景。"
+      }
+    ]
   },
   {
     "id": "yuan",
@@ -716,27 +941,63 @@
     "events": [
       {
         "year": 1271,
-        "title": "忽必烈建国号大元"
+        "title": "忽必烈建国号大元",
+        "type": "政治",
+        "detail": "忽必烈采用“大元”国号，把自己的统治包装为中国式王朝，同时仍处在蒙古帝国继承者的跨欧亚政治网络之中。",
+        "referenceIds": [
+          "rossabi-1988-khubilai",
+          "franke-twitchett-1994-alien-regimes"
+        ]
       },
       {
         "year": 1276,
-        "title": "元军攻陷临安，南宋崩溃"
+        "title": "元军攻陷临安，南宋崩溃",
+        "type": "军事",
+        "detail": "元军进入临安并接受南宋太后和幼帝投降，南宋中央政权瓦解；部分宗室和军队继续南撤抵抗。",
+        "referenceIds": [
+          "franke-twitchett-1994-alien-regimes",
+          "rossabi-1988-khubilai"
+        ]
       },
       {
         "year": 1279,
-        "title": "崖山海战后中国完全统一于元"
+        "title": "崖山海战后中国完全统一于元",
+        "type": "军事",
+        "detail": "崖山海战结束南宋最后抵抗，元朝控制中国本部主要区域；“统一”在这里指宋元战争后的中国政治版图，不等同于整个蒙古世界完全合一。",
+        "referenceIds": [
+          "franke-twitchett-1994-alien-regimes",
+          "morgan-2007-mongols"
+        ]
       },
       {
         "year": 1294,
-        "title": "忽必烈病逝"
+        "title": "忽必烈病逝",
+        "type": "政治",
+        "detail": "忽必烈去世后，元朝进入继承与宫廷政治更频繁变动的阶段，中央权威和蒙古贵族、色目官僚、汉地行政之间的平衡持续调整。",
+        "referenceIds": [
+          "rossabi-1988-khubilai",
+          "franke-twitchett-1994-alien-regimes"
+        ]
       },
       {
         "year": 1351,
-        "title": "红巾军起义爆发"
+        "title": "红巾军起义爆发",
+        "type": "社会",
+        "detail": "黄河治理徭役、财政压力、灾荒和宗教性民间组织交织，引发红巾军起义；起义逐渐演变为推翻元朝的多方割据战争。",
+        "referenceIds": [
+          "franke-twitchett-1994-alien-regimes",
+          "morgan-2007-mongols"
+        ]
       },
       {
         "year": 1368,
-        "title": "明军北伐，元顺帝退回草原"
+        "title": "明军北伐，元顺帝退回草原",
+        "type": "军事",
+        "detail": "朱元璋派军北伐并攻占大都，元顺帝北退草原；元朝在中原的统治结束，但北元政权仍在草原延续。",
+        "referenceIds": [
+          "franke-twitchett-1994-alien-regimes",
+          "morgan-2007-mongols"
+        ]
       }
     ],
     "tags": [
@@ -747,7 +1008,31 @@
       "商贸"
     ],
     "importance": 4,
-    "legacy": "元朝将中国纳入跨欧亚蒙古秩序，加速了东西方人员、货物、技术与宗教的流动，对后世中国行省制度亦有持续影响。"
+    "legacy": "元朝将中国纳入跨欧亚蒙古秩序，加速了东西方人员、货物、技术与宗教的流动，对后世中国行省制度亦有持续影响。",
+    "sourceNote": "F4 Batch02 来源说明：元朝条目以《剑桥中国史》辽金元卷、Rossabi 的忽必烈研究和 Morgan 的蒙古史综述为基础，说明元既是中国王朝，也是蒙古帝国继承结构的一部分。1368 年以后北元仍延续，不能把元顺帝北退写成蒙古政治实体完全消失。",
+    "references": [
+      {
+        "id": "franke-twitchett-1994-alien-regimes",
+        "title": "The Cambridge History of China, Volume 6: Alien Regimes and Border States, 907-1368",
+        "author": "Herbert Franke and Denis Twitchett, eds.",
+        "year": 1994,
+        "note": "用于核对辽金元时期制度、宋元战争、元末危机和 1368 年政权转移。"
+      },
+      {
+        "id": "rossabi-1988-khubilai",
+        "title": "Khubilai Khan: His Life and Times",
+        "author": "Morris Rossabi",
+        "year": 1988,
+        "note": "用于核对忽必烈、国号大元、南宋征服和元初政治背景。"
+      },
+      {
+        "id": "morgan-2007-mongols",
+        "title": "The Mongols",
+        "author": "David Morgan",
+        "year": 2007,
+        "note": "用于补充蒙古帝国框架、元与其他蒙古汗国关系以及北元延续背景。"
+      }
+    ]
   },
   {
     "id": "ming",

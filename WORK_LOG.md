@@ -1847,3 +1847,22 @@ Verification:
 Note:
 
 - This is F4 Batch01 only. F4 remains active and the project is not final complete.
+
+## 2026-06-06 F4 Batch02 source/content expansion
+
+Scope:
+
+- Expanded F4 source/content coverage for exactly `xia`, `shang`, `zhou`, `song`, and `yuan`.
+- Added dynasty-level `sourceNote` and three references for each target id.
+- Added `detail`, `type`, and same-dynasty `referenceIds` for every event in the five target dynasties.
+- Extended F4 source validation to enforce these five ids together with the existing F4 source ids.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run check` passed with existing Vite large chunk warnings.
+
+Note:
+
+- This is F4 Batch02 only. F4 remains active and the project is not final complete.
+- Xia content explicitly treats chronology and source identity as uncertain; Erlitou is not presented as settled proof of the Xia dynasty.

@@ -146,7 +146,7 @@ F3 landmark/model quality has passed its phase Gate after the core 10 map-view r
 
 1. F2 Gate 已通过，边界层进入维护和解释阶段。
 2. F3 已通过 Gate：30 个奇观已有 A/B 级地图微缩模型，核心 10 已复核。
-3. 当前主线是 F4：来源体系、引用字段、事件来源说明和 UI 展示。当前 source-enforced 文明为 10 / 43。
+3. 当前主线是 F4：来源体系、引用字段、事件来源说明和 UI 展示。当前 source-enforced 文明为 15 / 43。
 4. F5/F6 仍是最终完整版的必要 Gate：移动端产品体验、性能、发布包装和回滚文档。
 
 ## 快速开始

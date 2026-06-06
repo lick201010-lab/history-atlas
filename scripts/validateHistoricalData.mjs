@@ -16,6 +16,11 @@ const F4_SOURCE_PILOT_IDS = new Set([
   'ming',
   'egypt-old-kingdom',
   'achaemenid',
+  'xia',
+  'shang',
+  'zhou',
+  'song',
+  'yuan',
 ]);
 const F2_BATCH_01_IDS = new Set(['byzantine', 'ottoman', 'mongol-empire', 'aztec', 'inca']);
 const F2_BATCH_02_IDS = new Set([
