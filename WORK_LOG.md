@@ -1745,3 +1745,42 @@ Next:
 
 - Start F3 core-10 A-grade regrading with screenshots for `hagia-sophia`, `forbidden-city`, `angkor-wat`, `pyramid`, `colosseum`, `parthenon`, `tajmahal`, `chichen-itza`, `great-wall`, and `petra`.
 - Any core-10 model that reads as B-grade rather than A-grade should be assigned to a focused worker polish task before F3 can pass.
+
+## 2026-06-06 F3 Core10 regrade and Gate pass
+
+Scope:
+
+- Closed the F3 landmark/model quality Gate after Batch01-Batch06 produced 30 / 30 GLB coverage.
+- Regraded the core 10 landmarks in fixed selected map-view screenshots.
+- This completes F3 only. It does not make the whole project final because F4-F6 remain open.
+
+Implementation and integration:
+
+- Added `npm run audit:f3-core10`.
+- Added `scripts/auditF3Core10Playwright.mjs` for fixed browser/CDP map-view screenshots.
+- Regenerated core 10 QA screenshots under `docs/model-qa/f3-core10-*.png`.
+- Repaired the Petra selected-view camera from a side-facing blocky angle to a front-facing facade angle.
+- Tuned selected-view model scale and focus camera presets for weak core models including `forbidden-city`, `angkor-wat`, `pyramid`, `chichen-itza`, `great-wall`, and `petra`.
+- Updated `docs/model-qa/F3_CORE10_REVIEW_2026-06-06.md` with manual A/A- acceptance notes.
+- Updated `docs/CURRENT_PHASE.md` so F4 is now the active phase.
+- Updated README boss-facing TODO status and synced Obsidian note `29-F3模型Core10-Regrade.md`.
+
+Verification:
+
+- `npm run audit:f3-core10` passed with `failures: []`.
+- Core 10 screenshots were manually inspected by Codex.
+- `petra` now reads as a front-facing carved facade in the map view.
+- `great-wall` remains a map-scale wall segment rather than a single-building closeup, but towers and wall run are readable.
+- Full closeout checks are run after this log entry before commit.
+
+Result:
+
+- F3 Gate passed for current final-version criteria.
+- Core 10: accepted as A/A- map-view miniature models.
+- Remaining 20: accepted as B-level readable coverage miniatures from F3 Batch01-Batch06.
+- Current active phase is now F4 content and source system.
+
+Next:
+
+- Start F4 as subagent-driven controlled batches.
+- First F4 task should extend validators and source/reference schema before broad data filling.

@@ -99,13 +99,13 @@ function boundaryHoverFilter(year, hoveredId) {
 
 function focusCameraForBuilding(building, duration = 2000) {
   const presets = {
-    petra: { zoom: 7.5, pitch: 64, bearing: -18 },
-    'forbidden-city': { zoom: 7.0, pitch: 64, bearing: -35 },
-    'great-wall': { zoom: 7.2, pitch: 66, bearing: -38 },
+    petra: { zoom: 8.05, pitch: 62, bearing: 80 },
+    'forbidden-city': { zoom: 7.45, pitch: 63, bearing: -35 },
+    'great-wall': { zoom: 7.55, pitch: 66, bearing: -38 },
     'hagia-sophia': { zoom: 6.8, pitch: 64, bearing: -18 },
     colosseum: { zoom: 6.8, pitch: 64, bearing: -28 },
-    'angkor-wat': { zoom: 7.1, pitch: 64, bearing: -32 },
-    pyramid: { zoom: 7.8, pitch: 58, bearing: 42 },
+    'angkor-wat': { zoom: 7.55, pitch: 62, bearing: -32 },
+    pyramid: { zoom: 8.1, pitch: 58, bearing: 42 },
     persepolis: { zoom: 7.0, pitch: 64, bearing: -24 },
     'ziggurat-ur': { zoom: 7.2, pitch: 62, bearing: 34 },
     'ishtar-gate': { zoom: 7.1, pitch: 64, bearing: -28 },

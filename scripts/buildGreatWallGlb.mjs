@@ -1,86 +1,140 @@
-// 万里长城 —— 奇观资产样板（public/models/great-wall.glb）· 重建版。
-// 依 Codex GLB QA：旧版像个小堡垒块、读不出「墙」。本版重做成沿地形横向延展的长城段：
-//   · 蛇形/折线墙体，x 跨 ±1.0 → 地图视角一眼是「墙线」而非单点；
-//   · 夯土山脊填方（贴地）随起伏翻山；
-//   · 墙顶规则垛口（merlon + 缺口）→ 齿形轮廓；
-//   · 5 座敌楼/烽火台沿墙分布（方身 + 雉堞顶 + 窗），其中两座带四坡顶；
-//   · 暖灰砖 / 土黄夯土，纯顶点色无贴图。
-// 复用 wonderKit；z=上；横向足迹 ~±1.0（审计 footprint<1.2 不告警）；base 贴地。
-// 运行：node scripts/buildGreatWallGlb.mjs
+// Great Wall - F3 core-10 A-grade repair.
+// Goal: read as a long mountain-ridge wall system in map view, not a short fort block.
 
 import { WonderAsset } from './lib/wonderKit.mjs';
 
 const OUT = new URL('../public/models/great-wall.glb', import.meta.url);
 
 const COLORS = {
-  earth: 0x9c8a63,     // 夯土山脊（土黄）
-  brick: 0xb7a587,     // 砖墙（暖灰，受光）
-  brickShade: 0xa08d6d,// 背光墙
-  cren: 0xc4b597,      // 垛口（浅）
-  tower: 0xb49c75,     // 敌楼身
-  towerCap: 0xc4b597,  // 敌楼雉堞
-  roof: 0x6e5a3e,      // 敌楼四坡顶（暗）
-  dark: 0x2c2317,      // 窗洞 / 门洞
+  ridgeLow: 0x6f5f43,
+  ridgeHigh: 0x9b875f,
+  wall: 0xb7a284,
+  wallShade: 0x9f8a6a,
+  coping: 0xc8b99a,
+  walkway: 0x6f6048,
+  tower: 0xb49b72,
+  towerShade: 0x987f5e,
+  towerCap: 0xc7b38d,
+  roof: 0x655036,
+  dark: 0x2a2117,
+  beacon: 0xd1a24f,
 };
-function material() { return { metalness: 0.0, roughness: 0.9 }; }
 
-const a = new WonderAsset({ name: 'GreatWall' });
-const TWO_PI = Math.PI * 2;
-
-// 路径：x 横向延展，y 蛇形摆动，base 随山丘起伏（贴地）
-function pathAt(t) {
-  const x = -1.00 + 2.00 * t;
-  const y = 0.22 * Math.sin(t * Math.PI * 2.3) + 0.06 * Math.sin(t * Math.PI * 5.1);
-  const base = 0.03 + 0.15 * Math.sin(t * Math.PI) + 0.07 * Math.max(0, Math.sin(t * Math.PI * 2.7 + 0.4));
-  return { x, y, base: Math.max(0.03, base) };
+function material() {
+  return { metalness: 0.0, roughness: 0.9 };
 }
 
-const NSEG = 30;
-const WALL_H = 0.15;
-for (let i = 0; i < NSEG; i += 1) {
-  const t0 = i / NSEG, t1 = (i + 1) / NSEG;
-  const p = pathAt(t0), q = pathAt(t1);
-  const cx = (p.x + q.x) / 2, cy = (p.y + q.y) / 2, cb = (p.base + q.base) / 2;
-  const len = Math.hypot(q.x - p.x, q.y - p.y) * 1.16;
-  const tan = Math.atan2(q.y - p.y, q.x - p.x);
-  // 夯土山脊填方（z0..cb，托墙贴地、随地形起伏）
-  a.boxRotZ('earth', len, 0.135, cb, cx, cy, cb / 2, tan);
-  // 砖墙身
-  a.boxRotZ(i % 2 ? 'brick' : 'brickShade', len, 0.10, WALL_H, cx, cy, cb + WALL_H / 2, tan);
-  // 墙顶规则垛口：每段放 2 个 merlon（留缺口 → 齿形）
-  for (const off of [-0.26, 0.26]) {
-    const mx = cx + Math.cos(tan) * len * off;
-    const my = cy + Math.sin(tan) * len * off;
-    a.boxRotZ('cren', len * 0.34, 0.105, 0.045, mx, my, cb + WALL_H + 0.0225, tan);
+const a = new WonderAsset({ name: 'GreatWall' });
+
+function pathAt(t) {
+  const x = -1.08 + 2.16 * t;
+  const y =
+    0.34 * Math.sin(t * Math.PI * 2.65 - 0.45) +
+    0.11 * Math.sin(t * Math.PI * 6.1 + 0.8);
+  const ridge =
+    0.025 +
+    0.105 * Math.sin(Math.PI * t) +
+    0.055 * Math.max(0, Math.sin(t * Math.PI * 5.2 - 0.4)) +
+    0.035 * Math.max(0, Math.sin(t * Math.PI * 9.0 + 1.2));
+  return { x, y, base: Math.max(0.018, ridge) };
+}
+
+function segmentInfo(t0, t1) {
+  const p = pathAt(t0);
+  const q = pathAt(t1);
+  const cx = (p.x + q.x) / 2;
+  const cy = (p.y + q.y) / 2;
+  const cz = (p.base + q.base) / 2;
+  const dx = q.x - p.x;
+  const dy = q.y - p.y;
+  const len = Math.hypot(dx, dy);
+  const angle = Math.atan2(dy, dx);
+  return { p, q, cx, cy, cz, len, angle };
+}
+
+function offsetPoint(x, y, angle, along, side) {
+  const tx = Math.cos(angle);
+  const ty = Math.sin(angle);
+  const nx = -Math.sin(angle);
+  const ny = Math.cos(angle);
+  return { x: x + tx * along + nx * side, y: y + ty * along + ny * side };
+}
+
+const SEGMENTS = 42;
+const WALL_H = 0.118;
+const WALL_W = 0.078;
+const PARAPET_H = 0.045;
+
+for (let i = 0; i < SEGMENTS; i += 1) {
+  const { cx, cy, cz, len, angle } = segmentInfo(i / SEGMENTS, (i + 1) / SEGMENTS);
+  const segLen = len * 1.18;
+  const ridgeKey = i % 3 === 0 ? 'ridgeHigh' : 'ridgeLow';
+  const wallKey = i % 2 === 0 ? 'wall' : 'wallShade';
+
+  a.boxRotZ(ridgeKey, segLen, 0.23, cz, cx, cy, cz / 2, angle);
+  a.boxRotZ(wallKey, segLen, WALL_W, WALL_H, cx, cy, cz + WALL_H / 2, angle);
+  a.boxRotZ('walkway', segLen * 0.93, WALL_W * 0.48, 0.012, cx, cy, cz + WALL_H + 0.006, angle);
+
+  for (const side of [-1, 1]) {
+    const sideOffset = side * WALL_W * 0.57;
+    a.boxRotZ('coping', segLen * 0.96, 0.018, 0.025, ...Object.values(offsetPoint(cx, cy, angle, 0, sideOffset)), cz + WALL_H + 0.018, angle);
+
+    for (const along of [-0.34, -0.12, 0.12, 0.34]) {
+      if ((i + Math.round((along + 0.5) * 10)) % 3 === 0) continue;
+      const m = offsetPoint(cx, cy, angle, segLen * along, sideOffset);
+      a.boxRotZ('coping', segLen * 0.095, 0.026, PARAPET_H, m.x, m.y, cz + WALL_H + 0.034, angle);
+    }
   }
 }
 
-// 敌楼 / 烽火台（沿墙 5 座；roofed 标记的两座带四坡顶）
 const towers = [
-  { t: 0.10, roofed: true }, { t: 0.30, roofed: false }, { t: 0.52, roofed: true },
-  { t: 0.72, roofed: false }, { t: 0.90, roofed: false },
+  { t: 0.055, size: 0.135, h: 0.22, roof: true },
+  { t: 0.17, size: 0.165, h: 0.285, roof: false },
+  { t: 0.285, size: 0.145, h: 0.25, roof: true },
+  { t: 0.405, size: 0.185, h: 0.315, roof: false, beacon: true },
+  { t: 0.52, size: 0.16, h: 0.275, roof: true },
+  { t: 0.635, size: 0.178, h: 0.31, roof: false },
+  { t: 0.745, size: 0.142, h: 0.245, roof: true },
+  { t: 0.86, size: 0.168, h: 0.295, roof: false, beacon: true },
+  { t: 0.955, size: 0.132, h: 0.22, roof: true },
 ];
-for (const { t, roofed } of towers) {
-  const p = pathAt(t);
+
+for (const tower of towers) {
+  const p = pathAt(tower.t);
+  const angle = segmentInfo(Math.max(0, tower.t - 0.01), Math.min(1, tower.t + 0.01)).angle;
+  const s = tower.size;
+  const h = tower.h;
   const z0 = p.base;
-  const H = roofed ? 0.26 : 0.30;
-  a.box('tower', 0.16, 0.16, H, p.x, p.y, z0 + H / 2);
-  // 窗洞
-  for (const sx of [-0.045, 0.045]) a.box('dark', 0.02, 0.05, 0.05, p.x + sx, p.y - 0.082, z0 + H * 0.55);
-  if (roofed) {
-    a.box('towerCap', 0.185, 0.185, 0.02, p.x, p.y, z0 + H + 0.01);
-    a.coneUp('roof', 0.15, 0.085, p.x, p.y, z0 + H + 0.02, 4);     // 四坡顶
+
+  a.boxRotZ('towerShade', s * 1.1, s * 1.1, 0.035, p.x, p.y, z0 + 0.0175, angle);
+  a.boxRotZ('tower', s, s, h, p.x, p.y, z0 + h / 2, angle);
+  a.boxRotZ('towerCap', s * 1.18, s * 1.18, 0.028, p.x, p.y, z0 + h + 0.014, angle);
+
+  for (const face of [-1, 1]) {
+    const w0 = offsetPoint(p.x, p.y, angle, s * 0.22, face * s * 0.52);
+    const w1 = offsetPoint(p.x, p.y, angle, -s * 0.22, face * s * 0.52);
+    a.boxRotZ('dark', s * 0.16, 0.018, 0.05, w0.x, w0.y, z0 + h * 0.55, angle);
+    a.boxRotZ('dark', s * 0.16, 0.018, 0.05, w1.x, w1.y, z0 + h * 0.55, angle);
+  }
+
+  if (tower.roof) {
+    a.hipRoof('roof', s * 1.32, s * 1.32, 0.085, s * 0.16, p.x, p.y, z0 + h + 0.028);
   } else {
-    // 烽火台：方台 + 一圈雉堞
-    a.box('towerCap', 0.185, 0.185, 0.022, p.x, p.y, z0 + H + 0.011);
-    for (let k = 0; k < 4; k += 1) {
-      const ang = k * Math.PI / 2;
-      const ex = Math.cos(ang) * 0.075, ey = Math.sin(ang) * 0.075;
-      a.box('cren', 0.05, 0.05, 0.04, p.x + ex, p.y + ey, z0 + H + 0.04);
+    for (const side of [-1, 1]) {
+      const edge = side * s * 0.48;
+      for (const along of [-0.32, 0, 0.32]) {
+        const c = offsetPoint(p.x, p.y, angle, along * s, edge);
+        a.boxRotZ('coping', s * 0.18, 0.032, 0.045, c.x, c.y, z0 + h + 0.058, angle);
+      }
     }
-    for (const c of [[-0.06, -0.06], [0.06, -0.06], [-0.06, 0.06], [0.06, 0.06]]) {
-      a.box('cren', 0.045, 0.045, 0.04, p.x + c[0], p.y + c[1], z0 + H + 0.04);
+    for (const along of [-0.45, 0.45]) {
+      const c = offsetPoint(p.x, p.y, angle, along * s, 0);
+      a.boxRotZ('coping', 0.035, s * 0.18, 0.045, c.x, c.y, z0 + h + 0.058, angle);
     }
+  }
+
+  if (tower.beacon) {
+    a.cyl('beacon', s * 0.13, s * 0.16, 0.045, p.x, p.y, z0 + h + 0.075, 10);
   }
 }
 

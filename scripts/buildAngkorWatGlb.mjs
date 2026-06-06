@@ -15,6 +15,7 @@ const OUT = new URL('../public/models/angkor-wat.glb', import.meta.url);
 
 const COLORS = {
   water: 0x5b7068,       // 护城河（暗绿灰）
+  waterEdge: 0x8a9a87,   // raised moat rim for dark map readability
   sand: 0xc9b48f,        // 砂岩台基/回廊（受光）
   sandShade: 0xb39f78,   // 背光砂岩 / 砌层暗带
   tower: 0xc2ad84,       // 塔身（暖砂岩）
@@ -59,6 +60,19 @@ for (const [sx, sy, x, y] of [
   a.box('water', sx, sy, 0.025, x, y, 0.0125);
 }
 
+for (const [sx, sy, x, y] of [
+  [MOAT_LEN, 0.012, 0,  MOAT_OUTER],
+  [MOAT_LEN, 0.012, 0, -MOAT_OUTER],
+  [MOAT_LEN, 0.010, 0,  ISLE_HALF],
+  [MOAT_LEN, 0.010, 0, -ISLE_HALF],
+  [0.012, MOAT_LEN, -MOAT_OUTER, 0],
+  [0.012, MOAT_LEN,  MOAT_OUTER, 0],
+  [0.010, MOAT_INNER_LEN, -ISLE_HALF, 0],
+  [0.010, MOAT_INNER_LEN,  ISLE_HALF, 0],
+]) {
+  a.box('waterEdge', sx, sy, 0.018, x, y, 0.034);
+}
+
 // ============================================================
 // 2. 台基岛（矩形，略高于水面）
 // ============================================================
@@ -72,10 +86,12 @@ const CAUSEWAY_LEN = MOAT_OUTER - ISLE_HALF + 0.09; // 从岛内到河外 ≈ 0.
 const CAUSEWAY_Y = 0.06;
 
 a.box('causeway', CAUSEWAY_LEN, CAUSEWAY_Y * 2, 0.035, CAUSEWAY_X, 0, ISLE_Z - 0.004);
+a.box('causeway', 0.92, 0.070, 0.032, -0.205, 0, ISLE_Z + 0.010);
+a.box('causeway', 0.090, 0.84, 0.026, 0, 0, ISLE_Z + 0.008);
 // 两侧栏柱（简化为 4 对矮柱，暗示 naga balustrade 节奏）
 for (const sy of [-1, 1]) {
-  for (let i = -2; i <= 2; i += 1) {
-    const px = CAUSEWAY_X + i * 0.038;
+  for (let i = -9; i <= 6; i += 1) {
+    const px = -0.205 + i * 0.045;
     a.box('rail', 0.022, 0.022, 0.065, px, sy * (CAUSEWAY_Y + 0.016), ISLE_Z + 0.02);
   }
 }
@@ -92,6 +108,14 @@ for (const [sx, sy, x, y] of [
   [0.055, GW1 * 2 + 0.01,  GW1, 0],  // 东廊
 ]) {
   a.box('sand', sx, sy, 0.16, x, y, G1_Z + 0.08);
+}
+for (const [sx, sy, x, y] of [
+  [GW1 * 2, 0.020, 0,  GW1],
+  [GW1 * 2, 0.020, 0, -GW1],
+  [0.020, GW1 * 2 + 0.01, -GW1, 0],
+  [0.020, GW1 * 2 + 0.01,  GW1, 0],
+]) {
+  a.box('sandShade', sx, sy, 0.035, x, y, G1_Z + 0.178);
 }
 
 // 四角角楼（小塔，较矮，做回廊角部收束）
@@ -134,6 +158,14 @@ for (const [sx, sy, x, y] of [
 ]) {
   a.box('sand', sx, sy, 0.13, x, y, G2_Z + 0.065);
 }
+for (const [sx, sy, x, y] of [
+  [GW2 * 2, 0.018, 0,  GW2],
+  [GW2 * 2, 0.018, 0, -GW2],
+  [0.018, GW2 * 2 + 0.01, -GW2, 0],
+  [0.018, GW2 * 2 + 0.01,  GW2, 0],
+]) {
+  a.box('sandShade', sx, sy, 0.030, x, y, G2_Z + 0.145);
+}
 
 // ============================================================
 // 7. 内层须弥台（庙山基座，三层收分，中央平台）
@@ -150,6 +182,8 @@ for (const sgn of [-1, 1]) {
   a.box('sand', 0.28, 0.04, 0.06, sgn * 0.11, 0, TOP_Z + 0.03);     // 东西连廊
   a.box('sand', 0.04, 0.28, 0.06, 0, sgn * 0.11, TOP_Z + 0.03);     // 南北连廊
 }
+a.box('sandShade', 0.55, 0.030, 0.035, 0, 0, TOP_Z + 0.095);
+a.box('sandShade', 0.030, 0.55, 0.035, 0, 0, TOP_Z + 0.095);
 
 // 塔函数：分层塔身 + 莲花苞顶 + 金尖
 function lotusTower(cx, cy, baseZ, baseHalf, totalH) {

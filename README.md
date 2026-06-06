@@ -8,7 +8,7 @@
 
 | 项 | 状态 |
 | --- | --- |
-| 阶段 | online milestone / F2 Gate passed / F3 active |
+| 阶段 | online milestone / F1-F3 Gates passed / F4 active |
 | 部署 | 阿里云 ECS + Caddy 静态站点 |
 | 仓库 | `lick201010-lab/history-atlas` |
 | 前端 | React 18 + Vite |
@@ -28,8 +28,8 @@ F2 boundary refinement has passed its phase Gate. This means the boundary layer 
 - Phase coverage: every civilization has `rise`, `peak`, and `decline`.
 - Boundary features: 129.
 - Fresh checks passed: `npm run validate:data`, `npm run audit:boundary-quality`, `npm run check`, `npm run audit:f2-batch06`, and `npm run audit:f2-batch07`.
-- Next phase: F3 landmark/model quality, with F4 source expansion allowed only as controlled sidecar work.
-- Still not final: F3 models, F4 full source system, F5 product/mobile UX, and F6 performance/release packaging remain open.
+- Next phase after F2: F3 landmark/model quality. F3 has now passed after Batch06 plus the core-10 regrade.
+- Still not final: F4 full source system, F5 product/mobile UX, and F6 performance/release packaging remain open.
 
 ### 2026-06-06 F3 Batch01 Update
 
@@ -74,7 +74,7 @@ Batch04 accepted `mecca-haram`, `teotihuacan`, and `machu-picchu` as GLB coverag
 - Fresh checks passed: `npm run audit:f3-batch04`, `npm run audit:glb -- --write`, and in-app browser QA.
 - Screenshots: `docs/model-qa/f3-batch04-mecca-haram-800.png`, `docs/model-qa/f3-batch04-teotihuacan-450.png`, `docs/model-qa/f3-batch04-machu-picchu-1500.png`.
 - Quality note: all three are accepted as B-grade readable coverage miniatures. `machu-picchu` was repaired during Codex QA so it reads as a low roofless terrace ruin rather than a sharp-roof / pyramid-like placeholder.
-- Still not final: F3 remains incomplete until all 30 landmarks have accepted A/B-grade models and the core 10 are re-graded against the A-grade bar.
+- Historical note: at Batch04 time F3 was still incomplete; it was closed later by Batch06 plus the core-10 regrade.
 
 ### 2026-06-06 F3 Batch05 Update
 
@@ -86,7 +86,7 @@ Batch05 accepted `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseo
 - Fresh checks passed: `npm run audit:f3-batch05`, `npm run audit:glb -- --write`, and in-app browser QA.
 - Screenshots: `docs/model-qa/f3-batch05-changan-700.png`, `docs/model-qa/f3-batch05-terracotta-army-200bce.png`, `docs/model-qa/f3-batch05-temple-of-heaven-1600.png`, `docs/model-qa/f3-batch05-cheomseongdae-700.png`.
 - Quality note: all four are accepted as B-grade readable coverage miniatures. `temple-of-heaven` is the strongest model in this batch. `cheomseongdae` is visually acceptable, but its current map placement is close to the coastline and should be revisited later as a data/placement refinement.
-- Still not final: F3 remains incomplete until all 30 landmarks have accepted A/B-grade models and the core 10 are re-graded against the A-grade bar.
+- Historical note: at Batch05 time F3 was still incomplete; it was closed later by Batch06 plus the core-10 regrade.
 
 ### 2026-06-06 F3 Batch06 Update
 
@@ -98,14 +98,26 @@ Batch06 accepted `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey` as 
 - Fresh checks passed: `npm run audit:f3-batch06`, `npm run audit:glb -- --write`, and in-app browser QA.
 - Screenshots: `docs/model-qa/f3-batch06-meroe-pyramids-300bce.png`, `docs/model-qa/f3-batch06-great-zimbabwe-1200.png`, `docs/model-qa/f3-batch06-westminster-abbey-1200.png`.
 - Quality note: all three are accepted as B-grade readable coverage miniatures.
-- Still not final: F3 remains incomplete until the core 10 landmarks are re-graded against the A-grade map-view bar.
+- Historical note: at Batch06 time F3 still needed the core-10 regrade; that regrade has now passed.
+
+### 2026-06-06 F3 Core10 Regrade Update
+
+F3 landmark/model quality has passed its phase Gate after the core 10 map-view regrade.
+
+- GLB coverage: 30 / 30 landmarks.
+- Core 10 screenshots: `docs/model-qa/f3-core10-*.png`.
+- New QA command: `npm run audit:f3-core10`.
+- Fresh checks passed: `npm run audit:f3-core10`, `npm run audit:glb`, and the F3 closeout project checks.
+- Quality note: core 10 are accepted as A/A- map-view miniature models; the remaining 20 are accepted as B-level readable coverage miniatures.
+- Next phase: F4 content and source system.
+- Still not final: F4 full source system, F5 product/mobile UX, and F6 performance/release packaging remain open.
 
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
 | F2 边界精修 | 已通过 Gate | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 进入 F3 前保留 QA 截图和残余风险记录 | `validate:data`、`audit:boundary-quality`、`check`、Batch06/07 浏览器 QA 通过；全阶段达到 43 文明、129 feature |
-| F3 奇观模型 | 未完成 | 30 个奇观升级到 A/B 级模型 | 与 F2 并行开模型 worker，先补缺失再精修核心 10 个 | 核心 10 个 A 级，全部 30 个不再是粗糙占位 |
-| F4 内容与来源 | pilot 01 已通过 | 文明、边界、事件建立来源体系 | 扩展到下一批文明前，先稳定引用格式和批量校验规则 | UI 可展示来源，关键数据有可追溯说明 |
+| F3 奇观模型 | 已通过 Gate | 30 个奇观升级到 A/B 级模型，核心 10 通过 A/A- 地图视角复核 | 保留 QA 截图与 GLB 审计，后续只做回归修复 | 核心 10 个 A/A-，全部 30 个不再是粗糙占位 |
+| F4 内容与来源 | 当前阶段 / pilot 01 已通过 | 文明、边界、事件建立来源体系 | 扩展引用字段、验证器与 UI 来源展示 | UI 可展示来源，关键数据有可追溯说明 |
 | F5 产品交互 / 移动端 | 未完成 | 移动端、搜索、筛选、对比、故事导航升级 | 边界与内容质量稳定后做产品体验扩展 | 桌面和移动端核心路径体验通过 |
 | F6 性能 / 发布 / 包装 | 未完成 | GLB 懒加载、拆包、SEO、作品包装、兼容矩阵 | 最后统一处理资源策略和公开展示 | 性能、发布烟测、SEO、分享与反馈入口通过 |
 
@@ -133,8 +145,8 @@ Batch06 accepted `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey` as 
 ### 最近下一步
 
 1. F2 Gate 已通过，边界层进入维护和解释阶段。
-2. 下一主线是 F3：30 个奇观模型升级，核心 10 个要达到 A 级。
-3. F4 来源体系可以继续 sidecar，但不能阻塞 F3 模型主线。
+2. F3 已通过 Gate：30 个奇观已有 A/B 级地图微缩模型，核心 10 已复核。
+3. 当前主线是 F4：来源体系、引用字段、事件来源说明和 UI 展示。
 4. F5/F6 仍是最终完整版的必要 Gate：移动端产品体验、性能、发布包装和回滚文档。
 
 ## 快速开始

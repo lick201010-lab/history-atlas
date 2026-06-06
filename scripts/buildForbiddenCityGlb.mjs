@@ -181,12 +181,12 @@ function cornerTower(cx, cy, baseZ = 0.045) {
 // Gate building with central + side bays.
 function gateBuilding(cx, cy, w, baseZ) {
   const d = 0.12;
-  const bodyH = 0.085;
+  const bodyH = 0.105;
   a.box('wallDark', w, d, bodyH, cx, cy, baseZ + bodyH / 2);
   // Central doorway
   a.box('dark', 0.08, 0.05, bodyH * 0.60, cx, cy - 0.028, baseZ + bodyH * 0.30);
   // Roof
-  tiledRoof(cx, cy, baseZ + bodyH + 0.016, w * 1.08, d * 1.10, 0.065, Math.max(2, Math.round(w / 0.15)), 'roof');
+  tiledRoof(cx, cy, baseZ + bodyH + 0.016, w * 1.12, d * 1.16, 0.080, Math.max(2, Math.round(w / 0.15)), 'roof');
 }
 
 // Side gallery building (long narrow hall along east or west).
@@ -206,7 +206,7 @@ a.box('base', 1.16, 1.00, 0.030, 0, 0, 0.015);
 // --- Compound walls (red, with gold top trim) ---
 const WX = 0.480;  // half-width (east-west)
 const WY = 0.480;  // half-depth (north-south)
-const WH = 0.105;  // wall height
+const WH = 0.125;  // wall height
 const WT = 0.032;  // wall thickness
 
 // South wall with gate opening
@@ -254,6 +254,9 @@ gateBuilding(0, -0.240, 0.32, 0.042);
 
 // --- Grand courtyard paving ---
 a.box('stone', 0.56, 0.16, 0.012, 0, -0.160, 0.038);
+// Bright central imperial axis, visible from the selected map camera.
+a.box('stoneDark', 0.055, 0.720, 0.014, 0, 0.070, 0.047);
+a.box('gold', 0.018, 0.710, 0.010, 0, 0.070, 0.060);
 
 // --- East & West side galleries flanking grand courtyard ---
 for (const sx of [-0.36, +0.36]) {
@@ -281,7 +284,7 @@ for (let i = -5; i <= 5; i += 1) {
 // Hall of Supreme Harmony (太和殿) – largest, double-eave
 hall(0, -0.010, 0.42, 0.22, 0.170, 0.138, {
   double: true,
-  roofH: 0.115,
+  roofH: 0.145,
   segs: 5,
   cols: true,
 });
@@ -292,7 +295,7 @@ squareHall(0, 0.065, 0.16, 0.100, 0.138);
 // Hall of Preserving Harmony (保和殿) – large, double-eave
 hall(0, 0.145, 0.36, 0.20, 0.155, 0.138, {
   double: true,
-  roofH: 0.105,
+  roofH: 0.130,
   segs: 4,
   cols: true,
 });
@@ -307,7 +310,7 @@ a.box('stone', 0.40, 0.06, 0.014, 0, 0.215, 0.042);
 // Palace of Heavenly Purity (乾清宫)
 hall(0, 0.260, 0.30, 0.18, 0.130, 0.055, {
   double: true,
-  roofH: 0.090,
+  roofH: 0.110,
   segs: 3,
   cols: true,
 });
@@ -318,7 +321,7 @@ squareHall(0, 0.315, 0.12, 0.075, 0.055);
 // Palace of Earthly Tranquility (坤宁宫)
 hall(0, 0.370, 0.28, 0.17, 0.125, 0.055, {
   double: true,
-  roofH: 0.085,
+  roofH: 0.105,
   segs: 3,
   cols: true,
 });
@@ -341,6 +344,20 @@ for (const sx of [-0.38, +0.38]) {
   // Long side hall
   a.box('wall', 0.10, 0.32, 0.080, sx, terraceY, 0.082);
   tiledRoof(sx, terraceY, 0.162, 0.14, 0.38, 0.055, 2, 'roofDark');
+}
+
+// Dense east-west palace compounds: repeated yellow roofs keep the city from
+// reading as one low block at distance.
+for (const sx of [-0.245, 0.245]) {
+  for (const cy of [-0.250, -0.085, 0.090, 0.255, 0.390]) {
+    sideGallery(sx, cy, 0.135, 0.070, cy < 0.20 ? 0.052 : 0.048);
+  }
+}
+
+// Stronger corner-tower silhouettes with red plinths and extra gold caps.
+for (const [cx, cy] of [[-WX, -WY], [+WX, -WY], [-WX, +WY], [+WX, +WY]]) {
+  a.box('wall', 0.135, 0.135, 0.040, cx, cy, 0.060);
+  a.cyl('gold', 0.004, 0.006, 0.050, cx, cy, 0.270, 8);
 }
 
 // Inner court side halls

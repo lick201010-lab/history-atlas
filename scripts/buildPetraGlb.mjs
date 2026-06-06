@@ -13,14 +13,14 @@ const OUT = new URL('../public/models/petra.glb', import.meta.url);
 
 const COLORS = {
   ground: 0xc09b66,
-  rock: 0xb87a48,      // 玫瑰砂岩崖壁（受光）
-  rockShade: 0x9a6236, // 背光崖面
-  rockDeep: 0x4a2f1a,  // 深侵蚀缝 / 阴影
-  facade: 0xdba76b,    // 雕出的立面（较亮，与崖体拉开）
-  facadeShade: 0xc28f55,
-  trim: 0xe6bd86,      // 额枋 / 檐口 / 山花高光
-  column: 0xd6a16a,
-  dark: 0x1d130b,      // 门洞 / 凹龛（最深阴影）
+  rock: 0xb87543,      // 玫瑰砂岩崖壁（受光）
+  rockShade: 0x87512c, // 背光崖面
+  rockDeep: 0x332013,  // 深侵蚀缝 / 阴影
+  facade: 0xe5ae70,    // 雕出的立面（较亮，与崖体拉开）
+  facadeShade: 0xb77c45,
+  trim: 0xf0c487,      // 额枋 / 檐口 / 山花高光
+  column: 0xe0a66b,
+  dark: 0x140c07,      // 门洞 / 凹龛（最深阴影）
   gold: 0xb07d35,      // 瓮饰
 };
 function material() { return { metalness: 0.0, roughness: 0.93 }; }
@@ -28,7 +28,7 @@ const a = new WonderAsset({ name: 'Petra' });
 const G = 0.03;
 
 // 地面
-a.box('ground', 0.92, 1.08, 0.03, 0, 0, 0.015);
+a.box('ground', 1.18, 1.20, 0.03, 0, 0, 0.015);
 
 // ===== 玫瑰砂岩崖壁（一整块主体 + 顶部参差峰 + 左右肩 + 顶岩檐，围成凿入壁龛）=====
 a.box('rock', 0.46, 0.92, 1.00, 0.30, 0, G + 0.50);                 // 主崖体（高出立面）
@@ -88,6 +88,54 @@ for (const sy of [-1, 1]) {                                        // 两翼（�
   });
   a.gable('trim', 0.18, 0.07, 0.06, X - 0.01, sy * 0.27, UZ + 0.30, 'xz');
   a.box('dark', 0.04, 0.06, 0.16, X - 0.01, sy * 0.27, UZ + 0.10);  // 翼上小龛暗影
+}
+
+// ===== 默认地图视角补强：南向正立面 =====
+// 当前 focus 角度容易看成侧向土块；这里在可见南侧做一组同等级雕刻立面，
+// 与原 −x 立面形成厚实的凿入式转角壁龛，斜视时也能读出柱廊、门洞和上层圆亭。
+const YF = -0.43;
+a.box('rockShade', 0.88, 0.22, 1.02, 0, -0.50, G + 0.51);
+a.box('rock', 0.24, 0.25, 0.98, -0.42, -0.36, G + 0.49);
+a.box('rockShade', 0.24, 0.25, 0.98, 0.42, -0.36, G + 0.49);
+a.box('rockShade', 0.68, 0.18, 0.18, 0, -0.34, G + 0.96);
+for (const sx of [-0.37, 0.37]) for (const dz of [-0.18, 0.04, 0.25]) {
+  a.box('rockDeep', 0.026, 0.03, 0.48, sx, -0.245, G + 0.52 + dz * 0.15);
+}
+
+a.box('facade', 0.62, 0.07, 0.86, 0, YF, G + 0.46);
+a.box('facadeShade', 0.64, 0.08, 0.045, 0, YF - 0.005, G + 0.023);
+a.colonnade('column', 'trim', {
+  axis: 'x', from: -0.27, to: 0.27, count: 6, fixed: YF - 0.035,
+  baseZ: G + 0.045, h: 0.42, rBot: 0.038, rTop: 0.031, capR: 0.052, capH: 0.032, baseH: 0.024, seg: 12,
+});
+a.box('dark', 0.15, 0.12, 0.34, 0, YF - 0.05, G + 0.19);
+a.box('rockDeep', 0.18, 0.055, 0.38, 0, YF + 0.01, G + 0.19);
+for (const sx of [-0.20, 0.20]) {
+  a.box('dark', 0.08, 0.05, 0.24, sx, YF - 0.045, G + 0.16);
+  a.box('column', 0.024, 0.022, 0.13, sx, YF - 0.065, G + 0.165);
+}
+a.box('trim', 0.68, 0.09, 0.055, 0, YF - 0.025, G + 0.455);
+a.box('facade', 0.60, 0.06, 0.055, 0, YF, G + 0.505);
+for (const sx of [-0.20, 0.20]) a.gable('trim', 0.23, 0.09, 0.075, sx, YF - 0.035, G + 0.505, 'xz');
+for (let s = 0; s < 5; s += 1) a.box('trim', 0.34, 0.04, 0.02, 0, YF - 0.10 - s * 0.034, G + 0.012 + s * 0.019);
+
+const UY = G + 0.535;
+a.cyl('facade', 0.135, 0.14, 0.23, 0, YF - 0.07, UY + 0.115, 18);
+for (let i = 0; i < 7; i += 1) {
+  const th = -Math.PI * 0.16 + (i / 6) * Math.PI * 1.32;
+  a.cyl('column', 0.017, 0.02, 0.21, Math.cos(th) * 0.125, YF - 0.07 - Math.sin(th) * 0.125, UY + 0.105, 8);
+}
+a.coneUp('trim', 0.16, 0.14, 0, YF - 0.07, UY + 0.23, 18);
+a.cyl('gold', 0.023, 0.032, 0.06, 0, YF - 0.07, UY + 0.372, 10);
+a.sphere('gold', 0.034, 0, YF - 0.07, UY + 0.43, 10);
+for (const sx of [-1, 1]) {
+  a.box('facade', 0.17, 0.055, 0.31, sx * 0.30, YF - 0.005, UY + 0.155);
+  a.colonnade('column', 'trim', {
+    axis: 'x', from: sx * 0.23, to: sx * 0.35, count: 2, fixed: YF - 0.04,
+    baseZ: UY + 0.02, h: 0.25, rBot: 0.021, rTop: 0.017, capR: 0.031, capH: 0.022, baseH: 0.014, seg: 8,
+  });
+  a.gable('trim', 0.19, 0.075, 0.065, sx * 0.30, YF - 0.035, UY + 0.31, 'xz');
+  a.box('dark', 0.065, 0.045, 0.17, sx * 0.30, YF - 0.045, UY + 0.11);
 }
 
 const stats = await a.exportGlb(OUT, { colors: COLORS, material, weld: true });

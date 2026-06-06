@@ -1224,7 +1224,12 @@ const FOCUS_SCALE_OVERRIDES = {
   // Low, compound sites need a little more selected-state scale so their
   // secondary masses stay readable in the map camera without bloating every
   // landmark in normal world view.
-  pyramid: 1.42,
+  pyramid: 1.62,
+  'forbidden-city': 1.46,
+  'angkor-wat': 1.54,
+  'chichen-itza': 1.62,
+  'great-wall': 1.72,
+  petra: 1.66,
   persepolis: 1.24,
   'ziggurat-ur': 1.28,
   'ishtar-gate': 1.18,

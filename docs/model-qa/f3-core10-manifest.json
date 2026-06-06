@@ -1,0 +1,894 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T13:46:31.383Z",
+  "results": [
+    {
+      "scene": {
+        "id": "hagia-sophia-1000",
+        "targetId": "hagia-sophia",
+        "year": 1000,
+        "camera": {
+          "center": [
+            28.98,
+            41.01
+          ],
+          "zoom": 6.8,
+          "pitch": 64,
+          "bearing": -18
+        },
+        "screenshot": "f3-core10-hagia-sophia-1000.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "圣索菲亚大教堂",
+        "modelStatus": 200,
+        "mapCenter": [
+          28.98,
+          41.01
+        ],
+        "zoom": 6.8,
+        "pitch": 64,
+        "bearing": -18,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-hagia-sophia-1000.png"
+    },
+    {
+      "scene": {
+        "id": "forbidden-city-1600",
+        "targetId": "forbidden-city",
+        "year": 1600,
+        "camera": {
+          "center": [
+            116.39,
+            39.92
+          ],
+          "zoom": 7.45,
+          "pitch": 63,
+          "bearing": -35
+        },
+        "screenshot": "f3-core10-forbidden-city-1600.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 276.9,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "紫禁城",
+        "modelStatus": 200,
+        "mapCenter": [
+          116.39,
+          39.92
+        ],
+        "zoom": 7.45,
+        "pitch": 63,
+        "bearing": -35,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-forbidden-city-1600.png"
+    },
+    {
+      "scene": {
+        "id": "angkor-wat-1200",
+        "targetId": "angkor-wat",
+        "year": 1200,
+        "camera": {
+          "center": [
+            103.87,
+            13.41
+          ],
+          "zoom": 7.55,
+          "pitch": 62,
+          "bearing": -32
+        },
+        "screenshot": "f3-core10-angkor-wat-1200.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "吴哥窟",
+        "modelStatus": 200,
+        "mapCenter": [
+          103.87,
+          13.41
+        ],
+        "zoom": 7.55,
+        "pitch": 62,
+        "bearing": -32,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-angkor-wat-1200.png"
+    },
+    {
+      "scene": {
+        "id": "pyramid-2000bce",
+        "targetId": "pyramid",
+        "year": -2000,
+        "camera": {
+          "center": [
+            31.13,
+            29.98
+          ],
+          "zoom": 8.1,
+          "pitch": 58,
+          "bearing": 42
+        },
+        "screenshot": "f3-core10-pyramid-2000bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 451.8
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "吉萨金字塔",
+        "modelStatus": 200,
+        "mapCenter": [
+          31.13,
+          29.98
+        ],
+        "zoom": 8.1,
+        "pitch": 58,
+        "bearing": 42,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-pyramid-2000bce.png"
+    },
+    {
+      "scene": {
+        "id": "colosseum-100",
+        "targetId": "colosseum",
+        "year": 100,
+        "camera": {
+          "center": [
+            12.49,
+            41.89
+          ],
+          "zoom": 6.8,
+          "pitch": 64,
+          "bearing": -28
+        },
+        "screenshot": "f3-core10-colosseum-100.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 551.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "罗马斗兽场",
+        "modelStatus": 200,
+        "mapCenter": [
+          12.49,
+          41.89
+        ],
+        "zoom": 6.8,
+        "pitch": 64,
+        "bearing": -28,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-colosseum-100.png"
+    },
+    {
+      "scene": {
+        "id": "parthenon-400bce",
+        "targetId": "parthenon",
+        "year": -400,
+        "camera": {
+          "center": [
+            23.73,
+            37.97
+          ],
+          "zoom": 7.2,
+          "pitch": 64,
+          "bearing": -28
+        },
+        "screenshot": "f3-core10-parthenon-400bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 659.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "帕特农神庙",
+        "modelStatus": 200,
+        "mapCenter": [
+          23.73,
+          37.97
+        ],
+        "zoom": 7.2,
+        "pitch": 64,
+        "bearing": -28,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-parthenon-400bce.png"
+    },
+    {
+      "scene": {
+        "id": "tajmahal-1700",
+        "targetId": "tajmahal",
+        "year": 1700,
+        "camera": {
+          "center": [
+            78.04,
+            27.17
+          ],
+          "zoom": 7.3,
+          "pitch": 62,
+          "bearing": -26
+        },
+        "screenshot": "f3-core10-tajmahal-1700.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 659.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "泰姬陵",
+        "modelStatus": 200,
+        "mapCenter": [
+          78.04,
+          27.17
+        ],
+        "zoom": 7.3,
+        "pitch": 62,
+        "bearing": -26,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-tajmahal-1700.png"
+    },
+    {
+      "scene": {
+        "id": "chichen-itza-900",
+        "targetId": "chichen-itza",
+        "year": 900,
+        "camera": {
+          "center": [
+            -88.57,
+            20.68
+          ],
+          "zoom": 7.75,
+          "pitch": 62,
+          "bearing": 26
+        },
+        "screenshot": "f3-core10-chichen-itza-900.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "奇琴伊察",
+        "modelStatus": 200,
+        "mapCenter": [
+          -88.57,
+          20.68
+        ],
+        "zoom": 7.75,
+        "pitch": 62,
+        "bearing": 26,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-chichen-itza-900.png"
+    },
+    {
+      "scene": {
+        "id": "great-wall-1600",
+        "targetId": "great-wall",
+        "year": 1600,
+        "camera": {
+          "center": [
+            116.02,
+            40.36
+          ],
+          "zoom": 7.55,
+          "pitch": 66,
+          "bearing": -38
+        },
+        "screenshot": "f3-core10-great-wall-1600.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "万里长城",
+        "modelStatus": 200,
+        "mapCenter": [
+          116.02,
+          40.36
+        ],
+        "zoom": 7.55,
+        "pitch": 66,
+        "bearing": -38,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-great-wall-1600.png"
+    },
+    {
+      "scene": {
+        "id": "petra-100",
+        "targetId": "petra",
+        "year": 100,
+        "camera": {
+          "center": [
+            35.45,
+            30.33
+          ],
+          "zoom": 8.05,
+          "pitch": 62,
+          "bearing": 80
+        },
+        "screenshot": "f3-core10-petra-100.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 505.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "佩特拉古城",
+        "modelStatus": 200,
+        "mapCenter": [
+          35.45,
+          30.33
+        ],
+        "zoom": 8.05,
+        "pitch": 62,
+        "bearing": 80,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-core10-petra-100.png"
+    }
+  ],
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-pyramid.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/colosseum.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/parthenon.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/taj-mahal.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-wall.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/forbidden-city.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/hagia-sophia.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/chichen-itza.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/angkor-wat.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/petra.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "failures": []
+}

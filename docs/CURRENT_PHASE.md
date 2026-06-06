@@ -1,8 +1,8 @@
-# Current Phase: F3 Landmark Model Quality
+# Current Phase: F4 Content and Source System
 
 Updated: 2026-06-06
 
-Status: F3 is active. F1 and F2 have passed their phase Gates. The whole project is still not the final complete version because F3-F6 remain incomplete.
+Status: F4 is active. F1, F2, and F3 have passed their phase Gates. The whole project is still not the final complete version because F4-F6 remain incomplete.
 
 ## Project Rule
 
@@ -31,11 +31,46 @@ Evidence:
 - `npm run audit:f2-batch06` and `npm run audit:f2-batch07` passed.
 - Manual screenshot review accepted the repaired West Africa and United States outputs.
 
-## F3 Goal
+F3 landmark model quality passed on 2026-06-06.
 
-Upgrade landmark models from MVP map pieces to final-version miniature architecture quality.
+Evidence:
 
-F3 completion requires:
+- GLB coverage is 30 / 30 landmarks.
+- `npm run audit:glb` passed with 30 OK, 0 WARN, 0 FAIL.
+- `npm run audit:f3-core10` passed with no failures.
+- Core 10 fixed map-view screenshots were manually reviewed:
+  - `docs/model-qa/f3-core10-hagia-sophia-1000.png`
+  - `docs/model-qa/f3-core10-forbidden-city-1600.png`
+  - `docs/model-qa/f3-core10-angkor-wat-1200.png`
+  - `docs/model-qa/f3-core10-pyramid-2000bce.png`
+  - `docs/model-qa/f3-core10-colosseum-100.png`
+  - `docs/model-qa/f3-core10-parthenon-400bce.png`
+  - `docs/model-qa/f3-core10-tajmahal-1700.png`
+  - `docs/model-qa/f3-core10-chichen-itza-900.png`
+  - `docs/model-qa/f3-core10-great-wall-1600.png`
+  - `docs/model-qa/f3-core10-petra-100.png`
+- Core 10 accepted as A/A- map-view miniature models for the current final-version criteria.
+- Remaining 20 models accepted as B-level readable coverage miniatures from F3 Batch01-Batch06.
+
+## F4 Goal
+
+Build a credible content and source system so each civilization, event, boundary note, and landmark relation is traceable and shown honestly in the UI.
+
+F4 completion requires:
+
+- All 43 civilizations have complete `summary`, `events`, `tags`, `importance`, `legacy`, `relatedLandmarks`, `sourceNote`, and `references`.
+- Each civilization has at least 5 events; key civilizations should have 8-12 events.
+- Key event entries include year or year range, type, short description, and source note/reference.
+- Boundary features retain `sourceNote` and `accuracyNote`, and UI keeps explaining that boundaries are historical approximate ranges.
+- `npm run validate:data` rejects missing required F4 fields.
+- `npm run check` passes.
+- Browser QA confirms source/accuracy notes are visible and readable in the information surfaces.
+
+## Completed F3 Record
+
+F3 upgraded landmark models from MVP map pieces to final-version miniature architecture quality.
+
+F3 completion required:
 
 - 30 / 30 landmarks have GLB or equivalent runtime 3D models.
 - The core 10 landmarks are A-grade in map-view QA:
@@ -55,12 +90,12 @@ F3 completion requires:
 
 ## Current F3 Inventory
 
-Current GLB coverage:
+Final F3 GLB coverage:
 
 - Total landmarks: 30.
 - GLB overrides: 30.
 - Missing GLB coverage: 0.
-- Core 10 GLB coverage: 10 / 10, but these are not automatically final A-grade. They still need final map-view inspection.
+- Core 10 GLB coverage: 10 / 10, accepted after fixed map-view inspection.
 
 Missing GLB ids:
 
@@ -179,7 +214,7 @@ Result:
   - `docs/model-qa/f3-batch04-mecca-haram-inapp.png`
   - `docs/model-qa/f3-batch04-teotihuacan-inapp.png`
   - `docs/model-qa/f3-batch04-machu-picchu-inapp.png`
-- Quality note: all three are accepted as readable B-grade coverage miniatures. `machu-picchu` was repaired during Codex QA to remove a misleading sharp-roof / pyramid-like read and now uses a lower roofless terrace silhouette. This is not full F3 completion.
+- Quality note: all three are accepted as readable B-grade coverage miniatures. `machu-picchu` was repaired during Codex QA to remove a misleading sharp-roof / pyramid-like read and now uses a lower roofless terrace silhouette. This batch alone did not complete F3; F3 was completed later by Batch06 plus the core-10 regrade.
 
 ## Accepted F3 Batch 05
 
@@ -205,7 +240,7 @@ Result:
   - `docs/model-qa/f3-batch05-terracotta-army-inapp.png`
   - `docs/model-qa/f3-batch05-temple-of-heaven-inapp.png`
   - `docs/model-qa/f3-batch05-cheomseongdae-inapp.png`
-- Quality note: all four are accepted as readable B-grade coverage miniatures. `temple-of-heaven` is the strongest visual model in this batch. `cheomseongdae` is visually acceptable, but its current landmark location appears close to the coastline in the map view; treat that as a future data/placement refinement note, not a GLB blocker. This is not full F3 completion.
+- Quality note: all four are accepted as readable B-grade coverage miniatures. `temple-of-heaven` is the strongest visual model in this batch. `cheomseongdae` is visually acceptable, but its current landmark location appears close to the coastline in the map view; treat that as a future data/placement refinement note, not a GLB blocker. This batch alone did not complete F3; F3 was completed later by Batch06 plus the core-10 regrade.
 
 ## Accepted F3 Batch 06
 
@@ -228,18 +263,18 @@ Result:
   - `docs/model-qa/f3-batch06-meroe-pyramids-inapp.png`
   - `docs/model-qa/f3-batch06-great-zimbabwe-inapp.png`
   - `docs/model-qa/f3-batch06-westminster-abbey-inapp.png`
-- Quality note: all three are accepted as readable B-grade coverage miniatures. This brings GLB coverage to 30 / 30, but it is not full F3 completion.
+- Quality note: all three are accepted as readable B-grade coverage miniatures. This brought GLB coverage to 30 / 30; F3 still required the subsequent core-10 A-grade regrade, which has now passed.
 
-## F3 Gate Checks
+## F3 Gate Checks Passed
 
-Every F3 batch must pass:
+Every accepted F3 batch passed:
 
 - `npm run audit:glb`
 - `npm run validate:data`
 - `npm run check`
 - Batch-specific browser QA script or manual screenshot review
 
-F3 full phase is not complete until:
+F3 full phase is complete because:
 
 - GLB coverage reaches 30 / 30.
 - Core 10 are accepted as A-grade in map-view screenshots.
@@ -251,5 +286,4 @@ F3 full phase is not complete until:
 ## Residual Risks Carried Forward
 
 - Existing F1 visual QA files are dirty in the working tree and are unrelated to F3. Do not stage or revert them without an explicit request.
-- Existing 14 GLBs passed the MVP visual bar. F3 must re-grade them against the final-version bar, especially roof detail, silhouette quality, facing direction, and selected-view readability.
-- F4 source work may continue only as a sidecar and must not block F3 model quality.
+- F4 source work is now the active phase. It must not edit F3 model files unless a future QA regression explicitly opens a focused model-repair task.
