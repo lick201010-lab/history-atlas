@@ -1,0 +1,15 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "c1d2e3f4-0001-4000-8000-000000000b01",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "byzantine",
+    "priority": 3,
+    "compressionType": {},
+    "isRemoteBundle": {}
+  }
+}

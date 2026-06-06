@@ -81,6 +81,25 @@ F5 completion requires:
 - Important year/event nodes are easier to read and can guide map movement.
 - `npm run check`, `npm run audit:f4-content-ui`, and release smoke must pass after F5 changes.
 
+## F5 Mobile Game Sidecar
+
+The user is also testing whether the mobile experience should become a Cocos Creator 3.8 mini-game for WeChat and Douyin.
+
+Current sidecar status:
+
+- `mini-game/` exists as an isolated Cocos Creator 3.8.8 Byzantine sample.
+- It uses current web data exports for the year 600 Byzantine scene.
+- It has passed structural import checks, but it has not passed visual/runtime mini-game QA.
+- It must not be described as a final migration.
+
+Next sidecar Gate:
+
+- Run the sample in Cocos Preview.
+- Produce a Web Desktop build or preview screenshot.
+- Test WeChat developer tool and Douyin developer tool.
+- Compare the same Byzantine/Eastern Mediterranean view against the current web version.
+- Continue only if Cocos clearly improves boundary beauty, model presentation, ocean clarity, touch feel, and mobile load strategy.
+
 ## Completed F3 Record
 
 F3 upgraded landmark models from MVP map pieces to final-version miniature architecture quality.

@@ -1922,3 +1922,31 @@ Result:
 - F4 Gate passed for the current final-version criteria.
 - `docs/CURRENT_PHASE.md` now marks F5 as active.
 - The whole project is still not the final complete version because F5 product/mobile UX and F6 performance/release packaging remain incomplete.
+
+## 2026-06-07 Cocos Byzantine mini-game sample integration
+
+Scope:
+
+- Integrated Claude's Cocos Creator 3.8 Byzantine mobile-game visual sample into the main repository under `mini-game/`.
+- Kept it isolated from the existing React + MapLibre web app. No web runtime files, data source files, or deployment scripts were changed.
+- Repaired the sample so it is a real Cocos project baseline rather than a manually described scaffold:
+  - Added/kept Cocos 3.8 `engine.json` module configuration required by asset worker startup.
+  - Mounted `Bootstrap` on the `Game` node in `assets/main/Main.scene`.
+  - Rewrote the six runtime TypeScript scripts to remove broken encoding/import risk.
+  - Re-exported Byzantine sample data from the current main project data.
+  - Rewrote `mini-game/README.md` and `mini-game/docs/*.md` as readable UTF-8 docs.
+
+Verification:
+
+- `node mini-game/tools/exportByzantineData.mjs` passed.
+- `npm run validate:data` passed.
+- `npm run check` passed with the existing Vite large chunk warnings.
+- Cocos Creator 3.8.8 opened `mini-game/` and no longer reported `Init asset worker failed` or `n.map is not a function`.
+- Cocos-bundled TypeScript `transpileModule` check passed for all runtime scripts.
+- A read-only subagent reviewed scene mounting, bundle configuration, script structure, resources, and logs; no structural blocker found. The subagent was closed after review.
+
+Notes:
+
+- This is a structural Cocos sample Gate, not a final visual Gate.
+- The next required proof is runtime visual QA in Cocos Preview, then WeChat/Douyin developer tools and phone-device checks.
+- The whole project is still not the final complete version because F5/F6 remain incomplete.

@@ -1,0 +1,15 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "c1d2e3f4-0002-4000-8000-0000000010d1",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "landmarks",
+    "priority": 2,
+    "compressionType": {},
+    "isRemoteBundle": {}
+  }
+}

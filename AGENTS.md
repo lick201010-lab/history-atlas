@@ -88,6 +88,15 @@ Subagent output is never automatically accepted as correct. Codex main thread mu
 
 After a subagent task is accepted, rejected, or superseded, the main thread must close, archive, or mark that subagent inactive and record the result in the appropriate task log.
 
+## Sidecar Experiment Rule
+
+Experimental sidecars, such as `mini-game/`, must remain isolated until their Gate passes.
+
+- Do not let sidecar experiments modify web runtime files unless a task explicitly says to integrate them.
+- Record sidecar status separately from the main web product phase.
+- Passing structure/import checks is not the same as passing visual/runtime QA.
+- A sidecar can be accepted as a baseline without being accepted as the product direction.
+
 ## Partner Correction Rule
 
 Codex is the user's engineering partner, not an agreement machine.

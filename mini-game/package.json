@@ -1,0 +1,10 @@
+{
+  "name": "history-atlas-minigame",
+  "version": "0.1.0",
+  "description": "Cocos Creator 3.8 visual sample (Byzantine sandbox) for the Historical Atlas project. Technical prototype only.",
+  "creator": {
+    "version": "3.8.8"
+  },
+  "type": "3d",
+  "uuid": "a51e0454-ae6c-4108-ab30-dfe1624c75ba"
+}

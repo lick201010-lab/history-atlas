@@ -15,10 +15,21 @@
 | 地图 | MapLibre GL JS + raster-dem 地形 |
 | 3D | Three.js custom layer |
 | 数据 | 本地 JSON，无后端 |
+| 移动游戏化样板 | `mini-game/` Cocos Creator 3.8.8 拜占庭样板，结构 Gate 已接入，视觉 Gate 未通过 |
 
 ## Final-Version TODO / 推进计划
 
 当前线上站点 `v0.1.0` 是 **online milestone**，不是最终完整版。最终版仍在推进中：**final-version work in progress**。
+
+### 2026-06-07 Cocos Mini-Game Sidecar Update
+
+The Cocos Creator 3.8 Byzantine sample has been integrated under `mini-game/` as a mobile-game sidecar experiment.
+
+- Scope: Byzantine Empire around 600 CE, Eastern Mediterranean, Hagia Sophia, Parthenon, and Colosseum.
+- Status: structural import baseline accepted, not visual/runtime accepted yet.
+- Fresh checks passed: `node mini-game/tools/exportByzantineData.mjs`, `npm run validate:data`, `npm run check`, Cocos Creator 3.8.8 import sanity check, and TypeScript transpile checks for the Cocos runtime scripts.
+- Next proof: Cocos Preview screenshot, Web Desktop build screenshot, WeChat developer tool, Douyin developer tool, and phone-device QA.
+- Still not final: this does not replace the current web app and does not close F5/F6.
 
 ### 2026-06-06 F2 Gate Update
 

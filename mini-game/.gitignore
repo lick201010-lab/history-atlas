@@ -1,0 +1,9 @@
+# Cocos Creator generated / local (regenerated on open or build)
+/library/
+/temp/
+/local/
+/build/
+/profiles/
+/native/
+/.creator/
+*.log
