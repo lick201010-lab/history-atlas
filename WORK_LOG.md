@@ -1784,3 +1784,47 @@ Next:
 
 - Start F4 as subagent-driven controlled batches.
 - First F4 task should extend validators and source/reference schema before broad data filling.
+
+## 2026-06-06 F4 pilot event schema hardening
+
+Scope:
+
+- Began F4 content/source system work after F3 Gate passed.
+- This is only a first F4 structure batch. It does not complete F4 and does not make the project final.
+
+Agent workflow:
+
+- Kierkegaard explorer subagent audited F4 field coverage and validator gaps, then was closed after reporting.
+- Codex implemented the first hard validator step locally because it was a small critical-path schema change.
+
+Finding:
+
+- All 43 dynasties already have `summary`, `events`, `tags`, `importance`, and `legacy`.
+- Only 5 / 43 dynasties currently have dynasty-level `sourceNote` and `references`.
+- The 5 F4 pilot dynasties have event `detail` and `referenceIds`, but events had no `type`.
+- Boundary `sourceNote` and `accuracyNote` coverage is already 129 / 129.
+- Landmark `sourceNote` coverage is 30 / 30, but landmark `references` are still missing.
+
+Implementation:
+
+- Added `type` to all 30 events across the 5 F4 source pilot dynasties:
+  - `tang`
+  - `roman-republic-empire`
+  - `islamic-caliphates`
+  - `mughal`
+  - `maya`
+- Updated `scripts/validateHistoricalData.mjs` so F4 source pilot events must include:
+  - `detail`
+  - `type`
+  - `sourceNote` or `referenceIds`
+
+Verification:
+
+- `npm run validate:data` passed.
+- A structured Node audit confirmed 30 / 30 pilot events have `type`, `detail`, and reference linkage.
+
+Next:
+
+- Use a worker subagent for F4 Batch01 content/source expansion.
+- Recommended ids from audit: `qin`, `han`, `ming`, `egypt-old-kingdom`, and `achaemenid`.
+- Batch01 should add source notes, references, event details, event types, and referenceIds, then extend validator enforcement to those ids.

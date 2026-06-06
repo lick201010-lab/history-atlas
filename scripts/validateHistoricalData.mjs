@@ -143,6 +143,12 @@ function validateDynastySources(dynasty, errors) {
   for (const event of dynasty.events || []) {
     const hasEventSourceNote = isNonEmptyString(event.sourceNote);
     const hasReferenceIds = Array.isArray(event.referenceIds) && event.referenceIds.length > 0;
+    if (!isNonEmptyString(event.detail)) {
+      fail(errors, `${prefix} event:${event.title || event.year || 'unknown'} needs detail`);
+    }
+    if (!isNonEmptyString(event.type)) {
+      fail(errors, `${prefix} event:${event.title || event.year || 'unknown'} needs type`);
+    }
     if (!hasEventSourceNote && !hasReferenceIds) {
       fail(errors, `${prefix} event:${event.title || event.year || 'unknown'} needs sourceNote or referenceIds`);
     }
