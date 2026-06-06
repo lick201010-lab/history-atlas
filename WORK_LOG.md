@@ -1507,3 +1507,60 @@ Result:
 Next:
 
 - Continue F3 missing-model coverage. Good next candidates: `mecca-haram`, `sanchi-stupa`, and `konark-sun`, or a smaller two-model batch if visual QA risk needs to stay low.
+
+## 2026-06-06 F3 Batch03 model coverage
+
+Scope:
+
+- Continued F3 landmark/model quality with a bounded worker batch.
+- Added GLB coverage for `sanchi-stupa`, `konark-sun`, and `djenne-mosque`.
+- This remains a controlled F3 batch only. It does not complete F3 and does not make the project final.
+
+Agent workflow:
+
+- Peirce worker implemented only the bounded GLB/model integration files.
+- Codex reviewed the worker output, reran checks, added the Batch03 browser QA script and artifacts, and performed in-app browser verification before acceptance.
+
+Implementation:
+
+- Added `scripts/buildSanchiStupaGlb.mjs`.
+- Added `scripts/buildKonarkSunGlb.mjs`.
+- Added `scripts/buildDjenneMosqueGlb.mjs`.
+- Generated `public/models/sanchi-stupa.glb`.
+- Generated `public/models/konark-sun.glb`.
+- Generated `public/models/djenne-mosque.glb`.
+- Added all three ids to GLB override, z-up orientation override, selected scale, and focus camera presets.
+- Added `npm run audit:f3-batch03`.
+
+Verification:
+
+- `node scripts/buildSanchiStupaGlb.mjs` passed: about 5918 tris, z -0.00..1.13, 304.8 KB.
+- `node scripts/buildKonarkSunGlb.mjs` passed: about 6444 tris, z -0.00..1.13, 410.2 KB.
+- `node scripts/buildDjenneMosqueGlb.mjs` passed: about 2766 tris, z -0.00..1.06, 179.4 KB.
+- `npm run audit:glb` passed: 20 OK, 0 WARN, 0 FAIL.
+- `npm run validate:data` passed.
+- `npm run check` passed.
+- `npm run audit:f3-batch03` passed with `failures: []`.
+- In-app browser QA passed for all three models: selected landmark, immersive mode active, Chinese title correct, and page logs empty.
+
+QA artifacts:
+
+- `docs/model-qa/F3_BATCH03_REPORT_2026-06-06.md`
+- `docs/model-qa/f3-batch03-manifest.json`
+- `docs/model-qa/f3-batch03-sanchi-stupa-200bce.png`
+- `docs/model-qa/f3-batch03-konark-sun-1300.png`
+- `docs/model-qa/f3-batch03-djenne-mosque-1500.png`
+- `docs/model-qa/f3-batch03-sanchi-stupa-inapp.png`
+- `docs/model-qa/f3-batch03-konark-sun-inapp.png`
+- `docs/model-qa/f3-batch03-djenne-mosque-inapp.png`
+
+Result:
+
+- F3 Batch03 is accepted as GLB coverage for `sanchi-stupa`, `konark-sun`, and `djenne-mosque`.
+- Visual grade: all three are B-level readable miniatures. `konark-sun` is close to the coastline in the current map/data view, but the model is correctly oriented and not floating or sunk.
+- GLB coverage is now 20 / 30. Missing GLB coverage remains 10 / 30.
+- The full F3 Gate remains incomplete.
+
+Next:
+
+- Continue F3 missing-model coverage. Candidate next batch: `mecca-haram`, `teotihuacan`, and `machu-picchu`, or split smaller if geometry risk is high.

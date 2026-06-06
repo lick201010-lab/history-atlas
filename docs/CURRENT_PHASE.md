@@ -58,8 +58,8 @@ F3 completion requires:
 Current GLB coverage:
 
 - Total landmarks: 30.
-- GLB overrides: 17.
-- Missing GLB coverage: 13.
+- GLB overrides: 20.
+- Missing GLB coverage: 10.
 - Core 10 GLB coverage: 10 / 10, but these are not automatically final A-grade. They still need final map-view inspection.
 
 Missing GLB ids:
@@ -69,12 +69,9 @@ Missing GLB ids:
 - `temple-of-heaven`
 - `cheomseongdae`
 - `mecca-haram`
-- `sanchi-stupa`
-- `konark-sun`
 - `teotihuacan`
 - `machu-picchu`
 - `meroe-pyramids`
-- `djenne-mosque`
 - `great-zimbabwe`
 - `westminster-abbey`
 
@@ -147,6 +144,28 @@ Result:
   - `docs/model-qa/f3-batch02-ziggurat-ur-inapp.png`
   - `docs/model-qa/f3-batch02-ishtar-gate-inapp.png`
 - Quality note: both are accepted as readable B-grade coverage miniatures. They are not full F3 completion and not final A-grade benchmark models.
+
+## Accepted F3 Batch 03
+
+Target:
+
+- `sanchi-stupa`
+- `konark-sun`
+- `djenne-mosque`
+
+Result:
+
+- Accepted as F3 Batch03 GLB coverage on 2026-06-06.
+- `npm run audit:f3-batch03` passed with no failures.
+- `npm run check` passed.
+- Screenshots:
+  - `docs/model-qa/f3-batch03-sanchi-stupa-200bce.png`
+  - `docs/model-qa/f3-batch03-konark-sun-1300.png`
+  - `docs/model-qa/f3-batch03-djenne-mosque-1500.png`
+  - `docs/model-qa/f3-batch03-sanchi-stupa-inapp.png`
+  - `docs/model-qa/f3-batch03-konark-sun-inapp.png`
+  - `docs/model-qa/f3-batch03-djenne-mosque-inapp.png`
+- Quality note: all three are accepted as readable B-grade coverage miniatures. `konark-sun` is near the coastline in the current map data, but the model is not upside down, floating, or sunk.
 
 ## F3 Gate Checks
 

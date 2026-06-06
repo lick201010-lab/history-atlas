@@ -1,0 +1,159 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T09:37:01.912Z",
+  "results": [
+    {
+      "scene": {
+        "id": "sanchi-stupa-200bce",
+        "targetId": "sanchi-stupa",
+        "year": -200,
+        "camera": {
+          "center": [
+            77.74,
+            23.48
+          ],
+          "zoom": 7.2,
+          "pitch": 62,
+          "bearing": 22
+        },
+        "screenshot": "f3-batch03-sanchi-stupa-200bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "桑奇大塔",
+        "modelStatus": 200,
+        "mapCenter": [
+          77.74,
+          23.48
+        ],
+        "zoom": 7.2,
+        "pitch": 62,
+        "bearing": 22,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch03-sanchi-stupa-200bce.png"
+    },
+    {
+      "scene": {
+        "id": "konark-sun-1300",
+        "targetId": "konark-sun",
+        "year": 1300,
+        "camera": {
+          "center": [
+            86.1,
+            19.89
+          ],
+          "zoom": 7.1,
+          "pitch": 64,
+          "bearing": -36
+        },
+        "screenshot": "f3-batch03-konark-sun-1300.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "科纳克太阳神庙",
+        "modelStatus": 200,
+        "mapCenter": [
+          86.1,
+          19.89
+        ],
+        "zoom": 7.1,
+        "pitch": 64,
+        "bearing": -36,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch03-konark-sun-1300.png"
+    },
+    {
+      "scene": {
+        "id": "djenne-mosque-1500",
+        "targetId": "djenne-mosque",
+        "year": 1500,
+        "camera": {
+          "center": [
+            -4.55,
+            13.91
+          ],
+          "zoom": 7,
+          "pitch": 64,
+          "bearing": -24
+        },
+        "screenshot": "f3-batch03-djenne-mosque-1500.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "杰内大清真寺",
+        "modelStatus": 200,
+        "mapCenter": [
+          -4.55,
+          13.91
+        ],
+        "zoom": 7,
+        "pitch": 64,
+        "bearing": -24,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch03-djenne-mosque-1500.png"
+    }
+  ],
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/sanchi-stupa.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/konark-sun.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/djenne-mosque.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/sanchi-stupa.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/konark-sun.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/djenne-mosque.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "failures": []
+}

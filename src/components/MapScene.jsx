@@ -109,6 +109,9 @@ function focusCameraForBuilding(building, duration = 2000) {
     persepolis: { zoom: 7.0, pitch: 64, bearing: -24 },
     'ziggurat-ur': { zoom: 7.2, pitch: 62, bearing: 34 },
     'ishtar-gate': { zoom: 7.1, pitch: 64, bearing: -28 },
+    'sanchi-stupa': { zoom: 7.2, pitch: 62, bearing: 22 },
+    'konark-sun': { zoom: 7.1, pitch: 64, bearing: -36 },
+    'djenne-mosque': { zoom: 7.0, pitch: 64, bearing: -24 },
   };
   const preset = presets[building.id] || { zoom: 6.4, pitch: 64, bearing: -30 };
   return {
