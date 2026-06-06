@@ -73,6 +73,12 @@ const missingDynasties = dynastyRows
 
 console.log(JSON.stringify({ summary, missingDynasties }, null, 2));
 
-if (process.argv.includes('--strict') && summary.dynastySourceReady !== summary.dynastyTotal) {
+if (process.argv.includes('--strict') && (
+  summary.dynastySourceReady !== summary.dynastyTotal
+  || summary.eventSourceReady !== summary.eventTotal
+  || summary.boundarySourceReady !== summary.boundaryTotal
+  || summary.landmarkSourceReady !== summary.landmarkTotal
+  || summary.landmarkReferenceReady !== summary.landmarkTotal
+)) {
   process.exitCode = 1;
 }

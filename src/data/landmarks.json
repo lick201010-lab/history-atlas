@@ -17,7 +17,24 @@
     ],
     "summary": "长安是西汉至盛唐时期东亚最大都市之一，南北朱雀大街贯穿百余坊，未央宫、大明宫与西市的宫城—市坊体系成为后世都城规划的范本。鼎盛期人口接近百万，是丝绸之路东端枢纽。",
     "sourceNote": "使用 -200 ~ 907 作为汉唐两段建都期的合并示意，实际宫殿群历经反复营建与焚毁，关联文明仅取核心两朝。",
-    "modelProfile": "palace"
+    "modelProfile": "palace",
+    "references": [
+      {
+        "id": "unesco-silk-roads-changan-tianshan",
+        "title": "Silk Roads: the Routes Network of Chang'an-Tianshan Corridor",
+        "author": "UNESCO World Heritage Centre",
+        "year": 2014,
+        "url": "https://whc.unesco.org/en/list/1442/",
+        "note": "用于长安作为丝路东端和汉唐都城圈的地理与历史背景；具体宫殿年代仍需结合汉长安、隋唐长安分期处理。"
+      },
+      {
+        "id": "xiong-sui-tang-changan",
+        "title": "Sui-Tang Chang'an: A Study in the Urban History of Medieval China",
+        "author": "Victor Cunrui Xiong",
+        "year": 2000,
+        "note": "用于隋唐长安城、宫城与城市制度的学术背景，适合补充当前合并式长安条目的细化说明。"
+      }
+    ]
   },
   {
     "id": "pyramid",
@@ -36,7 +53,17 @@
     ],
     "summary": "吉萨高地的三座金字塔由古王国第四王朝胡夫、哈夫拉、孟卡拉先后修筑，最大的胡夫金字塔原高约 146 米，是古代世界七大奇迹中唯一存留者。陵区还包括大狮身人面像与一系列祭祀庙宇。",
     "sourceNote": "起始年代 -2560 以胡夫金字塔通行年代为锚，终止年份延伸至当代以反映其仍作为遗址存在，关联文明仅列古王国。",
-    "modelProfile": "pyramid"
+    "modelProfile": "pyramid",
+    "references": [
+      {
+        "id": "unesco-memphis-necropolis",
+        "title": "Memphis and its Necropolis - the Pyramid Fields from Giza to Dahshur",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1979,
+        "url": "https://whc.unesco.org/en/list/86/",
+        "note": "用于吉萨金字塔群在古王国墓葬景观中的定位与世界遗产范围说明。"
+      }
+    ]
   },
   {
     "id": "colosseum",
@@ -55,7 +82,24 @@
     ],
     "summary": "弗拉维圆形剧场是罗马帝国在尼禄黄金宫旧址上为公众斗兽与角斗表演兴建的椭圆形巨型剧场，长轴 188 米，可容纳约五万观众。其多层拱券与可活动的甲板顶盖代表了罗马混凝土与工程美学的高峰。",
     "sourceNote": "起始 80 年对应提图斯落成献礼，关联文明取罗马共和与帝国合并条目；中世纪以后曾长期作采石场使用，结构现存约三分之二。",
-    "modelProfile": "colosseum"
+    "modelProfile": "colosseum",
+    "references": [
+      {
+        "id": "unesco-historic-centre-rome",
+        "title": "Historic Centre of Rome, the Properties of the Holy See in that City Enjoying Extraterritorial Rights and San Paolo Fuori le Mura",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1980,
+        "url": "https://whc.unesco.org/en/list/91/",
+        "note": "用于斗兽场作为罗马历史中心核心遗产之一的官方背景。"
+      },
+      {
+        "id": "hopkins-colosseum",
+        "title": "The Colosseum",
+        "author": "Keith Hopkins and Mary Beard",
+        "year": 2005,
+        "note": "用于补充斗兽场建造、观演制度和后世使用变化的学术叙述。"
+      }
+    ]
   },
   {
     "id": "parthenon",
@@ -74,7 +118,17 @@
     ],
     "summary": "帕特农神庙建于雅典卫城最高处，由建筑师伊克提诺斯主持、菲狄亚斯领衔雕刻，供奉雅典娜女神，是多立克柱式与古典比例美学的标志。神庙楣饰描绘泛雅典娜节游行，影响后世西方公共建筑两千余年。",
     "sourceNote": "起始 -432 对应主体竣工，关联文明仅列希腊城邦；1687 年被威尼斯炮火炸毁屋顶，今天仅余石构骨架。",
-    "modelProfile": "parthenon"
+    "modelProfile": "parthenon",
+    "references": [
+      {
+        "id": "unesco-acropolis-athens",
+        "title": "Acropolis, Athens",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1987,
+        "url": "https://whc.unesco.org/en/list/404/",
+        "note": "用于帕特农神庙在雅典卫城建筑群中的官方价值说明。"
+      }
+    ]
   },
   {
     "id": "tajmahal",
@@ -93,7 +147,17 @@
     ],
     "summary": "泰姬陵是莫卧儿皇帝沙贾汗为爱妃穆塔兹·玛哈尔修建的白色大理石陵寝，由乌斯塔德·艾哈迈德·拉合里设计，融合波斯、突厥与本土印度装饰传统。中央穹顶高 73 米，四角宣礼塔微向外倾以防地震时倒塌伤主体。",
     "sourceNote": "起始 1653 对应主体完工，关联文明仅取莫卧儿；建筑群另含清真寺与镜池，属世界文化遗产。",
-    "modelProfile": "tajmahal"
+    "modelProfile": "tajmahal",
+    "references": [
+      {
+        "id": "unesco-taj-mahal",
+        "title": "Taj Mahal",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1983,
+        "url": "https://whc.unesco.org/en/list/252/",
+        "note": "用于泰姬陵建筑群、莫卧儿背景与世界遗产价值说明。"
+      }
+    ]
   },
   {
     "id": "great-wall",
@@ -114,7 +178,24 @@
     ],
     "summary": "长城非单一时期墙体，而是从战国诸侯—秦统一—汉防胡—明代砖石长城多次叠加的防御体系。明代司令戚继光主持的蓟镇段以条石与城砖筑墙，敌台、烽燧、关城层层咬合，是冷兵器时代规模最大的国家工程。",
     "sourceNote": "起始 -220 以秦统一后大规模连缀为锚，关联秦/汉/明三朝；今日常见的\"砖石长城\"形象主要来自明代北段。",
-    "modelProfile": "great-wall"
+    "modelProfile": "great-wall",
+    "references": [
+      {
+        "id": "unesco-great-wall",
+        "title": "The Great Wall",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1987,
+        "url": "https://whc.unesco.org/en/list/438/",
+        "note": "用于长城跨朝代修筑、军事防御体系和遗产范围的官方说明。"
+      },
+      {
+        "id": "waldron-great-wall",
+        "title": "The Great Wall of China: From History to Myth",
+        "author": "Arthur Waldron",
+        "year": 1990,
+        "note": "用于区分秦汉边墙、明代砖石长城与现代长城想象。"
+      }
+    ]
   },
   {
     "id": "forbidden-city",
@@ -134,7 +215,17 @@
     ],
     "summary": "紫禁城为明永乐十八年迁都北京后建成，南北中轴对称、外朝三大殿与内廷三宫层层递进，是明清两代二十四位皇帝的居住与施政中心。现存房屋约 8700 余间，黄琉璃顶与红墙形成明清宫式建筑的范式。",
     "sourceNote": "起始 1420 对应永乐建成，关联明/清两朝；1925 年改为故宫博物院，主体仍为永乐至乾隆时期遗构。",
-    "modelProfile": "forbidden-city"
+    "modelProfile": "forbidden-city",
+    "references": [
+      {
+        "id": "unesco-imperial-palaces",
+        "title": "Imperial Palaces of the Ming and Qing Dynasties in Beijing and Shenyang",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1987,
+        "url": "https://whc.unesco.org/en/list/439/",
+        "note": "用于紫禁城建造年代、明清宫廷使用和建筑价值的官方说明。"
+      }
+    ]
   },
   {
     "id": "terracotta-army",
@@ -153,7 +244,17 @@
     ],
     "summary": "秦始皇陵兵马俑位于陵东 1.5 公里处，迄今已发掘三座俑坑，估计陶俑总数过八千件，按军阵纵深排列，包含步兵、弩手、车兵、骑兵和将官，每件面容、铠甲与发髻均不相同。",
     "sourceNote": "起始 -210 以秦始皇驾崩为锚，关联文明仅列秦；1974 年农民打井时偶然发现，发掘工作仍在持续。",
-    "modelProfile": "terracotta-army"
+    "modelProfile": "terracotta-army",
+    "references": [
+      {
+        "id": "unesco-qin-mausoleum",
+        "title": "Mausoleum of the First Qin Emperor",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1987,
+        "url": "https://whc.unesco.org/en/list/441/",
+        "note": "用于秦始皇陵与兵马俑坑的年代、位置和遗产价值说明。"
+      }
+    ]
   },
   {
     "id": "temple-of-heaven",
@@ -172,7 +273,17 @@
       "qing"
     ],
     "summary": "天坛是明清皇帝冬至祭天、孟春祈谷的礼制建筑群，三层圆台与祈年殿圆攒尖顶象征\"天圆\"，建筑布局与音律、节气、五行严格对应。祈年殿木结构无一根钉子，由 28 根楠木大柱支撑三重檐顶。",
-    "sourceNote": "起始 1420 对应永乐时与紫禁城同期落成，关联明/清两朝；现今的祈年殿主体为光绪二十二年（1896）按原制重建。"
+    "sourceNote": "起始 1420 对应永乐时与紫禁城同期落成，关联明/清两朝；现今的祈年殿主体为光绪二十二年（1896）按原制重建。",
+    "references": [
+      {
+        "id": "unesco-temple-of-heaven",
+        "title": "Temple of Heaven: an Imperial Sacrificial Altar in Beijing",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1998,
+        "url": "https://whc.unesco.org/en/list/881/",
+        "note": "用于天坛作为明清皇帝祭天建筑群的官方说明。"
+      }
+    ]
   },
   {
     "id": "cheomseongdae",
@@ -190,7 +301,17 @@
       "joseon"
     ],
     "summary": "瞻星台位于庆州，由新罗善德女王时期兴建，是东亚现存最早的天文观测塔之一。塔身高约 9.2 米，由 365 块花岗岩石垒成，对应一年天数，南向开窗便于昼夜观测日月。",
-    "sourceNote": "起始 634 对应新罗末期建塔，关联文明用朝鲜王朝作粗略代表（实际更准确归属新罗）；后续如细化历史层级，应单列新罗条目。"
+    "sourceNote": "起始 634 对应新罗末期建塔，关联文明用朝鲜王朝作粗略代表（实际更准确归属新罗）；后续如细化历史层级，应单列新罗条目。",
+    "references": [
+      {
+        "id": "unesco-gyeongju-historic-areas",
+        "title": "Gyeongju Historic Areas",
+        "author": "UNESCO World Heritage Centre",
+        "year": 2000,
+        "url": "https://whc.unesco.org/en/list/976/",
+        "note": "用于瞻星台在新罗都城庆州遗产景观中的定位；当前数据将其粗略关联朝鲜王朝，后续应细分新罗。"
+      }
+    ]
   },
   {
     "id": "hagia-sophia",
@@ -209,7 +330,24 @@
       "ottoman"
     ],
     "summary": "圣索菲亚由查士丁尼大帝下令、特拉勒斯的安特米奥斯与米利都的伊西多罗斯设计建造，主穹顶直径 31 米、距地 55 米，是中世纪欧亚最大教堂；1453 年后被改为清真寺，添置宣礼塔与书法圆牌，体现两大文明的层叠。",
-    "sourceNote": "起始 537 对应主体落成，关联拜占庭与奥斯曼两朝；1934 年起曾长期作博物馆，2020 年起再次作为清真寺开放。"
+    "sourceNote": "起始 537 对应主体落成，关联拜占庭与奥斯曼两朝；1934 年起曾长期作博物馆，2020 年起再次作为清真寺开放。",
+    "references": [
+      {
+        "id": "unesco-historic-areas-istanbul",
+        "title": "Historic Areas of Istanbul",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1985,
+        "url": "https://whc.unesco.org/en/list/356/",
+        "note": "用于圣索菲亚在君士坦丁堡/伊斯坦布尔历史城区中的拜占庭与奥斯曼双重背景。"
+      },
+      {
+        "id": "mainstone-hagia-sophia",
+        "title": "Hagia Sophia: Architecture, Structure and Liturgy of Justinian's Great Church",
+        "author": "Rowland J. Mainstone",
+        "year": 1988,
+        "note": "用于圣索菲亚查士丁尼时期结构、穹顶和礼仪空间的学术背景。"
+      }
+    ]
   },
   {
     "id": "petra",
@@ -228,7 +366,24 @@
       "islamic-caliphates"
     ],
     "summary": "佩特拉是纳巴泰王国凿山而建的商旅城市，以红砂岩立面建筑著称，卡兹尼神殿与代尔修道院通过陡峭蛇道与岩壁神龛连结。城内还遗有罗马式剧场与水利渠系，体现纳巴泰对地中海与阿拉伯—印度商路的中介地位。",
-    "sourceNote": "起始 -100 取纳巴泰繁荣期，关联文明暂以罗马帝国代表（106 年后正式并入），实际更准确归属为独立的纳巴泰王国。"
+    "sourceNote": "起始 -100 取纳巴泰繁荣期，关联文明暂以罗马帝国代表（106 年后正式并入），实际更准确归属为独立的纳巴泰王国。",
+    "references": [
+      {
+        "id": "unesco-petra",
+        "title": "Petra",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1985,
+        "url": "https://whc.unesco.org/en/list/326/",
+        "note": "用于佩特拉作为纳巴泰都城、岩刻建筑和商路节点的官方说明。"
+      },
+      {
+        "id": "mckenzie-petra",
+        "title": "The Architecture of Petra",
+        "author": "Judith McKenzie",
+        "year": 1990,
+        "note": "用于佩特拉岩刻立面、建筑类型和年代判断的学术背景。"
+      }
+    ]
   },
   {
     "id": "persepolis",
@@ -247,7 +402,17 @@
     ],
     "summary": "波斯波利斯是阿契美尼德帝国诺鲁孜新年庆典与外交礼仪之都，由大流士一世奠基、薛西斯与阿尔塔薛西斯陆续扩建，万国门、阿帕达纳大殿与百柱殿展示帝国二十余属邦的进贡浮雕。",
     "sourceNote": "起始 -515、终止 -330 涵盖大流士奠基至亚历山大焚城；关联文明仅列阿契美尼德。",
-    "modelProfile": "persepolis"
+    "modelProfile": "persepolis",
+    "references": [
+      {
+        "id": "unesco-persepolis",
+        "title": "Persepolis",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1979,
+        "url": "https://whc.unesco.org/en/list/114/",
+        "note": "用于波斯波利斯作为阿契美尼德礼仪中心的官方说明。"
+      }
+    ]
   },
   {
     "id": "ziggurat-ur",
@@ -265,7 +430,24 @@
       "babylon"
     ],
     "summary": "乌尔大金字形神塔由乌尔第三王朝创建者乌尔纳姆下令修筑，献给月神南纳，三层平台之上原立神庙；纳波尼德时期与近代曾多次修复，是苏美尔—巴比伦地区现存最完整的台庙遗迹之一。",
-    "sourceNote": "起始 -2100 以乌尔第三王朝奠基为锚，关联文明用巴比伦作两河流域代表；更精确应单列苏美尔—乌尔。"
+    "sourceNote": "起始 -2100 以乌尔第三王朝奠基为锚，关联文明用巴比伦作两河流域代表；更精确应单列苏美尔—乌尔。",
+    "references": [
+      {
+        "id": "penn-museum-ur",
+        "title": "Ur Online",
+        "author": "Penn Museum and British Museum",
+        "year": 2013,
+        "url": "https://www.penn.museum/sites/iraq/",
+        "note": "用于乌尔遗址和乌尔第三王朝神塔的考古背景；当前条目用巴比伦作两河代表，需保留归属 caveat。"
+      },
+      {
+        "id": "crawford-ur-city-moon-god",
+        "title": "Ur: The City of the Moon God",
+        "author": "Harriet Crawford",
+        "year": 2015,
+        "note": "用于乌尔城市、宗教中心和金字形神塔的学术背景。"
+      }
+    ]
   },
   {
     "id": "ishtar-gate",
@@ -283,7 +465,23 @@
       "babylon"
     ],
     "summary": "伊什塔尔门是新巴比伦尼布甲尼撒二世为纪念女神伊什塔尔修筑的城门，蓝釉砖与浮雕公牛、姆胡什图鲁龙交替排列，原置于巴比伦内城北侧，是新年节日游行队伍进出之道。",
-    "sourceNote": "起始 -575 对应新巴比伦扩建年代，关联文明仅取巴比伦；主体复原件 1930 年起在柏林佩加蒙博物馆展出，原址只余基础。"
+    "sourceNote": "起始 -575 对应新巴比伦扩建年代，关联文明仅取巴比伦；主体复原件 1930 年起在柏林佩加蒙博物馆展出，原址只余基础。",
+    "references": [
+      {
+        "id": "koldewey-excavations-babylon",
+        "title": "The Excavations at Babylon",
+        "author": "Robert Koldewey",
+        "year": 1914,
+        "note": "用于伊什塔尔门和新巴比伦城市发掘的基础考古记录。"
+      },
+      {
+        "id": "berlin-vorderasiatisches-ishtar-gate",
+        "title": "The Ishtar Gate and the Processional Way",
+        "author": "Staatliche Museen zu Berlin, Vorderasiatisches Museum",
+        "year": 1930,
+        "note": "用于柏林复原展示与原址遗存之间的区分说明。"
+      }
+    ]
   },
   {
     "id": "mecca-haram",
@@ -303,7 +501,23 @@
     ],
     "summary": "麦加禁寺以方形天房（克尔白）为中心，是伊斯兰世界最神圣的礼拜场所，每年朝觐期间汇聚数百万穆斯林环绕泰瓦夫。建筑群历经先知时期、四大哈里发、奥斯曼到沙特王室的多轮扩建，现可容纳约两百万人。",
     "sourceNote": "起始 632 对应先知去世后伊斯兰确立的年代锚点，关联文明取哈里发与奥斯曼；实际克尔白作为崇拜对象远早于伊斯兰时代。",
-    "modelProfile": "mecca-haram"
+    "modelProfile": "mecca-haram",
+    "references": [
+      {
+        "id": "ei2-makka",
+        "title": "Makka",
+        "author": "Encyclopaedia of Islam, Second Edition",
+        "year": 1991,
+        "note": "用于麦加、克尔白和禁寺在伊斯兰历史中的基础背景；不把前伊斯兰崇拜史写成单一确定叙事。"
+      },
+      {
+        "id": "peters-mecca",
+        "title": "Mecca: A Literary History of the Muslim Holy Land",
+        "author": "F. E. Peters",
+        "year": 1994,
+        "note": "用于麦加圣地叙事、朝觐和历史文献传统的学术背景。"
+      }
+    ]
   },
   {
     "id": "sanchi-stupa",
@@ -322,7 +536,17 @@
       "gupta"
     ],
     "summary": "桑奇大塔由孔雀王朝阿育王命人在公元前 3 世纪兴建，半球形覆钵直径约 36 米，外环石栏与四方塔门浮雕讲述本生故事与佛陀生平，是早期佛教艺术的核心遗存。",
-    "sourceNote": "起始 -250 以阿育王时期为锚，关联孔雀与笈多；现存塔门浮雕主要为巽伽—早期笈多增修。"
+    "sourceNote": "起始 -250 以阿育王时期为锚，关联孔雀与笈多；现存塔门浮雕主要为巽伽—早期笈多增修。",
+    "references": [
+      {
+        "id": "unesco-sanchi",
+        "title": "Buddhist Monuments at Sanchi",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1989,
+        "url": "https://whc.unesco.org/en/list/524/",
+        "note": "用于桑奇大塔从阿育王时期到后续增修的官方遗产说明。"
+      }
+    ]
   },
   {
     "id": "konark-sun",
@@ -340,7 +564,17 @@
       "chola"
     ],
     "summary": "科纳克太阳神庙由东恒伽王朝纳拉辛哈德瓦一世为太阳神苏利耶修建，整体造型为十二对车轮与七匹石马牵引的战车，主殿（高塔）已坍塌，但雕饰繁密的舞殿与车轮仍保存完好。",
-    "sourceNote": "起始 1250 对应纳拉辛哈德瓦一世年代，关联文明暂沿用朱罗作为南印度代表；更准确应单列东恒伽。"
+    "sourceNote": "起始 1250 对应纳拉辛哈德瓦一世年代，关联文明暂沿用朱罗作为南印度代表；更准确应单列东恒伽。",
+    "references": [
+      {
+        "id": "unesco-konarak-sun-temple",
+        "title": "Sun Temple, Konarak",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1984,
+        "url": "https://whc.unesco.org/en/list/246/",
+        "note": "用于科纳克太阳神庙的年代、东恒伽王朝背景和建筑价值；当前文明关联需保留粗略说明。"
+      }
+    ]
   },
   {
     "id": "red-fort",
@@ -358,7 +592,17 @@
       "mughal"
     ],
     "summary": "德里红堡是莫卧儿皇帝沙贾汗迁都德里后兴建的红砂岩王城，城墙周长约 2.4 公里，内有公开觐见的迪万-伊-阿姆与私人觐见的迪万-伊-哈斯，融合伊斯兰、波斯与印度装饰风格。",
-    "sourceNote": "起始 1648 对应主体竣工，关联文明仅取莫卧儿；今日是印度每年独立日总理升旗的国家礼仪场地。"
+    "sourceNote": "起始 1648 对应主体竣工，关联文明仅取莫卧儿；今日是印度每年独立日总理升旗的国家礼仪场地。",
+    "references": [
+      {
+        "id": "unesco-red-fort",
+        "title": "Red Fort Complex",
+        "author": "UNESCO World Heritage Centre",
+        "year": 2007,
+        "url": "https://whc.unesco.org/en/list/231/",
+        "note": "用于德里红堡作为沙贾汗时期莫卧儿宫城与后世国家礼仪场所的官方说明。"
+      }
+    ]
   },
   {
     "id": "chichen-itza",
@@ -377,7 +621,17 @@
     ],
     "summary": "奇琴伊察是后古典玛雅与托尔特克影响并存的城邦中心，库库尔坎金字塔每年春秋分黄昏时阶梯阴影呈现羽蛇下降幻象；球场、千柱厅与天文台展示玛雅对历法与天象的精密掌握。",
     "sourceNote": "起始 600、终止 1200 涵盖该城作为区域中心的鼎盛期，关联文明仅取玛雅；西班牙征服前已大体被废弃。",
-    "modelProfile": "chichen-itza"
+    "modelProfile": "chichen-itza",
+    "references": [
+      {
+        "id": "unesco-chichen-itza",
+        "title": "Pre-Hispanic City of Chichen-Itza",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1988,
+        "url": "https://whc.unesco.org/en/list/483/",
+        "note": "用于奇琴伊察作为玛雅城市中心和托尔特克影响争议背景的官方说明。"
+      }
+    ]
   },
   {
     "id": "teotihuacan",
@@ -395,7 +649,17 @@
       "aztec"
     ],
     "summary": "特奥蒂瓦坎是中美洲古典时期最大的城市，鼎盛时人口逾十万，太阳金字塔与月亮金字塔以亡灵大道连成中轴，居住区按方格街区严格规划。其文化深刻影响后来的玛雅与阿兹特克。",
-    "sourceNote": "起始 -100、终止 750 涵盖兴起与衰亡阶段；关联文明用阿兹特克作为继承者代表，实际更准确归属为特奥蒂瓦坎独立文明。"
+    "sourceNote": "起始 -100、终止 750 涵盖兴起与衰亡阶段；关联文明用阿兹特克作为继承者代表，实际更准确归属为特奥蒂瓦坎独立文明。",
+    "references": [
+      {
+        "id": "unesco-teotihuacan",
+        "title": "Pre-Hispanic City of Teotihuacan",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1987,
+        "url": "https://whc.unesco.org/en/list/414/",
+        "note": "用于特奥蒂瓦坎城市格局、太阳/月亮金字塔和独立文明背景；当前关联阿兹特克只可作后世记忆 caveat。"
+      }
+    ]
   },
   {
     "id": "machu-picchu",
@@ -414,7 +678,24 @@
     ],
     "summary": "马丘比丘建于安第斯山脊海拔 2430 米处，由印加皇帝帕查库特克为皇家避暑离宫而修，干石筑墙不用灰浆，神圣区、农耕梯田与水渠系统沿山形精密布置。1532 年印加灭亡后被荒废，1911 年由海勒姆·宾厄姆重新引入西方视野。",
     "sourceNote": "起始 1450 对应帕查库特克时期，关联文明仅取印加；马丘比丘并非帝国都城，而是宫廷庄园。",
-    "modelProfile": "machu-picchu"
+    "modelProfile": "machu-picchu",
+    "references": [
+      {
+        "id": "unesco-machu-picchu",
+        "title": "Historic Sanctuary of Machu Picchu",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1983,
+        "url": "https://whc.unesco.org/en/list/274/",
+        "note": "用于马丘比丘作为印加山地宫廷/圣所景观的官方说明。"
+      },
+      {
+        "id": "burger-machu-picchu",
+        "title": "Machu Picchu: Unveiling the Mystery of the Incas",
+        "author": "Richard L. Burger and Lucy C. Salazar",
+        "year": 2004,
+        "note": "用于马丘比丘作为帕查库特克时期王室庄园的考古与展览研究背景。"
+      }
+    ]
   },
   {
     "id": "meroe-pyramids",
@@ -432,7 +713,17 @@
       "egypt-new-kingdom"
     ],
     "summary": "麦罗埃位于尼罗河第六瀑布以北，是库施王国后期的王都，现存约 200 座尖角狭窄的金字塔陵墓，体量较埃及金字塔小，但分布密集。19 世纪寻宝者破坏严重，现以联合国教科文组织世界文化遗产之名保护。",
-    "sourceNote": "起始 -300 以库施迁都麦罗埃为锚；关联文明暂用埃及新王国作粗略归类，更准确应单列库施王国。"
+    "sourceNote": "起始 -300 以库施迁都麦罗埃为锚；关联文明暂用埃及新王国作粗略归类，更准确应单列库施王国。",
+    "references": [
+      {
+        "id": "unesco-meroe",
+        "title": "Archaeological Sites of the Island of Meroe",
+        "author": "UNESCO World Heritage Centre",
+        "year": 2011,
+        "url": "https://whc.unesco.org/en/list/1336/",
+        "note": "用于麦罗埃作为库施王国中心与金字塔墓葬群的官方说明；当前关联埃及新王国需保留粗略说明。"
+      }
+    ]
   },
   {
     "id": "djenne-mosque",
@@ -451,7 +742,17 @@
       "songhai"
     ],
     "summary": "杰内大清真寺是世界上规模最大的泥砖建筑，现存主体由 1907 年法国殖民时期重修，但风格延续中世纪马里苏丹时期的萨赫勒泥构传统。每年雨季后由全城居民共同涂抹外墙修补维护。",
-    "sourceNote": "起始 1280 以马里苏丹时代首次兴建为锚；关联马里与桑海两个西非帝国。"
+    "sourceNote": "起始 1280 以马里苏丹时代首次兴建为锚；关联马里与桑海两个西非帝国。",
+    "references": [
+      {
+        "id": "unesco-old-towns-djenne",
+        "title": "Old Towns of Djenne",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1988,
+        "url": "https://whc.unesco.org/en/list/116/",
+        "note": "用于杰内古城、泥土建筑传统和清真寺历史环境的官方说明。"
+      }
+    ]
   },
   {
     "id": "great-zimbabwe",
@@ -467,7 +768,24 @@
     "importance": 5,
     "relatedDynastyIds": [],
     "summary": "大津巴布韦是 11–15 世纪绍纳人在津巴布韦高原修建的石城，以无灰浆干砌的椭圆形大围圈、卫城与谷地遗址著称。它是穆塔帕王国的前身，鼎盛期通过黄金与象牙贸易连接印度洋商网。",
-    "sourceNote": "起始 1100、终止 1450 涵盖大津巴布韦作为中心的盛衰；relatedDynastyIds 暂为空，因当前 dynasties.json 未列绍纳—穆塔帕条目。"
+    "sourceNote": "起始 1100、终止 1450 涵盖大津巴布韦作为中心的盛衰；relatedDynastyIds 暂为空，因当前 dynasties.json 未列绍纳—穆塔帕条目。",
+    "references": [
+      {
+        "id": "unesco-great-zimbabwe",
+        "title": "Great Zimbabwe National Monument",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1986,
+        "url": "https://whc.unesco.org/en/list/364/",
+        "note": "用于大津巴布韦石城、绍纳社会和贸易网络的官方说明；当前无对应文明条目，需保持独立 caveat。"
+      },
+      {
+        "id": "garlake-great-zimbabwe",
+        "title": "Great Zimbabwe",
+        "author": "Peter S. Garlake",
+        "year": 1973,
+        "note": "用于大津巴布韦遗址结构、年代和早期考古研究背景。"
+      }
+    ]
   },
   {
     "id": "notre-dame",
@@ -485,7 +803,17 @@
       "holy-roman-empire"
     ],
     "summary": "巴黎圣母院是法国哥特式建筑标志，1163 年起在塞纳河中的西堤岛上奠基，由四代主教与建筑师陆续完成。飞扶壁、玫瑰窗与双钟塔影响后世西欧主教座堂；2019 年 4 月顶部尖塔与橡木屋架毁于火灾，正在按原貌修复。",
-    "sourceNote": "起始 1163 对应莫里斯·德·苏利主教奠基；关联文明暂用神圣罗马帝国作为西欧基督教世界粗略代表，更准确应单列法兰西王国。"
+    "sourceNote": "起始 1163 对应莫里斯·德·苏利主教奠基；关联文明暂用神圣罗马帝国作为西欧基督教世界粗略代表，更准确应单列法兰西王国。",
+    "references": [
+      {
+        "id": "unesco-paris-banks-seine",
+        "title": "Paris, Banks of the Seine",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1991,
+        "url": "https://whc.unesco.org/en/list/600/",
+        "note": "用于巴黎圣母院在塞纳河岸历史城市景观中的官方说明；当前文明关联神圣罗马帝国需保留粗略说明。"
+      }
+    ]
   },
   {
     "id": "stonehenge",
@@ -502,7 +830,24 @@
     "relatedDynastyIds": [],
     "summary": "巨石阵位于英格兰索尔兹伯里平原，外圈直径约 33 米，由直立巨石与横梁石组成；内圈五对三石塔与中心祭坛石形成同心结构。建造分新石器晚期与青铜早期数个阶段，与冬至、夏至日出日落方位精密对齐。",
     "sourceNote": "起始 -3000 取主体环形成期；relatedDynastyIds 暂为空，因当前 dynasties.json 未列史前不列颠条目。",
-    "modelProfile": "stonehenge"
+    "modelProfile": "stonehenge",
+    "references": [
+      {
+        "id": "unesco-stonehenge-avebury",
+        "title": "Stonehenge, Avebury and Associated Sites",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1986,
+        "url": "https://whc.unesco.org/en/list/373/",
+        "note": "用于巨石阵及周边新石器时代/青铜时代景观的官方说明。"
+      },
+      {
+        "id": "parker-pearson-stonehenge",
+        "title": "Stonehenge: Exploring the Greatest Stone Age Mystery",
+        "author": "Mike Parker Pearson",
+        "year": 2012,
+        "note": "用于巨石阵分期、祭祀景观和考古解释的学术背景。"
+      }
+    ]
   },
   {
     "id": "westminster-abbey",
@@ -520,7 +865,17 @@
       "british-empire"
     ],
     "summary": "威斯敏斯特教堂是英国君主加冕与王室葬礼场地，1066 年征服者威廉首先在此加冕，1245 年起亨利三世主持哥特式重建。教堂西门后藏有\"诗人角\"，安葬乔叟、狄更斯等英语文学奠基者。",
-    "sourceNote": "起始 1090 取诺曼底时期重建年代；关联文明用大英帝国作为后世国家代表，实际更准确应单列盎格鲁—诺曼及后续英格兰王国。"
+    "sourceNote": "起始 1090 取诺曼底时期重建年代；关联文明用大英帝国作为后世国家代表，实际更准确应单列盎格鲁—诺曼及后续英格兰王国。",
+    "references": [
+      {
+        "id": "unesco-westminster",
+        "title": "Palace of Westminster and Westminster Abbey including Saint Margaret's Church",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1987,
+        "url": "https://whc.unesco.org/en/list/426/",
+        "note": "用于威斯敏斯特教堂作为英国王权、加冕和哥特式建筑遗产的官方说明。"
+      }
+    ]
   },
   {
     "id": "angkor-wat",
@@ -539,7 +894,24 @@
     ],
     "summary": "吴哥窟由高棉王苏耶跋摩二世下令建造，主体为五座印度教须弥山式高塔，外护城河边长近 1.5 公里，是世界上面积最大的宗教建筑群。15 世纪逐渐被佛教接管，至今仍是柬埔寨国旗主图案。",
     "sourceNote": "起始 1113 取苏耶跋摩二世登基与奠基期；关联文明仅取高棉。",
-    "modelProfile": "angkor-wat"
+    "modelProfile": "angkor-wat",
+    "references": [
+      {
+        "id": "unesco-angkor",
+        "title": "Angkor",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1992,
+        "url": "https://whc.unesco.org/en/list/668/",
+        "note": "用于吴哥窟在吴哥遗址群和高棉帝国宗教建筑体系中的官方说明。"
+      },
+      {
+        "id": "freeman-jacques-angkor",
+        "title": "Ancient Angkor",
+        "author": "Michael Freeman and Claude Jacques",
+        "year": 1999,
+        "note": "用于吴哥窟建筑布局、浮雕和高棉王朝背景的参考。"
+      }
+    ]
   },
   {
     "id": "borobudur",
@@ -558,6 +930,16 @@
     ],
     "summary": "婆罗浮屠位于爪哇中部，是夏连特拉王朝建造的大乘佛教阶梯式坛城，下层四方坛、上层三圆坛与中心大塔象征三界与曼陀罗结构。立面装饰逾 2600 块叙事浮雕和 504 尊佛像。",
     "sourceNote": "起始 825 取主体完工年代；关联文明暂用室利佛逝作海上贸易圈代表，更准确应单列夏连特拉。",
-    "modelProfile": "borobudur"
+    "modelProfile": "borobudur",
+    "references": [
+      {
+        "id": "unesco-borobudur",
+        "title": "Borobudur Temple Compounds",
+        "author": "UNESCO World Heritage Centre",
+        "year": 1991,
+        "url": "https://whc.unesco.org/en/list/592/",
+        "note": "用于婆罗浮屠作为夏连特拉时期佛教建筑和爪哇遗产景观的官方说明；当前关联室利佛逝需保留粗略说明。"
+      }
+    ]
   }
 ]

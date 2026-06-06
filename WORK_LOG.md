@@ -1866,3 +1866,59 @@ Note:
 
 - This is F4 Batch02 only. F4 remains active and the project is not final complete.
 - Xia content explicitly treats chronology and source identity as uncertain; Erlitou is not presented as settled proof of the Xia dynasty.
+
+## 2026-06-06 F4 Batch03 source/content expansion
+
+Scope:
+
+- Expanded F4 source/content coverage for exactly `jin`, `sui`, `qing`, `egypt-new-kingdom`, and `babylon`.
+- Added dynasty-level `sourceNote`, 2-3 references per dynasty, and event `detail`, `type`, and same-dynasty `referenceIds`.
+- Extended F4 source validation to enforce these five ids with the existing F4 source ids.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run audit:f4-sources` passed: source-ready dynasties 20 / 43, source-ready events 118 / 259.
+- `npm run check` passed with existing Vite large chunk warnings.
+
+Note:
+
+- This is F4 Batch03 only. F4 remains active and the project is not final complete.
+- Babylon is explicitly caveated as a compressed product label spanning old and neo-Babylonian phases with long intervening breaks.
+
+## 2026-06-06 F4 content/source Gate pass
+
+Scope:
+
+- Completed the F4 content and source system Gate after Batch04-Batch07 source packs and the landmark reference pack were integrated.
+- Source packs were produced by bounded subagents under `.claude-runs/` and then merged by Codex with `scripts/applyF4SourcePacks.mjs`.
+- Final integrated coverage:
+  - Source-ready dynasties: 43 / 43.
+  - Source-ready events: 259 / 259.
+  - Dynasty references: 128.
+  - Boundary source/accuracy notes: 129 / 129.
+  - Landmark source notes and references: 30 / 30.
+- Fixed a spotted content issue in the Chola entry: the 985 event now correctly names Rajaraja I instead of Rajendra I.
+- Added landmark reference display to `LandmarkCard`.
+- Added strict F4 checks into `npm run check`.
+
+Verification:
+
+- `npm run validate:data` passed.
+- `npm run audit:f4-sources:strict` passed.
+- `npm run check` passed with existing Vite large chunk warnings.
+- `F4_CONTENT_URL=http://127.0.0.1:4174/ npm run audit:f4-content-ui` passed with no failures, console errors, or page exceptions.
+- `RELEASE_SMOKE_URL=http://127.0.0.1:4174/ npm run smoke:release` passed with no failures.
+
+Screenshots:
+
+- `docs/content-qa/f4-desktop-maya-sources.png`
+- `docs/content-qa/f4-desktop-hagia-sophia-references.png`
+- `docs/release-qa/release-desktop-1250-maya.png`
+- `docs/release-qa/release-mobile-1250-maya.png`
+
+Result:
+
+- F4 Gate passed for the current final-version criteria.
+- `docs/CURRENT_PHASE.md` now marks F5 as active.
+- The whole project is still not the final complete version because F5 product/mobile UX and F6 performance/release packaging remain incomplete.

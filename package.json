@@ -19,14 +19,17 @@
     "audit:f3-batch05": "node scripts/auditF3ModelBatch05Playwright.mjs",
     "audit:f3-batch06": "node scripts/auditF3ModelBatch06Playwright.mjs",
     "audit:f3-core10": "node scripts/auditF3Core10Playwright.mjs",
+    "audit:f4-content-ui": "node scripts/auditF4ContentUi.mjs",
     "audit:f4-sources": "node scripts/auditF4SourceCoverage.mjs",
+    "audit:f4-sources:strict": "node scripts/auditF4SourceCoverage.mjs --strict",
+    "apply:f4-source-packs": "node scripts/applyF4SourcePacks.mjs",
     "audit:glb": "node scripts/auditGlbAssets.mjs",
     "audit:visual-foundation": "node scripts/visualFoundationAudit.mjs",
     "test:boundary-outlines": "node scripts/testBoundaryOutlines.mjs",
     "test:boundary-focus": "node scripts/testBoundaryFocus.mjs",
     "smoke:release": "node scripts/releaseSmoke.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "npm run validate:data && npm run test:boundary-outlines && npm run test:boundary-focus && npm run audit:glb && npm run build",
+    "check": "npm run validate:data && npm run audit:f4-sources:strict && npm run test:boundary-outlines && npm run test:boundary-focus && npm run audit:glb && npm run build",
     "deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy.ps1"
   },
   "dependencies": {

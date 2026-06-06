@@ -1,13 +1,13 @@
 {
-  "appUrl": "https://atlas.ckl.hk/",
-  "generatedAt": "2026-06-03T15:04:05.088Z",
+  "appUrl": "http://127.0.0.1:4174/",
+  "generatedAt": "2026-06-06T16:07:45.722Z",
   "runs": [
     {
       "name": "desktop",
       "ready": {
         "label": "desktop-initial",
         "title": "历史沙盘 · Historical Atlas",
-        "url": "https://atlas.ckl.hk/",
+        "url": "http://127.0.0.1:4174/",
         "ready": true,
         "mapReady": true,
         "canvas": {
@@ -49,20 +49,20 @@
           "height": 520
         },
         "mapCenter": [
-          -88.89,
-          17.316
+          -88.9,
+          17.315
         ],
-        "zoom": 4.57,
-        "pitch": 57.8487394966685
+        "zoom": 4.58,
+        "pitch": 57.850538902876536
       },
-      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\release-qa\\release-desktop-1250-maya.png"
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\release-qa\\release-desktop-1250-maya.png"
     },
     {
       "name": "mobile",
       "ready": {
         "label": "mobile-initial",
         "title": "历史沙盘 · Historical Atlas",
-        "url": "https://atlas.ckl.hk/",
+        "url": "http://127.0.0.1:4174/",
         "ready": true,
         "mapReady": true,
         "canvas": {
@@ -104,13 +104,13 @@
           "height": 624
         },
         "mapCenter": [
-          -89.54,
-          17.23
+          -89.414,
+          17.247
         ],
-        "zoom": 4.73,
-        "pitch": 57.96247220007469
+        "zoom": 4.62,
+        "pitch": 57.90971182956084
       },
-      "screenshot": "D:\\松君\\项目\\历史网站\\docs\\release-qa\\release-mobile-1250-maya.png"
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\release-qa\\release-mobile-1250-maya.png"
     }
   ],
   "consoleMessages": [],

@@ -1156,6 +1156,30 @@ input[type="range"]::-moz-range-thumb {
   font-style: italic;
 }
 
+.landmark-reference-list {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(120, 160, 220, 0.14);
+}
+
+.landmark-reference-list span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-faint);
+  font-size: 9.5px;
+  letter-spacing: 2px;
+}
+
+.landmark-reference-list cite {
+  display: block;
+  margin-top: 5px;
+  color: rgba(214, 224, 242, 0.74);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
 .territory-card {
   position: fixed;
   left: 22px;

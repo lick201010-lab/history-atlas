@@ -1,8 +1,8 @@
-# Current Phase: F4 Content and Source System
+# Current Phase: F5 Product Interaction and Mobile Experience
 
 Updated: 2026-06-06
 
-Status: F4 is active. F1, F2, and F3 have passed their phase Gates. The whole project is still not the final complete version because F4-F6 remain incomplete.
+Status: F5 is active. F1, F2, F3, and F4 have passed their phase Gates. The whole project is still not the final complete version because F5-F6 remain incomplete.
 
 ## Project Rule
 
@@ -52,29 +52,34 @@ Evidence:
 - Core 10 accepted as A/A- map-view miniature models for the current final-version criteria.
 - Remaining 20 models accepted as B-level readable coverage miniatures from F3 Batch01-Batch06.
 
-## F4 Goal
+F4 content and source system passed on 2026-06-06.
 
-Build a credible content and source system so each civilization, event, boundary note, and landmark relation is traceable and shown honestly in the UI.
+Evidence:
 
-## Current F4 Progress
-
-- Source-enforced dynasties: 15 / 43.
-- F4 pilot ids passed: `tang`, `roman-republic-empire`, `islamic-caliphates`, `mughal`, `maya`.
-- F4 Batch01 ids passed: `qin`, `han`, `ming`, `egypt-old-kingdom`, `achaemenid`.
-- F4 Batch02 ids passed: `xia`, `shang`, `zhou`, `song`, `yuan`.
-- Source-enforced dynasty events: 88 / 259.
+- Source-ready dynasties: 43 / 43.
+- Source-ready events: 259 / 259.
+- Dynasty references: 128.
 - Boundary `sourceNote` / `accuracyNote` coverage: 129 / 129.
-- Landmark `sourceNote` coverage: 30 / 30; landmark `references` remain incomplete.
+- Landmark `sourceNote` and `references` coverage: 30 / 30.
+- `npm run validate:data` passed with all dynasties and landmarks source-enforced.
+- `npm run audit:f4-sources:strict` passed.
+- `npm run check` passed.
+- `F4_CONTENT_URL=http://127.0.0.1:4174/ npm run audit:f4-content-ui` passed with no console errors or page exceptions.
+- Content QA screenshots:
+  - `docs/content-qa/f4-desktop-maya-sources.png`
+  - `docs/content-qa/f4-desktop-hagia-sophia-references.png`
 
-F4 completion requires:
+## F5 Goal
 
-- All 43 civilizations have complete `summary`, `events`, `tags`, `importance`, `legacy`, `relatedLandmarks`, `sourceNote`, and `references`.
-- Each civilization has at least 5 events; key civilizations should have 8-12 events.
-- Key event entries include year or year range, type, short description, and source note/reference.
-- Boundary features retain `sourceNote` and `accuracyNote`, and UI keeps explaining that boundaries are historical approximate ranges.
-- `npm run validate:data` rejects missing required F4 fields.
-- `npm run check` passes.
-- Browser QA confirms source/accuracy notes are visible and readable in the information surfaces.
+Turn the current archive-heavy interface into a polished product experience for ordinary users on desktop and mobile.
+
+F5 completion requires:
+
+- Desktop and mobile users can complete the core path: choose year, search civilization, select civilization, inspect boundary/source notes, inspect landmark/source notes, and return to map.
+- Mobile UI uses a bottom-sheet/drawer experience without horizontal overflow.
+- Search, filters, comparison mode, focus mode, civilization cards, and landmark cards feel like product navigation rather than debugging panels.
+- Important year/event nodes are easier to read and can guide map movement.
+- `npm run check`, `npm run audit:f4-content-ui`, and release smoke must pass after F5 changes.
 
 ## Completed F3 Record
 

@@ -1,0 +1,29 @@
+{
+  "appUrl": "http://127.0.0.1:4174/",
+  "generatedAt": "2026-06-06T15:58:12.811Z",
+  "screenshots": [
+    "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\content-qa\\f4-desktop-maya-sources.png",
+    "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\content-qa\\f4-desktop-hagia-sophia-references.png"
+  ],
+  "audits": {
+    "maya": {
+      "cardFound": true,
+      "title": "玛雅文明",
+      "hasEventSources": true,
+      "hasBoundaryAccuracy": true,
+      "hasReferenceList": true,
+      "textLength": 704
+    },
+    "landmark": {
+      "itemFound": true,
+      "cardFound": true,
+      "title": "圣索菲亚大教堂",
+      "hasSourceNote": true,
+      "hasReferences": true,
+      "textLength": 346
+    }
+  },
+  "failures": [],
+  "consoleErrors": [],
+  "pageExceptions": []
+}

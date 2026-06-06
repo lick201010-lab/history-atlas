@@ -590,27 +590,63 @@
     "events": [
       {
         "year": 265,
-        "title": "司马炎代魏建立西晋"
+        "title": "司马炎代魏建立西晋",
+        "type": "政治",
+        "detail": "司马炎接受魏元帝禅让，建立西晋；次年改元泰始。这里以 265 年标记代魏建国节点，和王朝起年常按 266 年年号体系书写存在一年的口径差异。",
+        "referenceIds": [
+          "dien-knapp-2019-six-dynasties-jin",
+          "lewis-2009-china-between-empires-jin"
+        ]
       },
       {
         "year": 280,
-        "title": "西晋灭吴，重新统一中国"
+        "title": "西晋灭吴，重新统一中国",
+        "type": "军事",
+        "detail": "晋军多路攻吴，王濬水军顺江而下，孙皓降晋，三国以来的南北分裂在政治上暂时结束。",
+        "referenceIds": [
+          "dien-knapp-2019-six-dynasties-jin",
+          "lewis-2009-china-between-empires-jin"
+        ]
       },
       {
         "year": 291,
-        "title": "八王之乱爆发"
+        "title": "八王之乱爆发",
+        "type": "政治",
+        "detail": "皇族诸王、外戚和宫廷集团围绕惠帝朝政反复争夺，内战从 291 年延续多年，严重削弱了西晋军政秩序。",
+        "referenceIds": [
+          "dien-knapp-2019-six-dynasties-jin",
+          "lewis-2009-china-between-empires-jin"
+        ]
       },
       {
         "year": 311,
-        "title": "永嘉之祸，洛阳陷落"
+        "title": "永嘉之祸，洛阳陷落",
+        "type": "军事",
+        "detail": "汉赵军攻陷洛阳，晋怀帝被俘，西晋中央在北方的统治实质崩解，北方进入十六国竞争格局。",
+        "referenceIds": [
+          "dien-knapp-2019-six-dynasties-jin",
+          "lewis-2009-china-between-empires-jin"
+        ]
       },
       {
         "year": 317,
-        "title": "司马睿在建康建立东晋"
+        "title": "司马睿在建康建立东晋",
+        "type": "政治",
+        "detail": "司马睿在江南士族支持下于建康重建晋政权，317 年称晋王、318 年称帝；本时间轴将其压缩为东晋建立节点。",
+        "referenceIds": [
+          "dien-knapp-2019-six-dynasties-jin",
+          "lewis-2009-china-between-empires-jin"
+        ]
       },
       {
         "year": 420,
-        "title": "刘裕代晋，东晋灭亡"
+        "title": "刘裕代晋，东晋灭亡",
+        "type": "政治",
+        "detail": "掌握军政实权的刘裕迫使晋恭帝禅位，建立刘宋，东晋结束，江南政治进入南朝阶段。",
+        "referenceIds": [
+          "dien-knapp-2019-six-dynasties-jin",
+          "lewis-2009-china-between-empires-jin"
+        ]
       }
     ],
     "tags": [
@@ -621,7 +657,24 @@
       "东亚"
     ],
     "importance": 3,
-    "legacy": "晋代士族文化与南渡传统塑造了江南成为新的文明重心，五胡内迁则推动了中国北方的民族与制度重组。"
+    "legacy": "晋代士族文化与南渡传统塑造了江南成为新的文明重心，五胡内迁则推动了中国北方的民族与制度重组。",
+    "sourceNote": "F4 Batch03 来源说明：晋朝条目以《剑桥中国史》六朝卷和 Lewis 对南北朝前史的综合研究为基础。西晋建国年份、东晋建立节点按常见教学口径处理，需说明 265/266、317/318 等纪年存在书写差异。",
+    "references": [
+      {
+        "id": "dien-knapp-2019-six-dynasties-jin",
+        "title": "The Cambridge History of China, Volume 2: The Six Dynasties, 220-589",
+        "author": "Albert E. Dien and Keith N. Knapp, eds.",
+        "year": 2019,
+        "note": "用于核对晋代在六朝政治序列中的位置、洛阳陷落、东晋南渡和南朝转折。"
+      },
+      {
+        "id": "lewis-2009-china-between-empires-jin",
+        "title": "China Between Empires: The Northern and Southern Dynasties",
+        "author": "Mark Edward Lewis",
+        "year": 2009,
+        "note": "用于解释八王之乱后北方重组、江南士族政治和南北分裂的长期结构。"
+      }
+    ]
   },
   {
     "id": "sui",
@@ -649,27 +702,63 @@
     "events": [
       {
         "year": 581,
-        "title": "杨坚代北周建立隋朝"
+        "title": "杨坚代北周建立隋朝",
+        "type": "政治",
+        "detail": "杨坚接受北周静帝禅让，建立隋朝并控制关中与北方核心区，随后以制度整合和军事准备推进统一。",
+        "referenceIds": [
+          "twitchett-1979-sui-tang-sui",
+          "wright-1978-sui-dynasty"
+        ]
       },
       {
         "year": 589,
-        "title": "隋灭陈，南北重新统一"
+        "title": "隋灭陈，南北重新统一",
+        "type": "军事",
+        "detail": "隋军渡江灭南陈，结束自西晋崩溃以来长期南北分裂，重建覆盖中国本部的大一统王朝。",
+        "referenceIds": [
+          "twitchett-1979-sui-tang-sui",
+          "wright-1978-sui-dynasty"
+        ]
       },
       {
         "year": 605,
-        "title": "隋炀帝下令开凿大运河"
+        "title": "隋炀帝下令开凿大运河",
+        "type": "工程",
+        "detail": "隋炀帝时期大规模整修和连接通济渠、永济渠等水道，使华北、江淮和江南粮运体系更紧密；工程并非单一年份完成。",
+        "referenceIds": [
+          "twitchett-1979-sui-tang-sui",
+          "xiong-2006-emperor-yang-sui"
+        ]
       },
       {
         "year": 607,
-        "title": "颁布进士科，奠定科举制基础"
+        "title": "颁布进士科，奠定科举制基础",
+        "type": "制度",
+        "detail": "隋代把明经、进士等选官科目制度化，为唐宋成熟科举奠定基础；607 年作为时间轴节点，不等于后世科举已完全定型。",
+        "referenceIds": [
+          "twitchett-1979-sui-tang-sui",
+          "wright-1978-sui-dynasty"
+        ]
       },
       {
         "year": 612,
-        "title": "三征高句丽失败，国力耗竭"
+        "title": "三征高句丽失败，国力耗竭",
+        "type": "军事",
+        "detail": "隋炀帝对高句丽的多次大规模远征消耗巨大，失败后叠加徭役、灾荒和地方叛乱，推动隋末危机迅速扩大。",
+        "referenceIds": [
+          "twitchett-1979-sui-tang-sui",
+          "xiong-2006-emperor-yang-sui"
+        ]
       },
       {
         "year": 618,
-        "title": "隋炀帝被弑，隋朝灭亡，唐代之"
+        "title": "隋炀帝被弑，隋朝灭亡，唐代之",
+        "type": "政治",
+        "detail": "隋炀帝在江都兵变中被杀，同年李渊在长安建立唐朝；隋的灭亡和唐的建立在地方割据未完全平定前已经形成王朝更替节点。",
+        "referenceIds": [
+          "twitchett-1979-sui-tang-sui",
+          "xiong-2006-emperor-yang-sui"
+        ]
       }
     ],
     "tags": [
@@ -680,7 +769,31 @@
       "东亚"
     ],
     "importance": 4,
-    "legacy": "隋代留下的运河、科举雏形和三省六部制度被唐朝继承并放大，成为东亚帝国治理的标准模板。"
+    "legacy": "隋代留下的运河、科举雏形和三省六部制度被唐朝继承并放大，成为东亚帝国治理的标准模板。",
+    "sourceNote": "F4 Batch03 来源说明：隋朝条目以《剑桥中国史》隋唐卷、Arthur F. Wright 的隋代专著和 Xiong 对隋炀帝的研究为基础。运河、科举与高句丽战争均按教学时间轴压缩呈现，实际过程跨越多年。",
+    "references": [
+      {
+        "id": "twitchett-1979-sui-tang-sui",
+        "title": "The Cambridge History of China, Volume 3: Sui and T'ang China, 589-906, Part 1",
+        "author": "Denis Twitchett, ed.",
+        "year": 1979,
+        "note": "用于核对隋唐转折、隋代政治制度和统一战争的通行叙述。"
+      },
+      {
+        "id": "wright-1978-sui-dynasty",
+        "title": "The Sui Dynasty: The Unification of China, A.D. 581-617",
+        "author": "Arthur F. Wright",
+        "year": 1978,
+        "note": "用于补充隋代统一、制度重建和短命王朝危机的专门研究。"
+      },
+      {
+        "id": "xiong-2006-emperor-yang-sui",
+        "title": "Emperor Yang of the Sui Dynasty: His Life, Times, and Legacy",
+        "author": "Victor Cunrui Xiong",
+        "year": 2006,
+        "note": "用于核对隋炀帝时期运河工程、对外战争和隋亡叙述。"
+      }
+    ]
   },
   {
     "id": "tang",
@@ -1181,27 +1294,60 @@
     "events": [
       {
         "year": 1644,
-        "title": "清军入关，定都北京"
+        "title": "清军入关，定都北京",
+        "type": "政治",
+        "detail": "李自成攻入北京后，摄政王多尔衮率清军入关并击败大顺军，顺治朝迁都北京；清政权此前已在东北建立，此处标记入主中原节点。",
+        "referenceIds": [
+          "peterson-2002-qing-to-1800",
+          "rowe-2009-great-qing"
+        ]
       },
       {
         "year": 1689,
-        "title": "与俄国签订《尼布楚条约》"
+        "title": "与俄国签订《尼布楚条约》",
+        "type": "外交",
+        "detail": "清廷与俄国签订《尼布楚条约》，以拉丁文本处理边界和贸易问题，是清帝国北部边疆外交的重要节点。",
+        "referenceIds": [
+          "peterson-2002-qing-to-1800",
+          "perdue-2005-qing-central-eurasia"
+        ]
       },
       {
         "year": 1759,
-        "title": "乾隆平定准噶尔、回部，新疆纳入版图"
+        "title": "乾隆平定准噶尔、回部，新疆纳入版图",
+        "type": "军事",
+        "detail": "乾隆朝击败准噶尔汗国并控制天山南北路，清帝国在中亚边疆形成新的军政格局；“新疆”省制是 1884 年以后概念，本条按地区性称谓处理。",
+        "referenceIds": [
+          "peterson-2002-qing-to-1800",
+          "perdue-2005-qing-central-eurasia"
+        ]
       },
       {
         "year": 1840,
-        "title": "第一次鸦片战争爆发"
+        "title": "第一次鸦片战争爆发",
+        "type": "军事",
+        "detail": "英国因鸦片贸易、通商制度和外交礼仪冲突发动战争，清廷战败后签订《南京条约》，晚清进入条约体系压力下的转型时期。",
+        "referenceIds": [
+          "rowe-2009-great-qing"
+        ]
       },
       {
         "year": 1860,
-        "title": "英法联军火烧圆明园"
+        "title": "英法联军火烧圆明园",
+        "type": "军事",
+        "detail": "第二次鸦片战争中英法联军攻入北京并焚毁圆明园，随后《北京条约》扩大通商、赔款和外交驻京安排。",
+        "referenceIds": [
+          "rowe-2009-great-qing"
+        ]
       },
       {
         "year": 1911,
-        "title": "辛亥革命爆发，清帝退位结束帝制"
+        "title": "辛亥革命爆发，清帝退位结束帝制",
+        "type": "政治",
+        "detail": "武昌起义引发各省响应，清廷在 1912 年宣统帝退位后结束；本条用 1911 年标记革命爆发并压缩呈现清亡过程。",
+        "referenceIds": [
+          "rowe-2009-great-qing"
+        ]
       }
     ],
     "tags": [
@@ -1212,7 +1358,31 @@
       "东亚"
     ],
     "importance": 5,
-    "legacy": "清代奠定了现代中国的疆域与多民族框架，也开启了中国与世界格局正面碰撞的近代史，对今日东亚地缘格局仍有直接影响。"
+    "legacy": "清代奠定了现代中国的疆域与多民族框架，也开启了中国与世界格局正面碰撞的近代史，对今日东亚地缘格局仍有直接影响。",
+    "sourceNote": "F4 Batch03 来源说明：清朝条目以《剑桥中国史》清前期卷、Rowe 的清代通史和 Perdue 对中亚征服的研究为基础。1644 年标记入主北京而非清政权最早建立，1911 年事件压缩了 1911 革命爆发与 1912 退位两个节点。",
+    "references": [
+      {
+        "id": "peterson-2002-qing-to-1800",
+        "title": "The Cambridge History of China, Volume 9, Part 1: The Ch'ing Empire to 1800",
+        "author": "Willard J. Peterson, ed.",
+        "year": 2002,
+        "note": "用于核对清前期入关、康雍乾政治和 18 世纪以前的帝国结构。"
+      },
+      {
+        "id": "rowe-2009-great-qing",
+        "title": "China's Last Empire: The Great Qing",
+        "author": "William T. Rowe",
+        "year": 2009,
+        "note": "用于贯通清代通史、晚清战争、革命和王朝终结叙述。"
+      },
+      {
+        "id": "perdue-2005-qing-central-eurasia",
+        "title": "China Marches West: The Qing Conquest of Central Eurasia",
+        "author": "Peter C. Perdue",
+        "year": 2005,
+        "note": "用于核对清俄边界、中亚边疆和准噶尔战争背景。"
+      }
+    ]
   },
   {
     "id": "egypt-old-kingdom",
@@ -1356,27 +1526,63 @@
     "events": [
       {
         "year": -1550,
-        "title": "雅赫摩斯一世驱逐喜克索斯，开启新王国"
+        "title": "雅赫摩斯一世驱逐喜克索斯，开启新王国",
+        "type": "军事",
+        "detail": "雅赫摩斯一世击败喜克索斯势力并重新统一埃及，第十八王朝由此开启；绝对年代在埃及学中有小幅浮动，本条采用常见约年。",
+        "referenceIds": [
+          "shaw-2000-new-kingdom-egypt",
+          "wilkinson-2010-rise-fall-egypt"
+        ]
       },
       {
         "year": -1457,
-        "title": "图特摩斯三世在米吉多大胜，势力扩至叙利亚"
+        "title": "图特摩斯三世在米吉多大胜，势力扩至叙利亚",
+        "type": "军事",
+        "detail": "图特摩斯三世在米吉多击败迦南和叙利亚诸王联盟，埃及由防御性王国转向东地中海强权，影响范围延伸到黎凡特。",
+        "referenceIds": [
+          "shaw-2000-new-kingdom-egypt",
+          "wilkinson-2010-rise-fall-egypt"
+        ]
       },
       {
         "year": -1353,
-        "title": "阿肯那顿推行一神改革，建都阿玛尔那"
+        "title": "阿肯那顿推行一神改革，建都阿玛尔那",
+        "type": "宗教",
+        "detail": "阿肯那顿强化阿吞崇拜并迁都阿赫塔吞，冲击阿蒙神庙集团和传统王权礼仪；其在位年代常有 1353/1352 BCE 等近似写法。",
+        "referenceIds": [
+          "shaw-2000-new-kingdom-egypt",
+          "wilkinson-2010-rise-fall-egypt"
+        ]
       },
       {
         "year": -1279,
-        "title": "拉美西斯二世登基"
+        "title": "拉美西斯二世登基",
+        "type": "政治",
+        "detail": "拉美西斯二世即位后展开长期统治，通过神庙建筑、王权宣传和黎凡特军事行动巩固第十九王朝声望。",
+        "referenceIds": [
+          "kitchen-1982-ramesses-ii",
+          "shaw-2000-new-kingdom-egypt"
+        ]
       },
       {
         "year": -1274,
-        "title": "卡迭石之战与赫梯对峙"
+        "title": "卡迭石之战与赫梯对峙",
+        "type": "军事",
+        "detail": "埃及与赫梯在卡迭石交战，拉美西斯二世铭文强调胜利，但现代研究通常把它视为战略僵持并引向后来的埃赫和平安排。",
+        "referenceIds": [
+          "kitchen-1982-ramesses-ii",
+          "shaw-2000-new-kingdom-egypt"
+        ]
       },
       {
         "year": -1077,
-        "title": "第三中间期开启，新王国结束"
+        "title": "第三中间期开启，新王国结束",
+        "type": "政治",
+        "detail": "拉美西斯十一世末期王权衰退，底比斯祭司势力和下埃及王权分裂，第三中间期逐渐形成；新王国结束年代常写作约 1077-1069 BCE。",
+        "referenceIds": [
+          "shaw-2000-new-kingdom-egypt",
+          "wilkinson-2010-rise-fall-egypt"
+        ]
       }
     ],
     "tags": [
@@ -1387,7 +1593,31 @@
       "征服"
     ],
     "importance": 5,
-    "legacy": "新王国把埃及推向跨地区帝国地位，神庙建筑、宗教改革与外交档案（阿玛尔那信件）成为研究古代东地中海的关键来源。"
+    "legacy": "新王国把埃及推向跨地区帝国地位，神庙建筑、宗教改革与外交档案（阿玛尔那信件）成为研究古代东地中海的关键来源。",
+    "sourceNote": "F4 Batch03 来源说明：埃及新王国条目以 Shaw 和 Wilkinson 的埃及通史及 Kitchen 的拉美西斯二世研究为基础。埃及新王国绝对年代存在约年差异，阿肯那顿、卡迭石和新王国结束节点均按常见教学年代压缩呈现。",
+    "references": [
+      {
+        "id": "shaw-2000-new-kingdom-egypt",
+        "title": "The Oxford History of Ancient Egypt",
+        "author": "Ian Shaw, ed.",
+        "year": 2000,
+        "note": "用于核对新王国分期、十八至二十王朝政治、外交和第三中间期转折。"
+      },
+      {
+        "id": "wilkinson-2010-rise-fall-egypt",
+        "title": "The Rise and Fall of Ancient Egypt",
+        "author": "Toby Wilkinson",
+        "year": 2010,
+        "note": "用于补充新王国王权、神庙政治、阿玛尔那改革和晚期衰落的通史解释。"
+      },
+      {
+        "id": "kitchen-1982-ramesses-ii",
+        "title": "Pharaoh Triumphant: The Life and Times of Ramesses II, King of Egypt",
+        "author": "K. A. Kitchen",
+        "year": 1982,
+        "note": "用于核对拉美西斯二世即位、卡迭石之战和第十九王朝对外战争背景。"
+      }
+    ]
   },
   {
     "id": "babylon",
@@ -1416,27 +1646,63 @@
     "events": [
       {
         "year": -1894,
-        "title": "阿摩利人建立古巴比伦王国"
+        "title": "阿摩利人建立古巴比伦王国",
+        "type": "政治",
+        "detail": "阿摩利背景的王朝在巴比伦城建立统治，后世称第一巴比伦王朝；本条采用常见中年代起点，早期统治范围仍有限。",
+        "referenceIds": [
+          "beaulieu-2018-history-babylon",
+          "van-de-mieroop-2004-ancient-near-east-babylon"
+        ]
       },
       {
         "year": -1754,
-        "title": "汉谟拉比颁布《汉谟拉比法典》"
+        "title": "汉谟拉比颁布《汉谟拉比法典》",
+        "type": "法律",
+        "detail": "汉谟拉比在位后期立石铭刻法律条文和王权序言，法典既是法律文本，也是王权正义宣传；年份采用常见约年。",
+        "referenceIds": [
+          "van-de-mieroop-2005-hammurabi-babylon",
+          "beaulieu-2018-history-babylon"
+        ]
       },
       {
         "year": -1595,
-        "title": "赫梯洗劫巴比伦，古巴比伦衰落"
+        "title": "赫梯洗劫巴比伦，古巴比伦衰落",
+        "type": "军事",
+        "detail": "赫梯王穆尔西里一世远征并洗劫巴比伦，第一巴比伦王朝终结；此后巴比伦经历加喜特等长期统治阶段。",
+        "referenceIds": [
+          "beaulieu-2018-history-babylon",
+          "van-de-mieroop-2004-ancient-near-east-babylon"
+        ]
       },
       {
         "year": -626,
-        "title": "那波帕拉萨尔建立新巴比伦"
+        "title": "那波帕拉萨尔建立新巴比伦",
+        "type": "政治",
+        "detail": "那波帕拉萨尔在亚述衰落背景下取得巴比伦王位，建立新巴比伦或迦勒底王朝，并与米底等势力共同瓦解亚述帝国。",
+        "referenceIds": [
+          "beaulieu-2018-history-babylon",
+          "van-de-mieroop-2004-ancient-near-east-babylon"
+        ]
       },
       {
         "year": -586,
-        "title": "尼布甲尼撒二世攻陷耶路撒冷，犹太人被掳"
+        "title": "尼布甲尼撒二世攻陷耶路撒冷，犹太人被掳",
+        "type": "军事",
+        "detail": "尼布甲尼撒二世攻陷耶路撒冷并摧毁圣殿，犹大王国终结，巴比伦流放成为犹太历史和近东帝国史的重要节点。",
+        "referenceIds": [
+          "beaulieu-2018-history-babylon",
+          "van-de-mieroop-2004-ancient-near-east-babylon"
+        ]
       },
       {
         "year": -539,
-        "title": "波斯居鲁士攻陷巴比伦"
+        "title": "波斯居鲁士攻陷巴比伦",
+        "type": "军事",
+        "detail": "居鲁士二世进入巴比伦并接管新巴比伦王国，巴比伦成为阿契美尼德帝国的重要城市和象征性王权中心。",
+        "referenceIds": [
+          "beaulieu-2018-history-babylon",
+          "van-de-mieroop-2004-ancient-near-east-babylon"
+        ]
       }
     ],
     "tags": [
@@ -1447,7 +1713,31 @@
       "天文"
     ],
     "importance": 4,
-    "legacy": "《汉谟拉比法典》、巴别塔与空中花园传说、占星与历法体系深刻塑造了古代西亚乃至整个西方的法律与神话想象。"
+    "legacy": "《汉谟拉比法典》、巴别塔与空中花园传说、占星与历法体系深刻塑造了古代西亚乃至整个西方的法律与神话想象。",
+    "sourceNote": "F4 Batch03 来源说明：巴比伦条目用一个产品 id 压缩展示古巴比伦第一王朝和新巴比伦帝国，中间存在加喜特、亚述等长期断裂；事件采用常见中年代和教学化节点，不能读成连续单一王朝。",
+    "references": [
+      {
+        "id": "beaulieu-2018-history-babylon",
+        "title": "A History of Babylon, 2200 BC-AD 75",
+        "author": "Paul-Alain Beaulieu",
+        "year": 2018,
+        "note": "用于核对巴比伦城市与王朝长时段叙述，特别是古巴比伦和新巴比伦之间的断裂。"
+      },
+      {
+        "id": "van-de-mieroop-2004-ancient-near-east-babylon",
+        "title": "A History of the Ancient Near East, ca. 3000-323 BC",
+        "author": "Marc Van De Mieroop",
+        "year": 2004,
+        "note": "用于把巴比伦事件放入两河、赫梯、亚述和波斯帝国转换的区域背景。"
+      },
+      {
+        "id": "van-de-mieroop-2005-hammurabi-babylon",
+        "title": "King Hammurabi of Babylon: A Biography",
+        "author": "Marc Van De Mieroop",
+        "year": 2005,
+        "note": "用于核对汉谟拉比在位、法典性质和古巴比伦王权宣传。"
+      }
+    ]
   },
   {
     "id": "assyrian",
@@ -1473,27 +1763,63 @@
     "events": [
       {
         "year": -1365,
-        "title": "亚述-乌巴利特一世独立，亚述王国兴起"
+        "title": "亚述-乌巴利特一世独立，亚述王国兴起",
+        "type": "政治",
+        "detail": "亚述-乌巴利特一世在米坦尼衰落和近东强权重组中提高亚述地位，使亚述从区域城邦王权走向更独立的中亚述王国。该节点代表政治自主和外交能见度上升，不应等同于后来的新亚述帝国规模。",
+        "referenceIds": [
+          "assyrian-frahm-2023",
+          "assyrian-companion-2017"
+        ]
       },
       {
         "year": -911,
-        "title": "阿达德-尼拉里二世开启新亚述帝国"
+        "title": "阿达德-尼拉里二世开启新亚述帝国",
+        "type": "军事",
+        "detail": "阿达德-尼拉里二世恢复对上美索不达米亚和周边通道的军事压力，常被视为新亚述复兴的开端。此处的“开启”指连续扩张机制重新形成，而非一夜之间完成帝国版图。",
+        "referenceIds": [
+          "assyrian-cah-1991",
+          "assyrian-frahm-2023"
+        ]
       },
       {
         "year": -722,
-        "title": "萨尔贡二世征服以色列王国"
+        "title": "萨尔贡二世征服以色列王国",
+        "type": "军事",
+        "detail": "撒马利亚陷落和以色列王国终结通常置于新亚述西方扩张背景下；萨尔贡二世铭文宣称完成征服和迁徙安置。具体围城过程与前任沙尔马那塞尔五世的关系，在不同资料传统中需要谨慎处理。",
+        "referenceIds": [
+          "assyrian-frahm-2023",
+          "assyrian-cah-1991"
+        ]
       },
       {
         "year": -701,
-        "title": "辛那赫里布围攻耶路撒冷"
+        "title": "辛那赫里布围攻耶路撒冷",
+        "type": "军事",
+        "detail": "辛那赫里布西征镇压犹大反叛，亚述铭文强调对犹大城邑的征服和对希西家的压迫；耶路撒冷未被亚述攻破的结果则在近东政治和圣经叙事中具有不同解释。",
+        "referenceIds": [
+          "assyrian-companion-2017",
+          "assyrian-frahm-2023"
+        ]
       },
       {
         "year": -671,
-        "title": "以撒哈顿征服埃及"
+        "title": "以撒哈顿征服埃及",
+        "type": "军事",
+        "detail": "以撒哈顿击败埃及第二十五王朝势力并进入孟斐斯，把新亚述军事触角推进到尼罗河流域。亚述对埃及的控制强烈依赖驻军、地方统治者和后续远征，稳定性有限。",
+        "referenceIds": [
+          "assyrian-cah-1991",
+          "assyrian-frahm-2023"
+        ]
       },
       {
         "year": -612,
-        "title": "尼尼微陷落，亚述帝国覆灭"
+        "title": "尼尼微陷落，亚述帝国覆灭",
+        "type": "军事",
+        "detail": "米底人与新巴比伦联盟攻陷尼尼微，摧毁新亚述政治核心。亚述残余势力仍在哈兰等地短暂活动，因此此节点标记帝国中心崩溃，而非所有亚述身份或地方社群消失。",
+        "referenceIds": [
+          "assyrian-cah-1991",
+          "assyrian-companion-2017"
+        ]
       }
     ],
     "tags": [
@@ -1504,7 +1830,31 @@
       "征服"
     ],
     "importance": 4,
-    "legacy": "亚述发展了最早的常备军、行省与情报系统，留下浮雕、亚述巴尼拔图书馆等遗产，是后世波斯—罗马帝国行政体系的重要先驱。"
+    "legacy": "亚述发展了最早的常备军、行省与情报系统，留下浮雕、亚述巴尼拔图书馆等遗产，是后世波斯—罗马帝国行政体系的重要先驱。",
+    "sourceNote": "本条目以亚述王表、王室铭文和近东考古综合研究为基础，尤其适用于中亚述到新亚述阶段。时间轴把长期王国史压缩为帝国兴起、扩张和覆亡节点；具体战役年号和圣经叙事相交处仍需区分亚述铭文、巴比伦纪年和后世文本的不同立场。",
+    "references": [
+      {
+        "id": "assyrian-frahm-2023",
+        "title": "Assyria: The Rise and Fall of the World's First Empire",
+        "author": "Eckart Frahm",
+        "year": 2023,
+        "note": "综合亚述政治、宗教、书写与帝国遗产，适合作为全条目通史依据。"
+      },
+      {
+        "id": "assyrian-companion-2017",
+        "title": "A Companion to Assyria",
+        "author": "Eckart Frahm (ed.)",
+        "year": 2017,
+        "note": "论文集覆盖亚述社会、军事、行政和王权意识形态，可支撑事件细节和解释性注释。"
+      },
+      {
+        "id": "assyrian-cah-1991",
+        "title": "The Cambridge Ancient History, Volume III, Part 2: The Assyrian and Babylonian Empires and Other States of the Near East",
+        "author": "John Boardman, I. E. S. Edwards, N. G. L. Hammond, E. Sollberger and C. B. F. Walker (eds.)",
+        "year": 1991,
+        "note": "剑桥古代史卷册，为新亚述扩张、尼尼微陷落和近东国际背景提供权威框架。"
+      }
+    ]
   },
   {
     "id": "achaemenid",
@@ -1649,27 +1999,63 @@
     "events": [
       {
         "year": 224,
-        "title": "阿尔达希尔一世击败帕提亚，建立萨珊王朝"
+        "title": "阿尔达希尔一世击败帕提亚，建立萨珊王朝",
+        "type": "政治",
+        "detail": "阿尔达希尔一世在击败阿尔达班四世后取代安息王权，建立以法尔斯起家的萨珊王朝。该事件标志伊朗高原帝国权力重组，也伴随新的王权宣传和宗教合法性表达。",
+        "referenceIds": [
+          "sasanian-daryaee-2009",
+          "sasanian-cambridge-1983"
+        ]
       },
       {
         "year": 260,
-        "title": "沙普尔一世在埃德萨俘获罗马皇帝瓦勒良"
+        "title": "沙普尔一世在埃德萨俘获罗马皇帝瓦勒良",
+        "type": "军事",
+        "detail": "沙普尔一世在埃德萨战役中俘获罗马皇帝瓦勒良，这是罗马帝国史上罕见的皇帝被敌国俘虏事件。萨珊岩刻和铭文将其塑造成王权胜利宣传，罗马资料则强调危机和屈辱。",
+        "referenceIds": [
+          "sasanian-daryaee-2009",
+          "sasanian-greatrex-lieu-2002"
+        ]
       },
       {
         "year": 363,
-        "title": "罗马皇帝尤利安东征败死萨珊"
+        "title": "罗马皇帝尤利安东征败死萨珊",
+        "type": "军事",
+        "detail": "尤利安远征美索不达米亚后在撤退中受伤身亡，继任者约维安被迫议和并让出尼西比斯等战略要地。此节点体现罗马东线冒险失败和萨珊边境优势的恢复。",
+        "referenceIds": [
+          "sasanian-greatrex-lieu-2002",
+          "sasanian-cambridge-1983"
+        ]
       },
       {
         "year": 531,
-        "title": "霍斯劳一世即位，国势鼎盛"
+        "title": "霍斯劳一世即位，国势鼎盛",
+        "type": "制度",
+        "detail": "霍斯劳一世以财政、军制和行政调整著称，并在对拜占庭和中亚势力的竞争中维持强国地位。其“鼎盛”既包含改革成效，也应注意后世理想化君主形象对评价的影响。",
+        "referenceIds": [
+          "sasanian-daryaee-2009",
+          "sasanian-cambridge-1983"
+        ]
       },
       {
         "year": 614,
-        "title": "萨珊攻陷耶路撒冷"
+        "title": "萨珊攻陷耶路撒冷",
+        "type": "军事",
+        "detail": "霍斯劳二世时期的萨珊军队在对拜占庭的大规模战争中攻陷耶路撒冷，并夺取重要基督教圣物。该胜利短期内扩大萨珊影响，但也加深了长期战争消耗。",
+        "referenceIds": [
+          "sasanian-greatrex-lieu-2002",
+          "sasanian-daryaee-2009"
+        ]
       },
       {
         "year": 651,
-        "title": "阿拉伯军击败末王伊嗣俟三世，萨珊灭亡"
+        "title": "阿拉伯军击败末王伊嗣俟三世，萨珊灭亡",
+        "type": "军事",
+        "detail": "伊嗣俟三世在内部分裂、财政困境和阿拉伯征服压力下失去有效统治，651年前后身亡常被用作萨珊王朝终结节点。伊朗社会与文化传统并未随王朝灭亡立即中断。",
+        "referenceIds": [
+          "sasanian-daryaee-2009",
+          "sasanian-cambridge-1983"
+        ]
       }
     ],
     "tags": [
@@ -1680,7 +2066,31 @@
       "宫廷"
     ],
     "importance": 4,
-    "legacy": "萨珊宫廷礼仪、行政文书与琐罗亚斯德教影响了后来的阿拉伯哈里发、拜占庭和中亚伊斯兰文化，重装骑兵传统也辐射到东欧与中亚。"
+    "legacy": "萨珊宫廷礼仪、行政文书与琐罗亚斯德教影响了后来的阿拉伯哈里发、拜占庭和中亚伊斯兰文化，重装骑兵传统也辐射到东欧与中亚。",
+    "sourceNote": "本条目以晚期古代伊朗史、罗马-波斯战争研究和伊朗学综合著作为基础。萨珊王朝在政治上继承并重塑伊朗王权传统，时间轴以王朝更替、罗马战争、宗教与帝国危机为主；末期事件需放在拜占庭长期战争和早期伊斯兰征服的连续冲击中理解。",
+    "references": [
+      {
+        "id": "sasanian-daryaee-2009",
+        "title": "Sasanian Persia: The Rise and Fall of an Empire",
+        "author": "Touraj Daryaee",
+        "year": 2009,
+        "note": "简明而专业的萨珊通史，适合支撑王朝兴衰、制度和宗教背景。"
+      },
+      {
+        "id": "sasanian-cambridge-1983",
+        "title": "The Cambridge History of Iran, Volume 3: The Seleucid, Parthian and Sasanian Periods",
+        "author": "Ehsan Yarshater (ed.)",
+        "year": 1983,
+        "note": "伊朗史权威卷册，覆盖萨珊政治、社会、宗教、法律和对外关系。"
+      },
+      {
+        "id": "sasanian-greatrex-lieu-2002",
+        "title": "The Roman Eastern Frontier and the Persian Wars, AD 363-630",
+        "author": "Geoffrey Greatrex and Samuel N. C. Lieu",
+        "year": 2002,
+        "note": "集中处理罗马/拜占庭与萨珊战争资料，适合校准260、363、614等战争节点。"
+      }
+    ]
   },
   {
     "id": "greek-city-states",
@@ -1708,27 +2118,63 @@
     "events": [
       {
         "year": -776,
-        "title": "首届古代奥林匹克竞技会"
+        "title": "首届古代奥林匹克竞技会",
+        "type": "文化",
+        "detail": "传统纪年把公元前776年作为古代奥林匹克竞技会的起点，反映泛希腊宗教节庆和竞技共同体的形成。该日期具有纪年传统意义，早期赛事形态仍存在资料稀疏的问题。",
+        "referenceIds": [
+          "greek-pomeroy-1999",
+          "greek-cah-1994"
+        ]
       },
       {
         "year": -508,
-        "title": "克里斯提尼改革，雅典民主成形"
+        "title": "克里斯提尼改革，雅典民主成形",
+        "type": "制度",
+        "detail": "克里斯提尼改革重组部落和公民参与结构，削弱贵族派系基础，为雅典民主制度奠定关键框架。这里的“成形”指制度基础建立，后续仍经历伯里克利时代等长期发展。",
+        "referenceIds": [
+          "greek-pomeroy-1999",
+          "greek-cah-1994"
+        ]
       },
       {
         "year": -490,
-        "title": "马拉松之战"
+        "title": "马拉松之战",
+        "type": "军事",
+        "detail": "雅典及普拉提亚军在马拉松击败波斯远征军，提升雅典威望并成为波希战争记忆核心。战役意义不应简化为希腊整体胜利，因为许多城邦在不同阶段立场各异。",
+        "referenceIds": [
+          "greek-cah-1994",
+          "greek-pomeroy-1999"
+        ]
       },
       {
         "year": -480,
-        "title": "萨拉米斯海战，希腊击退波斯"
+        "title": "萨拉米斯海战，希腊击退波斯",
+        "type": "军事",
+        "detail": "希腊联军舰队在萨拉米斯击败薛西斯一世舰队，改变第二次波斯入侵的战略形势。胜利依赖海上协同和地形选择，也成为雅典海军实力上升的重要转折。",
+        "referenceIds": [
+          "greek-cah-1994",
+          "greek-pomeroy-1999"
+        ]
       },
       {
         "year": -431,
-        "title": "伯罗奔尼撒战争爆发"
+        "title": "伯罗奔尼撒战争爆发",
+        "type": "军事",
+        "detail": "雅典海上同盟与斯巴达主导的伯罗奔尼撒同盟矛盾激化，战争长期消耗希腊城邦体系。该节点代表城邦竞争结构失衡，而不只是雅典和斯巴达两城的单线冲突。",
+        "referenceIds": [
+          "greek-hornblower-2011",
+          "greek-cah-1994"
+        ]
       },
       {
         "year": -338,
-        "title": "马其顿胜喀罗尼亚，城邦自治时代结束"
+        "title": "马其顿胜喀罗尼亚，城邦自治时代结束",
+        "type": "政治",
+        "detail": "腓力二世在喀罗尼亚击败雅典、底比斯等联军，马其顿霸权压倒传统城邦独立政治。城邦仍保留地方生活和文化身份，但决定希腊世界战略方向的自治空间显著收缩。",
+        "referenceIds": [
+          "greek-hornblower-2011",
+          "greek-pomeroy-1999"
+        ]
       }
     ],
     "tags": [
@@ -1739,7 +2185,31 @@
       "海军"
     ],
     "importance": 5,
-    "legacy": "希腊城邦塑造了民主、哲学、戏剧、几何与科学方法的雏形，是西方政治思想和文化想象的共同源头。"
+    "legacy": "希腊城邦塑造了民主、哲学、戏剧、几何与科学方法的雏形，是西方政治思想和文化想象的共同源头。",
+    "sourceNote": "本条目把多个希腊城邦和泛希腊事件压缩为一个文明档案，主要依据古典希腊政治史和考古/铭文学综合研究。时间轴以奥林匹克、雅典民主、波希战争、伯罗奔尼撒战争和马其顿霸权为骨架；它不是单一国家史，斯巴达、雅典、科林斯、底比斯等城邦的路径并不相同。",
+    "references": [
+      {
+        "id": "greek-pomeroy-1999",
+        "title": "Ancient Greece: A Political, Social, and Cultural History",
+        "author": "Sarah B. Pomeroy, Stanley M. Burstein, Walter Donlan and Jennifer Tolbert Roberts",
+        "year": 1999,
+        "note": "教材型综合史，适合平衡政治、社会、文化和城邦制度背景。"
+      },
+      {
+        "id": "greek-hornblower-2011",
+        "title": "The Greek World 479-323 BC",
+        "author": "Simon Hornblower",
+        "year": 2011,
+        "note": "聚焦古典时期希腊世界，适合伯罗奔尼撒战争后到马其顿崛起的脉络。"
+      },
+      {
+        "id": "greek-cah-1994",
+        "title": "The Cambridge Ancient History, Volume V: The Fifth Century BC",
+        "author": "D. M. Lewis, John Boardman, J. K. Davies and M. Ostwald (eds.)",
+        "year": 1994,
+        "note": "剑桥古代史卷册，支撑波希战争、雅典帝国、城邦竞争和五世纪政治文化背景。"
+      }
+    ]
   },
   {
     "id": "roman-republic-empire",
@@ -1885,27 +2355,63 @@
     "events": [
       {
         "year": 330,
-        "title": "君士坦丁迁都拜占庭，更名君士坦丁堡"
+        "title": "君士坦丁迁都拜占庭，更名君士坦丁堡",
+        "type": "政治",
+        "detail": "君士坦丁将拜占庭扩建为新都君士坦丁堡，强化帝国东部政治重心。该事件是东地中海罗马权力重组的重要节点，但并不意味着一个独立“拜占庭国家”在330年突然取代罗马。",
+        "referenceIds": [
+          "byzantine-mango-2002",
+          "byzantine-haldon-2000"
+        ]
       },
       {
         "year": 532,
-        "title": "尼卡暴动，查士丁尼镇压并重建索菲亚大教堂"
+        "title": "尼卡暴动，查士丁尼镇压并重建索菲亚大教堂",
+        "type": "政治",
+        "detail": "尼卡暴动由竞技党派、税政不满和宫廷政治交织引发，查士丁尼政权以武力镇压后重建首都核心建筑。事件同时显示皇权危机和帝国重塑城市景观的能力。",
+        "referenceIds": [
+          "byzantine-shepard-2008",
+          "byzantine-mango-2002"
+        ]
       },
       {
         "year": 537,
-        "title": "圣索菲亚大教堂落成"
+        "title": "圣索菲亚大教堂落成",
+        "type": "宗教",
+        "detail": "查士丁尼重建的圣索菲亚大教堂在537年献堂，以巨大穹顶和宫廷礼仪空间体现帝国基督教王权。建筑成就应放在尼卡暴动后的政治修复和宗教象征中理解。",
+        "referenceIds": [
+          "byzantine-mango-2002",
+          "byzantine-haldon-2000"
+        ]
       },
       {
         "year": 1054,
-        "title": "东西教会大分裂"
+        "title": "东西教会大分裂",
+        "type": "宗教",
+        "detail": "1054年的互相绝罚是东西教会关系恶化的象征性节点，背后包括教皇权威、礼仪、教义用语和政治竞争。分裂不是单日完成，之后仍有多次和解尝试与实际接触。",
+        "referenceIds": [
+          "byzantine-shepard-2008",
+          "byzantine-mango-2002"
+        ]
       },
       {
         "year": 1204,
-        "title": "第四次十字军攻陷君士坦丁堡"
+        "title": "第四次十字军攻陷君士坦丁堡",
+        "type": "军事",
+        "detail": "第四次十字军转向并洗劫君士坦丁堡，建立拉丁帝国，严重破坏拜占庭财政、人口和政治连续性。1261年虽恢复都城，但帝国再难恢复此前的区域实力。",
+        "referenceIds": [
+          "byzantine-shepard-2008",
+          "byzantine-haldon-2000"
+        ]
       },
       {
         "year": 1453,
-        "title": "奥斯曼苏丹穆罕默德二世攻陷君士坦丁堡，帝国灭亡"
+        "title": "奥斯曼苏丹穆罕默德二世攻陷君士坦丁堡，帝国灭亡",
+        "type": "军事",
+        "detail": "穆罕默德二世攻陷君士坦丁堡，结束以该城为中心的东罗马皇权。1453是政治帝国灭亡节点，但罗马身份、希腊正教传统和拜占庭文化遗产在奥斯曼及周边世界继续存在。",
+        "referenceIds": [
+          "byzantine-shepard-2008",
+          "byzantine-mango-2002"
+        ]
       }
     ],
     "tags": [
@@ -1916,7 +2422,31 @@
       "地中海"
     ],
     "importance": 5,
-    "legacy": "《查士丁尼法典》、东正教、希腊学术传统和君士坦丁堡的城市模板对俄罗斯、东欧、巴尔干与伊斯兰世界都产生了长远影响。"
+    "legacy": "《查士丁尼法典》、东正教、希腊学术传统和君士坦丁堡的城市模板对俄罗斯、东欧、巴尔干与伊斯兰世界都产生了长远影响。",
+    "sourceNote": "本条目使用“拜占庭”作为现代史学标签，但当时国家自称罗马帝国，统治者自认罗马皇帝。时间轴把东罗马的晚期古代、希腊化中世纪帝国和1453年前的君士坦丁堡政权压缩为一个条目；需要避免把330年视为罗马与拜占庭的简单断裂。",
+    "references": [
+      {
+        "id": "byzantine-shepard-2008",
+        "title": "The Cambridge History of the Byzantine Empire c.500-1492",
+        "author": "Jonathan Shepard (ed.)",
+        "year": 2008,
+        "note": "大型论文集，覆盖政治、军事、宗教和周边关系，适合作为拜占庭综合依据。"
+      },
+      {
+        "id": "byzantine-mango-2002",
+        "title": "The Oxford History of Byzantium",
+        "author": "Cyril Mango (ed.)",
+        "year": 2002,
+        "note": "牛津通史，适合解释东罗马/拜占庭长期制度、文化和宗教演变。"
+      },
+      {
+        "id": "byzantine-haldon-2000",
+        "title": "Byzantium: A History",
+        "author": "John Haldon",
+        "year": 2000,
+        "note": "简明学术通史，适合支撑关键事件的叙事和阶段划分。"
+      }
+    ]
   },
   {
     "id": "ottoman",
@@ -1944,27 +2474,62 @@
     "events": [
       {
         "year": 1299,
-        "title": "奥斯曼一世建立公国"
+        "title": "奥斯曼一世建立公国",
+        "type": "政治",
+        "detail": "奥斯曼一世领导的边地贝伊政权在比提尼亚边境扩张，传统上以1299年作为奥斯曼公国兴起纪年。早期资料多为后世编纂，具体建国年份和制度形态需谨慎表述。",
+        "referenceIds": [
+          "ottoman-finkel-2005",
+          "ottoman-imber-2002"
+        ]
       },
       {
         "year": 1453,
-        "title": "穆罕默德二世攻陷君士坦丁堡"
+        "title": "穆罕默德二世攻陷君士坦丁堡",
+        "type": "军事",
+        "detail": "穆罕默德二世攻陷君士坦丁堡，结束东罗马帝国并把该城转化为奥斯曼帝国首都。此事件既是军事转折，也是奥斯曼皇权自我定位和地中海秩序重组的象征。",
+        "referenceIds": [
+          "ottoman-finkel-2005",
+          "ottoman-imber-2002"
+        ]
       },
       {
         "year": 1517,
-        "title": "塞利姆一世征服马穆鲁克，掌握麦加守护权"
+        "title": "塞利姆一世征服马穆鲁克，掌握麦加守护权",
+        "type": "政治",
+        "detail": "塞利姆一世击败马穆鲁克后控制埃及、叙利亚和红海通道，并取得对麦加、麦地那圣地保护的政治宗教声望。哈里发权威转移的后世叙述需与当时实际制度区分。",
+        "referenceIds": [
+          "ottoman-finkel-2005",
+          "ottoman-inalcik-1973"
+        ]
       },
       {
         "year": 1529,
-        "title": "苏莱曼大帝首次围攻维也纳"
+        "title": "苏莱曼大帝首次围攻维也纳",
+        "type": "军事",
+        "detail": "苏莱曼一世围攻维也纳显示奥斯曼在中欧方向的扩张顶点之一，但后勤、天气和哈布斯堡防御限制了攻城结果。该事件不意味着奥斯曼马上衰落，而是边境竞争长期化。",
+        "referenceIds": [
+          "ottoman-imber-2002",
+          "ottoman-inalcik-1973"
+        ]
       },
       {
         "year": 1683,
-        "title": "维也纳之战，奥斯曼扩张终止"
+        "title": "维也纳之战，奥斯曼扩张终止",
+        "type": "军事",
+        "detail": "1683年第二次维也纳围城失败后，神圣同盟战争改变中欧力量对比，奥斯曼在欧洲的战略主动权明显下降。“扩张终止”是对欧洲方向的概括，帝国在其他地区仍有政治和军事调整。",
+        "referenceIds": [
+          "ottoman-finkel-2005",
+          "ottoman-imber-2002"
+        ]
       },
       {
         "year": 1922,
-        "title": "苏丹制废除，帝国终结"
+        "title": "苏丹制废除，帝国终结",
+        "type": "政治",
+        "detail": "土耳其大国民议会在1922年废除苏丹制，奥斯曼王朝的帝国主权终结。1923年共和国成立和洛桑条约确认新国家秩序，因此1922/1923在不同叙事中常分别标记帝国结束与共和国开始。",
+        "referenceIds": [
+          "ottoman-finkel-2005"
+        ]
       }
     ],
     "tags": [
@@ -1975,7 +2540,31 @@
       "中东"
     ],
     "importance": 5,
-    "legacy": "奥斯曼塑造了今日中东与巴尔干的国家边界、宗教格局和城市天际线，其行政与宗教共处模式至今被研究与争论。"
+    "legacy": "奥斯曼塑造了今日中东与巴尔干的国家边界、宗教格局和城市天际线，其行政与宗教共处模式至今被研究与争论。",
+    "sourceNote": "本条目以奥斯曼王朝从安纳托利亚边地公国到跨洲帝国、再到现代土耳其共和国前夕的制度终结为主线。1299是传统建国纪年而非可精确证明的单日建国；1922标记苏丹制废除，1923共和国成立和洛桑体系完成则属于后续国家转换节点。",
+    "references": [
+      {
+        "id": "ottoman-finkel-2005",
+        "title": "Osman's Dream: The Story of the Ottoman Empire, 1300-1923",
+        "author": "Caroline Finkel",
+        "year": 2005,
+        "note": "覆盖1300至1923年的长时段通史，适合支撑从兴起到帝国终结的完整叙事。"
+      },
+      {
+        "id": "ottoman-imber-2002",
+        "title": "The Ottoman Empire, 1300-1650: The Structure of Power",
+        "author": "Colin Imber",
+        "year": 2002,
+        "note": "聚焦早期和古典奥斯曼权力结构，适合解释1299、1453、1517和苏莱曼时期。"
+      },
+      {
+        "id": "ottoman-inalcik-1973",
+        "title": "The Ottoman Empire: The Classical Age 1300-1600",
+        "author": "Halil Inalcik",
+        "year": 1973,
+        "note": "经典研究，支撑奥斯曼制度、征服和古典时代扩张背景。"
+      }
+    ]
   },
   {
     "id": "islamic-caliphates",
@@ -2117,27 +2706,63 @@
     "events": [
       {
         "year": 1206,
-        "title": "铁木真被尊为成吉思汗，蒙古帝国建立"
+        "title": "铁木真被尊为成吉思汗，蒙古帝国建立",
+        "type": "政治",
+        "detail": "1206年库里尔台承认铁木真为成吉思汗，标志草原诸部在新政治和军事组织下整合。此处的“帝国建立”指大蒙古国权力结构成形，早期版图仍在随后征服中迅速扩展。",
+        "referenceIds": [
+          "mongol-may-2018",
+          "mongol-cambridge-2023"
+        ]
       },
       {
         "year": 1227,
-        "title": "成吉思汗在征西夏途中去世"
+        "title": "成吉思汗在征西夏途中去世",
+        "type": "政治",
+        "detail": "成吉思汗在对西夏战争末期去世，死亡细节在不同传统中有差异。其后继承安排和窝阔台继位，使蒙古扩张从个人领袖征服转入家族帝国制度化阶段。",
+        "referenceIds": [
+          "mongol-may-2018",
+          "mongol-morgan-2007"
+        ]
       },
       {
         "year": 1234,
-        "title": "蒙古联合宋灭金"
+        "title": "蒙古联合宋灭金",
+        "type": "军事",
+        "detail": "蒙古与南宋夹击金朝并在1234年灭金，结束华北女真王朝统治。宋蒙合作很快让位于双方争夺华北和中原秩序的长期战争。",
+        "referenceIds": [
+          "mongol-may-2018",
+          "mongol-cambridge-2023"
+        ]
       },
       {
         "year": 1258,
-        "title": "旭烈兀攻陷巴格达，阿拔斯哈里发覆灭"
+        "title": "旭烈兀攻陷巴格达，阿拔斯哈里发覆灭",
+        "type": "军事",
+        "detail": "旭烈兀率军攻陷巴格达，结束阿拔斯哈里发在巴格达的政治中心地位，并推动伊儿汗国在西亚形成。哈里发宗教象征并未从伊斯兰世界完全消失，后来在其他政治语境中被重塑。",
+        "referenceIds": [
+          "mongol-may-2018",
+          "mongol-cambridge-2023"
+        ]
       },
       {
         "year": 1260,
-        "title": "艾因贾鲁特之战，蒙古西扩受挫"
+        "title": "艾因贾鲁特之战，蒙古西扩受挫",
+        "type": "军事",
+        "detail": "马穆鲁克军在艾因贾鲁特击败蒙古部队，阻止蒙古在叙利亚和埃及方向继续推进。战役意义重大，但蒙古在西亚的伊儿汗国仍长期存在，不能理解为蒙古整体崩溃。",
+        "referenceIds": [
+          "mongol-morgan-2007",
+          "mongol-may-2018"
+        ]
       },
       {
         "year": 1294,
-        "title": "忽必烈逝世，帝国实质分裂为四大汗国"
+        "title": "忽必烈逝世，帝国实质分裂为四大汗国",
+        "type": "政治",
+        "detail": "忽必烈去世后，元朝、伊儿汗国、察合台汗国和金帐汗国等政权之间的共同大汗权威更趋象征化。帝国分裂是从1260年代继承冲突和区域化开始的长期过程，1294是压缩时间轴中的清晰标记。",
+        "referenceIds": [
+          "mongol-cambridge-2023",
+          "mongol-morgan-2007"
+        ]
       }
     ],
     "tags": [
@@ -2148,7 +2773,31 @@
       "欧亚"
     ],
     "importance": 5,
-    "legacy": "蒙古驿站、跨欧亚贸易与人员流动重塑了瘟疫、商品、宗教和技术的传播路径，对中国、伊朗、俄罗斯与东欧国家形态都有深远影响。"
+    "legacy": "蒙古驿站、跨欧亚贸易与人员流动重塑了瘟疫、商品、宗教和技术的传播路径，对中国、伊朗、俄罗斯与东欧国家形态都有深远影响。",
+    "sourceNote": "本条目以1206年成吉思汗建立的大蒙古国及其欧亚扩张为主线。时间轴把统一草原、灭金、西亚远征和汗国分裂压缩为一个帝国档案；1260年代以后帝国已明显分裂，1294用于标记忽必烈死后统一大汗权威进一步失去实际约束力，而不是所有蒙古政权结束。",
+    "references": [
+      {
+        "id": "mongol-may-2018",
+        "title": "The Mongol Empire",
+        "author": "Timothy May",
+        "year": 2018,
+        "note": "系统介绍蒙古帝国兴起、制度、诸汗国和欧亚影响，适合本条目主干。"
+      },
+      {
+        "id": "mongol-cambridge-2023",
+        "title": "The Cambridge History of the Mongol Empire",
+        "author": "Michal Biran and Hodong Kim (eds.)",
+        "year": 2023,
+        "note": "最新大型学术卷册，强调蒙古帝国的欧亚整体语境和游牧政治中心性。"
+      },
+      {
+        "id": "mongol-morgan-2007",
+        "title": "The Mongols",
+        "author": "David Morgan",
+        "year": 2007,
+        "note": "经典入门研究的修订版，适合校准征服事件、汗国关系和分裂问题。"
+      }
+    ]
   },
   {
     "id": "maurya",
@@ -2176,27 +2825,63 @@
     "events": [
       {
         "year": -322,
-        "title": "旃陀罗笈多·孔雀建立王朝"
+        "title": "旃陀罗笈多·孔雀建立王朝",
+        "type": "政治",
+        "detail": "约前4世纪末，旃陀罗笈多在摩揭陀地区崛起，推翻难陀势力并建立孔雀王朝；传统叙述常把这一过程与亚历山大撤军后的西北印度政治重组相联系，但具体年序和早期统治范围仍有重建成分。",
+        "referenceIds": [
+          "maurya-singh-2008",
+          "maurya-thapar-1961"
+        ]
       },
       {
         "year": -305,
-        "title": "与塞琉古议和，控制兴都库什以东"
+        "title": "与塞琉古议和，控制兴都库什以东",
+        "type": "外交",
+        "detail": "旃陀罗笈多与塞琉古一世之间的冲突以和约和联姻、战象交换等外交安排告一段落，孔雀势力由此稳固西北边地；“控制兴都库什以东”是产品时间轴的概括，实际边界应理解为区域影响和政治承认的综合结果。",
+        "referenceIds": [
+          "maurya-singh-2008",
+          "maurya-thapar-1961"
+        ]
       },
       {
         "year": -268,
-        "title": "阿育王即位"
+        "title": "阿育王即位",
+        "type": "政治",
+        "detail": "阿育王在频头娑罗之后继位，成为孔雀王朝最有资料可考的君主之一；其早期统治、继承斗争和确切登基年仍需根据佛教文献、铭文纪年和后世传统交叉理解。",
+        "referenceIds": [
+          "maurya-thapar-1961",
+          "maurya-falk-2006"
+        ]
       },
       {
         "year": -261,
-        "title": "羯陵伽战争，阿育王皈依佛法"
+        "title": "羯陵伽战争，阿育王皈依佛法",
+        "type": "军事",
+        "detail": "羯陵伽战争是阿育王铭文中最重要的政治转折叙述之一，战争造成的苦难被用来解释其转向以法为核心的王权表达；“皈依佛法”应写得谨慎，因为铭文呈现的是道德治理与佛教支持的结合，而非简单瞬间转变。",
+        "referenceIds": [
+          "maurya-thapar-1961",
+          "maurya-falk-2006"
+        ]
       },
       {
         "year": -250,
-        "title": "在各地竖立石柱诏书，派遣佛教使团"
+        "title": "在各地竖立石柱诏书，派遣佛教使团",
+        "type": "宗教",
+        "detail": "阿育王以岩刻和石柱诏书传播王权伦理、行政命令与宗教宽容理念，并在佛教传统中与向斯里兰卡等地派遣使团相连；铭文地点可实证，部分使团叙述则更多依赖佛教编年传统。",
+        "referenceIds": [
+          "maurya-falk-2006",
+          "maurya-thapar-1961"
+        ]
       },
       {
         "year": -185,
-        "title": "末王被弑，孔雀王朝灭亡"
+        "title": "末王被弑，孔雀王朝灭亡",
+        "type": "政治",
+        "detail": "约前2世纪中叶，末王布里哈德拉塔据传被将领普沙密多罗弑杀，巽伽势力取而代之；这一事件标志孔雀王朝作为统一帝国的终结，但各地政治结构的变化并非同一时间完成。",
+        "referenceIds": [
+          "maurya-thapar-1961",
+          "maurya-singh-2008"
+        ]
       }
     ],
     "tags": [
@@ -2207,7 +2892,31 @@
       "南亚"
     ],
     "importance": 5,
-    "legacy": "阿育王的法敕、石柱与佛教使团把佛教推向斯里兰卡、东南亚和中亚，孔雀王朝也是南亚后世\"以法治国\"叙事的源头。"
+    "legacy": "阿育王的法敕、石柱与佛教使团把佛教推向斯里兰卡、东南亚和中亚，孔雀王朝也是南亚后世\"以法治国\"叙事的源头。",
+    "sourceNote": "孔雀王朝条目以早期印度政治史研究、阿育王铭文研究和南亚古代史综合著作为依据。年份采用产品现有时间轴的压缩表达；王朝建立、塞琉古和约、羯陵伽战争与灭亡等事件在学界叙述中较稳定，但具体政治控制范围、阿育王皈依过程和佛教使团路线仍应避免写成单一确定图景。",
+    "references": [
+      {
+        "id": "maurya-thapar-1961",
+        "title": "Aśoka and the Decline of the Mauryas",
+        "author": "Romila Thapar",
+        "year": 1961,
+        "note": "经典孔雀王朝与阿育王研究，适合支撑阿育王即位、羯陵伽战争、诏书和王朝衰落的谨慎叙述。"
+      },
+      {
+        "id": "maurya-singh-2008",
+        "title": "A History of Ancient and Early Medieval India: From the Stone Age to the 12th Century",
+        "author": "Upinder Singh",
+        "year": 2008,
+        "note": "南亚古代史综合教材，适合校准孔雀王朝建立、塞琉古关系和后期瓦解的宏观背景。"
+      },
+      {
+        "id": "maurya-falk-2006",
+        "title": "Aśokan Sites and Artefacts: A Source-book with Bibliography",
+        "author": "Harry Falk",
+        "year": 2006,
+        "note": "阿育王铭文与遗物地点资料集，适合支撑石柱诏书、铭文分布和材料证据的来源说明。"
+      }
+    ]
   },
   {
     "id": "gupta",
@@ -2233,27 +2942,63 @@
     "events": [
       {
         "year": 320,
-        "title": "旃陀罗笈多一世建立笈多王朝"
+        "title": "旃陀罗笈多一世建立笈多王朝",
+        "type": "政治",
+        "detail": "旃陀罗笈多一世通过婚姻联盟和恒河中游的政治整合奠定笈多王朝基础；320年也常与笈多纪元相连，适合作为王朝兴起的时间轴锚点。",
+        "referenceIds": [
+          "gupta-singh-2008",
+          "gupta-thapar-2002"
+        ]
       },
       {
         "year": 380,
-        "title": "旃陀罗笈多二世即位，国势鼎盛"
+        "title": "旃陀罗笈多二世即位，国势鼎盛",
+        "type": "政治",
+        "detail": "旃陀罗笈多二世时期，笈多势力扩展并巩固对北印度重要区域的影响，宫廷文化和金币体系也显示出强烈的王权形象；“鼎盛”主要指核心区政治和文化声望，不能等同于均质化直接统治全印度。",
+        "referenceIds": [
+          "gupta-singh-2008",
+          "gupta-thapar-2002"
+        ]
       },
       {
         "year": 405,
-        "title": "中国法显抵达印度"
+        "title": "中国法显抵达印度",
+        "type": "文化",
+        "detail": "法显在5世纪初游历印度佛教圣地，其记录为笈多时期社会、僧团和交通提供外部观察；他的行记关注佛教实践，不能直接代表整个王朝行政或所有地区社会状况。",
+        "referenceIds": [
+          "gupta-singh-2008",
+          "gupta-thapar-2002"
+        ]
       },
       {
         "year": 499,
-        "title": "阿耶波多完成《阿耶波多历书》"
+        "title": "阿耶波多完成《阿耶波多历书》",
+        "type": "科技",
+        "detail": "阿耶波多在499年前后完成《阿耶波多历书》，体现了南亚天文数学传统的高度发展，包括行星运动、三角函数和历算方法；此事件代表笈多及后笈多文化环境中的科学传统，而非单纯宫廷政绩。",
+        "referenceIds": [
+          "gupta-plofker-2009",
+          "gupta-singh-2008"
+        ]
       },
       {
         "year": 510,
-        "title": "匈那入侵，笈多势力开始收缩"
+        "title": "匈那入侵，笈多势力开始收缩",
+        "type": "军事",
+        "detail": "5世纪后期至6世纪初，匈那等外来军事压力与地方权力上升共同削弱笈多王朝，北印度政治版图趋于分裂；510年可作为衰退期的时间轴锚点，而不应理解为单次事件导致全境崩溃。",
+        "referenceIds": [
+          "gupta-singh-2008",
+          "gupta-thapar-2002"
+        ]
       },
       {
         "year": 550,
-        "title": "王朝实质瓦解"
+        "title": "王朝实质瓦解",
+        "type": "政治",
+        "detail": "到6世纪中叶，笈多王朝核心权力已经被地方王朝、区域贵族和外部军事集团严重分割；“实质瓦解”指帝国层面的政治整合不再存在，而笈多名号和地方支系仍可能延续。",
+        "referenceIds": [
+          "gupta-singh-2008",
+          "gupta-thapar-2002"
+        ]
       }
     ],
     "tags": [
@@ -2264,7 +3009,31 @@
       "南亚"
     ],
     "importance": 4,
-    "legacy": "笈多时代奠定了印度数字、零的概念和古典梵语文学的高峰，也为中世纪印度教社会与艺术风格定型。"
+    "legacy": "笈多时代奠定了印度数字、零的概念和古典梵语文学的高峰，也为中世纪印度教社会与艺术风格定型。",
+    "sourceNote": "笈多王朝条目以南亚古代史综合研究、早期印度政治文化研究和科学史资料为基础。产品标签把多个地方王权、朝贡关系和文化高峰压缩为一个“笈多王朝”叙事；事件说明应区分王朝政治扩张、文化声望和后期地方化，不把“古典黄金时代”写成没有区域差异的统一现实。",
+    "references": [
+      {
+        "id": "gupta-singh-2008",
+        "title": "A History of Ancient and Early Medieval India: From the Stone Age to the 12th Century",
+        "author": "Upinder Singh",
+        "year": 2008,
+        "note": "综合叙述笈多王朝政治、铭文、宗教和区域社会，适合支撑大多数事件说明。"
+      },
+      {
+        "id": "gupta-thapar-2002",
+        "title": "Early India: From the Origins to AD 1300",
+        "author": "Romila Thapar",
+        "year": 2002,
+        "note": "强调国家形态、社会结构和文化叙述的复杂性，适合避免把笈多时期简化为单一黄金时代。"
+      },
+      {
+        "id": "gupta-plofker-2009",
+        "title": "Mathematics in India",
+        "author": "Kim Plofker",
+        "year": 2009,
+        "note": "印度数学史权威研究，适合支撑阿耶波多及其天文数学文本的说明。"
+      }
+    ]
   },
   {
     "id": "chola",
@@ -2290,27 +3059,63 @@
     "events": [
       {
         "year": 850,
-        "title": "维迦耶拉雅·朱罗复兴王朝"
+        "title": "维迦耶拉雅·朱罗复兴王朝",
+        "type": "政治",
+        "detail": "9世纪中叶，维迦耶拉雅在坦贾武尔一带建立新的朱罗权力中心，标志帝国朱罗的兴起；“复兴”反映朱罗名号的再度政治化，而不是简单延续一个未中断的古代国家。",
+        "referenceIds": [
+          "chola-stein-1980",
+          "chola-champakalakshmi-1996"
+        ]
       },
       {
         "year": 985,
-        "title": "拉真陀拉·朱罗一世即位"
+        "title": "罗阇罗阇一世即位",
+        "type": "政治",
+        "detail": "985年通常标记罗阇罗阇一世即位，他通过军事扩张、寺庙建设和行政铭文把帝国朱罗推向鼎盛；拉真陀罗一世继位应放在1014年前后。",
+        "referenceIds": [
+          "chola-nagaswamy-1970",
+          "chola-stein-1980"
+        ]
       },
       {
         "year": 1010,
-        "title": "坦贾武尔布里哈迪斯瓦拉神庙竣工"
+        "title": "坦贾武尔布里哈迪斯瓦拉神庙竣工",
+        "type": "宗教",
+        "detail": "布里哈迪斯瓦拉神庙约在1010年完成，是罗阇罗阇一世王权、湿婆崇拜、寺庙经济和工艺体系的集中体现；其铭文也为朱罗行政、捐赠和仪式组织提供关键材料。",
+        "referenceIds": [
+          "chola-champakalakshmi-1996",
+          "chola-nagaswamy-1970"
+        ]
       },
       {
         "year": 1014,
-        "title": "拉真陀罗一世即位，开启海上扩张"
+        "title": "拉真陀罗一世即位，开启海上扩张",
+        "type": "军事",
+        "detail": "拉真陀罗一世继位后延续并扩大朱罗的陆上和海上军事行动，朱罗铭文把远征、胜利和王权声望紧密相连；“海上扩张”应理解为对贸易网络和海峡节点的军事介入。",
+        "referenceIds": [
+          "chola-nagaswamy-1970",
+          "chola-champakalakshmi-1996"
+        ]
       },
       {
         "year": 1025,
-        "title": "远征室利佛逝，控制马六甲海峡"
+        "title": "远征室利佛逝，控制马六甲海峡",
+        "type": "贸易",
+        "detail": "1025年前后，朱罗舰队袭击室利佛逝相关港口和政治中心，削弱其海上枢纽地位；“控制马六甲海峡”是产品化压缩，较稳妥的写法是朱罗短期干预海峡贸易与朝贡网络，而非长期直接统治。",
+        "referenceIds": [
+          "chola-champakalakshmi-1996",
+          "chola-nagaswamy-1970"
+        ]
       },
       {
         "year": 1279,
-        "title": "王朝在内乱与北方压力下衰亡"
+        "title": "王朝在内乱与北方压力下衰亡",
+        "type": "政治",
+        "detail": "13世纪后期，朱罗在潘地亚、霍伊萨拉等区域力量竞争和内部继承问题中失去核心地位；1279年可作为帝国朱罗终结的时间轴节点，但南印度地方政治转型是渐进过程。",
+        "referenceIds": [
+          "chola-stein-1980",
+          "chola-champakalakshmi-1996"
+        ]
       }
     ],
     "tags": [
@@ -2321,7 +3126,31 @@
       "海上贸易"
     ],
     "importance": 4,
-    "legacy": "朱罗的青铜湿婆像、巨型神庙与海军远征把南印度文化传播至东南亚，今天泰国、马来与印尼仍可见其文化痕迹。"
+    "legacy": "朱罗的青铜湿婆像、巨型神庙与海军远征把南印度文化传播至东南亚，今天泰国、马来与印尼仍可见其文化痕迹。",
+    "sourceNote": "朱罗王朝条目以南印度铭文、寺庙经济、海上贸易和东南亚关系研究为基础。产品时间轴把早期朱罗、帝国朱罗与后期地方竞争压缩为一条连续线；应明确王朝的核心在泰米尔地区，海上远征更多是贸易通道、朝贡和军事威慑的组合，不能写成长期殖民式占领整个海峡世界。",
+    "references": [
+      {
+        "id": "chola-nagaswamy-1970",
+        "title": "Gangaikondacholapuram",
+        "author": "R. Nagaswamy",
+        "year": 1970,
+        "note": "考古与铭文取向资料，适合支撑拉真陀罗一世、朱罗都城和帝国纪念建筑相关说明。"
+      },
+      {
+        "id": "chola-champakalakshmi-1996",
+        "title": "Trade, Ideology and Urbanization: South India 300 BC to AD 1300",
+        "author": "R. Champakalakshmi",
+        "year": 1996,
+        "note": "研究南印度贸易、城市化和宗教经济，适合支撑朱罗海贸、寺庙和区域社会背景。"
+      },
+      {
+        "id": "chola-stein-1980",
+        "title": "Peasant State and Society in Medieval South India",
+        "author": "Burton Stein",
+        "year": 1980,
+        "note": "关于中世纪南印度国家与地方社会的经典研究，适合支撑王权、地方组织和衰亡背景。"
+      }
+    ]
   },
   {
     "id": "mughal",
@@ -2464,27 +3293,63 @@
     "events": [
       {
         "year": 802,
-        "title": "阇耶跋摩二世自立为\"宇宙之王\"，王朝奠基"
+        "title": "阇耶跋摩二世自立为\"宇宙之王\"，王朝奠基",
+        "type": "政治",
+        "detail": "802年常被用作吴哥王权起点，来源与阇耶跋摩二世在荔枝山一带建立神王仪式的后世碑铭叙述有关；“宇宙之王”是王权仪式和政治独立的象征性表达，不能视为现代意义统一国家瞬间成立。",
+        "referenceIds": [
+          "khmer-coedes-1968",
+          "khmer-higham-2001"
+        ]
       },
       {
         "year": 1113,
-        "title": "苏耶跋摩二世兴建吴哥窟"
+        "title": "苏耶跋摩二世兴建吴哥窟",
+        "type": "工程",
+        "detail": "苏耶跋摩二世时期修建吴哥窟，将毗湿奴崇拜、王权纪念和大型水利城市景观结合起来；1113年是其即位和工程时代的时间锚，寺庙建设本身经历较长过程。",
+        "referenceIds": [
+          "khmer-higham-2001",
+          "khmer-coedes-1968"
+        ]
       },
       {
         "year": 1181,
-        "title": "阇耶跋摩七世即位，营造吴哥城"
+        "title": "阇耶跋摩七世即位，营造吴哥城",
+        "type": "工程",
+        "detail": "阇耶跋摩七世在占城冲击后重建王权，推动吴哥城、巴戎寺、道路、医院和宗教工程，体现大乘佛教王权的公共建设理想；这些工程也反映了高强度动员带来的财政和劳役压力。",
+        "referenceIds": [
+          "khmer-higham-2001",
+          "khmer-coedes-1968"
+        ]
       },
       {
         "year": 1296,
-        "title": "元朝周达观抵达，写下《真腊风土记》"
+        "title": "元朝周达观抵达，写下《真腊风土记》",
+        "type": "外交",
+        "detail": "周达观随元代使团到达吴哥，其《真腊风土记》记录城市、宫廷、贸易、风俗和物产，是少数同时代外部文字证据；使用时需注意其停留时间、译介过程和中国官员视角。",
+        "referenceIds": [
+          "khmer-zhou-2007",
+          "khmer-higham-2001"
+        ]
       },
       {
         "year": 1431,
-        "title": "暹罗大城攻陷吴哥"
+        "title": "暹罗大城攻陷吴哥",
+        "type": "军事",
+        "detail": "15世纪早期，大城王国对吴哥的军事压力成为后吴哥转型的重要节点；1431年常作为吴哥被攻陷的传统日期，但衰退还涉及贸易路线、生态水利、宫廷迁徙和区域竞争等长期因素。",
+        "referenceIds": [
+          "khmer-higham-2001",
+          "khmer-coedes-1968"
+        ]
       },
       {
         "year": 1450,
-        "title": "王朝实际衰亡，迁都金边一带"
+        "title": "王朝实际衰亡，迁都金边一带",
+        "type": "政治",
+        "detail": "15世纪中叶以后，高棉政治重心逐渐向湄公河下游和金边一带转移，吴哥不再是稳定王都；“衰亡”应理解为吴哥帝国形态结束，而非高棉王权或族群历史消失。",
+        "referenceIds": [
+          "khmer-higham-2001",
+          "khmer-coedes-1968"
+        ]
       }
     ],
     "tags": [
@@ -2495,7 +3360,31 @@
       "东南亚"
     ],
     "importance": 4,
-    "legacy": "吴哥窟与吴哥城留下东南亚最壮观的宗教建筑群，也是柬埔寨国家认同的核心象征。"
+    "legacy": "吴哥窟与吴哥城留下东南亚最壮观的宗教建筑群，也是柬埔寨国家认同的核心象征。",
+    "sourceNote": "吴哥高棉帝国条目以碑铭、建筑史、东南亚国家形成研究和周达观文本为基础。产品标签把吴哥王权、真腊传统和后吴哥转移压缩为一条连续叙事；应区分仪式王权、实际行政控制、寺庙工程和区域网络，不把宏大建筑等同于全境稳定统治。",
+    "references": [
+      {
+        "id": "khmer-coedes-1968",
+        "title": "The Indianized States of Southeast Asia",
+        "author": "George Coedès",
+        "year": 1968,
+        "note": "东南亚早期国家研究经典，适合支撑高棉王权、印度化概念和区域政治背景，同时需注意其理论框架较早。"
+      },
+      {
+        "id": "khmer-higham-2001",
+        "title": "The Civilization of Angkor",
+        "author": "Charles Higham",
+        "year": 2001,
+        "note": "面向吴哥考古、城市和王权的综合著作，适合支撑吴哥窟、吴哥城和衰退叙述。"
+      },
+      {
+        "id": "khmer-zhou-2007",
+        "title": "A Record of Cambodia: The Land and Its People",
+        "author": "Zhou Daguan; translated by Peter Harris",
+        "year": 2007,
+        "note": "周达观《真腊风土记》英译与注释，适合支撑1296年外部观察，但文本视角有限。"
+      }
+    ]
   },
   {
     "id": "srivijaya",
@@ -2523,27 +3412,63 @@
     "events": [
       {
         "year": 671,
-        "title": "中国僧人义净在巨港学习梵文"
+        "title": "中国僧人义净在巨港学习梵文",
+        "type": "宗教",
+        "detail": "义净在前往印度途中停留室利佛逝，并称其为学习梵文和佛教戒律的重要中转地；这一记录是室利佛逝早期佛教与海上交通地位的关键外部证据，但不能单独证明其领土边界。",
+        "referenceIds": [
+          "srivijaya-coedes-1968",
+          "srivijaya-wolters-1970"
+        ]
       },
       {
         "year": 775,
-        "title": "势力扩展至马来半岛与爪哇"
+        "title": "势力扩展至马来半岛与爪哇",
+        "type": "贸易",
+        "detail": "8世纪室利佛逝相关铭文和区域联系显示其影响力触及马来半岛和爪哇部分港口网络；“扩展”更适合理解为朝贡、港口控制、佛教赞助和航道节点影响，而不是连续陆地占领。",
+        "referenceIds": [
+          "srivijaya-coedes-1968",
+          "srivijaya-wolters-1970"
+        ]
       },
       {
         "year": 902,
-        "title": "与朱罗王朝展开海上竞争"
+        "title": "与朱罗王朝展开海上竞争",
+        "type": "贸易",
+        "detail": "现有902年标题把较长时段的海上贸易竞争提前压缩为节点；更稳妥的说明是，9至10世纪南印度、马来世界和中国航线互动加深，为后来朱罗与室利佛逝冲突铺垫。",
+        "referenceIds": [
+          "srivijaya-wolters-1970",
+          "srivijaya-miksic-2013"
+        ]
       },
       {
         "year": 1025,
-        "title": "遭朱罗远征重创"
+        "title": "遭朱罗远征重创",
+        "type": "军事",
+        "detail": "1025年前后，朱罗舰队袭击室利佛逝相关中心，打击其港口联盟和海上声望；这次远征是室利佛逝衰退的重要节点，但并不意味着其政治与贸易网络立即完全消失。",
+        "referenceIds": [
+          "srivijaya-wolters-1970",
+          "srivijaya-coedes-1968"
+        ]
       },
       {
         "year": 1183,
-        "title": "势力萎缩，国都迁至占碑"
+        "title": "势力萎缩，国都迁至占碑",
+        "type": "政治",
+        "detail": "12世纪以后，室利佛逝的中心和称号可能向占碑等地转移，反映马六甲海峡和苏门答腊东岸港口格局变化；“国都迁移”应作为政治中心转移的概括，而非现代首都制度。",
+        "referenceIds": [
+          "srivijaya-wolters-1970",
+          "srivijaya-miksic-2013"
+        ]
       },
       {
         "year": 1290,
-        "title": "被新柯沙里、暹罗与满者伯夷取代"
+        "title": "被新柯沙里、暹罗与满者伯夷取代",
+        "type": "政治",
+        "detail": "13世纪后期，爪哇新柯沙里和满者伯夷、暹罗以及新的马来港口力量重塑海峡世界，室利佛逝不再保持早期枢纽地位；“取代”指区域主导权转移，而非单一征服事件。",
+        "referenceIds": [
+          "srivijaya-wolters-1970",
+          "srivijaya-miksic-2013"
+        ]
       }
     ],
     "tags": [
@@ -2554,7 +3479,31 @@
       "东南亚"
     ],
     "importance": 4,
-    "legacy": "室利佛逝奠定了马六甲海峡作为印度洋—南海贸易咽喉的地位，也是东南亚成为佛教学术枢纽的代表。"
+    "legacy": "室利佛逝奠定了马六甲海峡作为印度洋—南海贸易咽喉的地位，也是东南亚成为佛教学术枢纽的代表。",
+    "sourceNote": "室利佛逝条目以碑铭、中国僧侣和朝贡记录、阿拉伯与东南亚海贸研究为基础。其政治形态是港口联盟、海上节点和佛教学习网络的组合， chronology heavily relies on inscriptions and travel or diplomatic records；产品标签和边界必须避免把它写成连续、陆地边界清晰的现代领土国家。",
+    "references": [
+      {
+        "id": "srivijaya-wolters-1970",
+        "title": "The Fall of Śrīvijaya in Malay History",
+        "author": "O. W. Wolters",
+        "year": 1970,
+        "note": "室利佛逝政治记忆、马来史和衰落问题的经典研究，适合支撑后期萎缩与替代叙述。"
+      },
+      {
+        "id": "srivijaya-miksic-2013",
+        "title": "Singapore and the Silk Road of the Sea, 1300-1800",
+        "author": "John N. Miksic",
+        "year": 2013,
+        "note": "虽然时间重点较晚，但对海峡世界、港口网络和区域考古背景有帮助，可用于避免陆地帝国化叙述。"
+      },
+      {
+        "id": "srivijaya-coedes-1968",
+        "title": "The Indianized States of Southeast Asia",
+        "author": "George Coedès",
+        "year": 1968,
+        "note": "东南亚早期国家综合框架，适合支撑室利佛逝与马来半岛、爪哇、佛教网络的传统叙述。"
+      }
+    ]
   },
   {
     "id": "joseon",
@@ -2582,27 +3531,63 @@
     "events": [
       {
         "year": 1392,
-        "title": "李成桂取代高丽，建立朝鲜"
+        "title": "李成桂取代高丽，建立朝鲜",
+        "type": "政治",
+        "detail": "1392年，李成桂在高丽末期军事与士大夫政治重组中建立朝鲜，随后以儒学官僚制度和明朝册封秩序巩固新王朝合法性；这不是单纯宫廷政变，而是制度和精英结构的重组。",
+        "referenceIds": [
+          "joseon-seth-2010",
+          "joseon-eckert-1990"
+        ]
       },
       {
         "year": 1443,
-        "title": "世宗创制训民正音（谚文）"
+        "title": "世宗创制训民正音（谚文）",
+        "type": "文化",
+        "detail": "世宗时期创制训民正音，为朝鲜语书写提供新的表音文字体系；1443年为创制时间，1446年颁布《训民正音》，说明时应保留这一时间差。",
+        "referenceIds": [
+          "joseon-seth-2010",
+          "joseon-eckert-1990"
+        ]
       },
       {
         "year": 1592,
-        "title": "壬辰倭乱爆发，丰臣秀吉入侵"
+        "title": "壬辰倭乱爆发，丰臣秀吉入侵",
+        "type": "军事",
+        "detail": "1592年，日本丰臣政权出兵朝鲜，引发朝鲜、明朝和日本之间的大规模战争；壬辰倭乱重创朝鲜社会，也深刻影响东亚军事、外交和历史记忆。",
+        "referenceIds": [
+          "joseon-haboush-2009",
+          "joseon-seth-2010"
+        ]
       },
       {
         "year": 1636,
-        "title": "丙子胡乱，清军入朝"
+        "title": "丙子胡乱，清军入朝",
+        "type": "军事",
+        "detail": "1636年至1637年，后金至清的军事压力迫使朝鲜调整与明清之间的外交秩序，朝鲜成为清朝册封体系中的藩属；该事件应与此前丁卯胡乱和明清鼎革背景一并理解。",
+        "referenceIds": [
+          "joseon-seth-2010",
+          "joseon-eckert-1990"
+        ]
       },
       {
         "year": 1876,
-        "title": "《江华条约》开启近代条约体系"
+        "title": "《江华条约》开启近代条约体系",
+        "type": "外交",
+        "detail": "1876年朝日《江华条约》在日本压力下签订，迫使朝鲜开放港口并进入不平等条约体系；它标志朝鲜传统东亚外交秩序受到近代国际法和帝国主义竞争的冲击。",
+        "referenceIds": [
+          "joseon-seth-2010",
+          "joseon-eckert-1990"
+        ]
       },
       {
         "year": 1910,
-        "title": "日韩合并，王朝终结"
+        "title": "日韩合并，王朝终结",
+        "type": "政治",
+        "detail": "1910年日本正式吞并韩国，结束大韩帝国和朝鲜王朝延续下来的君主制度；此处“王朝终结”应包括1897年大韩帝国改制后的延续与断裂，不能只写成朝鲜王朝直接延续到吞并。",
+        "referenceIds": [
+          "joseon-seth-2010",
+          "joseon-eckert-1990"
+        ]
       }
     ],
     "tags": [
@@ -2613,7 +3598,31 @@
       "东亚"
     ],
     "importance": 4,
-    "legacy": "朝鲜王朝塑造了朝鲜半岛的文字、礼制、官僚与家族结构，谚文与儒家伦理至今深刻影响南北韩的社会形态。"
+    "legacy": "朝鲜王朝塑造了朝鲜半岛的文字、礼制、官僚与家族结构，谚文与儒家伦理至今深刻影响南北韩的社会形态。",
+    "sourceNote": "朝鲜王朝条目以韩国通史、朝鲜政治制度史和近代东亚国际关系研究为基础。当前产品关联地标中若指向瞻星台，应明确它是新罗遗存，不是朝鲜王朝建筑；可作为朝鲜半岛历史连续展示点，但不能写成朝鲜王朝地标。近代事件也需区分王朝、帝国、大韩帝国和日本吞并的制度断裂。",
+    "references": [
+      {
+        "id": "joseon-seth-2010",
+        "title": "A History of Korea: From Antiquity to the Present",
+        "author": "Michael J. Seth",
+        "year": 2010,
+        "note": "韩国通史，适合支撑朝鲜建立、制度文化、外战和近代条约体系的概括说明。"
+      },
+      {
+        "id": "joseon-eckert-1990",
+        "title": "Korea Old and New: A History",
+        "author": "Carter J. Eckert, Ki-baik Lee, Young Ick Lew, Michael Robinson, and Edward W. Wagner",
+        "year": 1990,
+        "note": "综合性韩国史教材，适合交叉校准王朝政治、壬辰倭乱、清入侵和近代转型。"
+      },
+      {
+        "id": "joseon-haboush-2009",
+        "title": "The Great East Asian War and the Birth of the Korean Nation",
+        "author": "JaHyun Kim Haboush",
+        "year": 2009,
+        "note": "聚焦壬辰倭乱及其记忆与身份影响，适合支撑1592年事件的历史重要性。"
+      }
+    ]
   },
   {
     "id": "yamato-japan",
@@ -2639,27 +3648,63 @@
     "events": [
       {
         "year": 593,
-        "title": "圣德太子摄政推行佛教与制度改革"
+        "title": "圣德太子摄政推行佛教与制度改革",
+        "type": "宗教",
+        "detail": "圣德太子相关传统把佛教赞助、冠位十二阶和十七条宪法等改革理想联系起来，反映飞鸟时期王权吸收大陆制度和佛教文化的方向；部分具体事迹经过后世政治记忆塑造，需谨慎表述。",
+        "referenceIds": [
+          "yamato-piggott-1997",
+          "yamato-brown-1993"
+        ]
       },
       {
         "year": 645,
-        "title": "大化改新，仿唐建立律令国家"
+        "title": "大化改新，仿唐建立律令国家",
+        "type": "制度",
+        "detail": "645年政变和随后改革开启以天皇、中央官僚、户籍班田和律令法为目标的制度转型；“仿唐建立律令国家”是长期过程的压缩，实际制度成型跨越天智、天武、持统和奈良时期。",
+        "referenceIds": [
+          "yamato-brown-1993",
+          "yamato-friday-2012"
+        ]
       },
       {
         "year": 710,
-        "title": "迁都平城京（奈良）"
+        "title": "迁都平城京（奈良）",
+        "type": "政治",
+        "detail": "710年迁都平城京，标志奈良时期都城制度和律令官僚国家的稳定化；都城规划明显受唐长安等大陆城市形制影响，但日本的土地、贵族和寺院政治有自身结构。",
+        "referenceIds": [
+          "yamato-brown-1993",
+          "yamato-friday-2012"
+        ]
       },
       {
         "year": 794,
-        "title": "迁都平安京（京都）"
+        "title": "迁都平安京（京都）",
+        "type": "政治",
+        "detail": "794年桓武天皇迁都平安京，开启平安时期，中央贵族政治、宫廷文化和地方庄园结构逐渐发展；这一迁都也反映王权试图调整与奈良大寺院势力的关系。",
+        "referenceIds": [
+          "yamato-brown-1993",
+          "yamato-friday-2012"
+        ]
       },
       {
         "year": 894,
-        "title": "废止遣唐使，转向本土文化"
+        "title": "废止遣唐使，转向本土文化",
+        "type": "文化",
+        "detail": "894年停止派遣遣唐使，常被视为日本宫廷文化本土化的重要节点；但这并不意味着与大陆完全隔绝，文字、佛教、制度和贸易联系仍以不同方式延续。",
+        "referenceIds": [
+          "yamato-brown-1993",
+          "yamato-friday-2012"
+        ]
       },
       {
         "year": 1185,
-        "title": "镰仓幕府成立，律令王权转入武家时代"
+        "title": "镰仓幕府成立，律令王权转入武家时代",
+        "type": "政治",
+        "detail": "源平战争后，源赖朝建立以镰仓为中心的武家政权，通常以1185或1192作为幕府成立的不同时间锚；此事件标志律令天皇国家的政治主导权转向武士政权，但朝廷制度仍继续存在。",
+        "referenceIds": [
+          "yamato-friday-2012",
+          "yamato-brown-1993"
+        ]
       }
     ],
     "tags": [
@@ -2670,7 +3715,31 @@
       "东亚"
     ],
     "importance": 4,
-    "legacy": "大和—平安时代的律令制、汉字与佛教吸收、宫廷文学（如《源氏物语》），是日本文化身份的奠基期。"
+    "legacy": "大和—平安时代的律令制、汉字与佛教吸收、宫廷文学（如《源氏物语》），是日本文化身份的奠基期。",
+    "sourceNote": "日本大和/律令国家条目将大和王权、飞鸟改革、奈良律令国家、平安王权和武家政权开端压缩到一个产品标签内。说明必须明确这不是单一王朝的现代意义连续国家，而是日本列岛早期王权和律令制度的长期转型；佛教、遣唐使、都城制度和武家政权分别属于不同政治阶段。",
+    "references": [
+      {
+        "id": "yamato-piggott-1997",
+        "title": "The Emergence of Japanese Kingship",
+        "author": "Joan R. Piggott",
+        "year": 1997,
+        "note": "研究大和王权形成和早期国家建构，适合支撑圣德太子以前后的王权与制度背景。"
+      },
+      {
+        "id": "yamato-brown-1993",
+        "title": "The Cambridge History of Japan, Volume 1: Ancient Japan",
+        "author": "Delmer M. Brown, editor",
+        "year": 1993,
+        "note": "古代日本权威论文集，适合支撑飞鸟、奈良、平安和律令制度相关事件。"
+      },
+      {
+        "id": "yamato-friday-2012",
+        "title": "Japan Emerging: Premodern History to 1850",
+        "author": "Karl F. Friday, editor",
+        "year": 2012,
+        "note": "前近代日本综合研究，适合支撑从律令国家到武家时代的转型说明。"
+      }
+    ]
   },
   {
     "id": "maya",
@@ -2811,27 +3880,63 @@
     "events": [
       {
         "year": 1325,
-        "title": "墨西卡人在特斯科科湖建造特诺奇蒂特兰"
+        "title": "墨西卡人在特斯科科湖建造特诺奇蒂特兰",
+        "type": "工程",
+        "detail": "1325 年是特诺奇蒂特兰建城的传统纪年，反映墨西卡人在特斯科科湖岛屿和湖岸环境中建立政治中心的记忆；具体日期带有后世编年和起源叙事色彩，但城市的湖上选址、水工与市场体系可由考古和殖民早期记录互证。",
+        "referenceIds": [
+          "aztec-smith-2012",
+          "aztec-townsend-2019"
+        ]
       },
       {
         "year": 1428,
-        "title": "与特斯科科、特拉科潘组成三国同盟"
+        "title": "与特斯科科、特拉科潘组成三国同盟",
+        "type": "政治",
+        "detail": "三国同盟通常被视为推翻阿斯卡波察尔科特帕内克霸权后的政治重组，特诺奇蒂特兰、特斯科科和特拉科潘通过军事合作与贡赋分配形成帝国核心；各城实际权力并不完全对等，后期特诺奇蒂特兰优势增强。",
+        "referenceIds": [
+          "aztec-smith-2012",
+          "aztec-hassig-1988"
+        ]
       },
       {
         "year": 1440,
-        "title": "蒙特苏马一世扩张势力"
+        "title": "蒙特苏马一世扩张势力",
+        "type": "军事",
+        "detail": "蒙特苏马一世在位时期，同盟势力向墨西哥谷地外扩张，贡赋省份和军事威慑体系更加稳定；这些扩张不应理解为现代领土国家式直接统治，而是由城邦、贡赋义务、驻防和盟友关系构成的分层控制。",
+        "referenceIds": [
+          "aztec-smith-2012",
+          "aztec-hassig-1988"
+        ]
       },
       {
         "year": 1487,
-        "title": "大神庙重建并大规模献祭"
+        "title": "大神庙重建并大规模献祭",
+        "type": "宗教",
+        "detail": "大神庙重建和再奉献标志着特诺奇蒂特兰宗教、王权与帝国贡赋的集中展示。献祭人数在后世文本中常被夸张或用于道德化叙述，因此这里只保留其作为重大仪式和政治表演的意义，不把具体规模写成确定事实。",
+        "referenceIds": [
+          "aztec-smith-2012",
+          "aztec-townsend-2019"
+        ]
       },
       {
         "year": 1519,
-        "title": "科尔特斯率西班牙人登陆"
+        "title": "科尔特斯率西班牙人登陆",
+        "type": "外交",
+        "detail": "科尔特斯登陆后并非单靠少数西班牙人推进征服，而是在地方敌对关系、翻译中介、特拉斯卡拉等本土盟友和疾病冲击的共同作用下改变政治格局；西班牙书信和编年材料有强烈自我辩护倾向。",
+        "referenceIds": [
+          "aztec-townsend-2019",
+          "aztec-smith-2012"
+        ]
       },
       {
         "year": 1521,
-        "title": "特诺奇蒂特兰陷落，帝国灭亡"
+        "title": "特诺奇蒂特兰陷落，帝国灭亡",
+        "type": "军事",
+        "detail": "1521 年特诺奇蒂特兰在围城、湖上交通被切断、天花等疾病和本土反阿兹特克联盟参与下陷落，三国同盟的帝国结构瓦解；但纳瓦社群、语言和地方政治并未随城市陷落而消失，后续仍在殖民社会中延续和重组。",
+        "referenceIds": [
+          "aztec-townsend-2019",
+          "aztec-smith-2012"
+        ]
       }
     ],
     "tags": [
@@ -2842,7 +3947,31 @@
       "湖城"
     ],
     "importance": 4,
-    "legacy": "阿兹特克塑造了今日墨西哥城的城市基底、纳瓦特尔语遗产，也是研究前哥伦布时期国家形态的核心案例。"
+    "legacy": "阿兹特克塑造了今日墨西哥城的城市基底、纳瓦特尔语遗产，也是研究前哥伦布时期国家形态的核心案例。",
+    "sourceNote": "阿兹特克时间线以考古研究、纳瓦特尔传统和征服后文献互证为基础。1519-1521 年事件尤其受西班牙征服者叙事和殖民时期编纂框架影响，需避免把科尔特斯一方的解释当作唯一事实；献祭规模、政治动机和同盟关系均应保留不确定性。",
+    "references": [
+      {
+        "id": "aztec-smith-2012",
+        "title": "The Aztecs",
+        "author": "Michael E. Smith",
+        "year": 2012,
+        "note": "Wiley-Blackwell 第三版，综合考古、城市形态、社会结构与征服史，是阿兹特克研究的可靠概览。"
+      },
+      {
+        "id": "aztec-townsend-2019",
+        "title": "Fifth Sun: A New History of the Aztecs",
+        "author": "Camilla Townsend",
+        "year": 2019,
+        "note": "Oxford University Press，重视纳瓦文本和本土记忆，可平衡西班牙征服叙事的偏向。"
+      },
+      {
+        "id": "aztec-hassig-1988",
+        "title": "Aztec Warfare: Imperial Expansion and Political Control",
+        "author": "Ross Hassig",
+        "year": 1988,
+        "note": "University of Oklahoma Press，适合支撑三国同盟、军事扩张和贡赋控制的解释。"
+      }
+    ]
   },
   {
     "id": "inca",
@@ -2870,27 +3999,63 @@
     "events": [
       {
         "year": 1200,
-        "title": "曼科·卡帕克传说中的库斯科建城"
+        "title": "曼科·卡帕克传说中的库斯科建城",
+        "type": "文化",
+        "detail": "曼科·卡帕克与库斯科起源属于印加王权记忆和神话谱系的一部分，不能等同于可精确验证的建城纪年。该事件适合说明库斯科作为印加身份、太阳崇拜和王族合法性的核心，而非确认单一创始人的实证事迹。",
+        "referenceIds": [
+          "inca-daltroy-2014",
+          "inca-sarmiento-2007"
+        ]
       },
       {
         "year": 1438,
-        "title": "帕查库提即位，开始大规模扩张"
+        "title": "帕查库提即位，开始大规模扩张",
+        "type": "政治",
+        "detail": "帕查库提通常被视为库斯科地方政权转化为塔万廷苏尤帝国的关键统治者，其改革涉及王权、行政、劳役和圣景重塑；1438 年是常用编年节点，具体年分仍来自殖民时期整理后的印加传统。",
+        "referenceIds": [
+          "inca-daltroy-2014",
+          "inca-sarmiento-2007"
+        ]
       },
       {
         "year": 1471,
-        "title": "图帕克·印加·尤潘基扩展至厄瓜多尔与智利"
+        "title": "图帕克·印加·尤潘基扩展至厄瓜多尔与智利",
+        "type": "军事",
+        "detail": "图帕克·印加·尤潘基时期的北上和南下扩张使帝国连接安第斯高地、海岸谷地和远距离道路网络；所谓扩展至厄瓜多尔与智利应理解为多区域征服、联盟和行政嵌入的过程，而非一次完成的边界推进。",
+        "referenceIds": [
+          "inca-daltroy-2014",
+          "inca-sarmiento-2007"
+        ]
       },
       {
         "year": 1493,
-        "title": "瓦伊纳·卡帕克即位，疆域达到顶峰"
+        "title": "瓦伊纳·卡帕克即位，疆域达到顶峰",
+        "type": "政治",
+        "detail": "瓦伊纳·卡帕克在位时期，印加控制范围达到最大或接近最大，并在北方区域投入大量政治和军事资源；帝国仍依赖地方贵族、道路、仓储和劳役制度维持，边缘地带控制强度差异很大。",
+        "referenceIds": [
+          "inca-daltroy-2014",
+          "inca-hemming-1970"
+        ]
       },
       {
         "year": 1532,
-        "title": "皮萨罗在卡哈马卡擒获阿塔瓦尔帕"
+        "title": "皮萨罗在卡哈马卡擒获阿塔瓦尔帕",
+        "type": "军事",
+        "detail": "卡哈马卡事件发生在印加内战和疫病冲击之后，皮萨罗利用谈判场景、骑兵火器威慑和政治误判俘获阿塔瓦尔帕。西班牙目击叙述强调少数征服者的主动性，需同时考虑印加内部继承危机和本土盟友因素。",
+        "referenceIds": [
+          "inca-daltroy-2014",
+          "inca-hemming-1970"
+        ]
       },
       {
         "year": 1572,
-        "title": "末代印加图帕克·阿马鲁被处决"
+        "title": "末代印加图帕克·阿马鲁被处决",
+        "type": "政治",
+        "detail": "1572 年维尔卡班巴被攻破、图帕克·阿马鲁被处决，象征独立印加王权最后据点终结；但安第斯社群、贵族谱系、宗教实践和地方身份仍在殖民制度下延续，并不等于印加文化整体消亡。",
+        "referenceIds": [
+          "inca-hemming-1970",
+          "inca-daltroy-2014"
+        ]
       }
     ],
     "tags": [
@@ -2901,7 +4066,31 @@
       "南美"
     ],
     "importance": 4,
-    "legacy": "印加道路、农业台地、库斯科城市规划与马丘比丘等遗产塑造了安第斯地区的文化认同，也成为今天秘鲁国家叙事的核心。"
+    "legacy": "印加道路、农业台地、库斯科城市规划与马丘比丘等遗产塑造了安第斯地区的文化认同，也成为今天秘鲁国家叙事的核心。",
+    "sourceNote": "印加时间线以安第斯考古、殖民时期编年、地方口述传统转写和行政材料综合整理。由于印加没有按欧洲方式保存王朝编年，早期库斯科建城和王表常混合传说、政治谱系与殖民调查；1532 年以后事件还受到西班牙征服叙事和托莱多时期政治目的影响。",
+    "references": [
+      {
+        "id": "inca-daltroy-2014",
+        "title": "The Incas",
+        "author": "Terence N. D'Altroy",
+        "year": 2014,
+        "note": "Wiley-Blackwell 第二版，综合考古、政治经济、道路体系与征服过程，是印加帝国的权威综合研究。"
+      },
+      {
+        "id": "inca-sarmiento-2007",
+        "title": "The History of the Incas",
+        "author": "Pedro Sarmiento de Gamboa; translated and edited by Brian S. Bauer and Vania Smith",
+        "year": 2007,
+        "note": "University of Texas Press，殖民时期重要文本的现代译注本；材料价值高，但原作服务于西班牙殖民合法化，需要谨慎使用。"
+      },
+      {
+        "id": "inca-hemming-1970",
+        "title": "The Conquest of the Incas",
+        "author": "John Hemming",
+        "year": 1970,
+        "note": "经典征服史叙述，适合支撑卡哈马卡、维尔卡班巴和末代印加阶段；需与较新的考古综合研究互校。"
+      }
+    ]
   },
   {
     "id": "ghana",
@@ -2927,27 +4116,63 @@
     "events": [
       {
         "year": 700,
-        "title": "索宁克部落联盟逐渐形成"
+        "title": "索宁克部落联盟逐渐形成",
+        "type": "政治",
+        "detail": "约 7-8 世纪的形成阶段只能作概括处理，较适合描述索宁克社群、萨赫勒农牧边缘和跨撒哈拉贸易节点逐步整合，而非一个突然建立的中央集权帝国；早期年代主要来自后设重构和区域考古判断。",
+        "referenceIds": [
+          "ghana-levtzion-1973",
+          "ghana-unesco-1988"
+        ]
       },
       {
         "year": 830,
-        "title": "帝国在阿拉伯文献中首次明确出现"
+        "title": "帝国在阿拉伯文献中首次明确出现",
+        "type": "文化",
+        "detail": "9 世纪阿拉伯地理传统开始较明确提到加纳及其王权、黄金和贸易网络，这说明加纳已进入伊斯兰世界的知识地图；这些外部记录重视商路和宫廷印象，对内部社会结构记载有限。",
+        "referenceIds": [
+          "ghana-corpus-1981",
+          "ghana-levtzion-1973"
+        ]
       },
       {
         "year": 1000,
-        "title": "势力扩展至毛塔尼亚南部"
+        "title": "势力扩展至毛塔尼亚南部",
+        "type": "贸易",
+        "detail": "约 10-11 世纪，加纳在今毛里塔尼亚南部与马里西部一带的萨赫勒贸易地带具有显著影响，控制黄金、盐和中介贸易的一部分；这里的“扩展”应理解为贸易通道、附属社群和王权影响范围，而非清晰边界。",
+        "referenceIds": [
+          "ghana-levtzion-1973",
+          "ghana-unesco-1988"
+        ]
       },
       {
         "year": 1054,
-        "title": "阿尔摩拉维德人入侵"
+        "title": "阿尔摩拉维德人入侵",
+        "type": "军事",
+        "detail": "阿尔摩拉维德人与加纳之间的冲突常被用于解释帝国衰落，但具体入侵规模、持续时间和宗教转化效果在学界存在争议；更稳妥的说法是北方政治军事压力与贸易路线变化共同削弱了加纳旧格局。",
+        "referenceIds": [
+          "ghana-levtzion-1973",
+          "ghana-corpus-1981"
+        ]
       },
       {
         "year": 1076,
-        "title": "都城被阿尔摩拉维德人攻陷"
+        "title": "都城被阿尔摩拉维德人攻陷",
+        "type": "军事",
+        "detail": "1076 年攻陷都城是传统叙述中的关键节点，但近年研究对其作为单一决定性事件持谨慎态度。该条应作为加纳受阿尔摩拉维德压力和区域重组影响的时间标记，而非把衰落全部归因于一次占领。",
+        "referenceIds": [
+          "ghana-levtzion-1973",
+          "ghana-corpus-1981"
+        ]
       },
       {
         "year": 1240,
-        "title": "被新兴的马里帝国取代"
+        "title": "被新兴的马里帝国取代",
+        "type": "政治",
+        "detail": "到 13 世纪，马里在曼德政治扩张和贸易重心调整中取代加纳成为西苏丹主要力量；这更像区域霸权和商路控制的转移，而不是加纳社会突然消失。",
+        "referenceIds": [
+          "ghana-levtzion-1973",
+          "ghana-unesco-1988"
+        ]
       }
     ],
     "tags": [
@@ -2958,7 +4183,31 @@
       "萨赫勒"
     ],
     "importance": 3,
-    "legacy": "加纳帝国是西非黄金—盐贸易与早期跨撒哈拉网络的奠基者，为后来的马里、桑海帝国留下了城市与商路骨架。"
+    "legacy": "加纳帝国是西非黄金—盐贸易与早期跨撒哈拉网络的奠基者，为后来的马里、桑海帝国留下了城市与商路骨架。",
+    "sourceNote": "加纳帝国资料严重依赖阿拉伯地理与旅行文本、考古遗址和较晚口述传统的互证，本地同时代书面材料稀少。阿拉伯作者通常从跨撒哈拉贸易和伊斯兰世界视角观察，殖民时期研究又可能带有外来国家模型偏见，因此都城位置、王权性质、阿尔摩拉维德冲击和衰落过程需谨慎表述。",
+    "references": [
+      {
+        "id": "ghana-levtzion-1973",
+        "title": "Ancient Ghana and Mali",
+        "author": "Nehemia Levtzion",
+        "year": 1973,
+        "note": "Methuen，关于加纳和早期马里的经典研究，系统使用阿拉伯文本、考古和区域贸易材料。"
+      },
+      {
+        "id": "ghana-corpus-1981",
+        "title": "Corpus of Early Arabic Sources for West African History",
+        "author": "Nehemia Levtzion and J. F. P. Hopkins, editors",
+        "year": 1981,
+        "note": "Cambridge University Press，早期阿拉伯文献英译与注释集，适合支撑加纳在外部文献中的出现、贸易和王权描述。"
+      },
+      {
+        "id": "ghana-unesco-1988",
+        "title": "General History of Africa, Volume III: Africa from the Seventh to the Eleventh Century",
+        "author": "UNESCO International Scientific Committee; M. El Fasi, editor",
+        "year": 1988,
+        "note": "UNESCO 非洲通史第三卷，提供萨赫勒、伊斯兰传播和跨撒哈拉贸易背景。"
+      }
+    ]
   },
   {
     "id": "mali",
@@ -2986,27 +4235,63 @@
     "events": [
       {
         "year": 1235,
-        "title": "松迪亚塔在基里纳之战中击败索索"
+        "title": "松迪亚塔在基里纳之战中击败索索",
+        "type": "军事",
+        "detail": "基里纳之战是松迪亚塔史诗和马里建国叙事的核心节点，通常象征曼德联盟击败索索势力并开启马里扩张。具体战役细节受口述传统影响，应作为政治记忆与区域权力转移的标志来呈现。",
+        "referenceIds": [
+          "mali-unesco-1984",
+          "mali-gomez-2018"
+        ]
       },
       {
         "year": 1240,
-        "title": "马里取代加纳，控制萨赫勒商路"
+        "title": "马里取代加纳，控制萨赫勒商路",
+        "type": "贸易",
+        "detail": "13 世纪中叶，马里逐步接管加纳旧有的部分贸易网络，并把尼日尔河上游、黄金产区和跨撒哈拉路线纳入更大的政治经济体系；这一过程是渐进整合，不宜写成单日征服。",
+        "referenceIds": [
+          "mali-levtzion-1973",
+          "mali-gomez-2018"
+        ]
       },
       {
         "year": 1312,
-        "title": "曼萨·穆萨即位"
+        "title": "曼萨·穆萨即位",
+        "type": "政治",
+        "detail": "曼萨·穆萨即位后，马里在宫廷财富、伊斯兰声望和跨区域外交方面达到高度可见状态；其统治的具体行政细节仍需从阿拉伯外部记录和后世传统中谨慎复原。",
+        "referenceIds": [
+          "mali-unesco-1984",
+          "mali-gomez-2018"
+        ]
       },
       {
         "year": 1324,
-        "title": "曼萨·穆萨朝圣麦加，沿途散金"
+        "title": "曼萨·穆萨朝圣麦加，沿途散金",
+        "type": "外交",
+        "detail": "1324-1325 年朝觐让马里进入地中海和伊斯兰世界更广泛的记录中，散金故事反映其财富和外交展示；具体金量和经济影响常带有夸饰，应以“声望传播”和“跨区域可见度提升”为核心。",
+        "referenceIds": [
+          "mali-unesco-1984",
+          "mali-gomez-2018"
+        ]
       },
       {
         "year": 1375,
-        "title": "廷巴克图在欧洲地图上首次出现"
+        "title": "廷巴克图在欧洲地图上首次出现",
+        "type": "文化",
+        "detail": "廷巴克图出现在欧洲地图传统中，说明马里及西非黄金贸易信息已通过北非和地中海知识网络传播；这反映外部地理想象中的马里财富，也提醒地图信息并不等同于欧洲对当地社会的直接了解。",
+        "referenceIds": [
+          "mali-unesco-1984",
+          "mali-gomez-2018"
+        ]
       },
       {
         "year": 1470,
-        "title": "势力被新兴的桑海帝国蚕食"
+        "title": "势力被新兴的桑海帝国蚕食",
+        "type": "军事",
+        "detail": "15 世纪后期，桑海扩张和地方势力离心削弱了马里对尼日尔河中游、廷巴克图和商路节点的控制；马里并未立即消失，但从跨区域霸权转为较受限制的区域政权。",
+        "referenceIds": [
+          "mali-unesco-1984",
+          "mali-gomez-2018"
+        ]
       }
     ],
     "tags": [
@@ -3017,7 +4302,31 @@
       "西非"
     ],
     "importance": 4,
-    "legacy": "马里通过曼萨·穆萨与廷巴克图把西非的财富、学术与伊斯兰文化推向欧亚舞台，至今仍是西非历史认同的核心象征。"
+    "legacy": "马里通过曼萨·穆萨与廷巴克图把西非的财富、学术与伊斯兰文化推向欧亚舞台，至今仍是西非历史认同的核心象征。",
+    "sourceNote": "马里帝国资料来自曼德口述史诗、阿拉伯旅行家与地理学家、廷巴克图相关文献和考古/艺术史线索。松迪亚塔传统具有强烈口述文学结构，阿拉伯作者侧重穆斯林宫廷、贸易和朝觐，殖民时期转写又会改变地方叙述语境；因此应同时保留政治事件和来源偏向。",
+    "references": [
+      {
+        "id": "mali-levtzion-1973",
+        "title": "Ancient Ghana and Mali",
+        "author": "Nehemia Levtzion",
+        "year": 1973,
+        "note": "经典学术研究，适合支撑加纳到马里的区域霸权转移、商路和王权框架。"
+      },
+      {
+        "id": "mali-unesco-1984",
+        "title": "General History of Africa, Volume IV: Africa from the Twelfth to the Sixteenth Century",
+        "author": "UNESCO International Scientific Committee; D. T. Niane, editor",
+        "year": 1984,
+        "note": "UNESCO 非洲通史第四卷，覆盖马里、桑海和 12-16 世纪西非政治文化发展。"
+      },
+      {
+        "id": "mali-gomez-2018",
+        "title": "African Dominion: A New History of Empire in Early and Medieval West Africa",
+        "author": "Michael A. Gomez",
+        "year": 2018,
+        "note": "Princeton University Press，近年综合研究，重估早期和中世纪西非帝国、伊斯兰化、族群和权力结构。"
+      }
+    ]
   },
   {
     "id": "songhai",
@@ -3045,27 +4354,63 @@
     "events": [
       {
         "year": 1464,
-        "title": "松尼·阿里登基开启帝国扩张"
+        "title": "松尼·阿里登基开启帝国扩张",
+        "type": "军事",
+        "detail": "松尼·阿里登基后以河上机动、骑兵和对城市节点的控制推动桑海扩张。廷巴克图编年传统常以穆斯林学者视角批评其统治，因此评价其政策时需区分军事能力、地方宗教立场和后世道德判断。",
+        "referenceIds": [
+          "songhai-hunwick-1999",
+          "songhai-gomez-2018"
+        ]
       },
       {
         "year": 1473,
-        "title": "夺取廷巴克图"
+        "title": "夺取廷巴克图",
+        "type": "军事",
+        "detail": "桑海控制廷巴克图后获得尼日尔河中游贸易、学术和宗教网络的重要节点，但城市精英与帝国政权之间关系并不总是稳定；具体年份在不同传统中有细微差异，1473 可作为常用时间标记。",
+        "referenceIds": [
+          "songhai-hunwick-1999",
+          "songhai-unesco-1984"
+        ]
       },
       {
         "year": 1493,
-        "title": "阿斯基亚·穆罕默德篡位并推行伊斯兰化改革"
+        "title": "阿斯基亚·穆罕默德篡位并推行伊斯兰化改革",
+        "type": "制度",
+        "detail": "阿斯基亚·穆罕默德夺取权力后强化伊斯兰合法性、行政任命和帝国治理，使桑海更深地嵌入撒哈拉以北的宗教与外交网络；“伊斯兰化改革”不代表地方信仰突然消失，而是宫廷和官僚合法性重组。",
+        "referenceIds": [
+          "songhai-hunwick-1999",
+          "songhai-gomez-2018"
+        ]
       },
       {
         "year": 1497,
-        "title": "阿斯基亚朝圣麦加"
+        "title": "阿斯基亚朝圣麦加",
+        "type": "外交",
+        "detail": "阿斯基亚朝觐麦加增强了其在伊斯兰世界中的合法性和外交声望，也为桑海宫廷与北非、埃及和圣地网络建立联系；相关细节主要来自伊斯兰书写传统，应注意其强调宗教正统性的叙事倾向。",
+        "referenceIds": [
+          "songhai-hunwick-1999",
+          "songhai-unesco-1984"
+        ]
       },
       {
         "year": 1591,
-        "title": "通迪比之战，摩洛哥火器军击败桑海"
+        "title": "通迪比之战，摩洛哥火器军击败桑海",
+        "type": "军事",
+        "detail": "通迪比之战中，摩洛哥远征军凭借火器、战术组织和桑海内部压力击败帝国军队。火器是关键因素之一，但不应把桑海失败简化为技术差距，还要考虑长距离帝国治理、继承问题和财政压力。",
+        "referenceIds": [
+          "songhai-hunwick-1999",
+          "songhai-gomez-2018"
+        ]
       },
       {
         "year": 1600,
-        "title": "帝国分裂为多个小国"
+        "title": "帝国分裂为多个小国",
+        "type": "政治",
+        "detail": "1591 年后桑海帝国的中央结构瓦解，尼日尔河流域出现摩洛哥帕夏统治、地方王权和继承性小政权并存的局面；这里的“分裂”指帝国霸权终结，而非桑海人群或区域政治传统消失。",
+        "referenceIds": [
+          "songhai-hunwick-1999",
+          "songhai-unesco-1984"
+        ]
       }
     ],
     "tags": [
@@ -3076,7 +4421,31 @@
       "西非"
     ],
     "importance": 4,
-    "legacy": "桑海帝国把廷巴克图与杰内推上伊斯兰学术中心地位，也展示了火器革命前夜跨撒哈拉国家的巅峰形态。"
+    "legacy": "桑海帝国把廷巴克图与杰内推上伊斯兰学术中心地位，也展示了火器革命前夜跨撒哈拉国家的巅峰形态。",
+    "sourceNote": "桑海帝国资料主要依赖廷巴克图编年传统、阿拉伯文献、后世口述与近现代学术综合。廷巴克图学者文本对松尼·阿里和阿斯基亚王朝的评价带有宗教和城市精英立场，摩洛哥入侵叙事也常受火器决定论影响；需把政治、军事、伊斯兰化和贸易网络分开说明。",
+    "references": [
+      {
+        "id": "songhai-hunwick-1999",
+        "title": "Timbuktu and the Songhay Empire: Al-Sa'di's Ta'rikh al-Sudan down to 1613 and Other Contemporary Documents",
+        "author": "John O. Hunwick, translator and editor",
+        "year": 1999,
+        "note": "Brill，廷巴克图编年文本和相关材料的译注本，是桑海后期政治史和 1591 年前后事件的重要来源。"
+      },
+      {
+        "id": "songhai-unesco-1984",
+        "title": "General History of Africa, Volume IV: Africa from the Twelfth to the Sixteenth Century",
+        "author": "UNESCO International Scientific Committee; D. T. Niane, editor",
+        "year": 1984,
+        "note": "UNESCO 非洲通史第四卷，提供桑海、马里和尼日尔河湾区域背景。"
+      },
+      {
+        "id": "songhai-gomez-2018",
+        "title": "African Dominion: A New History of Empire in Early and Medieval West Africa",
+        "author": "Michael A. Gomez",
+        "year": 2018,
+        "note": "Princeton University Press，近年综合研究，适合支撑松尼·阿里、阿斯基亚改革和帝国结构的再解释。"
+      }
+    ]
   },
   {
     "id": "carolingian",
@@ -3102,27 +4471,63 @@
     "events": [
       {
         "year": 751,
-        "title": "丕平加冕，加洛林王朝建立"
+        "title": "丕平加冕，加洛林王朝建立",
+        "type": "政治",
+        "detail": "丕平三世取代墨洛温王朝并获得教会认可，标志加洛林家族从宫相权力转入正式王权；此事也加强了法兰克王权与罗马教廷之间的互惠关系。",
+        "referenceIds": [
+          "carolingian-story-2005",
+          "carolingian-nelson-2019"
+        ]
       },
       {
         "year": 768,
-        "title": "查理曼继位"
+        "title": "查理曼继位",
+        "type": "政治",
+        "detail": "丕平去世后，查理曼与其弟卡洛曼分治法兰克王国；771 年卡洛曼去世后，查理曼逐步集中王权，为后续大规模军事扩张和改革提供政治基础。",
+        "referenceIds": [
+          "carolingian-mckitterick-2008",
+          "carolingian-nelson-2019"
+        ]
       },
       {
         "year": 774,
-        "title": "查理曼吞并伦巴德王国"
+        "title": "查理曼吞并伦巴德王国",
+        "type": "军事",
+        "detail": "查理曼攻入意大利并取得伦巴德王冠，使法兰克权力深入亚平宁半岛；这既是军事征服，也是对教廷安全诉求的回应。",
+        "referenceIds": [
+          "carolingian-story-2005",
+          "carolingian-nelson-2019"
+        ]
       },
       {
         "year": 800,
-        "title": "查理曼在罗马由教皇加冕为\"罗马人的皇帝\""
+        "title": "查理曼在罗马由教皇加冕为\"罗马人的皇帝\"",
+        "type": "宗教",
+        "detail": "教皇利奥三世在圣诞日为查理曼加冕，赋予其“皇帝”称号。此举强化了西欧皇权与罗马教会的象征联盟，但其法理含义与拜占庭关系在史学中仍有讨论。",
+        "referenceIds": [
+          "carolingian-mckitterick-2008",
+          "carolingian-nelson-2019"
+        ]
       },
       {
         "year": 814,
-        "title": "查理曼去世"
+        "title": "查理曼去世",
+        "type": "政治",
+        "detail": "查理曼去世后，路易一世继承帝位；帝国仍有强大宫廷与教会结构，但继承安排、贵族政治和区域差异逐渐暴露。",
+        "referenceIds": [
+          "carolingian-mckitterick-2008",
+          "carolingian-story-2005"
+        ]
       },
       {
         "year": 843,
-        "title": "《凡尔登条约》三分帝国，西欧国家雏形出现"
+        "title": "《凡尔登条约》三分帝国，西欧国家雏形出现",
+        "type": "外交",
+        "detail": "路易一世诸子内战后，《凡尔登条约》将帝国分为西、中、东三部分。它不是现代民族国家的直接诞生文件，但为后来法兰西、德意志和洛塔林吉亚等政治空间提供了重要前史。",
+        "referenceIds": [
+          "carolingian-mckitterick-2008",
+          "carolingian-story-2005"
+        ]
       }
     ],
     "tags": [
@@ -3133,7 +4538,31 @@
       "文艺复兴"
     ],
     "importance": 4,
-    "legacy": "查理曼帝国奠定了\"基督教欧洲\"和神圣罗马帝国的政治神话，也直接催生了法国、德国与意大利北部的国家轮廓。"
+    "legacy": "查理曼帝国奠定了\"基督教欧洲\"和神圣罗马帝国的政治神话，也直接催生了法国、德国与意大利北部的国家轮廓。",
+    "sourceNote": "加洛林条目以法兰克王权、教皇加冕、意大利与西欧继承分裂为主线。751、800、843 等节点在中世纪欧洲通史中较稳定，但“查理曼帝国”是后设概括标签，不能等同于近代主权国家；其统治依赖宫廷、伯爵、教会与军事贵族网络。",
+    "references": [
+      {
+        "id": "carolingian-mckitterick-2008",
+        "title": "Charlemagne: The Formation of a European Identity",
+        "author": "Rosamond McKitterick",
+        "year": 2008,
+        "note": "用于查理曼统治、宫廷政治、加冕意义与加洛林身份建构的学术背景。"
+      },
+      {
+        "id": "carolingian-story-2005",
+        "title": "Charlemagne: Empire and Society",
+        "author": "Joanna Story, ed.",
+        "year": 2005,
+        "note": "论文集，适合支撑加洛林帝国的制度、社会与区域统合问题。"
+      },
+      {
+        "id": "carolingian-nelson-2019",
+        "title": "King and Emperor: A New Life of Charlemagne",
+        "author": "Janet L. Nelson",
+        "year": 2019,
+        "note": "用于查理曼个人统治、继承、战争和与罗马教廷关系的近年综合研究。"
+      }
+    ]
   },
   {
     "id": "holy-roman-empire",
@@ -3159,27 +4588,63 @@
     "events": [
       {
         "year": 962,
-        "title": "奥托一世在罗马加冕，帝国奠基"
+        "title": "奥托一世在罗马加冕，帝国奠基",
+        "type": "政治",
+        "detail": "奥托一世由教皇加冕为皇帝，通常被视为中世纪帝国传统在德意志王权基础上的再奠基。此后帝国权威同时依赖德意志诸侯政治、意大利事务和教会合法性。",
+        "referenceIds": [
+          "hre-wilson-2016",
+          "hre-barraclough-1946"
+        ]
       },
       {
         "year": 1077,
-        "title": "卡诺莎之辱，皇权与教皇权对立"
+        "title": "卡诺莎之辱，皇权与教皇权对立",
+        "type": "宗教",
+        "detail": "亨利四世赴卡诺莎寻求教皇格里高利七世解除绝罚，是叙任权斗争的标志性场景。它显示皇帝权威、主教任命和教会改革之间的深层冲突，而非单纯个人屈辱。",
+        "referenceIds": [
+          "hre-wilson-2016",
+          "hre-whaley-2012"
+        ]
       },
       {
         "year": 1356,
-        "title": "《金玺诏书》确立七选侯制度"
+        "title": "《金玺诏书》确立七选侯制度",
+        "type": "制度",
+        "detail": "查理四世颁布《金玺诏书》，规范七位选侯的皇帝选举权和地位，减少选举争议。它巩固了帝国分权性的宪制结构，也限制了皇权向近代中央集权发展的可能。",
+        "referenceIds": [
+          "hre-wilson-2016",
+          "hre-whaley-2012"
+        ]
       },
       {
         "year": 1517,
-        "title": "马丁·路德发表《九十五条论纲》"
+        "title": "马丁·路德发表《九十五条论纲》",
+        "type": "宗教",
+        "detail": "路德挑战赎罪券和教会权威，引发宗教改革在帝国内扩散。帝国的分权政治使诸侯、城市和皇帝对改革的反应不一，宗教问题迅速转化为制度和邦国政治问题。",
+        "referenceIds": [
+          "hre-whaley-2012",
+          "hre-wilson-2016"
+        ]
       },
       {
         "year": 1648,
-        "title": "《威斯特伐利亚和约》承认邦国主权"
+        "title": "《威斯特伐利亚和约》承认邦国主权",
+        "type": "外交",
+        "detail": "三十年战争后的和约重申并扩展帝国内部等级与邦国的权利。这里的“主权”应理解为帝国宪制中的广泛自治和外交能力，不宜简化为现代民族国家式完全独立。",
+        "referenceIds": [
+          "hre-wilson-2016",
+          "hre-whaley-2012"
+        ]
       },
       {
         "year": 1806,
-        "title": "弗朗茨二世退位，帝国被拿破仑解体"
+        "title": "弗朗茨二世退位，帝国被拿破仑解体",
+        "type": "政治",
+        "detail": "拿破仑战争和莱茵邦联形成后，弗朗茨二世放弃神圣罗马皇帝称号，帝国正式终止。其解体是军事压力、德意志邦国重组和帝国旧制度失效共同作用的结果。",
+        "referenceIds": [
+          "hre-wilson-2016",
+          "hre-whaley-2012"
+        ]
       }
     ],
     "tags": [
@@ -3190,7 +4655,31 @@
       "基督教"
     ],
     "importance": 4,
-    "legacy": "神圣罗马帝国塑造了德意志多邦联式政治传统、教皇—皇帝二元秩序与《威斯特伐利亚和约》的国家主权原则。"
+    "legacy": "神圣罗马帝国塑造了德意志多邦联式政治传统、教皇—皇帝二元秩序与《威斯特伐利亚和约》的国家主权原则。",
+    "sourceNote": "神圣罗马帝国条目必须强调其长期分权结构：它不是中央集权帝国，而是由皇帝、选侯、诸侯、帝国城市、教会领地和法律机构共同构成的复合政治秩序。事件选择聚焦皇帝加冕、教权冲突、选侯制度、宗教改革、威斯特伐利亚体制和 1806 年解体。",
+    "references": [
+      {
+        "id": "hre-wilson-2016",
+        "title": "Heart of Europe: A History of the Holy Roman Empire",
+        "author": "Peter H. Wilson",
+        "year": 2016,
+        "note": "综合解释帝国的制度弹性、分权结构与长期政治文化，适合作为本条主参考。"
+      },
+      {
+        "id": "hre-whaley-2012",
+        "title": "Germany and the Holy Roman Empire, Volume I-II",
+        "author": "Joachim Whaley",
+        "year": 2012,
+        "note": "用于中晚期帝国制度、宗教改革、威斯特伐利亚以后邦国政治的详细叙述。"
+      },
+      {
+        "id": "hre-barraclough-1946",
+        "title": "The Origins of Modern Germany",
+        "author": "Geoffrey Barraclough",
+        "year": 1946,
+        "note": "经典研究，可辅助理解奥托王朝、帝国形成与德意志政治传统。"
+      }
+    ]
   },
   {
     "id": "british-empire",
@@ -3218,31 +4707,68 @@
     "events": [
       {
         "year": 1583,
-        "title": "英国正式宣称纽芬兰殖民地"
+        "title": "英国正式宣称纽芬兰殖民地",
+        "type": "政治",
+        "detail": "汉弗莱·吉尔伯特代表英格兰宣称纽芬兰，是英格兰大西洋殖民尝试的重要早期节点；实际控制、定居和经济开发仍是长期而不稳定的过程。",
+        "referenceIds": [
+          "british-empire-canny-1998"
+        ]
       },
       {
         "year": 1707,
-        "title": "联合王国成立，海外扩张加速"
+        "title": "联合王国成立，海外扩张加速",
+        "type": "政治",
+        "detail": "英格兰与苏格兰合并为大不列颠王国后，财政、海军、贸易公司和殖民事业逐渐整合。海外扩张并非瞬间发生，但国家能力整合为帝国竞争提供了更强平台。",
+        "referenceIds": [
+          "british-empire-canny-1998",
+          "british-empire-marshall-1998"
+        ]
       },
       {
         "year": 1763,
-        "title": "七年战争后获得加拿大与印度大部分"
+        "title": "七年战争后获得加拿大与印度大部分",
+        "type": "军事",
+        "detail": "七年战争及《巴黎和约》重塑英法殖民竞争，英国在北美取得加拿大，并在印度取得压倒性优势。印度“获得大部分”应理解为东印度公司影响力快速扩大，而非 1763 年已完成直接统治。",
+        "referenceIds": [
+          "british-empire-marshall-1998"
+        ]
       },
       {
         "year": 1815,
-        "title": "滑铁卢战役后英国进入\"不列颠治世\""
+        "title": "滑铁卢战役后英国进入\"不列颠治世\"",
+        "type": "军事",
+        "detail": "拿破仑战争结束后，英国海军、金融与贸易优势支撑了 19 世纪的全球影响力。“不列颠治世”是对相对海上霸权和自由贸易秩序的概括，不代表世界范围内无战争。",
+        "referenceIds": [
+          "british-empire-darwin-2009"
+        ]
       },
       {
         "year": 1858,
-        "title": "印度归英国王室直接统治"
+        "title": "印度归英国王室直接统治",
+        "type": "制度",
+        "detail": "1857 年印度大起义后，英国废止东印度公司的统治职能，印度转入王室直接治理。此举改变了帝国行政结构，也使印度成为大英帝国最重要的殖民支柱之一。",
+        "referenceIds": [
+          "british-empire-darwin-2009",
+          "british-empire-marshall-1998"
+        ]
       },
       {
         "year": 1947,
-        "title": "印巴分治，殖民体系开始瓦解"
+        "title": "印巴分治，殖民体系开始瓦解",
+        "type": "政治",
+        "detail": "英属印度独立并分裂为印度和巴基斯坦，是战后去殖民化的关键转折。它并非英国帝国全部终止，但标志其最重要殖民地之一脱离，并加速亚洲、非洲殖民秩序重组。",
+        "referenceIds": [
+          "british-empire-darwin-2009"
+        ]
       },
       {
         "year": 1997,
-        "title": "香港回归，帝国象征性终结"
+        "title": "香港回归，帝国象征性终结",
+        "type": "外交",
+        "detail": "香港主权移交中国常被视为大英帝国历史的象征性终点。此说法强调帝国时代的公共记忆和殖民地体系收束，并不表示英国已无海外领地、英联邦关系或国际影响力。",
+        "referenceIds": [
+          "british-empire-darwin-2009"
+        ]
       }
     ],
     "tags": [
@@ -3253,7 +4779,31 @@
       "全球化"
     ],
     "importance": 5,
-    "legacy": "英语作为全球通用语、普通法体系、议会民主、跨洲资本流动与殖民边界，至今仍深刻影响着前殖民地与国际秩序。"
+    "legacy": "英语作为全球通用语、普通法体系、议会民主、跨洲资本流动与殖民边界，至今仍深刻影响着前殖民地与国际秩序。",
+    "sourceNote": "大英帝国条目以海外殖民扩张、海权、印度统治、去殖民化和象征性终点为主线。1997 年香港回归适合作为帝国想象的象征性终结节点，但不能理解为英国海外领土、英联邦或全球影响力在法律上全部终止。",
+    "references": [
+      {
+        "id": "british-empire-canny-1998",
+        "title": "The Oxford History of the British Empire, Volume I: The Origins of Empire",
+        "author": "Nicholas Canny, ed.",
+        "year": 1998,
+        "note": "用于早期英格兰/英国海外扩张、纽芬兰和大西洋殖民背景。"
+      },
+      {
+        "id": "british-empire-marshall-1998",
+        "title": "The Oxford History of the British Empire, Volume II: The Eighteenth Century",
+        "author": "P. J. Marshall, ed.",
+        "year": 1998,
+        "note": "用于 18 世纪帝国战争、加拿大、印度和七年战争后格局。"
+      },
+      {
+        "id": "british-empire-darwin-2009",
+        "title": "The Empire Project: The Rise and Fall of the British World-System, 1830-1970",
+        "author": "John Darwin",
+        "year": 2009,
+        "note": "用于 19-20 世纪英国世界体系、印度、帝国高峰与去殖民化叙述。"
+      }
+    ]
   },
   {
     "id": "united-states",
@@ -3279,31 +4829,66 @@
     "events": [
       {
         "year": 1776,
-        "title": "《独立宣言》发表"
+        "title": "《独立宣言》发表",
+        "type": "政治",
+        "detail": "大陆会议通过《独立宣言》，将北美殖民地与英国王权的冲突表述为政治独立和自然权利问题。宣言是建国叙事核心，但独立战争和国际承认仍需随后多年完成。",
+        "referenceIds": [
+          "us-wood-2009"
+        ]
       },
       {
         "year": 1788,
-        "title": "联邦宪法批准生效"
+        "title": "联邦宪法批准生效",
+        "type": "制度",
+        "detail": "新宪法经足够州批准后生效，建立更强的联邦政府、分权结构和共和制度框架。它解决邦联体制弱点，但奴隶制、州权和公民权问题仍长期未决。",
+        "referenceIds": [
+          "us-wood-2009"
+        ]
       },
       {
         "year": 1861,
-        "title": "南北战争爆发"
+        "title": "南北战争爆发",
+        "type": "军事",
+        "detail": "南方州脱离联邦并攻击萨姆特堡后，内战爆发。战争根源与奴隶制扩张、联邦权威和区域政治经济差异密切相关，是美国国家统一和宪制秩序的重大危机。",
+        "referenceIds": [
+          "us-mcperson-1988"
+        ]
       },
       {
         "year": 1898,
-        "title": "美西战争后跻身殖民—海权国家"
+        "title": "美西战争后跻身殖民—海权国家",
+        "type": "军事",
+        "detail": "美西战争后，美国取得或控制菲律宾、关岛、波多黎各等海外领地，并强化太平洋与加勒比战略存在。这里的“殖民—海权国家”指海外领地和海军投射能力扩张，不等同于传统陆上帝国。",
+        "referenceIds": [
+          "us-immerwahr-2019"
+        ]
       },
       {
         "year": 1945,
-        "title": "二战胜利，建立战后国际秩序"
+        "title": "二战胜利，建立战后国际秩序",
+        "type": "外交",
+        "detail": "二战结束后，美国成为联合国、布雷顿森林体系和盟国安全网络的核心力量。战后秩序既包含制度建设，也包含军事同盟、经济主导和冷战对抗。",
+        "referenceIds": [
+          "us-immerwahr-2019"
+        ]
       },
       {
         "year": 1969,
-        "title": "阿波罗 11 号实现登月"
+        "title": "阿波罗 11 号实现登月",
+        "type": "科技",
+        "detail": "阿波罗 11 号登月体现冷战太空竞赛中的技术、财政和组织能力，也是美国软实力与国家形象的重要象征。它不应脱离美苏竞争和国家动员背景单独理解。",
+        "referenceIds": [
+          "us-immerwahr-2019"
+        ]
       },
       {
         "year": 1991,
-        "title": "冷战结束，独霸地位形成"
+        "title": "冷战结束，独霸地位形成",
+        "type": "外交",
+        "detail": "苏联解体后，美国在军事、金融、科技和制度网络方面拥有罕见优势。“独霸”或“单极时刻”是国际关系分析概念，并不意味着美国没有约束、竞争者或政策失败。",
+        "referenceIds": [
+          "us-immerwahr-2019"
+        ]
       }
     ],
     "tags": [
@@ -3314,7 +4899,31 @@
       "超级大国"
     ],
     "importance": 5,
-    "legacy": "美国的成文宪法、联邦制、好莱坞、硅谷与战后国际机构，构成 20 世纪下半叶以来全球秩序与文化想象的主要参照系。"
+    "legacy": "美国的成文宪法、联邦制、好莱坞、硅谷与战后国际机构，构成 20 世纪下半叶以来全球秩序与文化想象的主要参照系。",
+    "sourceNote": "美国条目兼顾共和国建国、联邦宪制、内战、海外扩张、二战后秩序、科技象征和冷战后优势。将美国称为“帝国”或“霸权”有不同史学和国际关系语境，本条仅在 1898 年后海外殖民/海权扩张与 1945、1991 年后国际秩序能力层面使用，避免把美国国内共和国制度与古典帝国简单等同。",
+    "references": [
+      {
+        "id": "us-wood-2009",
+        "title": "Empire of Liberty: A History of the Early Republic, 1789-1815",
+        "author": "Gordon S. Wood",
+        "year": 2009,
+        "note": "用于独立、宪法共和国初期和美国早期政治思想背景。"
+      },
+      {
+        "id": "us-mcperson-1988",
+        "title": "Battle Cry of Freedom: The Civil War Era",
+        "author": "James M. McPherson",
+        "year": 1988,
+        "note": "用于南北战争爆发、联邦危机和奴隶制问题的标准学术叙述。"
+      },
+      {
+        "id": "us-immerwahr-2019",
+        "title": "How to Hide an Empire: A History of the Greater United States",
+        "author": "Daniel Immerwahr",
+        "year": 2019,
+        "note": "用于美西战争后海外领地、殖民/海权扩展和“大美国”视角的解释。"
+      }
+    ]
   },
   {
     "id": "prc",
@@ -3344,31 +4953,69 @@
     "events": [
       {
         "year": 1949,
-        "title": "中华人民共和国成立"
+        "title": "中华人民共和国成立",
+        "type": "政治",
+        "detail": "1949 年 10 月 1 日，中华人民共和国在北京宣告成立，标志中国共产党取得全国政权并开启新的国家制度建设阶段。台湾海峡两岸政治分治与内战后续问题仍延续至今。",
+        "referenceIds": [
+          "prc-spence-1990"
+        ]
       },
       {
         "year": 1953,
-        "title": "第一个五年计划启动"
+        "title": "第一个五年计划启动",
+        "type": "制度",
+        "detail": "第一个五年计划以苏联经验为重要参照，优先发展重工业并推进社会主义改造。它奠定了计划经济和工业体系的基础，同时也改变了国家与社会、城乡经济之间的关系。",
+        "referenceIds": [
+          "prc-naughton-2007",
+          "prc-spence-1990"
+        ]
       },
       {
         "year": 1971,
-        "title": "恢复联合国合法席位"
+        "title": "恢复联合国合法席位",
+        "type": "外交",
+        "detail": "联合国大会第 2758 号决议承认中华人民共和国代表为中国在联合国的合法代表，改变了中国在国际组织中的地位。此节点应与中美关系调整和冷战外交格局联系理解。",
+        "referenceIds": [
+          "prc-spence-1990"
+        ]
       },
       {
         "year": 1978,
-        "title": "十一届三中全会开启改革开放"
+        "title": "十一届三中全会开启改革开放",
+        "type": "政治",
+        "detail": "1978 年中共十一届三中全会后，政策重心转向经济建设，并逐步展开农村改革、对外开放和市场化试验。改革开放是长期过程，不宜压缩为单次会议即时完成。",
+        "referenceIds": [
+          "prc-vogel-2011",
+          "prc-naughton-2007"
+        ]
       },
       {
         "year": 2001,
-        "title": "加入世界贸易组织"
+        "title": "加入世界贸易组织",
+        "type": "贸易",
+        "detail": "中国加入 WTO 后更深地嵌入全球贸易和生产网络，推动出口、投资和产业结构变化。其影响包括增长机遇、制度适应和全球经济关系重组，评价需结合长期数据观察。",
+        "referenceIds": [
+          "prc-naughton-2007"
+        ]
       },
       {
         "year": 2008,
-        "title": "北京奥运会举办"
+        "title": "北京奥运会举办",
+        "type": "文化",
+        "detail": "北京奥运会是中国国际形象、城市建设和国家动员能力的重要展示，也处在改革开放三十年后的全球化语境中。它是文化与外交象征节点，而非单纯体育事件。",
+        "referenceIds": [
+          "prc-vogel-2011",
+          "prc-naughton-2007"
+        ]
       },
       {
         "year": 2020,
-        "title": "宣布完成脱贫攻坚目标"
+        "title": "宣布完成脱贫攻坚目标",
+        "type": "制度",
+        "detail": "2020 年中国宣布完成现行标准下农村贫困人口脱贫目标。该事件应表述为官方宣布的政策目标完成，涉及统计口径、长期收入稳定性和区域发展差异等后续评估问题。",
+        "referenceIds": [
+          "prc-naughton-2007"
+        ]
       }
     ],
     "tags": [
@@ -3379,6 +5026,30 @@
       "东亚"
     ],
     "importance": 5,
-    "legacy": "中华人民共和国深刻重塑了东亚地缘格局、全球供应链与发展中国家的现代化路径，是当代国际秩序中最重要的变量之一。"
+    "legacy": "中华人民共和国深刻重塑了东亚地缘格局、全球供应链与发展中国家的现代化路径，是当代国际秩序中最重要的变量之一。",
+    "sourceNote": "中华人民共和国条目涉及仍在延续的现代国家政治史，需以谨慎年代学表达处理：1949 年建国、计划经济建设、联合国席位、改革开放、入世、奥运和脱贫目标均是重要节点，但对政策成效和政治意义的评价存在不同学术、官方与国际叙述。",
+    "references": [
+      {
+        "id": "prc-spence-1990",
+        "title": "The Search for Modern China",
+        "author": "Jonathan D. Spence",
+        "year": 1990,
+        "note": "用于 20 世纪中国革命、共和国成立和现代中国长时段背景。"
+      },
+      {
+        "id": "prc-vogel-2011",
+        "title": "Deng Xiaoping and the Transformation of China",
+        "author": "Ezra F. Vogel",
+        "year": 2011,
+        "note": "用于改革开放、邓小平时代政策转向和 1978 年后制度变化。"
+      },
+      {
+        "id": "prc-naughton-2007",
+        "title": "The Chinese Economy: Transitions and Growth",
+        "author": "Barry Naughton",
+        "year": 2007,
+        "note": "用于计划经济、一五计划、改革后增长、入世与现代经济转型背景。"
+      }
+    ]
   }
 ]

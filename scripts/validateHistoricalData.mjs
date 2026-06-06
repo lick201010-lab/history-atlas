@@ -5,23 +5,6 @@ import { REGION_PRESETS } from './boundaryCompiler/regionPresets.mjs';
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
 const SAMPLE_IDS = new Set(['tang', 'roman-republic-empire', 'islamic-caliphates', 'mughal', 'maya']);
-const F4_SOURCE_PILOT_IDS = new Set([
-  'tang',
-  'roman-republic-empire',
-  'islamic-caliphates',
-  'mughal',
-  'maya',
-  'qin',
-  'han',
-  'ming',
-  'egypt-old-kingdom',
-  'achaemenid',
-  'xia',
-  'shang',
-  'zhou',
-  'song',
-  'yuan',
-]);
 const F2_BATCH_01_IDS = new Set(['byzantine', 'ottoman', 'mongol-empire', 'aztec', 'inca']);
 const F2_BATCH_02_IDS = new Set([
   'greek-city-states',
@@ -118,9 +101,7 @@ function validateDynasty(dynasty, landmarkIds, errors) {
     if (!isNonEmptyString(dynasty.legacy)) fail(errors, `${prefix} sample must include legacy`);
   }
 
-  if (F4_SOURCE_PILOT_IDS.has(dynasty.id)) {
-    validateDynastySources(dynasty, errors);
-  }
+  validateDynastySources(dynasty, errors);
 }
 
 function validateReference(reference, referenceIds, prefix, errors) {
@@ -148,9 +129,9 @@ function validateReference(reference, referenceIds, prefix, errors) {
 
 function validateDynastySources(dynasty, errors) {
   const prefix = `dynasty:${dynasty?.id || 'unknown'}`;
-  if (!isNonEmptyString(dynasty.sourceNote)) fail(errors, `${prefix} F4 source pilot missing sourceNote`);
+  if (!isNonEmptyString(dynasty.sourceNote)) fail(errors, `${prefix} F4 source missing sourceNote`);
   if (!Array.isArray(dynasty.references) || dynasty.references.length === 0) {
-    fail(errors, `${prefix} F4 source pilot must include references`);
+    fail(errors, `${prefix} F4 source must include references`);
   }
 
   const referenceIds = new Set();
@@ -376,6 +357,12 @@ function validateLandmark(landmark, dynastyIds, errors) {
   }
   for (const dynastyId of landmark.relatedDynastyIds || []) {
     if (!dynastyIds.has(dynastyId)) fail(errors, `${prefix} relatedDynastyIds references missing dynasty:${dynastyId}`);
+  }
+  if (!Array.isArray(landmark.references) || landmark.references.length === 0) {
+    fail(errors, `${prefix} F4 source must include references`);
+  } else {
+    const referenceIds = new Set();
+    for (const reference of landmark.references) validateReference(reference, referenceIds, prefix, errors);
   }
   if (landmark.modelProfile !== undefined) {
     if (!isNonEmptyString(landmark.modelProfile) || !ALLOWED_MODEL_PROFILES.has(landmark.modelProfile)) {

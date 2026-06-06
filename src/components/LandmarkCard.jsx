@@ -112,6 +112,18 @@ function LandmarkCard({
       {landmark.sourceNote ? (
         <p className="landmark-source">{landmark.sourceNote}</p>
       ) : null}
+
+      {landmark.references?.length ? (
+        <div className="landmark-reference-list" aria-label="建筑参考资料">
+          <span>参考资料</span>
+          {landmark.references.slice(0, 2).map((reference) => (
+            <cite key={reference.id}>
+              {reference.title}
+              {reference.year ? ` · ${reference.year}` : ''}
+            </cite>
+          ))}
+        </div>
+      ) : null}
     </aside>
   );
 }
