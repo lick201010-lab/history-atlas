@@ -1,0 +1,71 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T08:16:35.466Z",
+  "scene": {
+    "id": "persepolis-500bce",
+    "targetId": "persepolis",
+    "year": -500,
+    "camera": {
+      "center": [
+        52.89,
+        29.94
+      ],
+      "zoom": 7,
+      "pitch": 64,
+      "bearing": -24
+    }
+  },
+  "firstAudit": {
+    "targetButtonFound": true,
+    "inspectButtonFound": true,
+    "inspectRect": {
+      "left": 248,
+      "top": 239,
+      "width": 42,
+      "height": 24,
+      "centerX": 269,
+      "centerY": 251
+    },
+    "closeRect": {
+      "left": 296,
+      "top": 239,
+      "width": 24,
+      "height": 24,
+      "centerX": 308,
+      "centerY": 251
+    },
+    "closeOverlapsInspectCenter": false
+  },
+  "finalAudit": {
+    "bodyClass": "has-card landmark-immersive",
+    "cardOpen": true,
+    "immersive": true,
+    "title": "波斯波利斯",
+    "modelStatus": 200,
+    "mapCenter": [
+      52.89,
+      29.94
+    ],
+    "zoom": 7,
+    "pitch": 64,
+    "bearing": -24,
+    "timelineOpacity": "0",
+    "infoPanelOpacity": "0",
+    "warningText": null
+  },
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/persepolis.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/persepolis.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch01-persepolis-500bce-immersive.png",
+  "failures": []
+}

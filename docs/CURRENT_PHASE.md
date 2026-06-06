@@ -1,385 +1,156 @@
-# Current Phase: F2 Boundary Refinement
+# Current Phase: F3 Landmark Model Quality
 
-Updated: 2026-06-04
+Updated: 2026-06-06
 
-Status: F2 Gate passed on 2026-06-06 after full 43-civilization phased boundary coverage, automated validation, browser QA, and manual screenshot review. This is still not the final complete version because F3-F6 remain incomplete.
+Status: F3 is active. F1 and F2 have passed their phase Gates. The whole project is still not the final complete version because F3-F6 remain incomplete.
 
 ## Project Rule
 
-The current deployed site at `https://atlas.ckl.hk/` and package version `v0.1.0` are online milestones only. No agent may call the project final until F1-F6 Gates all pass.
+The deployed site at `https://atlas.ckl.hk/` and package version `v0.1.0` are online milestones only. No agent may call the project final until F1-F6 Gates all pass.
 
-## F1 Gate Result
+## Completed Phase Gates
 
-F1 was accepted on 2026-06-04 after pass 3.
+F1 visual foundation passed on 2026-06-04.
 
 Evidence:
 
 - `npm run check` passed.
 - `VISUAL_FOUNDATION_URL=http://127.0.0.1:4174/ npm run audit:visual-foundation` passed.
 - `RELEASE_SMOKE_URL=http://127.0.0.1:4174/ npm run smoke:release` passed.
-- Reviewed foundation screenshots:
-  - `docs/visual-qa/foundation-himalaya-relief.png`
-  - `docs/visual-qa/foundation-open-ocean-flatness.png`
-  - `docs/visual-qa/foundation-mediterranean-boundary-readability.png`
-  - `docs/visual-qa/foundation-central-america-readability.png`
-- Ocean is visually flat, deep, and clean.
-- Dark-theme land relief is calmer and no longer reads as strong white-noise texture.
-- Civilization boundaries are calmer and less fluorescent.
-- Desktop and mobile smoke paths still work.
+- Foundation screenshots were reviewed for Himalaya relief, open-ocean flatness, Mediterranean readability, and Central America readability.
 
-Residual F1 risks to remember:
-
-- Himalaya relief is intentionally subdued in the default world view; mountain mode still carries stronger 3D terrain.
-- Open-ocean high-pitch views can still show far-horizon darkness from the map/sky perspective, but not underwater mountain relief.
-- F6 must still handle bundle size and resource strategy.
-
-## F2 Goal
-
-Upgrade all 43 civilization boundaries from placeholder or rough sample polygons to rough-refined historical-geographic outlines.
-
-F2 is about boundary data quality, not a new visual redesign.
-
-## F2 Batch Rule
-
-- One batch contains 5 civilizations.
-- Do not merge broad all-at-once boundary rewrites.
-- Each civilization must have at least 3 phase features: rise, peak, decline or equivalent historically meaningful phases.
-- Coastal civilizations must be coast-aware.
-- Large inland empires must avoid simple convex blobs and should follow historical anchors and natural geography.
-- Every feature must include `sourceNote` and `accuracyNote`.
-- Each accepted batch must be committed separately.
-
-## Accepted F2 Batch 01
-
-Batch 01 was accepted on 2026-06-04.
-
-1. Byzantine Empire
-2. Ottoman Empire
-3. Mongol Empire
-4. Aztec Empire
-5. Inca Empire
+F2 boundary refinement passed on 2026-06-06.
 
 Evidence:
 
-- `npm run validate:data` passed.
-- `npm run check` passed.
-- `node .claude-runs/capture-f2-boundary-batch-01.mjs` passed.
-- QA report: `docs/boundary-qa/F2_BATCH01_REPORT_2026-06-04.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch01-byzantine-600.png`
-  - `docs/boundary-qa/f2-batch01-ottoman-1600.png`
-  - `docs/boundary-qa/f2-batch01-mongol-empire-1250.png`
-  - `docs/boundary-qa/f2-batch01-aztec-1500.png`
-  - `docs/boundary-qa/f2-batch01-inca-1500.png`
-
-## Accepted F2 Batch 02
-
-Batch 02 was accepted on 2026-06-05.
-
-1. Greek City-States / `greek-city-states`
-2. Assyrian Empire / `assyrian`
-3. Babylonian Empire / `babylon`
-4. Carolingian Empire / `carolingian`
-5. Holy Roman Empire / `holy-roman-empire`
-
-Evidence:
-
-- `npm run validate:data` passed.
-- `npm run check` passed.
-- `scripts/auditF2BoundaryBatch02Playwright.mjs` passed with `failures: []`.
-- QA report: `docs/boundary-qa/F2_BATCH02_REPORT_2026-06-05.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch02-greek-city-states-450.png`
-  - `docs/boundary-qa/f2-batch02-assyrian-670.png`
-  - `docs/boundary-qa/f2-batch02-babylon-560.png`
-  - `docs/boundary-qa/f2-batch02-carolingian-820.png`
-  - `docs/boundary-qa/f2-batch02-holy-roman-empire-1200.png`
-
-Notes:
-
-- `egypt-old-kingdom` is not counted as an accepted Batch 02 id because the public timeline currently starts at BCE 2000 and Old Kingdom Egypt ends before that display range.
-- Carolingian and Holy Roman Empire were rejected once for triangular wedge artifacts, then accepted after being rewritten as cleaner multi-part rough-refined geometries.
-
-## Accepted F2 Batch 03
-
-Batch 03 was accepted on 2026-06-05.
-
-1. Xia / `xia`
-2. Shang / `shang`
-3. Zhou / `zhou`
-4. Qin / `qin`
-5. Sui / `sui`
-
-Evidence:
-
-- `npm run validate:data` passed.
-- `npm run check` passed.
-- `scripts/auditF2BoundaryBatch03Playwright.mjs` passed with `failures: []`.
-- QA report: `docs/boundary-qa/F2_BATCH03_REPORT_2026-06-05.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch03-xia-1850.png`
-  - `docs/boundary-qa/f2-batch03-shang-1250.png`
-  - `docs/boundary-qa/f2-batch03-zhou-350.png`
-  - `docs/boundary-qa/f2-batch03-qin-214.png`
-  - `docs/boundary-qa/f2-batch03-sui-600.png`
-
-Notes:
-
-- The first worker pass was rejected because the shapes read as smooth ovals or placeholder blobs.
-- The accepted pass has more irregular Yellow River / Central Plains directionality and larger Qin/Sui contours with rough regional structure.
-
-## Accepted F2 Batch 04
-
-Batch 04 was accepted on 2026-06-05.
-
-1. Jin / `jin`
-2. Song / `song`
-3. Yuan / `yuan`
-4. Qing / `qing`
-5. PRC / `prc`
-
-Evidence:
-
-- `npm run validate:data` passed.
-- `npm run check` passed.
-- `scripts/auditF2BoundaryBatch04Playwright.mjs` passed with `failures: []`.
-- QA report: `docs/boundary-qa/F2_BATCH04_REPORT_2026-06-05.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch04-jin-280.png`
-  - `docs/boundary-qa/f2-batch04-song-1160.png`
-  - `docs/boundary-qa/f2-batch04-yuan-1300.png`
-  - `docs/boundary-qa/f2-batch04-qing-1765.png`
-  - `docs/boundary-qa/f2-batch04-prc-2020.png`
-
-Notes:
-
-- The first Batch 04 review was `ACCEPT_WITH_FIXES` because PRC QA text said `mainland` while the illustrative range included Taiwan. The accepted pass now describes PRC as an illustrative contemporary China / contested-range outline.
-- Yuan, Qing, and PRC remain rough-refined large-extent historical visualization, not academic GIS borders.
-
-## Accepted F2 Batch 05
-
-Batch 05 was accepted on 2026-06-06.
-
-1. Han / `han`
-2. Ming / `ming`
-3. New Kingdom Egypt / `egypt-new-kingdom`
-4. Achaemenid Empire / `achaemenid`
-5. Sasanian Empire / `sasanian`
-
-Evidence:
-
-- `npm run compile:boundaries -- --ids han,ming,egypt-new-kingdom,achaemenid,sasanian` passed.
-- `npm run validate:data` passed.
-- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
-- `npm run check` passed.
-- `scripts/auditF2BoundaryBatch05Playwright.mjs` passed with `failures: []`.
-- QA report: `docs/boundary-qa/F2_BATCH05_REPORT_2026-06-06.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch05-overview-west-asia-600.png`
-  - `docs/boundary-qa/f2-batch05-han-100bce.png`
-  - `docs/boundary-qa/f2-batch05-ming-1500.png`
-  - `docs/boundary-qa/f2-batch05-egypt-new-kingdom-1300bce.png`
-  - `docs/boundary-qa/f2-batch05-achaemenid-500bce.png`
-  - `docs/boundary-qa/f2-batch05-sasanian-600.png`
-
-Notes:
-
-- Batch 05 introduced the F2 Boundary Compiler workflow: `src/data/boundary-anchors.json` plus `scripts/boundaryCompiler/*`.
-- The first compiler worker pass was rejected because it labelled hull output as `coastline-aware-rough` without true land/coast clipping.
-- The accepted compiler uses local `atlas-land-110m.json` land clipping and records `properties.compiler.landClipped = true`.
-- A second visual repair worker was required because the first clipped West Asia output rendered as overlapping regional slabs. The accepted pass uses region union evidence and removes the obvious slab overlap.
-- The output is still rough-refined historical visualization, not academic GIS data.
-
-## Accepted F2 Batch 06
-
-Batch 06 was accepted on 2026-06-06.
-
-1. Srivijaya / `srivijaya`
-2. Joseon / `joseon`
-3. Yamato Japan / `yamato-japan`
-4. Ghana Empire / `ghana`
-5. Mali Empire / `mali`
-
-Evidence:
-
-- `npm run compile:boundaries -- --ids srivijaya,joseon,yamato-japan,ghana,mali,songhai,british-empire,united-states` passed.
-- `npm run validate:data` passed.
-- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
-- `npm run check` passed.
-- `npm run audit:f2-batch06` passed with `failures: []`.
-- QA report: `docs/boundary-qa/F2_BATCH06_REPORT_2026-06-06.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch06-srivijaya-900.png`
-  - `docs/boundary-qa/f2-batch06-joseon-1500.png`
-  - `docs/boundary-qa/f2-batch06-yamato-japan-800.png`
-  - `docs/boundary-qa/f2-batch06-ghana-900.png`
-  - `docs/boundary-qa/f2-batch06-mali-1350.png`
-
-Notes:
-
-- `srivijaya`, `joseon`, and `yamato-japan` use local land-clipped compiler output to avoid ocean fill.
-- Ghana and Mali were visually rejected once for broad slab-like shapes, then repaired into narrower Sahel/Senegal/Niger corridor outlines.
-
-## Accepted F2 Batch 07
-
-Batch 07 was accepted on 2026-06-06.
-
-1. Songhai Empire / `songhai`
-2. British Empire / `british-empire`
-3. United States / `united-states`
-
-Evidence:
-
-- `npm run compile:boundaries -- --ids ghana,mali,songhai,united-states` passed during the final visual repair.
-- `npm run validate:data` passed.
-- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
-- `npm run check` passed.
-- `npm run audit:f2-batch07` passed with `failures: []`.
-- QA report: `docs/boundary-qa/F2_BATCH07_REPORT_2026-06-06.md`
-- Screenshots:
-  - `docs/boundary-qa/f2-batch07-songhai-1520.png`
-  - `docs/boundary-qa/f2-batch07-british-empire-india-1900.png`
-  - `docs/boundary-qa/f2-batch07-british-empire-isles-1900.png`
-  - `docs/boundary-qa/f2-batch07-united-states-2020.png`
-  - `docs/boundary-qa/f2-batch07-overview-global-1900.png`
-  - `docs/boundary-qa/f2-batch07-overview-world-2020.png`
-
-Notes:
-
-- Songhai was visually rejected once for two slab-like shapes, then repaired into a narrower Niger Bend / Sahel corridor.
-- United States was visually rejected once for reading as a giant box, then repaired with more articulated Atlantic, Gulf, Great Lakes, Southwest, Pacific, Alaska, and Hawaii presets.
-- British Empire remains a rough-refined, multi-part imperial footprint. Its broad phase semantics are acceptable for F2 but should be explained further in F4 content/source work.
-
-## F2 Gate Result
-
-F2 boundary refinement Gate passed on 2026-06-06.
-
-Evidence:
-
-- All 43 civilizations have at least three phase boundary features: `rise`, `peak`, and `decline`.
+- All 43 civilizations have at least three boundary phases: `rise`, `peak`, and `decline`.
 - Total boundary feature count is 129.
-- `npm run validate:data` passed and reports `F2 phased boundary ids: 43`.
-- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
-- `npm run check` passed.
-- Browser QA passed:
-  - `npm run audit:f2-batch06`
-  - `npm run audit:f2-batch07`
-- Manual screenshot review accepted the repaired West Africa and United States outputs after rejecting the first visual pass.
-
-Residual risks carried forward:
-
-- F2 boundaries are final for the current rough-refined product phase, not academic GIS boundaries.
-- Some older non-compiler boundaries are rough-refined hand-authored geometries while the latest compiler-managed set has stronger local land-clipping evidence.
-- F4 must explain broad phase semantics for empires such as British Empire and United States.
-- F3-F6 remain incomplete, so the whole project is not the final complete version.
-
-## Allowed F4 Pilot Sidecar
-
-F4 is not the primary current phase yet, but a controlled source-system pilot may run in parallel after Batch 04.
-
-Pilot targets:
-
-1. Tang / `tang`
-2. Roman Republic / Empire / `roman-republic-empire`
-3. Islamic Caliphates / `islamic-caliphates`
-4. Mughal Empire / `mughal`
-5. Maya Civilization / `maya`
-
-Pilot rule:
-
-- The F4 pilot may add dynasty-level `sourceNote`, `references`, and event-level source fields for the five allowlisted targets only.
-- The F4 pilot must not rewrite boundary geometry, landmark data, map style, GLB models, dependencies, or deployment scripts.
-
-## Accepted F4 Source Pilot 01
-
-F4 Source Pilot 01 was accepted on 2026-06-05.
-
-Scope:
-
-1. Tang / `tang`
-2. Roman Republic / Empire / `roman-republic-empire`
-3. Islamic Caliphates / `islamic-caliphates`
-4. Mughal Empire / `mughal`
-5. Maya Civilization / `maya`
-
-Evidence:
-
 - `npm run validate:data` passed.
+- `npm run audit:boundary-quality` passed with no failures or warnings.
 - `npm run check` passed.
-- Literal `????` encoding scan returned no matches after a repair pass.
-- Browser QA confirmed `文明来源`, `参考资料`, event source labels, and existing `边界精度` display on pilot civilization cards.
-- QA report: `docs/source-qa/F4_SOURCE_PILOT01_REPORT_2026-06-05.md`
-- Screenshots:
-  - `docs/source-qa/f4-pilot-roman-source-card.png`
-  - `docs/source-qa/f4-pilot-roman-source-card-scrolled.png`
+- `npm run audit:f2-batch06` and `npm run audit:f2-batch07` passed.
+- Manual screenshot review accepted the repaired West Africa and United States outputs.
 
-Notes:
+## F3 Goal
 
-- The first worker pass introduced `????` encoding damage in Chinese source fields. That pass was rejected until a repair worker removed the damage and `npm run check` passed again.
-- This is a source-system pilot only; F4 for all 43 civilizations is still incomplete.
+Upgrade landmark models from MVP map pieces to final-version miniature architecture quality.
 
-## F2 Allowed Write Scope
+F3 completion requires:
 
-Claude or a worker may edit:
+- 30 / 30 landmarks have GLB or equivalent runtime 3D models.
+- The core 10 landmarks are A-grade in map-view QA:
+  - `hagia-sophia`
+  - `forbidden-city`
+  - `angkor-wat`
+  - `pyramid`
+  - `colosseum`
+  - `parthenon`
+  - `tajmahal`
+  - `chichen-itza`
+  - `great-wall`
+  - `petra`
+- All other landmarks are A/B-grade.
+- No accepted model may be upside down, floating, sunk into terrain, black-material broken, roof-bugged, or unreadable in selected map view.
+- Every accepted batch keeps at least one map-view QA screenshot.
 
-- `src/data/boundaries-simplified.json`
-- `src/data/boundary-anchors.json`
-- `scripts/boundaryCompiler/*.mjs`
-- `scripts/auditBoundaryQuality.mjs`
-- Data validator fixtures only if the current schema blocks required F2 fields.
-- A `.claude-runs/*.md` task/output record.
+## Current F3 Inventory
 
-Codex may additionally edit:
+Current GLB coverage:
 
+- Total landmarks: 30.
+- GLB overrides: 15.
+- Missing GLB coverage: 15.
+- Core 10 GLB coverage: 10 / 10, but these are not automatically final A-grade. They still need final map-view inspection.
+
+Missing GLB ids:
+
+- `changan`
+- `terracotta-army`
+- `temple-of-heaven`
+- `cheomseongdae`
+- `ziggurat-ur`
+- `ishtar-gate`
+- `mecca-haram`
+- `sanchi-stupa`
+- `konark-sun`
+- `teotihuacan`
+- `machu-picchu`
+- `meroe-pyramids`
+- `djenne-mosque`
+- `great-zimbabwe`
+- `westminster-abbey`
+
+## F3 Batch Rule
+
+- Prefer 1-3 landmarks per implementation batch.
+- Start with missing GLB coverage before broad core-10 polish.
+- Each batch must include a reusable QA path or a map-view screenshot record.
+- A batch cannot be accepted from `npm run audit:glb` alone. Mechanical GLB health is not the same as visual quality.
+- Codex owns acceptance. Claude or workers may implement bounded model batches but do not decide final quality.
+
+## Accepted F3 Batch 01
+
+Target:
+
+- `persepolis`
+
+Reason:
+
+- It is historically important.
+- It is missing GLB coverage.
+- It already has a procedural `modelProfile`, making it a low-risk first F3 pipeline target.
+
+Result:
+
+- Accepted as F3 Batch01 GLB coverage on 2026-06-06.
+- `npm run audit:f3-batch01` passed with no failures.
+- `npm run check` passed.
+- Screenshot: `docs/model-qa/f3-batch01-persepolis-500bce-immersive.png`.
+- Quality note: accepted as a readable B-grade miniature coverage model, not as full F3 completion and not as a core final A-grade benchmark.
+
+Allowed write scope used:
+
+- `scripts/buildPersepolisGlb.mjs`
+- `public/models/persepolis.glb`
+- `src/map/createBuildingLayer.js`
+- `src/components/MapScene.jsx` only for a minimal focus-camera preset if needed.
+- `scripts/auditF3ModelBatch01Playwright.mjs`
+- `docs/model-qa/*`
+- `docs/GLB_ASSET_BASELINE.md`
+- `.claude-runs/f3-model-batch-01.md`
 - `WORK_LOG.md`
-- `docs/CURRENT_PHASE.md`
-- relevant QA docs and screenshots
 - Obsidian project notes
 
-## F2 Forbidden Write Scope
-
-Do not edit during F2 boundary batches unless Codex explicitly changes this file:
+Forbidden write scope during F3 Batch 01:
 
 - `src/data/dynasties.json`
+- `src/data/boundaries-simplified.json`
+- `src/data/boundary-anchors.json`
 - `src/data/landmarks.json`
 - `src/map/mapStyle.js`
-- `src/components/MapScene.jsx`
-- `public/models/*`
-- GLB build scripts
 - deployment scripts
 - package dependencies
 
-## F2 Gate Checks
+## F3 Gate Checks
 
-Every batch must pass:
+Every F3 batch must pass:
 
+- `npm run audit:glb`
 - `npm run validate:data`
 - `npm run check`
-- browser screenshot review at zoom 4-5 for the batch region
-- no random internal line spaghetti
-- no obvious rectangle placeholders
-- no careless cross-sea fills unless historically intentional and visually acceptable
-- no severe coastline mismatch where rough-refined coast-aware data is required
+- Batch-specific browser QA script or manual screenshot review
 
-F2 full phase is not complete until:
+F3 full phase is not complete until:
 
-- 43 civilizations all have at least 3 phase boundary features.
-- Total boundary features are at least 129.
-- `npm run validate:data` passes.
+- GLB coverage reaches 30 / 30.
+- Core 10 are accepted as A-grade in map-view screenshots.
+- Remaining 20 are accepted as A/B-grade.
 - `npm run check` passes.
-- priority screenshots are reviewed for Tang, Rome, Islamic Caliphates, Byzantine, Ottoman, Mongol, Maya, Aztec, Mughal, and Inca.
+- GLB audit has 0 FAIL.
+- Model QA screenshots/reports exist for all accepted model batches.
 
-## Codex Responsibilities
+## Residual Risks Carried Forward
 
-- Define batch task files.
-- Invoke Claude or worker agents with bounded write scopes.
-- Review diffs and reject weak geometry.
-- Run automated checks and browser screenshot QA.
-- Commit and push accepted batches.
-- Keep `WORK_LOG.md`, `docs/CURRENT_PHASE.md`, and Obsidian notes updated.
-
-## Claude Responsibilities
-
-Claude may only work from a `.claude-runs/*.md` task file.
-
-Claude is responsible for controlled implementation only. Claude does not decide whether a batch is accepted.
+- Existing F1 visual QA files are dirty in the working tree and are unrelated to F3. Do not stage or revert them without an explicit request.
+- Existing 14 GLBs passed the MVP visual bar. F3 must re-grade them against the final-version bar, especially roof detail, silhouette quality, facing direction, and selected-view readability.
+- F4 source work may continue only as a sidecar and must not block F3 model quality.

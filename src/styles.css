@@ -1003,6 +1003,16 @@ input[type="range"]::-moz-range-thumb {
   gap: 6px;
 }
 
+.landmark-card-actions .territory-close {
+  position: static;
+  top: auto;
+  right: auto;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  line-height: 1;
+}
+
 .landmark-locate {
   position: static;
   width: auto;

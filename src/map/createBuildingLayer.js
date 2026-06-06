@@ -1133,6 +1133,7 @@ const ID_GLB_OVERRIDES = {
   borobudur: `${GLB_BASE}borobudur.glb`,
   petra: `${GLB_BASE}petra.glb`,
   'red-fort': `${GLB_BASE}red-fort.glb`,
+  persepolis: `${GLB_BASE}persepolis.glb`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
@@ -1155,6 +1156,7 @@ const ID_GLB_ORIENTATION_OVERRIDES = {
   borobudur: GLB_ORIENT_ZUP,
   petra: GLB_ORIENT_ZUP,
   'red-fort': GLB_ORIENT_ZUP,
+  persepolis: GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。
@@ -1190,6 +1192,7 @@ const FOCUS_SCALE_OVERRIDES = {
   // secondary masses stay readable in the map camera without bloating every
   // landmark in normal world view.
   pyramid: 1.42,
+  persepolis: 1.24,
 };
 
 function buildDefault(mat) {

@@ -1406,3 +1406,52 @@ Next:
 
 - Commit and push F2 full boundary Gate.
 - Move current phase to F3 model quality only after the F2 commit is safely pushed.
+
+## 2026-06-06 F3 Batch01 model coverage
+
+Scope:
+
+- Began F3 landmark/model quality after F1 and F2 phase Gates were already accepted.
+- Added the first missing GLB coverage model: `persepolis`.
+- Kept this as a controlled F3 batch only. This does not complete F3 and does not make the project final.
+
+Agent workflow:
+
+- Hilbert explorer completed a read-only F3 inventory and recommended `persepolis` as the first low-risk missing model target.
+- Codex accepted the recommendation, implemented the bounded batch, reviewed the result, and closed Hilbert after recording its output.
+
+Implementation:
+
+- Added `scripts/buildPersepolisGlb.mjs`.
+- Generated `public/models/persepolis.glb`.
+- Added `persepolis` to GLB override, z-up orientation override, and selected-camera focus tuning.
+- Added `scripts/auditF3ModelBatch01Playwright.mjs` as a dependency-free Edge/CDP browser audit despite the legacy filename.
+- Fixed a real UI bug where `.territory-close` inherited absolute positioning inside `LandmarkCard` and overlapped the immersive inspect button.
+
+Verification:
+
+- `node scripts/buildPersepolisGlb.mjs` passed.
+- `npm run audit:glb` passed: 15 OK, 0 WARN, 0 FAIL.
+- `npm run validate:data` passed.
+- `npm run audit:f3-batch01` passed with `failures: []`.
+- `npm run check` passed.
+- `http://127.0.0.1:4188/models/persepolis.glb` returned 200.
+
+QA artifacts:
+
+- `docs/model-qa/F3_BATCH01_REPORT_2026-06-06.md`
+- `docs/model-qa/f3-batch01-manifest.json`
+- `docs/model-qa/f3-batch01-persepolis-500bce-immersive.png`
+- `docs/model-qa/f3-batch01-persepolis-inapp.png`
+
+Result:
+
+- F3 Batch01 is accepted as GLB coverage for `persepolis`.
+- Visual grade: B-level readable miniature. It is suitable as coverage, but not a core A-grade promotional benchmark.
+- In-app browser QA also passed: Persepolis opened in immersive mode, title rendered as `波斯波利斯`, and page logs were empty. The unrelated Statsig timeout came from the Codex browser plugin telemetry, not the app.
+- GLB coverage is now 15 / 30. Missing GLB coverage remains 15 / 30.
+- The full F3 Gate remains incomplete.
+
+Next:
+
+- Continue F3 with another missing-model batch, preferably 1-3 models per batch with the same map-view QA path.

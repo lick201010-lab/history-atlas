@@ -12,6 +12,10 @@ function importanceText(value = 3) {
   return `${'◆'.repeat(score)}${'◇'.repeat(5 - score)}`;
 }
 
+function stopCardEvent(event) {
+  event.stopPropagation();
+}
+
 function LandmarkCard({
   landmark,
   dynastyById,
@@ -30,12 +34,18 @@ function LandmarkCard({
       className={`landmark-card${immersive ? ' is-immersive' : ''}`}
       style={{ '--landmark-accent': landmark.color }}
       aria-label="建筑档案"
+      onPointerDown={stopCardEvent}
+      onPointerUp={stopCardEvent}
+      onClick={stopCardEvent}
     >
       <div className="landmark-card-actions">
         <button
           type="button"
           className="card-action-btn landmark-locate"
-          onClick={() => onFlyTo?.(landmark)}
+          onClick={(event) => {
+            event.stopPropagation();
+            onFlyTo?.(landmark);
+          }}
         >
           定位
         </button>
@@ -43,7 +53,10 @@ function LandmarkCard({
           type="button"
           className="card-action-btn landmark-inspect"
           aria-pressed={immersive}
-          onClick={onToggleImmersive}
+          onClick={(event) => {
+            event.stopPropagation();
+            onToggleImmersive?.();
+          }}
         >
           {immersive ? '退出' : '沉浸'}
         </button>
@@ -52,7 +65,10 @@ function LandmarkCard({
           className="card-action-btn territory-close"
           aria-label="关闭建筑卡"
           title="关闭"
-          onClick={onClose}
+          onClick={(event) => {
+            event.stopPropagation();
+            onClose?.();
+          }}
         >
           ×
         </button>

@@ -4,12 +4,12 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 
 ## Summary
 
-- Landmark GLB overrides: 14
-- GLB files in public/models: 14
-- Passing without warnings: 14
+- Landmark GLB overrides: 15
+- GLB files in public/models: 15
+- Passing without warnings: 15
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 4,575 KB
+- Total GLB weight: 4,978 KB
 
 ## Budget
 
@@ -32,6 +32,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `hagia-sophia` | `hagia-sophia.glb` | 750 KB | 19,228 | 17,579 | 16 | 0/0 | -0.000 | 1.459 | 0.780 | - |
 | OK | `notre-dame` | `notre-dame.glb` | 241 KB | 3,488 | 5,968 | 9 | 0/0 | -0.000 | 0.986 | 0.687 | - |
 | OK | `parthenon` | `parthenon.glb` | 397 KB | 7,400 | 9,768 | 9 | 0/0 | -0.000 | 0.894 | 0.730 | - |
+| OK | `persepolis` | `persepolis.glb` | 403 KB | 7,154 | 9,927 | 10 | 0/0 | -0.000 | 0.935 | 0.810 | - |
 | OK | `petra` | `petra.glb` | 129 KB | 2,044 | 2,980 | 10 | 0/0 | 0.000 | 1.210 | 0.540 | - |
 | OK | `pyramid` | `great-pyramid.glb` | 96 KB | 1,540 | 2,145 | 10 | 0/0 | -0.000 | 0.650 | 0.760 | - |
 | OK | `red-fort` | `red-fort.glb` | 431 KB | 13,192 | 9,777 | 8 | 0/0 | 0.000 | 0.570 | 0.638 | - |

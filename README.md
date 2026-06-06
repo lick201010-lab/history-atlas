@@ -31,6 +31,17 @@ F2 boundary refinement has passed its phase Gate. This means the boundary layer 
 - Next phase: F3 landmark/model quality, with F4 source expansion allowed only as controlled sidecar work.
 - Still not final: F3 models, F4 full source system, F5 product/mobile UX, and F6 performance/release packaging remain open.
 
+### 2026-06-06 F3 Batch01 Update
+
+F3 model work has started. Batch01 accepted `persepolis` as GLB coverage only.
+
+- GLB coverage: 15 / 30 landmarks.
+- Missing GLB coverage: 15 / 30 landmarks.
+- New QA command: `npm run audit:f3-batch01`.
+- Fresh checks passed: `npm run audit:f3-batch01` and `npm run check`.
+- Screenshot: `docs/model-qa/f3-batch01-persepolis-500bce-immersive.png`.
+- Quality note: Persepolis is accepted as a readable B-grade miniature coverage model, not as the full F3 Gate and not as the final complete product.
+
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
