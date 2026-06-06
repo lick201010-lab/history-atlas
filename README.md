@@ -8,7 +8,7 @@
 
 | 项 | 状态 |
 | --- | --- |
-| 阶段 | online milestone / F2 Gate passed / F3 next |
+| 阶段 | online milestone / F2 Gate passed / F3 active |
 | 部署 | 阿里云 ECS + Caddy 静态站点 |
 | 仓库 | `lick201010-lab/history-atlas` |
 | 前端 | React 18 + Vite |
@@ -74,6 +74,18 @@ Batch04 accepted `mecca-haram`, `teotihuacan`, and `machu-picchu` as GLB coverag
 - Fresh checks passed: `npm run audit:f3-batch04`, `npm run audit:glb -- --write`, and in-app browser QA.
 - Screenshots: `docs/model-qa/f3-batch04-mecca-haram-800.png`, `docs/model-qa/f3-batch04-teotihuacan-450.png`, `docs/model-qa/f3-batch04-machu-picchu-1500.png`.
 - Quality note: all three are accepted as B-grade readable coverage miniatures. `machu-picchu` was repaired during Codex QA so it reads as a low roofless terrace ruin rather than a sharp-roof / pyramid-like placeholder.
+- Still not final: F3 remains incomplete until all 30 landmarks have accepted A/B-grade models and the core 10 are re-graded against the A-grade bar.
+
+### 2026-06-06 F3 Batch05 Update
+
+Batch05 accepted `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseongdae` as GLB coverage only.
+
+- GLB coverage: 27 / 30 landmarks.
+- Missing GLB coverage: 3 / 30 landmarks: `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey`.
+- New QA command: `npm run audit:f3-batch05`.
+- Fresh checks passed: `npm run audit:f3-batch05`, `npm run audit:glb -- --write`, and in-app browser QA.
+- Screenshots: `docs/model-qa/f3-batch05-changan-700.png`, `docs/model-qa/f3-batch05-terracotta-army-200bce.png`, `docs/model-qa/f3-batch05-temple-of-heaven-1600.png`, `docs/model-qa/f3-batch05-cheomseongdae-700.png`.
+- Quality note: all four are accepted as B-grade readable coverage miniatures. `temple-of-heaven` is the strongest model in this batch. `cheomseongdae` is visually acceptable, but its current map placement is close to the coastline and should be revisited later as a data/placement refinement.
 - Still not final: F3 remains incomplete until all 30 landmarks have accepted A/B-grade models and the core 10 are re-graded against the A-grade bar.
 
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
@@ -153,7 +165,7 @@ npm run smoke:release
 - 时间轴：公元前 2000 年到公元 2025 年。
 - 文明数据：43 个文明/朝代，含摘要、事件、标签、影响和重要性。
 - 历史边界：129 个 GeoJSON feature，43 个文明全部支持兴起/鼎盛/衰落阶段。
-- 奇观建筑：30 个地标，23 个奇观已接入 GLB 模型。
+- 奇观建筑：30 个地标，27 个奇观已接入 GLB 模型。
 - 交互：搜索、筛选、文明卡、建筑卡、对比、锁定、地图聚焦。
 - 移动端：窄屏 HUD 折叠、移动端发布冒烟通过。
 
@@ -164,7 +176,7 @@ npm run smoke:release
 | 文明 / 朝代 | 43 |
 | 边界 feature | 129 |
 | 奇观 / 建筑 | 30 |
-| GLB 覆盖模型 | 23 |
+| GLB 覆盖模型 | 27 |
 | 时代叙事段 | 8 |
 | 时间轴关键节点 | 14 |
 

@@ -1624,3 +1624,64 @@ Result:
 Next:
 
 - Continue F3 missing-model coverage. Strong next candidate batch: `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseongdae`, but split if model quality starts to drop.
+
+## 2026-06-06 F3 Batch05 model coverage
+
+Scope:
+
+- Continued F3 landmark/model quality with two bounded worker tasks.
+- Added GLB coverage for `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseongdae`.
+- This remains a controlled F3 batch only. It does not complete F3 and does not make the project final.
+
+Agent workflow:
+
+- Socrates worker implemented `changan` and `terracotta-army` model scripts and generated GLBs within the bounded Batch05A write scope.
+- McClintock worker implemented `temple-of-heaven` and `cheomseongdae` model scripts and generated GLBs within the bounded Batch05B write scope.
+- Codex reviewed the worker output, fixed a small script-comment encoding issue, integrated GLB overrides and focus-camera presets, reran checks, added the Batch05 browser QA script and artifacts, and performed in-app browser verification before acceptance.
+
+Implementation:
+
+- Added `scripts/buildChanganGlb.mjs`.
+- Added `scripts/buildTerracottaArmyGlb.mjs`.
+- Added `scripts/buildTempleOfHeavenGlb.mjs`.
+- Added `scripts/buildCheomseongdaeGlb.mjs`.
+- Generated `public/models/changan.glb`.
+- Generated `public/models/terracotta-army.glb`.
+- Generated `public/models/temple-of-heaven.glb`.
+- Generated `public/models/cheomseongdae.glb`.
+- Added all four ids to GLB override, z-up orientation override, selected scale, and focus camera presets.
+- Added `npm run audit:f3-batch05`.
+
+Verification:
+
+- `npm run audit:glb -- --write` passed: 27 OK, 0 WARN, 0 FAIL.
+- `npm run validate:data` passed during Batch05 verification.
+- `npm run build` passed during Batch05 verification with existing Vite large chunk warnings.
+- `npm run audit:f3-batch05` passed with `failures: []`.
+- In-app browser QA passed for all four models: selected landmark, immersive mode active, Chinese title correct, and page logs empty.
+
+QA artifacts:
+
+- `docs/model-qa/F3_BATCH05_REPORT_2026-06-06.md`
+- `docs/model-qa/f3-batch05-manifest.json`
+- `docs/model-qa/f3-batch05-changan-700.png`
+- `docs/model-qa/f3-batch05-terracotta-army-200bce.png`
+- `docs/model-qa/f3-batch05-temple-of-heaven-1600.png`
+- `docs/model-qa/f3-batch05-cheomseongdae-700.png`
+- `docs/model-qa/f3-batch05-changan-inapp.png`
+- `docs/model-qa/f3-batch05-terracotta-army-inapp.png`
+- `docs/model-qa/f3-batch05-temple-of-heaven-inapp.png`
+- `docs/model-qa/f3-batch05-cheomseongdae-inapp.png`
+
+Result:
+
+- F3 Batch05 is accepted as GLB coverage for `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseongdae`.
+- Visual grade: all four are B-level readable miniatures. `temple-of-heaven` is the strongest visual model in this batch.
+- Caveat: `cheomseongdae` is visually acceptable, but its current landmark location appears close to the coastline in map view. Treat this as a future data/placement refinement note, not a GLB blocker.
+- GLB coverage is now 27 / 30. Missing GLB coverage remains 3 / 30: `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey`.
+- The full F3 Gate remains incomplete.
+
+Next:
+
+- Continue F3 missing-model coverage with a small final coverage batch for `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey`.
+- After 30 / 30 GLB coverage, re-grade the core 10 against the A-grade map-view bar before calling F3 passed.

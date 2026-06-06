@@ -1,0 +1,272 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T11:46:32.466Z",
+  "results": [
+    {
+      "scene": {
+        "id": "changan-700",
+        "targetId": "changan",
+        "year": 700,
+        "camera": {
+          "center": [
+            108.94,
+            34.34
+          ],
+          "zoom": 7.2,
+          "pitch": 62,
+          "bearing": -26
+        },
+        "screenshot": "f3-batch05-changan-700.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "长安宫殿",
+        "modelStatus": 200,
+        "mapCenter": [
+          108.94,
+          34.34
+        ],
+        "zoom": 7.2,
+        "pitch": 62,
+        "bearing": -26,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch05-changan-700.png"
+    },
+    {
+      "scene": {
+        "id": "terracotta-army-200bce",
+        "targetId": "terracotta-army",
+        "year": -200,
+        "camera": {
+          "center": [
+            109.27,
+            34.39
+          ],
+          "zoom": 7.6,
+          "pitch": 62,
+          "bearing": -28
+        },
+        "screenshot": "f3-batch05-terracotta-army-200bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 560
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 276.9,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "秦始皇兵马俑",
+        "modelStatus": 200,
+        "mapCenter": [
+          109.27,
+          34.39
+        ],
+        "zoom": 7.6,
+        "pitch": 62,
+        "bearing": -28,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch05-terracotta-army-200bce.png"
+    },
+    {
+      "scene": {
+        "id": "temple-of-heaven-1600",
+        "targetId": "temple-of-heaven",
+        "year": 1600,
+        "camera": {
+          "center": [
+            116.41,
+            39.88
+          ],
+          "zoom": 7.5,
+          "pitch": 62,
+          "bearing": -30
+        },
+        "screenshot": "f3-batch05-temple-of-heaven-1600.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "天坛",
+        "modelStatus": 200,
+        "mapCenter": [
+          116.41,
+          39.88
+        ],
+        "zoom": 7.5,
+        "pitch": 62,
+        "bearing": -30,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch05-temple-of-heaven-1600.png"
+    },
+    {
+      "scene": {
+        "id": "cheomseongdae-700",
+        "targetId": "cheomseongdae",
+        "year": 700,
+        "camera": {
+          "center": [
+            129.22,
+            35.84
+          ],
+          "zoom": 7.7,
+          "pitch": 62,
+          "bearing": 30
+        },
+        "screenshot": "f3-batch05-cheomseongdae-700.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 665.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 269,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "瞻星台",
+        "modelStatus": 200,
+        "mapCenter": [
+          129.22,
+          35.84
+        ],
+        "zoom": 7.7,
+        "pitch": 62,
+        "bearing": 30,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch05-cheomseongdae-700.png"
+    }
+  ],
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/changan.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/terracotta-army.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/temple-of-heaven.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/cheomseongdae.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/changan.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/changan.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/terracotta-army.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/temple-of-heaven.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/cheomseongdae.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/terracotta-army.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/changan.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/terracotta-army.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/temple-of-heaven.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/cheomseongdae.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/temple-of-heaven.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/changan.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/terracotta-army.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/temple-of-heaven.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/cheomseongdae.glb?v=20260606-f3b05a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/cheomseongdae.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "failures": []
+}

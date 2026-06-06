@@ -1119,6 +1119,7 @@ const ID_PROFILE_OVERRIDES = {
 // 成功则用 GLB 替换该建筑的程序化体块；加载失败则保留程序化模型。
 const GLB_BASE = `${import.meta.env?.BASE_URL ?? '/'}models/`;
 const GLB_BATCH04_VERSION = '20260606-f3b04c';
+const GLB_BATCH05_VERSION = '20260606-f3b05a';
 const ID_GLB_OVERRIDES = {
   'hagia-sophia': `${GLB_BASE}hagia-sophia.glb`,
   parthenon: `${GLB_BASE}parthenon.glb`,
@@ -1143,6 +1144,10 @@ const ID_GLB_OVERRIDES = {
   'mecca-haram': `${GLB_BASE}mecca-haram.glb?v=${GLB_BATCH04_VERSION}`,
   teotihuacan: `${GLB_BASE}teotihuacan.glb?v=${GLB_BATCH04_VERSION}`,
   'machu-picchu': `${GLB_BASE}machu-picchu.glb?v=${GLB_BATCH04_VERSION}`,
+  changan: `${GLB_BASE}changan.glb?v=${GLB_BATCH05_VERSION}`,
+  'terracotta-army': `${GLB_BASE}terracotta-army.glb?v=${GLB_BATCH05_VERSION}`,
+  'temple-of-heaven': `${GLB_BASE}temple-of-heaven.glb?v=${GLB_BATCH05_VERSION}`,
+  cheomseongdae: `${GLB_BASE}cheomseongdae.glb?v=${GLB_BATCH05_VERSION}`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
@@ -1174,6 +1179,10 @@ const ID_GLB_ORIENTATION_OVERRIDES = {
   'mecca-haram': GLB_ORIENT_ZUP,
   teotihuacan: GLB_ORIENT_ZUP,
   'machu-picchu': GLB_ORIENT_ZUP,
+  changan: GLB_ORIENT_ZUP,
+  'terracotta-army': GLB_ORIENT_ZUP,
+  'temple-of-heaven': GLB_ORIENT_ZUP,
+  cheomseongdae: GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。
@@ -1218,6 +1227,10 @@ const FOCUS_SCALE_OVERRIDES = {
   'mecca-haram': 1.20,
   teotihuacan: 1.24,
   'machu-picchu': 1.26,
+  changan: 1.20,
+  'terracotta-army': 1.20,
+  'temple-of-heaven': 1.18,
+  cheomseongdae: 1.18,
 };
 
 function buildDefault(mat) {

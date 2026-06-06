@@ -4,12 +4,12 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 
 ## Summary
 
-- Landmark GLB overrides: 23
-- GLB files in public/models: 23
-- Passing without warnings: 23
+- Landmark GLB overrides: 27
+- GLB files in public/models: 27
+- Passing without warnings: 27
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 7,233 KB
+- Total GLB weight: 9,242 KB
 
 ## Budget
 
@@ -25,6 +25,8 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | OK | `angkor-wat` | `angkor-wat.glb` | 152 KB | 3,722 | 3,405 | 9 | 0/0 | -0.000 | 1.198 | 0.712 | - |
 | OK | `borobudur` | `borobudur.glb` | 606 KB | 18,604 | 13,972 | 5 | 0/0 | -0.000 | 0.790 | 0.550 | - |
+| OK | `changan` | `changan.glb` | 466 KB | 6,066 | 11,778 | 14 | 0/0 | -0.000 | 0.318 | 0.873 | - |
+| OK | `cheomseongdae` | `cheomseongdae.glb` | 379 KB | 4,896 | 9,700 | 8 | 0/0 | -0.000 | 0.996 | 0.390 | - |
 | OK | `chichen-itza` | `chichen-itza.glb` | 197 KB | 2,584 | 4,812 | 11 | 0/0 | 0.000 | 0.823 | 0.550 | - |
 | OK | `colosseum` | `colosseum.glb` | 687 KB | 8,992 | 17,828 | 6 | 0/0 | 0.000 | 0.605 | 0.737 | - |
 | OK | `djenne-mosque` | `djenne-mosque.glb` | 179 KB | 2,766 | 4,335 | 9 | 0/0 | -0.000 | 1.055 | 0.670 | - |
@@ -44,7 +46,9 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `sanchi-stupa` | `sanchi-stupa.glb` | 305 KB | 5,918 | 7,307 | 11 | 0/0 | -0.000 | 1.135 | 0.765 | - |
 | OK | `stonehenge` | `stonehenge.glb` | 52 KB | 688 | 1,220 | 4 | 0/0 | -0.000 | 0.379 | 0.520 | - |
 | OK | `tajmahal` | `taj-mahal.glb` | 376 KB | 12,300 | 8,252 | 11 | 0/0 | -0.000 | 1.265 | 0.720 | - |
+| OK | `temple-of-heaven` | `temple-of-heaven.glb` | 534 KB | 10,066 | 13,087 | 12 | 0/0 | 0.000 | 1.347 | 0.770 | - |
 | OK | `teotihuacan` | `teotihuacan.glb` | 169 KB | 2,268 | 4,104 | 10 | 0/0 | -0.000 | 0.730 | 0.810 | - |
+| OK | `terracotta-army` | `terracotta-army.glb` | 629 KB | 12,802 | 15,328 | 13 | 0/0 | -0.000 | 0.226 | 0.810 | - |
 | OK | `ziggurat-ur` | `ziggurat-ur.glb` | 325 KB | 4,092 | 8,184 | 11 | 0/0 | 0.000 | 0.983 | 0.785 | - |
 
 ## How To Use This Baseline
