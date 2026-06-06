@@ -88,6 +88,18 @@ Batch05 accepted `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseo
 - Quality note: all four are accepted as B-grade readable coverage miniatures. `temple-of-heaven` is the strongest model in this batch. `cheomseongdae` is visually acceptable, but its current map placement is close to the coastline and should be revisited later as a data/placement refinement.
 - Still not final: F3 remains incomplete until all 30 landmarks have accepted A/B-grade models and the core 10 are re-graded against the A-grade bar.
 
+### 2026-06-06 F3 Batch06 Update
+
+Batch06 accepted `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey` as GLB coverage only.
+
+- GLB coverage: 30 / 30 landmarks.
+- Missing GLB coverage: 0 / 30 landmarks.
+- New QA command: `npm run audit:f3-batch06`.
+- Fresh checks passed: `npm run audit:f3-batch06`, `npm run audit:glb -- --write`, and in-app browser QA.
+- Screenshots: `docs/model-qa/f3-batch06-meroe-pyramids-300bce.png`, `docs/model-qa/f3-batch06-great-zimbabwe-1200.png`, `docs/model-qa/f3-batch06-westminster-abbey-1200.png`.
+- Quality note: all three are accepted as B-grade readable coverage miniatures.
+- Still not final: F3 remains incomplete until the core 10 landmarks are re-graded against the A-grade map-view bar.
+
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
@@ -165,7 +177,7 @@ npm run smoke:release
 - 时间轴：公元前 2000 年到公元 2025 年。
 - 文明数据：43 个文明/朝代，含摘要、事件、标签、影响和重要性。
 - 历史边界：129 个 GeoJSON feature，43 个文明全部支持兴起/鼎盛/衰落阶段。
-- 奇观建筑：30 个地标，27 个奇观已接入 GLB 模型。
+- 奇观建筑：30 个地标，30 个奇观已接入 GLB 模型。
 - 交互：搜索、筛选、文明卡、建筑卡、对比、锁定、地图聚焦。
 - 移动端：窄屏 HUD 折叠、移动端发布冒烟通过。
 
@@ -176,7 +188,7 @@ npm run smoke:release
 | 文明 / 朝代 | 43 |
 | 边界 feature | 129 |
 | 奇观 / 建筑 | 30 |
-| GLB 覆盖模型 | 27 |
+| GLB 覆盖模型 | 30 |
 | 时代叙事段 | 8 |
 | 时间轴关键节点 | 14 |
 

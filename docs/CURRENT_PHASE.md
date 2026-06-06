@@ -58,15 +58,13 @@ F3 completion requires:
 Current GLB coverage:
 
 - Total landmarks: 30.
-- GLB overrides: 27.
-- Missing GLB coverage: 3.
+- GLB overrides: 30.
+- Missing GLB coverage: 0.
 - Core 10 GLB coverage: 10 / 10, but these are not automatically final A-grade. They still need final map-view inspection.
 
 Missing GLB ids:
 
-- `meroe-pyramids`
-- `great-zimbabwe`
-- `westminster-abbey`
+- None.
 
 ## F3 Batch Rule
 
@@ -208,6 +206,29 @@ Result:
   - `docs/model-qa/f3-batch05-temple-of-heaven-inapp.png`
   - `docs/model-qa/f3-batch05-cheomseongdae-inapp.png`
 - Quality note: all four are accepted as readable B-grade coverage miniatures. `temple-of-heaven` is the strongest visual model in this batch. `cheomseongdae` is visually acceptable, but its current landmark location appears close to the coastline in the map view; treat that as a future data/placement refinement note, not a GLB blocker. This is not full F3 completion.
+
+## Accepted F3 Batch 06
+
+Target:
+
+- `meroe-pyramids`
+- `great-zimbabwe`
+- `westminster-abbey`
+
+Result:
+
+- Accepted as F3 Batch06 GLB coverage on 2026-06-06.
+- `npm run audit:f3-batch06` passed with no failures.
+- `npm run audit:glb -- --write` passed with 30 OK, 0 WARN, 0 FAIL.
+- In-app browser QA passed for all three models: selected landmark, immersive mode active, Chinese title correct, and app logs empty.
+- Screenshots:
+  - `docs/model-qa/f3-batch06-meroe-pyramids-300bce.png`
+  - `docs/model-qa/f3-batch06-great-zimbabwe-1200.png`
+  - `docs/model-qa/f3-batch06-westminster-abbey-1200.png`
+  - `docs/model-qa/f3-batch06-meroe-pyramids-inapp.png`
+  - `docs/model-qa/f3-batch06-great-zimbabwe-inapp.png`
+  - `docs/model-qa/f3-batch06-westminster-abbey-inapp.png`
+- Quality note: all three are accepted as readable B-grade coverage miniatures. This brings GLB coverage to 30 / 30, but it is not full F3 completion.
 
 ## F3 Gate Checks
 

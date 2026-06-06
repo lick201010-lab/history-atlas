@@ -119,6 +119,9 @@ function focusCameraForBuilding(building, duration = 2000) {
     'terracotta-army': { zoom: 7.6, pitch: 62, bearing: -28 },
     'temple-of-heaven': { zoom: 7.5, pitch: 62, bearing: -30 },
     cheomseongdae: { zoom: 7.7, pitch: 62, bearing: 30 },
+    'meroe-pyramids': { zoom: 7.2, pitch: 62, bearing: 26 },
+    'great-zimbabwe': { zoom: 7.0, pitch: 64, bearing: -24 },
+    'westminster-abbey': { zoom: 7.4, pitch: 62, bearing: -34 },
   };
   const preset = presets[building.id] || { zoom: 6.4, pitch: 64, bearing: -30 };
   return {

@@ -17,6 +17,7 @@
     "audit:f3-batch03": "node scripts/auditF3ModelBatch03Playwright.mjs",
     "audit:f3-batch04": "node scripts/auditF3ModelBatch04Playwright.mjs",
     "audit:f3-batch05": "node scripts/auditF3ModelBatch05Playwright.mjs",
+    "audit:f3-batch06": "node scripts/auditF3ModelBatch06Playwright.mjs",
     "audit:glb": "node scripts/auditGlbAssets.mjs",
     "audit:visual-foundation": "node scripts/visualFoundationAudit.mjs",
     "test:boundary-outlines": "node scripts/testBoundaryOutlines.mjs",

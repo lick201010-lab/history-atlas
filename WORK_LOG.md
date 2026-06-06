@@ -1685,3 +1685,63 @@ Next:
 
 - Continue F3 missing-model coverage with a small final coverage batch for `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey`.
 - After 30 / 30 GLB coverage, re-grade the core 10 against the A-grade map-view bar before calling F3 passed.
+
+## 2026-06-06 F3 Batch06 model coverage
+
+Scope:
+
+- Continued F3 landmark/model quality with two bounded worker tasks.
+- Added GLB coverage for `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey`.
+- This completes GLB coverage numerically at 30 / 30, but it does not complete the F3 Gate because the core 10 still need A-grade map-view regrading.
+- This does not make the project final.
+
+Agent workflow:
+
+- Lagrange worker implemented `meroe-pyramids` and `great-zimbabwe` model scripts and generated GLBs within the bounded Batch06A write scope.
+- Euler worker implemented `westminster-abbey` model script and generated GLB within the bounded Batch06B write scope.
+- Codex reviewed worker output, integrated GLB overrides and focus-camera presets, reran checks, added the Batch06 browser QA script and artifacts, and performed in-app browser verification before acceptance.
+
+Implementation:
+
+- Added `scripts/buildMeroePyramidsGlb.mjs`.
+- Added `scripts/buildGreatZimbabweGlb.mjs`.
+- Added `scripts/buildWestminsterAbbeyGlb.mjs`.
+- Generated `public/models/meroe-pyramids.glb`.
+- Generated `public/models/great-zimbabwe.glb`.
+- Generated `public/models/westminster-abbey.glb`.
+- Added all three ids to GLB override, z-up orientation override, selected scale, and focus camera presets.
+- Added `npm run audit:f3-batch06`.
+
+Verification:
+
+- `node scripts/buildMeroePyramidsGlb.mjs` passed: about 2,672 tris, z -0.00..0.59, 189.1 KB.
+- `node scripts/buildGreatZimbabweGlb.mjs` passed: about 6,172 tris, z -0.00..0.46, 437.8 KB.
+- `node scripts/buildWestminsterAbbeyGlb.mjs` passed: about 3,748 tris, z -0.00..0.87, 284.2 KB.
+- `npm run audit:glb -- --write` passed: 30 OK, 0 WARN, 0 FAIL.
+- `npm run validate:data` passed during Batch06 verification.
+- `npm run build` passed during Batch06 verification with existing Vite large chunk warnings.
+- `npm run audit:f3-batch06` passed with `failures: []`.
+- In-app browser QA passed for all three models: selected landmark, immersive mode active, Chinese title correct, and page logs empty.
+
+QA artifacts:
+
+- `docs/model-qa/F3_BATCH06_REPORT_2026-06-06.md`
+- `docs/model-qa/f3-batch06-manifest.json`
+- `docs/model-qa/f3-batch06-meroe-pyramids-300bce.png`
+- `docs/model-qa/f3-batch06-great-zimbabwe-1200.png`
+- `docs/model-qa/f3-batch06-westminster-abbey-1200.png`
+- `docs/model-qa/f3-batch06-meroe-pyramids-inapp.png`
+- `docs/model-qa/f3-batch06-great-zimbabwe-inapp.png`
+- `docs/model-qa/f3-batch06-westminster-abbey-inapp.png`
+
+Result:
+
+- F3 Batch06 is accepted as GLB coverage for `meroe-pyramids`, `great-zimbabwe`, and `westminster-abbey`.
+- Visual grade: all three are B-level readable miniatures.
+- GLB coverage is now 30 / 30. Missing GLB coverage is 0 / 30.
+- The full F3 Gate remains incomplete because the core 10 landmarks still need final A-grade map-view inspection and any required polish.
+
+Next:
+
+- Start F3 core-10 A-grade regrading with screenshots for `hagia-sophia`, `forbidden-city`, `angkor-wat`, `pyramid`, `colosseum`, `parthenon`, `tajmahal`, `chichen-itza`, `great-wall`, and `petra`.
+- Any core-10 model that reads as B-grade rather than A-grade should be assigned to a focused worker polish task before F3 can pass.

@@ -1,0 +1,195 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T12:19:27.675Z",
+  "results": [
+    {
+      "scene": {
+        "id": "meroe-pyramids-300bce",
+        "targetId": "meroe-pyramids",
+        "year": -300,
+        "camera": {
+          "center": [
+            33.74,
+            16.93
+          ],
+          "zoom": 7.2,
+          "pitch": 62,
+          "bearing": 26
+        },
+        "screenshot": "f3-batch06-meroe-pyramids-300bce.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 605.8
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "麦罗埃金字塔群",
+        "modelStatus": 200,
+        "mapCenter": [
+          33.74,
+          16.93
+        ],
+        "zoom": 7.2,
+        "pitch": 62,
+        "bearing": 26,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch06-meroe-pyramids-300bce.png"
+    },
+    {
+      "scene": {
+        "id": "great-zimbabwe-1200",
+        "targetId": "great-zimbabwe",
+        "year": 1200,
+        "camera": {
+          "center": [
+            30.93,
+            -20.27
+          ],
+          "zoom": 7,
+          "pitch": 64,
+          "bearing": -24
+        },
+        "screenshot": "f3-batch06-great-zimbabwe-1200.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "大津巴布韦",
+        "modelStatus": 200,
+        "mapCenter": [
+          30.93,
+          -20.27
+        ],
+        "zoom": 7,
+        "pitch": 64,
+        "bearing": -24,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch06-great-zimbabwe-1200.png"
+    },
+    {
+      "scene": {
+        "id": "westminster-abbey-1200",
+        "targetId": "westminster-abbey",
+        "year": 1200,
+        "camera": {
+          "center": [
+            -0.13,
+            51.5
+          ],
+          "zoom": 7.4,
+          "pitch": 62,
+          "bearing": -34
+        },
+        "screenshot": "f3-batch06-westminster-abbey-1200.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "buttonRect": {
+          "centerX": 1274,
+          "centerY": 619.5
+        },
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "威斯敏斯特教堂",
+        "modelStatus": 200,
+        "mapCenter": [
+          -0.13,
+          51.5
+        ],
+        "zoom": 7.4,
+        "pitch": 62,
+        "bearing": -34,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch06-westminster-abbey-1200.png"
+    }
+  ],
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/meroe-pyramids.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-zimbabwe.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/westminster-abbey.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/meroe-pyramids.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/meroe-pyramids.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-zimbabwe.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/westminster-abbey.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-zimbabwe.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/meroe-pyramids.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/great-zimbabwe.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/westminster-abbey.glb?v=20260606-f3b06a",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/westminster-abbey.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "failures": []
+}
