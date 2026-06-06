@@ -1,0 +1,513 @@
+{
+  "appUrl": "http://127.0.0.1:4186/",
+  "generatedAt": "2026-06-06T06:25:14.246Z",
+  "captures": [
+    {
+      "id": "songhai-1520",
+      "targetId": "songhai",
+      "label": "Songhai Askia-era Niger Bend and Sahel corridors",
+      "year": 1520,
+      "camera": {
+        "center": [
+          1.2,
+          16
+        ],
+        "zoom": 4.25,
+        "pitch": 54,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          1.2,
+          16
+        ],
+        "zoom": 4.25,
+        "pitch": 54,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "maya",
+          "holy-roman-empire",
+          "mali",
+          "ottoman",
+          "ming",
+          "joseon",
+          "aztec",
+          "inca",
+          "songhai"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "songhai",
+          "holy-roman-empire",
+          "ottoman",
+          "mali"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch07-songhai-1520.png"
+    },
+    {
+      "id": "british-empire-india-1900",
+      "targetId": "british-empire",
+      "label": "British Empire peak around India and Indian Ocean nodes",
+      "year": 1900,
+      "camera": {
+        "center": [
+          80,
+          20
+        ],
+        "zoom": 4.05,
+        "pitch": 52,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          80,
+          20
+        ],
+        "zoom": 4.05,
+        "pitch": 52,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "ottoman",
+          "qing",
+          "british-empire",
+          "united-states"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 25,
+        "renderedBoundaryIds": [
+          "british-empire",
+          "qing"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch07-british-empire-india-1900.png"
+    },
+    {
+      "id": "british-empire-isles-1900",
+      "targetId": "british-empire",
+      "label": "British Empire peak around British Isles",
+      "year": 1900,
+      "camera": {
+        "center": [
+          -2.5,
+          54.5
+        ],
+        "zoom": 4.35,
+        "pitch": 52,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          -2.5,
+          54.5
+        ],
+        "zoom": 4.35,
+        "pitch": 52,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "ottoman",
+          "qing",
+          "british-empire",
+          "united-states"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 20,
+        "renderedBoundaryIds": [
+          "british-empire"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch07-british-empire-isles-1900.png"
+    },
+    {
+      "id": "united-states-2020",
+      "targetId": "united-states",
+      "label": "United States modern contiguous footprint",
+      "year": 2020,
+      "camera": {
+        "center": [
+          -98.5,
+          38.5
+        ],
+        "zoom": 4.05,
+        "pitch": 52,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          -98.5,
+          38.5
+        ],
+        "zoom": 4.05,
+        "pitch": 52,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "united-states",
+          "prc"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 55,
+        "renderedBoundaryIds": [
+          "united-states"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch07-united-states-2020.png"
+    },
+    {
+      "id": "overview-global-1900",
+      "targetId": "british-empire",
+      "label": "Final F2 global overview at British imperial peak",
+      "year": 1900,
+      "overview": true,
+      "camera": {
+        "center": [
+          18,
+          18
+        ],
+        "zoom": 1.75,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "audit": {
+        "mapCenter": [
+          18,
+          18
+        ],
+        "zoom": 1.75,
+        "pitch": 28,
+        "bearing": 0,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "ottoman",
+          "qing",
+          "british-empire",
+          "united-states"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 15,
+        "renderedBoundaryIds": [
+          "british-empire",
+          "united-states",
+          "ottoman",
+          "qing"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch07-overview-global-1900.png"
+    },
+    {
+      "id": "overview-world-2020",
+      "targetId": "united-states",
+      "label": "Final F2 global overview in modern timeline",
+      "year": 2020,
+      "overview": true,
+      "camera": {
+        "center": [
+          5,
+          20
+        ],
+        "zoom": 1.65,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "audit": {
+        "mapCenter": [
+          5,
+          20
+        ],
+        "zoom": 1.65,
+        "pitch": 28,
+        "bearing": 0,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "united-states",
+          "prc"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 5,
+        "renderedBoundaryIds": [
+          "united-states",
+          "prc"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch07-overview-world-2020.png"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3d64001b7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3d64001b7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3d64001b7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3d64001b7000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/2/3/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/1/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/1/1.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/0/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/3/2/3@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/3/2/3@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/19/14.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/7/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/6/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/1/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/13/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/24/16.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/26/15.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/15/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/6/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/6/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/13/10.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/13/11.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/12/9.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/5/7/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/10/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/11/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/0/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/9/14.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/10/14.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/11/12.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/11/13.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/5/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/4/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/3/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/34/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/35/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/31/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/32/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/30/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/29/22.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/33/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/34/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/30/24.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/35/23.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/11/14.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/12/12.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/12/13.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/12/14.png",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "failures": []
+}

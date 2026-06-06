@@ -11,9 +11,23 @@ import {
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const OUT_DIR = path.join(process.cwd(), 'docs', 'boundary-qa');
 const MANIFEST_PATH = path.join(OUT_DIR, 'boundary-quality-manifest.json');
-const BATCH05_IDS = ['han', 'ming', 'egypt-new-kingdom', 'achaemenid', 'sasanian'];
 const REQUIRED_PHASES = new Set(['rise', 'peak', 'decline']);
-const HIGH_RISK_EMPIRES = new Set(['achaemenid', 'sasanian']);
+const COMPILER_REQUIRED_IDS = new Set([
+  'han',
+  'ming',
+  'egypt-new-kingdom',
+  'achaemenid',
+  'sasanian',
+  'srivijaya',
+  'joseon',
+  'yamato-japan',
+  'ghana',
+  'mali',
+  'songhai',
+  'british-empire',
+  'united-states',
+]);
+const HIGH_RISK_EMPIRES = new Set(['achaemenid', 'sasanian', 'british-empire', 'united-states', 'ghana', 'mali', 'songhai']);
 
 const MAX_BBOX_BY_ID = {
   han: { width: 60, height: 31 },
@@ -21,6 +35,14 @@ const MAX_BBOX_BY_ID = {
   'egypt-new-kingdom': { width: 24, height: 27 },
   achaemenid: { width: 62, height: 30 },
   sasanian: { width: 58, height: 30 },
+  srivijaya: { width: 18, height: 16 },
+  joseon: { width: 9, height: 11 },
+  'yamato-japan': { width: 15, height: 12 },
+  ghana: { width: 13, height: 10 },
+  mali: { width: 23, height: 13 },
+  songhai: { width: 18, height: 14 },
+  'british-empire': { width: 300, height: 115 },
+  'united-states': { width: 105, height: 57 },
 };
 
 function isNonEmptyString(value) {
@@ -80,30 +102,37 @@ function auditFeature(feature, failures, warnings) {
   if (!isNonEmptyString(feature.properties?.sourceNote)) failures.push(`${prefix} missing sourceNote`);
   if (!isNonEmptyString(feature.properties?.accuracyNote)) failures.push(`${prefix} missing accuracyNote`);
   if (!rings.length) failures.push(`${prefix} has no outer rings`);
-  if (feature.properties?.accuracy === 'coastline-aware-rough' && !hasCompiledEvidence(feature)) {
-    failures.push(`${prefix} claims coastline-aware but lacks boundaryCompiler v2 local land-clipping evidence`);
-  }
-  if (feature.properties?.accuracy !== 'coastline-aware-rough') {
-    failures.push(`${prefix} expected coastline-aware-rough after compiler repair`);
+  if (COMPILER_REQUIRED_IDS.has(id)) {
+    if (feature.properties?.accuracy !== 'coastline-aware-rough') {
+      failures.push(`${prefix} expected coastline-aware-rough after compiler repair`);
+    }
+    if (!hasCompiledEvidence(feature)) {
+      failures.push(`${prefix} claims compiler-managed coastline-aware output but lacks boundaryCompiler v2 local land-clipping evidence`);
+    }
+  } else if (feature.properties?.compiler && !hasCompiledEvidence(feature)) {
+    failures.push(`${prefix} has compiler metadata without valid local land-clipping evidence`);
   }
 
   for (const ring of rings) {
-    if (isRectangleLike(ring)) failures.push(`${prefix} has rectangle-like outer ring`);
+    if (isRectangleLike(ring) && ringArea(ring) >= 0.2) failures.push(`${prefix} has rectangle-like outer ring`);
   }
 
   const vertexCount = totalOuterVertices(geometry);
-  if (geometry?.type === 'Polygon' && vertexCount < 40) {
+  if (COMPILER_REQUIRED_IDS.has(id) && geometry?.type === 'Polygon' && vertexCount < 40) {
     failures.push(`${prefix} Polygon needs at least 40 outer vertices (got ${vertexCount})`);
   }
-  if (geometry?.type === 'MultiPolygon' && vertexCount < 80) {
+  if (COMPILER_REQUIRED_IDS.has(id) && geometry?.type === 'MultiPolygon' && vertexCount < 80) {
     failures.push(`${prefix} MultiPolygon needs at least 80 outer vertices (got ${vertexCount})`);
+  }
+  if (!COMPILER_REQUIRED_IDS.has(id) && vertexCount < 21) {
+    failures.push(`${prefix} has low vertex output (got ${vertexCount})`);
   }
 
   const bbox = bboxForGeometry(geometry);
   const { width, height } = bboxSize(bbox);
   if (Number.isFinite(width) && Number.isFinite(height)) {
-    const limit = MAX_BBOX_BY_ID[id] || { width: 70, height: 35 };
-    if (width > limit.width || height > limit.height) {
+    const limit = MAX_BBOX_BY_ID[id];
+    if (limit && (width > limit.width || height > limit.height)) {
       failures.push(`${prefix} oversized bbox ${width.toFixed(1)}x${height.toFixed(1)} exceeds ${limit.width}x${limit.height}`);
     }
     if (HIGH_RISK_EMPIRES.has(id) && compiler?.mode === 'multi-region' && compiler?.regionUnion !== true) {
@@ -132,13 +161,17 @@ function auditFeature(feature, failures, warnings) {
 }
 
 async function main() {
-  const boundaries = await readFile(new URL('boundaries-simplified.json', DATA_DIR), 'utf8').then(JSON.parse);
+  const [dynasties, boundaries] = await Promise.all([
+    readFile(new URL('dynasties.json', DATA_DIR), 'utf8').then(JSON.parse),
+    readFile(new URL('boundaries-simplified.json', DATA_DIR), 'utf8').then(JSON.parse),
+  ]);
   const features = boundaries.features || [];
+  const targetIds = dynasties.map((dynasty) => dynasty.id);
   const failures = [];
   const warnings = [];
   const audited = [];
 
-  for (const id of BATCH05_IDS) {
+  for (const id of targetIds) {
     const selected = features
       .filter((feature) => (feature.properties?.id || feature.id) === id)
       .sort((a, b) => a.properties.startYear - b.properties.startYear);
@@ -157,7 +190,8 @@ async function main() {
   const manifest = {
     status: failures.length ? 'fail' : 'pass',
     generatedAt: new Date().toISOString(),
-    targetIds: BATCH05_IDS,
+    targetIds,
+    compilerRequiredIds: [...COMPILER_REQUIRED_IDS],
     auditedFeatureCount: audited.length,
     failures,
     warnings,

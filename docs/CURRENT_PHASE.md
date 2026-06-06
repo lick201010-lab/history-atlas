@@ -2,7 +2,7 @@
 
 Updated: 2026-06-04
 
-Status: F2 in progress. F1 visual foundation has passed the Codex Gate and the project may now begin controlled boundary refinement. This is still not the final complete version.
+Status: F2 Gate passed on 2026-06-06 after full 43-civilization phased boundary coverage, automated validation, browser QA, and manual screenshot review. This is still not the final complete version because F3-F6 remain incomplete.
 
 ## Project Rule
 
@@ -190,15 +190,88 @@ Notes:
 - A second visual repair worker was required because the first clipped West Asia output rendered as overlapping regional slabs. The accepted pass uses region union evidence and removes the obvious slab overlap.
 - The output is still rough-refined historical visualization, not academic GIS data.
 
-## Current F2 Batch 06
+## Accepted F2 Batch 06
 
-Batch 06 should target South and Southeast Asia:
+Batch 06 was accepted on 2026-06-06.
 
-1. Maurya Empire / `maurya`
-2. Gupta Empire / `gupta`
-3. Chola Dynasty / `chola`
-4. Khmer Empire / `khmer`
-5. Srivijaya / `srivijaya`
+1. Srivijaya / `srivijaya`
+2. Joseon / `joseon`
+3. Yamato Japan / `yamato-japan`
+4. Ghana Empire / `ghana`
+5. Mali Empire / `mali`
+
+Evidence:
+
+- `npm run compile:boundaries -- --ids srivijaya,joseon,yamato-japan,ghana,mali,songhai,british-empire,united-states` passed.
+- `npm run validate:data` passed.
+- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
+- `npm run check` passed.
+- `npm run audit:f2-batch06` passed with `failures: []`.
+- QA report: `docs/boundary-qa/F2_BATCH06_REPORT_2026-06-06.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch06-srivijaya-900.png`
+  - `docs/boundary-qa/f2-batch06-joseon-1500.png`
+  - `docs/boundary-qa/f2-batch06-yamato-japan-800.png`
+  - `docs/boundary-qa/f2-batch06-ghana-900.png`
+  - `docs/boundary-qa/f2-batch06-mali-1350.png`
+
+Notes:
+
+- `srivijaya`, `joseon`, and `yamato-japan` use local land-clipped compiler output to avoid ocean fill.
+- Ghana and Mali were visually rejected once for broad slab-like shapes, then repaired into narrower Sahel/Senegal/Niger corridor outlines.
+
+## Accepted F2 Batch 07
+
+Batch 07 was accepted on 2026-06-06.
+
+1. Songhai Empire / `songhai`
+2. British Empire / `british-empire`
+3. United States / `united-states`
+
+Evidence:
+
+- `npm run compile:boundaries -- --ids ghana,mali,songhai,united-states` passed during the final visual repair.
+- `npm run validate:data` passed.
+- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
+- `npm run check` passed.
+- `npm run audit:f2-batch07` passed with `failures: []`.
+- QA report: `docs/boundary-qa/F2_BATCH07_REPORT_2026-06-06.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch07-songhai-1520.png`
+  - `docs/boundary-qa/f2-batch07-british-empire-india-1900.png`
+  - `docs/boundary-qa/f2-batch07-british-empire-isles-1900.png`
+  - `docs/boundary-qa/f2-batch07-united-states-2020.png`
+  - `docs/boundary-qa/f2-batch07-overview-global-1900.png`
+  - `docs/boundary-qa/f2-batch07-overview-world-2020.png`
+
+Notes:
+
+- Songhai was visually rejected once for two slab-like shapes, then repaired into a narrower Niger Bend / Sahel corridor.
+- United States was visually rejected once for reading as a giant box, then repaired with more articulated Atlantic, Gulf, Great Lakes, Southwest, Pacific, Alaska, and Hawaii presets.
+- British Empire remains a rough-refined, multi-part imperial footprint. Its broad phase semantics are acceptable for F2 but should be explained further in F4 content/source work.
+
+## F2 Gate Result
+
+F2 boundary refinement Gate passed on 2026-06-06.
+
+Evidence:
+
+- All 43 civilizations have at least three phase boundary features: `rise`, `peak`, and `decline`.
+- Total boundary feature count is 129.
+- `npm run validate:data` passed and reports `F2 phased boundary ids: 43`.
+- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
+- `npm run check` passed.
+- Browser QA passed:
+  - `npm run audit:f2-batch06`
+  - `npm run audit:f2-batch07`
+- Manual screenshot review accepted the repaired West Africa and United States outputs after rejecting the first visual pass.
+
+Residual risks carried forward:
+
+- F2 boundaries are final for the current rough-refined product phase, not academic GIS boundaries.
+- Some older non-compiler boundaries are rough-refined hand-authored geometries while the latest compiler-managed set has stronger local land-clipping evidence.
+- F4 must explain broad phase semantics for empires such as British Empire and United States.
+- F3-F6 remain incomplete, so the whole project is not the final complete version.
 
 ## Allowed F4 Pilot Sidecar
 

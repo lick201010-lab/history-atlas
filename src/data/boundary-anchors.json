@@ -221,6 +221,406 @@
           "accuracyNote": "收缩期按大范围核心示意，未表现逐战役推进和地方割据的快速变化。"
         }
       ]
+    },
+    {
+      "id": "srivijaya",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Palembang core and early strait network",
+          "startYear": 650,
+          "endYear": 775,
+          "summary": "Early Srivijaya is shown around Palembang, eastern Sumatra, and the Malacca/Sunda strait approaches that anchored its maritime power.",
+          "mode": "multi-region",
+          "includeRegions": ["sumatra-south-palembang", "sumatra-east-straits", "malay-peninsula-south"],
+          "softBoundaries": ["malacca-strait", "musi-river", "sunda-strait"],
+          "avoidRegions": [],
+          "minRingArea": 0.06,
+          "maxRings": 34,
+          "sourceNote": "Based on common historical atlases of Srivijaya's Palembang-centered thalassocracy and early control of the Malacca and Sunda sea lanes.",
+          "accuracyNote": "This is a land-clipped island and coast network for map visualization, not a continuous land empire or precise port-by-port sphere."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Maritime peak across Sumatra, Malay Peninsula, Java, and Borneo",
+          "startYear": 776,
+          "endYear": 1025,
+          "summary": "At peak, Srivijaya is represented as a multi-part maritime network across Sumatra, the Malay Peninsula, western Java, and western Borneo nodes.",
+          "mode": "multi-region",
+          "includeRegions": ["sumatra-south-palembang", "sumatra-east-straits", "malay-peninsula-south", "west-java-sunda", "borneo-west-coast"],
+          "softBoundaries": ["malacca-strait", "sunda-strait", "south-china-sea", "java-sea"],
+          "avoidRegions": [],
+          "minRingArea": 0.05,
+          "maxRings": 42,
+          "sourceNote": "Based on broad historical maps of Srivijaya's seventh-eleventh century trade network around Sumatra and the Malay-Indonesian archipelago.",
+          "accuracyNote": "Coast-aware output clips regional envelopes to islands and coasts; sea power and tributary influence are shown as discrete land nodes, not ocean fill."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Late Sumatra-centered contraction",
+          "startYear": 1026,
+          "endYear": 1377,
+          "summary": "After Chola raids and later Javanese and Malay competition, the display contracts toward southern/eastern Sumatra and nearby strait nodes.",
+          "mode": "multi-region",
+          "includeRegions": ["sumatra-south-palembang", "sumatra-east-straits", "malay-peninsula-south"],
+          "softBoundaries": ["malacca-strait", "musi-river", "late-palembang-core"],
+          "avoidRegions": [],
+          "minRingArea": 0.06,
+          "maxRings": 34,
+          "sourceNote": "Based on late Srivijaya and Malayu/Javanese succession maps, generalized around Palembang and the strait corridor.",
+          "accuracyNote": "Late influence is approximate and intentionally separated by land clipping to avoid implying continuous control over surrounding seas."
+        }
+      ]
+    },
+    {
+      "id": "joseon",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Early Joseon southern and central peninsula",
+          "startYear": 1392,
+          "endYear": 1450,
+          "summary": "Early Joseon is shown from the Seoul/Gyeonggi core through southern and central Korea while northern frontier consolidation was still developing.",
+          "mode": "multi-region",
+          "includeRegions": ["korea-south-core", "korea-peninsula"],
+          "softBoundaries": ["han-river", "taebaek-range", "northern-frontier"],
+          "avoidRegions": [],
+          "minRingArea": 0.12,
+          "maxRings": 16,
+          "sourceNote": "Based on general Joseon foundation maps centered on Hanseong and the gradual stabilization of the peninsula after Goryeo.",
+          "accuracyNote": "The outline is peninsula-scale and coast-clipped; northern military settlement and Jurchen frontier detail are simplified."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Joseon peninsula with Yalu and Tumen frontier",
+          "startYear": 1451,
+          "endYear": 1800,
+          "summary": "Mature Joseon is represented across the Korean Peninsula with the northern frontier reaching the Yalu and Tumen river zone.",
+          "mode": "multi-region",
+          "includeRegions": ["korea-peninsula", "korea-northern-frontier"],
+          "softBoundaries": ["yalu-river", "tumen-river", "korean-coasts"],
+          "avoidRegions": [],
+          "minRingArea": 0.12,
+          "maxRings": 18,
+          "sourceNote": "Based on common fifteenth-eighteenth century Joseon maps showing the peninsula bounded by the Yalu and Tumen frontiers.",
+          "accuracyNote": "This is a rough historical visualization, not a cadastral border; river-frontier and island details are generalized."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Late Joseon and Korean Empire core",
+          "startYear": 1801,
+          "endYear": 1897,
+          "summary": "Late Joseon keeps the peninsula footprint while marking the nineteenth-century state before the Korean Empire transition.",
+          "mode": "multi-region",
+          "includeRegions": ["korea-peninsula", "korea-northern-frontier"],
+          "softBoundaries": ["yalu-river", "tumen-river", "late-joseon-frontier"],
+          "avoidRegions": [],
+          "minRingArea": 0.12,
+          "maxRings": 18,
+          "sourceNote": "Based on late Joseon reference maps and generalized Korean Peninsula historical boundary depictions.",
+          "accuracyNote": "The phase shows territorial footprint rather than nineteenth-century sovereignty pressure, protectorate status, or treaty-port influence."
+        }
+      ]
+    },
+    {
+      "id": "yamato-japan",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Kinai and western Japan Yamato core",
+          "startYear": 250,
+          "endYear": 700,
+          "summary": "Early Yamato power is shown around Kinai with western Honshu, Shikoku, and Kyushu connections rather than a fully integrated archipelago.",
+          "mode": "multi-region",
+          "includeRegions": ["japan-kinai-core", "japan-west-honshu", "japan-kyushu-shikoku"],
+          "softBoundaries": ["seto-inland-sea", "kinai-core", "western-honshu"],
+          "avoidRegions": [],
+          "minRingArea": 0.06,
+          "maxRings": 34,
+          "sourceNote": "Based on Yamato/Kofun period maps emphasizing Kinai authority and western Japan linkages.",
+          "accuracyNote": "Island clipping shows approximate land nodes; early political influence was uneven and should not be read as modern prefectural control."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Ritsuryo state across main islands",
+          "startYear": 701,
+          "endYear": 900,
+          "summary": "The ritsuryo state is shown across Kyushu, Shikoku, western and eastern Honshu, with frontier reach toward Tohoku.",
+          "mode": "multi-region",
+          "includeRegions": ["japan-kinai-core", "japan-west-honshu", "japan-kyushu-shikoku", "japan-east-honshu", "japan-tohoku"],
+          "softBoundaries": ["ritsuryo-provinces", "tohoku-frontier", "seto-inland-sea"],
+          "avoidRegions": [],
+          "minRingArea": 0.06,
+          "maxRings": 42,
+          "sourceNote": "Based on Nara and early Heian provincial maps showing the main islands and northern frontier campaigns.",
+          "accuracyNote": "The Tohoku frontier is generalized and land-clipped; this does not imply uniform state penetration across all mountain districts."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Late Heian court footprint before Kamakura",
+          "startYear": 901,
+          "endYear": 1185,
+          "summary": "Late Heian Japan keeps the main-island administrative footprint while political authority fragmented among court, temple, and warrior houses.",
+          "mode": "multi-region",
+          "includeRegions": ["japan-kinai-core", "japan-west-honshu", "japan-kyushu-shikoku", "japan-east-honshu"],
+          "softBoundaries": ["heian-provinces", "kinai-court", "warrior-frontiers"],
+          "avoidRegions": [],
+          "minRingArea": 0.06,
+          "maxRings": 38,
+          "sourceNote": "Based on late Heian maps of the provincial framework before the Kamakura shogunate.",
+          "accuracyNote": "The phase shows the geographic frame of court-era Japan; it cannot express local estate, warrior, or frontier autonomy in detail."
+        }
+      ]
+    },
+    {
+      "id": "ghana",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Kumbi Saleh and upper Senegal core",
+          "startYear": 300,
+          "endYear": 750,
+          "summary": "Early Ghana is shown around Kumbi Saleh and the upper Senegal/Sahel trade corridor rather than as a rectangular West African block.",
+          "mode": "multi-region",
+          "includeRegions": ["ghana-kumbi-core", "ghana-senegal-corridor"],
+          "softBoundaries": ["sahel-edge", "upper-senegal", "gold-salt-route"],
+          "avoidRegions": [],
+          "minRingArea": 0.2,
+          "maxRings": 12,
+          "sourceNote": "Based on general Ghana Empire maps locating the Soninke core between the Senegal and Niger trade approaches.",
+          "accuracyNote": "The Sahel corridor is schematic and follows settlement/trade geography; it is not a modern territorial polygon."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Gold-salt Sahel corridor peak",
+          "startYear": 751,
+          "endYear": 1050,
+          "summary": "At peak, Ghana is represented from the upper Senegal and Kumbi Saleh toward Awdaghost salt-route nodes and western Niger approaches.",
+          "mode": "multi-region",
+          "includeRegions": ["ghana-senegal-corridor", "ghana-kumbi-core", "ghana-awdaghost-salt", "ghana-niger-approach"],
+          "softBoundaries": ["trans-saharan-route", "sahel-market-chain", "senegal-niger-betweenlands"],
+          "avoidRegions": [],
+          "minRingArea": 0.2,
+          "maxRings": 14,
+          "sourceNote": "Based on historical atlas depictions of Ghana's gold-salt trade dominance and Awdaghost route connections.",
+          "accuracyNote": "Northern desert route influence is narrowed to corridor nodes to avoid a giant Sahara slab."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Contracted Soninke core after Almoravid pressure",
+          "startYear": 1051,
+          "endYear": 1200,
+          "summary": "The late phase contracts toward Kumbi Saleh and nearby Sahel trade lands as Almoravid pressure and successor polities reduced Ghana's reach.",
+          "mode": "multi-region",
+          "includeRegions": ["ghana-kumbi-core", "ghana-senegal-corridor"],
+          "softBoundaries": ["late-soninke-core", "upper-senegal", "sahel-edge"],
+          "avoidRegions": [],
+          "minRingArea": 0.2,
+          "maxRings": 12,
+          "sourceNote": "Based on late Ghana maps and summaries of contraction before Mali's rise.",
+          "accuracyNote": "The contraction is a rough visualization of political and trade influence, not a continuous surveyed border."
+        }
+      ]
+    },
+    {
+      "id": "mali",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Manding and upper Niger rise",
+          "startYear": 1235,
+          "endYear": 1306,
+          "summary": "Mali's rise is shown around the Manding heartland, upper Niger, and adjacent goldfield/Senegambia corridors.",
+          "mode": "multi-region",
+          "includeRegions": ["mali-upper-niger", "mali-senegambia", "mali-bure-goldfields"],
+          "softBoundaries": ["upper-niger", "manding-core", "bure-goldfields"],
+          "avoidRegions": [],
+          "minRingArea": 0.18,
+          "maxRings": 14,
+          "sourceNote": "Based on common Mali Empire maps after Sundiata Keita, emphasizing Manding and upper Niger expansion.",
+          "accuracyNote": "The shape follows river and trade corridors; local vassalage and tributary zones are generalized."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Mansa Musa era Niger bend and western routes",
+          "startYear": 1307,
+          "endYear": 1450,
+          "summary": "Peak Mali spans the upper Niger, Senegambia/goldfields, and Niger Bend centers such as Jenne and Timbuktu.",
+          "mode": "multi-region",
+          "includeRegions": ["mali-upper-niger", "mali-senegambia", "mali-bure-goldfields", "mali-mema-sahel", "mali-niger-bend", "mali-timbuktu-gao"],
+          "softBoundaries": ["niger-river", "senegal-river", "timbuktu-jenne-route"],
+          "avoidRegions": [],
+          "minRingArea": 0.18,
+          "maxRings": 18,
+          "sourceNote": "Based on fourteenth-century Mali maps around Mansa Musa, the Niger Bend, and western goldfield routes.",
+          "accuracyNote": "The northern and eastern extensions are corridor-based to avoid overfilling desert and savanna beyond likely control."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Late upper Niger and western contraction",
+          "startYear": 1451,
+          "endYear": 1670,
+          "summary": "As Songhai rose, Mali is shown contracting toward the upper Niger and western Manding/Senegambia core.",
+          "mode": "multi-region",
+          "includeRegions": ["mali-upper-niger", "mali-senegambia", "mali-bure-goldfields"],
+          "softBoundaries": ["upper-niger", "manding-core", "songhai-pressure"],
+          "avoidRegions": [],
+          "minRingArea": 0.18,
+          "maxRings": 14,
+          "sourceNote": "Based on late Mali maps showing loss of Niger Bend centers and contraction to western core areas.",
+          "accuracyNote": "Late Mali's fragmented authority is simplified into a reduced corridor footprint."
+        }
+      ]
+    },
+    {
+      "id": "songhai",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Gao and eastern Niger bend rise",
+          "startYear": 1464,
+          "endYear": 1492,
+          "summary": "Songhai's rise is shown around Gao and the eastern Niger Bend as Sunni Ali built power along river and trade routes.",
+          "mode": "multi-region",
+          "includeRegions": ["songhai-jenne-timbuktu", "songhai-middle-niger", "songhai-gao-core"],
+          "softBoundaries": ["niger-river", "gao-core", "timbuktu-route"],
+          "avoidRegions": [],
+          "minRingArea": 0.18,
+          "maxRings": 14,
+          "sourceNote": "Based on Songhai maps for Sunni Ali's expansion from Gao along the Niger Bend.",
+          "accuracyNote": "The outline follows river corridors and does not fill the Sahara or West African savanna as a single block."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Askia era Niger and Sahel network",
+          "startYear": 1493,
+          "endYear": 1580,
+          "summary": "At peak, Songhai is represented along the Niger Bend from Timbuktu and Jenne toward Gao, Hausaland approaches, and Saharan salt-route nodes.",
+          "mode": "multi-region",
+          "includeRegions": ["songhai-jenne-timbuktu", "songhai-niger-bend", "songhai-middle-niger", "songhai-gao-core", "songhai-hausaland", "songhai-sahara-salt", "songhai-takedda-route"],
+          "softBoundaries": ["niger-river", "trans-saharan-routes", "hausaland-frontier"],
+          "avoidRegions": [],
+          "minRingArea": 0.16,
+          "maxRings": 18,
+          "sourceNote": "Based on Askia-period Songhai historical maps showing Niger Bend cities and Sahel/Sahara trade-route reach.",
+          "accuracyNote": "Route influence is narrowed into corridor blocks to avoid a severe desert slab."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Post-Moroccan invasion contraction",
+          "startYear": 1581,
+          "endYear": 1591,
+          "summary": "The late phase contracts toward Gao and the eastern Niger after Moroccan pressure disrupted Songhai's western and northern network.",
+          "mode": "multi-region",
+          "includeRegions": ["songhai-middle-niger", "songhai-gao-core"],
+          "softBoundaries": ["gao-core", "niger-river", "moroccan-pressure"],
+          "avoidRegions": [],
+          "minRingArea": 0.18,
+          "maxRings": 14,
+          "sourceNote": "Based on late Songhai maps around the Moroccan invasion and loss of Niger Bend dominance.",
+          "accuracyNote": "The short decline phase is schematic and does not model rapidly shifting battlefield control."
+        }
+      ]
+    },
+    {
+      "id": "british-empire",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Atlantic and early Indian Ocean empire",
+          "startYear": 1707,
+          "endYear": 1814,
+          "summary": "The rise phase shows the British Isles, Atlantic colonies and Caribbean nodes, plus the early India/Malaya footholds that shaped imperial expansion.",
+          "mode": "multi-region",
+          "includeRegions": ["british-isles", "british-atlantic-colonies", "british-caribbean", "british-india-core"],
+          "softBoundaries": ["atlantic-sea-lanes", "caribbean-nodes", "bengal-foothold"],
+          "avoidRegions": [],
+          "minRingArea": 0.05,
+          "maxRings": 46,
+          "sourceNote": "Based on eighteenth-century British Empire maps covering Britain, Atlantic colonies, Caribbean possessions, and expanding East India Company control.",
+          "accuracyNote": "This is a multi-part land-clipped imperial footprint; ocean routes and naval power are not filled as territory."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Nineteenth and early twentieth century global peak",
+          "startYear": 1815,
+          "endYear": 1945,
+          "summary": "The peak phase uses discrete land-clipped blocks for Britain, Canada, India, Australia, South Africa, Egypt/Suez, Malaya, Caribbean, and Hong Kong nodes.",
+          "mode": "multi-region",
+          "includeRegions": ["british-isles", "british-canada-core", "british-india-core", "british-australia", "british-south-africa", "british-egypt-suez", "british-malaya", "british-caribbean", "british-hong-kong"],
+          "softBoundaries": ["global-sea-lanes", "imperial-dominions", "suez-route", "indian-ocean"],
+          "avoidRegions": [],
+          "minRingArea": 0.04,
+          "maxRings": 64,
+          "sourceNote": "Based on standard British Empire maximum-extent maps, generalized into major dominion, colony, and strategic-node regions.",
+          "accuracyNote": "The map intentionally uses separate coast-aware blocks to avoid filling oceans; protectorates, mandates, and dominions are simplified."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Decolonization and residual overseas nodes",
+          "startYear": 1946,
+          "endYear": 1997,
+          "summary": "After 1945 the footprint contracts to Britain and selected residual or transitional overseas nodes, ending with the Hong Kong handover marker.",
+          "mode": "multi-region",
+          "includeRegions": ["british-isles", "british-caribbean", "british-hong-kong", "british-malaya"],
+          "softBoundaries": ["decolonization", "commonwealth-transition", "hong-kong-handover"],
+          "avoidRegions": [],
+          "minRingArea": 0.04,
+          "maxRings": 42,
+          "sourceNote": "Based on post-1945 decolonization maps and remaining British overseas or transitional imperial territories through 1997.",
+          "accuracyNote": "This phase visualizes imperial contraction, not Commonwealth membership or every small overseas territory."
+        }
+      ]
+    },
+    {
+      "id": "united-states",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "Atlantic republic and Appalachian frontier",
+          "startYear": 1776,
+          "endYear": 1802,
+          "summary": "The early United States is shown around the Atlantic seaboard and Appalachian/Ohio frontier after independence.",
+          "mode": "multi-region",
+          "includeRegions": ["us-thirteen-colonies", "us-appalachian-frontier"],
+          "softBoundaries": ["atlantic-seaboard", "appalachians", "ohio-frontier"],
+          "avoidRegions": [],
+          "minRingArea": 0.12,
+          "maxRings": 18,
+          "sourceNote": "Based on early United States maps after independence and before the Louisiana Purchase.",
+          "accuracyNote": "The frontier is generalized and does not resolve Indigenous sovereignty, treaty lines, or state-by-state changes."
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "Continental expansion and Pacific reach",
+          "startYear": 1803,
+          "endYear": 1958,
+          "summary": "The expansion phase links the eastern states, Louisiana/Mississippi basin, continental west, and Alaska as the U.S. became a continental power.",
+          "mode": "multi-region",
+          "includeRegions": ["us-atlantic-seaboard", "us-appalachian-frontier", "us-great-lakes-border", "us-mississippi-plains", "us-gulf-florida", "us-southwest-border", "us-rockies-interior", "us-pacific-coast", "us-alaska"],
+          "softBoundaries": ["mississippi-basin", "rocky-mountains", "pacific-coast", "alaska"],
+          "avoidRegions": [],
+          "minRingArea": 0.08,
+          "maxRings": 34,
+          "sourceNote": "Based on United States territorial expansion maps from the Louisiana Purchase through continental and Alaska acquisition.",
+          "accuracyNote": "The phase is a broad federal-territorial visualization and does not model individual annexations or contested Indigenous lands year by year."
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "Modern federal footprint",
+          "startYear": 1959,
+          "endYear": 2025,
+          "summary": "The modern phase shows the contiguous United States, Alaska, and Hawaii after statehood, preserving a coast-aware multi-part footprint.",
+          "mode": "multi-region",
+          "includeRegions": ["us-atlantic-seaboard", "us-appalachian-frontier", "us-great-lakes-border", "us-mississippi-plains", "us-gulf-florida", "us-southwest-border", "us-rockies-interior", "us-pacific-coast", "us-alaska", "us-hawaii"],
+          "softBoundaries": ["modern-states", "alaska", "hawaii", "pacific-atlantic-coasts"],
+          "avoidRegions": [],
+          "minRingArea": 0.04,
+          "maxRings": 42,
+          "sourceNote": "Based on modern United States maps after Alaska and Hawaii statehood.",
+          "accuracyNote": "The required decline phase name is used as a timeline slot; the content represents the modern federal footprint, not civilizational decline."
+        }
+      ]
     }
   ]
 }

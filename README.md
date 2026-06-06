@@ -1,6 +1,6 @@
 # 历史沙盘 · Historical Atlas
 
-一个深色 HUD 风格的 3D 历史沙盘网站，把 43 个文明、116 个历史边界阶段、30 处奇观建筑和公元前 2000 年到公元 2025 年的时间轴放在同一张可交互地形地图上。
+一个深色 HUD 风格的 3D 历史沙盘网站，把 43 个文明、129 个历史边界阶段、30 处奇观建筑和公元前 2000 年到公元 2025 年的时间轴放在同一张可交互地形地图上。
 
 线上地址：[https://atlas.ckl.hk](https://atlas.ckl.hk)
 
@@ -8,7 +8,7 @@
 
 | 项 | 状态 |
 | --- | --- |
-| 阶段 | online milestone / F2 in progress |
+| 阶段 | online milestone / F2 Gate passed / F3 next |
 | 部署 | 阿里云 ECS + Caddy 静态站点 |
 | 仓库 | `lick201010-lab/history-atlas` |
 | 前端 | React 18 + Vite |
@@ -20,10 +20,21 @@
 
 当前线上站点 `v0.1.0` 是 **online milestone**，不是最终完整版。最终版仍在推进中：**final-version work in progress**。
 
+### 2026-06-06 F2 Gate Update
+
+F2 boundary refinement has passed its phase Gate. This means the boundary layer is complete for the current rough-refined product standard, not that the whole project is final.
+
+- Boundary coverage: 43 / 43 civilizations.
+- Phase coverage: every civilization has `rise`, `peak`, and `decline`.
+- Boundary features: 129.
+- Fresh checks passed: `npm run validate:data`, `npm run audit:boundary-quality`, `npm run check`, `npm run audit:f2-batch06`, and `npm run audit:f2-batch07`.
+- Next phase: F3 landmark/model quality, with F4 source expansion allowed only as controlled sidecar work.
+- Still not final: F3 models, F4 full source system, F5 product/mobile UX, and F6 performance/release packaging remain open.
+
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
-| F2 边界精修 | 进行中 | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 采用 Boundary Compiler 方案：subagent 写 anchor，compiler 生成边界，Codex 验收截图 | 每批 `compile:boundaries`、`validate:data`、`audit:boundary-quality`、`check`、浏览器截图 QA 通过；全阶段达到 43 文明、至少 129 feature |
+| F2 边界精修 | 已通过 Gate | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 进入 F3 前保留 QA 截图和残余风险记录 | `validate:data`、`audit:boundary-quality`、`check`、Batch06/07 浏览器 QA 通过；全阶段达到 43 文明、129 feature |
 | F3 奇观模型 | 未完成 | 30 个奇观升级到 A/B 级模型 | 与 F2 并行开模型 worker，先补缺失再精修核心 10 个 | 核心 10 个 A 级，全部 30 个不再是粗糙占位 |
 | F4 内容与来源 | pilot 01 已通过 | 文明、边界、事件建立来源体系 | 扩展到下一批文明前，先稳定引用格式和批量校验规则 | UI 可展示来源，关键数据有可追溯说明 |
 | F5 产品交互 / 移动端 | 未完成 | 移动端、搜索、筛选、对比、故事导航升级 | 边界与内容质量稳定后做产品体验扩展 | 桌面和移动端核心路径体验通过 |
@@ -31,7 +42,7 @@
 
 ### 当前重点
 
-当前项目处于 **F2: controlled boundary refinement**。F1 已通过 Codex Gate，但 F2-F6 均未完成，不能称为最终完整版。
+当前项目已经通过 **F2: controlled boundary refinement Gate**。F1-F2 已通过 Codex Gate，但 F3-F6 均未完成，不能称为最终完整版。
 
 ### 并行分工
 
@@ -52,10 +63,10 @@
 
 ### 最近下一步
 
-1. F2 Batch 05 使用 Boundary Compiler 方案推进：`han`、`ming`、`egypt-new-kingdom`、`achaemenid`、`sasanian`。
-2. 先验收 compiler 是否真的 coast-aware；不能把普通凸包伪装成 `coastline-aware-rough`。
-3. Batch 05 通过后，再把 anchor/region preset 方法扩展到剩余 F2 文明。
-4. F3 可以并行开模型 worker，但写入范围必须和 F2/F4 数据批次隔离。
+1. F2 Gate 已通过，边界层进入维护和解释阶段。
+2. 下一主线是 F3：30 个奇观模型升级，核心 10 个要达到 A 级。
+3. F4 来源体系可以继续 sidecar，但不能阻塞 F3 模型主线。
+4. F5/F6 仍是最终完整版的必要 Gate：移动端产品体验、性能、发布包装和回滚文档。
 
 ## 快速开始
 
@@ -96,7 +107,7 @@ npm run smoke:release
 - 3D 地形地图：深色底图、山脉地形、海洋压平策略。
 - 时间轴：公元前 2000 年到公元 2025 年。
 - 文明数据：43 个文明/朝代，含摘要、事件、标签、影响和重要性。
-- 历史边界：116 个 GeoJSON feature，部分重点文明支持兴起/鼎盛/衰落阶段。
+- 历史边界：129 个 GeoJSON feature，43 个文明全部支持兴起/鼎盛/衰落阶段。
 - 奇观建筑：30 个地标，14 个重点奇观已接入 GLB 模型。
 - 交互：搜索、筛选、文明卡、建筑卡、对比、锁定、地图聚焦。
 - 移动端：窄屏 HUD 折叠、移动端发布冒烟通过。
@@ -106,7 +117,7 @@ npm run smoke:release
 | 资源 | 数量 |
 | --- | --- |
 | 文明 / 朝代 | 43 |
-| 边界 feature | 116 |
+| 边界 feature | 129 |
 | 奇观 / 建筑 | 30 |
 | GLB 覆盖模型 | 14 |
 | 时代叙事段 | 8 |

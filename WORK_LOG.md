@@ -1347,3 +1347,62 @@ Next:
 
 - Commit and push the compiler workflow plus F2 Batch 05.
 - Use the compiler workflow for F2 Batch 06: `maurya`, `gupta`, `chola`, `khmer`, and `srivijaya`.
+
+## 2026-06-06 F2 full boundary Gate
+
+Scope:
+
+- Completed F2 full boundary coverage for all 43 civilizations.
+- Final coverage work focused on the remaining ids: `srivijaya`, `joseon`, `yamato-japan`, `ghana`, `mali`, `songhai`, `british-empire`, and `united-states`.
+
+Agent workflow:
+
+- Harvey worker advanced the remaining coverage but did not return a final report; Codex closed the worker and independently verified the working tree.
+- Hegel read-only reviewer checked structural F2 coverage and flagged visual risks for West Africa, British Empire, and United States.
+- Singer bounded repair worker fixed the rejected West Africa and United States visual risks.
+- Codex closed all subagents after review and did not accept their output until local validation, browser QA, and manual screenshot review passed.
+
+Codex review:
+
+- Rejected the first Batch07 visual pass because Songhai read as two slab-like shapes and the United States read too much like a giant rectangle.
+- Accepted the repaired pass because Ghana/Mali/Songhai now read as narrower Sahel/Senegal/Niger corridor outlines, and the United States has more articulated Atlantic, Gulf, Great Lakes, Southwest, Pacific, Alaska, and Hawaii components.
+- British Empire remains rough-refined and broad, but it is multi-part and land-clipped enough for F2. Its phase semantics should be explained in F4.
+
+Verification:
+
+- `npm run compile:boundaries -- --ids srivijaya,joseon,yamato-japan,ghana,mali,songhai,british-empire,united-states` passed.
+- `npm run compile:boundaries -- --ids ghana,mali,songhai,united-states` passed during the final repair.
+- `npm run validate:data` passed.
+- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
+- `npm run check` passed.
+- `npm run audit:f2-batch06` passed with `failures: []`.
+- `npm run audit:f2-batch07` passed with `failures: []`.
+- `git diff --check` reported no whitespace errors, only Windows line-ending warnings.
+
+QA artifacts:
+
+- `docs/boundary-qa/F2_BATCH06_REPORT_2026-06-06.md`
+- `docs/boundary-qa/F2_BATCH07_REPORT_2026-06-06.md`
+- `docs/boundary-qa/f2-batch06-srivijaya-900.png`
+- `docs/boundary-qa/f2-batch06-joseon-1500.png`
+- `docs/boundary-qa/f2-batch06-yamato-japan-800.png`
+- `docs/boundary-qa/f2-batch06-ghana-900.png`
+- `docs/boundary-qa/f2-batch06-mali-1350.png`
+- `docs/boundary-qa/f2-batch07-songhai-1520.png`
+- `docs/boundary-qa/f2-batch07-british-empire-india-1900.png`
+- `docs/boundary-qa/f2-batch07-british-empire-isles-1900.png`
+- `docs/boundary-qa/f2-batch07-united-states-2020.png`
+- `docs/boundary-qa/f2-batch07-overview-global-1900.png`
+- `docs/boundary-qa/f2-batch07-overview-world-2020.png`
+
+Result:
+
+- F2 Gate is accepted by Codex.
+- All 43 civilizations now have at least three phase boundary features.
+- Total boundary features are 129.
+- The project is still not the final complete version because F3-F6 remain incomplete.
+
+Next:
+
+- Commit and push F2 full boundary Gate.
+- Move current phase to F3 model quality only after the F2 commit is safely pushed.

@@ -24,7 +24,7 @@
 - MapLibre 3D 地形地图。
 - Three.js custom layer。
 - 43 个文明。
-- 91 个边界 feature。
+- 129 个边界 feature。
 - 30 个奇观。
 - 14 个 GLB 模型。
 - 时间轴、文明卡、奇观卡、搜索、筛选、对比、焦点、沉浸模式。
@@ -34,7 +34,7 @@
 ## 最终版未完成
 
 - 海洋和陆地 relief 还不是最终视觉。
-- 43 个文明还没有全部 3 阶段精修边界。
+- F2 边界已通过 Gate，但仍是 rough-refined 历史示意边界，不是学术 GIS。
 - 30 个奇观还没有全部达到 A/B 级模型。
 - 文明内容缺引用和来源体系。
 - 移动端还只是可用，不是最终体验。
@@ -63,18 +63,18 @@
 
 ### F2 · 边界全面精修
 
-优先级：最高
+状态：已通过 Gate（2026-06-06）
 
 目标：
 
-- 43 个文明全部至少 3 阶段。
-- 边界贴合海岸线。
-- 大型内陆帝国不用粗糙凸包络。
-- 每批都有截图和数据校验。
+- 43 个文明全部至少 3 阶段。已完成。
+- 边界贴合海岸线。rough-refined 标准下已完成。
+- 大型内陆帝国不用粗糙凸包络。已完成到 F2 标准。
+- 每批都有截图和数据校验。已完成。
 
 分工：
 
-- Claude：批量边界数据生成。
+- Claude / worker：批量边界数据生成。
 - Codex：方法论、数据校验、浏览器验收、拒绝不合格批次。
 
 ### F3 · 奇观模型全面升级
@@ -130,12 +130,12 @@
 
 ## 当前执行建议
 
-F1 已通过 Codex Gate。当前主线是 F2 controlled boundary refinement，同时允许 F3 模型盘点并行启动，但不能把 F3 批量结果并入最终版，直到对应 Gate 通过。
+F1 和 F2 已通过 Codex Gate。当前主线是 F3 landmark/model quality，同时允许 F4 来源体系 sidecar 扩展，但不能把 F3/F4 批量结果并入最终版，直到对应 Gate 通过。
 
 执行策略：
 
 - 主线程 Codex 只做监督、拆分、验收、集成和日志，不在主线程长期吞大文件上下文。
-- F2 剩余文明按 subagent 并行拆批，每个 worker 必须有明确 owner、write scope、forbidden scope、verification commands。
-- F3 可以先由 subagent 做 GLB 覆盖率与质量盘点，之后按 1-3 个模型一批推进。
+- F3 按 1-3 个模型一批推进，每个 worker 必须有明确 owner、write scope、forbidden scope、verification commands。
+- F4 可以由 subagent 做来源字段扩展，但必须和 F3 模型写入范围隔离。
 - 每个 subagent 完成后，主线程必须 wait/review，决定 accept/reject/revise，并 close/archive 该 subagent。
 - `docs/CURRENT_PHASE.md` 是阶段真相来源；README 是老板视角 TODO 看板。

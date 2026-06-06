@@ -1,17 +1,238 @@
 {
   "status": "pass",
-  "generatedAt": "2026-06-06T05:11:29.812Z",
+  "generatedAt": "2026-06-06T06:22:18.270Z",
   "targetIds": [
+    "xia",
+    "shang",
+    "zhou",
+    "qin",
+    "han",
+    "jin",
+    "sui",
+    "tang",
+    "song",
+    "yuan",
+    "ming",
+    "qing",
+    "egypt-old-kingdom",
+    "egypt-new-kingdom",
+    "babylon",
+    "assyrian",
+    "achaemenid",
+    "sasanian",
+    "greek-city-states",
+    "roman-republic-empire",
+    "byzantine",
+    "ottoman",
+    "islamic-caliphates",
+    "mongol-empire",
+    "maurya",
+    "gupta",
+    "chola",
+    "mughal",
+    "khmer",
+    "srivijaya",
+    "joseon",
+    "yamato-japan",
+    "maya",
+    "aztec",
+    "inca",
+    "ghana",
+    "mali",
+    "songhai",
+    "carolingian",
+    "holy-roman-empire",
+    "british-empire",
+    "united-states",
+    "prc"
+  ],
+  "compilerRequiredIds": [
     "han",
     "ming",
     "egypt-new-kingdom",
     "achaemenid",
-    "sasanian"
+    "sasanian",
+    "srivijaya",
+    "joseon",
+    "yamato-japan",
+    "ghana",
+    "mali",
+    "songhai",
+    "british-empire",
+    "united-states"
   ],
-  "auditedFeatureCount": 15,
+  "auditedFeatureCount": 129,
   "failures": [],
   "warnings": [],
   "features": [
+    {
+      "id": "xia",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 22,
+      "rings": 1,
+      "bbox": {
+        "minLng": 108.35,
+        "minLat": 33.42,
+        "maxLng": 113.02,
+        "maxLat": 36.18
+      },
+      "compiler": null
+    },
+    {
+      "id": "xia",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 25,
+      "rings": 1,
+      "bbox": {
+        "minLng": 107.42,
+        "minLat": 33.18,
+        "maxLng": 115.18,
+        "maxLat": 37.1
+      },
+      "compiler": null
+    },
+    {
+      "id": "xia",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 21,
+      "rings": 1,
+      "bbox": {
+        "minLng": 108.78,
+        "minLat": 33.58,
+        "maxLng": 112.9,
+        "maxLat": 36.02
+      },
+      "compiler": null
+    },
+    {
+      "id": "shang",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 25,
+      "rings": 1,
+      "bbox": {
+        "minLng": 106.85,
+        "minLat": 32.98,
+        "maxLng": 115.48,
+        "maxLat": 37.32
+      },
+      "compiler": null
+    },
+    {
+      "id": "shang",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 32,
+      "rings": 1,
+      "bbox": {
+        "minLng": 106.45,
+        "minLat": 32.5,
+        "maxLng": 120.25,
+        "maxLat": 38.74
+      },
+      "compiler": null
+    },
+    {
+      "id": "shang",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 22,
+      "rings": 1,
+      "bbox": {
+        "minLng": 107.82,
+        "minLat": 33.05,
+        "maxLng": 115.02,
+        "maxLat": 36.72
+      },
+      "compiler": null
+    },
+    {
+      "id": "zhou",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 28,
+      "rings": 1,
+      "bbox": {
+        "minLng": 105.18,
+        "minLat": 32.22,
+        "maxLng": 116.48,
+        "maxLat": 37.55
+      },
+      "compiler": null
+    },
+    {
+      "id": "zhou",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 31,
+      "rings": 1,
+      "bbox": {
+        "minLng": 103.15,
+        "minLat": 30.42,
+        "maxLng": 119.2,
+        "maxLat": 39.22
+      },
+      "compiler": null
+    },
+    {
+      "id": "zhou",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 35,
+      "rings": 1,
+      "bbox": {
+        "minLng": 103.48,
+        "minLat": 28.28,
+        "maxLng": 119.02,
+        "maxLat": 37.82
+      },
+      "compiler": null
+    },
+    {
+      "id": "qin",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 43,
+      "rings": 1,
+      "bbox": {
+        "minLng": 102.95,
+        "minLat": 28.18,
+        "maxLng": 121.05,
+        "maxLat": 38.78
+      },
+      "compiler": null
+    },
+    {
+      "id": "qin",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 43,
+      "rings": 1,
+      "bbox": {
+        "minLng": 101.78,
+        "minLat": 22.38,
+        "maxLng": 121.48,
+        "maxLat": 39.98
+      },
+      "compiler": null
+    },
+    {
+      "id": "qin",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 40,
+      "rings": 1,
+      "bbox": {
+        "minLng": 102.92,
+        "minLat": 29.98,
+        "maxLng": 117.55,
+        "maxLat": 37.18
+      },
+      "compiler": null
+    },
     {
       "id": "han",
       "phase": "rise",
@@ -79,6 +300,216 @@
       }
     },
     {
+      "id": "jin",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 64,
+      "rings": 1,
+      "bbox": {
+        "minLng": 100.2,
+        "minLat": 31.85,
+        "maxLng": 120.55,
+        "maxLat": 40.35
+      },
+      "compiler": null
+    },
+    {
+      "id": "jin",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 97,
+      "rings": 1,
+      "bbox": {
+        "minLng": 99.7,
+        "minLat": 21.88,
+        "maxLng": 125.15,
+        "maxLat": 41.02
+      },
+      "compiler": null
+    },
+    {
+      "id": "jin",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 73,
+      "rings": 1,
+      "bbox": {
+        "minLng": 102.45,
+        "minLat": 21.88,
+        "maxLng": 121.55,
+        "maxLat": 33.72
+      },
+      "compiler": null
+    },
+    {
+      "id": "sui",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 40,
+      "rings": 1,
+      "bbox": {
+        "minLng": 99.92,
+        "minLat": 33.2,
+        "maxLng": 119.05,
+        "maxLat": 40.02
+      },
+      "compiler": null
+    },
+    {
+      "id": "sui",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 44,
+      "rings": 1,
+      "bbox": {
+        "minLng": 98.98,
+        "minLat": 22.3,
+        "maxLng": 121.72,
+        "maxLat": 41.08
+      },
+      "compiler": null
+    },
+    {
+      "id": "sui",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 41,
+      "rings": 1,
+      "bbox": {
+        "minLng": 99.62,
+        "minLat": 25.62,
+        "maxLng": 119.55,
+        "maxLat": 39.92
+      },
+      "compiler": null
+    },
+    {
+      "id": "tang",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 245,
+      "rings": 1,
+      "bbox": {
+        "minLng": 99.015,
+        "minLat": 20.288,
+        "maxLng": 121.88,
+        "maxLat": 42.473
+      },
+      "compiler": null
+    },
+    {
+      "id": "tang",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 437,
+      "rings": 1,
+      "bbox": {
+        "minLng": 74.003,
+        "minLat": 20.322,
+        "maxLng": 126.998,
+        "maxLat": 49.985
+      },
+      "compiler": null
+    },
+    {
+      "id": "tang",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 189,
+      "rings": 1,
+      "bbox": {
+        "minLng": 101.008,
+        "minLat": 21.002,
+        "maxLng": 121.88,
+        "maxLat": 41.478
+      },
+      "compiler": null
+    },
+    {
+      "id": "song",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 58,
+      "rings": 1,
+      "bbox": {
+        "minLng": 103.35,
+        "minLat": 31,
+        "maxLng": 120.18,
+        "maxLat": 38.32
+      },
+      "compiler": null
+    },
+    {
+      "id": "song",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 82,
+      "rings": 1,
+      "bbox": {
+        "minLng": 103.2,
+        "minLat": 21.92,
+        "maxLng": 121.62,
+        "maxLat": 38.965
+      },
+      "compiler": null
+    },
+    {
+      "id": "song",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 67,
+      "rings": 1,
+      "bbox": {
+        "minLng": 102.95,
+        "minLat": 21.92,
+        "maxLng": 121.62,
+        "maxLat": 33.72
+      },
+      "compiler": null
+    },
+    {
+      "id": "yuan",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 88,
+      "rings": 1,
+      "bbox": {
+        "minLng": 78.2,
+        "minLat": 25.1,
+        "maxLng": 131.85,
+        "maxLat": 49
+      },
+      "compiler": null
+    },
+    {
+      "id": "yuan",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 121,
+      "rings": 1,
+      "bbox": {
+        "minLng": 76.2,
+        "minLat": 21.55,
+        "maxLng": 132.25,
+        "maxLat": 50.25
+      },
+      "compiler": null
+    },
+    {
+      "id": "yuan",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 79,
+      "rings": 1,
+      "bbox": {
+        "minLng": 82,
+        "minLat": 25.5,
+        "maxLng": 130,
+        "maxLat": 47.21
+      },
+      "compiler": null
+    },
+    {
       "id": "ming",
       "phase": "rise",
       "geometryType": "MultiPolygon",
@@ -143,6 +574,90 @@
         "regionCount": 7,
         "regionUnion": true
       }
+    },
+    {
+      "id": "qing",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 174,
+      "rings": 3,
+      "bbox": {
+        "minLng": 88.5,
+        "minLat": 18.05,
+        "maxLng": 140,
+        "maxLat": 53.261
+      },
+      "compiler": null
+    },
+    {
+      "id": "qing",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 186,
+      "rings": 3,
+      "bbox": {
+        "minLng": 74.5,
+        "minLat": 18.05,
+        "maxLng": 140,
+        "maxLat": 54
+      },
+      "compiler": null
+    },
+    {
+      "id": "qing",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 183,
+      "rings": 3,
+      "bbox": {
+        "minLng": 74.8,
+        "minLat": 18.05,
+        "maxLng": 133.5,
+        "maxLat": 52.1
+      },
+      "compiler": null
+    },
+    {
+      "id": "egypt-old-kingdom",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 46,
+      "rings": 1,
+      "bbox": {
+        "minLng": 29.4,
+        "minLat": 24.5,
+        "maxLng": 32.9,
+        "maxLat": 32
+      },
+      "compiler": null
+    },
+    {
+      "id": "egypt-old-kingdom",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 46,
+      "rings": 1,
+      "bbox": {
+        "minLng": 28.8,
+        "minLat": 22.4,
+        "maxLng": 34,
+        "maxLat": 32
+      },
+      "compiler": null
+    },
+    {
+      "id": "egypt-old-kingdom",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 40,
+      "rings": 1,
+      "bbox": {
+        "minLng": 29.4,
+        "minLat": 22.7,
+        "maxLng": 32.4,
+        "maxLat": 31.7
+      },
+      "compiler": null
     },
     {
       "id": "egypt-new-kingdom",
@@ -209,6 +724,90 @@
         "regionCount": 2,
         "regionUnion": true
       }
+    },
+    {
+      "id": "babylon",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 32,
+      "rings": 1,
+      "bbox": {
+        "minLng": 41.8,
+        "minLat": 29.1,
+        "maxLng": 47.2,
+        "maxLat": 35.1
+      },
+      "compiler": null
+    },
+    {
+      "id": "babylon",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 36,
+      "rings": 1,
+      "bbox": {
+        "minLng": 34.6,
+        "minLat": 28.8,
+        "maxLng": 48.2,
+        "maxLat": 36
+      },
+      "compiler": null
+    },
+    {
+      "id": "babylon",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 34,
+      "rings": 1,
+      "bbox": {
+        "minLng": 35,
+        "minLat": 29.3,
+        "maxLng": 47.4,
+        "maxLat": 35
+      },
+      "compiler": null
+    },
+    {
+      "id": "assyrian",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 34,
+      "rings": 1,
+      "bbox": {
+        "minLng": 38.1,
+        "minLat": 33.5,
+        "maxLng": 46,
+        "maxLat": 38
+      },
+      "compiler": null
+    },
+    {
+      "id": "assyrian",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 64,
+      "rings": 1,
+      "bbox": {
+        "minLng": 29.2,
+        "minLat": 27.2,
+        "maxLng": 49.3,
+        "maxLat": 37.8
+      },
+      "compiler": null
+    },
+    {
+      "id": "assyrian",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 32,
+      "rings": 1,
+      "bbox": {
+        "minLng": 36,
+        "minLat": 32.8,
+        "maxLng": 46,
+        "maxLat": 37.8
+      },
+      "compiler": null
     },
     {
       "id": "achaemenid",
@@ -341,6 +940,1248 @@
         "regionCount": 4,
         "regionUnion": true
       }
+    },
+    {
+      "id": "greek-city-states",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 134,
+      "rings": 7,
+      "bbox": {
+        "minLng": 12.1,
+        "minLat": 34.8,
+        "maxLng": 27.8,
+        "maxLat": 40.6
+      },
+      "compiler": null
+    },
+    {
+      "id": "greek-city-states",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 158,
+      "rings": 8,
+      "bbox": {
+        "minLng": 12.1,
+        "minLat": 34.8,
+        "maxLng": 36.4,
+        "maxLat": 46.4
+      },
+      "compiler": null
+    },
+    {
+      "id": "greek-city-states",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 128,
+      "rings": 7,
+      "bbox": {
+        "minLng": 12.1,
+        "minLat": 34.8,
+        "maxLng": 27.7,
+        "maxLat": 40.9
+      },
+      "compiler": null
+    },
+    {
+      "id": "roman-republic-empire",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 917,
+      "rings": 6,
+      "bbox": {
+        "minLng": -9.8,
+        "minLat": 30.568,
+        "maxLng": 44.2,
+        "maxLat": 51.238
+      },
+      "compiler": null
+    },
+    {
+      "id": "roman-republic-empire",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 1306,
+      "rings": 6,
+      "bbox": {
+        "minLng": -9.8,
+        "minLat": 22.015,
+        "maxLng": 48.6,
+        "maxLat": 58.638
+      },
+      "compiler": null
+    },
+    {
+      "id": "roman-republic-empire",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 1039,
+      "rings": 5,
+      "bbox": {
+        "minLng": -9.8,
+        "minLat": 22.015,
+        "maxLng": 44.198,
+        "maxLat": 51.238
+      },
+      "compiler": null
+    },
+    {
+      "id": "byzantine",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 889,
+      "rings": 7,
+      "bbox": {
+        "minLng": 13.354,
+        "minLat": 21.807,
+        "maxLng": 44,
+        "maxLat": 46.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "byzantine",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 1318,
+      "rings": 13,
+      "bbox": {
+        "minLng": -6.035,
+        "minLat": 21.807,
+        "maxLng": 44,
+        "maxLat": 46.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "byzantine",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 717,
+      "rings": 6,
+      "bbox": {
+        "minLng": 12.436,
+        "minLat": 34.57,
+        "maxLng": 44,
+        "maxLat": 46.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "ottoman",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 556,
+      "rings": 2,
+      "bbox": {
+        "minLng": 13.354,
+        "minLat": 36.067,
+        "maxLng": 44,
+        "maxLat": 46.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "ottoman",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 1625,
+      "rings": 12,
+      "bbox": {
+        "minLng": 9,
+        "minLat": 13.5,
+        "maxLng": 48.5,
+        "maxLat": 49
+      },
+      "compiler": null
+    },
+    {
+      "id": "ottoman",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 730,
+      "rings": 4,
+      "bbox": {
+        "minLng": 26.181,
+        "minLat": 13.5,
+        "maxLng": 48.5,
+        "maxLat": 42.3
+      },
+      "compiler": null
+    },
+    {
+      "id": "islamic-caliphates",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 575,
+      "rings": 2,
+      "bbox": {
+        "minLng": -9.8,
+        "minLat": 12.683,
+        "maxLng": 62.398,
+        "maxLat": 39.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "islamic-caliphates",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 619,
+      "rings": 3,
+      "bbox": {
+        "minLng": -9.8,
+        "minLat": 12.683,
+        "maxLng": 74.998,
+        "maxLat": 42.993
+      },
+      "compiler": null
+    },
+    {
+      "id": "islamic-caliphates",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 170,
+      "rings": 2,
+      "bbox": {
+        "minLng": 34.162,
+        "minLat": 25.205,
+        "maxLng": 62.398,
+        "maxLat": 39.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "mongol-empire",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 130,
+      "rings": 1,
+      "bbox": {
+        "minLng": 58,
+        "minLat": 36.8,
+        "maxLng": 123,
+        "maxLat": 53.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "mongol-empire",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 187,
+      "rings": 1,
+      "bbox": {
+        "minLng": 23.5,
+        "minLat": 27,
+        "maxLng": 128,
+        "maxLat": 54.8
+      },
+      "compiler": null
+    },
+    {
+      "id": "mongol-empire",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 281,
+      "rings": 4,
+      "bbox": {
+        "minLng": 26,
+        "minLat": 27,
+        "maxLng": 125,
+        "maxLat": 53.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "maurya",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 83,
+      "rings": 2,
+      "bbox": {
+        "minLng": 64,
+        "minLat": 22.8,
+        "maxLng": 88.6,
+        "maxLat": 33.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "maurya",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 120,
+      "rings": 3,
+      "bbox": {
+        "minLng": 64,
+        "minLat": 13.979,
+        "maxLng": 88.6,
+        "maxLat": 33.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "maurya",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 49,
+      "rings": 1,
+      "bbox": {
+        "minLng": 69.8,
+        "minLat": 22.8,
+        "maxLng": 88.6,
+        "maxLat": 30.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "gupta",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 49,
+      "rings": 1,
+      "bbox": {
+        "minLng": 69.8,
+        "minLat": 22.8,
+        "maxLng": 88.6,
+        "maxLat": 30.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "gupta",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 111,
+      "rings": 3,
+      "bbox": {
+        "minLng": 68.5,
+        "minLat": 13.979,
+        "maxLng": 88.6,
+        "maxLat": 30.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "gupta",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 49,
+      "rings": 1,
+      "bbox": {
+        "minLng": 69.8,
+        "minLat": 22.8,
+        "maxLng": 88.6,
+        "maxLat": 30.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "chola",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 37,
+      "rings": 1,
+      "bbox": {
+        "minLng": 74,
+        "minLat": 8,
+        "maxLng": 80.323,
+        "maxLat": 15
+      },
+      "compiler": null
+    },
+    {
+      "id": "chola",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 59,
+      "rings": 2,
+      "bbox": {
+        "minLng": 74,
+        "minLat": 5.9,
+        "maxLng": 81.9,
+        "maxLat": 15
+      },
+      "compiler": null
+    },
+    {
+      "id": "chola",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 37,
+      "rings": 1,
+      "bbox": {
+        "minLng": 74,
+        "minLat": 8,
+        "maxLng": 80.323,
+        "maxLat": 15
+      },
+      "compiler": null
+    },
+    {
+      "id": "mughal",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 59,
+      "rings": 1,
+      "bbox": {
+        "minLng": 69.08,
+        "minLat": 21,
+        "maxLng": 89,
+        "maxLat": 26.48
+      },
+      "compiler": null
+    },
+    {
+      "id": "mughal",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 238,
+      "rings": 1,
+      "bbox": {
+        "minLng": 68.12,
+        "minLat": 8.083,
+        "maxLng": 90.52,
+        "maxLat": 33
+      },
+      "compiler": null
+    },
+    {
+      "id": "mughal",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 84,
+      "rings": 1,
+      "bbox": {
+        "minLng": 71.003,
+        "minLat": 21.002,
+        "maxLng": 86.998,
+        "maxLat": 26.998
+      },
+      "compiler": null
+    },
+    {
+      "id": "khmer",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 31,
+      "rings": 1,
+      "bbox": {
+        "minLng": 102,
+        "minLat": 10,
+        "maxLng": 107.5,
+        "maxLat": 14.6
+      },
+      "compiler": null
+    },
+    {
+      "id": "khmer",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 52,
+      "rings": 1,
+      "bbox": {
+        "minLng": 98.481,
+        "minLat": 9.5,
+        "maxLng": 108.6,
+        "maxLat": 19
+      },
+      "compiler": null
+    },
+    {
+      "id": "khmer",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 31,
+      "rings": 1,
+      "bbox": {
+        "minLng": 102,
+        "minLat": 10,
+        "maxLng": 107.5,
+        "maxLat": 14.6
+      },
+      "compiler": null
+    },
+    {
+      "id": "srivijaya",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 113,
+      "rings": 2,
+      "bbox": {
+        "minLng": 99,
+        "minLat": -5.82,
+        "maxLng": 106.1,
+        "maxLat": 6.38
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "srivijaya",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 194,
+      "rings": 4,
+      "bbox": {
+        "minLng": 99,
+        "minLat": -7.76,
+        "maxLng": 114.44,
+        "maxLat": 6.38
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 5,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "srivijaya",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 113,
+      "rings": 2,
+      "bbox": {
+        "minLng": 99,
+        "minLat": -5.82,
+        "maxLng": 106.1,
+        "maxLat": 6.38
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "joseon",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 63,
+      "rings": 1,
+      "bbox": {
+        "minLng": 125.32,
+        "minLat": 34.4,
+        "maxLng": 129.96,
+        "maxLat": 43.12
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "joseon",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 78,
+      "rings": 1,
+      "bbox": {
+        "minLng": 124.68,
+        "minLat": 34.4,
+        "maxLng": 131.08,
+        "maxLat": 43.68
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "joseon",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 78,
+      "rings": 1,
+      "bbox": {
+        "minLng": 124.68,
+        "minLat": 34.4,
+        "maxLng": 131.08,
+        "maxLat": 43.68
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "yamato-japan",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 84,
+      "rings": 2,
+      "bbox": {
+        "minLng": 129.76,
+        "minLat": 31,
+        "maxLng": 137.28,
+        "maxLat": 36.2
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "yamato-japan",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 137,
+      "rings": 3,
+      "bbox": {
+        "minLng": 129.76,
+        "minLat": 31,
+        "maxLng": 141.9,
+        "maxLat": 41.7
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 5,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "yamato-japan",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 122,
+      "rings": 2,
+      "bbox": {
+        "minLng": 129.76,
+        "minLat": 31,
+        "maxLng": 141.9,
+        "maxLat": 40.52
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "maya",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 63,
+      "rings": 1,
+      "bbox": {
+        "minLng": -92.32,
+        "minLat": 14.603,
+        "maxLng": -86.8,
+        "maxLat": 21.4
+      },
+      "compiler": null
+    },
+    {
+      "id": "maya",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 87,
+      "rings": 1,
+      "bbox": {
+        "minLng": -92.92,
+        "minLat": 13.843,
+        "maxLng": -86.76,
+        "maxLat": 21.598
+      },
+      "compiler": null
+    },
+    {
+      "id": "maya",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 48,
+      "rings": 1,
+      "bbox": {
+        "minLng": -91.152,
+        "minLat": 17.408,
+        "maxLng": -86.76,
+        "maxLat": 21.598
+      },
+      "compiler": null
+    },
+    {
+      "id": "aztec",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 24,
+      "rings": 1,
+      "bbox": {
+        "minLng": -101.3,
+        "minLat": 17.9,
+        "maxLng": -97.5,
+        "maxLat": 21
+      },
+      "compiler": null
+    },
+    {
+      "id": "aztec",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 156,
+      "rings": 3,
+      "bbox": {
+        "minLng": -101.8,
+        "minLat": 15.6,
+        "maxLng": -96.2,
+        "maxLat": 21.4
+      },
+      "compiler": null
+    },
+    {
+      "id": "aztec",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 21,
+      "rings": 1,
+      "bbox": {
+        "minLng": -99.7,
+        "minLat": 18.8,
+        "maxLng": -98.3,
+        "maxLat": 20.4
+      },
+      "compiler": null
+    },
+    {
+      "id": "inca",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 28,
+      "rings": 1,
+      "bbox": {
+        "minLng": -76.5,
+        "minLat": -17.3,
+        "maxLng": -68.8,
+        "maxLat": -11.157
+      },
+      "compiler": null
+    },
+    {
+      "id": "inca",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 95,
+      "rings": 1,
+      "bbox": {
+        "minLng": -80.4,
+        "minLat": -35.3,
+        "maxLng": -64.4,
+        "maxLat": 1.1
+      },
+      "compiler": null
+    },
+    {
+      "id": "inca",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 21,
+      "rings": 1,
+      "bbox": {
+        "minLng": -73.7,
+        "minLat": -13.7,
+        "maxLng": -72.4,
+        "maxLat": -12.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "ghana",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 60,
+      "rings": 1,
+      "bbox": {
+        "minLng": -15.4,
+        "minLat": 11.86,
+        "maxLng": -4.86,
+        "maxLat": 17.2
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "ghana",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 94,
+      "rings": 1,
+      "bbox": {
+        "minLng": -15.4,
+        "minLat": 11.86,
+        "maxLng": -2.92,
+        "maxLat": 20.08
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "ghana",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 60,
+      "rings": 1,
+      "bbox": {
+        "minLng": -15.4,
+        "minLat": 11.86,
+        "maxLng": -4.86,
+        "maxLat": 17.2
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "mali",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 72,
+      "rings": 1,
+      "bbox": {
+        "minLng": -16.4,
+        "minLat": 8.22,
+        "maxLng": -5.76,
+        "maxLat": 14.76
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "mali",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 133,
+      "rings": 1,
+      "bbox": {
+        "minLng": -16.4,
+        "minLat": 8.22,
+        "maxLng": 3.2,
+        "maxLat": 18.2
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 6,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "mali",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 72,
+      "rings": 1,
+      "bbox": {
+        "minLng": -16.4,
+        "minLat": 8.22,
+        "maxLng": -5.76,
+        "maxLat": 14.76
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "songhai",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 65,
+      "rings": 1,
+      "bbox": {
+        "minLng": -5.72,
+        "minLat": 12.04,
+        "maxLng": 4.44,
+        "maxLat": 17.4
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "songhai",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 130,
+      "rings": 2,
+      "bbox": {
+        "minLng": -5.72,
+        "minLat": 10.46,
+        "maxLng": 9.38,
+        "maxLat": 21.06
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 7,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "songhai",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 80,
+      "rings": 1,
+      "bbox": {
+        "minLng": -2.48,
+        "minLat": 11.96,
+        "maxLng": 4.4,
+        "maxLat": 17.4
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "carolingian",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 86,
+      "rings": 3,
+      "bbox": {
+        "minLng": -5.2,
+        "minLat": 42.2,
+        "maxLng": 14.3,
+        "maxLat": 52.8
+      },
+      "compiler": null
+    },
+    {
+      "id": "carolingian",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 88,
+      "rings": 3,
+      "bbox": {
+        "minLng": -5.8,
+        "minLat": 41.6,
+        "maxLng": 16.4,
+        "maxLat": 53.4
+      },
+      "compiler": null
+    },
+    {
+      "id": "carolingian",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 80,
+      "rings": 3,
+      "bbox": {
+        "minLng": -5.2,
+        "minLat": 42.4,
+        "maxLng": 13.8,
+        "maxLat": 51.6
+      },
+      "compiler": null
+    },
+    {
+      "id": "holy-roman-empire",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 86,
+      "rings": 3,
+      "bbox": {
+        "minLng": 4,
+        "minLat": 42.9,
+        "maxLng": 16.6,
+        "maxLat": 52.8
+      },
+      "compiler": null
+    },
+    {
+      "id": "holy-roman-empire",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 90,
+      "rings": 3,
+      "bbox": {
+        "minLng": 3.6,
+        "minLat": 41.4,
+        "maxLng": 18,
+        "maxLat": 53.5
+      },
+      "compiler": null
+    },
+    {
+      "id": "holy-roman-empire",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 40,
+      "rings": 1,
+      "bbox": {
+        "minLng": 5.1,
+        "minLat": 46,
+        "maxLng": 17.2,
+        "maxLat": 52.2
+      },
+      "compiler": null
+    },
+    {
+      "id": "british-empire",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 899,
+      "rings": 18,
+      "bbox": {
+        "minLng": -83,
+        "minLat": 6.08,
+        "maxLng": 96.52,
+        "maxLat": 58.62
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "british-empire",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 1978,
+      "rings": 27,
+      "bbox": {
+        "minLng": -125.4,
+        "minLat": -42.24,
+        "maxLng": 153.54,
+        "maxLat": 60.48
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 9,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "british-empire",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 490,
+      "rings": 14,
+      "bbox": {
+        "minLng": -78.48,
+        "minLat": -0.46,
+        "maxLng": 114.72,
+        "maxLat": 58.62
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "united-states",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 196,
+      "rings": 1,
+      "bbox": {
+        "minLng": -91.24,
+        "minLat": 29.16,
+        "maxLng": -67.16,
+        "maxLat": 45.4
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "united-states",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 885,
+      "rings": 9,
+      "bbox": {
+        "minLng": -167.36,
+        "minLat": 25.08,
+        "maxLng": -66.96,
+        "maxLat": 70.98
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 9,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "united-states",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 922,
+      "rings": 13,
+      "bbox": {
+        "minLng": -167.36,
+        "minLat": 18.92,
+        "maxLng": -66.96,
+        "maxLat": 70.98
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 10,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "prc",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 183,
+      "rings": 3,
+      "bbox": {
+        "minLng": 74.2,
+        "minLat": 18.05,
+        "maxLng": 133,
+        "maxLat": 52.8
+      },
+      "compiler": null
+    },
+    {
+      "id": "prc",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 183,
+      "rings": 3,
+      "bbox": {
+        "minLng": 73.4,
+        "minLat": 18.05,
+        "maxLng": 134.6,
+        "maxLat": 53.05
+      },
+      "compiler": null
+    },
+    {
+      "id": "prc",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 183,
+      "rings": 3,
+      "bbox": {
+        "minLng": 73.55,
+        "minLat": 18.05,
+        "maxLng": 134.25,
+        "maxLat": 52.85
+      },
+      "compiler": null
     }
   ]
 }

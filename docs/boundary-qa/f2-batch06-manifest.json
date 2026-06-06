@@ -1,0 +1,380 @@
+{
+  "appUrl": "http://127.0.0.1:4186/",
+  "generatedAt": "2026-06-06T06:25:02.693Z",
+  "captures": [
+    {
+      "id": "srivijaya-900",
+      "targetId": "srivijaya",
+      "label": "Srivijaya peak land-clipped island and strait network",
+      "year": 900,
+      "camera": {
+        "center": [
+          104.5,
+          -1
+        ],
+        "zoom": 4.35,
+        "pitch": 54,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          104.5,
+          -1
+        ],
+        "zoom": 4.35,
+        "pitch": 54,
+        "bearing": -8,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "tang",
+          "islamic-caliphates",
+          "srivijaya",
+          "khmer",
+          "chola"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 20,
+        "renderedBoundaryIds": [
+          "srivijaya",
+          "tang",
+          "yamato-japan",
+          "islamic-caliphates",
+          "chola",
+          "khmer"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch06-srivijaya-900.png"
+    },
+    {
+      "id": "joseon-1500",
+      "targetId": "joseon",
+      "label": "Joseon mature Korean Peninsula footprint",
+      "year": 1500,
+      "camera": {
+        "center": [
+          127.7,
+          38.2
+        ],
+        "zoom": 4.45,
+        "pitch": 54,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          127.7,
+          38.2
+        ],
+        "zoom": 4.45,
+        "pitch": 54,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "maya",
+          "holy-roman-empire",
+          "mali",
+          "ottoman",
+          "ming",
+          "joseon",
+          "aztec",
+          "inca",
+          "songhai"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "joseon",
+          "ming"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch06-joseon-1500.png"
+    },
+    {
+      "id": "yamato-japan-800",
+      "targetId": "yamato-japan",
+      "label": "Yamato/Ritsuryo main-island network",
+      "year": 800,
+      "camera": {
+        "center": [
+          136.8,
+          36
+        ],
+        "zoom": 4.35,
+        "pitch": 54,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          136.8,
+          36
+        ],
+        "zoom": 4.35,
+        "pitch": 54,
+        "bearing": -8,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "tang",
+          "islamic-caliphates",
+          "srivijaya",
+          "carolingian"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 15,
+        "renderedBoundaryIds": [
+          "yamato-japan",
+          "tang"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch06-yamato-japan-800.png"
+    },
+    {
+      "id": "ghana-900",
+      "targetId": "ghana",
+      "label": "Ghana Sahel and Senegal corridor",
+      "year": 900,
+      "camera": {
+        "center": [
+          -9.3,
+          15.4
+        ],
+        "zoom": 4.5,
+        "pitch": 54,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          -9.3,
+          15.4
+        ],
+        "zoom": 4.5,
+        "pitch": 54,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "maya",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "tang",
+          "islamic-caliphates",
+          "srivijaya",
+          "khmer",
+          "chola"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 5,
+        "renderedBoundaryIds": [
+          "ghana",
+          "byzantine",
+          "islamic-caliphates"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch06-ghana-900.png"
+    },
+    {
+      "id": "mali-1350",
+      "targetId": "mali",
+      "label": "Mali peak upper Niger, Senegambia, and Niger Bend corridors",
+      "year": 1350,
+      "camera": {
+        "center": [
+          -6.4,
+          13.8
+        ],
+        "zoom": 4.25,
+        "pitch": 54,
+        "bearing": -8
+      },
+      "audit": {
+        "mapCenter": [
+          -6.4,
+          13.8
+        ],
+        "zoom": 4.25,
+        "pitch": 54,
+        "bearing": -8,
+        "tilesLoaded": false,
+        "activeListIds": [
+          "maya",
+          "byzantine",
+          "srivijaya",
+          "khmer",
+          "holy-roman-empire",
+          "mongol-empire",
+          "mali",
+          "yuan",
+          "ottoman"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "mali",
+          "holy-roman-empire",
+          "byzantine",
+          "ottoman",
+          "mongol-empire"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch06-mali-1350.png"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x164001cd800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x164001cd800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x164001cd800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x164001cd800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/2/1/1@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/3/6/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/3/6/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/12/7.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/11/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/8.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/3/2/2.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/10/7@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/26/16@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/26/17@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/24/18@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/3/7/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/28/16.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/28/17.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/5/29/14.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/27/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/26/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/27/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/28/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/26/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/28/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/31/32.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/6/32/32.png",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "failures": []
+}

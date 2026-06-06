@@ -17,14 +17,17 @@ const F2_BATCH_02_IDS = new Set([
 const F2_BATCH_03_IDS = new Set(['xia', 'shang', 'zhou', 'qin', 'sui']);
 const F2_BATCH_04_IDS = new Set(['jin', 'song', 'yuan', 'qing', 'prc']);
 const F2_BATCH_05_IDS = new Set(['han', 'ming', 'egypt-new-kingdom', 'achaemenid', 'sasanian']);
-const PHASED_BOUNDARY_IDS = new Set([
-  ...SAMPLE_IDS,
-  ...F2_BATCH_01_IDS,
-  ...F2_BATCH_02_IDS,
-  ...F2_BATCH_03_IDS,
-  ...F2_BATCH_04_IDS,
-  ...F2_BATCH_05_IDS,
+const F2_FINAL_COVERAGE_IDS = new Set([
+  'srivijaya',
+  'joseon',
+  'yamato-japan',
+  'ghana',
+  'mali',
+  'songhai',
+  'british-empire',
+  'united-states',
 ]);
+const COMPILER_ANCHOR_IDS = new Set([...F2_BATCH_05_IDS, ...F2_FINAL_COVERAGE_IDS]);
 const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
 function fail(errors, message) {
@@ -153,7 +156,7 @@ function validateDynastySources(dynasty, errors) {
 
 const SAMPLE_ACCURACY_VALUES = new Set(['rough-refined', 'coastline-aware-rough']);
 
-function validateBoundary(feature, dynastyIds, errors) {
+function validateBoundary(feature, dynastyIds, requiredPhaseIds, errors) {
   const id = feature?.properties?.id || feature?.id || 'unknown';
   const prefix = `boundary:${id}`;
 
@@ -191,7 +194,7 @@ function validateBoundary(feature, dynastyIds, errors) {
     }
   }
 
-  if (PHASED_BOUNDARY_IDS.has(id)) {
+  if (requiredPhaseIds.has(id)) {
     const accuracy = feature.properties?.accuracy;
     if (!isNonEmptyString(feature.properties?.sourceNote)) fail(errors, `${prefix} sample must include sourceNote`);
     if (!SAMPLE_ACCURACY_VALUES.has(accuracy)) {
@@ -202,6 +205,7 @@ function validateBoundary(feature, dynastyIds, errors) {
     // 矩形过滤：任一外环都不能是矩形
     for (const ring of outerRings) if (isRectangleLike(ring)) fail(errors, `${prefix} sample boundary should not be rectangle-like`);
     // 顶点要求：coastline-aware-rough 收紧到 ≥40 单环 / ≥80 总（MultiPolygon）
+    if (COMPILER_ANCHOR_IDS.has(id)) {
     const totalVerts = outerRings.reduce((s, r) => s + (r?.length || 0), 0);
     if (accuracy === 'coastline-aware-rough') {
       if (geomType === 'Polygon' && (outerRings[0]?.length || 0) < 40) {
@@ -214,11 +218,16 @@ function validateBoundary(feature, dynastyIds, errors) {
       // 兼容旧 rough-refined sample
       if ((outerRings[0]?.length || 0) < 21) fail(errors, `${prefix} sample boundary needs at least 20 vertices plus closure`);
     }
+    }
   }
 }
 
-function validateSampleBoundaryPhases(features, dynastyById, errors) {
-  for (const id of PHASED_BOUNDARY_IDS) {
+function validateSampleBoundaryPhases(features, dynastyById, requiredPhaseIds, errors) {
+  if (features.length < requiredPhaseIds.size * 3) {
+    fail(errors, `F2 full gate requires at least ${requiredPhaseIds.size * 3} boundary features (got ${features.length})`);
+  }
+
+  for (const id of requiredPhaseIds) {
     const dynasty = dynastyById.get(id);
     const sampleFeatures = features
       .filter((feature) => (feature.properties?.id || feature.id) === id)
@@ -264,7 +273,7 @@ function validateBoundaryAnchors(anchors, errors) {
   }
 
   const anchorById = new Map(anchors.civilizations.map((anchor) => [anchor.id, anchor]));
-  for (const id of F2_BATCH_05_IDS) {
+  for (const id of COMPILER_ANCHOR_IDS) {
     const anchor = anchorById.get(id);
     const prefix = `boundary-anchor:${id}`;
     if (!anchor) {
@@ -395,13 +404,14 @@ async function main() {
   const errors = [];
   const dynastyIds = new Set(dynasties.map((dynasty) => dynasty.id));
   const dynastyById = new Map(dynasties.map((dynasty) => [dynasty.id, dynasty]));
+  const requiredPhaseIds = new Set(dynastyIds);
   const landmarkIds = new Set(landmarks.map((landmark) => landmark.id));
   const boundaryIds = new Set(boundaries.features.map((feature) => feature.properties?.id || feature.id));
 
   for (const landmark of landmarks) validateLandmark(landmark, dynastyIds, errors);
   for (const dynasty of dynasties) validateDynasty(dynasty, landmarkIds, errors);
-  for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, errors);
-  validateSampleBoundaryPhases(boundaries.features || [], dynastyById, errors);
+  for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, requiredPhaseIds, errors);
+  validateSampleBoundaryPhases(boundaries.features || [], dynastyById, requiredPhaseIds, errors);
   validateBoundaryAnchors(boundaryAnchors, errors);
 
   await validateProfileCodeBinding(errors);
@@ -422,9 +432,7 @@ async function main() {
   console.log(`Boundaries: ${boundaries.features.length}`);
   console.log(`Landmarks: ${landmarks.length}`);
   console.log(`Refined samples: ${SAMPLE_IDS.size}`);
-  console.log(`F2 phased boundary batch ids: ${
-    F2_BATCH_01_IDS.size + F2_BATCH_02_IDS.size + F2_BATCH_03_IDS.size + F2_BATCH_04_IDS.size + F2_BATCH_05_IDS.size
-  }`);
+  console.log(`F2 phased boundary ids: ${requiredPhaseIds.size}`);
   console.log(`Model profiles (code+data): ${MODEL_PROFILE_KEYS.length} (${landmarks.filter((l) => l.modelProfile).length} landmarks linked)`);
 }
 
