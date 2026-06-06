@@ -1,0 +1,520 @@
+{
+  "appUrl": "http://127.0.0.1:4185/",
+  "generatedAt": "2026-06-06T05:13:36.367Z",
+  "captures": [
+    {
+      "id": "overview-west-asia-600",
+      "targetId": "sasanian",
+      "label": "Batch05 overview around West Asia at Sasanian peak",
+      "year": 600,
+      "camera": {
+        "center": [
+          55,
+          32
+        ],
+        "zoom": 3.1,
+        "pitch": 54,
+        "bearing": -12
+      },
+      "audit": {
+        "mapCenter": [
+          55,
+          32
+        ],
+        "zoom": 3.1,
+        "pitch": 54,
+        "bearing": -12,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "sasanian",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "sui"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 20,
+        "renderedBoundaryIds": [
+          "sasanian",
+          "byzantine",
+          "sui"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch05-overview-west-asia-600.png"
+    },
+    {
+      "id": "han-100bce",
+      "targetId": "han",
+      "label": "Han peak with Hexi, Tarim, Liaodong, south coast land clipping",
+      "year": -100,
+      "camera": {
+        "center": [
+          104,
+          34.5
+        ],
+        "zoom": 4.15,
+        "pitch": 54,
+        "bearing": -10
+      },
+      "audit": {
+        "mapCenter": [
+          104,
+          34.5
+        ],
+        "zoom": 4.15,
+        "pitch": 54,
+        "bearing": -10,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "roman-republic-empire",
+          "han"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 35,
+        "renderedBoundaryIds": [
+          "han"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch05-han-100bce.png"
+    },
+    {
+      "id": "ming-1500",
+      "targetId": "ming",
+      "label": "Ming peak mainland and southern coast land clipping",
+      "year": 1500,
+      "camera": {
+        "center": [
+          110.5,
+          31.5
+        ],
+        "zoom": 4.2,
+        "pitch": 54,
+        "bearing": -9
+      },
+      "audit": {
+        "mapCenter": [
+          110.5,
+          31.5
+        ],
+        "zoom": 4.2,
+        "pitch": 54,
+        "bearing": -9,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "holy-roman-empire",
+          "mali",
+          "ottoman",
+          "ming",
+          "joseon",
+          "aztec",
+          "inca",
+          "songhai"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 25,
+        "renderedBoundaryIds": [
+          "ming",
+          "joseon"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch05-ming-1500.png"
+    },
+    {
+      "id": "egypt-new-kingdom-1300bce",
+      "targetId": "egypt-new-kingdom",
+      "label": "New Kingdom Egypt peak Nile, Nubia, Levant coast",
+      "year": -1300,
+      "camera": {
+        "center": [
+          32,
+          28.5
+        ],
+        "zoom": 4.35,
+        "pitch": 55,
+        "bearing": -6
+      },
+      "audit": {
+        "mapCenter": [
+          32,
+          28.5
+        ],
+        "zoom": 4.35,
+        "pitch": 55,
+        "bearing": -6,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "babylon",
+          "shang",
+          "egypt-new-kingdom",
+          "assyrian"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 10,
+        "renderedBoundaryIds": [
+          "egypt-new-kingdom",
+          "babylon",
+          "assyrian"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch05-egypt-new-kingdom-1300bce.png"
+    },
+    {
+      "id": "achaemenid-500bce",
+      "targetId": "achaemenid",
+      "label": "Achaemenid peak split land-clipped regions",
+      "year": -500,
+      "camera": {
+        "center": [
+          50.5,
+          33.5
+        ],
+        "zoom": 4.05,
+        "pitch": 54,
+        "bearing": -10
+      },
+      "audit": {
+        "mapCenter": [
+          50.5,
+          33.5
+        ],
+        "zoom": 4.05,
+        "pitch": 54,
+        "bearing": -10,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "zhou",
+          "greek-city-states",
+          "achaemenid",
+          "roman-republic-empire"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 30,
+        "renderedBoundaryIds": [
+          "achaemenid",
+          "greek-city-states",
+          "roman-republic-empire"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch05-achaemenid-500bce.png"
+    },
+    {
+      "id": "sasanian-600",
+      "targetId": "sasanian",
+      "label": "Sasanian peak split land-clipped regions",
+      "year": 600,
+      "camera": {
+        "center": [
+          51.5,
+          33.5
+        ],
+        "zoom": 4,
+        "pitch": 54,
+        "bearing": -10
+      },
+      "audit": {
+        "mapCenter": [
+          51.5,
+          33.5
+        ],
+        "zoom": 4,
+        "pitch": 54,
+        "bearing": -10,
+        "tilesLoaded": true,
+        "activeListIds": [
+          "maya",
+          "sasanian",
+          "yamato-japan",
+          "ghana",
+          "byzantine",
+          "sui"
+        ],
+        "targetActiveInPanel": true,
+        "targetSelectedInPanel": true,
+        "targetRenderedCount": 25,
+        "renderedBoundaryIds": [
+          "sasanian",
+          "byzantine"
+        ],
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\boundary-qa\\f2-batch05-sasanian-600.png"
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x2224001c6400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x2224001c6400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x2224001c6400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x2224001c6400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/1/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/2/1/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/1/1.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/2/3/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/1/0/0.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/10/6.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/5/19/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/20/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/19/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/20/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/18/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/21/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/5/18/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/9/4.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/4/8/5.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/3/5/1.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/11/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/4/12/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/13/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/14/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/4/14/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/13/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/12/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/4/11/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/25/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/11/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/3/7/1@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/3/6/1@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/13/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/14/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/28/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/14/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/13/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/8/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/4/9/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/10/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/19/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/22/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/5/22/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/5/22/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/5/23/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/dark_nolabels/4/10/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/dark_nolabels/4/9/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/dark_nolabels/4/8/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/20/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/20/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/21/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/19/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/21/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/10/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/11/4@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/19/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/18/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/18/13@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/19/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/20/14@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/5/22/12@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/11/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/4/10/5@2x.png",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "failures": []
+}

@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
+    "compile:boundaries": "node scripts/boundaryCompiler/compileBoundaryAnchors.mjs",
     "validate:data": "node scripts/validateHistoricalData.mjs",
+    "audit:boundary-quality": "node scripts/auditBoundaryQuality.mjs",
+    "audit:f2-batch05": "node scripts/auditF2BoundaryBatch05Playwright.mjs",
     "audit:glb": "node scripts/auditGlbAssets.mjs",
     "audit:visual-foundation": "node scripts/visualFoundationAudit.mjs",
     "test:boundary-outlines": "node scripts/testBoundaryOutlines.mjs",

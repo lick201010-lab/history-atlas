@@ -23,7 +23,7 @@
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
-| F2 边界精修 | 进行中 | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 启动 Batch 05，继续每批 5 个文明的小批量验收 | 每批 `validate:data`、`check`、浏览器截图 QA 通过；全阶段达到 43 文明、至少 129 feature |
+| F2 边界精修 | 进行中 | 43 个文明全部升级为至少 3 阶段 rough-refined 边界 | 采用 Boundary Compiler 方案：subagent 写 anchor，compiler 生成边界，Codex 验收截图 | 每批 `compile:boundaries`、`validate:data`、`audit:boundary-quality`、`check`、浏览器截图 QA 通过；全阶段达到 43 文明、至少 129 feature |
 | F3 奇观模型 | 未完成 | 30 个奇观升级到 A/B 级模型 | 与 F2 并行开模型 worker，先补缺失再精修核心 10 个 | 核心 10 个 A 级，全部 30 个不再是粗糙占位 |
 | F4 内容与来源 | pilot 01 已通过 | 文明、边界、事件建立来源体系 | 扩展到下一批文明前，先稳定引用格式和批量校验规则 | UI 可展示来源，关键数据有可追溯说明 |
 | F5 产品交互 / 移动端 | 未完成 | 移动端、搜索、筛选、对比、故事导航升级 | 边界与内容质量稳定后做产品体验扩展 | 桌面和移动端核心路径体验通过 |
@@ -39,11 +39,22 @@
 - Claude / worker subagent：只按 `.claude-runs/*.md` 的窄范围任务执行边界数据、单个 GLB、局部 UI 实现。
 - 当前 F2 阶段禁止把未验收批次说成最终完成。
 
+### Subagent 执行方法
+
+后续长任务默认使用主线程监督 + subagent 实施：
+
+1. 主线程先读取 `AGENTS.md`、`docs/CURRENT_PHASE.md`、`WORK_LOG.md` 和 `git status`，确认阶段与禁止范围。
+2. 主线程把任务拆成清晰 TODO，写入 README 或阶段计划文档。
+3. 每个 subagent 只拿一个窄任务，必须写清 owner、goal、write scope、forbidden scope、verification commands。
+4. subagent 完成后不能自动合并；Codex 主线程必须 review diff、运行校验、做浏览器 QA。
+5. subagent 结果只有三种处理：accept、reject、revise；处理完必须关闭并记录。
+6. 遇到压缩上下文，先从文档和 git 状态恢复现场，不能依赖聊天记忆。
+
 ### 最近下一步
 
-1. 提交 F2 Batch 04：晋、宋、元、清、PRC。
-2. F4 pilot 01 已接受：`tang`、`roman-republic-empire`、`islamic-caliphates`、`mughal`、`maya` 的来源与引用闭环。
-3. 启动 F2 Batch 05，继续按 5 个文明一批推进，不能一次性吞全量。
+1. F2 Batch 05 使用 Boundary Compiler 方案推进：`han`、`ming`、`egypt-new-kingdom`、`achaemenid`、`sasanian`。
+2. 先验收 compiler 是否真的 coast-aware；不能把普通凸包伪装成 `coastline-aware-rough`。
+3. Batch 05 通过后，再把 anchor/region preset 方法扩展到剩余 F2 文明。
 4. F3 可以并行开模型 worker，但写入范围必须和 F2/F4 数据批次隔离。
 
 ## 快速开始
@@ -63,6 +74,8 @@ http://127.0.0.1:5173/
 
 ```bash
 npm run validate:data      # 校验 dynasties / boundaries / landmarks
+npm run compile:boundaries # 从 boundary-anchors 编译 F2 边界
+npm run audit:boundary-quality # 审计编译边界质量
 npm run audit:glb          # 审计 GLB 模型资产
 npm run check              # 数据校验 + 边界测试 + GLB 审计 + 构建
 npm run smoke:release      # 线上桌面/手机发布冒烟

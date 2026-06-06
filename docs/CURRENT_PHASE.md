@@ -156,15 +156,49 @@ Notes:
 - The first Batch 04 review was `ACCEPT_WITH_FIXES` because PRC QA text said `mainland` while the illustrative range included Taiwan. The accepted pass now describes PRC as an illustrative contemporary China / contested-range outline.
 - Yuan, Qing, and PRC remain rough-refined large-extent historical visualization, not academic GIS borders.
 
-## Current F2 Batch 05
+## Accepted F2 Batch 05
 
-Batch 05 should target:
+Batch 05 was accepted on 2026-06-06.
 
 1. Han / `han`
 2. Ming / `ming`
 3. New Kingdom Egypt / `egypt-new-kingdom`
 4. Achaemenid Empire / `achaemenid`
 5. Sasanian Empire / `sasanian`
+
+Evidence:
+
+- `npm run compile:boundaries -- --ids han,ming,egypt-new-kingdom,achaemenid,sasanian` passed.
+- `npm run validate:data` passed.
+- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
+- `npm run check` passed.
+- `scripts/auditF2BoundaryBatch05Playwright.mjs` passed with `failures: []`.
+- QA report: `docs/boundary-qa/F2_BATCH05_REPORT_2026-06-06.md`
+- Screenshots:
+  - `docs/boundary-qa/f2-batch05-overview-west-asia-600.png`
+  - `docs/boundary-qa/f2-batch05-han-100bce.png`
+  - `docs/boundary-qa/f2-batch05-ming-1500.png`
+  - `docs/boundary-qa/f2-batch05-egypt-new-kingdom-1300bce.png`
+  - `docs/boundary-qa/f2-batch05-achaemenid-500bce.png`
+  - `docs/boundary-qa/f2-batch05-sasanian-600.png`
+
+Notes:
+
+- Batch 05 introduced the F2 Boundary Compiler workflow: `src/data/boundary-anchors.json` plus `scripts/boundaryCompiler/*`.
+- The first compiler worker pass was rejected because it labelled hull output as `coastline-aware-rough` without true land/coast clipping.
+- The accepted compiler uses local `atlas-land-110m.json` land clipping and records `properties.compiler.landClipped = true`.
+- A second visual repair worker was required because the first clipped West Asia output rendered as overlapping regional slabs. The accepted pass uses region union evidence and removes the obvious slab overlap.
+- The output is still rough-refined historical visualization, not academic GIS data.
+
+## Current F2 Batch 06
+
+Batch 06 should target South and Southeast Asia:
+
+1. Maurya Empire / `maurya`
+2. Gupta Empire / `gupta`
+3. Chola Dynasty / `chola`
+4. Khmer Empire / `khmer`
+5. Srivijaya / `srivijaya`
 
 ## Allowed F4 Pilot Sidecar
 
@@ -216,6 +250,9 @@ Notes:
 Claude or a worker may edit:
 
 - `src/data/boundaries-simplified.json`
+- `src/data/boundary-anchors.json`
+- `scripts/boundaryCompiler/*.mjs`
+- `scripts/auditBoundaryQuality.mjs`
 - Data validator fixtures only if the current schema blocks required F2 fields.
 - A `.claude-runs/*.md` task/output record.
 

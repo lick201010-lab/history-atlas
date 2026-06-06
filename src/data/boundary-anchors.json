@@ -1,0 +1,226 @@
+{
+  "version": 1,
+  "generatedFor": "F2 boundary compiler",
+  "civilizations": [
+    {
+      "id": "han",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "西汉建国 · 关中与中原核心",
+          "startYear": -202,
+          "endYear": -141,
+          "summary": "西汉初年以关中、黄河中下游和淮河流域为核心，边疆控制仍在恢复。",
+          "mode": "multi-region",
+          "includeRegions": ["guanzhong", "china-core-north", "yangtze-lower"],
+          "softBoundaries": ["yellow-river", "qinling", "north-china-plain"],
+          "avoidRegions": ["japan", "korea", "taiwan", "southeast-asia-islands"],
+          "sourceNote": "参考《中国历史地图集》与通用汉代疆域图，按历史沙盘展示概化。",
+          "accuracyNote": "示意范围，强调核心区和边疆方向，不代表县郡级边界。"
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "汉武帝至东汉中期 · 河西西域与南方扩展",
+          "startYear": -140,
+          "endYear": 88,
+          "summary": "盛期汉朝连接关中、中原、江淮、岭南、辽东、河西走廊与西域交通线。",
+          "mode": "multi-region",
+          "includeRegions": ["tarim-basin", "han-corridor", "guanzhong", "china-core-north", "yangtze-middle", "yangtze-lower", "south-china", "liaodong"],
+          "softBoundaries": ["yellow-river", "gobi-edge", "yangtze", "south-china-coast"],
+          "avoidRegions": ["japan", "korea", "taiwan", "southeast-asia-islands"],
+          "sourceNote": "参考汉武帝以后郡县扩展、西域都护与岭南郡县的通用历史地图。",
+          "accuracyNote": "西域与边郡按影响范围示意，不表示持续同等强度行政控制。"
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "东汉后期 · 中原江淮与边疆收缩",
+          "startYear": 89,
+          "endYear": 220,
+          "summary": "东汉后期仍保持中原、江淮和南方郡县框架，但西域与北方边疆控制波动加大。",
+          "mode": "multi-region",
+          "includeRegions": ["han-corridor", "guanzhong", "china-core-north", "yangtze-middle", "yangtze-lower", "south-china", "liaodong"],
+          "softBoundaries": ["yellow-river", "yangtze", "frontier-commandery-zone"],
+          "avoidRegions": ["japan", "korea", "taiwan", "southeast-asia-islands"],
+          "sourceNote": "参考东汉郡国分布和后期边疆收缩的通用历史地图。",
+          "accuracyNote": "后期边疆以大势表现，不细分羁縻、郡县和实际军事控制差异。"
+        }
+      ]
+    },
+    {
+      "id": "ming",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "明初统一 · 江南中原与北方推进",
+          "startYear": 1368,
+          "endYear": 1424,
+          "summary": "明初从南京政权扩展为覆盖中原、华北、江南、岭南和西南要地的统一王朝。",
+          "mode": "multi-region",
+          "includeRegions": ["china-core-north", "guanzhong", "yangtze-middle", "yangtze-lower", "south-china", "yunnan-guizhou", "liaodong"],
+          "softBoundaries": ["great-wall-line", "yangtze", "south-china-coast"],
+          "avoidRegions": ["japan", "korea", "taiwan", "southeast-asia-islands"],
+          "sourceNote": "参考明初统一战争、两京体系和洪武至永乐时期疆域概图。",
+          "accuracyNote": "边界为历史沙盘示意，北方边墙、羁縻与军镇区并非现代国界线。"
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "永乐至嘉靖 · 两京十三布政司格局",
+          "startYear": 1425,
+          "endYear": 1566,
+          "summary": "明代盛期以北直隶、南直隶、十三布政司和西南改土归流前的区域体系构成主体。",
+          "mode": "multi-region",
+          "includeRegions": ["china-core-north", "guanzhong", "yangtze-middle", "yangtze-lower", "south-china", "yunnan-guizhou", "liaodong"],
+          "softBoundaries": ["great-wall-line", "ming-garrisons", "yangtze", "south-china-coast"],
+          "avoidRegions": ["japan", "korea", "taiwan", "southeast-asia-islands"],
+          "sourceNote": "参考《中国历史地图集》明代行政区划图和通用明代疆域图。",
+          "accuracyNote": "展示明王朝主要行政与军镇控制范围，不表示海上朝贡或势力影响区。"
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "晚明 · 东北压力与内地框架",
+          "startYear": 1567,
+          "endYear": 1644,
+          "summary": "晚明仍保有内地行政框架，但辽东和北部边防压力明显加剧。",
+          "mode": "multi-region",
+          "includeRegions": ["china-core-north", "guanzhong", "yangtze-middle", "yangtze-lower", "south-china", "yunnan-guizhou", "liaodong"],
+          "softBoundaries": ["great-wall-line", "liaodong-frontier", "yangtze"],
+          "avoidRegions": ["japan", "korea", "taiwan", "southeast-asia-islands"],
+          "sourceNote": "参考晚明辽东边防、内地布政司格局和明清鼎革前疆域概图。",
+          "accuracyNote": "晚明辽东边界按可视化概括处理，不表达后金推进过程中的逐年变化。"
+        }
+      ]
+    },
+    {
+      "id": "egypt-new-kingdom",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "第十八王朝早期 · 尼罗河与努比亚恢复",
+          "startYear": -1550,
+          "endYear": -1400,
+          "summary": "新王国早期重新控制尼罗河谷，并向努比亚和西奈方向恢复军事存在。",
+          "mode": "multi-region",
+          "includeRegions": ["egypt-nile", "nubia"],
+          "softBoundaries": ["nile-valley", "eastern-desert", "sinai-approach"],
+          "avoidRegions": ["western-desert-deep"],
+          "sourceNote": "参考新王国第十八王朝早期尼罗河谷、努比亚要塞和西奈方向的历史地图。",
+          "accuracyNote": "尼罗河谷以加宽沙盘走廊表现，不代表沙漠中实际连续定居边界。"
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "图特摩斯至拉美西斯 · 尼罗河、努比亚与黎凡特",
+          "startYear": -1399,
+          "endYear": -1200,
+          "summary": "盛期新王国沿尼罗河谷南下努比亚，并在黎凡特维持军事和贡赋网络。",
+          "mode": "multi-region",
+          "includeRegions": ["nubia", "egypt-nile", "sinai-corridor", "levant-coast-corridor"],
+          "softBoundaries": ["nile-valley", "levant-coast", "sinai-corridor"],
+          "avoidRegions": ["arabian-desert-deep", "western-desert-deep"],
+          "sourceNote": "参考图特摩斯三世、阿玛尔纳时代和拉美西斯二世时期埃及势力范围图。",
+          "accuracyNote": "黎凡特部分表示军事与属国网络影响范围，并非埃及本土式行政边界。"
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "第二十王朝后期 · 尼罗河核心收缩",
+          "startYear": -1199,
+          "endYear": -1070,
+          "summary": "后期新王国逐渐从亚洲属地收缩，核心重新集中于埃及尼罗河谷和努比亚北部。",
+          "mode": "multi-region",
+          "includeRegions": ["egypt-nile", "nubia"],
+          "softBoundaries": ["nile-valley", "delta", "upper-egypt"],
+          "avoidRegions": ["levant-interior", "western-desert-deep"],
+          "sourceNote": "参考海上民族冲击后新王国晚期尼罗河核心与努比亚控制变化。",
+          "accuracyNote": "收缩期边界强调核心河谷，不细分地方神庙经济与边防据点控制。"
+        }
+      ]
+    },
+    {
+      "id": "achaemenid",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "居鲁士至冈比西斯前 · 伊朗高原与两河",
+          "startYear": -550,
+          "endYear": -522,
+          "summary": "阿契美尼德早期从波斯和米底扩张到两河、安纳托利亚与伊朗高原主体。",
+          "mode": "multi-region",
+          "includeRegions": ["iranian-plateau", "mesopotamia", "anatolia", "caucasus"],
+          "softBoundaries": ["zagros", "tigris-euphrates", "anatolian-plateau"],
+          "avoidRegions": ["aegean-islands", "arabian-desert-deep"],
+          "sourceNote": "参考居鲁士、冈比西斯前后波斯帝国扩张阶段的通用历史地图。",
+          "accuracyNote": "多区域示意避免巨型斜带，实际行省边界和附属地控制强度有差异。"
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "大流士一世 · 从埃及到印度河",
+          "startYear": -521,
+          "endYear": -486,
+          "summary": "盛期阿契美尼德帝国横跨埃及、黎凡特、两河、伊朗高原、中亚西部和印度河西缘。",
+          "mode": "multi-region",
+          "includeRegions": ["egypt-nile", "levant", "anatolia", "caucasus", "mesopotamia", "iranian-plateau", "persian-gulf", "central-asia-west", "bactria-sogdiana", "indus-west"],
+          "softBoundaries": ["royal-road", "zagros", "nile-delta", "bactria-frontier"],
+          "avoidRegions": ["arabian-desert-deep", "aegean-islands"],
+          "sourceNote": "参考大流士一世行省体系和阿契美尼德帝国最大疆域的通用历史地图。",
+          "accuracyNote": "展示帝国行省与附属区域的大范围沙盘轮廓，不代表逐地精确边界。"
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "晚期帝国 · 西部反复与核心仍在",
+          "startYear": -485,
+          "endYear": -330,
+          "summary": "晚期帝国仍以伊朗高原、两河、安纳托利亚和黎凡特为主体，但埃及与西部边疆反复脱离。",
+          "mode": "multi-region",
+          "includeRegions": ["levant", "anatolia", "caucasus", "mesopotamia", "iranian-plateau", "persian-gulf", "central-asia-west", "bactria-sogdiana", "indus-west"],
+          "softBoundaries": ["zagros", "tigris-euphrates", "satrapy-network"],
+          "avoidRegions": ["arabian-desert-deep", "aegean-islands"],
+          "sourceNote": "参考波斯晚期行省体系、埃及独立反复与亚历山大东征前的疆域概图。",
+          "accuracyNote": "晚期图形保留主要行省方向，未逐年表达叛乱、复归和军事占领变化。"
+        }
+      ]
+    },
+    {
+      "id": "sasanian",
+      "phases": [
+        {
+          "phase": "rise",
+          "phaseLabel": "阿尔达希尔至霍斯劳一世前 · 伊朗与两河核心",
+          "startYear": 224,
+          "endYear": 530,
+          "summary": "萨珊早期确立伊朗高原、两河流域和波斯湾北岸核心，并争夺亚美尼亚与高加索通道。",
+          "mode": "multi-region",
+          "includeRegions": ["iranian-plateau", "mesopotamia", "persian-gulf", "caucasus"],
+          "softBoundaries": ["zagros", "tigris-euphrates", "caucasus-passes"],
+          "avoidRegions": ["arabian-desert-deep"],
+          "sourceNote": "参考萨珊早期与罗马对峙的伊朗、两河和亚美尼亚区域历史地图。",
+          "accuracyNote": "边界按核心控制区和主要战线概括，不表示罗马-萨珊边境的逐城变化。"
+        },
+        {
+          "phase": "peak",
+          "phaseLabel": "霍斯劳一世至霍斯劳二世 · 西线与中亚扩张",
+          "startYear": 531,
+          "endYear": 628,
+          "summary": "盛期萨珊保持伊朗和两河核心，并在高加索、中亚西部、黎凡特和安纳托利亚东部短期扩张。",
+          "mode": "multi-region",
+          "includeRegions": ["iranian-plateau", "mesopotamia", "persian-gulf", "caucasus", "central-asia-west", "levant", "anatolia"],
+          "softBoundaries": ["zagros", "caucasus-passes", "roman-frontier", "oxus-frontier"],
+          "avoidRegions": ["arabian-desert-deep", "aegean-islands"],
+          "sourceNote": "参考霍斯劳一世改革后疆域和霍斯劳二世战争期间短期占领范围。",
+          "accuracyNote": "西部扩张包含短期军事占领示意，不表示长期稳定行政疆域。"
+        },
+        {
+          "phase": "decline",
+          "phaseLabel": "拜占庭反攻与阿拉伯征服前后 · 核心瓦解",
+          "startYear": 629,
+          "endYear": 651,
+          "summary": "晚期萨珊失去西部占领地，核心回到伊朗与两河，并在阿拉伯征服中迅速瓦解。",
+          "mode": "multi-region",
+          "includeRegions": ["iranian-plateau", "mesopotamia", "persian-gulf", "caucasus"],
+          "softBoundaries": ["zagros", "tigris-euphrates", "iranian-core"],
+          "avoidRegions": ["arabian-desert-deep", "levant"],
+          "sourceNote": "参考628年后拜占庭反攻、内乱和阿拉伯征服时期萨珊势力收缩地图。",
+          "accuracyNote": "收缩期按大范围核心示意，未表现逐战役推进和地方割据的快速变化。"
+        }
+      ]
+    }
+  ]
+}

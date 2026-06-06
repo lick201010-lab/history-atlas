@@ -1288,3 +1288,62 @@ Next:
 
 - Commit and push F4 Source Pilot 01.
 - Continue F2 Batch 05 and plan the next F4 source batch only after the pilot format remains stable.
+
+## 2026-06-06 F2 boundary compiler and Batch 05
+
+Scope:
+
+- `han`
+- `ming`
+- `egypt-new-kingdom`
+- `achaemenid`
+- `sasanian`
+
+Agent workflow:
+
+- Codex wrote the F2 Boundary Compiler design and implementation plan.
+- Meitner worker implemented the first compiler pass, but Codex rejected acceptance because the first pass initially claimed `coastline-aware-rough` before the visual and code evidence was strong enough.
+- Kuhn read-only reviewer confirmed the repaired compiler truly used local land clipping, but requested scope/diff hygiene review before acceptance.
+- Codex verified that only the selected Batch 05 ids changed inside `boundaries-simplified.json`; all non-Batch05 features were byte-for-byte unchanged after JSON normalization.
+- Wegener worker repaired the visual problem where West Asia multi-region output looked like stacked translucent slabs. The accepted pass unions region envelopes before land tracing and records `compiler.regionUnion = true`.
+- All subagents were closed after result review.
+
+Codex review:
+
+- Accepted Batch 05 after the second repair.
+- The compiler now uses `src/data/atlas-land-110m.json` offline land clipping and does not fake coast-aware labels.
+- Han and Ming remain rough-refined but no longer simple one-piece rectangles.
+- New Kingdom Egypt now reads more like a Nile/Nubia/Sinai/Levant corridor instead of a broad desert triangle.
+- Achaemenid and Sasanian no longer show the obvious internal slab overlap from the first browser screenshot pass.
+- This is an F2 batch acceptance only; it is not final-version completion.
+
+Verification:
+
+- `npm run compile:boundaries -- --ids han,ming,egypt-new-kingdom,achaemenid,sasanian` passed.
+- `npm run validate:data` passed.
+- `npm run audit:boundary-quality` passed with `failures: []` and `warnings: []`.
+- `npm run check` passed, with only the existing Vite chunk-size warning that belongs to F6 performance work.
+- `scripts/auditF2BoundaryBatch05Playwright.mjs` passed on `http://127.0.0.1:4185/` with `failures: []`.
+
+QA artifacts:
+
+- `docs/boundary-qa/F2_BATCH05_REPORT_2026-06-06.md`
+- `docs/boundary-qa/boundary-quality-manifest.json`
+- `docs/boundary-qa/f2-batch05-manifest.json`
+- `docs/boundary-qa/f2-batch05-overview-west-asia-600.png`
+- `docs/boundary-qa/f2-batch05-han-100bce.png`
+- `docs/boundary-qa/f2-batch05-ming-1500.png`
+- `docs/boundary-qa/f2-batch05-egypt-new-kingdom-1300bce.png`
+- `docs/boundary-qa/f2-batch05-achaemenid-500bce.png`
+- `docs/boundary-qa/f2-batch05-sasanian-600.png`
+
+Result:
+
+- F2 Batch 05 is accepted by Codex.
+- F2 phased boundary batch ids now report 25 in the validator.
+- Including the original five sample civilizations, 30 of 43 civilizations have three-phase refined/sample boundary coverage.
+
+Next:
+
+- Commit and push the compiler workflow plus F2 Batch 05.
+- Use the compiler workflow for F2 Batch 06: `maurya`, `gupta`, `chola`, `khmer`, and `srivijaya`.

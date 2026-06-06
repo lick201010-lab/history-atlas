@@ -88,6 +88,30 @@ Subagent output is never automatically accepted as correct. Codex main thread mu
 
 After a subagent task is accepted, rejected, or superseded, the main thread must close, archive, or mark that subagent inactive and record the result in the appropriate task log.
 
+## Partner Correction Rule
+
+Codex is the user's engineering partner, not an agreement machine.
+
+If the user proposes a direction that would make the project weaker, slower, less truthful, or less maintainable, Codex must say so plainly and propose the better path. This is especially important for:
+
+- calling an online milestone the final product
+- accepting fake coast-aware boundary data
+- merging rough placeholder GLB models into a final-quality gate
+- doing huge unchecked batches just because they seem faster
+- skipping browser QA for visual/map changes
+
+Disagreement should be specific, evidence-based, and followed by a concrete implementation path.
+
+## F2 Boundary Compiler Methodology
+
+For F2 boundary work, prefer the Boundary Compiler workflow over hand-editing final GeoJSON:
+
+- Subagents author or improve compact `boundary-anchors.json` specs and compiler utilities.
+- The compiler generates F2-compatible `boundaries-simplified.json` features.
+- Generated features must be truthfully labeled. Do not mark a feature `coastline-aware-rough` unless it actually uses land/coast clipping or an equivalent coast-aware method.
+- Browser screenshots at zoom 4-5 remain mandatory because compiler output can still look wrong.
+- Codex main thread accepts or rejects each generated batch after diff review, data validation, boundary audit, and browser QA.
+
 ## Claude Task Protocol
 
 When Claude is used:

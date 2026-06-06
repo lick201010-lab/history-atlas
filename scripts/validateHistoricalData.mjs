@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { MODEL_PROFILE_KEYS } from '../src/map/modelProfileKeys.js';
+import { REGION_PRESETS } from './boundaryCompiler/regionPresets.mjs';
 
 const DATA_DIR = new URL('../src/data/', import.meta.url);
 const CODE_DIR = new URL('../src/map/', import.meta.url);
@@ -15,12 +16,14 @@ const F2_BATCH_02_IDS = new Set([
 ]);
 const F2_BATCH_03_IDS = new Set(['xia', 'shang', 'zhou', 'qin', 'sui']);
 const F2_BATCH_04_IDS = new Set(['jin', 'song', 'yuan', 'qing', 'prc']);
+const F2_BATCH_05_IDS = new Set(['han', 'ming', 'egypt-new-kingdom', 'achaemenid', 'sasanian']);
 const PHASED_BOUNDARY_IDS = new Set([
   ...SAMPLE_IDS,
   ...F2_BATCH_01_IDS,
   ...F2_BATCH_02_IDS,
   ...F2_BATCH_03_IDS,
   ...F2_BATCH_04_IDS,
+  ...F2_BATCH_05_IDS,
 ]);
 const SAMPLE_PHASES = new Set(['rise', 'peak', 'decline']);
 
@@ -250,6 +253,57 @@ function validateSampleBoundaryPhases(features, dynastyById, errors) {
   }
 }
 
+function validateBoundaryAnchors(anchors, errors) {
+  if (!anchors || typeof anchors !== 'object') {
+    fail(errors, 'boundary-anchors.json must be an object');
+    return;
+  }
+  if (!Array.isArray(anchors.civilizations)) {
+    fail(errors, 'boundary-anchors.json civilizations must be an array');
+    return;
+  }
+
+  const anchorById = new Map(anchors.civilizations.map((anchor) => [anchor.id, anchor]));
+  for (const id of F2_BATCH_05_IDS) {
+    const anchor = anchorById.get(id);
+    const prefix = `boundary-anchor:${id}`;
+    if (!anchor) {
+      fail(errors, `${prefix} missing anchor civilization`);
+      continue;
+    }
+    if (!Array.isArray(anchor.phases)) {
+      fail(errors, `${prefix} phases must be an array`);
+      continue;
+    }
+    const phases = new Set(anchor.phases.map((phase) => phase.phase));
+    for (const requiredPhase of SAMPLE_PHASES) {
+      if (!phases.has(requiredPhase)) fail(errors, `${prefix} missing ${requiredPhase} phase`);
+    }
+    if (anchor.phases.length !== 3) fail(errors, `${prefix} must have exactly 3 phases`);
+
+    for (const phase of anchor.phases) {
+      const phasePrefix = `${prefix}:${phase.phase || 'unknown'}`;
+      if (!SAMPLE_PHASES.has(phase.phase)) fail(errors, `${phasePrefix} phase must be rise, peak, or decline`);
+      if (!isNonEmptyString(phase.phaseLabel)) fail(errors, `${phasePrefix} missing phaseLabel`);
+      if (!isNumber(phase.startYear) || !isNumber(phase.endYear)) {
+        fail(errors, `${phasePrefix} startYear/endYear must be numbers`);
+      } else if (phase.startYear > phase.endYear) {
+        fail(errors, `${phasePrefix} startYear is after endYear`);
+      }
+      if (!isNonEmptyString(phase.summary)) fail(errors, `${phasePrefix} missing summary`);
+      if (!isNonEmptyString(phase.mode)) fail(errors, `${phasePrefix} missing mode`);
+      if (!Array.isArray(phase.includeRegions) || phase.includeRegions.length === 0) {
+        fail(errors, `${phasePrefix} includeRegions must be a non-empty array`);
+      }
+      for (const regionId of phase.includeRegions || []) {
+        if (!REGION_PRESETS[regionId]) fail(errors, `${phasePrefix} references unknown region preset:${regionId}`);
+      }
+      if (!isNonEmptyString(phase.sourceNote)) fail(errors, `${phasePrefix} missing sourceNote`);
+      if (!isNonEmptyString(phase.accuracyNote)) fail(errors, `${phasePrefix} missing accuracyNote`);
+    }
+  }
+}
+
 function hasQuestionMarkRun(str) {
   // Catches encoding-broken text like "???" / "？？？" (≥3 consecutive question marks).
   return /\?{3,}|？{3,}/.test(str);
@@ -331,10 +385,11 @@ async function validateProfileCodeBinding(errors) {
 }
 
 async function main() {
-  const [dynasties, boundaries, landmarks] = await Promise.all([
+  const [dynasties, boundaries, landmarks, boundaryAnchors] = await Promise.all([
     readFile(new URL('dynasties.json', DATA_DIR), 'utf8').then(JSON.parse),
     readFile(new URL('boundaries-simplified.json', DATA_DIR), 'utf8').then(JSON.parse),
     readFile(new URL('landmarks.json', DATA_DIR), 'utf8').then(JSON.parse),
+    readFile(new URL('boundary-anchors.json', DATA_DIR), 'utf8').then(JSON.parse),
   ]);
 
   const errors = [];
@@ -347,6 +402,7 @@ async function main() {
   for (const dynasty of dynasties) validateDynasty(dynasty, landmarkIds, errors);
   for (const feature of boundaries.features || []) validateBoundary(feature, dynastyIds, errors);
   validateSampleBoundaryPhases(boundaries.features || [], dynastyById, errors);
+  validateBoundaryAnchors(boundaryAnchors, errors);
 
   await validateProfileCodeBinding(errors);
 
@@ -367,7 +423,7 @@ async function main() {
   console.log(`Landmarks: ${landmarks.length}`);
   console.log(`Refined samples: ${SAMPLE_IDS.size}`);
   console.log(`F2 phased boundary batch ids: ${
-    F2_BATCH_01_IDS.size + F2_BATCH_02_IDS.size + F2_BATCH_03_IDS.size + F2_BATCH_04_IDS.size
+    F2_BATCH_01_IDS.size + F2_BATCH_02_IDS.size + F2_BATCH_03_IDS.size + F2_BATCH_04_IDS.size + F2_BATCH_05_IDS.size
   }`);
   console.log(`Model profiles (code+data): ${MODEL_PROFILE_KEYS.length} (${landmarks.filter((l) => l.modelProfile).length} landmarks linked)`);
 }

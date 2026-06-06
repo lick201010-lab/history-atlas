@@ -1,0 +1,346 @@
+{
+  "status": "pass",
+  "generatedAt": "2026-06-06T05:11:29.812Z",
+  "targetIds": [
+    "han",
+    "ming",
+    "egypt-new-kingdom",
+    "achaemenid",
+    "sasanian"
+  ],
+  "auditedFeatureCount": 15,
+  "failures": [],
+  "warnings": [],
+  "features": [
+    {
+      "id": "han",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 144,
+      "rings": 1,
+      "bbox": {
+        "minLng": 104.06,
+        "minLat": 26.36,
+        "maxLng": 121.78,
+        "maxLat": 40.6
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 3,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "han",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 428,
+      "rings": 5,
+      "bbox": {
+        "minLng": 75.04,
+        "minLat": 19.52,
+        "maxLng": 124,
+        "maxLat": 42.48
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 8,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "han",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 346,
+      "rings": 5,
+      "bbox": {
+        "minLng": 94.04,
+        "minLat": 19.52,
+        "maxLng": 123.96,
+        "maxLat": 42.48
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 7,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "ming",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 334,
+      "rings": 4,
+      "bbox": {
+        "minLng": 97.06,
+        "minLat": 19.52,
+        "maxLng": 124,
+        "maxLat": 42.48
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 7,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "ming",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 334,
+      "rings": 4,
+      "bbox": {
+        "minLng": 97.06,
+        "minLat": 19.52,
+        "maxLng": 124,
+        "maxLat": 42.48
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 7,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "ming",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 334,
+      "rings": 4,
+      "bbox": {
+        "minLng": 97.06,
+        "minLat": 19.52,
+        "maxLng": 124,
+        "maxLat": 42.48
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 7,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "egypt-new-kingdom",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 93,
+      "rings": 1,
+      "bbox": {
+        "minLng": 28.2,
+        "minLat": 15.06,
+        "maxLng": 33.48,
+        "maxLat": 31.52
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "egypt-new-kingdom",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 153,
+      "rings": 1,
+      "bbox": {
+        "minLng": 28.2,
+        "minLat": 15.06,
+        "maxLng": 37.24,
+        "maxLat": 36.56
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "egypt-new-kingdom",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 93,
+      "rings": 1,
+      "bbox": {
+        "minLng": 28.2,
+        "minLat": 15.06,
+        "maxLng": 33.48,
+        "maxLat": 31.52
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 2,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "achaemenid",
+      "phase": "rise",
+      "geometryType": "Polygon",
+      "vertices": 363,
+      "rings": 1,
+      "bbox": {
+        "minLng": 29.02,
+        "minLat": 23.98,
+        "maxLng": 66.04,
+        "maxLat": 42.96
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "achaemenid",
+      "phase": "peak",
+      "geometryType": "MultiPolygon",
+      "vertices": 553,
+      "rings": 2,
+      "bbox": {
+        "minLng": 28.2,
+        "minLat": 21.04,
+        "maxLng": 75.96,
+        "maxLat": 43.98
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 10,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "achaemenid",
+      "phase": "decline",
+      "geometryType": "Polygon",
+      "vertices": 489,
+      "rings": 1,
+      "bbox": {
+        "minLng": 29,
+        "minLat": 21.98,
+        "maxLng": 76.04,
+        "maxLat": 43.94
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 9,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "sasanian",
+      "phase": "rise",
+      "geometryType": "MultiPolygon",
+      "vertices": 326,
+      "rings": 2,
+      "bbox": {
+        "minLng": 38.04,
+        "minLat": 21.98,
+        "maxLng": 66.04,
+        "maxLat": 42.96
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "sasanian",
+      "phase": "peak",
+      "geometryType": "Polygon",
+      "vertices": 418,
+      "rings": 1,
+      "bbox": {
+        "minLng": 29,
+        "minLat": 21.98,
+        "maxLng": 75,
+        "maxLat": 43.94
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 7,
+        "regionUnion": true
+      }
+    },
+    {
+      "id": "sasanian",
+      "phase": "decline",
+      "geometryType": "MultiPolygon",
+      "vertices": 326,
+      "rings": 2,
+      "bbox": {
+        "minLng": 38.04,
+        "minLat": 21.98,
+        "maxLng": 66.04,
+        "maxLat": 42.96
+      },
+      "compiler": {
+        "name": "boundaryCompiler",
+        "version": 2,
+        "mode": "multi-region",
+        "landClipSource": "local:atlas-land-110m.json",
+        "landClipped": true,
+        "regionCount": 4,
+        "regionUnion": true
+      }
+    }
+  ]
+}
