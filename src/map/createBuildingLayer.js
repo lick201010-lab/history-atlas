@@ -1118,6 +1118,7 @@ const ID_PROFILE_OVERRIDES = {
 // 命中时：先按程序化模型出图（保证立即可见 + 失败兜底），随后异步加载 GLB，
 // 成功则用 GLB 替换该建筑的程序化体块；加载失败则保留程序化模型。
 const GLB_BASE = `${import.meta.env?.BASE_URL ?? '/'}models/`;
+const GLB_BATCH04_VERSION = '20260606-f3b04c';
 const ID_GLB_OVERRIDES = {
   'hagia-sophia': `${GLB_BASE}hagia-sophia.glb`,
   parthenon: `${GLB_BASE}parthenon.glb`,
@@ -1139,6 +1140,9 @@ const ID_GLB_OVERRIDES = {
   'sanchi-stupa': `${GLB_BASE}sanchi-stupa.glb`,
   'konark-sun': `${GLB_BASE}konark-sun.glb`,
   'djenne-mosque': `${GLB_BASE}djenne-mosque.glb`,
+  'mecca-haram': `${GLB_BASE}mecca-haram.glb?v=${GLB_BATCH04_VERSION}`,
+  teotihuacan: `${GLB_BASE}teotihuacan.glb?v=${GLB_BATCH04_VERSION}`,
+  'machu-picchu': `${GLB_BASE}machu-picchu.glb?v=${GLB_BATCH04_VERSION}`,
 };
 
 // 招牌建筑姿态覆写（弧度）。只修正模型在地图上的摆放，不改历史数据。
@@ -1167,6 +1171,9 @@ const ID_GLB_ORIENTATION_OVERRIDES = {
   'sanchi-stupa': GLB_ORIENT_ZUP,
   'konark-sun': GLB_ORIENT_ZUP,
   'djenne-mosque': GLB_ORIENT_ZUP,
+  'mecca-haram': GLB_ORIENT_ZUP,
+  teotihuacan: GLB_ORIENT_ZUP,
+  'machu-picchu': GLB_ORIENT_ZUP,
 };
 
 // 单例 GLTF 加载器（所有招牌建筑共用）。
@@ -1208,6 +1215,9 @@ const FOCUS_SCALE_OVERRIDES = {
   'sanchi-stupa': 1.22,
   'konark-sun': 1.20,
   'djenne-mosque': 1.16,
+  'mecca-haram': 1.20,
+  teotihuacan: 1.24,
+  'machu-picchu': 1.26,
 };
 
 function buildDefault(mat) {
@@ -1581,11 +1591,12 @@ export function createBuildingLayer(landmarks) {
 
       // 招牌建筑：异步加载 GLB 替换程序化体块（失败则保留程序化兜底）。
       const glbUrl = ID_GLB_OVERRIDES[building.id];
+      const hasGlbOverride = Boolean(glbUrl);
       if (glbUrl) this.loadGlbBody(group, bodyMeshes, glbUrl, building);
 
       // 植被（M2）：温带/热带站点在足迹外圈放低多边形树丛（沙漠/干旱区跳过）。
       // 各树本色烘焙进顶点色，合并成单一 role='tree' 网格。
-      if (GROVE_REGIONS.has(building.region)) {
+      if (!hasGlbOverride && GROVE_REGIONS.has(building.region)) {
         const treeMeshes = buildGrove(building);
         const treeMat = new THREE.MeshPhongMaterial({
           color: 0xffffff, vertexColors: true, transparent: true, opacity: 1,
@@ -1604,7 +1615,7 @@ export function createBuildingLayer(landmarks) {
 
       // 民居簇（M4）：都城/城邑/要塞/长城类站点散布聚落小屋。
       // 各屋时代色烘焙进顶点色，合并成单一 role='house' 网格。
-      if (SETTLEMENT_TYPES.has(building.type)) {
+      if (!hasGlbOverride && SETTLEMENT_TYPES.has(building.type)) {
         const houseMeshes = buildHamlet(building);
         const houseMat = new THREE.MeshPhongMaterial({
           color: 0xffffff, vertexColors: true, transparent: true, opacity: 1,

@@ -58,8 +58,8 @@ F3 completion requires:
 Current GLB coverage:
 
 - Total landmarks: 30.
-- GLB overrides: 20.
-- Missing GLB coverage: 10.
+- GLB overrides: 23.
+- Missing GLB coverage: 7.
 - Core 10 GLB coverage: 10 / 10, but these are not automatically final A-grade. They still need final map-view inspection.
 
 Missing GLB ids:
@@ -68,9 +68,6 @@ Missing GLB ids:
 - `terracotta-army`
 - `temple-of-heaven`
 - `cheomseongdae`
-- `mecca-haram`
-- `teotihuacan`
-- `machu-picchu`
 - `meroe-pyramids`
 - `great-zimbabwe`
 - `westminster-abbey`
@@ -166,6 +163,29 @@ Result:
   - `docs/model-qa/f3-batch03-konark-sun-inapp.png`
   - `docs/model-qa/f3-batch03-djenne-mosque-inapp.png`
 - Quality note: all three are accepted as readable B-grade coverage miniatures. `konark-sun` is near the coastline in the current map data, but the model is not upside down, floating, or sunk.
+
+## Accepted F3 Batch 04
+
+Target:
+
+- `mecca-haram`
+- `teotihuacan`
+- `machu-picchu`
+
+Result:
+
+- Accepted as F3 Batch04 GLB coverage on 2026-06-06.
+- `npm run audit:f3-batch04` passed with no failures.
+- `npm run audit:glb -- --write` passed with 23 OK, 0 WARN, 0 FAIL.
+- In-app browser QA passed for all three models: selected landmark, immersive mode active, Chinese title correct, and app logs empty.
+- Screenshots:
+  - `docs/model-qa/f3-batch04-mecca-haram-800.png`
+  - `docs/model-qa/f3-batch04-teotihuacan-450.png`
+  - `docs/model-qa/f3-batch04-machu-picchu-1500.png`
+  - `docs/model-qa/f3-batch04-mecca-haram-inapp.png`
+  - `docs/model-qa/f3-batch04-teotihuacan-inapp.png`
+  - `docs/model-qa/f3-batch04-machu-picchu-inapp.png`
+- Quality note: all three are accepted as readable B-grade coverage miniatures. `machu-picchu` was repaired during Codex QA to remove a misleading sharp-roof / pyramid-like read and now uses a lower roofless terrace silhouette. This is not full F3 completion.
 
 ## F3 Gate Checks
 

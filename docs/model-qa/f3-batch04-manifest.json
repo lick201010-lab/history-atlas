@@ -1,0 +1,159 @@
+{
+  "appUrl": "http://127.0.0.1:4188/",
+  "generatedAt": "2026-06-06T10:55:08.784Z",
+  "results": [
+    {
+      "scene": {
+        "id": "mecca-haram-800",
+        "targetId": "mecca-haram",
+        "year": 800,
+        "camera": {
+          "center": [
+            39.83,
+            21.42
+          ],
+          "zoom": 7,
+          "pitch": 62,
+          "bearing": -22
+        },
+        "screenshot": "f3-batch04-mecca-haram-800.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "麦加禁寺",
+        "modelStatus": 200,
+        "mapCenter": [
+          39.83,
+          21.42
+        ],
+        "zoom": 7,
+        "pitch": 62,
+        "bearing": -22,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch04-mecca-haram-800.png"
+    },
+    {
+      "scene": {
+        "id": "teotihuacan-450",
+        "targetId": "teotihuacan",
+        "year": 450,
+        "camera": {
+          "center": [
+            -98.84,
+            19.69
+          ],
+          "zoom": 7.2,
+          "pitch": 62,
+          "bearing": 28
+        },
+        "screenshot": "f3-batch04-teotihuacan-450.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "特奥蒂瓦坎",
+        "modelStatus": 200,
+        "mapCenter": [
+          -98.84,
+          19.69
+        ],
+        "zoom": 7.2,
+        "pitch": 62,
+        "bearing": 28,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch04-teotihuacan-450.png"
+    },
+    {
+      "scene": {
+        "id": "machu-picchu-1500",
+        "targetId": "machu-picchu",
+        "year": 1500,
+        "camera": {
+          "center": [
+            -72.55,
+            -13.16
+          ],
+          "zoom": 7.3,
+          "pitch": 66,
+          "bearing": -34
+        },
+        "screenshot": "f3-batch04-machu-picchu-1500.png"
+      },
+      "before": {
+        "targetButtonFound": true,
+        "inspectButtonFound": true,
+        "inspectRect": {
+          "centerX": 277,
+          "centerY": 251
+        }
+      },
+      "after": {
+        "bodyClass": "has-card landmark-immersive",
+        "cardOpen": true,
+        "immersive": true,
+        "title": "马丘比丘",
+        "modelStatus": 200,
+        "mapCenter": [
+          -72.55,
+          -13.16
+        ],
+        "zoom": 7.3,
+        "pitch": 66,
+        "bearing": -34,
+        "warningText": null
+      },
+      "screenshot": "C:\\Users\\Yvette\\Documents\\历史网站\\docs\\model-qa\\f3-batch04-machu-picchu-1500.png"
+    }
+  ],
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:4188/models/mecca-haram.glb?v=20260606-f3b04c",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/teotihuacan.glb?v=20260606-f3b04c",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/machu-picchu.glb?v=20260606-f3b04c",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/mecca-haram.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/teotihuacan.glb",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4188/models/machu-picchu.glb",
+      "status": 200
+    }
+  ],
+  "consoleMessages": [],
+  "logEntries": [],
+  "pageErrors": [],
+  "failures": []
+}

@@ -112,6 +112,9 @@ function focusCameraForBuilding(building, duration = 2000) {
     'sanchi-stupa': { zoom: 7.2, pitch: 62, bearing: 22 },
     'konark-sun': { zoom: 7.1, pitch: 64, bearing: -36 },
     'djenne-mosque': { zoom: 7.0, pitch: 64, bearing: -24 },
+    'mecca-haram': { zoom: 7.0, pitch: 62, bearing: -22 },
+    teotihuacan: { zoom: 7.2, pitch: 62, bearing: 28 },
+    'machu-picchu': { zoom: 7.3, pitch: 66, bearing: -34 },
   };
   const preset = presets[building.id] || { zoom: 6.4, pitch: 64, bearing: -30 };
   return {

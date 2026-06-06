@@ -64,6 +64,18 @@ Batch03 accepted `sanchi-stupa`, `konark-sun`, and `djenne-mosque` as GLB covera
 - Screenshots: `docs/model-qa/f3-batch03-sanchi-stupa-200bce.png`, `docs/model-qa/f3-batch03-konark-sun-1300.png`, `docs/model-qa/f3-batch03-djenne-mosque-1500.png`.
 - Quality note: all three are accepted as B-grade readable coverage miniatures, not as the full F3 Gate and not as final A-grade benchmark models.
 
+### 2026-06-06 F3 Batch04 Update
+
+Batch04 accepted `mecca-haram`, `teotihuacan`, and `machu-picchu` as GLB coverage only.
+
+- GLB coverage: 23 / 30 landmarks.
+- Missing GLB coverage: 7 / 30 landmarks.
+- New QA command: `npm run audit:f3-batch04`.
+- Fresh checks passed: `npm run audit:f3-batch04`, `npm run audit:glb -- --write`, and in-app browser QA.
+- Screenshots: `docs/model-qa/f3-batch04-mecca-haram-800.png`, `docs/model-qa/f3-batch04-teotihuacan-450.png`, `docs/model-qa/f3-batch04-machu-picchu-1500.png`.
+- Quality note: all three are accepted as B-grade readable coverage miniatures. `machu-picchu` was repaired during Codex QA so it reads as a low roofless terrace ruin rather than a sharp-roof / pyramid-like placeholder.
+- Still not final: F3 remains incomplete until all 30 landmarks have accepted A/B-grade models and the core 10 are re-graded against the A-grade bar.
+
 | 阶段 | 状态 | 当前目标 | 下一步 | 验收 Gate |
 | --- | --- | --- | --- | --- |
 | F1 视觉底座 | 已完成 | 深色沙盘视觉、海洋平整、陆地 relief、边界可读性通过基础验收 | 残余远景/资源风险留到 F6 | F1 visual foundation audit passed |
@@ -141,7 +153,7 @@ npm run smoke:release
 - 时间轴：公元前 2000 年到公元 2025 年。
 - 文明数据：43 个文明/朝代，含摘要、事件、标签、影响和重要性。
 - 历史边界：129 个 GeoJSON feature，43 个文明全部支持兴起/鼎盛/衰落阶段。
-- 奇观建筑：30 个地标，14 个重点奇观已接入 GLB 模型。
+- 奇观建筑：30 个地标，23 个奇观已接入 GLB 模型。
 - 交互：搜索、筛选、文明卡、建筑卡、对比、锁定、地图聚焦。
 - 移动端：窄屏 HUD 折叠、移动端发布冒烟通过。
 
@@ -152,7 +164,7 @@ npm run smoke:release
 | 文明 / 朝代 | 43 |
 | 边界 feature | 129 |
 | 奇观 / 建筑 | 30 |
-| GLB 覆盖模型 | 14 |
+| GLB 覆盖模型 | 23 |
 | 时代叙事段 | 8 |
 | 时间轴关键节点 | 14 |
 

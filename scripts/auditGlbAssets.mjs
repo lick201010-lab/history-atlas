@@ -38,7 +38,7 @@ function parseGlbOverrides(source) {
   let match = re.exec(block);
   while (match) {
     const id = match[1] || match[2] || match[3];
-    entries.push({ id, file: match[4] });
+    entries.push({ id, file: match[4].split('?')[0] });
     match = re.exec(block);
   }
   return entries;

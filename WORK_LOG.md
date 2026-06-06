@@ -1564,3 +1564,63 @@ Result:
 Next:
 
 - Continue F3 missing-model coverage. Candidate next batch: `mecca-haram`, `teotihuacan`, and `machu-picchu`, or split smaller if geometry risk is high.
+
+## 2026-06-06 F3 Batch04 model coverage
+
+Scope:
+
+- Continued F3 landmark/model quality with a bounded worker batch.
+- Added GLB coverage for `mecca-haram`, `teotihuacan`, and `machu-picchu`.
+- This remains a controlled F3 batch only. It does not complete F3 and does not make the project final.
+
+Agent workflow:
+
+- Bacon worker implemented the bounded GLB/model integration files.
+- Codex reviewed the worker output, reran checks, added the Batch04 browser QA script and artifacts, and performed in-app browser verification before acceptance.
+- Codex did not accept the first visual pass for `machu-picchu`: the screenshot read like sharp-roof / pyramid-like geometry and was traced to stale preview builds plus GLB/procedural decoration mixing.
+
+Implementation:
+
+- Added `scripts/buildMeccaHaramGlb.mjs`.
+- Added `scripts/buildTeotihuacanGlb.mjs`.
+- Added and then repaired `scripts/buildMachuPicchuGlb.mjs` so the model reads as a low roofless Andean terrace ruin instead of a peaked placeholder.
+- Generated `public/models/mecca-haram.glb`.
+- Generated `public/models/teotihuacan.glb`.
+- Generated `public/models/machu-picchu.glb`.
+- Added all three ids to GLB override, z-up orientation override, selected scale, and focus camera presets.
+- Added a GLB URL cache-bust version for Batch04 models and updated `auditGlbAssets.mjs` to strip query strings before inspecting local files.
+- Prevented GLB-backed landmarks from also receiving procedural grove/hamlet decorations, which avoided misleading model overlap for `machu-picchu`.
+- Added `npm run audit:f3-batch04`.
+
+Verification:
+
+- `node scripts/buildMeccaHaramGlb.mjs` passed: about 12980 tris, z -0.00..1.27, 504.5 KB.
+- `node scripts/buildTeotihuacanGlb.mjs` passed: about 2268 tris, z -0.00..0.73, 169.4 KB.
+- `node scripts/buildMachuPicchuGlb.mjs` passed after repair: about 984 tris, z 0.00..0.37, 84.8 KB.
+- `npm run audit:glb -- --write` passed: 23 OK, 0 WARN, 0 FAIL.
+- `npm run validate:data` passed.
+- `npm run build` passed with existing Vite large chunk warnings.
+- `npm run audit:f3-batch04` passed with `failures: []`.
+- In-app browser QA passed for all three models: selected landmark, immersive mode active, Chinese title correct, and page logs empty.
+
+QA artifacts:
+
+- `docs/model-qa/F3_BATCH04_REPORT_2026-06-06.md`
+- `docs/model-qa/f3-batch04-manifest.json`
+- `docs/model-qa/f3-batch04-mecca-haram-800.png`
+- `docs/model-qa/f3-batch04-teotihuacan-450.png`
+- `docs/model-qa/f3-batch04-machu-picchu-1500.png`
+- `docs/model-qa/f3-batch04-mecca-haram-inapp.png`
+- `docs/model-qa/f3-batch04-teotihuacan-inapp.png`
+- `docs/model-qa/f3-batch04-machu-picchu-inapp.png`
+
+Result:
+
+- F3 Batch04 is accepted as GLB coverage for `mecca-haram`, `teotihuacan`, and `machu-picchu`.
+- Visual grade: all three are B-level readable miniatures. `machu-picchu` is intentionally low and roofless at map scale; it is coverage quality, not an A-grade showcase model.
+- GLB coverage is now 23 / 30. Missing GLB coverage remains 7 / 30.
+- The full F3 Gate remains incomplete.
+
+Next:
+
+- Continue F3 missing-model coverage. Strong next candidate batch: `changan`, `terracotta-army`, `temple-of-heaven`, and `cheomseongdae`, but split if model quality starts to drop.

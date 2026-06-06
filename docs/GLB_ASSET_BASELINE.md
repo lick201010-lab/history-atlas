@@ -4,12 +4,12 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 
 ## Summary
 
-- Landmark GLB overrides: 20
-- GLB files in public/models: 20
-- Passing without warnings: 20
+- Landmark GLB overrides: 23
+- GLB files in public/models: 23
+- Passing without warnings: 23
 - Warnings: 0
 - Failures: 0
-- Total GLB weight: 6,475 KB
+- Total GLB weight: 7,233 KB
 
 ## Budget
 
@@ -33,6 +33,8 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `hagia-sophia` | `hagia-sophia.glb` | 750 KB | 19,228 | 17,579 | 16 | 0/0 | -0.000 | 1.459 | 0.780 | - |
 | OK | `ishtar-gate` | `ishtar-gate.glb` | 278 KB | 3,584 | 6,950 | 11 | 0/0 | 0.000 | 0.985 | 0.676 | - |
 | OK | `konark-sun` | `konark-sun.glb` | 410 KB | 6,444 | 10,189 | 12 | 0/0 | -0.000 | 1.135 | 0.809 | - |
+| OK | `machu-picchu` | `machu-picchu.glb` | 85 KB | 984 | 1,902 | 10 | 0/0 | 0.000 | 0.369 | 0.840 | - |
+| OK | `mecca-haram` | `mecca-haram.glb` | 505 KB | 12,980 | 11,778 | 12 | 0/0 | -0.000 | 1.275 | 0.882 | - |
 | OK | `notre-dame` | `notre-dame.glb` | 241 KB | 3,488 | 5,968 | 9 | 0/0 | -0.000 | 0.986 | 0.687 | - |
 | OK | `parthenon` | `parthenon.glb` | 397 KB | 7,400 | 9,768 | 9 | 0/0 | -0.000 | 0.894 | 0.730 | - |
 | OK | `persepolis` | `persepolis.glb` | 403 KB | 7,154 | 9,927 | 10 | 0/0 | -0.000 | 0.935 | 0.810 | - |
@@ -42,6 +44,7 @@ Generated from the local repository with `npm run audit:glb -- --write`.
 | OK | `sanchi-stupa` | `sanchi-stupa.glb` | 305 KB | 5,918 | 7,307 | 11 | 0/0 | -0.000 | 1.135 | 0.765 | - |
 | OK | `stonehenge` | `stonehenge.glb` | 52 KB | 688 | 1,220 | 4 | 0/0 | -0.000 | 0.379 | 0.520 | - |
 | OK | `tajmahal` | `taj-mahal.glb` | 376 KB | 12,300 | 8,252 | 11 | 0/0 | -0.000 | 1.265 | 0.720 | - |
+| OK | `teotihuacan` | `teotihuacan.glb` | 169 KB | 2,268 | 4,104 | 10 | 0/0 | -0.000 | 0.730 | 0.810 | - |
 | OK | `ziggurat-ur` | `ziggurat-ur.glb` | 325 KB | 4,092 | 8,184 | 11 | 0/0 | 0.000 | 0.983 | 0.785 | - |
 
 ## How To Use This Baseline
