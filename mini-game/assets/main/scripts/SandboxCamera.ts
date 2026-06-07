@@ -22,6 +22,14 @@ export class SandboxCamera extends Component {
     this.apply();
   }
 
+  configure(target: Vec3, distance: number, pitch = this.pitch, autoOrbitSpeed = this.autoOrbitSpeed) {
+    this.target = target;
+    this.distance = distance;
+    this.pitch = pitch;
+    this.autoOrbitSpeed = autoOrbitSpeed;
+    this.apply();
+  }
+
   update(dt: number) {
     if (this.autoOrbitSpeed !== 0) {
       this.yaw += this.autoOrbitSpeed * dt;

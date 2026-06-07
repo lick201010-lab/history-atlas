@@ -2019,3 +2019,42 @@ Next:
 
 - Stop Preview and start Preview again. The expected result is a 3D sandbox without the temporary UI.
 - Rebuild UI later using a safer path: Cocos editor-authored prefab UI or platform/native mini-game overlay, not the current all-programmatic Canvas/Graphics/Label stack.
+
+## 2026-06-07 Cocos Byzantine visual framing pass
+
+Issue:
+
+- The Cocos sample could open after the runtime fixes, but the first rendered view was not visually acceptable:
+  - a large green rectangular relief plane filled the screen;
+  - ocean and geographic silhouette were not legible;
+  - landmark fallbacks appeared as small beige blocks;
+  - the view proved that the runtime path worked, but did not prove that Cocos is a better final mobile direction.
+
+Fix:
+
+- Replaced the full rectangular land plane with land masses generated from the Byzantine exported boundary rings.
+- Kept a large flat dark ocean plane below the land/boundary layers so ocean remains visibly flat and clean.
+- Added a soft coast glow and small relief strokes inside the boundary-derived land masses.
+- Added automatic camera framing based on boundary and landmark bounds.
+- Reduced auto orbit speed for easier inspection.
+- Enlarged landmark placement and replaced plain box fallbacks with readable miniature silhouettes for:
+  - Hagia Sophia;
+  - Parthenon;
+  - Colosseum.
+- Synced the same script changes into the D-drive Cocos working copy used by the open Creator Preview.
+- Cleared the D-drive Cocos `temp/programming` cache so Creator recompiles the updated scripts.
+
+Verification:
+
+- C-drive Cocos runtime scripts pass TypeScript `transpileModule` checks.
+- D-drive Cocos runtime scripts pass TypeScript `transpileModule` checks.
+- `node mini-game/tools/exportByzantineData.mjs` passed.
+- `npm run validate:data` passed.
+- `npm run check` passed with only the existing Vite large chunk warnings.
+- Cocos asset-db logs no longer show `TypeError`, `localSetLayout`, `ClearFlagBit`, `SyntaxError`, `n.map`, or `Init asset worker` after the latest refresh.
+
+Important limitation:
+
+- Direct headless browser access to `http://localhost:7456/` produced `ReferenceError: System is not defined`; screenshot saved at `docs/cocos-qa/cocos-preview-direct-browser-system-error.png`.
+- This direct-browser failure is a preview-server/runtime-channel issue, not evidence that the Creator embedded preview failed.
+- The next Gate must use Creator Preview visual inspection, then a real Web Desktop build or WeChat/Douyin developer-tool run. Do not treat Cocos Preview alone as final proof.

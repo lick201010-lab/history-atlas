@@ -4,7 +4,7 @@ import {
 } from 'cc';
 import { SandboxData } from './SandboxTypes';
 import { SandboxCamera } from './SandboxCamera';
-import { buildBoundary, buildLand, buildOcean } from './SandboxBuilder';
+import { buildBoundary, buildLand, buildOcean, getRingsBounds } from './SandboxBuilder';
 import { LandmarkLoader } from './LandmarkLoader';
 
 const { ccclass } = _decorator;
@@ -13,17 +13,18 @@ const { ccclass } = _decorator;
 export class Bootstrap extends Component {
   async start() {
     this.setupLights();
-    this.setupCamera();
+    const camera = this.setupCamera();
 
     const sandbox = new Node('Sandbox');
     sandbox.setParent(this.node);
     buildOcean(sandbox);
-    buildLand(sandbox);
 
     try {
       const byzantineBundle = await this.loadBundle('byzantine');
       const data = await this.loadJson(byzantineBundle, 'data/byzantine');
+      buildLand(sandbox, data.boundary.rings);
       buildBoundary(sandbox, data.boundary.rings, data.civ.color);
+      this.frameScene(camera, data);
 
       const landmarkBundle = await this.loadBundle('landmarks');
       const loader = this.node.addComponent(LandmarkLoader);
@@ -44,7 +45,7 @@ export class Bootstrap extends Component {
     light.illuminance = 80000;
   }
 
-  private setupCamera() {
+  private setupCamera(): SandboxCamera {
     const cameraNode = new Node('MainCamera');
     cameraNode.setParent(this.node);
     const camera = cameraNode.addComponent(Camera);
@@ -59,7 +60,30 @@ export class Bootstrap extends Component {
     controller.target = new Vec3(-1, 0, 3);
     controller.distance = 40;
     controller.pitch = 48;
-    controller.autoOrbitSpeed = 2.0;
+    controller.autoOrbitSpeed = 0.35;
+    return controller;
+  }
+
+  private frameScene(camera: SandboxCamera, data: SandboxData) {
+    const bounds = getRingsBounds(data.boundary.rings);
+    const landmarkPoints = data.landmarks.map((landmark) => ({
+      x: landmark.x,
+      z: landmark.z,
+    }));
+
+    for (const point of landmarkPoints) {
+      bounds.minX = Math.min(bounds.minX, point.x);
+      bounds.maxX = Math.max(bounds.maxX, point.x);
+      bounds.minZ = Math.min(bounds.minZ, point.z);
+      bounds.maxZ = Math.max(bounds.maxZ, point.z);
+    }
+
+    const centerX = (bounds.minX + bounds.maxX) / 2;
+    const centerZ = (bounds.minZ + bounds.maxZ) / 2;
+    const width = bounds.maxX - bounds.minX;
+    const depth = bounds.maxZ - bounds.minZ;
+    const distance = Math.max(20, Math.min(34, Math.max(width, depth) * 1.08));
+    camera.configure(new Vec3(centerX, 0.05, centerZ), distance, 52, 0.35);
   }
 
   private loadBundle(name: string): Promise<AssetManager.Bundle> {

@@ -40,47 +40,47 @@ function addMesh(parent: Node, name: string, mesh: Mesh, mat: Material, y: numbe
 }
 
 export function buildOcean(parent: Node): Node {
-  const geo = primitives.plane({ width: 84, length: 84, widthSegments: 1, lengthSegments: 1 });
+  const geo = primitives.plane({ width: 96, length: 96, widthSegments: 1, lengthSegments: 1 });
   const mesh = utils.createMesh(geo);
-  const mat = makeMaterial('builtin-unlit', new Color(14, 35, 58, 255));
-  return addMesh(parent, 'Ocean', mesh, mat, -0.08);
+  const mat = makeMaterial('builtin-unlit', new Color(7, 28, 43, 255));
+  return addMesh(parent, 'Ocean', mesh, mat, -0.12);
 }
 
-export function buildLand(parent: Node): Node {
-  const size = 60;
-  const segments = 44;
-  const positions: number[] = [];
-  const normals: number[] = [];
-  const indices: number[] = [];
+export function buildLand(parent: Node, rings: number[][][]): Node {
+  const root = new Node('ReliefLand');
+  root.setParent(parent);
 
-  for (let z = 0; z <= segments; z++) {
-    for (let x = 0; x <= segments; x++) {
-      const px = -size / 2 + (size * x) / segments;
-      const pz = -size / 2 + (size * z) / segments;
-      const ridge =
-        Math.sin((px + 9) * 0.33) * Math.cos((pz - 2) * 0.25) +
-        Math.sin((px - pz) * 0.18) * 0.55;
-      const falloff = Math.max(0, 1 - Math.hypot(px * 0.045, pz * 0.038));
-      const py = Math.max(0, ridge) * 0.42 * falloff;
-      positions.push(px, py, pz);
-      normals.push(0, 1, 0);
+  const landMat = makeMaterial('builtin-standard', new Color(91, 109, 77, 255));
+  const coastMat = makeMaterial('builtin-unlit', new Color(113, 144, 142, 118), true);
+  const ridgeMat = makeMaterial('builtin-unlit', new Color(176, 165, 130, 155), true);
+
+  for (const rawRing of rings) {
+    const ring = rawRing.map((p) => [p[0] * WORLD_SCALE, p[1] * WORLD_SCALE]);
+    const fillMesh = buildFill(ring);
+    if (fillMesh) {
+      addMesh(root, 'LandMass', fillMesh, landMat, 0);
+    }
+    const coastMesh = buildRibbon(ring, 0.28);
+    if (coastMesh) {
+      addMesh(root, 'CoastGlow', coastMesh, coastMat, 0.025);
     }
   }
 
-  const row = segments + 1;
-  for (let z = 0; z < segments; z++) {
-    for (let x = 0; x < segments; x++) {
-      const a = z * row + x;
-      const b = a + 1;
-      const c = a + row;
-      const d = c + 1;
-      indices.push(a, c, b, b, c, d);
+  const bounds = getRingsBounds(rings);
+  const ridgeCount = 12;
+  for (let i = 0; i < ridgeCount; i++) {
+    const t = ridgeCount === 1 ? 0.5 : i / (ridgeCount - 1);
+    const x0 = bounds.minX + (bounds.maxX - bounds.minX) * (0.16 + t * 0.68);
+    const z0 = bounds.minZ + (bounds.maxZ - bounds.minZ) * (0.38 + Math.sin(i * 1.7) * 0.12);
+    const x1 = x0 + 1.6 + Math.sin(i) * 0.6;
+    const z1 = z0 + 0.9 + Math.cos(i * 0.8) * 0.5;
+    const ridge = buildSegmentRibbon([[x0, z0], [x1, z1]], 0.05 + (i % 3) * 0.018);
+    if (ridge) {
+      addMesh(root, 'ReliefStroke', ridge, ridgeMat, 0.05);
     }
   }
 
-  const mesh = utils.createMesh({ positions, normals, indices });
-  const mat = makeMaterial('builtin-standard', new Color(88, 99, 78, 255));
-  return addMesh(parent, 'ReliefLand', mesh, mat, 0);
+  return root;
 }
 
 export function buildBoundary(parent: Node, rings: number[][][], colorHex: string): Node {
@@ -96,12 +96,32 @@ export function buildBoundary(parent: Node, rings: number[][][], colorHex: strin
     if (fillMesh) {
       addMesh(root, 'Fill', fillMesh, makeMaterial('builtin-unlit', fill, true), 0.12);
     }
-    const lineMesh = buildRibbon(ring, 0.13);
+    const lineMesh = buildRibbon(ring, 0.22);
     if (lineMesh) {
-      addMesh(root, 'Edge', lineMesh, makeMaterial('builtin-unlit', edge, true), 0.16);
+      addMesh(root, 'Edge', lineMesh, makeMaterial('builtin-unlit', edge, true), 0.18);
     }
   }
   return root;
+}
+
+export function getRingsBounds(rings: number[][][]): { minX: number; maxX: number; minZ: number; maxZ: number } {
+  const points = rings.flat();
+  if (points.length === 0) {
+    return { minX: -8, maxX: 8, minZ: -6, maxZ: 6 };
+  }
+  let minX = Number.POSITIVE_INFINITY;
+  let maxX = Number.NEGATIVE_INFINITY;
+  let minZ = Number.POSITIVE_INFINITY;
+  let maxZ = Number.NEGATIVE_INFINITY;
+  for (const point of points) {
+    const x = point[0] * WORLD_SCALE;
+    const z = point[1] * WORLD_SCALE;
+    minX = Math.min(minX, x);
+    maxX = Math.max(maxX, x);
+    minZ = Math.min(minZ, z);
+    maxZ = Math.max(maxZ, z);
+  }
+  return { minX, maxX, minZ, maxZ };
 }
 
 function buildFill(ring: number[][]): Mesh | null {
@@ -207,6 +227,38 @@ function buildRibbon(ring: number[][], width: number): Mesh | null {
     const b = i * 2 + 1;
     const c = ((i + 1) % ring.length) * 2;
     const d = ((i + 1) % ring.length) * 2 + 1;
+    indices.push(a, c, b, b, c, d);
+  }
+
+  return utils.createMesh({ positions, normals, indices });
+}
+
+function buildSegmentRibbon(points: number[][], width: number): Mesh | null {
+  if (points.length < 2) return null;
+  const positions: number[] = [];
+  const normals: number[] = [];
+  const indices: number[] = [];
+  const half = width / 2;
+
+  for (let i = 0; i < points.length; i++) {
+    const prev = points[Math.max(0, i - 1)];
+    const cur = points[i];
+    const next = points[Math.min(points.length - 1, i + 1)];
+    let nx = next[1] - prev[1];
+    let nz = -(next[0] - prev[0]);
+    const len = Math.hypot(nx, nz) || 1;
+    nx /= len;
+    nz /= len;
+    positions.push(cur[0] + nx * half, 0, cur[1] + nz * half);
+    positions.push(cur[0] - nx * half, 0, cur[1] - nz * half);
+    normals.push(0, 1, 0, 0, 1, 0);
+  }
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const a = i * 2;
+    const b = i * 2 + 1;
+    const c = (i + 1) * 2;
+    const d = (i + 1) * 2 + 1;
     indices.push(a, c, b, b, c, d);
   }
 

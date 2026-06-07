@@ -61,3 +61,21 @@ node mini-game/tools/exportByzantineData.mjs
 当前样板已经解决“能导入、能装配、脚本不乱码、数据可导出”的工程底座问题，但还没有通过真机小游戏视觉验收。后续必须在 Cocos Preview、微信开发者工具、抖音开发者工具和手机真机中对比网页版本，确认 Cocos 明显胜出后，才允许进入全量迁移。
 
 当前 `UIController` 暂时不由 `Bootstrap` 挂载，因为 Cocos Preview 中的程序化 `Canvas/Graphics/Label` 触发了 2D batcher `localSetLayout` 运行时错误。样板下一步先验证 3D 沙盘主体；UI 后续应改为编辑器 prefab 或小游戏原生 overlay。
+
+## 2026-06-07 视觉样板注意事项
+
+当前样板已经从“能打开”推进到第一轮视觉修正：
+
+- 陆地不再使用整块绿色矩形平面，而是按拜占庭边界导出数据生成陆块。
+- 海洋是单独的大面积深色平面，保持平整。
+- 相机按边界和奇观点自动取景。
+- 如果 GLB 在 Creator Preview 中没有正确实例化，圣索菲亚、帕特农和斗兽场会显示可读的 fallback 微缩轮廓，而不是普通方块。
+
+这仍然不是 Cocos 迁移通过。下一步 Gate 必须检查：
+
+1. Creator Preview 里是否真的看到东地中海轮廓，而不是绿色大屏。
+2. Web Desktop build 是否能脱离 Creator 内嵌预览运行。
+3. 微信开发者工具和抖音开发者工具是否能打开同一场景。
+4. 同视角对比网页版本，确认 Cocos 在边界、海洋、建筑和触控上明显胜出。
+
+已知风险：直接用 headless Edge 访问 `http://localhost:7456/` 会出现 `System is not defined`。这说明 Creator 预览服务器不能等同于正式 Web/小游戏运行环境。
