@@ -1950,3 +1950,35 @@ Notes:
 - This is a structural Cocos sample Gate, not a final visual Gate.
 - The next required proof is runtime visual QA in Cocos Preview, then WeChat/Douyin developer tools and phone-device checks.
 - The whole project is still not the final complete version because F5/F6 remain incomplete.
+
+## 2026-06-07 Cocos Preview clear flag runtime fix
+
+Issue:
+
+- Cocos Preview showed `TypeError: Cannot read properties of undefined (reading 'ALL')`.
+- The failure happened before the sandbox scene could render.
+
+Root cause:
+
+- `Bootstrap.ts` and `UIController.ts` imported `ClearFlagBit` from the public `cc` entrypoint.
+- In Cocos Creator 3.8, camera clear flags should use the public `Camera.ClearFlag` enum.
+- `ClearFlagBit` is an internal gfx bit flag and was undefined from the runtime import path used by the sample.
+
+Fix:
+
+- Replaced `ClearFlagBit.ALL` with `Camera.ClearFlag.SOLID_COLOR`.
+- Replaced `ClearFlagBit.DEPTH_STENCIL` with `Camera.ClearFlag.DEPTH_ONLY`.
+- Removed the invalid `ClearFlagBit` imports.
+
+Verification:
+
+- No `ClearFlagBit` references remain in `mini-game/assets/main/scripts`.
+- Cocos-bundled TypeScript `transpileModule` check passed for all runtime scripts.
+- `node mini-game/tools/exportByzantineData.mjs` passed.
+- `npm run validate:data` passed.
+- `npm run check` passed with existing Vite large chunk warnings.
+
+Next:
+
+- Refresh Cocos Preview or reopen the preview scene so Creator rebuilds the script chunk.
+- If a new runtime error appears after this fix, treat it as the next layer and debug from the new stack trace.

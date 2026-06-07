@@ -1,5 +1,5 @@
 import {
-  _decorator, Canvas, Camera, ClearFlagBit, Color, Component, Graphics, Label,
+  _decorator, Canvas, Camera, Color, Component, Graphics, Label,
   Layers, Node, UITransform, Widget, color, view,
 } from 'cc';
 import { SandboxData } from './SandboxTypes';
@@ -23,7 +23,7 @@ export class UIController extends Component {
     cameraNode.setParent(canvasNode);
     cameraNode.setPosition(0, 0, 1000);
     const camera = cameraNode.addComponent(Camera);
-    camera.clearFlags = ClearFlagBit.DEPTH_STENCIL;
+    camera.clearFlags = Camera.ClearFlag.DEPTH_ONLY;
     camera.visibility = Layers.Enum.UI_2D;
     camera.priority = 1;
     canvas.cameraComponent = camera;

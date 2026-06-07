@@ -1,5 +1,5 @@
 import {
-  _decorator, AssetManager, Camera, ClearFlagBit, Component, DirectionalLight,
+  _decorator, AssetManager, Camera, Component, DirectionalLight,
   JsonAsset, Layers, Node, Vec3, assetManager, color,
 } from 'cc';
 import { SandboxData } from './SandboxTypes';
@@ -51,7 +51,7 @@ export class Bootstrap extends Component {
     const cameraNode = new Node('MainCamera');
     cameraNode.setParent(this.node);
     const camera = cameraNode.addComponent(Camera);
-    camera.clearFlags = ClearFlagBit.ALL;
+    camera.clearFlags = Camera.ClearFlag.SOLID_COLOR;
     camera.clearColor = color(9, 15, 24, 255);
     camera.near = 0.1;
     camera.far = 2000;
