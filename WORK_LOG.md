@@ -1982,3 +1982,11 @@ Next:
 
 - Refresh Cocos Preview or reopen the preview scene so Creator rebuilds the script chunk.
 - If a new runtime error appears after this fix, treat it as the next layer and debug from the new stack trace.
+
+Follow-up:
+
+- The user still saw the same Preview error because the opened Cocos project was the older D-drive working copy, not the C-drive main repository copy that had already been fixed and pushed.
+- Patched `D:\松君\项目\历史网站\mini-game\assets\main\scripts\Bootstrap.ts` and `UIController.ts` with the same `Camera.ClearFlag` fix.
+- Removed stale `temp/programming` preview compile caches from both the C-drive and D-drive Cocos samples.
+- Reopened the D-drive Cocos project with Creator 3.8.8; latest asset-db fatal scan found no `ClearFlagBit`, `.ALL`, `n.map`, `Init asset worker`, `TypeError`, `SyntaxError`, or `Exception` entries.
+- If the same modal remains visible, it is an already-open Preview iframe running old code; stop Preview and start Preview again.
