@@ -13,7 +13,7 @@
 | 地图 | 平整深色海洋、低浮雕陆地、平滑边界面与描边 |
 | 奇观 | 圣索菲亚、帕特农神庙、罗马斗兽场 |
 | 视角 | 手机竖屏优先，45 度沙盘俯视，缓慢环绕 |
-| UI | 顶部标题、底部时间轴、文明卡、奇观卡 |
+| UI | 暂时关闭程序化 2D UI，优先验证 3D 沙盘主体 |
 
 ## 使用方式
 
@@ -59,3 +59,5 @@ node mini-game/tools/exportByzantineData.mjs
 ## 诚实边界
 
 当前样板已经解决“能导入、能装配、脚本不乱码、数据可导出”的工程底座问题，但还没有通过真机小游戏视觉验收。后续必须在 Cocos Preview、微信开发者工具、抖音开发者工具和手机真机中对比网页版本，确认 Cocos 明显胜出后，才允许进入全量迁移。
+
+当前 `UIController` 暂时不由 `Bootstrap` 挂载，因为 Cocos Preview 中的程序化 `Canvas/Graphics/Label` 触发了 2D batcher `localSetLayout` 运行时错误。样板下一步先验证 3D 沙盘主体；UI 后续应改为编辑器 prefab 或小游戏原生 overlay。

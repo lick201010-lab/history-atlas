@@ -6,7 +6,6 @@ import { SandboxData } from './SandboxTypes';
 import { SandboxCamera } from './SandboxCamera';
 import { buildBoundary, buildLand, buildOcean } from './SandboxBuilder';
 import { LandmarkLoader } from './LandmarkLoader';
-import { UIController } from './UIController';
 
 const { ccclass } = _decorator;
 
@@ -30,8 +29,6 @@ export class Bootstrap extends Component {
       const loader = this.node.addComponent(LandmarkLoader);
       await loader.place(sandbox, landmarkBundle, data.landmarks);
 
-      const ui = this.node.addComponent(UIController);
-      ui.build(data);
       console.log(`[Bootstrap] ready: ${data.civ.name} ${data.meta.year}`);
     } catch (error) {
       console.error('[Bootstrap] failed to build sandbox:', error);

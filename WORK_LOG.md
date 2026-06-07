@@ -1990,3 +1990,32 @@ Follow-up:
 - Removed stale `temp/programming` preview compile caches from both the C-drive and D-drive Cocos samples.
 - Reopened the D-drive Cocos project with Creator 3.8.8; latest asset-db fatal scan found no `ClearFlagBit`, `.ALL`, `n.map`, `Init asset worker`, `TypeError`, `SyntaxError`, or `Exception` entries.
 - If the same modal remains visible, it is an already-open Preview iframe running old code; stop Preview and start Preview again.
+
+## 2026-06-07 Cocos Preview 2D batcher isolation
+
+Issue:
+
+- After the clear-flag fix, Cocos Preview advanced to a new error: `TypeError: Cannot read properties of undefined (reading 'localSetLayout')`.
+- The blue camera clear background rendered, but the runtime modal appeared before the scene could be visually inspected.
+
+Root cause evidence:
+
+- `localSetLayout` is referenced by Cocos Creator 3.8's 2D batcher (`batcher-2d.ts`) when a 2D draw batch has no valid material pass.
+- The sample's only 2D render path is the programmatic `UIController` (`Canvas`, `Graphics`, `Label`, and `Widget`).
+- The 3D camera clear already works, so this is a later 2D UI/render batch failure, not the previous camera enum issue.
+
+Fix:
+
+- Temporarily disabled the `UIController` attachment in `Bootstrap.ts`.
+- Applied the same change to both the C-drive main repo sample and the D-drive Cocos working copy.
+- Removed stale `temp/programming` preview compile caches.
+
+Verification:
+
+- C-drive and D-drive Cocos scripts both pass Cocos-bundled TypeScript `transpileModule` checks.
+- Reopened the D-drive Cocos project with Creator 3.8.8; latest asset-db fatal scan found no `localSetLayout`, `TypeError`, `SyntaxError`, `n.map`, or `Init asset worker` entries.
+
+Next:
+
+- Stop Preview and start Preview again. The expected result is a 3D sandbox without the temporary UI.
+- Rebuild UI later using a safer path: Cocos editor-authored prefab UI or platform/native mini-game overlay, not the current all-programmatic Canvas/Graphics/Label stack.
