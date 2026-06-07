@@ -2058,3 +2058,26 @@ Important limitation:
 - Direct headless browser access to `http://localhost:7456/` produced `ReferenceError: System is not defined`; screenshot saved at `docs/cocos-qa/cocos-preview-direct-browser-system-error.png`.
 - This direct-browser failure is a preview-server/runtime-channel issue, not evidence that the Creator embedded preview failed.
 - The next Gate must use Creator Preview visual inspection, then a real Web Desktop build or WeChat/Douyin developer-tool run. Do not treat Cocos Preview alone as final proof.
+
+## 2026-06-07 D-drive workspace consolidation
+
+Decision:
+
+- The canonical local workspace is now `D:\松君\项目\历史网站`.
+- The previous C-drive workspace `C:\Users\Yvette\Documents\历史网站` is legacy only and should not be used for future project work.
+
+Actions:
+
+- Inspected both workspaces before changing files.
+- Found the D-drive workspace was a Git repo with four local Cocos commits and uncommitted Cocos/Obsidian edits, while the C-drive workspace was already pushed to `origin/main` at `e834c54`.
+- Created a D-drive safety branch named `codex/d-drive-pre-consolidation-20260607-143224`.
+- Saved the D-drive dirty working tree to `stash@{0}` with message `pre-consolidation D working tree 20260607-143224`.
+- Saved C-drive uncommitted visual QA changes under `D:\松君\项目\历史网站\.migration-backups\c-drive-20260607-143420`.
+- Reset D-drive `main` to `origin/main` at `e834c54` so the D-drive workspace is now aligned with GitHub.
+- Added `.migration-backups/` to `.gitignore`.
+- Updated `AGENTS.md` with the canonical workspace rule.
+
+Notes:
+
+- The C-drive folder has not been deleted yet.
+- After D-drive verification passes, the C-drive legacy copy can be archived or removed to recover disk space.

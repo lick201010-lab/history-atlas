@@ -4,6 +4,12 @@
 
 线上地址：[https://atlas.ckl.hk](https://atlas.ckl.hk)
 
+## Local Workspace
+
+Canonical local workspace: `D:\松君\项目\历史网站`.
+
+Do not use the old C-drive copy for future work.
+
 ## 当前状态
 
 | 项 | 状态 |

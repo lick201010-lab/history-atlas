@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.migration-backups/
 *.log
 react-*-validation.png
 online-*.png

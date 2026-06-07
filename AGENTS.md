@@ -16,6 +16,14 @@ Before any implementation, read:
 
 Do not rely on chat memory alone. If these files conflict with the chat, stop and state the conflict.
 
+## Canonical Workspace
+
+The canonical local working directory is now `D:\松君\项目\历史网站`.
+
+Do not use `C:\Users\Yvette\Documents\历史网站` for new work. That C-drive copy is a legacy source/backup only and should not receive future implementation, QA, Cocos, or deployment edits.
+
+When launching local commands, Cocos Creator, browser QA, Claude tasks, or Obsidian sync for this project, use the D-drive workspace unless the user explicitly asks to inspect the legacy C-drive backup.
+
 ## Final-Version Gate Rule
 
 Never describe a stage, batch, or deployment as "final" unless the relevant Gate in `docs/CURRENT_PHASE.md` and `docs/FINAL_VERSION_SPEC.md` has passed.
